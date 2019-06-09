@@ -129,12 +129,12 @@
       </v-flex>
       <v-img :src="food" height="300px" position="top" class="pt-3">
       <v-layout row wrap justify-start>
-        <v-flex xs12 md6 sm4 lg6 class="pl-5 pt-5">
+        <v-flex xs6 md6 sm4 lg6 class="pl-5 pt-5">
           <p style="font-size: 36px; color: #FFFFFF;">Mouth Watering</p>
         </v-flex>
       </v-layout>
       <v-layout column align-content-space-around align-content-start fill-height>
-        <v-flex xs12 md6 sm4 lg6 class="pl-5">
+        <v-flex xs6 md6 sm4 lg6 class="pl-5">
           <v-btn dark large depressed style="border-radius: 4px;" outline>
             Menu
           </v-btn>
