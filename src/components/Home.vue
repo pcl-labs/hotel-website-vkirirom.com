@@ -4,23 +4,27 @@
   <v-img id="header" :src="headerImg">
     <v-container grid-list-md>
       <v-layout row wrap align-end justify-start fill-height>
-        <v-flex xs3>
+        <v-flex sm6 md3>
         <p class="header-text">Book your <br> nature retreat.</p>
         </v-flex>
       </v-layout>
     </v-container>
   </v-img>
 </div>
-  <v-container grid-list-md text-xs-center>
-    <v-layout row wrap>
+  <v-container grid-list-md>
+    <v-layout row wrap justify-space-between>
     <ListCover title="Accommodation" style="font-size: 16px;line-height: 19px; color: #D8DADE;"></ListCover>
       <v-flex xs12 sm6 md3>
         <v-card>
           <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1559801041/Bungalow_1_ledef7.jpg"></v-img>
         </v-card>
         <v-layout align-start>
-          <p style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">
-            Hello
+          <p>
+            <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">
+              Entire 
+            </span>
+            <br>
+            <span ></span>
           </p>
         </v-layout>
       </v-flex>
@@ -29,8 +33,12 @@
           <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1559801041/Bungalow_1_ledef7.jpg"></v-img>
         </v-card>
         <v-layout align-start>
-          <p style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">
-            Hello
+          <p>
+            <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">
+              Entire 
+            </span>
+            <br>
+            <span ></span>
           </p>
         </v-layout>
       </v-flex>
@@ -39,23 +47,51 @@
           <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1559801041/Bungalow_1_ledef7.jpg"></v-img>
         </v-card>
         <v-layout align-start>
-          <p style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">
-            Hello
-          </p>
-        </v-layout>
-      </v-flex>
-      <v-flex xs12 sm6 md3>
-        <v-card>
-          <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1559801041/Bungalow_1_ledef7.jpg"></v-img>
-        </v-card>
-        <v-layout align-start>
-          <p style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">
-            Hello
+          <p>
+            <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">
+              Entire 
+            </span>
+            <br>
+            <span ></span>
           </p>
         </v-layout>
       </v-flex>
     </v-layout>
   </v-container>
+<footer>
+  <div style="background: #191C21; box-shadow: 0px -1px 0px #121416; color: #D8DADE;">
+  <v-container grid-list-md text-xs-center>
+    <v-layout row wrap justify-space-between>
+      <v-flex xs12 sm6 md3>
+        <p>Vkirirom</p>
+        <ul style="list-style:none;">
+        <v-flex>
+          <li>Item</li>
+          <li>Item</li>
+          <li>Item</li>
+        </v-flex>
+        </ul>
+      </v-flex>
+      <v-flex xs12 sm6 md3>
+        <p>Discover</p>
+        <ul style="list-style:none;">
+          <li>Item</li>
+          <li>Item</li>
+          <li>Item</li>
+        </ul>
+      </v-flex>
+      <v-flex xs12 sm6 md3>
+        <p>Hosting</p>
+        <ul style="list-style:none;">
+          <li>Item</li>
+          <li>Item</li>
+          <li>Item</li>
+        </ul>
+      </v-flex>
+    </v-layout>
+  </v-container>
+  </div>
+</footer>
 </v-container-fluid>
 </template>
 
@@ -199,6 +235,7 @@ export default {
 #header{
   background-size: contain;
   height: 300px;
+  object-fit: cover;
 }
 .gradient{  
     background: linear-gradient(128.38deg, #121416 0%, #313A4F 100%, transparent 72px) 
@@ -207,7 +244,7 @@ export default {
 
   font-size: 36px;
   color: #FFFFFF;
-  margin-top: 40%;
+  margin-top: 50%;
 }
 
 
