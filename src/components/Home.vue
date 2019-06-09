@@ -1,7 +1,7 @@
 <template>
 <v-container-fluid>
 <div class="gradient fill-height">
-  <v-img id="header" :src="headerImg">
+  <v-img id="header" :src="headerImg" height="300px">
     <v-container grid-list-md>
       <v-layout row wrap align-end justify-start fill-height>
         <v-flex sm6 md3>
@@ -12,9 +12,9 @@
   </v-img>
 </div>
   <v-container grid-list-md>
-    <v-layout row wrap justify-space-between>
+    <v-layout row wrap justify-space-between class="pb-4">
     <ListCover title="Accommodation" style="font-size: 16px;line-height: 19px; color: #D8DADE;"></ListCover>
-      <v-flex xs12 sm6 md3>
+      <v-flex xs12 sm6 md4>
         <v-card>
           <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1559801041/Bungalow_1_ledef7.jpg"></v-img>
         </v-card>
@@ -28,7 +28,7 @@
           </p>
         </v-layout>
       </v-flex>
-      <v-flex xs12 sm6 md3>
+      <v-flex xs12 sm6 md4>
         <v-card>
           <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1559801041/Bungalow_1_ledef7.jpg"></v-img>
         </v-card>
@@ -42,7 +42,7 @@
           </p>
         </v-layout>
       </v-flex>
-      <v-flex xs12 sm6 md3>
+      <v-flex xs12 sm6 md4>
         <v-card>
           <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1559801041/Bungalow_1_ledef7.jpg"></v-img>
         </v-card>
@@ -57,36 +57,100 @@
         </v-layout>
       </v-flex>
     </v-layout>
+    <v-img :src="corporateRetreat" height="300px" position="top" class="pt-3">
+      <v-layout row wrap justify-end align-end >
+        <v-flex xs6 class="pt-4">
+          <p style="font-size: 36px; color: #FFFFFF;">Your next corporate retreat</p>
+        </v-flex>
+      </v-layout>
+      <v-layout column align-center justify-center fill-height>
+        <v-flex xs6>
+          <v-btn dark large depressed style="border-radius: 4px;" color="#4B7F52">
+            Book Now
+          </v-btn>
+        </v-flex>
+      </v-layout>
+    </v-img>
+  <v-layout row wrap justify-space-between>
+    <ListCover title="Experiences" class="pt-3" style="font-size: 16px;line-height: 19px; color: #D8DADE;"></ListCover>
+      <v-flex xs12 sm6 md4>
+        <v-card>
+          <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1559801041/Bungalow_1_ledef7.jpg"></v-img>
+        </v-card>
+        <v-layout align-start>
+          <p>
+            <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">
+              Entire 
+            </span>
+            <br>
+            <span ></span>
+          </p>
+        </v-layout>
+      </v-flex>
+      <v-flex xs12 sm6 md4>
+        <v-card>
+          <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1559801041/Bungalow_1_ledef7.jpg"></v-img>
+        </v-card>
+        <v-layout align-start>
+          <p>
+            <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">
+              Entire 
+            </span>
+            <br>
+            <span ></span>
+          </p>
+        </v-layout>
+      </v-flex>
+      <v-flex xs12 sm6 md4>
+        <v-card>
+          <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1559801041/Bungalow_1_ledef7.jpg"></v-img>
+        </v-card>
+        <v-layout align-start>
+          <p>
+            <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">
+              Entire 
+            </span>
+            <br>
+            <span ></span>
+          </p>
+        </v-layout>
+      </v-flex>
+    </v-layout>
+    <Card v-for="place in places" :key="place"></Card>
   </v-container>
 <footer>
   <div style="background: #191C21; box-shadow: 0px -1px 0px #121416; color: #D8DADE;">
   <v-container grid-list-md text-xs-center>
     <v-layout row wrap justify-space-between>
       <v-flex xs12 sm6 md3>
-        <p>Vkirirom</p>
+        <p>Vkirirom
+        <br>
         <ul style="list-style:none;">
-        <v-flex>
-          <li>Item</li>
-          <li>Item</li>
-          <li>Item</li>
-        </v-flex>
+          <li>Lorem Ipsum</li>
+          <li>Lorem Ipsum</li>
+          <li>Lorem Ipsum</li>
         </ul>
+        </p>
       </v-flex>
       <v-flex xs12 sm6 md3>
-        <p>Discover</p>
+        <p>Discover
+        <br>
         <ul style="list-style:none;">
-          <li>Item</li>
-          <li>Item</li>
-          <li>Item</li>
+          <li>Lorem Ipsum</li>
+          <li>Lorem Ipsum</li>
+          <li>Lorem Ipsum</li>
         </ul>
+        </p>
       </v-flex>
       <v-flex xs12 sm6 md3>
-        <p>Hosting</p>
+        <p>Hosting
+        <br>
         <ul style="list-style:none;">
-          <li>Item</li>
-          <li>Item</li>
-          <li>Item</li>
+          <li>Lorem Ipsum</li>
+          <li>Lorem Ipsum</li>
+          <li>Lorem Ipsum</li>
         </ul>
+        </p>
       </v-flex>
     </v-layout>
   </v-container>
@@ -96,15 +160,18 @@
 </template>
 
 <script>
-import FrontendImg from '../assets/FrontImage.png';
+import FrontendImg from '../assets/FrontImage.png'
+import corporateRetreat from '../assets/951820009082492817.jpg'
 import headerImg from '../assets/freedom-camping-4m-bell-tent-5_copy_3_6e7cf404-7d2f-4cac-8bf7-fd04c9dd8854_1024x1024.jpeg'
 import ListCover from './Home/ListCover.vue'
-import IntroCard from './Home/IntroCard.vue'
+import introCard from './Home/IntroCard.vue'
+import Card from './Card.vue'
 
 export default {
   components:{
     ListCover,
-    IntroCard
+    introCard,
+    Card
   },
   data: () => ({
     slickComp: '',
@@ -224,7 +291,8 @@ export default {
   data() {
     return {
       FrontendImg,
-      headerImg
+      headerImg,
+      corporateRetreat
     }
   },
 
@@ -234,7 +302,6 @@ export default {
 <style>
 #header{
   background-size: contain;
-  height: 300px;
   object-fit: cover;
 }
 .gradient{  
