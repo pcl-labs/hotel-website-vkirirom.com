@@ -1,10 +1,10 @@
 <template>
 <v-container-fluid>
 <div class="gradient fill-height">
-  <v-img id="header" :src="headerImg" height="300px">
+  <v-img id="header" :src="headerImg" height="40vh">
     <v-container grid-list-md>
       <v-layout row wrap align-end justify-start fill-height>
-        <v-flex sm6 md3>
+        <v-flex sm6 md3 lg3>
         <p class="header-text">Book your <br> nature retreat.</p>
         </v-flex>
       </v-layout>
@@ -14,57 +14,63 @@
   <v-container grid-list-md>
     <v-layout row wrap justify-space-between class="pb-4">
     <ListCover title="Accommodation" style="font-size: 16px;line-height: 19px; color: #D8DADE;"></ListCover>
-      <v-flex xs12 sm6 md4>
-        <v-card>
+      <v-flex xs12 sm6 md4 lg4>
+        <v-card hover>
           <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1559801041/Bungalow_1_ledef7.jpg"></v-img>
         </v-card>
         <v-layout align-start>
           <p>
             <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">
-              Entire 
+              Entire Bungalow
             </span>
             <br>
-            <span ></span>
+            <span style="font-size: 20px; color: #FFFFFF;"> Bungalow</span>
+            <br>
+            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> 80$ per night</span>
           </p>
         </v-layout>
       </v-flex>
-      <v-flex xs12 sm6 md4>
-        <v-card>
-          <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1559801041/Bungalow_1_ledef7.jpg"></v-img>
+      <v-flex xs12 sm6 md4 lg4>
+        <v-card hover>
+          <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1559801013/Luxury_Tent_1_e755jg.jpg"></v-img>
         </v-card>
         <v-layout align-start>
           <p>
             <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">
-              Entire 
+              Entire Luxury Tent
             </span>
             <br>
-            <span ></span>
+            <span style="font-size: 20px; color: #FFFFFF;">Luxury Tent</span>
+            <br>
+            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> 68$ per night</span>
           </p>
         </v-layout>
       </v-flex>
-      <v-flex xs12 sm6 md4>
-        <v-card>
+      <v-flex xs12 sm6 md4 lg4>
+        <v-card hover>
           <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1559801041/Bungalow_1_ledef7.jpg"></v-img>
         </v-card>
         <v-layout align-start>
           <p>
             <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">
-              Entire 
+              Entire Bungalow
             </span>
             <br>
-            <span ></span>
+            <span style="font-size: 20px; color: #FFFFFF;"> Bungalow</span>
+            <br>
+            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> 80$ per night</span>
           </p>
         </v-layout>
       </v-flex>
     </v-layout>
     <v-img :src="corporateRetreat" height="300px" position="top" class="pt-3">
       <v-layout row wrap justify-end align-end >
-        <v-flex xs6 class="pt-4">
+        <v-flex xs12 md6 sm4 lg6 class="pt-4">
           <p style="font-size: 36px; color: #FFFFFF;">Your next corporate retreat</p>
         </v-flex>
       </v-layout>
       <v-layout column align-center justify-center fill-height>
-        <v-flex xs6>
+        <v-flex xs12 md6 sm4 lg6>
           <v-btn dark large depressed style="border-radius: 4px;" color="#4B7F52">
             Book Now
           </v-btn>
@@ -73,58 +79,64 @@
     </v-img>
   <v-layout row wrap justify-space-between>
     <ListCover title="Experiences" class="pt-3" style="font-size: 16px;line-height: 19px; color: #D8DADE;"></ListCover>
-      <v-flex xs12 sm6 md4>
-        <v-card>
-          <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1559801041/Bungalow_1_ledef7.jpg"></v-img>
+      <v-flex xs12 sm6 md4 lg4>
+        <v-card hover>
+          <v-img :src="experience1" height="250px"></v-img>
         </v-card>
         <v-layout align-start>
           <p>
             <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">
-              Entire 
+              Experience
             </span>
             <br>
-            <span ></span>
+            <span style="font-size: 20px; color: #FFFFFF;">Rock Climbing</span>
+            <br>
+            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> 80$ per night</span>
           </p>
         </v-layout>
       </v-flex>
-      <v-flex xs12 sm6 md4>
-        <v-card>
-          <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1559801041/Bungalow_1_ledef7.jpg"></v-img>
+      <v-flex xs12 sm6 md4 lg4>
+        <v-card hover>
+          <v-img :src="experience1" height="250px"></v-img>
         </v-card>
         <v-layout align-start>
           <p>
             <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">
-              Entire 
+              Experience 
             </span>
             <br>
-            <span ></span>
+            <span style="font-size: 20px; color: #FFFFFF;">Rock Climbing</span>
+            <br>
+            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> 80$ per night</span>
           </p>
         </v-layout>
       </v-flex>
-      <v-flex xs12 sm6 md4>
-        <v-card>
-          <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1559801041/Bungalow_1_ledef7.jpg"></v-img>
+      <v-flex xs12 sm6 md4 lg4>
+        <v-card hover>
+          <v-img :src="experience1" height="250px"></v-img>
         </v-card>
         <v-layout align-start>
           <p>
             <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">
-              Entire 
+              Experience 
             </span>
             <br>
-            <span ></span>
+            <span style="font-size: 20px; color: #FFFFFF;">Rock Climbing</span>
+            <br>
+            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> 80$ per night</span>
           </p>
         </v-layout>
       </v-flex>
       <v-img :src="food" height="300px" position="top" class="pt-3">
-      <v-layout row wrap justify-end align-end >
-        <v-flex xs6 class="pt-4">
-          <p style="font-size: 36px; color: #FFFFFF;">Your next corporate retreat</p>
+      <v-layout row wrap justify-start>
+        <v-flex xs12 md6 sm4 lg6 class="pl-5 pt-5">
+          <p style="font-size: 36px; color: #FFFFFF;">Mouth Watering</p>
         </v-flex>
       </v-layout>
-      <v-layout column align-center justify-center fill-height>
-        <v-flex xs6>
-          <v-btn dark large depressed style="border-radius: 4px;" color="#4B7F52">
-            Book Now
+      <v-layout column align-content-space-around align-content-start fill-height>
+        <v-flex xs12 md6 sm4 lg6 class="pl-5">
+          <v-btn dark large depressed style="border-radius: 4px;" outline>
+            Menu
           </v-btn>
         </v-flex>
       </v-layout>
@@ -135,7 +147,7 @@
   <div style="background: #191C21; box-shadow: 0px -1px 0px #121416; color: #D8DADE;">
   <v-container grid-list-md text-xs-center>
     <v-layout row wrap justify-space-between>
-      <v-flex xs12 sm6 md3>
+      <v-flex xs12 sm6 md3 lg3>
         <p>Vkirirom
         <br>
         <ul style="list-style:none;">
@@ -145,7 +157,7 @@
         </ul>
         </p>
       </v-flex>
-      <v-flex xs12 sm6 md3>
+      <v-flex xs12 sm6 md3 lg3>
         <p>Discover
         <br>
         <ul style="list-style:none;">
@@ -155,7 +167,7 @@
         </ul>
         </p>
       </v-flex>
-      <v-flex xs12 sm6 md3>
+      <v-flex xs12 sm6 md3 lg3>
         <p>Hosting
         <br>
         <ul style="list-style:none;">
@@ -174,6 +186,7 @@
 
 <script>
 import FrontendImg from '../assets/FrontImage.png'
+import experience1 from '../assets/experience1.jpg'
 import corporateRetreat from '../assets/951820009082492817.jpg'
 import headerImg from '../assets/freedom-camping-4m-bell-tent-5_copy_3_6e7cf404-7d2f-4cac-8bf7-fd04c9dd8854_1024x1024.jpeg'
 import food from '../assets/istockphoto-614420320-612x612.jpg'
@@ -186,7 +199,7 @@ export default {
     ListCover,
     introCard,
     Card,
-    food
+    
   },
   data: () => ({
     slickComp: '',
@@ -307,7 +320,9 @@ export default {
     return {
       FrontendImg,
       headerImg,
-      corporateRetreat
+      corporateRetreat,
+      food,
+      experience1
     }
   },
 

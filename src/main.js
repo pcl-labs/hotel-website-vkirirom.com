@@ -7,7 +7,6 @@ import router from './router'
 import Vuetify from 'vuetify'
 import Slick from 'vue-slick';
 
-
 Vue.use(Vuetify)
 Vue.use(Slick)
 
