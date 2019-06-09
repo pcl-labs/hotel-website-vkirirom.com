@@ -115,8 +115,21 @@
           </p>
         </v-layout>
       </v-flex>
+      <v-img :src="food" height="300px" position="top" class="pt-3">
+      <v-layout row wrap justify-end align-end >
+        <v-flex xs6 class="pt-4">
+          <p style="font-size: 36px; color: #FFFFFF;">Your next corporate retreat</p>
+        </v-flex>
+      </v-layout>
+      <v-layout column align-center justify-center fill-height>
+        <v-flex xs6>
+          <v-btn dark large depressed style="border-radius: 4px;" color="#4B7F52">
+            Book Now
+          </v-btn>
+        </v-flex>
+      </v-layout>
+    </v-img>
     </v-layout>
-    <Card v-for="place in places" :key="place"></Card>
   </v-container>
 <footer>
   <div style="background: #191C21; box-shadow: 0px -1px 0px #121416; color: #D8DADE;">
@@ -163,6 +176,7 @@
 import FrontendImg from '../assets/FrontImage.png'
 import corporateRetreat from '../assets/951820009082492817.jpg'
 import headerImg from '../assets/freedom-camping-4m-bell-tent-5_copy_3_6e7cf404-7d2f-4cac-8bf7-fd04c9dd8854_1024x1024.jpeg'
+import food from '../assets/istockphoto-614420320-612x612.jpg'
 import ListCover from './Home/ListCover.vue'
 import introCard from './Home/IntroCard.vue'
 import Card from './Card.vue'
@@ -171,7 +185,8 @@ export default {
   components:{
     ListCover,
     introCard,
-    Card
+    Card,
+    food
   },
   data: () => ({
     slickComp: '',

@@ -6,7 +6,12 @@
 
 <script>
 export default {
-
+  props: {
+    place: {
+      type: Object,
+      default: () => {},
+    }
+  }
 }
 </script>
 
