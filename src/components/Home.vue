@@ -1,17 +1,20 @@
 <template>
 <v-container-fluid>
+<div class="gradient fill-height">
   <v-img id="header" :src="headerImg">
-  <v-container grid-list-md text-xs-center>
-    <v-layout row wrap>
-        <p class="header-text">Book your nature retreat.</p>
-    </v-layout>
-  </v-container>
+    <v-container grid-list-md>
+      <v-layout row wrap align-end justify-start fill-height>
+        <v-flex xs3>
+        <p class="header-text">Book your <br> nature retreat.</p>
+        </v-flex>
+      </v-layout>
+    </v-container>
   </v-img>
+</div>
   <v-container grid-list-md text-xs-center>
     <v-layout row wrap>
-    <!-- <ListCover title="Accommodation">
-    <template v-slot:content>
-      <v-flex xs3>
+    <ListCover title="Accommodation" style="font-size: 16px;line-height: 19px; color: #D8DADE;"></ListCover>
+      <v-flex xs12 sm6 md3>
         <v-card>
           <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1559801041/Bungalow_1_ledef7.jpg"></v-img>
         </v-card>
@@ -21,7 +24,7 @@
           </p>
         </v-layout>
       </v-flex>
-      <v-flex xs3>
+      <v-flex xs12 sm6 md3>
         <v-card>
           <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1559801041/Bungalow_1_ledef7.jpg"></v-img>
         </v-card>
@@ -31,7 +34,7 @@
           </p>
         </v-layout>
       </v-flex>
-      <v-flex xs3>
+      <v-flex xs12 sm6 md3>
         <v-card>
           <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1559801041/Bungalow_1_ledef7.jpg"></v-img>
         </v-card>
@@ -41,7 +44,7 @@
           </p>
         </v-layout>
       </v-flex>
-      <v-flex xs3>
+      <v-flex xs12 sm6 md3>
         <v-card>
           <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1559801041/Bungalow_1_ledef7.jpg"></v-img>
         </v-card>
@@ -51,17 +54,6 @@
           </p>
         </v-layout>
       </v-flex>
-    </template>
-    </ListCover> -->
-    <ListCover title="Accommodation" id="accommodation">
-          <template v-slot:content>
-                <IntroCard
-                  v-for="(post, index) in places"
-                  :key="index"
-                  :place="post"
-                />
-            </template>
-        </ListCover>
     </v-layout>
   </v-container>
 </v-container-fluid>
@@ -70,8 +62,8 @@
 <script>
 import FrontendImg from '../assets/FrontImage.png';
 import headerImg from '../assets/freedom-camping-4m-bell-tent-5_copy_3_6e7cf404-7d2f-4cac-8bf7-fd04c9dd8854_1024x1024.jpeg'
-import ListCover from '@/components/Home/ListCover.vue';
-import IntroCard from '@/components/Home/Cards/IntroCard.vue'
+import ListCover from './Home/ListCover.vue'
+import IntroCard from './Home/IntroCard.vue'
 
 export default {
   components:{
@@ -208,20 +200,14 @@ export default {
   background-size: contain;
   height: 300px;
 }
-.gradient{
-    background-image: linear-gradient(128.38deg, #121416 0%, #313A4F 100%, transparent) ;
+.gradient{  
+    background: linear-gradient(128.38deg, #121416 0%, #313A4F 100%, transparent 72px) 
 }
 .header-text{
-  position: absolute;
-  left: 0%;
-  right: -4.35%;
-  top: 0%;
-  bottom: -16.28%;
 
   font-size: 36px;
-  line-height: 49px;
-
   color: #FFFFFF;
+  margin-top: 40%;
 }
 
 
