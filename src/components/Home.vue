@@ -64,8 +64,8 @@
         </v-flex>
       </v-layout>
       <v-layout row wrap justify-center hidden-md-and-up text-xs-center>
-        <v-flex xs12 align-center>
-          <h1 style="color: #FFFFFF; font-size: 36px; line-height: 49px; text-align: center">Your next corporate retreat.</h1>
+        <v-flex xs12 align-center >
+          <h1 style="color: #FFFFFF; font-size: 36px; line-height: 49px; text-align: center; margin-top:30px;">Your next corporate retreat.</h1>
         </v-flex>
       </v-layout>
       <v-layout column align-center justify-center fill-height>
@@ -330,7 +330,7 @@ export default {
 }
 @media only screen and (max-width: 600px) {
   #footer{
-    padding-left: 40px;
+    padding-left: 42px;
   }
 }
 </style>
