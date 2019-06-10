@@ -4,62 +4,54 @@
   <v-img id="header" :src="headerImg" height="40vh">
     <v-container grid-list-md>
       <v-layout row wrap align-end justify-start fill-height>
-        <v-flex sm6 md3 lg3>
-        <p class="header-text">Book your <br> nature retreat.</p>
+        <v-flex xs12 sm6 md3 lg3>
+        <h1 style="margin-left:30px; color: #FFFFFF; margin-top: 25vh;">Book your nature retreat.</h1>
         </v-flex>
       </v-layout>
     </v-container>
   </v-img>
 </div>
   <v-container grid-list-md>
-    <v-layout row wrap justify-space-between class="pb-4">
-    <ListCover title="Accommodation" style="font-size: 16px;line-height: 19px; color: #D8DADE;"></ListCover>
+    <div style="margin:30px;">
+    <ListCover title="Accommodation" style="color: #D8DADE;"></ListCover>
+    <v-layout row wrap justify-space-between justify-center>
       <v-flex xs12 sm6 md4 lg4>
-        <v-card hover>
-          <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1559801041/Bungalow_1_ledef7.jpg"></v-img>
-        </v-card>
+        <v-card hover height="150px" width="95%">
+          <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1559801041/Bungalow_1_ledef7.jpg" height="150px"></v-img>
         <v-layout align-start>
-          <p>
-            <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">
-              Entire Bungalow
-            </span>
-            <br>
-            <span style="font-size: 20px; color: #FFFFFF;"> Bungalow</span>
-            <br>
-            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> 80$ per night</span>
-          </p>
-        </v-layout>
-      </v-flex>
-      <v-flex xs12 sm6 md4 lg4>
-        <v-card hover>
-          <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1559801013/Luxury_Tent_1_e755jg.jpg"></v-img>
-        </v-card>
-        <v-layout align-start>
-          <p>
-            <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">
-              Entire Luxury Tent
-            </span>
-            <br>
-            <span style="font-size: 20px; color: #FFFFFF;">Luxury Tent</span>
-            <br>
+          <v-card-text class="pa-1">
+            <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire Bungalow</span>
+            <span style="color: #FFFFFF; font-size: 20px; line-height: 27px;"><h3>Bungalow</h3></span>
             <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> 68$ per night</span>
-          </p>
+            </p>
+          </v-card-text>
+        </v-layout>
+        </v-card>
+      </v-flex>
+      <v-flex xs12 sm6 md4 lg4>
+        <v-card hover height="150px"  width="95%">
+          <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1559801013/Luxury_Tent_1_e755jg.jpg" height="150px"></v-img>
+        </v-card>
+        <v-layout align-start>
+          <v-card-text class="pa-1">
+            <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire Luxury Tent</span>
+            <span style="color: #FFFFFF; font-size: 20px; line-height: 27px;"><h3>Luxury Tent</h3></span>
+            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> 68$ per night</span>
+            </p>
+          </v-card-text>
         </v-layout>
       </v-flex>
       <v-flex xs12 sm6 md4 lg4>
-        <v-card hover>
-          <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1559801041/Bungalow_1_ledef7.jpg"></v-img>
+        <v-card hover height="150px"  width="95%">
+          <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1559801023/Khmer_Cottage_1_g5efqp.jpg" height="150px"></v-img>
         </v-card>
         <v-layout align-start>
-          <p>
-            <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">
-              Entire Bungalow
-            </span>
-            <br>
-            <span style="font-size: 20px; color: #FFFFFF;"> Bungalow</span>
-            <br>
-            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> 80$ per night</span>
-          </p>
+          <v-card-text class="pa-1">
+            <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire Khmer Cottage</span>
+            <span style="color: #FFFFFF; font-size: 20px; line-height: 27px;"><h3>Khmer Cottage</h3></span>
+            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> 50$ per night</span>
+            </p>
+          </v-card-text>
         </v-layout>
       </v-flex>
     </v-layout>
@@ -129,12 +121,12 @@
       </v-flex>
       <v-img :src="food" height="300px" position="top" class="pt-3">
       <v-layout row wrap justify-start>
-        <v-flex xs6 md6 sm4 lg6 class="pl-5 pt-5">
-          <p style="font-size: 36px; color: #FFFFFF;">Mouth Watering</p>
+        <v-flex xs6 md6 sm4 lg6>
+          <h1 style="color: #FFFFFF;">Mouth Watering</h1>
         </v-flex>
       </v-layout>
       <v-layout column align-content-space-around align-content-start fill-height>
-        <v-flex xs6 md6 sm4 lg6 class="pl-5">
+        <v-flex xs6 md6 sm4 lg6>
           <v-btn dark large depressed style="border-radius: 4px;" outline>
             Menu
           </v-btn>
@@ -142,6 +134,7 @@
       </v-layout>
     </v-img>
     </v-layout>
+    </div>
   </v-container>
 <footer>
   <div style="background: #191C21; box-shadow: 0px -1px 0px #121416; color: #D8DADE;">
@@ -336,12 +329,6 @@ export default {
 }
 .gradient{  
     background: linear-gradient(128.38deg, #121416 0%, #313A4F 100%, transparent 72px) 
-}
-.header-text{
-
-  font-size: 36px;
-  color: #FFFFFF;
-  margin-top: 50%;
 }
 
 
