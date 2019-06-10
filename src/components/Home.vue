@@ -1,7 +1,7 @@
 <template>
 <v-container-fluid>
 <v-card>
-  <div id="header" height="40vh">
+  <div id="header" height="45vh">
     <v-container grid-list-md>
       <v-layout row wrap align-end justify-start>
         <v-flex xs12 sm6 md3 lg3>
