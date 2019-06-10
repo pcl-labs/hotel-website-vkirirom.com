@@ -1,19 +1,19 @@
 <template>
 <v-container-fluid>
-<div class="gradient fill-height">
-  <v-img id="header" :src="headerImg" height="40vh">
+<v-card>
+  <div id="header" height="40vh">
     <v-container grid-list-md>
       <v-layout row wrap align-end justify-start>
         <v-flex xs12 sm6 md3 lg3>
-        <h1 style="margin-left:30px; color: #FFFFFF; margin-top: 23vh;">Book your nature retreat.</h1>
+        <h1 style="margin-left:30px; color: #FFFFFF; margin-top: 23vh;">Book your <br> nature retreat.</h1>
         </v-flex>
       </v-layout>
     </v-container>
-  </v-img>
-</div>
+  </div>
+</v-card>
   <v-container grid-list-md>
-    <div style="margin:30px;">
-    <ListCover title="Accommodation" style="color: #D8DADE;"></ListCover>
+    <div style="margin:30px; margin-top:0;">
+    <ListCover title="Accommodation" style="color: #D8DADE;" class="mb-2"></ListCover>
     <v-layout row wrap justify-space-between justify-center>
       <v-flex xs12 sm6 md4 lg4>
         <v-card hover height="150px" width="99%">
@@ -324,9 +324,11 @@ export default {
 #header{
   background-size: contain;
   object-fit: cover;
-}
-.gradient{  
-    background: linear-gradient(128.38deg, #121416 0%, #313A4F 100%, transparent 72px) 
+  box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(0deg, #191C21 0%, rgba(25, 28, 33, 0) 50%), url('https://res.cloudinary.com/die9ji2vn/image/upload/v1559800987/Pipe_Room_1_lheut2.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 @media only screen and (max-width: 600px) {
   #footer{
