@@ -3,7 +3,7 @@
 <div class="gradient fill-height">
   <v-img id="header" :src="headerImg" height="40vh">
     <v-container grid-list-md>
-      <v-layout row wrap align-end justify-start fill-height>
+      <v-layout row wrap align-end justify-start>
         <v-flex xs12 sm6 md3 lg3>
         <h1 style="margin-left:30px; color: #FFFFFF; margin-top: 23vh;">Book your nature retreat.</h1>
         </v-flex>
@@ -23,7 +23,7 @@
           <v-card-text class="pa-1">
             <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire Bungalow</span>
             <span style="color: #FFFFFF; font-size: 20px; line-height: 27px;"><h3>Bungalow</h3></span>
-            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> 68$ per night</span>
+            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> 113$ per night</span>
             </p>
           </v-card-text>
         </v-layout>
@@ -54,10 +54,10 @@
           </v-card-text>
         </v-layout>
       </v-flex>
-      <v-btn block large outline dark style="border-radius: 4px;" class="ma-2 mb-5 hidden-md-and-up">Show all (8)</v-btn>
+      <v-btn block large outline dark style="border-radius: 4px;" class="ma-2 mb-4 hidden-md-and-up">Show all (8)</v-btn>
     </v-layout>
     <v-card hover>
-    <v-img :src="corporateRetreat" height="300px" position="top" class="mt-4 pa-1" width="100%">
+    <v-img :src="corporateRetreat" height="300px" position="top" class="mt-3 pa-1" width="100%">
       <v-layout row wrap justify-end hidden-sm-and-down>
         <v-flex xs12 md4 sm4 lg4 class="ma-4" align-end>
           <h1 style="color: #FFFFFF;">Your next corporate retreat.</h1>
@@ -330,7 +330,7 @@ export default {
 }
 @media only screen and (max-width: 600px) {
   #footer{
-    margin-left: 30px;
+    padding-left: 40px;
   }
 }
 </style>
