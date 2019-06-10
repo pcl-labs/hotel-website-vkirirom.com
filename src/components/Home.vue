@@ -5,7 +5,7 @@
     <v-container grid-list-md>
       <v-layout row wrap align-end justify-start fill-height>
         <v-flex xs12 sm6 md3 lg3>
-        <h1 style="margin-left:30px; color: #FFFFFF; margin-top: 25vh;">Book your nature retreat.</h1>
+        <h1 style="margin-left:30px; color: #FFFFFF; margin-top: 23vh;">Book your nature retreat.</h1>
         </v-flex>
       </v-layout>
     </v-container>
@@ -16,8 +16,9 @@
     <ListCover title="Accommodation" style="color: #D8DADE;"></ListCover>
     <v-layout row wrap justify-space-between justify-center>
       <v-flex xs12 sm6 md4 lg4>
-        <v-card hover height="150px" width="95%">
+        <v-card hover height="150px" width="99%">
           <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1559801041/Bungalow_1_ledef7.jpg" height="150px"></v-img>
+        </v-card>
         <v-layout align-start>
           <v-card-text class="pa-1">
             <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire Bungalow</span>
@@ -26,10 +27,9 @@
             </p>
           </v-card-text>
         </v-layout>
-        </v-card>
       </v-flex>
       <v-flex xs12 sm6 md4 lg4>
-        <v-card hover height="150px"  width="95%">
+        <v-card hover height="150px"  width="99%">
           <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1559801013/Luxury_Tent_1_e755jg.jpg" height="150px"></v-img>
         </v-card>
         <v-layout align-start>
@@ -42,7 +42,7 @@
         </v-layout>
       </v-flex>
       <v-flex xs12 sm6 md4 lg4>
-        <v-card hover height="150px"  width="95%">
+        <v-card hover height="150px"  width="99%">
           <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1559801023/Khmer_Cottage_1_g5efqp.jpg" height="150px"></v-img>
         </v-card>
         <v-layout align-start>
@@ -54,11 +54,18 @@
           </v-card-text>
         </v-layout>
       </v-flex>
+      <v-btn block large outline dark style="border-radius: 4px;" class="ma-2 mb-5 hidden-md-and-up">Show all (8)</v-btn>
     </v-layout>
-    <v-img :src="corporateRetreat" height="300px" position="top" class="pt-3">
-      <v-layout row wrap justify-end align-end >
-        <v-flex xs12 md6 sm4 lg6 class="pt-4">
-          <p style="font-size: 36px; color: #FFFFFF;">Your next corporate retreat</p>
+    <v-card hover>
+    <v-img :src="corporateRetreat" height="300px" position="top" class="mt-4 pa-1" width="100%">
+      <v-layout row wrap justify-end hidden-sm-and-down>
+        <v-flex xs12 md4 sm4 lg4 class="ma-4" align-end>
+          <h1 style="color: #FFFFFF;">Your next corporate retreat.</h1>
+        </v-flex>
+      </v-layout>
+      <v-layout row wrap justify-center hidden-md-and-up text-xs-center>
+        <v-flex xs12 align-center>
+          <h1 style="color: #FFFFFF; font-size: 36px; line-height: 49px; text-align: center">Your next corporate retreat.</h1>
         </v-flex>
       </v-layout>
       <v-layout column align-center justify-center fill-height>
@@ -69,63 +76,56 @@
         </v-flex>
       </v-layout>
     </v-img>
+    </v-card>
   <v-layout row wrap justify-space-between>
-    <ListCover title="Experiences" class="pt-3" style="font-size: 16px;line-height: 19px; color: #D8DADE;"></ListCover>
+    <ListCover title="Experiences" class="pt-3 pa-1 mb-3" style="font-size: 16px; line-height: 19px; color: #D8DADE;"></ListCover>
       <v-flex xs12 sm6 md4 lg4>
-        <v-card hover>
-          <v-img :src="experience1" height="250px"></v-img>
+        <v-card hover height="150px" width="99%">
+          <v-img :src="experience1" height="150px"></v-img>
         </v-card>
         <v-layout align-start>
-          <p>
-            <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">
-              Experience
-            </span>
-            <br>
-            <span style="font-size: 20px; color: #FFFFFF;">Rock Climbing</span>
-            <br>
-            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> 80$ per night</span>
-          </p>
+          <v-card-text class="pa-1">
+            <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Experience</span>
+            <span style="color: #FFFFFF; font-size: 20px; line-height: 27px;"><h3>Rock Climbing</h3></span>
+            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> 50$ per person</span>
+            </p>
+          </v-card-text>
         </v-layout>
       </v-flex>
       <v-flex xs12 sm6 md4 lg4>
-        <v-card hover>
-          <v-img :src="experience1" height="250px"></v-img>
+        <v-card hover height="150px" width="99%">
+          <v-img :src="experience1" height="150px"></v-img>
         </v-card>
         <v-layout align-start>
-          <p>
-            <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">
-              Experience 
-            </span>
-            <br>
-            <span style="font-size: 20px; color: #FFFFFF;">Rock Climbing</span>
-            <br>
-            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> 80$ per night</span>
-          </p>
+          <v-card-text class="pa-1">
+            <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Experience</span>
+            <span style="color: #FFFFFF; font-size: 20px; line-height: 27px;"><h3>Rock Climbing</h3></span>
+            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> 50$ per person</span>
+            </p>
+          </v-card-text>
         </v-layout>
       </v-flex>
       <v-flex xs12 sm6 md4 lg4>
-        <v-card hover>
-          <v-img :src="experience1" height="250px"></v-img>
+        <v-card hover height="150px" width="99%">
+          <v-img :src="experience1" height="150px"></v-img>
         </v-card>
         <v-layout align-start>
-          <p>
-            <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">
-              Experience 
-            </span>
-            <br>
-            <span style="font-size: 20px; color: #FFFFFF;">Rock Climbing</span>
-            <br>
-            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> 80$ per night</span>
-          </p>
+          <v-card-text class="pa-1">
+            <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Experience</span>
+            <span style="color: #FFFFFF; font-size: 20px; line-height: 27px;"><h3>Rock Climbing</h3></span>
+            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> 50$ per person</span>
+            </p>
+          </v-card-text>
         </v-layout>
       </v-flex>
-      <v-img :src="food" height="300px" position="top" class="pt-3">
-      <v-layout row wrap justify-start>
-        <v-flex xs6 md6 sm4 lg6>
+      <v-card xs12 width="100%" class="mt-4">
+      <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1560151624/Healthy_eyfk5v.jpg" height="300px" position="top" class="pt-3">
+      <v-layout row wrap justify-start class="ma-4">
+        <v-flex xs6 md4 sm4 lg4>
           <h1 style="color: #FFFFFF;">Mouth Watering</h1>
         </v-flex>
       </v-layout>
-      <v-layout column align-content-space-around align-content-start fill-height>
+      <v-layout column align-content-space-around align-content-start fill-height class="ma-4">
         <v-flex xs6 md6 sm4 lg6>
           <v-btn dark large depressed style="border-radius: 4px;" outline>
             Menu
@@ -133,42 +133,40 @@
         </v-flex>
       </v-layout>
     </v-img>
+    </v-card>
     </v-layout>
     </div>
   </v-container>
 <footer>
   <div style="background: #191C21; box-shadow: 0px -1px 0px #121416; color: #D8DADE;">
-  <v-container grid-list-md text-xs-center>
+  <v-container grid-list-md align-start id="footer" style="margin-right:10px;">
     <v-layout row wrap justify-space-between>
-      <v-flex xs12 sm6 md3 lg3>
-        <p>Vkirirom
+      <v-flex xs12 sm6 md4 lg4>
+        <h3>Vkirirom</h3>
         <br>
-        <ul style="list-style:none;">
+        <ul style="list-style:none; padding:0; margin:0;">
           <li>Lorem Ipsum</li>
           <li>Lorem Ipsum</li>
           <li>Lorem Ipsum</li>
         </ul>
-        </p>
       </v-flex>
-      <v-flex xs12 sm6 md3 lg3>
-        <p>Discover
+      <v-flex xs12 sm6 md4 lg4>
+        <h3>Discover</h3>
         <br>
-        <ul style="list-style:none;">
+        <ul style="list-style:none; padding:0; margin:0;">
           <li>Lorem Ipsum</li>
           <li>Lorem Ipsum</li>
           <li>Lorem Ipsum</li>
         </ul>
-        </p>
       </v-flex>
-      <v-flex xs12 sm6 md3 lg3>
-        <p>Hosting
+      <v-flex xs12 sm6 md4 lg4>
+        <h3>Hosting</h3>
         <br>
-        <ul style="list-style:none;">
+        <ul style="list-style:none; padding:0; margin:0;">
           <li>Lorem Ipsum</li>
           <li>Lorem Ipsum</li>
           <li>Lorem Ipsum</li>
         </ul>
-        </p>
       </v-flex>
     </v-layout>
   </v-container>
@@ -330,6 +328,9 @@ export default {
 .gradient{  
     background: linear-gradient(128.38deg, #121416 0%, #313A4F 100%, transparent 72px) 
 }
-
-
+@media only screen and (max-width: 600px) {
+  #footer{
+    margin-left: 30px;
+  }
+}
 </style>
