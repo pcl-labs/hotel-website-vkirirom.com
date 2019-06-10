@@ -5,14 +5,14 @@
     <v-container grid-list-md>
       <v-layout row wrap align-end justify-start>
         <v-flex xs12 sm6 md3 lg3>
-        <h1 style="margin-left:30px; color: #FFFFFF; margin-top: 23vh;">Book your <br> nature retreat.</h1>
+        <h1 style="color: #FFFFFF; margin-top: 23vh;">Book your <br> nature retreat.</h1>
         </v-flex>
       </v-layout>
     </v-container>
   </div>
 </v-card>
-  <v-container grid-list-md>
-    <div style="margin:30px; margin-top:0;">
+  <v-container grid-list-md align-content-space-around>
+    <div style="max-width:900px; margin-top:0;">
     <ListCover title="Accommodation" style="color: #D8DADE;" class="mb-2"></ListCover>
     <v-layout row wrap justify-space-between justify-center>
       <v-flex xs12 sm6 md4 lg4>
@@ -334,5 +334,8 @@ export default {
   #footer{
     padding-left: 42px;
   }
+}
+.container{
+  max-width: 900px;
 }
 </style>
