@@ -86,7 +86,7 @@
     </v-card>
    <v-divider class="hidden-md-and-up mt-3" style="background-color:#3D424E;"></v-divider>
   <v-layout row wrap justify-space-between>
-    <ListCover title="Experiences" class="mb-3 pa-1" style="font-size: 16px; line-height: 19px; color: #D8DADE;"></ListCover>
+    <ListCover title="Experiences" class="mb-3 pl-1" style="font-size: 16px; line-height: 19px; color: #D8DADE;"></ListCover>
     <v-flex xs12 sm6 md4 lg4>
       <v-card height="100%" width="100%" dark color="transparent" href="#" flat >
         <v-img :src="experience1" height="150px"></v-img>
