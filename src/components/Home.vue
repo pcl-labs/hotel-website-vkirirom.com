@@ -5,7 +5,7 @@
     <v-container grid-list-md>
       <v-layout row wrap align-end justify-start>
         <v-flex xs12 sm6 md3 lg3>
-        <h1 style="color: #FFFFFF; margin-top: 23vh;">Book your <br> nature retreat.</h1>
+        <h1 style="color: #FFFFFF; bottom:20px; position:absolute;">Book your <br> nature retreat.</h1>
         </v-flex>
       </v-layout>
     </v-container>
@@ -15,6 +15,19 @@
     <div style="margin-top:0;">
     <ListCover title="Accommodation" style="color: #D8DADE;" class="mb-2"></ListCover>
     <v-layout row wrap justify-space-between justify-center>
+      <v-flex xs12 sm6 md4 lg4>
+        <v-card width="100%" dark color="transparent" href="#" flat >
+          <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1559801052/Bell_tent_1_xz2lxh.jpg" height="150px"></v-img>
+        <v-layout align-start>
+          <v-card-text class="pa-1">
+            <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire Khmer Cottage</span>
+            <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>Bell Tent</h3></span>
+            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> 75$ per night</span>
+            </p>
+          </v-card-text>
+        </v-layout>
+        </v-card>
+      </v-flex>
       <v-flex xs12 sm6 md4 lg4>
         <v-card width="100%" dark color="transparent" href="#" flat >
           <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1559801041/Bungalow_1_ledef7.jpg" height="150px"></v-img>
@@ -41,19 +54,6 @@
         </v-layout>
         </v-card>
       </v-flex>
-      <v-flex xs12 sm6 md4 lg4>
-        <v-card width="100%" dark color="transparent" href="#" flat >
-          <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1559801023/Khmer_Cottage_1_g5efqp.jpg" height="150px"></v-img>
-        <v-layout align-start>
-          <v-card-text class="pa-1">
-            <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire Khmer Cottage</span>
-            <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>Khmer Cottage</h3></span>
-            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> 50$ per night</span>
-            </p>
-          </v-card-text>
-        </v-layout>
-        </v-card>
-      </v-flex>
       <v-flex xs12>
         <v-btn block large outline dark style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px;" class="mb-4 hidden-md-and-up">
           Show all (8)
@@ -74,7 +74,7 @@
       </v-layout>
       <v-layout column align-center justify-center fill-height>
         <v-flex xs12 md6 sm4 lg6>
-          <v-btn dark large depressed style="background: #4B7F52; border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px;" color="#4B7F52">
+          <v-btn dark large depressed style="background: #4B7F52; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px;" color="#4B7F52">
             Book Now <v-icon>keyboard_arrow_right</v-icon>
           </v-btn>
         </v-flex>
@@ -370,8 +370,8 @@ export default {
   background-size: contain;
   object-fit: cover;
   box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
-  background: linear-gradient(0deg, #191C21 0%, rgba(25, 28, 33, 0) 50%), url('https://res.cloudinary.com/die9ji2vn/image/upload/v1559800987/Pipe_Room_1_lheut2.jpg');
-  background-position: center;
+  background: linear-gradient(0deg, #191C21 0%, rgba(25, 28, 33, 0) 50%), url('https://res.cloudinary.com/die9ji2vn/image/upload/v1560155423/top_image_kyv74r.jpg');
+  background-position: bottom;
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -383,6 +383,9 @@ export default {
     width: 100%;
     height: 56.25%;
   }
+  #header{
+    height: 40vh;
+  }
 }
 @media only screen and (min-width: 768px) {
   .container{
@@ -391,6 +394,9 @@ export default {
   #blog{
     width: 100%;
   }
+  #header{
+    height: 45vh;
+  }
 }
 @media only screen and (min-width: 1024px) {
   .container{
@@ -398,6 +404,9 @@ export default {
   }
   #blog{
     width: 202px;
+  }
+  #header{
+    height: 50vh;
   }
 }
 </style>
