@@ -3,19 +3,27 @@
 import Vue from 'vue'
 import './plugins/vuetify'
 import App from './App'
-import router from './router'
 import Vuetify from 'vuetify'
-import Slick from 'vue-slick';
+import Slick from 'vue-slick'
+import VueRouter from 'vue-router'
+import Routes from './routes'
 
 Vue.use(Vuetify)
 Vue.use(Slick)
+Vue.use(VueRouter)
+
+const router = new VueRouter({
+  routes: Routes
+  
+});
+
 
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  router,
+  router: router,
   template: '<App/>',
   components: { App }
 })

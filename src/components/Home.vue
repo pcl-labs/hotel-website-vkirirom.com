@@ -236,121 +236,6 @@ export default {
     Card,
     
   },
-  data: () => ({
-    slickComp: '',
-    slickOptions: {
-      dots: true,
-      infinite: false,
-      slidesToScroll: 5,
-      variableWidth: true,
-      focusOnSelect: true,
-      responsive: [
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToScroll: 5,
-            dots: true
-          }
-        },
-        {
-          breakpoint: 600,
-          settings: {
-            slidesToScroll: 2
-          }
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToScroll: 1
-          }
-        }
-      ]
-    },
-    posts: [
-      {
-        category: 'Accommodation',
-        image:
-          'https://www.vkirirom.com/images/detailsimage/bungalow/bungalow2.jpg',
-        href: '#accommodation',
-        title: 'Auto Camping',
-        price: '45',
-        per: 'night',
-        refName: 'accommodation',
-      },
-    ],
-    places: [
-      {
-        category: 'Accommodation',
-        title: 'Bungalow',
-        image:
-          'https://res.cloudinary.com/die9ji2vn/image/upload/v1559801041/Bungalow_1_ledef7.jpg',
-        price: '113',
-        href: '#',
-        per: 'night',
-        slug: 'Bungalow'
-      },
-      {
-        category: 'Accommodation',
-        title: 'Luxury Tent',
-        image:
-          'https://res.cloudinary.com/die9ji2vn/image/upload/v1559801013/Luxury_Tent_1_e755jg.jpg',
-        price: '68',
-        href: '#',
-        per: 'night',
-        slug: 'Luxury-Tent'
-      },
-      {
-        category: 'Accommodation',
-        title: 'Khmer Cottage',
-        image:
-          'https://www.vkirirom.com/images/detailsimage/khmercottage/khmercottage1.JPG',
-        price: '50',
-        href: '#',
-        per: 'night',
-        slug: 'Khmer-Cottage'
-      },
-      {
-        category: 'Accommodation',
-        title: 'Camping',
-        image:
-          'https://res.cloudinary.com/die9ji2vn/image/upload/v1559801033/Camping_1_mqqhyf.jpg',
-        price: '20',
-        href: '#',
-        per: 'night',
-        slug: 'Camping'
-      },
-      {
-        category: 'Accommodation',
-        title: 'Pipe Room',
-        image:
-          'https://res.cloudinary.com/die9ji2vn/image/upload/v1559800987/Pipe_Room_1_lheut2.jpg',
-        price: '50',
-        href: '#',
-        per: 'night',
-        slug: 'Pipe-Room'
-      },
-      {
-        category: 'Accommodation',
-        title: 'Villa Suite',
-        image:
-          'https://res.cloudinary.com/die9ji2vn/image/upload/v1559800960/Villa_Suite_1_tsmo2b.jpg',
-        price: '241',
-        href: '#',
-        per: 'night',
-        slug: 'Villa-Suite'
-      },
-      {
-        category: 'Accommodation',
-        title: 'Villa Jasmine',
-        image:
-          'https://res.cloudinary.com/die9ji2vn/image/upload/v1559800971/Villa_Jasmine_1_tqe47i.jpg',
-        price: '113',
-        href: '#',
-        per: 'night',
-        slug: 'Villa-Jasmine'
-      },
-    ],
-  }),
   data() {
     return {
       FrontendImg,
@@ -383,9 +268,6 @@ export default {
     width: 100%;
     height: 56.25%;
   }
-  #header{
-    height: 40vh;
-  }
 }
 @media only screen and (min-width: 768px) {
   .container{
@@ -393,9 +275,6 @@ export default {
   }
   #blog{
     width: 100%;
-  }
-  #header{
-    height: 45vh;
   }
 }
 @media only screen and (min-width: 1024px) {
@@ -405,8 +284,9 @@ export default {
   #blog{
     width: 202px;
   }
-  #header{
-    height: 50vh;
-  }
+}
+
+#header{
+  height: 300px;
 }
 </style>
