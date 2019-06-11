@@ -36,63 +36,94 @@
       </v-layout>
     </v-container-fluid>
     <v-container>
-      <h1 style="color: #FFFFFF;" class="mt-2">{{resort.title}}</h1>
-      <p style="font-size: 16px; color: #687C94;" class="mt-2">Entire {{resort.title}}</p>
-      <div class="text-xs-left mb-5 mt-4 font-weight-regular">
-        <p class="subDescription">
-          <img class="mr-2" :src="MultiUsers" />
-          <span class="mr-3">{{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.capacity }} guests</span>
-          <!-- <span class="mr-5 font-weight-bold">{{ bedRooms.length }} bedrooms</span> -->
-          <span class="mr-3">{{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }} Bed(s)</span>
-          <span>Type: {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}</span>
-        </p>
-      </div>
-      <div class="text-xs-left font-weight-regular">
-        <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
-          {{resort.h2}}
-        </p>
-      </div>
-      <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
-        Location
-      </h2>
-      <p>
-        <a href="https://goo.gl/maps/NusquSFKVm2SHrDy7" style="text-decoration:none;">Go to Location</a>
-      </p>
-      <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
-        Spaces
-      </h2>
-      <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
-        {{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.spaces[0]}}
-      </p>
-      <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
-        Getting Around
-      </h2>
-      <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
-        {{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.gettingAround}}
-      </p>
-      <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
-        Amenities
-      </h2>
       <v-layout row wrap>
-        <v-flex xs8 md10>
-          <v-layout row wrap>
-            <v-flex xs6 md3 class="py-3">
+        <v-flex xs12 md6>
+          <h1 style="color: #FFFFFF;" class="mt-2">{{resort.title}}</h1>
+          <p style="font-size: 16px; color: #687C94;" class="mt-2">Entire {{resort.title}}</p>
+          <div class="text-xs-left mb-5 mt-4 font-weight-regular">
+            <p class="subDescription">
+              <img class="mr-2" :src="MultiUsers" />
+              <span class="mr-3">{{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.capacity }} guests</span>
+              <!-- <span class="mr-5 font-weight-bold">{{ bedRooms.length }} bedrooms</span> -->
+              <span class="mr-3">{{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }} Bed(s)</span>
+              <span>Type: {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}</span>
+            </p>
+          </div>
+          <div class="text-xs-left font-weight-regular">
+            <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
+              {{resort.h2}}
+            </p>
+          </div>
+          <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
+            Location
+          </h2>
+          <p>
+            <a href="https://goo.gl/maps/NusquSFKVm2SHrDy7" style="text-decoration:none;">Go to Location</a>
+          </p>
+          <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
+            Spaces
+          </h2>
+          <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
+            {{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.spaces[0]}}
+          </p>
+          <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
+            Getting Around
+          </h2>
+          <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
+            {{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.gettingAround}}
+          </p>
+          <v-layout row flex>
+          <v-flex xs12 md6 class="availability">
+            <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
+              Availability
+            </h2>
+            <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">Updated 3 days ago</p>
+            <Calendar
+              :fullScreenMobile="false"
+              :mode="'range'"
+              triggerID="availability"
+              monthsToShow="2"
+              :showInput="false"
+              :cardBorder="false"
+              :showActionButtons="false"
+            >
+            </Calendar>
+          </v-flex>
+          </v-layout>
+          <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
+            Amenities
+          </h2>
+        </v-flex>
+      </v-layout>
+      <v-layout row wrap>
+        <v-flex xs12 md6>
+          <v-layout row wrap justify-space-between align-center>
+            <v-flex xs6 md6 class="py-3">
               <img :src="wifi">
+              <br>
               <span style="font-size: 16px; color: #B9BCC1;">Wifi</span>
             </v-flex>
-            <v-flex xs6 md3 class="py-3">
+            <v-flex xs6 md6 class="py-3">
               <img :src="cutlery">
+              <br>
               <span style="font-size: 16px; color: #B9BCC1;">Cutlery</span>
             </v-flex>
-            <v-flex xs6 md3 class="py-3">
+            <v-flex xs6 md6 class="py-3">
               <img :src="HairDryer">
+              <br>
               <span style="font-size: 16px; color: #B9BCC1;">Hair Dryer</span>
             </v-flex>
-            <v-flex xs6 md3 class="py-3">
+            <v-flex xs6 md6 class="py-3">
               <img :src="Washer">
+              <br>
               <span style="font-size: 16px; color: #B9BCC1;">Washer</span>
             </v-flex>
           </v-layout>
+        </v-flex>
+      </v-layout>
+      <v-layout row wrap>
+        <v-flex xs12 md6>
+
         </v-flex>
       </v-layout>
     </v-container>
@@ -101,7 +132,6 @@
 
 <script>
 //components
-import Amenity from './Listing/Amenity.vue';
 
 // icons
 import wifi from '../assets/icons/wifi.svg';
@@ -109,13 +139,21 @@ import HairDryer from '../assets/icons/hair-dryer.svg';
 import Washer from '../assets/icons/washing-machine.svg';
 import cutlery from '../assets/icons/cutlery.svg';
 import MultiUsers from '../assets/icons/multiple-users-silhouette.svg';
+import Calendar from './Calendar.vue';
+import format from 'date-fns/format';
 
 export default {
   data(){
     return{
       components:{
-        Amenity
+        Calendar
       },
+
+      // states
+      dateFormat: 'D MMM',
+      dateOne: '',
+      dateTwo: '',
+
       //images
       MultiUsers,
       wifi,
@@ -128,6 +166,18 @@ export default {
         images: []
       }
     }
+  },
+  methods:{
+    formatDates(dateOne, dateTwo) {
+      let formattedDates = '';
+      if (dateOne) {
+        formattedDates = format(dateOne, this.dateFormat);
+      }
+      if (dateTwo) {
+        formattedDates += ' - ' + format(dateTwo, this.dateFormat);
+      }
+      return formattedDates;
+    },
   },
   created() {
     this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/'+this.slug).then(function(data){

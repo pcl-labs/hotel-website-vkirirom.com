@@ -8,11 +8,33 @@ import Slick from 'vue-slick'
 import VueRouter from 'vue-router'
 import Routes from './routes'
 import VueResource from 'vue-resource';
+import AirbnbStyleDatepicker from 'vue-airbnb-style-datepicker';
+import 'vue-airbnb-style-datepicker/dist/vue-airbnb-style-datepicker.min.css';
 
 Vue.use(Vuetify)
 Vue.use(Slick)
 Vue.use(VueRouter)
 Vue.use(VueResource)
+Vue.use(AirbnbStyleDatepicker, {
+  sundayFirst: false,
+  dateLabelFormat: 'dddd, MMMM D, YYYY',
+  days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+  daysShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+  monthNames: [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ],
+});
 
 const router = new VueRouter({
   routes: Routes,
