@@ -1,117 +1,162 @@
 <template>
-  <v-app class="pa-0">
-    <v-container>
-      <v-flex><h1>Your Search Results are:</h1></v-flex>
-      <v-divider></v-divider>
-      <div style="margin-bottom:20px;"></div>
-      <v-layout justify-space-between justify-space-around align-center wrap>
-      <v-flex xs12 sm6 md4 v-for="(post, index) in places" :key="index" :place="post">
-        <IntroCard
-          :key="index"
-          :place="post"
-        />
+  <v-container grid-list-md>
+    <ListCover title="Search Results" style="color: #D8DADE;" class="mb-2"></ListCover>
+    <v-layout row wrap justify-space-between justify-center>
+      <v-flex xs12 sm6 md4 lg4>
+        <v-card width="100%" dark color="transparent" href="#" flat >
+          <v-img v-if="belltent.images.length > 0" :src="belltent.featuredImage" height="150px"></v-img>
+        <v-layout align-start>
+          <v-card-text class="pa-1">
+            <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire Khmer Cottage</span>
+            <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>{{belltent.title}}</h3></span>
+            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> {{belltent.ctaText}}$ per night</span>
+            </p>
+          </v-card-text>
+        </v-layout>
+        </v-card>
       </v-flex>
-      </v-layout>
-    </v-container>
-  </v-app>
+      <v-flex xs12 sm6 md4 lg4>
+        <v-card width="100%" dark color="transparent" href="#" flat>
+          <v-img v-if="bungalow.images.length > 0" :src="bungalow.featuredImage" height="150px"></v-img>
+        <v-layout align-start>
+          <v-card-text class="pa-1">
+            <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire Bungalow</span>
+            <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>{{bungalow.title}}</h3></span>
+            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> {{bungalow.ctaText}}$ per night</span>
+            </p>
+          </v-card-text>
+        </v-layout>
+        </v-card>
+      </v-flex>
+      <v-flex xs12 sm6 md4 lg4>
+        <v-card width="100%" dark color="transparent" href="#" flat >
+          <v-img v-if="luxurytent.images.length > 0" :src="luxurytent.featuredImage" height="150px"></v-img>
+        <v-layout align-start>
+          <v-card-text class="pa-1">
+            <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire Luxury Tent</span>
+            <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>{{luxurytent.title}}</h3></span>
+            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> {{luxurytent.ctaText}}$ per night</span>
+            </p>
+          </v-card-text>
+        </v-layout>
+        </v-card>
+      </v-flex>
+      <v-flex xs12 sm6 md4 lg4>
+        <v-card width="100%" dark color="transparent" href="#" flat >
+          <v-img v-if="khmer.images.length > 0" :src="khmer.featuredImage" height="150px"></v-img>
+        <v-layout align-start>
+          <v-card-text class="pa-1">
+            <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire Luxury Tent</span>
+            <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>{{khmer.title}}</h3></span>
+            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> {{khmer.ctaText}}$ per night</span>
+            </p>
+          </v-card-text>
+        </v-layout>
+        </v-card>
+      </v-flex>
+      <v-flex xs12 sm6 md4 lg4>
+        <v-card width="100%" dark color="transparent" href="#" flat >
+          <v-img v-if="piperoom.images.length > 0" :src="piperoom.featuredImage" height="150px"></v-img>
+        <v-layout align-start>
+          <v-card-text class="pa-1">
+            <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire Luxury Tent</span>
+            <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>{{piperoom.title}}</h3></span>
+            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> {{piperoom.ctaText}}$$ per night</span>
+            </p>
+          </v-card-text>
+        </v-layout>
+        </v-card>
+      </v-flex>
+      <v-flex xs12 sm6 md4 lg4>
+        <v-card width="100%" dark color="transparent" href="#" flat >
+          <v-img v-if="suite.images.length > 0" :src="suite.featuredImage" height="150px"></v-img>
+        <v-layout align-start>
+          <v-card-text class="pa-1">
+            <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire Luxury Tent</span>
+            <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>{{suite.title}}</h3></span>
+            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> {{suite.ctaText}}$$ per night</span>
+            </p>
+          </v-card-text>
+        </v-layout>
+        </v-card>
+      </v-flex>
+      <v-flex xs12 sm6 md4 lg4>
+        <v-card width="100%" dark color="transparent" href="#" flat >
+          <v-img v-if="jasmine.images.length > 0" :src="jasmine.featuredImage" height="150px"></v-img>
+        <v-layout align-start>
+          <v-card-text class="pa-1">
+            <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire Luxury Tent</span>
+            <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>{{jasmine.title}}</h3></span>
+            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> {{jasmine.ctaText}}$$ per night</span>
+            </p>
+          </v-card-text>
+        </v-layout>
+        </v-card>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
-import IntroCard from '@/components/Home/IntroCard';
+import ListCover from './Home/ListCover.vue'
 
 export default {
   components: {
-    IntroCard,
+    ListCover
   },
-data: () =>  ({
-    posts: [
-      {
-        category: 'Accommodation',
-        image:
-          'https://www.vkirirom.com/images/detailsimage/bungalow/bungalow2.jpg',
-        href: '#accommodation',
-        title: 'Auto Camping',
-        price: '45',
-        per: 'night',
-        refName: 'accommodation',
+  data(){
+    return{
+      bungalow: {
+        images: []
       },
-    ],
-    places: [
-      {
-        category: 'Accommodation',
-        title: 'Bungalow',
-        image:
-          'https://res.cloudinary.com/die9ji2vn/image/upload/v1559801041/Bungalow_1_ledef7.jpg',
-        price: '113',
-        href: '#',
-        per: 'night',
-        slug: 'Bungalow'
+      luxurytent: {
+        images: []
       },
-      {
-        category: 'Accommodation',
-        title: 'Luxury Tent',
-        image:
-          'https://res.cloudinary.com/die9ji2vn/image/upload/v1559801013/Luxury_Tent_1_e755jg.jpg',
-        price: '68',
-        href: '#',
-        per: 'night',
-        slug: 'Luxury-Tent'
+      khmer: {
+        images: []
       },
-      {
-        category: 'Accommodation',
-        title: 'Khmer Cottage',
-        image:
-          'https://www.vkirirom.com/images/detailsimage/khmercottage/khmercottage1.JPG',
-        price: '50',
-        href: '#',
-        per: 'night',
-        slug: 'Khmer-Cottage'
+      jasmine: {
+        images: []
       },
-      {
-        category: 'Accommodation',
-        title: 'Camping',
-        image:
-          'https://res.cloudinary.com/die9ji2vn/image/upload/v1559801033/Camping_1_mqqhyf.jpg',
-        price: '20',
-        href: '#',
-        per: 'night',
-        slug: 'Camping'
+      suite: {
+        images: []
       },
-      {
-        category: 'Accommodation',
-        title: 'Pipe Room',
-        image:
-          'https://res.cloudinary.com/die9ji2vn/image/upload/v1559800987/Pipe_Room_1_lheut2.jpg',
-        price: '50',
-        href: '#',
-        per: 'night',
-        slug: 'Pipe-Room'
+      belltent: {
+        images: []
       },
-      {
-        category: 'Accommodation',
-        title: 'Villa Suite',
-        image:
-          'https://res.cloudinary.com/die9ji2vn/image/upload/v1559800960/Villa_Suite_1_tsmo2b.jpg',
-        price: '241',
-        href: '#',
-        per: 'night',
-        slug: 'Villa-Suite'
+      piperoom: {
+        images: []
       },
-      {
-        category: 'Accommodation',
-        title: 'Villa Jasmine',
-        image:
-          'https://res.cloudinary.com/die9ji2vn/image/upload/v1559800971/Villa_Jasmine_1_tqe47i.jpg',
-        price: '113',
-        href: '#',
-        per: 'night',
-        slug: 'Villa-Jasmine'
-      },
-    ],
-  }),
+    }
+  },
+  created() {
+    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/Bungalow').then(function(data){
+      this.bungalow=data.body;
+    });
+    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/Pipe-Room').then(function(data){
+      this.piperoom=data.body;
+    });
+    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/Khmer-Cottage').then(function(data){
+      this.khmer=data.body;
+    });
+    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/Villa-Suite').then(function(data){
+      this.suite=data.body;
+    });
+    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/Bell-Tent').then(function(data){
+      this.belltent=data.body;
+    });
+    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/Villa-Jasmine').then(function(data){
+      this.jasmine=data.body;
+    });
+    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/Luxury-Tent').then(function(data){
+      this.luxurytent=data.body;
+    });
+  },
 }
 </script>
 
 <style>
-
+  html {
+    scroll-behavior: smooth;
+  }
 </style>
