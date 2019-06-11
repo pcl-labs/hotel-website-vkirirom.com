@@ -264,4 +264,8 @@ export default {
 #header{
   height: 300px;
 }
+
+html {
+  scroll-behavior: smooth;
+}
 </style>

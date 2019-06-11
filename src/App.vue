@@ -26,4 +26,7 @@ export default {
     font-family: 'Lato', sans-serif;
     
   }
+  html {
+    scroll-behavior: smooth;
+  }
 </style>
