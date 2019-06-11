@@ -1,7 +1,7 @@
 <template>
 <v-container-fluid>
 <v-card dark>
-  <div id="header" height="45vh">
+  <div id="header">
     <v-container grid-list-md>
       <v-layout row wrap align-end justify-start>
         <v-flex xs12 sm6 md3 lg3>
@@ -54,14 +54,16 @@
         </v-layout>
         </v-card>
       </v-flex>
-      <v-flex xs12>
-        <v-btn block large outline dark style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px;" class="mb-4 hidden-md-and-up">
-          Show all (8)
+    </v-layout>
+    <v-layout row wrap justify-space-around justify-center>
+      <v-flex xs12 sm4 md4 lg4>
+        <v-btn block large outline dark to="/search" style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; max-width:340px;">
+          Show all <v-icon>keyboard_arrow_right</v-icon>
         </v-btn>
       </v-flex>
     </v-layout>
     <v-card hover dark style="border-radius: 3px;" width="100%">
-    <v-img :src="corporateRetreat" height="300px" position="top" class="mt-3 pa-1" width="100%">
+    <v-img :src="corporateRetreat" height="300px" position="top" class="mt-4 pa-1" width="100%">
       <v-layout row wrap justify-end hidden-sm-and-down>
         <v-flex xs12 md4 sm4 lg4 class="ma-4" align-end>
           <h1 style="color: #FFFFFF;">Your next corporate retreat.</h1>
@@ -83,67 +85,69 @@
     </v-card>
   <v-layout row wrap justify-space-between>
     <ListCover title="Experiences" class="pt-3 mb-3 pa-1" style="font-size: 16px; line-height: 19px; color: #D8DADE;"></ListCover>
-      <v-flex xs12 sm6 md4 lg4>
-        <v-card height="100%" width="100%" dark color="transparent" href="#" flat >
-          <v-img :src="experience1" height="150px"></v-img>
-        <v-layout align-start>
-          <v-card-text class="pa-1">
-            <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Experience</span>
-            <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>Rock Climbing</h3></span>
-            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> 50$ per person</span>
-            </p>
-          </v-card-text>
-        </v-layout>
-        </v-card>
-      </v-flex>
-      <v-flex xs12 sm6 md4 lg4>
-        <v-card height="100%" width="100%" dark color="transparent" href="#" flat >
-          <v-img :src="experience1" height="150px"></v-img>
-        <v-layout align-start>
-          <v-card-text class="pa-1">
-            <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Experience</span>
-            <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>Rock Climbing</h3></span>
-            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> 50$ per person</span>
-            </p>
-          </v-card-text>
-        </v-layout>
-        </v-card>
-      </v-flex>
-      <v-flex xs12 sm6 md4 lg4>
-        <v-card height="100%" width="100%" dark color="transparent" href="#" flat >
-          <v-img :src="experience1" height="150px"></v-img>
-        <v-layout align-start>
-          <v-card-text class="pa-1">
-            <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Experience</span>
-            <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>Rock Climbing</h3></span>
-            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> 50$ per person</span>
-            </p>
-          </v-card-text>
-        </v-layout>
-        </v-card>
-      </v-flex>
-      <v-flex xs12>
-        <v-btn block large outline dark style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px;" class="mb-4 hidden-md-and-up">
-          Show all (8)
+    <v-flex xs12 sm6 md4 lg4>
+      <v-card height="100%" width="100%" dark color="transparent" href="#" flat >
+        <v-img :src="experience1" height="150px"></v-img>
+      <v-layout align-start>
+        <v-card-text class="pa-1">
+          <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Experience</span>
+          <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>Rock Climbing</h3></span>
+          <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> 50$ per person</span>
+          </p>
+        </v-card-text>
+      </v-layout>
+      </v-card>
+    </v-flex>
+    <v-flex xs12 sm6 md4 lg4>
+      <v-card height="100%" width="100%" dark color="transparent" href="#" flat >
+        <v-img :src="experience1" height="150px"></v-img>
+      <v-layout align-start>
+        <v-card-text class="pa-1">
+          <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Experience</span>
+          <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>Rock Climbing</h3></span>
+          <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> 50$ per person</span>
+          </p>
+        </v-card-text>
+      </v-layout>
+      </v-card>
+    </v-flex>
+    <v-flex xs12 sm6 md4 lg4>
+      <v-card height="100%" width="100%" dark color="transparent" href="#" flat >
+        <v-img :src="experience1" height="150px"></v-img>
+      <v-layout align-start>
+        <v-card-text class="pa-1">
+          <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Experience</span>
+          <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>Rock Climbing</h3></span>
+          <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> 50$ per person</span>
+          </p>
+        </v-card-text>
+      </v-layout>
+      </v-card>
+    </v-flex>
+  </v-layout>
+      <v-layout row wrap justify-space-around justify-center>
+      <v-flex xs12 sm4 md4 lg4>
+        <v-btn block large outline dark style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; max-width:340px;">
+          Show all <v-icon>keyboard_arrow_right</v-icon>
         </v-btn>
       </v-flex>
-      <v-card xs12 width="100%" class="mt-4 mb-4" dark style="border-radius: 3px;" hover>
-      <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1560151624/Healthy_eyfk5v.jpg" height="300px" position="top" class="pt-3">
-      <v-layout row wrap justify-start class="ma-4">
-        <v-flex xs6 md4 sm4 lg4>
-          <h1 style="color: #FFFFFF;">Mouth Watering</h1>
-        </v-flex>
-      </v-layout>
-      <v-layout column align-content-space-around align-content-start fill-height class="ma-4">
-        <v-flex xs6 md6 sm4 lg6>
-          <v-btn dark large depressed style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px;" outline>
-            Menu <v-icon>keyboard_arrow_right</v-icon>
-          </v-btn>
-        </v-flex>
-      </v-layout>
+    </v-layout>
+    <v-card xs12 width="100%" class="mt-4 mb-4" dark style="border-radius: 3px;" hover>
+    <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1560151624/Healthy_eyfk5v.jpg" height="300px" position="top" class="pt-3">
+    <v-layout row wrap justify-start class="ma-4">
+      <v-flex xs6 md4 sm4 lg4>
+        <h1 style="color: #FFFFFF;">Mouth Watering</h1>
+      </v-flex>
+    </v-layout>
+    <v-layout column align-content-space-around align-content-start fill-height class="ma-4">
+      <v-flex xs6 md6 sm4 lg6>
+        <v-btn dark large depressed style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px;" outline>
+          Menu <v-icon>keyboard_arrow_right</v-icon>
+        </v-btn>
+      </v-flex>
+    </v-layout>
     </v-img>
     </v-card>
-    </v-layout>
     </div>
   </v-container>
   <v-container-fluid>
