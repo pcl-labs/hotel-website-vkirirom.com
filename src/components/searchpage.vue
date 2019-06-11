@@ -3,7 +3,7 @@
     <ListCover title="Search Results" style="color: #D8DADE;" class="mb-2"></ListCover>
     <v-layout row wrap justify-space-between justify-center>
       <v-flex xs12 sm6 md4 lg4>
-        <v-card width="100%" dark color="transparent" href="#" flat >
+        <v-card width="100%" dark color="transparent" to="/listing/Bell-Tent" flat >
           <v-img v-if="belltent.images.length > 0" :src="belltent.featuredImage" height="150px"></v-img>
         <v-layout align-start>
           <v-card-text class="pa-1">
@@ -158,5 +158,20 @@ export default {
 <style>
   html {
     scroll-behavior: smooth;
+  }
+  @media only screen and (max-width: 600px) {
+    .container{
+      max-width: 292px;
+    }
+  }
+  @media only screen and (min-width: 768px) {
+    .container{
+      max-width: 600px;
+    }
+  }
+  @media only screen and (min-width: 1024px) {
+    .container{
+      max-width: 900px;
+    }
   }
 </style>
