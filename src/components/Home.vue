@@ -57,7 +57,7 @@
     </v-layout>
     <v-layout row wrap justify-space-around justify-center>
       <v-flex xs12 sm4 md4 lg4>
-        <v-btn block large outline dark to="/search" style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; max-width:340px;">
+        <v-btn block large outline dark to="/search" style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; max-width:340px; text-transform:capitalize">
           Show all <v-icon>keyboard_arrow_right</v-icon>
         </v-btn>
       </v-flex>
@@ -76,7 +76,7 @@
       </v-layout>
       <v-layout column align-center justify-center fill-height>
         <v-flex xs12 md6 sm4 lg6>
-          <v-btn dark large depressed style="background: #4B7F52; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px;" color="#4B7F52">
+          <v-btn dark large depressed style="background: #4B7F52; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; text-transform:capitalize" color="#4B7F52">
             Book Now <v-icon>keyboard_arrow_right</v-icon>
           </v-btn>
         </v-flex>
@@ -125,9 +125,9 @@
       </v-card>
     </v-flex>
   </v-layout>
-      <v-layout row wrap justify-space-around justify-center>
+    <v-layout row wrap justify-space-around justify-center>
       <v-flex xs12 sm4 md4 lg4>
-        <v-btn block large outline dark style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; max-width:340px;">
+        <v-btn block large outline dark style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; max-width:340px; text-transform:capitalize">
           Show all <v-icon>keyboard_arrow_right</v-icon>
         </v-btn>
       </v-flex>
@@ -141,7 +141,7 @@
     </v-layout>
     <v-layout column align-content-space-around align-content-start fill-height class="ma-4">
       <v-flex xs6 md6 sm4 lg6>
-        <v-btn dark large depressed style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px;" outline>
+        <v-btn dark large depressed style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; text-transform:capitalize" outline>
           Menu <v-icon>keyboard_arrow_right</v-icon>
         </v-btn>
       </v-flex>
@@ -181,6 +181,13 @@
             <h2 style="color: #FFFFFF; position:absolute; bottom:20px; right:0; left:0;">Blog Post</h2>
           </v-card-text>
         </v-card>
+      </v-flex>
+    </v-layout>
+    <v-layout row wrap justify-space-around justify-center>
+      <v-flex xs12 sm4 md4 lg4>
+        <v-btn block large outline dark style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; max-width:340px; text-transform:capitalize">
+          Show all <v-icon>keyboard_arrow_right</v-icon>
+        </v-btn>
       </v-flex>
     </v-layout>
   </v-container>
