@@ -16,7 +16,7 @@
     <ListCover title="Accommodation" style="color: #D8DADE;" class="mb-2"></ListCover>
     <v-layout row wrap justify-space-between justify-center>
       <v-flex xs12 sm6 md4 lg4>
-        <v-card width="100%" dark color="transparent" href="#" flat >
+        <v-card width="100%" dark color="transparent" to="/listing/Bell-Tent" flat >
           <v-img v-if="belltent.images.length > 0" :src="belltent.featuredImage" height="150px"></v-img>
         <v-layout align-start>
           <v-card-text class="pa-1">
@@ -29,7 +29,7 @@
         </v-card>
       </v-flex>
       <v-flex xs12 sm6 md4 lg4>
-        <v-card width="100%" dark color="transparent" href="#" flat>
+        <v-card width="100%" dark color="transparent" to="/listing/Bungalow" flat>
           <v-img v-if="bungalow.images.length > 0" :src="bungalow.featuredImage" height="150px"></v-img>
         <v-layout align-start>
           <v-card-text class="pa-1">
@@ -42,7 +42,7 @@
         </v-card>
       </v-flex>
       <v-flex xs12 sm6 md4 lg4>
-        <v-card width="100%" dark color="transparent" href="#" flat >
+        <v-card width="100%" dark color="transparent" to="/listing/Luxury-Tent" flat >
           <v-img v-if="luxurytent.images.length > 0" :src="luxurytent.featuredImage" height="150px"></v-img>
         <v-layout align-start>
           <v-card-text class="pa-1">
@@ -247,7 +247,6 @@ export default {
 
 <style>
 #header{
-  background-size: contain;
   object-fit: cover;
   box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
   background: linear-gradient(0deg, #191C21 0%, rgba(25, 28, 33, 0) 50%), url('https://res.cloudinary.com/die9ji2vn/image/upload/v1560155423/top_image_kyv74r.jpg');
