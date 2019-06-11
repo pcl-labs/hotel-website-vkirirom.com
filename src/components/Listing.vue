@@ -52,19 +52,77 @@
           {{resort.h2}}
         </p>
       </div>
-      <v-layout>
-
+      <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
+        Location
+      </h2>
+      <p>
+        <a href="https://goo.gl/maps/NusquSFKVm2SHrDy7" style="text-decoration:none;">Go to Location</a>
+      </p>
+      <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
+        Spaces
+      </h2>
+      <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
+        {{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.spaces[0]}}
+      </p>
+      <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
+        Getting Around
+      </h2>
+      <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
+        {{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.gettingAround}}
+      </p>
+      <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
+        Amenities
+      </h2>
+      <v-layout row wrap>
+        <v-flex xs8 md10>
+          <v-layout row wrap>
+            <v-flex xs6 md3 class="py-3">
+              <img :src="wifi">
+              <span style="font-size: 16px; color: #B9BCC1;">Wifi</span>
+            </v-flex>
+            <v-flex xs6 md3 class="py-3">
+              <img :src="cutlery">
+              <span style="font-size: 16px; color: #B9BCC1;">Cutlery</span>
+            </v-flex>
+            <v-flex xs6 md3 class="py-3">
+              <img :src="HairDryer">
+              <span style="font-size: 16px; color: #B9BCC1;">Hair Dryer</span>
+            </v-flex>
+            <v-flex xs6 md3 class="py-3">
+              <img :src="Washer">
+              <span style="font-size: 16px; color: #B9BCC1;">Washer</span>
+            </v-flex>
+          </v-layout>
+        </v-flex>
       </v-layout>
     </v-container>
   </v-container-fluid>
 </template>
 
 <script>
+//components
+import Amenity from './Listing/Amenity.vue';
+
+// icons
+import wifi from '../assets/icons/wifi.svg';
+import HairDryer from '../assets/icons/hair-dryer.svg';
+import Washer from '../assets/icons/washing-machine.svg';
+import cutlery from '../assets/icons/cutlery.svg';
 import MultiUsers from '../assets/icons/multiple-users-silhouette.svg';
+
 export default {
   data(){
     return{
+      components:{
+        Amenity
+      },
+      //images
       MultiUsers,
+      wifi,
+      HairDryer,
+      Washer,
+      cutlery,
+
       slug: this.$route.params.id,
       resort: {
         images: []
