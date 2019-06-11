@@ -62,29 +62,31 @@
         </v-btn>
       </v-flex>
     </v-layout>
+    <v-divider class="hidden-md-and-up mt-3" style="background-color:#3D424E;"></v-divider>
     <v-card hover dark style="border-radius: 3px;" width="100%">
-    <v-img :src="corporateRetreat" height="300px" position="top" class="mt-4 pa-1" width="100%">
-      <v-layout row wrap justify-end hidden-sm-and-down>
-        <v-flex xs12 md4 sm4 lg4 class="ma-4" align-end>
-          <h1 style="color: #FFFFFF;">Your next corporate retreat.</h1>
-        </v-flex>
-      </v-layout>
-      <v-layout row wrap justify-center hidden-md-and-up text-xs-center>
-        <v-flex xs12 align-center >
-          <h1 style="color: #FFFFFF; font-size: 36px; line-height: 49px; text-align: center; margin-top:30px;">Your next corporate retreat.</h1>
-        </v-flex>
-      </v-layout>
-      <v-layout column align-center justify-center fill-height>
-        <v-flex xs12 md6 sm4 lg6>
-          <v-btn dark large depressed style="background: #4B7F52; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; text-transform:capitalize" color="#4B7F52">
-            Book Now <v-icon>keyboard_arrow_right</v-icon>
-          </v-btn>
-        </v-flex>
-      </v-layout>
-    </v-img>
+      <v-img :src="corporateRetreat" height="300px" position="top" class="mt-4 pa-1 mb-4" width="100%">
+        <v-layout row wrap justify-end hidden-sm-and-down>
+          <v-flex xs12 md4 sm4 lg4 class="ma-4" align-end>
+            <h1 style="color: #FFFFFF;">Your next corporate retreat.</h1>
+          </v-flex>
+        </v-layout>
+        <v-layout row wrap justify-center hidden-md-and-up text-xs-center>
+          <v-flex xs12 align-center >
+            <h1 style="color: #FFFFFF; font-size: 36px; line-height: 49px; text-align: center; margin-top:30px;">Your next corporate retreat.</h1>
+          </v-flex>
+        </v-layout>
+        <v-layout column align-center justify-center fill-height>
+          <v-flex xs12 md6 sm4 lg6>
+            <v-btn dark large depressed style="background: #4B7F52; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; text-transform:capitalize" color="#4B7F52">
+              Book Now <v-icon>keyboard_arrow_right</v-icon>
+            </v-btn>
+          </v-flex>
+        </v-layout>
+      </v-img>
     </v-card>
+   <v-divider class="hidden-md-and-up mt-3" style="background-color:#3D424E;"></v-divider>
   <v-layout row wrap justify-space-between>
-    <ListCover title="Experiences" class="pt-3 mb-3 pa-1" style="font-size: 16px; line-height: 19px; color: #D8DADE;"></ListCover>
+    <ListCover title="Experiences" class="mb-3 pl-1" style="font-size: 16px; line-height: 19px; color: #D8DADE;"></ListCover>
     <v-flex xs12 sm6 md4 lg4>
       <v-card height="100%" width="100%" dark color="transparent" href="#" flat >
         <v-img :src="experience1" height="150px"></v-img>
