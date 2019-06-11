@@ -16,7 +16,7 @@
     <ListCover title="Accommodation" style="color: #D8DADE;" class="mb-2"></ListCover>
     <v-layout row wrap justify-space-between justify-center>
       <v-flex xs12 sm6 md4 lg4>
-        <v-card width="100%" dark color="transparent" href="#" flat >
+        <v-card width="100%" dark color="transparent" to="/listing/Bell-Tent" flat >
           <v-img v-if="belltent.images.length > 0" :src="belltent.featuredImage" height="150px"></v-img>
         <v-layout align-start>
           <v-card-text class="pa-1">
@@ -29,7 +29,7 @@
         </v-card>
       </v-flex>
       <v-flex xs12 sm6 md4 lg4>
-        <v-card width="100%" dark color="transparent" href="#" flat>
+        <v-card width="100%" dark color="transparent" to="/listing/Bungalow" flat>
           <v-img v-if="bungalow.images.length > 0" :src="bungalow.featuredImage" height="150px"></v-img>
         <v-layout align-start>
           <v-card-text class="pa-1">
@@ -42,7 +42,7 @@
         </v-card>
       </v-flex>
       <v-flex xs12 sm6 md4 lg4>
-        <v-card width="100%" dark color="transparent" href="#" flat >
+        <v-card width="100%" dark color="transparent" to="/listing/Luxury-Tent" flat >
           <v-img v-if="luxurytent.images.length > 0" :src="luxurytent.featuredImage" height="150px"></v-img>
         <v-layout align-start>
           <v-card-text class="pa-1">
