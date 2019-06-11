@@ -234,7 +234,6 @@ export default {
     ListCover,
     introCard,
     Card,
-    
   },
   data() {
     return {
