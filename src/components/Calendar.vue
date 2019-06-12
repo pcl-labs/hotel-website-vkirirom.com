@@ -62,6 +62,7 @@
 import format from 'date-fns/format';
 // import component and stylesheet
 export default {
+  name: 'Calendar',
   props: {
     fullScreenMobile: {
       type: Boolean,
