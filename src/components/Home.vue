@@ -16,6 +16,7 @@
     <ListCover title="Accommodation" style="color: #D8DADE;" class="mb-2"></ListCover>
     <v-layout row wrap justify-space-between justify-center>
       <v-flex xs12 sm6 md4 lg4>
+      <router-link to="/listing/Bell-Tent">
         <v-carousel height="150px" hide-controls dark width="100%" class="hidden-md-and-up">
           <v-carousel-item :src="belltent.featuredImage" style="background-size:contain;">
           </v-carousel-item>
@@ -28,6 +29,7 @@
           <v-carousel-item :src="belltent.images[3].url" style="background-size:contain;">
           </v-carousel-item>
         </v-carousel>
+      </router-link>
         <v-card width="100%" dark color="transparent" to="/listing/Bell-Tent" flat>
           <v-img v-if="belltent.images.length > 0" :src="belltent.featuredImage" height="150px" class="hidden-sm-and-down"></v-img>
         <v-layout align-start>
@@ -41,6 +43,7 @@
         </v-card>
       </v-flex>
       <v-flex xs12 sm6 md4 lg4>
+      <router-link to="/listing/Bungalow">
         <v-carousel height="150px" hide-controls dark width="100%" class="hidden-md-and-up">
           <v-carousel-item :src="bungalow.featuredImage" style="background-size:contain;">
           </v-carousel-item>
@@ -53,6 +56,7 @@
           <v-carousel-item :src="bungalow.images[3].url" style="background-size:contain;">
           </v-carousel-item>
         </v-carousel>
+      </router-link>
         <v-card width="100%" dark color="transparent" to="/listing/Bungalow" flat>
           <v-img v-if="bungalow.images.length > 0" :src="bungalow.featuredImage" height="150px" class="hidden-sm-and-down"></v-img>
           <v-flex xs12 class="hidden-md-and-up">
@@ -68,6 +72,7 @@
         </v-card>
       </v-flex>
       <v-flex xs12 sm6 md4 lg4>
+      <router-link to="/listing/Luxury-Tent">
         <v-carousel height="150px" hide-controls dark width="100%" class="hidden-md-and-up">
           <v-carousel-item :src="luxurytent.featuredImage" style="background-size:contain;">
           </v-carousel-item>
@@ -80,6 +85,7 @@
           <v-carousel-item :src="luxurytent.images[3].url" style="background-size:contain;">
           </v-carousel-item>
         </v-carousel>
+      </router-link>
         <v-card width="100%" dark color="transparent" to="/listing/Luxury-Tent" flat >
           <v-img v-if="luxurytent.images.length > 0" :src="luxurytent.featuredImage" height="150px" class="hidden-sm-and-down"></v-img>
         <v-layout align-start>
