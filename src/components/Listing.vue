@@ -131,8 +131,8 @@
           <div id="bookBottom" class="hidden-md-and-up book-bottom px-5">
           <div>
             <p class="subheading text-xs-center pb-2">
-              <span class="priceLetter font-weight-bold">&dollar;{{resort.ctaText}}</span>
-              <span class="priceDesc"> per night</span>
+              <span style="font-size: 16px; color: #B9BCC1;">&dollar;{{resort.ctaText}}</span>
+              <span style="font-size: 16px; color: #B9BCC1;"> per night</span>
             </p>
             <!-- <Rating :rating="rating" :counter="counter"/> -->
           </div>
@@ -148,62 +148,66 @@
               Book
             </v-btn>
           </template>
-          <v-card class="pa-4 bookForm" width="100%" height="100%">
+          <v-card class="pa-4 bookForm" width="100%" height="100%" color="#191C21">
             <v-form name="bookForm"  method="post" netlify ref="form" v-model="valid" action="/thankYou">
-           <input type="hidden" name="form-name" value="bookForm" />
+              <input type="hidden" name="form-name" value="bookForm" />
               <v-layout row wrap>
               <v-flex xs12>
                 <p class="subheading text-xs-center pb-2">
-                  <span class="priceLetter font-weight-bold">&dollar;{{ resort.ctaText }} </span>
-                  <span class="priceDesc"> per night</span>
+                  <span style="font-weight: bold; font-size: 28px; color: #B9BCC1;">&dollar;{{ resort.ctaText }} </span>
+                  <span style="font-size: 16px; color: #B9BCC1;"> per night</span>
                 </p>
                 <!-- <Rating :rating="rating" :counter="counter"/> -->
-                <v-divider class="pt-2"></v-divider>
+                <v-divider class="mt-3" style="background-color:#3D424E;"></v-divider>
               </v-flex>
               <v-flex xs12>
                 <v-text-field
                   v-model="name"
-                  solo
-                  flat
-                  Placeholder="Enter your Name"
+                  single-line
+                  outline
+                  label="Enter your name"
                   name="Name"
                   append-icon="person_outline"
                   required
+                  dark
                   :rules="nameRules"
                 ></v-text-field>
               </v-flex>
               <v-flex xs12>
                 <v-text-field
                   v-model="email"
-                  solo
-                  flat
-                  Placeholder="Enter e-mail address"
+                  outline
+                  single-line
+                  label="Enter e-mail address"
                   name="E-mail"
                   append-icon="email"
                   required
+                  dark
                   :rules="emailRules"
                 ></v-text-field>
               </v-flex>
               <v-flex xs12>
                 <v-text-field
-                  solo
-                  flat
+                  outline
+                  single-line
                   v-model="phone"
-                  Placeholder="Phone"
+                  label="Phone"
                   name="Phone"
                   append-icon="local_phone"
                   required
+                  dark
                   :rules="phoneRules"
                 ></v-text-field>
               </v-flex>
               <v-flex xs12>
-                <v-text-field
-                solo
-                flat
+              <v-text-field
+                outline
+                dark
+                single-line
                 type="text"
                 name="Date"
                 id="datepicker-trigger"
-                placeholder="Select dates"
+                label="Select dates"
                 :rules="dateRules"
                 :value="formatDates(dateOne, dateTwo)"
                 ></v-text-field>
@@ -220,24 +224,31 @@
               </v-flex>
               <v-flex xs12>
                 <v-textarea
-                  solo
-                  flat
+                  outline
                   hide-details
+                  dark
                   name="Message"
-                  Placeholder="Message"
+                  label="Message"
+                  class="mb-4"
                 ></v-textarea>
               </v-flex>
             </v-layout>
             <v-btn
               block
-              color="cyan darken-4"
+              color="#4B7F52"
               dark
+
               class="text-capitalize font-weight-bold form-button"
               type="submit"
               :ripple="false"
             >
-              Book
+              Book Now <v-icon>keyboard_arrow_right</v-icon>
             </v-btn>
+            <v-flex xs12 text-xs-center class="mt-3">
+              <p style="font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
+                You won't be charged yet.
+              </p>
+            </v-flex>
             </v-form>
           </v-card>
         </v-dialog>
