@@ -126,11 +126,243 @@
         </v-flex>
       </v-layout>
       <v-layout row wrap>
-        <v-flex xs12 md6>
+        <v-flex md4 class="hidden-sm-and-down">
+          <v-card class="pa-4 mt-5 ml-2 bookForm" width="100%" height="100%" color="#191C21">
+            <v-form name="bookForm"  method="post" netlify ref="form" v-model="valid" action="/thankYou">
+              <input type="hidden" name="form-name" value="bookForm"/>
+              <v-layout row wrap>
+              <v-flex xs12>
+                <p class="subheading text-xs-center pb-2">
+                  <span style="font-weight: bold; font-size: 28px; color: #B9BCC1;">&dollar;{{ resort.ctaText }} </span>
+                  <span style="font-size: 16px; color: #B9BCC1;"> per night</span>
+                </p>
+                <!-- <Rating :rating="rating" :counter="counter"/> -->
+                <v-divider class="mt-3" style="background-color:#3D424E;"></v-divider>
+              </v-flex>
+              <v-flex xs12>
+                <v-text-field
+                  v-model="name"
+                  single-line
+                  outline
+                  label="Enter your name"
+                  name="Name"
+                  append-icon="person_outline"
+                  required
+                  dark
+                  :rules="nameRules"
+                ></v-text-field>
+              </v-flex>
+              <v-flex xs12>
+                <v-text-field
+                  v-model="email"
+                  outline
+                  single-line
+                  label="Enter e-mail address"
+                  name="E-mail"
+                  append-icon="email"
+                  required
+                  dark
+                  :rules="emailRules"
+                ></v-text-field>
+              </v-flex>
+              <v-flex xs12>
+                <v-text-field
+                  outline
+                  single-line
+                  v-model="phone"
+                  label="Phone"
+                  name="Phone"
+                  append-icon="local_phone"
+                  required
+                  dark
+                  :rules="phoneRules"
+                ></v-text-field>
+              </v-flex>
+              <v-flex xs12>
+              <v-text-field
+                outline
+                dark
+                single-line
+                type="text"
+                name="Date"
+                id="datepicker"
+                label="Select dates"
+                :rules="dateRules"
+                :value="formatDates(dateOne, dateTwo)"
+                ></v-text-field>
+              <AirbnbStyleDatepicker
+                :trigger-element-id="'datepicker'"
+                :mode="'range'"
+                :fullscreen-mobile="false"
+                :date-one="dateOne"
+                :date-two="dateTwo"
+                @date-one-selected="val => { dateOne = val }"
+                @date-two-selected="val => { dateTwo = val }"
+                offsetY="5"
+                offsetX="-50"
+              />
+              </v-flex>
+              <v-flex xs12>
+                <v-textarea
+                  outline
+                  hide-details
+                  dark
+                  name="Message"
+                  label="Message"
+                  class="mb-4"
+                ></v-textarea>
+              </v-flex>
+            </v-layout>
+            <v-btn
+              block
+              color="#4B7F52"
+              dark
 
+              class="text-capitalize font-weight-bold form-button"
+              type="submit"
+              :ripple="false"
+            >
+              Book Now <v-icon>keyboard_arrow_right</v-icon>
+            </v-btn>
+            <v-flex xs12 text-xs-center class="mt-3">
+              <p style="font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
+                You won't be charged yet.
+              </p>
+            </v-flex>
+            </v-form>
+          </v-card>
         </v-flex>
       </v-layout>
     </v-container>
+      <v-layout row wrap>
+        <v-flex xs12>
+          <div id="bookBottom" class="hidden-md-and-up book-bottom px-5">
+          <v-flex xs12>
+            <p>
+              <span style="font-size: 28px; color: #D8DADE;">&dollar;{{resort.ctaText}}</span>
+              <span style="font-size: 16px; color: #B9BCC1;"> per night</span>
+            </p>
+            <!-- <Rating :rating="rating" :counter="counter"/> -->
+          </v-flex>
+          <v-dialog v-model="bookDialog">
+            <template v-slot:activator="{ on }">
+              <v-btn
+                :ripple="false"
+                dark
+                depressed style="box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; text-transform:capitalize"
+                color="#4B7F52"
+                v-on="on"
+              >
+                Book Now <v-icon>keyboard_arrow_right</v-icon>
+              </v-btn>
+            </template>
+          <v-card class="pa-4 bookForm" width="100%" height="100%" color="#191C21">
+            <v-form name="bookForm"  method="post" netlify ref="form" v-model="valid" action="/thankYou">
+              <input type="hidden" name="form-name" value="bookForm" />
+              <v-layout row wrap>
+              <v-flex xs12>
+                <p class="subheading text-xs-center pb-2">
+                  <span style="font-weight: bold; font-size: 28px; color: #B9BCC1;">&dollar;{{ resort.ctaText }} </span>
+                  <span style="font-size: 16px; color: #B9BCC1;"> per night</span>
+                </p>
+                <!-- <Rating :rating="rating" :counter="counter"/> -->
+                <v-divider class="mt-3" style="background-color:#3D424E;"></v-divider>
+              </v-flex>
+              <v-flex xs12>
+                <v-text-field
+                  v-model="name"
+                  single-line
+                  outline
+                  label="Enter your name"
+                  name="Name"
+                  append-icon="person_outline"
+                  required
+                  dark
+                  :rules="nameRules"
+                ></v-text-field>
+              </v-flex>
+              <v-flex xs12>
+                <v-text-field
+                  v-model="email"
+                  outline
+                  single-line
+                  label="Enter e-mail address"
+                  name="E-mail"
+                  append-icon="email"
+                  required
+                  dark
+                  :rules="emailRules"
+                ></v-text-field>
+              </v-flex>
+              <v-flex xs12>
+                <v-text-field
+                  outline
+                  single-line
+                  v-model="phone"
+                  label="Phone"
+                  name="Phone"
+                  append-icon="local_phone"
+                  required
+                  dark
+                  :rules="phoneRules"
+                ></v-text-field>
+              </v-flex>
+              <v-flex xs12>
+              <v-text-field
+                outline
+                dark
+                single-line
+                type="text"
+                name="Date"
+                id="datepicker-trigger"
+                label="Select dates"
+                :rules="dateRules"
+                :value="formatDates(dateOne, dateTwo)"
+                ></v-text-field>
+              <AirbnbStyleDatepicker
+                :trigger-element-id="'datepicker-trigger'"
+                :mode="'range'"
+                style="width:100%; height:100%;"
+                :fullscreen-mobile="true"
+                :date-one="dateOne"
+                :date-two="dateTwo"
+                @date-one-selected="val => { dateOne = val }"
+                @date-two-selected="val => { dateTwo = val }"
+              />
+              </v-flex>
+              <v-flex xs12>
+                <v-textarea
+                  outline
+                  hide-details
+                  dark
+                  name="Message"
+                  label="Message"
+                  class="mb-4"
+                ></v-textarea>
+              </v-flex>
+            </v-layout>
+            <v-btn
+              block
+              color="#4B7F52"
+              dark
+
+              class="text-capitalize font-weight-bold form-button"
+              type="submit"
+              :ripple="false"
+            >
+              Book Now <v-icon>keyboard_arrow_right</v-icon>
+            </v-btn>
+            <v-flex xs12 text-xs-center class="mt-3">
+              <p style="font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
+                You won't be charged yet.
+              </p>
+            </v-flex>
+            </v-form>
+          </v-card>
+        </v-dialog>
+        </div>
+        </v-flex>
+      </v-layout>
   </v-container-fluid>
 </template>
 
@@ -195,7 +427,9 @@ export default {
   html {
     scroll-behavior: smooth;
   }
-
+  .v-carousel__controls{
+    background: linear-gradient(0deg, #191C21 0%, rgba(25, 28, 33, 0) 50%);
+  }
   .header{
     background-position: bottom;
     background-size: cover;
@@ -219,6 +453,25 @@ export default {
       transform: scale(1.1);
     }
   }
+  .bookForm {
+  position: sticky;
+  top:50px;
+}
+
+#bookBottom {
+  height: 80px;
+  width: 100vw;
+  background:#191C21;
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(0,0,0,0.12);
+  z-index: 5;
+}
+
   @media only screen and (max-width: 600px) {
     .container{
       max-width: 292px;
