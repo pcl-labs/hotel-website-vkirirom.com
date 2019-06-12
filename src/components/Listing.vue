@@ -125,12 +125,125 @@
           </v-layout>
         </v-flex>
       </v-layout>
-      <v-layout row wrap>
-        <v-flex xs12 md6>
-
+    </v-container>
+          <v-layout row wrap>
+        <v-flex xs12>
+          <div id="bookBottom" class="hidden-md-and-up book-bottom px-5">
+          <div>
+            <p class="subheading text-xs-center pb-2">
+              <span class="priceLetter font-weight-bold">&dollar;{{resort.ctaText}}</span>
+              <span class="priceDesc"> per night</span>
+            </p>
+            <!-- <Rating :rating="rating" :counter="counter"/> -->
+          </div>
+          <v-dialog v-model="bookDialog">
+          <template v-slot:activator="{ on }">
+            <v-btn
+              color="cyan darken-4"
+              :ripple="false"
+              dark
+              class="text-capitalize font-weight-bold"
+              v-on="on"
+            >
+              Book
+            </v-btn>
+          </template>
+          <v-card class="pa-4 bookForm" width="100%" height="100%">
+            <v-form name="bookForm"  method="post" netlify ref="form" v-model="valid" action="/thankYou">
+           <input type="hidden" name="form-name" value="bookForm" />
+              <v-layout row wrap>
+              <v-flex xs12>
+                <p class="subheading text-xs-center pb-2">
+                  <span class="priceLetter font-weight-bold">&dollar;{{ resort.ctaText }} </span>
+                  <span class="priceDesc"> per night</span>
+                </p>
+                <!-- <Rating :rating="rating" :counter="counter"/> -->
+                <v-divider class="pt-2"></v-divider>
+              </v-flex>
+              <v-flex xs12>
+                <v-text-field
+                  v-model="name"
+                  solo
+                  flat
+                  Placeholder="Enter your Name"
+                  name="Name"
+                  append-icon="person_outline"
+                  required
+                  :rules="nameRules"
+                ></v-text-field>
+              </v-flex>
+              <v-flex xs12>
+                <v-text-field
+                  v-model="email"
+                  solo
+                  flat
+                  Placeholder="Enter e-mail address"
+                  name="E-mail"
+                  append-icon="email"
+                  required
+                  :rules="emailRules"
+                ></v-text-field>
+              </v-flex>
+              <v-flex xs12>
+                <v-text-field
+                  solo
+                  flat
+                  v-model="phone"
+                  Placeholder="Phone"
+                  name="Phone"
+                  append-icon="local_phone"
+                  required
+                  :rules="phoneRules"
+                ></v-text-field>
+              </v-flex>
+              <v-flex xs12>
+                <v-text-field
+                solo
+                flat
+                type="text"
+                name="Date"
+                id="datepicker-trigger"
+                placeholder="Select dates"
+                :rules="dateRules"
+                :value="formatDates(dateOne, dateTwo)"
+                ></v-text-field>
+              <AirbnbStyleDatepicker
+                :trigger-element-id="'datepicker-trigger'"
+                :mode="'range'"
+                style="width:100%; height:100%;"
+                :fullscreen-mobile="true"
+                :date-one="dateOne"
+                :date-two="dateTwo"
+                @date-one-selected="val => { dateOne = val }"
+                @date-two-selected="val => { dateTwo = val }"
+              />
+              </v-flex>
+              <v-flex xs12>
+                <v-textarea
+                  solo
+                  flat
+                  hide-details
+                  name="Message"
+                  Placeholder="Message"
+                ></v-textarea>
+              </v-flex>
+            </v-layout>
+            <v-btn
+              block
+              color="cyan darken-4"
+              dark
+              class="text-capitalize font-weight-bold form-button"
+              type="submit"
+              :ripple="false"
+            >
+              Book
+            </v-btn>
+            </v-form>
+          </v-card>
+        </v-dialog>
+          </div>
         </v-flex>
       </v-layout>
-    </v-container>
   </v-container-fluid>
 </template>
 
@@ -221,6 +334,24 @@ export default {
       transform: scale(1.1);
     }
   }
+  .bookForm {
+  position: sticky;
+  top:50px;
+}
+
+#bookBottom {
+  height: 100px;
+  width: 100vw;
+  background-image: linear-gradient(0deg, #191C21 0%, rgba(25, 28, 33, 0) 50%);
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(0,0,0,0.12);
+  margin-left: -12px;
+  z-index: 5;
+}
   @media only screen and (max-width: 600px) {
     .container{
       max-width: 292px;
