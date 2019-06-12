@@ -195,7 +195,9 @@ export default {
   html {
     scroll-behavior: smooth;
   }
-
+  .v-carousel__controls{
+    background: linear-gradient(0deg, #191C21 0%, rgba(25, 28, 33, 0) 50%);
+  }
   .header{
     background-position: bottom;
     background-size: cover;
