@@ -6,14 +6,18 @@
           <v-img class="image" v-if="resort.images.length > 0" :src="resort.featuredImage" aspect-ratio="1.7"></v-img>
         </v-flex>
         <v-flex xs12 class="hidden-md-and-up">
-          <!-- <v-carousel hide-controls>
-            <v-carousel-item
-              v-for="(item,i) in images"
-              :key="i"
-              :src="resort.img"
-            ></v-carousel-item>
-          </v-carousel> -->
-          <v-img class="image" v-if="resort.images.length > 0" :src="resort.featuredImage"></v-img>
+          <v-carousel height="300px" hide-controls dark>
+            <v-carousel-item :src="resort.featuredImage" class="ma-0 pa-0" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item :src="resort.images[0].url" class="ma-0 pa-0" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item :src="resort.images[1].url" class="ma-0 pa-0" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item :src="resort.images[2].url" class="ma-0 pa-0" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item :src="resort.images[3].url" class="ma-0 pa-0" style="background-size:contain;">
+            </v-carousel-item>
+          </v-carousel>
         </v-flex>
         <v-flex xs12 sm6 class="pa-0 ma-0 overflow-hidden hidden-sm-and-down">
           <v-layout row flex class="pa-0 ma-0 overflow-hidden">
