@@ -405,6 +405,23 @@ import format from 'date-fns/format';
 export default {
   data(){
     return{
+      nameRules: [
+        v => !!v || 'Name is required',
+      ],
+      emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+/.test(v) || 'E-mail must be valid'
+      ],
+      phoneRules: [
+        v => !!v || 'Phone no. is required',
+      ],
+      dateRules: [
+        v => !!v || 'Dates are required',
+      ],
+      name: '',
+      email: '',
+      phone: '',
+      
       components:{
         Calendar
       },
