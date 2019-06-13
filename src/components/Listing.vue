@@ -142,54 +142,59 @@
               <v-flex xs12>
                 <v-text-field
                   v-model="name"
-                  single-line
                   outline
                   label="Enter your name"
                   name="Name"
-                  append-icon="person_outline"
+                  color="#B9BCC1"
                   required
                   dark
                   :rules="nameRules"
-                ></v-text-field>
+                >
+                <v-icon slot="append" color="#B9BCC1">person_outline</v-icon>
+                </v-text-field>
               </v-flex>
               <v-flex xs12>
                 <v-text-field
                   v-model="email"
                   outline
-                  single-line
+                  color="#B9BCC1"
                   label="Enter e-mail address"
                   name="E-mail"
-                  append-icon="email"
                   required
                   dark
                   :rules="emailRules"
-                ></v-text-field>
+                >
+                <v-icon slot="append" color="#B9BCC1">email</v-icon>
+                </v-text-field>
               </v-flex>
               <v-flex xs12>
                 <v-text-field
                   outline
-                  single-line
                   v-model="phone"
                   label="Phone"
                   name="Phone"
-                  append-icon="local_phone"
+                  color="#B9BCC1"
                   required
                   dark
                   :rules="phoneRules"
-                ></v-text-field>
+                >
+                <v-icon slot="append" color="#B9BCC1">local_phone</v-icon>
+                </v-text-field>
               </v-flex>
               <v-flex xs12>
               <v-text-field
                 outline
                 dark
-                single-line
                 type="text"
                 name="Date"
+                color="#B9BCC1"
                 id="datepicker"
                 label="Select dates"
                 :rules="dateRules"
                 :value="formatDates(dateOne, dateTwo)"
-                ></v-text-field>
+                >
+                <v-icon slot="append" color="#B9BCC1">event</v-icon>
+                </v-text-field>
               <AirbnbStyleDatepicker
                 :trigger-element-id="'datepicker'"
                 :mode="'range'"
@@ -200,7 +205,7 @@
                 @date-two-selected="val => { dateTwo = val }"
                 offsetY="5"
                 offsetX="-50"
-                style="left:-50%; top:60%"
+                style="left:-70%; top:60%"
               />
               </v-flex>
               <v-flex xs12>
@@ -208,17 +213,18 @@
                   outline
                   hide-details
                   dark
+                  color="#B9BCC1"
                   name="Message"
                   label="Message"
                   class="mb-4"
-                ></v-textarea>
+                >
+                </v-textarea>
               </v-flex>
             </v-layout>
             <v-btn
               block
               color="#4B7F52"
               dark
-
               class="text-capitalize font-weight-bold form-button"
               type="submit"
               :ripple="false"
@@ -237,7 +243,7 @@
     </v-container>
       <v-layout row wrap>
         <v-flex xs12>
-          <div id="bookBottom" class="hidden-md-and-up book-bottom px-5">
+          <div id="bookBottom" class="hidden-md-and-up book-bottom">
           <v-flex xs12>
             <p>
               <span style="font-size: 28px; color: #D8DADE;">&dollar;{{resort.ctaText}}</span>
@@ -245,7 +251,8 @@
             </p>
             <!-- <Rating :rating="rating" :counter="counter"/> -->
           </v-flex>
-          <v-dialog v-model="bookDialog">
+          <v-flex xs12 class="hidden-md-and-up">
+          <v-dialog v-model="bookDialog" fullscreen hide-overlay transition="dialog-bottom-transition">
             <template v-slot:activator="{ on }">
               <v-btn
                 :ripple="false"
@@ -257,11 +264,17 @@
                 Book Now <v-icon>keyboard_arrow_right</v-icon>
               </v-btn>
             </template>
-          <v-card class="pa-4 bookForm" width="100%" height="100%" color="#191C21">
-            <v-form name="bookForm"  method="post" netlify ref="form" v-model="valid" action="/thankYou">
+          <v-card class="bookForm" color="#191C21">
+            <v-form name="bookForm"  method="post" netlify ref="form" v-model="valid" action="/thankYou" class="ma-5">
               <input type="hidden" name="form-name" value="bookForm" />
               <v-layout row wrap>
-              <v-flex xs12>
+              <v-flex xs1>
+                <v-btn icon dark @click="bookDialog = false">
+                  <v-icon color="#B9BCC1">close</v-icon>
+                </v-btn>
+              </v-flex>
+              <v-spacer></v-spacer>
+              <v-flex xs11>
                 <p class="subheading text-xs-center pb-2">
                   <span style="font-weight: bold; font-size: 28px; color: #B9BCC1;">&dollar;{{ resort.ctaText }} </span>
                   <span style="font-size: 16px; color: #B9BCC1;"> per night</span>
@@ -272,54 +285,59 @@
               <v-flex xs12>
                 <v-text-field
                   v-model="name"
-                  single-line
                   outline
                   label="Enter your name"
                   name="Name"
-                  append-icon="person_outline"
                   required
+                  color="#B9BCC1"
                   dark
                   :rules="nameRules"
-                ></v-text-field>
+                >
+                <v-icon slot="append" color="#B9BCC1">person_outline</v-icon>
+                </v-text-field>
               </v-flex>
               <v-flex xs12>
                 <v-text-field
                   v-model="email"
                   outline
-                  single-line
                   label="Enter e-mail address"
                   name="E-mail"
-                  append-icon="email"
+                  color="#B9BCC1"
                   required
                   dark
                   :rules="emailRules"
-                ></v-text-field>
+                >
+                <v-icon slot="append" color="#B9BCC1">email</v-icon>
+                </v-text-field>
               </v-flex>
               <v-flex xs12>
                 <v-text-field
                   outline
-                  single-line
                   v-model="phone"
                   label="Phone"
                   name="Phone"
-                  append-icon="local_phone"
+                  color="#B9BCC1"
                   required
                   dark
                   :rules="phoneRules"
-                ></v-text-field>
+                >
+                <v-icon slot="append" color="#B9BCC1">local_phone</v-icon>
+                </v-text-field>
               </v-flex>
               <v-flex xs12>
               <v-text-field
                 outline
                 dark
-                single-line
                 type="text"
                 name="Date"
+                color="#B9BCC1"
                 id="datepicker-trigger"
                 label="Select dates"
                 :rules="dateRules"
                 :value="formatDates(dateOne, dateTwo)"
-                ></v-text-field>
+                >
+                <v-icon slot="append" color="#B9BCC1">event</v-icon>
+                </v-text-field>
               <AirbnbStyleDatepicker
                 :trigger-element-id="'datepicker-trigger'"
                 :mode="'range'"
@@ -337,33 +355,37 @@
                   hide-details
                   dark
                   name="Message"
+                  color="#B9BCC1"
                   label="Message"
                   class="mb-4"
-                ></v-textarea>
+                >
+                </v-textarea>
               </v-flex>
-            </v-layout>
-            <v-btn
+            <v-flex xs12>
+              <v-btn
               block
               color="#4B7F52"
               dark
-
               class="text-capitalize font-weight-bold form-button"
               type="submit"
               :ripple="false"
             >
               Book Now <v-icon>keyboard_arrow_right</v-icon>
             </v-btn>
+            </v-flex>
             <v-flex xs12 text-xs-center class="mt-3">
-              <p style="font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
+              <p style="font-weight: bold; font-size: 14px; color: #B9BCC1;">
                 You won't be charged yet.
               </p>
             </v-flex>
-            </v-form>
+            </v-layout>
+          </v-form>
           </v-card>
-        </v-dialog>
+          </v-dialog>
+          </v-flex>
         </div>
-        </v-flex>
-      </v-layout>
+      </v-flex>
+    </v-layout>
   </v-container-fluid>
 </template>
 
@@ -385,6 +407,8 @@ export default {
       components:{
         Calendar
       },
+
+      bookDialog: false,
 
       // states
       dateFormat: 'D MMM',
@@ -454,10 +478,12 @@ export default {
       transform: scale(1.1);
     }
   }
-  .bookForm {
-  position: sticky;
-  top:50px;
-}
+  // .hidden-sm-and-down .v-icon {
+  //   color: #B9BCC1 !important;
+  // }
+  // .hidden-md-and-up .v-icon {
+  //   color: #B9BCC1 !important;
+  // }
 
 #bookBottom {
   height: 80px;
@@ -470,7 +496,6 @@ export default {
   justify-content: space-between;
   align-items: center;
   border-top: 1px solid rgba(0,0,0,0.12);
-  z-index: 5;
 }
 
   @media only screen and (max-width: 600px) {
