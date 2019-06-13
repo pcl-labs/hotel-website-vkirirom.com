@@ -186,6 +186,7 @@
                 type="text"
                 name="Date"
                 id="datepicker"
+                append-icon="calendar"
                 label="Select dates"
                 :rules="dateRules"
                 :value="formatDates(dateOne, dateTwo)"
@@ -237,7 +238,7 @@
     </v-container>
       <v-layout row wrap>
         <v-flex xs12>
-          <div id="bookBottom" class="hidden-md-and-up book-bottom px-5">
+          <div id="bookBottom" class="hidden-md-and-up book-bottom">
           <v-flex xs12>
             <p>
               <span style="font-size: 28px; color: #D8DADE;">&dollar;{{resort.ctaText}}</span>
@@ -245,7 +246,8 @@
             </p>
             <!-- <Rating :rating="rating" :counter="counter"/> -->
           </v-flex>
-          <v-dialog v-model="bookDialog">
+          <v-flex xs12>
+          <v-dialog v-model="bookDialog" fullscreen hide-overlay transition="dialog-bottom-transition">
             <template v-slot:activator="{ on }">
               <v-btn
                 :ripple="false"
@@ -257,8 +259,8 @@
                 Book Now <v-icon>keyboard_arrow_right</v-icon>
               </v-btn>
             </template>
-          <v-card class="pa-4 bookForm" width="100%" height="100%" color="#191C21">
-            <v-form name="bookForm"  method="post" netlify ref="form" v-model="valid" action="/thankYou">
+          <v-card class="bookForm" height="100%" width="100%" color="#191C21">
+            <v-form name="bookForm"  method="post" netlify ref="form" v-model="valid" action="/thankYou" class="ma-5">
               <input type="hidden" name="form-name" value="bookForm" />
               <v-layout row wrap>
               <v-flex xs12>
@@ -272,12 +274,12 @@
               <v-flex xs12>
                 <v-text-field
                   v-model="name"
-                  single-line
                   outline
                   label="Enter your name"
                   name="Name"
                   append-icon="person_outline"
                   required
+                  color="#B9BCC1"
                   dark
                   :rules="nameRules"
                 ></v-text-field>
@@ -286,9 +288,9 @@
                 <v-text-field
                   v-model="email"
                   outline
-                  single-line
                   label="Enter e-mail address"
                   name="E-mail"
+                  color="#B9BCC1"
                   append-icon="email"
                   required
                   dark
@@ -298,10 +300,10 @@
               <v-flex xs12>
                 <v-text-field
                   outline
-                  single-line
                   v-model="phone"
                   label="Phone"
                   name="Phone"
+                  color="#B9BCC1"
                   append-icon="local_phone"
                   required
                   dark
@@ -312,9 +314,10 @@
               <v-text-field
                 outline
                 dark
-                single-line
                 type="text"
                 name="Date"
+                append-icon="event"
+                color="#B9BCC1"
                 id="datepicker-trigger"
                 label="Select dates"
                 :rules="dateRules"
@@ -337,16 +340,15 @@
                   hide-details
                   dark
                   name="Message"
+                  color="#B9BCC1"
                   label="Message"
                   class="mb-4"
                 ></v-textarea>
               </v-flex>
-            </v-layout>
-            <v-btn
+              <v-btn
               block
               color="#4B7F52"
               dark
-
               class="text-capitalize font-weight-bold form-button"
               type="submit"
               :ripple="false"
@@ -354,16 +356,18 @@
               Book Now <v-icon>keyboard_arrow_right</v-icon>
             </v-btn>
             <v-flex xs12 text-xs-center class="mt-3">
-              <p style="font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
+              <p style="font-weight: bold; font-size: 14px; color: #B9BCC1;">
                 You won't be charged yet.
               </p>
             </v-flex>
-            </v-form>
+            </v-layout>
+          </v-form>
           </v-card>
-        </v-dialog>
+          </v-dialog>
+          </v-flex>
         </div>
-        </v-flex>
-      </v-layout>
+      </v-flex>
+    </v-layout>
   </v-container-fluid>
 </template>
 
@@ -454,10 +458,6 @@ export default {
       transform: scale(1.1);
     }
   }
-  .bookForm {
-  position: sticky;
-  top:50px;
-}
 
 #bookBottom {
   height: 80px;
@@ -470,7 +470,6 @@ export default {
   justify-content: space-between;
   align-items: center;
   border-top: 1px solid rgba(0,0,0,0.12);
-  z-index: 5;
 }
 
   @media only screen and (max-width: 600px) {
