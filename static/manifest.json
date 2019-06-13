@@ -15,6 +15,6 @@
   ],
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#000000",
+  "background_color": "linear-gradient(128.38deg, #121416 0%, #313A4F 100%)",
   "theme_color": "#191C21"
 }
