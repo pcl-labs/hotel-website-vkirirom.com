@@ -14,6 +14,7 @@
     "jquery": "^3.4.1",
     "vue": "^2.5.2",
     "vue-airbnb-style-datepicker": "^2.7.1",
+    "vue-gtm": "^2.0.0",
     "vue-resource": "^1.5.1",
     "vue-router": "^3.0.6",
     "vue-slick": "^1.1.15",

@@ -1,6 +1,7 @@
 import Home from './components/Home.vue';
 import searchpage from './components/searchpage.vue';
 import Listing from './components/Listing.vue';
+import thankYou from './components/thankYou.vue';
 
 
 export default[
@@ -15,5 +16,9 @@ export default[
   {
     path:'/listing/:id',
     component: Listing
+  },
+  {
+    path:'/thankYou',
+    component: thankYou
   },
 ]

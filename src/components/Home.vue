@@ -293,7 +293,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 #header{
   object-fit: cover;
   box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -304,7 +304,12 @@ export default {
 }
 .v-carousel__controls{
   background: linear-gradient(0deg, #191C21 0%, rgba(25, 28, 33, 0) 50%);
-}
+    .v-icon{
+      font-size: 7px !important;
+      padding: 0px !important;
+      color: white !important;
+    }
+  }
 
 @media only screen and (max-width: 600px) {
   .container{

@@ -281,7 +281,7 @@
                   <span style="font-size: 16px; color: #B9BCC1;"> per night</span>
                 </p>
                 <!-- <Rating :rating="rating" :counter="counter"/> -->
-                <v-divider class="mt-3" style="background-color:#3D424E;"></v-divider>
+                <!-- <v-divider class="mt-3 mb-3" style="background-color:#3D424E;"></v-divider> -->
               </v-flex>
               <v-flex xs12>
                 <v-text-field
@@ -472,6 +472,10 @@ export default {
   }
   .v-carousel__controls{
     background: linear-gradient(0deg, #191C21 0%, rgba(25, 28, 33, 0) 50%);
+    .v-icon{
+      font-size: 7px !important;
+      padding: 0px;
+    }
   }
   .header{
     background-position: bottom;
@@ -502,6 +506,8 @@ export default {
   // .hidden-md-and-up .v-icon {
   //   color: #B9BCC1 !important;
   // }
+
+
 
 #bookBottom {
   height: 80px;
