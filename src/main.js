@@ -34,6 +34,15 @@ Vue.use(AirbnbStyleDatepicker, {
     'November',
     'December',
   ],
+  colors: {
+    selected: '#4B7F52',
+    inRange: '#9bdba4',
+    selectedText: '#fff',
+    text: '#565a5c',
+    inRangeBorder: '#4B7F52',
+    disabled: '#fff',
+    hoveredInRange: '#9bdba4'
+  },
 });
 
 const router = new VueRouter({
