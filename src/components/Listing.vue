@@ -265,7 +265,7 @@
                 Book Now <v-icon>keyboard_arrow_right</v-icon>
               </v-btn>
             </template>
-          <v-card class="bookForm" color="#191C21">
+          <v-card class="bookForm" color="#191C21" style="position:absolute;">
             <v-form name="bookForm"  method="post" netlify ref="form" v-model="valid" action="/thankYou" class="ma-5">
               <input type="hidden" name="form-name" value="bookForm" />
               <v-layout row wrap>
