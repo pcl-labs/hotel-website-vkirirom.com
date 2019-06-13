@@ -82,7 +82,7 @@
               Availability
             </h2>
             <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">Updated 3 days ago</p>
-            <Calendar
+            <!-- <Calendar
               :fullScreenMobile="false"
               :mode="'range'"
               triggerID="availability"
@@ -91,7 +91,7 @@
               :cardBorder="false"
               :showActionButtons="false"
             >
-            </Calendar>
+            </Calendar> -->
           </v-flex>
           </v-layout>
           <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
@@ -189,6 +189,7 @@
                 name="Date"
                 color="#B9BCC1"
                 id="datepicker"
+                readonly
                 label="Select dates"
                 :rules="dateRules"
                 :value="formatDates(dateOne, dateTwo)"
