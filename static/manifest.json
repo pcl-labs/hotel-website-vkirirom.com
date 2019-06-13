@@ -3,7 +3,7 @@
   "short_name": "vkirirom",
   "icons": [
     {
-      "src": "/static/img/icons/Logo.png",
+      "src": "/static/img/icons/Logopwa.png",
       "sizes": "192x192",
       "type": "image/png"
     },
@@ -15,6 +15,6 @@
   ],
   "start_url": "/",
   "display": "standalone",
-  "background_color": "linear-gradient(128.38deg, #121416 0%, #313A4F 100%)",
+  "background_color": "#191C21",
   "theme_color": "#191C21"
 }
