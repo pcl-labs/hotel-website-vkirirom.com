@@ -195,12 +195,15 @@
     </v-img>
     </v-card>
     </div>
+        <video controls width="100%" height="100%">
+      <source src="https://res.cloudinary.com/die9ji2vn/video/upload/v1560320692/10000000_143443766812356_671027213277999975_n_1_hm0gxb.mp4" type="video/mp4">
+    </video>
   </v-container>
   <v-container-fluid>
-    <v-card width="100%">
+    <!-- <v-card width="100%">
       <v-img :src="example4" width="100%" height="300px">
       </v-img>
-    </v-card>
+    </v-card> -->
   </v-container-fluid>
   <v-container>
     <ListCover title="Blog" class="mb-3" style="font-size: 16px; line-height: 19px; color: #D8DADE;"></ListCover>
