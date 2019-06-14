@@ -99,7 +99,7 @@
           </h2>
         </v-flex>
       </v-layout>
-      <v-layout row wrap>
+      <v-layout row wrap class="mb-5">
         <v-flex xs12 md6>
           <v-layout row wrap justify-space-between align-center>
             <v-flex xs6 md6 class="py-3">
@@ -391,6 +391,7 @@
         </div>
       </v-flex>
     </v-layout>
+  <Footer class="hidden-sm-and-down"></Footer>
   </v-container-fluid>
 </template>
 
@@ -405,8 +406,12 @@ import cutlery from '../assets/icons/cutlery.svg';
 import MultiUsers from '../assets/icons/multiple-users-silhouette.svg';
 import Calendar from './Calendar.vue';
 import format from 'date-fns/format';
+import Footer from './Footer.vue';
 
 export default {
+  components:{
+    Footer
+  },
   data(){
     return{
       valid: false,
