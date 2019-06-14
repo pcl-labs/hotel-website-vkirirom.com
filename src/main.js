@@ -42,9 +42,11 @@ Vue.use(AirbnbStyleDatepicker, {
     text: '#565a5c',
     inRangeBorder: '#4B7F52',
     disabled: '#fff',
-    hoveredInRange: '#9bdba4'
+    hoveredInRange: '#9bdba4',
+    keyboardShortcuts: '#4B7F52'
   },
 });
+
 Vue.use(VueGtm, {
   id: 'GTM-PMXGLXR', // Your GTM ID
   enabled: true, // defaults to true. Plugin can be disabled by setting this to false for Ex: enabled: !!GDPR_Cookie (optional)

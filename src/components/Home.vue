@@ -17,7 +17,7 @@
     <v-layout row wrap justify-space-between justify-center>
       <v-flex xs12 sm6 md4 lg4>
       <router-link to="/listing/Bell-Tent">
-        <v-carousel height="150px" hide-controls dark width="100%" class="hidden-md-and-up">
+        <v-carousel height="150px" hide-controls width="100%" class="hidden-md-and-up">
           <v-carousel-item :src="belltent.featuredImage" style="background-size:contain;">
           </v-carousel-item>
           <v-carousel-item :src="belltent.images[0].url" style="background-size:contain;">
@@ -195,12 +195,15 @@
     </v-img>
     </v-card>
     </div>
+        <video controls width="100%" height="100%">
+      <source src="https://res.cloudinary.com/die9ji2vn/video/upload/v1560320692/10000000_143443766812356_671027213277999975_n_1_hm0gxb.mp4" type="video/mp4">
+    </video>
   </v-container>
   <v-container-fluid>
-    <v-card width="100%">
+    <!-- <v-card width="100%">
       <v-img :src="example4" width="100%" height="300px">
       </v-img>
-    </v-card>
+    </v-card> -->
   </v-container-fluid>
   <v-container>
     <ListCover title="Blog" class="mb-3" style="font-size: 16px; line-height: 19px; color: #D8DADE;"></ListCover>
@@ -237,6 +240,7 @@
       </v-flex>
     </v-layout>
   </v-container>
+  <Footer></Footer>
 </v-container-fluid>
 </template>
 
@@ -251,12 +255,14 @@ import food from '../assets/istockphoto-614420320-612x612.jpg'
 import ListCover from './Home/ListCover.vue'
 import introCard from './Home/IntroCard.vue'
 import Card from './Card.vue'
+import Footer from './Footer.vue';
 
 export default {
   components:{
     ListCover,
     introCard,
     Card,
+    Footer
   },
   data() {
     return {
@@ -304,9 +310,12 @@ export default {
 }
 .v-carousel__controls{
   background: linear-gradient(0deg, #191C21 0%, rgba(25, 28, 33, 0) 50%);
+    .v-btn__content{
+      margin: 0;
+      padding: 0;
+    }
     .v-icon{
       font-size: 7px !important;
-      padding: 0px !important;
       color: white !important;
     }
   }

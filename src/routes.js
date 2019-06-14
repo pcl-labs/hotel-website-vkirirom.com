@@ -18,7 +18,7 @@ export default[
     component: Listing
   },
   {
-    path:'/thankYou',
+    path:'/thanks',
     component: thankYou
   },
 ]

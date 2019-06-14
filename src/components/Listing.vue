@@ -99,7 +99,7 @@
           </h2>
         </v-flex>
       </v-layout>
-      <v-layout row wrap>
+      <v-layout row wrap class="mb-5">
         <v-flex xs12 md6>
           <v-layout row wrap justify-space-between align-center>
             <v-flex xs6 md6 class="py-3">
@@ -128,7 +128,7 @@
       <v-layout row wrap>
         <v-flex md6 class="hidden-sm-and-down">
           <v-card class="pa-4 mt-5 ml-2 bookForm" width="300px" color="#191C21" style="position:absolute; top:30%; left:59%;">
-            <v-form name="bookForm"  method="post" netlify ref="form" v-model="valid" action="/thankYou">
+            <v-form name="bookForm" method="post" netlify ref="form" v-model="valid"  action="/thanks" data-netlify="true">
               <input type="hidden" name="form-name" value="bookForm"/>
               <v-layout row wrap>
               <v-flex xs12>
@@ -207,6 +207,7 @@
                 offsetY="5"
                 offsetX="-50"
                 style="left:-70%; top:60%"
+                :show-shortcuts-menu-trigger="false"
               />
               </v-flex>
               <v-flex xs12>
@@ -229,6 +230,7 @@
               class="text-capitalize font-weight-bold form-button"
               type="submit"
               :ripple="false"
+              :disabled="!valid"
             >
               Book Now <v-icon>keyboard_arrow_right</v-icon>
             </v-btn>
@@ -266,7 +268,7 @@
               </v-btn>
             </template>
           <v-card class="bookForm" color="#191C21" style="position:absolute;">
-            <v-form name="bookForm"  method="post" netlify ref="form" v-model="valid" action="/thankYou" class="ma-5">
+            <v-form name="bookForm"  method="post" netlify ref="form" v-model="valid" class="ma-5" action="/thanks" data-netlify="true">
               <input type="hidden" name="form-name" value="bookForm" />
               <v-layout row wrap>
               <v-flex xs1>
@@ -345,6 +347,7 @@
                 style="width:100%; height:100%;"
                 :fullscreen-mobile="true"
                 :date-one="dateOne"
+                :show-shortcuts-menu-trigger="false"
                 :date-two="dateTwo"
                 @date-one-selected="val => { dateOne = val }"
                 @date-two-selected="val => { dateTwo = val }"
@@ -370,6 +373,7 @@
               class="text-capitalize font-weight-bold form-button"
               type="submit"
               :ripple="false"
+              :disabled="!valid"
             >
               Book Now <v-icon>keyboard_arrow_right</v-icon>
             </v-btn>
@@ -387,6 +391,7 @@
         </div>
       </v-flex>
     </v-layout>
+  <Footer class="hidden-sm-and-down"></Footer>
   </v-container-fluid>
 </template>
 
@@ -401,10 +406,15 @@ import cutlery from '../assets/icons/cutlery.svg';
 import MultiUsers from '../assets/icons/multiple-users-silhouette.svg';
 import Calendar from './Calendar.vue';
 import format from 'date-fns/format';
+import Footer from './Footer.vue';
 
 export default {
+  components:{
+    Footer
+  },
   data(){
     return{
+      valid: false,
       nameRules: [
         v => !!v || 'Name is required',
       ],

@@ -38,7 +38,7 @@
     <!-- Todo: only include in production -->
     <%= htmlWebpackPlugin.options.serviceWorkerLoader %>
     <!-- built files will be auto injected -->
-    <form name="bookForm" netlify netlify-honeypot="bot-field" hidden>
+    <form name="bookForm" netlify netlify-honeypot="bot-field" hidden action="/thanks" data-netlify="true">
       <input type="text" name="Name" />
       <input type="text" name="E-mail" />
       <input type="text" name="Phone" />
