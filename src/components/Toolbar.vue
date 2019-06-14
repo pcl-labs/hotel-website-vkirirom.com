@@ -50,6 +50,9 @@ export default {
 </script>
 
 <style scoped>
-  button:active { background-color: #3ac7ff; }
+  button:active { 
+    background-color: #3ac7ff; 
+    transition: background-color 0.5s ease-out;
+  }
 </style>
 
