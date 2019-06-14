@@ -255,14 +255,16 @@ import food from '../assets/istockphoto-614420320-612x612.jpg'
 import ListCover from './Home/ListCover.vue'
 import introCard from './Home/IntroCard.vue'
 import Card from './Card.vue'
-import Footer from './Footer.vue';
+import Footer from './Footer.vue'
+import { ContentLoader } from 'vue-content-loader'
 
 export default {
   components:{
     ListCover,
     introCard,
     Card,
-    Footer
+    Footer,
+    ContentLoader
   },
   data() {
     return {
@@ -295,7 +297,7 @@ export default {
     this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/Luxury-Tent').then(function(data){
       this.luxurytent=data.body;
     });
-  }
+  },
 }
 </script>
 
