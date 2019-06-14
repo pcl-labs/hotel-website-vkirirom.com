@@ -128,7 +128,7 @@
       <v-layout row wrap>
         <v-flex md6 class="hidden-sm-and-down">
           <v-card class="pa-4 mt-5 ml-2 bookForm" width="300px" color="#191C21" style="position:absolute; top:30%; left:59%;">
-            <v-form name="bookForm"  method="post" netlify ref="form" v-model="valid"  action="/thanks" data-netlify="true">
+            <v-form name="bookForm" netlify ref="form" v-model="valid"  action="/thanks" data-netlify="true">
               <input type="hidden" name="form-name" value="bookForm"/>
               <v-layout row wrap>
               <v-flex xs12>
