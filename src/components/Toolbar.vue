@@ -51,8 +51,9 @@ export default {
 
 <style scoped>
   button:active { 
-    background-color: #3ac7ff; 
-    transition: background-color 0.5s ease-out;
+    background: rgb(205,0,0);
+    background: radial-gradient(circle, rgba(205,0,0,1) 0%, rgba(253,0,255,1) 50%, rgba(0,212,255,1) 100%);;
+    transition: background 1s ease-out;
   }
 </style>
 
