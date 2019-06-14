@@ -82,7 +82,7 @@
               Availability
             </h2>
             <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">Updated 3 days ago</p>
-            <Calendar
+            <!-- <Calendar
               :fullScreenMobile="false"
               :mode="'range'"
               triggerID="availability"
@@ -91,7 +91,7 @@
               :cardBorder="false"
               :showActionButtons="false"
             >
-            </Calendar>
+            </Calendar> -->
           </v-flex>
           </v-layout>
           <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
@@ -189,6 +189,7 @@
                 name="Date"
                 color="#B9BCC1"
                 id="datepicker"
+                readonly
                 label="Select dates"
                 :rules="dateRules"
                 :value="formatDates(dateOne, dateTwo)"
@@ -264,7 +265,7 @@
                 Book Now <v-icon>keyboard_arrow_right</v-icon>
               </v-btn>
             </template>
-          <v-card class="bookForm" color="#191C21">
+          <v-card class="bookForm" color="#191C21" style="position:absolute;">
             <v-form name="bookForm"  method="post" netlify ref="form" v-model="valid" action="/thankYou" class="ma-5">
               <input type="hidden" name="form-name" value="bookForm" />
               <v-layout row wrap>
@@ -280,7 +281,7 @@
                   <span style="font-size: 16px; color: #B9BCC1;"> per night</span>
                 </p>
                 <!-- <Rating :rating="rating" :counter="counter"/> -->
-                <v-divider class="mt-3" style="background-color:#3D424E;"></v-divider>
+                <!-- <v-divider class="mt-3 mb-3" style="background-color:#3D424E;"></v-divider> -->
               </v-flex>
               <v-flex xs12>
                 <v-text-field
@@ -404,6 +405,23 @@ import format from 'date-fns/format';
 export default {
   data(){
     return{
+      nameRules: [
+        v => !!v || 'Name is required',
+      ],
+      emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+/.test(v) || 'E-mail must be valid'
+      ],
+      phoneRules: [
+        v => !!v || 'Phone no. is required',
+      ],
+      dateRules: [
+        v => !!v || 'Dates are required',
+      ],
+      name: '',
+      email: '',
+      phone: '',
+      
       components:{
         Calendar
       },
@@ -454,6 +472,10 @@ export default {
   }
   .v-carousel__controls{
     background: linear-gradient(0deg, #191C21 0%, rgba(25, 28, 33, 0) 50%);
+    .v-icon{
+      font-size: 7px !important;
+      padding: 0px;
+    }
   }
   .header{
     background-position: bottom;
@@ -484,6 +506,8 @@ export default {
   // .hidden-md-and-up .v-icon {
   //   color: #B9BCC1 !important;
   // }
+
+
 
 #bookBottom {
   height: 80px;
