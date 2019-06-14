@@ -7,11 +7,11 @@
     <v-spacer></v-spacer>
     <v-toolbar-side-icon class="hidden-md-and-up" @click.stop="drawer = !drawer" style="color:#D8DADE;"></v-toolbar-side-icon>
     <v-toolbar-items class="hidden-sm-and-down">
-      <v-btn id="button" flat style="color: #D8DADE; text-transform:capitalize;"><h3>Accommodation</h3></v-btn>
-      <v-btn id="button" flat style="color: #D8DADE; text-transform:capitalize;"><h3>Events</h3></v-btn>
-      <v-btn id="button" flat style="color: #D8DADE; text-transform:capitalize;"><h3>Experience</h3></v-btn>
-      <v-btn id="button" flat style="color: #D8DADE; text-transform:capitalize;"><h3>Food</h3></v-btn>
-      <v-btn id="button" flat style="color: #D8DADE; text-transform:capitalize;"><h3>Blog</h3></v-btn>
+      <v-btn flat style="color: #D8DADE; text-transform:capitalize;"><h3>Accommodation</h3></v-btn>
+      <v-btn flat style="color: #D8DADE; text-transform:capitalize;"><h3>Events</h3></v-btn>
+      <v-btn flat style="color: #D8DADE; text-transform:capitalize;"><h3>Experience</h3></v-btn>
+      <v-btn flat style="color: #D8DADE; text-transform:capitalize;"><h3>Food</h3></v-btn>
+      <v-btn flat style="color: #D8DADE; text-transform:capitalize;"><h3>Blog</h3></v-btn>
     </v-toolbar-items>
   </v-toolbar>
   <v-navigation-drawer dark style="box-shadow: 0px 1px 0px #121416; position:fixed; background:#191C21;" class="hidden-md-and-up" temporary v-model="drawer">
@@ -49,11 +49,6 @@ export default {
 }
 </script>
 
-<style scoped>
-  button:active { 
-    background: rgb(205,0,0);
-    background: radial-gradient(circle, rgba(205,0,0,1) 0%, rgba(253,0,255,1) 50%, rgba(0,212,255,1) 100%);;
-    transition: background 1s ease-out;
-  }
-</style>
+<style>
 
+</style>
