@@ -195,7 +195,7 @@
     </v-img>
     </v-card>
     </div>
-        <video controls width="100%" height="100%">
+    <video controls width="100%">
       <source src="https://res.cloudinary.com/die9ji2vn/video/upload/v1560320692/10000000_143443766812356_671027213277999975_n_1_hm0gxb.mp4" type="video/mp4">
     </video>
   </v-container>
@@ -255,14 +255,16 @@ import food from '../assets/istockphoto-614420320-612x612.jpg'
 import ListCover from './Home/ListCover.vue'
 import introCard from './Home/IntroCard.vue'
 import Card from './Card.vue'
-import Footer from './Footer.vue';
+import Footer from './Footer.vue'
+import { ContentLoader } from 'vue-content-loader'
 
 export default {
   components:{
     ListCover,
     introCard,
     Card,
-    Footer
+    Footer,
+    ContentLoader
   },
   data() {
     return {
@@ -295,7 +297,7 @@ export default {
     this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/Luxury-Tent').then(function(data){
       this.luxurytent=data.body;
     });
-  }
+  },
 }
 </script>
 
