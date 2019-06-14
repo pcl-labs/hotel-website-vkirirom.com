@@ -59,8 +59,6 @@
       </router-link>
         <v-card width="100%" dark color="transparent" to="/listing/Bungalow" flat>
           <v-img v-if="bungalow.images.length > 0" :src="bungalow.featuredImage" height="150px" class="hidden-sm-and-down"></v-img>
-          <v-flex xs12 class="hidden-md-and-up">
-        </v-flex>
         <v-layout align-start>
           <v-card-text class="pa-1">
             <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire Bungalow</span>
@@ -195,7 +193,7 @@
     </v-img>
     </v-card>
     </div>
-    <video controls width="100%">
+    <video controls width="100%" class="mt-4">
       <source src="https://res.cloudinary.com/die9ji2vn/video/upload/v1560320692/10000000_143443766812356_671027213277999975_n_1_hm0gxb.mp4" type="video/mp4">
     </video>
   </v-container>

@@ -4,8 +4,22 @@
     <ListCover title="Search Results" style="color: #D8DADE;" class="mb-2"></ListCover>
     <v-layout row wrap justify-space-between justify-center>
       <v-flex xs12 sm6 md4 lg4>
+        <router-link to="/listing/Bell-Tent">
+          <v-carousel height="150px" hide-controls dark width="100%" class="hidden-md-and-up">
+            <v-carousel-item :src="belltent.featuredImage" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item :src="belltent.images[0].url" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item :src="belltent.images[1].url" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item :src="belltent.images[2].url" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item :src="belltent.images[3].url" style="background-size:contain;">
+            </v-carousel-item>
+          </v-carousel>
+        </router-link>
         <v-card width="100%" dark color="transparent" to="/listing/Bell-Tent" flat >
-          <v-img v-if="belltent.images.length > 0" :src="belltent.featuredImage" height="150px"></v-img>
+          <v-img v-if="belltent.images.length > 0" :src="belltent.featuredImage" height="150px" class="hidden-sm-and-down"></v-img>
         <v-layout align-start>
           <v-card-text class="pa-1">
             <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire Khmer Cottage</span>
@@ -17,8 +31,22 @@
         </v-card>
       </v-flex>
       <v-flex xs12 sm6 md4 lg4>
+        <router-link to="/listing/Bungalow">
+          <v-carousel height="150px" hide-controls dark width="100%" class="hidden-md-and-up">
+            <v-carousel-item :src="bungalow.featuredImage" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item :src="bungalow.images[0].url" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item :src="bungalow.images[1].url" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item :src="bungalow.images[2].url" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item :src="bungalow.images[3].url" style="background-size:contain;">
+            </v-carousel-item>
+          </v-carousel>
+        </router-link>
         <v-card width="100%" dark color="transparent" to="/listing/Bungalow" flat>
-          <v-img v-if="bungalow.images.length > 0" :src="bungalow.featuredImage" height="150px"></v-img>
+          <v-img v-if="bungalow.images.length > 0" :src="bungalow.featuredImage" height="150px" class="hidden-sm-and-down"></v-img>
         <v-layout align-start>
           <v-card-text class="pa-1">
             <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire Bungalow</span>
@@ -30,8 +58,22 @@
         </v-card>
       </v-flex>
       <v-flex xs12 sm6 md4 lg4>
+        <router-link to="/listing/Luxury-Tent">
+          <v-carousel height="150px" hide-controls dark width="100%" class="hidden-md-and-up">
+            <v-carousel-item :src="luxurytent.featuredImage" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item :src="luxurytent.images[0].url" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item :src="luxurytent.images[1].url" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item :src="luxurytent.images[2].url" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item :src="luxurytent.images[3].url" style="background-size:contain;">
+            </v-carousel-item>
+          </v-carousel>
+        </router-link>
         <v-card width="100%" dark color="transparent" to="/listing/Luxury-Tent" flat >
-          <v-img v-if="luxurytent.images.length > 0" :src="luxurytent.featuredImage" height="150px"></v-img>
+          <v-img v-if="luxurytent.images.length > 0" :src="luxurytent.featuredImage" height="150px" class="hidden-sm-and-down"></v-img>
         <v-layout align-start>
           <v-card-text class="pa-1">
             <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire Luxury Tent</span>
@@ -43,8 +85,22 @@
         </v-card>
       </v-flex>
       <v-flex xs12 sm6 md4 lg4>
+        <router-link to="/listing/Khmer-Cottage">
+          <v-carousel height="150px" hide-controls dark width="100%" class="hidden-md-and-up">
+            <v-carousel-item :src="khmer.featuredImage" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item :src="khmer.images[0].url" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item :src="khmer.images[1].url" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item :src="khmer.images[2].url" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item :src="khmer.images[3].url" style="background-size:contain;">
+            </v-carousel-item>
+          </v-carousel>
+        </router-link>
         <v-card width="100%" dark color="transparent" to="/listing/Khmer-Cottage" flat >
-          <v-img v-if="khmer.images.length > 0" :src="khmer.featuredImage" height="150px"></v-img>
+          <v-img v-if="khmer.images.length > 0" :src="khmer.featuredImage" height="150px" class="hidden-sm-and-down"></v-img>
         <v-layout align-start>
           <v-card-text class="pa-1">
             <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire Luxury Tent</span>
@@ -56,8 +112,22 @@
         </v-card>
       </v-flex>
       <v-flex xs12 sm6 md4 lg4>
+        <router-link to="/listing/Pipe-Room">
+          <v-carousel height="150px" hide-controls dark width="100%" class="hidden-md-and-up">
+            <v-carousel-item :src="piperoom.featuredImage" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item :src="piperoom.images[0].url" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item :src="piperoom.images[1].url" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item :src="piperoom.images[2].url" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item :src="piperoom.images[3].url" style="background-size:contain;">
+            </v-carousel-item>
+          </v-carousel>
+        </router-link>
         <v-card width="100%" dark color="transparent" to="/listing/Pipe-Room" flat >
-          <v-img v-if="piperoom.images.length > 0" :src="piperoom.featuredImage" height="150px"></v-img>
+          <v-img v-if="piperoom.images.length > 0" :src="piperoom.featuredImage" height="150px" class="hidden-sm-and-down"></v-img>
         <v-layout align-start>
           <v-card-text class="pa-1">
             <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire Luxury Tent</span>
@@ -69,8 +139,22 @@
         </v-card>
       </v-flex>
       <v-flex xs12 sm6 md4 lg4>
+        <router-link to="/listing/Villa-Suite">
+          <v-carousel height="150px" hide-controls dark width="100%" class="hidden-md-and-up">
+            <v-carousel-item :src="suite.featuredImage" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item :src="suite.images[0].url" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item :src="suite.images[1].url" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item :src="suite.images[2].url" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item :src="suite.images[3].url" style="background-size:contain;">
+            </v-carousel-item>
+          </v-carousel>
+        </router-link>
         <v-card width="100%" dark color="transparent" to="/listing/Villa-Suite" flat >
-          <v-img v-if="suite.images.length > 0" :src="suite.featuredImage" height="150px"></v-img>
+          <v-img v-if="suite.images.length > 0" :src="suite.featuredImage" height="150px" class="hidden-sm-and-down"></v-img>
         <v-layout align-start>
           <v-card-text class="pa-1">
             <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire Luxury Tent</span>
@@ -82,8 +166,22 @@
         </v-card>
       </v-flex>
       <v-flex xs12 sm6 md4 lg4>
+        <router-link to="/listing/Villa-Jasmine">
+          <v-carousel height="150px" hide-controls dark width="100%" class="hidden-md-and-up">
+            <v-carousel-item :src="jasmine.featuredImage" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item :src="jasmine.images[0].url" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item :src="jasmine.images[1].url" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item :src="jasmine.images[2].url" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item :src="jasmine.images[3].url" style="background-size:contain;">
+            </v-carousel-item>
+          </v-carousel>
+        </router-link>
         <v-card width="100%" dark color="transparent" to="/listing/Villa-Jasmine" flat >
-          <v-img v-if="jasmine.images.length > 0" :src="jasmine.featuredImage" height="150px"></v-img>
+          <v-img v-if="jasmine.images.length > 0" :src="jasmine.featuredImage" height="150px" class="hidden-sm-and-down"></v-img>
         <v-layout align-start>
           <v-card-text class="pa-1">
             <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire Luxury Tent</span>
@@ -160,9 +258,20 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
   html {
     scroll-behavior: smooth;
+  }
+  .v-carousel__controls{
+  background: linear-gradient(0deg, #191C21 0%, rgba(25, 28, 33, 0) 50%);
+    .v-btn__content{
+      margin: 0;
+      padding: 0;
+    }
+    .v-icon{
+      font-size: 7px !important;
+      color: white !important;
+    }
   }
   @media only screen and (max-width: 600px) {
     .container{
