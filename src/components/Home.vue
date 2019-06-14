@@ -17,7 +17,7 @@
     <v-layout row wrap justify-space-between justify-center>
       <v-flex xs12 sm6 md4 lg4>
       <router-link to="/listing/Bell-Tent">
-        <v-carousel height="150px" hide-controls dark width="100%" class="hidden-md-and-up">
+        <v-carousel height="150px" hide-controls width="100%" class="hidden-md-and-up">
           <v-carousel-item :src="belltent.featuredImage" style="background-size:contain;">
           </v-carousel-item>
           <v-carousel-item :src="belltent.images[0].url" style="background-size:contain;">
@@ -304,9 +304,12 @@ export default {
 }
 .v-carousel__controls{
   background: linear-gradient(0deg, #191C21 0%, rgba(25, 28, 33, 0) 50%);
+    .v-btn__content{
+      margin: 0;
+      padding: 0;
+    }
     .v-icon{
       font-size: 7px !important;
-      padding: 0px !important;
       color: white !important;
     }
   }
