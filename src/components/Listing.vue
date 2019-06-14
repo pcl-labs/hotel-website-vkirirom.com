@@ -207,7 +207,7 @@
                 offsetY="5"
                 offsetX="-50"
                 style="left:-70%; top:60%"
-                showShortcutsMenuTrigger="false"
+                :show-shortcuts-menu-trigger="false"
               />
               </v-flex>
               <v-flex xs12>
@@ -347,6 +347,7 @@
                 style="width:100%; height:100%;"
                 :fullscreen-mobile="true"
                 :date-one="dateOne"
+                :show-shortcuts-menu-trigger="false"
                 :date-two="dateTwo"
                 @date-one-selected="val => { dateOne = val }"
                 @date-two-selected="val => { dateTwo = val }"
