@@ -1,8 +1,9 @@
 <template>
+<v-container-fluid>
   <v-container grid-list-md>
     <v-layout column wrap justify-center class="text-xs-center">
     <v-flex xs12 md6 sm6 lg6 class="hidden-sm-and-down">
-      <v-card dark color="#191C21" style="color:#B9BCC1; top:-70px;" height="100%">
+      <v-card dark color="#191C21" style="color:#B9BCC1; top:-100px;" height="100%">
         <v-card-text class="headline font-weight-bold display-4 text-xs-center">
           <span style="color:#B9BCC1; margin:20px;">Congratulations, your booking has been successfully made.</span>
         </v-card-text>
@@ -29,11 +30,18 @@
     </v-flex>
     </v-layout>
   </v-container>
+  <Footer></Footer>
+</v-container-fluid>
 </template>
 
 <script>
+import Footer from './Footer.vue'
+
 export default {
-  name: "thankYou"
+  name: "thankYou",
+  components:{
+    Footer
+  }
 }
 </script>
 

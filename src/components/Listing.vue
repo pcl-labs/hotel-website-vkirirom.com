@@ -128,7 +128,7 @@
       <v-layout row wrap>
         <v-flex md6 class="hidden-sm-and-down">
           <v-card class="pa-4 mt-5 ml-2 bookForm" width="300px" color="#191C21" style="position:absolute; top:30%; left:59%;">
-            <v-form name="bookForm"  method="post" netlify ref="form" v-model="valid"  action="/thanks">
+            <v-form name="bookForm"  method="post" netlify ref="form" v-model="valid"  action="/thanks" data-netlify="true">
               <input type="hidden" name="form-name" value="bookForm"/>
               <v-layout row wrap>
               <v-flex xs12>
@@ -230,6 +230,7 @@
               class="text-capitalize font-weight-bold form-button"
               type="submit"
               :ripple="false"
+              :disabled="!valid"
             >
               Book Now <v-icon>keyboard_arrow_right</v-icon>
             </v-btn>
@@ -267,7 +268,7 @@
               </v-btn>
             </template>
           <v-card class="bookForm" color="#191C21" style="position:absolute;">
-            <v-form name="bookForm"  method="post" netlify ref="form" v-model="valid" class="ma-5" action="/thanks">
+            <v-form name="bookForm"  method="post" netlify ref="form" v-model="valid" class="ma-5" action="/thanks" data-netlify="true">
               <input type="hidden" name="form-name" value="bookForm" />
               <v-layout row wrap>
               <v-flex xs1>
@@ -372,6 +373,7 @@
               class="text-capitalize font-weight-bold form-button"
               type="submit"
               :ripple="false"
+              :disabled="!valid"
             >
               Book Now <v-icon>keyboard_arrow_right</v-icon>
             </v-btn>
@@ -407,6 +409,7 @@ import format from 'date-fns/format';
 export default {
   data(){
     return{
+      valid: false,
       nameRules: [
         v => !!v || 'Name is required',
       ],

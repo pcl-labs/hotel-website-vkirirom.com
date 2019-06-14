@@ -237,6 +237,7 @@
       </v-flex>
     </v-layout>
   </v-container>
+  <Footer></Footer>
 </v-container-fluid>
 </template>
 
@@ -251,12 +252,14 @@ import food from '../assets/istockphoto-614420320-612x612.jpg'
 import ListCover from './Home/ListCover.vue'
 import introCard from './Home/IntroCard.vue'
 import Card from './Card.vue'
+import Footer from './Footer.vue';
 
 export default {
   components:{
     ListCover,
     introCard,
     Card,
+    Footer
   },
   data() {
     return {

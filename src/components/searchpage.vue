@@ -1,4 +1,5 @@
 <template>
+<v-container-fluid>
   <v-container grid-list-md>
     <ListCover title="Search Results" style="color: #D8DADE;" class="mb-2"></ListCover>
     <v-layout row wrap justify-space-between justify-center>
@@ -95,14 +96,18 @@
       </v-flex>
     </v-layout>
   </v-container>
+  <Footer></Footer>
+</v-container-fluid>
 </template>
 
 <script>
 import ListCover from './Home/ListCover.vue'
+import Footer from './Footer.vue'
 
 export default {
   components: {
-    ListCover
+    ListCover,
+    Footer
   },
   data(){
     return{
