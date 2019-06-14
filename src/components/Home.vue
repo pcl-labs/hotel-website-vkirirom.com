@@ -195,7 +195,7 @@
     </v-img>
     </v-card>
     </div>
-        <video controls width="100%" height="100%">
+    <video controls width="100%">
       <source src="https://res.cloudinary.com/die9ji2vn/video/upload/v1560320692/10000000_143443766812356_671027213277999975_n_1_hm0gxb.mp4" type="video/mp4">
     </video>
   </v-container>
