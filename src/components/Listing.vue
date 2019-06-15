@@ -514,7 +514,7 @@ export default {
 
 @-webkit-keyframes autofill {
     to {
-        color: white;;
+        color: white;
         background: transparent;
     }
 }
