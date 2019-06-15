@@ -50,5 +50,8 @@ export default {
 </script>
 
 <style>
-
+/* button:active { 
+  background-color: #ffdb3a;
+  transition: background 1s ease-out;
+  } */
 </style>
