@@ -251,18 +251,14 @@ import corporateRetreat from '../assets/951820009082492817.jpg'
 import headerImg from '../assets/freedom-camping-4m-bell-tent-5_copy_3_6e7cf404-7d2f-4cac-8bf7-fd04c9dd8854_1024x1024.jpeg'
 import food from '../assets/istockphoto-614420320-612x612.jpg'
 import ListCover from './Home/ListCover.vue'
-import introCard from './Home/IntroCard.vue'
-import Card from './Card.vue'
 import Footer from './Footer.vue'
-import { ContentLoader } from 'vue-content-loader'
+// import { ContentLoader } from 'vue-content-loader'
 
 export default {
   components:{
     ListCover,
-    introCard,
-    Card,
     Footer,
-    ContentLoader
+    // ContentLoader
   },
   data() {
     return {
