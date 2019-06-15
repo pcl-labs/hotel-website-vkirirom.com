@@ -519,7 +519,7 @@ export default {
     }
 }
 
-input {
+input:-webkit-autofill {
     -webkit-animation-name: autofill;
     -webkit-animation-fill-mode: both;
 }
