@@ -119,7 +119,7 @@
         </v-layout>
         <v-layout column align-center justify-center fill-height>
           <v-flex xs12 md6 sm4 lg6>
-            <v-btn dark large depressed style="background: #4B7F52; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; text-transform:capitalize" color="#4B7F52">
+            <v-btn dark large depressed style="background: #F7B947; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; text-transform:capitalize" color="#4B7F52">
               Book Now <v-icon>keyboard_arrow_right</v-icon>
             </v-btn>
           </v-flex>

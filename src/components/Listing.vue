@@ -225,7 +225,7 @@
             </v-layout>
             <v-btn
               block
-              color="#4B7F52"
+              color="#F7B947"
               dark
               class="text-capitalize font-weight-bold form-button"
               type="submit"
@@ -261,7 +261,7 @@
                 :ripple="false"
                 dark
                 depressed style="box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; text-transform:capitalize"
-                color="#4B7F52"
+                color="#F7B947"
                 v-on="on"
               >
                 Book Now <v-icon>keyboard_arrow_right</v-icon>
@@ -368,7 +368,7 @@
             <v-flex xs12>
               <v-btn
               block
-              color="#4B7F52"
+              color="#F7B947"
               dark
               class="text-capitalize font-weight-bold form-button"
               type="submit"
