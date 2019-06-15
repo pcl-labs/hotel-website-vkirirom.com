@@ -399,14 +399,13 @@
 //components
 
 // icons
-import wifi from '../assets/icons/wifi.svg';
-import HairDryer from '../assets/icons/hair-dryer.svg';
-import Washer from '../assets/icons/washing-machine.svg';
-import cutlery from '../assets/icons/cutlery.svg';
-import MultiUsers from '../assets/icons/multiple-users-silhouette.svg';
-import Calendar from './Calendar.vue';
-import format from 'date-fns/format';
-import Footer from './Footer.vue';
+import wifi from '../assets/icons/wifi.svg'
+import HairDryer from '../assets/icons/hair-dryer.svg'
+import Washer from '../assets/icons/washing-machine.svg'
+import cutlery from '../assets/icons/cutlery.svg'
+import MultiUsers from '../assets/icons/multiple-users-silhouette.svg'
+import format from 'date-fns/format'
+import Footer from './Footer.vue'
 
 export default {
   components:{
