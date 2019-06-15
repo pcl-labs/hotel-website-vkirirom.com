@@ -119,7 +119,7 @@
         </v-layout>
         <v-layout column align-center justify-center fill-height>
           <v-flex xs12 md6 sm4 lg6>
-            <v-btn dark large depressed style="background: #4B7F52; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; text-transform:capitalize" color="#4B7F52">
+            <v-btn dark large depressed style="background: #F7B947; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; text-transform:capitalize" color="#4B7F52">
               Book Now <v-icon>keyboard_arrow_right</v-icon>
             </v-btn>
           </v-flex>
@@ -251,18 +251,14 @@ import corporateRetreat from '../assets/951820009082492817.jpg'
 import headerImg from '../assets/freedom-camping-4m-bell-tent-5_copy_3_6e7cf404-7d2f-4cac-8bf7-fd04c9dd8854_1024x1024.jpeg'
 import food from '../assets/istockphoto-614420320-612x612.jpg'
 import ListCover from './Home/ListCover.vue'
-import introCard from './Home/IntroCard.vue'
-import Card from './Card.vue'
 import Footer from './Footer.vue'
-import { ContentLoader } from 'vue-content-loader'
+// import { ContentLoader } from 'vue-content-loader'
 
 export default {
   components:{
     ListCover,
-    introCard,
-    Card,
     Footer,
-    ContentLoader
+    // ContentLoader
   },
   data() {
     return {

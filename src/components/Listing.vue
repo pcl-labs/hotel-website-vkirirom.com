@@ -225,7 +225,7 @@
             </v-layout>
             <v-btn
               block
-              color="#4B7F52"
+              color="#F7B947"
               dark
               class="text-capitalize font-weight-bold form-button"
               type="submit"
@@ -261,7 +261,7 @@
                 :ripple="false"
                 dark
                 depressed style="box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; text-transform:capitalize"
-                color="#4B7F52"
+                color="#F7B947"
                 v-on="on"
               >
                 Book Now <v-icon>keyboard_arrow_right</v-icon>
@@ -368,7 +368,7 @@
             <v-flex xs12>
               <v-btn
               block
-              color="#4B7F52"
+              color="#F7B947"
               dark
               class="text-capitalize font-weight-bold form-button"
               type="submit"
@@ -399,14 +399,13 @@
 //components
 
 // icons
-import wifi from '../assets/icons/wifi.svg';
-import HairDryer from '../assets/icons/hair-dryer.svg';
-import Washer from '../assets/icons/washing-machine.svg';
-import cutlery from '../assets/icons/cutlery.svg';
-import MultiUsers from '../assets/icons/multiple-users-silhouette.svg';
-import Calendar from './Calendar.vue';
-import format from 'date-fns/format';
-import Footer from './Footer.vue';
+import wifi from '../assets/icons/wifi.svg'
+import HairDryer from '../assets/icons/hair-dryer.svg'
+import Washer from '../assets/icons/washing-machine.svg'
+import cutlery from '../assets/icons/cutlery.svg'
+import MultiUsers from '../assets/icons/multiple-users-silhouette.svg'
+import format from 'date-fns/format'
+import Footer from './Footer.vue'
 
 export default {
   components:{
@@ -431,10 +430,6 @@ export default {
       name: '',
       email: '',
       phone: '',
-      
-      components:{
-        Calendar
-      },
 
       bookDialog: false,
 
@@ -517,7 +512,17 @@ export default {
   //   color: #B9BCC1 !important;
   // }
 
+@-webkit-keyframes autofill {
+    to {
+        color: white;
+        background: transparent;
+    }
+}
 
+input:-webkit-autofill {
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
+}
 
 #bookBottom {
   height: 80px;
