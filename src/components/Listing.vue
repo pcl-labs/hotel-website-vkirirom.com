@@ -430,10 +430,6 @@ export default {
       name: '',
       email: '',
       phone: '',
-      
-      components:{
-        Calendar
-      },
 
       bookDialog: false,
 
@@ -516,7 +512,17 @@ export default {
   //   color: #B9BCC1 !important;
   // }
 
+@-webkit-keyframes autofill {
+    to {
+        color: white;;
+        background: transparent;
+    }
+}
 
+input:-webkit-autofill {
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
+}
 
 #bookBottom {
   height: 80px;
