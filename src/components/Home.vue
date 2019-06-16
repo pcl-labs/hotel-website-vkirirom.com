@@ -306,15 +306,16 @@ export default {
 }
 .v-carousel__controls{
   background: linear-gradient(0deg, #191C21 0%, rgba(25, 28, 33, 0) 50%);
-    .v-btn__content{
-      margin: 0;
-      padding: 0;
-    }
-    .v-icon{
-      font-size: 7px !important;
-      color: white !important;
-    }
+  .v-btn__content{
+    margin: 0;
+    padding: 0;
   }
+  .v-icon{
+    font-size: 7px !important;
+    color: white !important;
+  }
+}
+
 
 @media only screen and (max-width: 600px) {
   .container{
