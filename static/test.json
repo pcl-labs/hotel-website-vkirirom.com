@@ -1,0 +1,54 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Hotel",
+  "image": "https://res.cloudinary.com/die9ji2vn/image/upload/v1560155423/top_image_kyv74r.jpg",
+  "starRating" : {
+     "@type" : "Rating",
+      "ratingValue" : "4"
+    },
+  "priceRange" : "$50 - $300",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Preah Soramarith-Kosamak National Park (Kirirom)",
+    "addressLocality": "Phnom Srouch District",
+    "addressRegion": "Kampong Speu Province",
+    "postalCode": "",
+    "addressCountry": "Cambodia"
+  },
+   "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.1",
+    "bestRating": "5",
+    "ratingCount": "105"
+    },
+  
+  "description": "vKirirom Pine Resort is located amongst the pine trees of Kirirom Mountain.",
+  "name": "vKirirom Pine Resort",
+  "alternateName": "Kirirom Pine Resort",
+  "alternateName": "vKirirom Resort",
+  "alternateName": "vKirirom",
+  "telephone": "+855 (0) 78 777 284",
+  "email": "info@vkirirom.com",
+  "url": "https://www.vkirirom.com",
+  "sameAs" : [ "https://www.instagram.com/vkirirom_pine_resort/",
+    "https://www.facebook.com/vkirirom/",
+    "https://www.tripadvisor.com/Hotel_Review-g8747107-d7271576-Reviews-VKirirom_Pine_Resort-Traeng_Trayueng_Kampong_Speu_Province.html"
+  ],   
+
+  "hasMap": "https://goo.gl/maps/k9FTeb4krNLsyfKp8",
+
+  "potentialAction":{
+   "@type":"ReserveAction",
+   "target":{
+      "@type":"EntryPoint",
+      "urlTemplate":"https://www.vkirirom.com/",
+      "actionPlatform":[
+          "https://vkirirom.com/"
+        ]
+    },
+   "result":{
+      "@type":"LodgingReservation",
+      "name":"Book Now"
+  }
+ }
+}
