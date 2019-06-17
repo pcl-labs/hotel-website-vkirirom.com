@@ -215,7 +215,7 @@
                 :date-two="dateTwo"
                 @date-one-selected="val => { dateOne = val }"
                 @date-two-selected="val => { dateTwo = val }"
-                style="left:-70%; top:60%; background-color:#313A4F; color:#FFFFFF;"
+                style="left:-70%; top:60%;"
                 :show-shortcuts-menu-trigger="false"
                 dark
               />
