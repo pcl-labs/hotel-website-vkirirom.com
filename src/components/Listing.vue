@@ -141,16 +141,6 @@
                 <v-divider class="mb-4" style="background-color:#3D424E;"></v-divider>
               </v-flex>
               <v-flex xs12>
-                <input
-                  v-model="slug"
-                  hidden
-                  name="Property"
-                  color="#B9BCC1"
-                  dark
-                  readonly
-                >
-              </v-flex>
-              <v-flex xs12>
                 <v-text-field
                   v-model="name"
                   outline
@@ -163,6 +153,16 @@
                 >
                 <v-icon slot="append" color="#B9BCC1">person_outline</v-icon>
                 </v-text-field>
+              </v-flex>
+              <v-flex xs12>
+                <input
+                  v-model="slug"
+                  hidden
+                  name="Property"
+                  color="#B9BCC1"
+                  dark
+                  readonly
+                >
               </v-flex>
               <v-flex xs12>
                 <v-text-field
@@ -296,16 +296,6 @@
                 <!-- <v-divider class="mt-3 mb-3" style="background-color:#3D424E;"></v-divider> -->
               </v-flex>
               <v-flex xs12>
-                <input
-                  v-model="slug"
-                  hidden
-                  name="Property"
-                  color="#B9BCC1"
-                  dark
-                  readonly
-                >
-              </v-flex>
-              <v-flex xs12>
                 <v-text-field
                   v-model="name"
                   outline
@@ -318,6 +308,16 @@
                 >
                 <v-icon slot="append" color="#B9BCC1">person_outline</v-icon>
                 </v-text-field>
+              </v-flex>
+              <v-flex xs12>
+                <input
+                  v-model="slug"
+                  hidden
+                  name="Property"
+                  color="#B9BCC1"
+                  dark
+                  readonly
+                >
               </v-flex>
               <v-flex xs12>
                 <v-text-field
