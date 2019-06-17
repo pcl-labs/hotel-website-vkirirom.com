@@ -4,39 +4,30 @@
       <v-container grid-list-md align-start id="footer">
         <v-layout row wrap justify-space-between>
           <v-flex xs6 sm6 md3 lg3 class="mb-3">
-            <h3>Vkirirom</h3>
+            <h3>Engage</h3>
             <br>
             <ul style="list-style:none; padding:0; margin:0;">
-              <li>Lorem Ipsum</li>
-              <li>Lorem Ipsum</li>
-              <li>Lorem Ipsum</li>
+              <li class="mb-2">Contact</li>
+              <li class="mb-2">About</li>
+              <li class="mb-2">Book Now</li>
             </ul>
           </v-flex>
           <v-flex xs6 sm6 md3 lg3 class="mb-3">
-            <h3>Discover</h3>
+            <h3>Invest</h3>
             <br>
             <ul style="list-style:none; padding:0; margin:0;">
-              <li>Lorem Ipsum</li>
-              <li>Lorem Ipsum</li>
-              <li>Lorem Ipsum</li>
+              <li class="mb-2">Lease a Property</li>
+              <li class="mb-2">Collaborate</li>
+              <li class="mb-2">Partnerm</li>
             </ul>
           </v-flex>
-          <v-flex xs6 sm6 md3 lg3 class="mb-3">
-            <h3>Hosting</h3>
+          <v-flex xs12 sm6 md3 lg3 class="mb-3">
+            <h3>Learn</h3>
             <br>
             <ul style="list-style:none; padding:0; margin:0;">
-              <li>Lorem Ipsum</li>
-              <li>Lorem Ipsum</li>
-              <li>Lorem Ipsum</li>
-            </ul>
-          </v-flex>
-          <v-flex xs6 sm6 md3 lg3 class="mb-3">
-            <h3>Contact</h3>
-            <br>
-            <ul style="list-style:none; padding:0; margin:0;">
-              <li>Lorem Ipsum</li>
-              <li>Lorem Ipsum</li>
-              <li>Lorem Ipsum</li>
+              <li class="mb-2">Community Outreach</li>
+              <li class="mb-2">Our Scholarship Program</li>
+              <li class="mb-2">Proudly Powered by KIT</li>
             </ul>
           </v-flex>
         </v-layout>

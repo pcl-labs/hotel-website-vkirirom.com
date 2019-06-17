@@ -205,10 +205,9 @@
                 :date-two="dateTwo"
                 @date-one-selected="val => { dateOne = val }"
                 @date-two-selected="val => { dateTwo = val }"
-                offsetY="5"
-                offsetX="-50"
-                style="left:-70%; top:60%"
+                style="left:-70%; top:60%; background-color:#313A4F; color:#FFFFFF;"
                 :show-shortcuts-menu-trigger="false"
+                dark
               />
               </v-flex>
               <v-flex xs12>
