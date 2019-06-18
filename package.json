@@ -18,6 +18,7 @@
     "vue-gtm": "^2.0.0",
     "vue-resource": "^1.5.1",
     "vue-router": "^3.0.6",
+    "vue-router-sitemap": "0.0.4",
     "vue-slick": "^1.1.15",
     "vuetify": "^1.5.5"
   },
