@@ -3,9 +3,14 @@
 <v-card dark>
   <div id="header">
     <v-container grid-list-md>
-      <v-layout row wrap align-end justify-start>
+      <v-layout row wrap align-end justify-start hidden-sm-and-down>
         <v-flex xs12 sm6 md3 lg3>
-        <h1 style="color: #FFFFFF; bottom:20px; position:absolute; font-family: 'Oswald', sans-serif; font-size: 70px;">Book your nature retreat</h1>
+          <h1 style="color: #FFFFFF; bottom:20px; position:absolute; font-family: 'Oswald', sans-serif; font-size: 70px;">Book your nature retreat</h1>
+        </v-flex>
+      </v-layout>
+      <v-layout row wrap align-end justify-start hidden-md-and-up>
+        <v-flex xs12 sm6 md3 lg3>
+          <h1 style="color: #FFFFFF; bottom:20px; position:absolute; font-family: 'Oswald', sans-serif; font-size: 45px;">Book your nature retreat</h1>
         </v-flex>
       </v-layout>
     </v-container>

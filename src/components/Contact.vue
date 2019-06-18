@@ -1,4 +1,5 @@
 <template>
+<v-container-fluid>
   <v-container>
     <v-layout row wrap>
       <v-flex xs12 md6>
@@ -156,10 +157,18 @@
       </v-flex>
     </v-layout>
   </v-container>
+  <Footer></Footer>
+</v-container-fluid>
 </template>
 
 <script>
+import Footer from './Footer.vue'
+
 export default {
+  
+  components:{
+    Footer
+  },
   data(){
     return{
       name: '',
