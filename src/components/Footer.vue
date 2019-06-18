@@ -7,7 +7,7 @@
             <h3>Engage</h3>
             <br>
             <ul style="list-style:none; padding:0; margin:0;">
-              <li class="mb-2">Contact</li>
+              <li class="mb-2"><router-link to="/Contact">Contact</router-link></li>
               <li class="mb-2">About</li>
               <li class="mb-2">Book Now</li>
             </ul>
