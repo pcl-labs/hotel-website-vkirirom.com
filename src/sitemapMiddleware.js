@@ -1,24 +1,24 @@
-import VueRouterSitemap      from 'vue-router-sitemap';
-import path                  from 'path';
-import { router }            from './routes';
+// import VueRouterSitemap      from 'vue-router-sitemap';
+// import path                  from 'path';
+// import { router }            from './routes';
 
-export const sitemapMiddleware = () => {
-  return (req, res) => {
-    res.set('Content-Type', 'application/xml');
+// export const sitemapMiddleware = () => {
+//   return (req, res) => {
+//     res.set('Content-Type', 'application/xml');
 
-    const staticSitemap = path.resolve('dist/static', 'sitemap.xml');
-    const filterConfig = {
-      isValid: false,
-      rules: [
-        /\/example-page/,
-        /\*/,
-      ],
-    };
+//     const staticSitemap = path.resolve('dist/static', 'sitemap.xml');
+//     const filterConfig = {
+//       isValid: false,
+//       rules: [
+//         /\/example-page/,
+//         /\*/,
+//       ],
+//     };
 
-    new VueRouterSitemap(router).filterPaths(filterConfig).build('https://happy-edison-c9d54b.netlify.com').save(staticSitemap);
+//     new VueRouterSitemap(router).filterPaths(filterConfig).build('https://happy-edison-c9d54b.netlify.com').save(staticSitemap);
 
-    return res.sendFile(staticSitemap);
-  };
-};
+//     return res.sendFile(staticSitemap);
+//   };
+// };
 
-app.get('/sitemap.xml', sitemapMiddleware());
+// app.get('/sitemap.xml', sitemapMiddleware());
