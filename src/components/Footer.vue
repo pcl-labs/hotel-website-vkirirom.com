@@ -18,7 +18,7 @@
             <ul style="list-style:none; padding:0; margin:0;">
               <li class="mb-2">Lease a Property</li>
               <li class="mb-2">Collaborate</li>
-              <li class="mb-2">Partnerm</li>
+              <li class="mb-2">Partner</li>
             </ul>
           </v-flex>
           <v-flex xs12 sm6 md3 lg3 class="mb-3">
