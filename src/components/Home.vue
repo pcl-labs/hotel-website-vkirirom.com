@@ -5,7 +5,9 @@
     <v-container grid-list-md>
       <v-layout row wrap align-end justify-start>
         <v-flex xs12 sm6 md3 lg3>
-        <h1 style="color: #FFFFFF; bottom:20px; position:absolute;">Book your <br> nature retreat.</h1>
+        <h1 style="color: #FFFFFF; bottom:20px; position:absolute; font-family: 'Oswald', sans-serif; font-style: normal; font-weight: bold; font-size: 72px;">
+          Book your nature retreat.
+        </h1>
         </v-flex>
       </v-layout>
     </v-container>
@@ -177,15 +179,15 @@
       </v-flex>
     </v-layout>
     <v-card xs12 width="100%" class="mt-4 mb-4" dark style="border-radius: 3px;" hover>
-    <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1560151624/Healthy_eyfk5v.jpg" height="300px" position="top" class="pt-3">
-    <v-layout row wrap justify-start class="ma-4">
-      <v-flex xs6 md4 sm4 lg4>
-        <h1 style="color: #FFFFFF;">Mouth Watering</h1>
+    <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1560151624/Healthy_eyfk5v.jpg" height="300px" position="top" class="pt-3 pl-2">
+    <v-layout row wrap justify-start class="mt-4 ml-4 mb-2">
+      <v-flex xs12 md4 sm4 lg4>
+        <h1 style="color: #FFFFFF; font-family: Oswald; font-style: normal; font-weight: normal; font-size: 34px;">“Best lunch stop in Kirirom.”</h1>
       </v-flex>
     </v-layout>
-    <v-layout column align-content-space-around align-content-start fill-height class="ma-4">
-      <v-flex xs6 md6 sm4 lg6>
-        <v-btn dark large depressed style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; text-transform:capitalize" outline>
+    <v-layout column align-content-space-around align-content-start fill-height class="ml-4">
+      <v-flex xs12 md4 sm4 lg4>
+        <v-btn dark large depressed style="background: #F7B947; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; text-transform:capitalize">
           Menu <v-icon>keyboard_arrow_right</v-icon>
         </v-btn>
       </v-flex>
