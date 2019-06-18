@@ -1,6 +1,6 @@
 import VueRouterSitemap      from 'vue-router-sitemap';
 import path                  from 'path';
-import { router }            from 'router';
+import { router }            from './routes';
 
 export const sitemapMiddleware = () => {
   return (req, res) => {
