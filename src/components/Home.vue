@@ -5,9 +5,7 @@
     <v-container grid-list-md>
       <v-layout row wrap align-end justify-start>
         <v-flex xs12 sm6 md3 lg3>
-        <h1 style="color: #FFFFFF; bottom:20px; position:absolute; font-family: 'Oswald', sans-serif; font-style: normal; font-weight: bold; font-size: 72px;">
-          Book your nature retreat.
-        </h1>
+        <h1 style="color: #FFFFFF; bottom:20px; position:absolute; font-family: 'Oswald', sans-serif; font-size: 70px;">Book your nature retreat</h1>
         </v-flex>
       </v-layout>
     </v-container>
@@ -110,13 +108,15 @@
     <v-card hover dark style="border-radius: 3px;" width="100%">
       <v-img :src="corporateRetreat" height="300px" position="top" class="mt-4 pa-1 mb-4" width="100%">
         <v-layout row wrap justify-end hidden-sm-and-down>
-          <v-flex xs12 md4 sm4 lg4 class="ma-4" align-end>
-            <h1 style="color: #FFFFFF;">Your next corporate retreat.</h1>
+          <v-flex xs12 md6 sm6 lg6 class="ma-4" align-end>
+            <h1 style="color: #FFFFFF; font-family: 'Oswald', sans-serif; font-size: 36px;">Your next corporate retreat.</h1>
           </v-flex>
         </v-layout>
         <v-layout row wrap justify-center hidden-md-and-up text-xs-center>
           <v-flex xs12 align-center >
-            <h1 style="color: #FFFFFF; font-size: 36px; line-height: 49px; text-align: center; margin-top:30px;">Your next corporate retreat.</h1>
+            <h1 style="color: #FFFFFF; font-family: 'Oswald', sans-serif; font-size: 36px; text-align: center; margin-top:30px;">
+              Your next corporate retreat.
+            </h1>
           </v-flex>
         </v-layout>
         <v-layout column align-center justify-center fill-height>
@@ -182,7 +182,9 @@
     <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1560151624/Healthy_eyfk5v.jpg" height="300px" position="top" class="pt-3 pl-2">
     <v-layout row wrap justify-start class="mt-4 ml-4 mb-2">
       <v-flex xs12 md4 sm4 lg4>
-        <h1 style="color: #FFFFFF; font-family: Oswald; font-style: normal; font-weight: normal; font-size: 34px;">“Best lunch stop in Kirirom.”</h1>
+        <h1 style="color: #FFFFFF; font-family: 'Oswald', sans-serif; font-size: 34px;">
+          “Best lunch stop in Kirirom.”
+        </h1>
       </v-flex>
     </v-layout>
     <v-layout column align-content-space-around align-content-start fill-height class="ml-4">
@@ -206,28 +208,28 @@
     </v-card> -->
   </v-container-fluid>
   <v-container>
-    <ListCover title="Blog" class="mb-3" style="font-size: 16px; line-height: 19px; color: #D8DADE;"></ListCover>
+    <ListCover title="Ecotourism" class="mb-3" style="font-size: 16px; line-height: 19px; color: #D8DADE;"></ListCover>
     <v-layout row wrap justify-space-between justify-center text-xs-center>
       <v-flex xs12 sm6 md3 lg3 align-center>
         <v-card id="blog" height="240" dark color="#D8DADE" style="border-radius: 3px; position:relative;" class="mb-3">
-          <v-card-text><h2 style="color: #FFFFFF; position:absolute; bottom:20px; right:0; left:0;">Blog Post</h2></v-card-text>
+          <v-card-text><h2 style="color: #FFFFFF; position:absolute; bottom:20px; right:0; left:0;">Protecting Nature</h2></v-card-text>
         </v-card>
       </v-flex>
       <v-spacer></v-spacer>
       <v-flex xs12 sm6 md3 lg3 align-center>
         <v-card id="blog" height="240" dark color="#D8DADE" style="border-radius: 3px; position:relative;" class="mb-3">
-          <v-card-text><h2 style="color: #FFFFFF; position:absolute; bottom:20px; right:0; left:0;">Blog Post</h2></v-card-text>
+          <v-card-text><h2 style="color: #FFFFFF; position:absolute; bottom:20px; right:0; left:0;">Educating Youth</h2></v-card-text>
         </v-card>
       </v-flex>
       <v-flex xs12 sm6 md3 lg3 align-center>
         <v-card id="blog" height="240" dark color="#D8DADE" style="border-radius: 3px; position:relative;" class="mb-3">
-          <v-card-text><h2 style="color: #FFFFFF; position:absolute; bottom:20px; right:0; left:0;">Blog Post</h2></v-card-text>
+          <v-card-text><h2 style="color: #FFFFFF; position:absolute; bottom:20px; right:0; left:0;">Growing Organic</h2></v-card-text>
         </v-card>
       </v-flex>
       <v-flex xs12 sm6 md3 lg3 align-center>
         <v-card id="blog" height="240" dark color="#D8DADE" style="border-radius: 3px; position:relative;" class="mb-3">
           <v-card-text>
-            <h2 style="color: #FFFFFF; position:absolute; bottom:20px; right:0; left:0;">Blog Post</h2>
+            <h2 style="color: #FFFFFF; position:absolute; bottom:20px; right:0; left:0;">Buying Locally</h2>
           </v-card-text>
         </v-card>
       </v-flex>
@@ -235,7 +237,7 @@
     <v-layout row wrap justify-space-around justify-center>
       <v-flex xs12 sm4 md4 lg4>
         <v-btn block large outline dark style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; max-width:340px; text-transform:capitalize">
-          Show all <v-icon>keyboard_arrow_right</v-icon>
+          Learn More <v-icon>keyboard_arrow_right</v-icon>
         </v-btn>
       </v-flex>
     </v-layout>
