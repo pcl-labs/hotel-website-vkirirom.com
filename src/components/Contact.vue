@@ -45,7 +45,7 @@
               Message
             </h2>
             <textarea 
-              style="border: 1px solid #3D424E; box-sizing: border-box; border-radius: 3px; height:128px; max-width:500px; width:100%; font-size: 16px; line-height: 22px; color: #B9BCC1; padding:17px;"
+              style="border: 1px solid #E9EDF1; box-sizing: border-box; border-radius: 3px; height:128px; max-width:500px; width:100%; font-size: 16px; line-height: 22px; color: #B9BCC1; padding:17px;"
               v-model="message"
               placeholder="Full Name"
               name="message"
