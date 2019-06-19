@@ -214,27 +214,27 @@
         </v-img>
       </v-card> -->
     </v-container-fluid>
-    <v-container>
+    <v-container grid-list-md align-content-space-around>
       <ListCover title="Ecotourism" class="mb-3" style="font-size: 16px; line-height: 19px; color: #D8DADE;"></ListCover>
       <v-layout row wrap justify-space-between justify-center text-xs-center>
-        <v-flex xs12 sm6 md3 lg3 align-center>
-          <v-card id="blog" height="240" dark color="#D8DADE" style="border-radius: 3px; position:relative;" class="mb-3">
+        <v-flex xs12 sm6 md3 lg3>
+          <v-card height="240px" dark color="#D8DADE" style="border-radius: 3px; min-height:240px;" class="mb-3">
             <v-card-text><h2 style="color: #FFFFFF; position:absolute; bottom:20px; right:0; left:0;">Protecting Nature</h2></v-card-text>
           </v-card>
         </v-flex>
         <v-spacer></v-spacer>
-        <v-flex xs12 sm6 md3 lg3 align-center>
-          <v-card id="blog" height="240" dark color="#D8DADE" style="border-radius: 3px; position:relative;" class="mb-3">
+        <v-flex xs12 sm6 md3 lg3>
+          <v-card height="240px" dark color="#D8DADE" style="border-radius: 3px; min-height:240px;" class="mb-3">
             <v-card-text><h2 style="color: #FFFFFF; position:absolute; bottom:20px; right:0; left:0;">Educating Youth</h2></v-card-text>
           </v-card>
         </v-flex>
-        <v-flex xs12 sm6 md3 lg3 align-center>
-          <v-card id="blog" height="240" dark color="#D8DADE" style="border-radius: 3px; position:relative;" class="mb-3">
+        <v-flex xs12 sm6 md3 lg3>
+          <v-card height="240px" dark color="#D8DADE" style="border-radius: 3px; min-height:240px;" class="mb-3">
             <v-card-text><h2 style="color: #FFFFFF; position:absolute; bottom:20px; right:0; left:0;">Growing Organic</h2></v-card-text>
           </v-card>
         </v-flex>
-        <v-flex xs12 sm6 md3 lg3 align-center>
-          <v-card id="blog" height="240" dark color="#D8DADE" style="border-radius: 3px; position:relative;" class="mb-3">
+        <v-flex xs12 sm6 md3 lg3>
+          <v-card height="240px" dark color="#D8DADE" style="border-radius: 3px; min-height:240px;" class="mb-3">
             <v-card-text>
               <h2 style="color: #FFFFFF; position:absolute; bottom:20px; right:0; left:0;">Buying Locally</h2>
             </v-card-text>
@@ -332,25 +332,15 @@ export default {
   .container{
     max-width: 292px;
   }
-  #blog{
-    width: 100%;
-    height: 56.25%;
-  }
 }
 @media only screen and (min-width: 768px) {
   .container{
     max-width: 600px;
   }
-  #blog{
-    width: 100%;
-  }
 }
 @media only screen and (min-width: 1024px) {
   .container{
     max-width: 900px;
-  }
-  #blog{
-    width: 202px;
   }
 }
 
