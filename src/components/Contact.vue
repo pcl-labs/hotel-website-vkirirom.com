@@ -26,7 +26,7 @@
             <input 
               style="border: 1px solid #3D424E; box-sizing: border-box; border-radius: 3px; height:50px; max-width:341px; width:100%; font-size: 16px; line-height: 22px; color: #B9BCC1; padding:17px;"
               v-model="phone"
-              placeholder="Full Name"
+              placeholder="Phone Number"
               name="phone"
             >
           </v-flex>
@@ -37,7 +37,7 @@
             <input 
               style="border: 1px solid #3D424E; box-sizing: border-box; border-radius: 3px; height:50px; max-width:341px; width:100%; font-size: 16px; line-height: 22px; color: #B9BCC1; padding:17px;"
               v-model="email"
-              placeholder="Full Name"
+              placeholder="E-Mail"
               name="email"
             >
           </v-flex>
