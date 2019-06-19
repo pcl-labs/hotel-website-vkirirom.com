@@ -6,15 +6,17 @@
       <v-flex xs12 sm6 md4 lg4>
         <router-link to="/listing/Bell-Tent">
           <v-carousel height="150px" hide-controls dark width="100%" class="hidden-md-and-up">
+            <!-- v-if="belltent.images.length > 0" is required to avoid the error "cannot read property 'url' of undefined. 
+            It is needed only when we want to iterate through an array of images, or nested elements.-->
             <v-carousel-item :src="belltent.featuredImage" style="background-size:contain;">
             </v-carousel-item>
-            <v-carousel-item :src="belltent.images[0].url" style="background-size:contain;">
+            <v-carousel-item v-if="belltent.images.length > 0" :src="belltent.images[0].url" style="background-size:contain;">
             </v-carousel-item>
-            <v-carousel-item :src="belltent.images[1].url" style="background-size:contain;">
+            <v-carousel-item v-if="belltent.images.length > 0" :src="belltent.images[1].url" style="background-size:contain;">
             </v-carousel-item>
-            <v-carousel-item :src="belltent.images[2].url" style="background-size:contain;">
+            <v-carousel-item v-if="belltent.images.length > 0" :src="belltent.images[2].url" style="background-size:contain;">
             </v-carousel-item>
-            <v-carousel-item :src="belltent.images[3].url" style="background-size:contain;">
+            <v-carousel-item v-if="belltent.images.length > 0" :src="belltent.images[3].url" style="background-size:contain;">
             </v-carousel-item>
           </v-carousel>
         </router-link>
@@ -35,13 +37,13 @@
           <v-carousel height="150px" hide-controls dark width="100%" class="hidden-md-and-up">
             <v-carousel-item :src="bungalow.featuredImage" style="background-size:contain;">
             </v-carousel-item>
-            <v-carousel-item :src="bungalow.images[0].url" style="background-size:contain;">
+            <v-carousel-item v-if="bungalow.images.length > 0" :src="bungalow.images[0].url" style="background-size:contain;">
             </v-carousel-item>
-            <v-carousel-item :src="bungalow.images[1].url" style="background-size:contain;">
+            <v-carousel-item v-if="bungalow.images.length > 0" :src="bungalow.images[1].url" style="background-size:contain;">
             </v-carousel-item>
-            <v-carousel-item :src="bungalow.images[2].url" style="background-size:contain;">
+            <v-carousel-item v-if="bungalow.images.length > 0" :src="bungalow.images[2].url" style="background-size:contain;">
             </v-carousel-item>
-            <v-carousel-item :src="bungalow.images[3].url" style="background-size:contain;">
+            <v-carousel-item v-if="bungalow.images.length > 0" :src="bungalow.images[3].url" style="background-size:contain;">
             </v-carousel-item>
           </v-carousel>
         </router-link>
@@ -62,13 +64,13 @@
           <v-carousel height="150px" hide-controls dark width="100%" class="hidden-md-and-up">
             <v-carousel-item :src="luxurytent.featuredImage" style="background-size:contain;">
             </v-carousel-item>
-            <v-carousel-item :src="luxurytent.images[0].url" style="background-size:contain;">
+            <v-carousel-item v-if="luxurytent.images.length > 0" :src="luxurytent.images[0].url" style="background-size:contain;">
             </v-carousel-item>
-            <v-carousel-item :src="luxurytent.images[1].url" style="background-size:contain;">
+            <v-carousel-item v-if="luxurytent.images.length > 0" :src="luxurytent.images[1].url" style="background-size:contain;">
             </v-carousel-item>
-            <v-carousel-item :src="luxurytent.images[2].url" style="background-size:contain;">
+            <v-carousel-item v-if="luxurytent.images.length > 0" :src="luxurytent.images[2].url" style="background-size:contain;">
             </v-carousel-item>
-            <v-carousel-item :src="luxurytent.images[3].url" style="background-size:contain;">
+            <v-carousel-item v-if="luxurytent.images.length > 0" :src="luxurytent.images[3].url" style="background-size:contain;">
             </v-carousel-item>
           </v-carousel>
         </router-link>
@@ -89,13 +91,13 @@
           <v-carousel height="150px" hide-controls dark width="100%" class="hidden-md-and-up">
             <v-carousel-item :src="khmer.featuredImage" style="background-size:contain;">
             </v-carousel-item>
-            <v-carousel-item :src="khmer.images[0].url" style="background-size:contain;">
+            <v-carousel-item v-if="khmer.images.length > 0" :src="khmer.images[0].url" style="background-size:contain;">
             </v-carousel-item>
-            <v-carousel-item :src="khmer.images[1].url" style="background-size:contain;">
+            <v-carousel-item v-if="khmer.images.length > 0" :src="khmer.images[1].url" style="background-size:contain;">
             </v-carousel-item>
-            <v-carousel-item :src="khmer.images[2].url" style="background-size:contain;">
+            <v-carousel-item v-if="khmer.images.length > 0" :src="khmer.images[2].url" style="background-size:contain;">
             </v-carousel-item>
-            <v-carousel-item :src="khmer.images[3].url" style="background-size:contain;">
+            <v-carousel-item v-if="khmer.images.length > 0" :src="khmer.images[3].url" style="background-size:contain;">
             </v-carousel-item>
           </v-carousel>
         </router-link>
@@ -116,13 +118,13 @@
           <v-carousel height="150px" hide-controls dark width="100%" class="hidden-md-and-up">
             <v-carousel-item :src="piperoom.featuredImage" style="background-size:contain;">
             </v-carousel-item>
-            <v-carousel-item :src="piperoom.images[0].url" style="background-size:contain;">
+            <v-carousel-item v-if="piperoom.images.length > 0" :src="piperoom.images[0].url" style="background-size:contain;">
             </v-carousel-item>
-            <v-carousel-item :src="piperoom.images[1].url" style="background-size:contain;">
+            <v-carousel-item v-if="piperoom.images.length > 0" :src="piperoom.images[1].url" style="background-size:contain;">
             </v-carousel-item>
-            <v-carousel-item :src="piperoom.images[2].url" style="background-size:contain;">
+            <v-carousel-item v-if="piperoom.images.length > 0" :src="piperoom.images[2].url" style="background-size:contain;">
             </v-carousel-item>
-            <v-carousel-item :src="piperoom.images[3].url" style="background-size:contain;">
+            <v-carousel-item v-if="piperoom.images.length > 0" :src="piperoom.images[3].url" style="background-size:contain;">
             </v-carousel-item>
           </v-carousel>
         </router-link>
@@ -143,13 +145,13 @@
           <v-carousel height="150px" hide-controls dark width="100%" class="hidden-md-and-up">
             <v-carousel-item :src="suite.featuredImage" style="background-size:contain;">
             </v-carousel-item>
-            <v-carousel-item :src="suite.images[0].url" style="background-size:contain;">
+            <v-carousel-item v-if="suite.images.length > 0" :src="suite.images[0].url" style="background-size:contain;">
             </v-carousel-item>
-            <v-carousel-item :src="suite.images[1].url" style="background-size:contain;">
+            <v-carousel-item v-if="suite.images.length > 0" :src="suite.images[1].url" style="background-size:contain;">
             </v-carousel-item>
-            <v-carousel-item :src="suite.images[2].url" style="background-size:contain;">
+            <v-carousel-item v-if="suite.images.length > 0" :src="suite.images[2].url" style="background-size:contain;">
             </v-carousel-item>
-            <v-carousel-item :src="suite.images[3].url" style="background-size:contain;">
+            <v-carousel-item v-if="suite.images.length > 0" :src="suite.images[3].url" style="background-size:contain;">
             </v-carousel-item>
           </v-carousel>
         </router-link>
@@ -170,13 +172,13 @@
           <v-carousel height="150px" hide-controls dark width="100%" class="hidden-md-and-up">
             <v-carousel-item :src="jasmine.featuredImage" style="background-size:contain;">
             </v-carousel-item>
-            <v-carousel-item :src="jasmine.images[0].url" style="background-size:contain;">
+            <v-carousel-item v-if="jasmine.images.length > 0" :src="jasmine.images[0].url" style="background-size:contain;">
             </v-carousel-item>
-            <v-carousel-item :src="jasmine.images[1].url" style="background-size:contain;">
+            <v-carousel-item v-if="jasmine.images.length > 0" :src="jasmine.images[1].url" style="background-size:contain;">
             </v-carousel-item>
-            <v-carousel-item :src="jasmine.images[2].url" style="background-size:contain;">
+            <v-carousel-item v-if="jasmine.images.length > 0" :src="jasmine.images[2].url" style="background-size:contain;">
             </v-carousel-item>
-            <v-carousel-item :src="jasmine.images[3].url" style="background-size:contain;">
+            <v-carousel-item v-if="jasmine.images.length > 0" :src="jasmine.images[3].url" style="background-size:contain;">
             </v-carousel-item>
           </v-carousel>
         </router-link>
