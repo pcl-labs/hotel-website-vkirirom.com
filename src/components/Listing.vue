@@ -1,22 +1,23 @@
 <template>
   <v-container-fluid>
-    <head>{{resort.custom}}</head>
     <v-container-fluid class="pa-0">
       <v-layout row flex class="pa-0 mx-0">
         <v-flex xs12 sm12 md6 class="pa-0 overflow-hidden hidden-sm-and-down">
-          <v-img class="image" v-if="resort.images.length > 0" :src="resort.featuredImage" aspect-ratio="1.7"></v-img>
+          <v-img class="image" :src="resort.featuredImage" aspect-ratio="1.7"></v-img>
         </v-flex>
         <v-flex xs12 class="hidden-md-and-up">
           <v-carousel height="300px" hide-controls dark>
+            <!-- v-if="belltent.images.length > 0" is required to avoid the error "cannot read property 'url' of undefined. 
+            It is needed only when we want to iterate through an array of images, or nested elements.-->
             <v-carousel-item :src="resort.featuredImage" class="ma-0 pa-0" style="background-size:contain;">
             </v-carousel-item>
-            <v-carousel-item :src="resort.images[0].url" class="ma-0 pa-0" style="background-size:contain;">
+            <v-carousel-item v-if="resort.images.length > 0" :src="resort.images[0].url" class="ma-0 pa-0" style="background-size:contain;">
             </v-carousel-item>
-            <v-carousel-item :src="resort.images[1].url" class="ma-0 pa-0" style="background-size:contain;">
+            <v-carousel-item v-if="resort.images.length > 0" :src="resort.images[1].url" class="ma-0 pa-0" style="background-size:contain;">
             </v-carousel-item>
-            <v-carousel-item :src="resort.images[2].url" class="ma-0 pa-0" style="background-size:contain;">
+            <v-carousel-item v-if="resort.images.length > 0" :src="resort.images[2].url" class="ma-0 pa-0" style="background-size:contain;">
             </v-carousel-item>
-            <v-carousel-item :src="resort.images[3].url" class="ma-0 pa-0" style="background-size:contain;">
+            <v-carousel-item v-if="resort.images.length > 0" :src="resort.images[3].url" class="ma-0 pa-0" style="background-size:contain;">
             </v-carousel-item>
           </v-carousel>
         </v-flex>
