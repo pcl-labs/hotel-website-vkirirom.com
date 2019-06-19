@@ -153,7 +153,7 @@
                   :rules="nameRules"
                 >
                 <v-icon slot="append" color="#B9BCC1">person</v-icon>
-                </v-text-field>
+              </v-text-field>
               </v-flex>
               <v-flex xs12>
                 <input
