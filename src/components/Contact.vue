@@ -77,12 +77,12 @@
           class="hidden-sm-and-down"
           style="position:absolute; top:10%; left:59%; border: 1px solid #E1E7ED; box-sizing: border-box; border-radius: 3px;">
           <v-card-text style="margin:10px; margin-right:15px;">
-            <v-flex xs12>
+            <!-- <v-flex xs12>
               <h1 style="font-size: 28px; color: #D8DADE;">
                 Contact Us
               </h1>
               <p style="font-size: 14px; color: #B9BCC1;" class="ma-1">vKirirom Pine Resort</p>
-            </v-flex>
+            </v-flex> -->
             <v-flex xs12>
               <h2 style="font-size: 20px; color: #D8DADE;">
                 Address
@@ -117,36 +117,35 @@
           class="hidden-md-and-up mb-4 mt-4"
           style="border: 1px solid #E1E7ED; box-sizing: border-box; border-radius: 3px;">
           <v-card-text>
-            <v-flex xs12>
+            <!-- <v-flex xs12>
               <h1 style="font-size: 28px; color: #D8DADE;">
                 Contact
               </h1>
               <p style="font-size: 14px; color: #B9BCC1;">
                 Kirirom Institute of Technology
               </p>
+            </v-flex> -->
+            <v-flex xs12>
               <h2 style="font-size: 20px; color: #D8DADE;">
                 Address
               </h2>
-              <p style="font-size: 14px; color: #B9BCC1;">
-                #253, 255 E0, 
-                <br> 
-                Borey BipupThmey-Boeung Chhouk Road 2011 (Ouknhar Tri Heng Road), 
-                <br>
-                Street E; Khan Sen Sok, 
-                <br>
-                Phnom Penh, Cambodia
+              <p style="font-size: 14px; color: #B9BCC1;" class="ma-1">Preah Soramarith-Kosamak National Park (Kirirom), Phnom Srouch District, Kompong Speu Province, Cambodia
               </p>
+            </v-flex>
+            <v-flex xs12>
               <h2 style="font-size: 20px; color: #D8DADE;">
                 E-Mail
               </h2>
-              <p style="font-size: 14px; color: #B9BCC1;">
-                <a href="mailto:leo@asiato.asia" style="text-decoration:none; color: #B9BCC1;">leo@asiato.asia</a>
+              <p style="font-size: 14px; color: #B9BCC1;" class="ma-1">
+                <a href="mailto:info@vkirirom.com" style="text-decoration:none; color: #B9BCC1;">info@vkirirom.com</a>
               </p>
+            </v-flex>
+            <v-flex xs12>
               <h2 style="font-size: 20px; color: #D8DADE;">
                 Phone Number
               </h2>
-              <p style="font-size: 14px; color: #B9BCC1;">
-                <a href="tel:+85578777348" style="text-decoration:none; color: #B9BCC1;">+(855) 78 777 348</a>
+              <p style="font-size: 14px; color: #B9BCC1;" class="ma-1">
+                <a href="tel:+(855)78777284" style="text-decoration:none; color: #B9BCC1;">+(855) 78 777 284</a>
               </p>
             </v-flex>
           </v-card-text>
