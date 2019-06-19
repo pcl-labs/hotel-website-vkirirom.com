@@ -6,7 +6,7 @@
         <h1 style="font-size: 36px; color: #FFFFFF;" class="mt-3 mb-5">
           Contact
         </h1>
-        <v-form name="Contact" method="post" netlify ref="form" action="/thanks" data-netlify="true" class="ma-1">
+        <v-form name="Contact" method="post" netlify ref="form" action="/thanks" v-model="valid" data-netlify="true" class="ma-1">
           <input type="hidden" name="form-name" value="Contact"/>
           <v-flex xs12>
             <v-text-field
@@ -71,6 +71,7 @@
               style="padding:0; margin:0; background: #F7B947; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; text-transform:capitalize; font-size: 16px; height:74px;" 
               color="#4B7F52"
               type="submit"
+              :disabled="!valid"
             >
               Send<v-icon>keyboard_arrow_right</v-icon>
             </v-btn>
@@ -181,10 +182,21 @@ export default {
   },
   data(){
     return{
+      valid: false,
       name: '',
       email: '',
       phone: '',
       message: '',
+      nameRules: [
+        v => !!v || 'Name is required',
+      ],
+      emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+/.test(v) || 'E-mail must be valid'
+      ],
+      phoneRules: [
+        v => !!v || 'Phone no. is required',
+      ],
     }
   }
 }
