@@ -116,14 +116,14 @@
         <v-img :src="corporateRetreat" height="300px" position="top" class="mt-4 pa-1 mb-4" width="100%">
           <v-layout row wrap justify-end hidden-sm-and-down>
             <v-flex xs12 md6 sm6 lg6 class="ma-4" align-end>
-              <h1 style="color: #FFFFFF; font-family: 'Oswald', sans-serif; font-size: 36px;">Your next corporate retreat.</h1>
+              <h2 style="color: #FFFFFF; font-family: 'Oswald', sans-serif; font-size: 36px;">Your next corporate retreat.</h2>
             </v-flex>
           </v-layout>
           <v-layout row wrap justify-center hidden-md-and-up text-xs-center>
             <v-flex xs12 align-center >
-              <h1 style="color: #FFFFFF; font-family: 'Oswald', sans-serif; font-size: 36px; text-align: center; margin-top:30px;">
+              <h2 style="color: #FFFFFF; font-family: 'Oswald', sans-serif; font-size: 36px; text-align: center; margin-top:30px;">
                 Your next corporate retreat.
-              </h1>
+              </h2>
             </v-flex>
           </v-layout>
           <v-layout column align-center justify-center fill-height>
@@ -189,9 +189,9 @@
       <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1560151624/Healthy_eyfk5v.jpg" height="300px" position="top" class="pt-3 pl-2">
       <v-layout row wrap justify-start class="mt-4 ml-4 mb-2">
         <v-flex xs12 md4 sm4 lg4>
-          <h1 style="color: #FFFFFF; font-family: 'Oswald', sans-serif; font-size: 34px;">
+          <h2 style="color: #FFFFFF; font-family: 'Oswald', sans-serif; font-size: 34px;">
             “Best lunch stop in Kirirom.”
-          </h1>
+          </h2>
         </v-flex>
       </v-layout>
       <v-layout column align-content-space-around align-content-start fill-height class="ml-4">
