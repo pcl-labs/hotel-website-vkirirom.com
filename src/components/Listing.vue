@@ -63,7 +63,7 @@
             Location
           </h2>
           <p>
-            <a href="https://goo.gl/maps/NusquSFKVm2SHrDy7" style="text-decoration:none;">Go to Location</a>
+            <a href="https://goo.gl/maps/NusquSFKVm2SHrDy7" style="color: #006064;">Get Directions</a>
           </p>
           <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
             Spaces

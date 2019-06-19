@@ -26,7 +26,7 @@
             <input 
               style="border: 1px solid #3D424E; box-sizing: border-box; border-radius: 3px; height:50px; max-width:341px; width:100%; font-size: 16px; line-height: 22px; color: #B9BCC1; padding:17px;"
               v-model="phone"
-              placeholder="Full Name"
+              placeholder="Phone Number"
               name="phone"
             >
           </v-flex>
@@ -37,7 +37,7 @@
             <input 
               style="border: 1px solid #3D424E; box-sizing: border-box; border-radius: 3px; height:50px; max-width:341px; width:100%; font-size: 16px; line-height: 22px; color: #B9BCC1; padding:17px;"
               v-model="email"
-              placeholder="Full Name"
+              placeholder="E-Mail"
               name="email"
             >
           </v-flex>
@@ -46,7 +46,7 @@
               Message
             </h2>
             <textarea 
-              style="border: 1px solid #E9EDF1; box-sizing: border-box; border-radius: 3px; height:128px; max-width:500px; width:100%; font-size: 16px; line-height: 22px; color: #B9BCC1; padding:17px;"
+              style="border: 1px solid #3D424E; box-sizing: border-box; border-radius: 3px; height:128px; max-width:500px; width:100%; font-size: 16px; line-height: 22px; color: #B9BCC1; padding:17px;"
               v-model="message"
               placeholder="Write here..."
               name="message"
@@ -74,28 +74,30 @@
           width="300px" 
           color="#191C21" 
           dark
-          class="hidden-sm-and-down"
+          class="hidden-sm-and-down pa-1"
           style="position:absolute; top:10%; left:59%; border: 1px solid #E1E7ED; box-sizing: border-box; border-radius: 3px;">
-          <v-card-text style="margin:10px; margin-right:15px;">
-            <v-flex xs12>
+          <v-card-text>
+            <!-- <v-flex xs12>
               <h1 style="font-size: 28px; color: #D8DADE;">
                 Contact Us
               </h1>
               <p style="font-size: 14px; color: #B9BCC1;" class="ma-1">vKirirom Pine Resort</p>
-            </v-flex>
-            <v-flex xs12>
+            </v-flex> -->
+            <v-flex xs12 class="mb-4">
               <h2 style="font-size: 20px; color: #D8DADE;">
                 Address
               </h2>
               <p style="font-size: 14px; color: #B9BCC1;" class="ma-1">Preah Soramarith-Kosamak National Park (Kirirom), Phnom Srouch District, Kompong Speu Province, Cambodia
+              <br>
+              <a href="https://goo.gl/maps/NusquSFKVm2SHrDy7" style="color: #006064;">Get Directions</a>
               </p>
             </v-flex>
-            <v-flex xs12>
+            <v-flex xs12 class="mb-4">
               <h2 style="font-size: 20px; color: #D8DADE;">
                 E-Mail
               </h2>
               <p style="font-size: 14px; color: #B9BCC1;" class="ma-1">
-                <a href="mailto:info@vkirirom.com" style="text-decoration:none; color: #B9BCC1;">info@vkirirom.com</a>
+                <a href="mailto:info@vkirirom.com" style="color: #006064;">info@vkirirom.com</a>
               </p>
             </v-flex>
             <v-flex xs12>
@@ -103,7 +105,7 @@
                 Phone Number
               </h2>
               <p style="font-size: 14px; color: #B9BCC1;" class="ma-1">
-                <a href="tel:+(855)78777284" style="text-decoration:none; color: #B9BCC1;">+(855) 78 777 284</a>
+                <a href="tel:+(855)78777284" style="color: #006064;">+(855) 78 777 284</a>
               </p>
             </v-flex>
           </v-card-text>
@@ -114,39 +116,40 @@
           width="100%" 
           color="#191C21" 
           dark
-          class="hidden-md-and-up mb-4 mt-4"
+          class="hidden-md-and-up mb-4 mt-4 pa-1"
           style="border: 1px solid #E1E7ED; box-sizing: border-box; border-radius: 3px;">
           <v-card-text>
-            <v-flex xs12>
+            <!-- <v-flex xs12>
               <h1 style="font-size: 28px; color: #D8DADE;">
                 Contact
               </h1>
               <p style="font-size: 14px; color: #B9BCC1;">
                 Kirirom Institute of Technology
               </p>
+            </v-flex> -->
+            <v-flex xs12 class="mb-4">
               <h2 style="font-size: 20px; color: #D8DADE;">
                 Address
               </h2>
-              <p style="font-size: 14px; color: #B9BCC1;">
-                #253, 255 E0, 
-                <br> 
-                Borey BipupThmey-Boeung Chhouk Road 2011 (Ouknhar Tri Heng Road), 
-                <br>
-                Street E; Khan Sen Sok, 
-                <br>
-                Phnom Penh, Cambodia
+              <p style="font-size: 14px; color: #B9BCC1;" class="ma-1">Preah Soramarith-Kosamak National Park (Kirirom), Phnom Srouch District, Kompong Speu Province, Cambodia
+              <br>
+              <a href="https://goo.gl/maps/NusquSFKVm2SHrDy7" style="color: #006064;">Get Directions</a>
               </p>
+            </v-flex>
+            <v-flex xs12 class="mb-4">
               <h2 style="font-size: 20px; color: #D8DADE;">
                 E-Mail
               </h2>
-              <p style="font-size: 14px; color: #B9BCC1;">
-                <a href="mailto:leo@asiato.asia" style="text-decoration:none; color: #B9BCC1;">leo@asiato.asia</a>
+              <p style="font-size: 14px; color: #B9BCC1;" class="ma-1">
+                <a href="mailto:info@vkirirom.com" style="color: #006064;">info@vkirirom.com</a>
               </p>
+            </v-flex>
+            <v-flex xs12>
               <h2 style="font-size: 20px; color: #D8DADE;">
                 Phone Number
               </h2>
-              <p style="font-size: 14px; color: #B9BCC1;">
-                <a href="tel:+85578777348" style="text-decoration:none; color: #B9BCC1;">+(855) 78 777 348</a>
+              <p style="font-size: 14px; color: #B9BCC1;" class="ma-1">
+                <a href="tel:+(855)78777284" style="color: #006064;">+(855) 78 777 284</a>
               </p>
             </v-flex>
           </v-card-text>

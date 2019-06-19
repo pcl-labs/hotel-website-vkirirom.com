@@ -11,11 +11,14 @@ import VueResource from 'vue-resource';
 import AirbnbStyleDatepicker from 'vue-airbnb-style-datepicker';
 import 'vue-airbnb-style-datepicker/dist/vue-airbnb-style-datepicker.min.css';
 import VueGtm from 'vue-gtm';
+// import './sitemapMiddleware'
+// import VueRouterSitemap from 'vue-router-sitemap'
 
 Vue.use(Vuetify)
 Vue.use(Slick)
 Vue.use(VueRouter)
 Vue.use(VueResource)
+// Vue.use(VueRouterSitemap)
 Vue.use(AirbnbStyleDatepicker, {
   sundayFirst: false,
   dateLabelFormat: 'dddd, MMMM D, YYYY',
