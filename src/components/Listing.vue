@@ -129,7 +129,7 @@
       </v-layout>
       <v-layout row wrap>
         <v-flex md6 class="hidden-sm-and-down">
-          <v-card class="pa-4 mt-5 ml-2 bookForm" width="300px" color="#191C21" style="position:absolute; top:30%; left:59%;">
+          <v-card class="pa-4 mt-5 ml-2 bookForm" width="300px" color="#191C21" style="position:absolute; top:30%; left:59%; border: 1px solid #E1E7ED; border-radius: 3px;">
             <v-form name="bookForm" method="post" netlify ref="form" v-model="valid"  action="/thanks" data-netlify="true">
               <input type="hidden" name="form-name" value="bookForm"/>
               <v-layout row wrap>
@@ -152,7 +152,7 @@
                   dark
                   :rules="nameRules"
                 >
-                <v-icon slot="append" color="#B9BCC1">person_outline</v-icon>
+                <v-icon slot="append" color="#B9BCC1">person</v-icon>
                 </v-text-field>
               </v-flex>
               <v-flex xs12>
@@ -202,11 +202,15 @@
                 color="#B9BCC1"
                 id="datepicker"
                 readonly
-                label="Select dates"
                 :rules="dateRules"
                 :value="formatDates(dateOne, dateTwo)"
                 >
                 <v-icon slot="append" color="#B9BCC1">event</v-icon>
+                <p slot="label">
+                  Check in 
+                  <v-icon color="#B9BCC1" style="font-size:30px; width:30px; height:18px;">arrow_right_alt</v-icon> 
+                  Check out
+                </p>
                 </v-text-field>
               <AirbnbStyleDatepicker
                 :trigger-element-id="'datepicker'"
@@ -242,6 +246,7 @@
               type="submit"
               :ripple="false"
               :disabled="!valid"
+              style="height:74px;"
             >
               Book Now <v-icon>keyboard_arrow_right</v-icon>
             </v-btn>
@@ -307,7 +312,7 @@
                   dark
                   :rules="nameRules"
                 >
-                <v-icon slot="append" color="#B9BCC1">person_outline</v-icon>
+                <v-icon slot="append" color="#B9BCC1">person</v-icon>
                 </v-text-field>
               </v-flex>
               <v-flex xs12>
@@ -356,11 +361,15 @@
                 name="Date"
                 color="#B9BCC1"
                 id="datepicker-trigger"
-                label="Select dates"
                 :rules="dateRules"
                 :value="formatDates(dateOne, dateTwo)"
                 >
                 <v-icon slot="append" color="#B9BCC1">event</v-icon>
+                <p slot="label">
+                  Check in 
+                  <v-icon color="#B9BCC1" style="font-size:30px; width:30px; height:18px;">arrow_right_alt</v-icon> 
+                  Check out
+                </p>
                 </v-text-field>
               <AirbnbStyleDatepicker
                 :trigger-element-id="'datepicker-trigger'"
@@ -395,6 +404,7 @@
               type="submit"
               :ripple="false"
               :disabled="!valid"
+              style="height:74px;"
             >
               Book Now <v-icon>keyboard_arrow_right</v-icon>
             </v-btn>
