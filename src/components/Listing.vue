@@ -453,14 +453,14 @@
               <input
                 name="Type1"
                 hidden
-                value="toggle1"
+                :value="toggle1"
                 type="text"
                 readonly
               />
               <input
                 name="Type2"
                 hidden
-                value="toggle0"
+                :value="toggle0"
                 type="text"
                 readonly
               />
