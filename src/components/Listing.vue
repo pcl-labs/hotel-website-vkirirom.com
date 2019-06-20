@@ -227,22 +227,44 @@
               </v-flex>
               <v-layout row wrap justify-center justify-space-between>
                 <v-flex mr-2 mb-4>
-                  <v-btn dark outline block text-xs-center style="border: 3px solid #B9BCC1; box-sizing: border-box; border-radius: 3px; height:108px; font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
-                    {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }}
-                    {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}
+                <v-btn-toggle v-model="toggle0" style="background-color:transparent; width:100%; ">
+                  <v-btn flat dark outline block text-xs-center style="border: 3px solid #B9BCC1; box-sizing: border-box; border-radius: 3px; height:108px; font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
+                    <p class="mt-4">  
+                      {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }}
+                      {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}
                     <br>
-                    <v-img :src="bed"></v-img>
+                      <v-img class="mt-1 ml-3" width="22px" height="20px" :src="bed"></v-img>
+                    </p>
                   </v-btn>
+                </v-btn-toggle>
                 </v-flex>
                 <v-flex ml-2 mb-4>
-                  <v-btn dark outline block text-xs-center style="border: 3px solid #B9BCC1; box-sizing: border-box; border-radius: 3px; height:108px; font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
-                    {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }}
-                    {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}
+                <v-btn-toggle v-model="toggle1" style="background-color:transparent; width:100%;">
+                  <v-btn flat dark outline block text-xs-center style="border: 3px solid #B9BCC1; box-sizing: border-box; border-radius: 3px; height:108px; font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
+                    <p class="mt-4">  
+                      {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }}
+                      {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}
                     <br>
-                    <v-img :src="bed"></v-img>
+                      <v-img class="mt-1 ml-3" width="22px" height="20px" :src="bed"></v-img>
+                    </p>
                   </v-btn>
+                </v-btn-toggle>
                 </v-flex>
               </v-layout>
+              <input
+                name="Type1"
+                hidden
+                value="toggle1"
+                type="text"
+                readonly
+              />
+              <input
+                name="Type2"
+                hidden
+                value="toggle0"
+                type="text"
+                readonly
+              />
               <v-flex xs12>
                 <v-textarea
                   outline
@@ -377,6 +399,7 @@
                 dark
                 type="text"
                 name="Date"
+                readonly
                 color="#B9BCC1"
                 id="datepicker-trigger"
                 :rules="dateRules"
@@ -403,22 +426,44 @@
               </v-flex>
               <v-layout row wrap justify-center justify-space-between>
                 <v-flex mr-2 mb-4>
-                  <v-btn dark outline block text-xs-center style="border: 3px solid #B9BCC1; box-sizing: border-box; border-radius: 3px; height:108px; font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
-                    {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }}
-                    {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}
+                <v-btn-toggle v-model="toggle0" style="background-color:transparent; width:100%;">
+                  <v-btn flat dark outline block text-xs-center style="border: 3px solid #B9BCC1; box-sizing: border-box; border-radius: 3px; height:108px; font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
+                    <p class="mt-4">  
+                      {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }}
+                      {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}
                     <br>
-                    <v-img :src="bed"></v-img>
+                      <v-img class="mt-1 ml-3" width="22px" height="20px" :src="bed"></v-img>
+                    </p>
                   </v-btn>
+                </v-btn-toggle>
                 </v-flex>
                 <v-flex ml-2 mb-4>
-                  <v-btn dark outline block text-xs-center style="border: 3px solid #B9BCC1; box-sizing: border-box; border-radius: 3px; height:108px; font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
-                    {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }}
-                    {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}
+                <v-btn-toggle v-model="toggle1" style="width:100%; background-color:transparent;">
+                  <v-btn flat dark outline block text-xs-center style="border: 3px solid #B9BCC1; box-sizing: border-box; border-radius: 3px; height:108px; font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
+                    <p class="mt-4">  
+                      {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }}
+                      {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}
                     <br>
-                    <v-img :src="bed"></v-img>
+                      <v-img class="mt-1 ml-3" width="22px" height="20px" :src="bed"></v-img>
+                    </p>
                   </v-btn>
+                </v-btn-toggle>
                 </v-flex>
               </v-layout>
+              <input
+                name="Type1"
+                hidden
+                value="toggle1"
+                type="text"
+                readonly
+              />
+              <input
+                name="Type2"
+                hidden
+                value="toggle0"
+                type="text"
+                readonly
+              />
               <v-flex xs12>
                 <v-textarea
                   outline
@@ -481,6 +526,8 @@ export default {
   },
   data(){
     return{
+      toggle0:1,
+      toggle1:1,
       beds: false,
       valid: false,
       nameRules: [
