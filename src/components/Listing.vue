@@ -225,6 +225,24 @@
                 dark
               />
               </v-flex>
+              <v-layout row wrap justify-center justify-space-between>
+                <v-flex mr-2 mb-4>
+                  <v-btn dark outline block text-xs-center style="border: 3px solid #B9BCC1; box-sizing: border-box; border-radius: 3px; height:108px; font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
+                    {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }}
+                    {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}
+                    <br>
+                    <v-img :src="bed"></v-img>
+                  </v-btn>
+                </v-flex>
+                <v-flex ml-2 mb-4>
+                  <v-btn dark outline block text-xs-center style="border: 3px solid #B9BCC1; box-sizing: border-box; border-radius: 3px; height:108px; font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
+                    {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }}
+                    {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}
+                    <br>
+                    <v-img :src="bed"></v-img>
+                  </v-btn>
+                </v-flex>
+              </v-layout>
               <v-flex xs12>
                 <v-textarea
                   outline
@@ -383,6 +401,24 @@
                 @date-two-selected="val => { dateTwo = val }"
               />
               </v-flex>
+              <v-layout row wrap justify-center justify-space-between>
+                <v-flex mr-2 mb-4>
+                  <v-btn dark outline block text-xs-center style="border: 3px solid #B9BCC1; box-sizing: border-box; border-radius: 3px; height:108px; font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
+                    {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }}
+                    {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}
+                    <br>
+                    <v-img :src="bed"></v-img>
+                  </v-btn>
+                </v-flex>
+                <v-flex ml-2 mb-4>
+                  <v-btn dark outline block text-xs-center style="border: 3px solid #B9BCC1; box-sizing: border-box; border-radius: 3px; height:108px; font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
+                    {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }}
+                    {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}
+                    <br>
+                    <v-img :src="bed"></v-img>
+                  </v-btn>
+                </v-flex>
+              </v-layout>
               <v-flex xs12>
                 <v-textarea
                   outline
@@ -434,6 +470,7 @@ import wifi from '../assets/icons/wifi.svg'
 import HairDryer from '../assets/icons/hair-dryer.svg'
 import Washer from '../assets/icons/washing-machine.svg'
 import cutlery from '../assets/icons/cutlery.svg'
+import bed from '../assets/icons/bed.svg'
 import MultiUsers from '../assets/icons/multiple-users-silhouette.svg'
 import format from 'date-fns/format'
 import Footer from './Footer.vue'
@@ -444,6 +481,7 @@ export default {
   },
   data(){
     return{
+      beds: false,
       valid: false,
       nameRules: [
         v => !!v || 'Name is required',
@@ -475,6 +513,7 @@ export default {
       HairDryer,
       Washer,
       cutlery,
+      bed,
 
       slug: this.$route.params.id,
       resort: {
