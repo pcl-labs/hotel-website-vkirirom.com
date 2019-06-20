@@ -266,11 +266,6 @@ import Footer from './Footer.vue'
 // import { ContentLoader } from 'vue-content-loader'
 
 export default {
-  head: {
-    meta: [
-       { name: 'description', content: `Corporate retreats in Cambodia with affordable group rates, comfortable glamping lodging and all- inclusive packages in remote Cambodia wilderness.` }
-    ]
-  },
   components:{
     ListCover,
     Footer,
