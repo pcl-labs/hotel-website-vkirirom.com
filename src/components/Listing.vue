@@ -526,8 +526,8 @@ export default {
   },
   data(){
     return{
-      toggle0:1,
-      toggle1:1,
+      toggle0:0,
+      toggle1:0,
       beds: false,
       valid: false,
       nameRules: [
