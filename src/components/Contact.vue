@@ -45,7 +45,7 @@
               color="#B9BCC1"
               required
               dark
-              :rules="nameRules"
+              :rules="phoneRules"
             >
               <v-icon slot="append" color="#B9BCC1">local_phone</v-icon>
             </v-text-field>
