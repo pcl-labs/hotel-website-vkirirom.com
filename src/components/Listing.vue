@@ -427,7 +427,7 @@
               <v-layout row wrap justify-center justify-space-between>
                 <v-flex mr-2 mb-4>
                 <v-btn-toggle v-model="toggle0" style="background-color:transparent; width:100%;">
-                  <v-btn flat dark outline block text-xs-center style="border: 3px solid #B9BCC1; box-sizing: border-box; border-radius: 3px; height:108px; font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
+                  <v-btn value="resort.modules.hotel.beds[0].type" flat dark outline block text-xs-center style="border: 3px solid #B9BCC1; box-sizing: border-box; border-radius: 3px; height:108px; font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
                     <p class="mt-4">  
                       {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }}
                       {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}
@@ -439,7 +439,7 @@
                 </v-flex>
                 <v-flex ml-2 mb-4>
                 <v-btn-toggle v-model="toggle1" style="width:100%; background-color:transparent;">
-                  <v-btn flat dark outline block text-xs-center style="border: 3px solid #B9BCC1; box-sizing: border-box; border-radius: 3px; height:108px; font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
+                  <v-btn value="resort.modules.hotel.beds[0].type" flat dark outline block text-xs-center style="border: 3px solid #B9BCC1; box-sizing: border-box; border-radius: 3px; height:108px; font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
                     <p class="mt-4">  
                       {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }}
                       {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}
