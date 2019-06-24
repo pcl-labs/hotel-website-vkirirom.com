@@ -9,13 +9,20 @@ import Routes from './routes'
 import VueResource from 'vue-resource'
 import AirbnbStyleDatepicker from 'vue-airbnb-style-datepicker'
 import 'vue-airbnb-style-datepicker/dist/vue-airbnb-style-datepicker.min.css'
-import VueGtm from 'vue-gtm';
+import VueGtm from 'vue-gtm'
+import VueMeta from 'vue-meta'
 // import './sitemapMiddleware'
 // import VueRouterSitemap from 'vue-router-sitemap'
 
 Vue.use(Vuetify)
 Vue.use(VueRouter)
 Vue.use(VueResource)
+
+Vue.use(VueMeta, {
+  // optional pluginOptions
+  refreshOnceOnNavigation: true
+})
+
 // Vue.use(VueRouterSitemap)
 Vue.use(AirbnbStyleDatepicker, {
   sundayFirst: false,
@@ -64,7 +71,6 @@ const router = new VueRouter({
   }
   
 });
-
 
 Vue.config.productionTip = false
 
