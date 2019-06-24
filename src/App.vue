@@ -1,7 +1,14 @@
 <template>
   <v-app style="background: linear-gradient(115.51deg, #00243E 0%, #003E3A 100%);" id="app">
     <Toolbar></Toolbar>
-    <router-view/>
+
+    <transition
+      name="fade"
+      mode="out-in"
+    >
+      <router-view/>
+
+    </transition>
   </v-app>
 </template>
 
@@ -24,5 +31,17 @@ export default {
   }
   html {
     scroll-behavior: smooth;
+  }
+  
+  .fade-enter-active,
+  .fade-leave-active {
+    transition-duration: 0.3s;
+    transition-property: opacity;
+    transition-timing-function: ease;
+  }
+
+  .fade-enter,
+  .fade-leave-active {
+    opacity: 0
   }
 </style>
