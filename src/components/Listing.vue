@@ -126,6 +126,30 @@
             </v-flex>
           </v-layout>
         </v-flex>
+        <!-- <v-flex xs12 md4>
+          <v-layout row wrap justify-space-between align-center>
+            <v-flex>
+              <v-icon color="#B9BCC1" size="24px">kitchen</v-icon>
+              <span style="font-size: 16px; color: #B9BCC1;">Kitchen</span>
+            </v-flex>
+            <v-flex>
+              <v-icon color="#B9BCC1" size="24px">local_cafe</v-icon>
+              <span style="font-size: 16px; color: #B9BCC1;">Coffee</span>
+            </v-flex>
+            <v-flex>
+              <v-icon color="#B9BCC1" size="24px">local_cafe</v-icon>
+              <span style="font-size: 16px; color: #B9BCC1;">Coffee</span>
+            </v-flex>
+            <v-flex>
+              <v-icon color="#B9BCC1" size="24px">local_cafe</v-icon>
+              <span style="font-size: 16px; color: #B9BCC1;">Coffee</span>
+            </v-flex>
+            <v-flex>
+              <v-icon color="#B9BCC1" size="24px">local_cafe</v-icon>
+              <span style="font-size: 16px; color: #B9BCC1;">Coffee</span>
+            </v-flex>
+          </v-layout>
+        </v-flex> -->
       </v-layout>
       <v-layout row wrap>
         <v-flex md6 class="hidden-sm-and-down">
@@ -526,6 +550,21 @@ export default {
   },
   data(){
     return{
+      head:{
+        title: function() {
+          return{
+            inner: this.resort.title,
+          }
+        },
+        meta: function()
+        { 
+          return{
+            name: 'description', 
+            content: this.resort.description,
+            id: 'desc' 
+          }
+        }
+      },
       toggle0:0,
       toggle1:0,
       beds: false,
@@ -564,7 +603,10 @@ export default {
 
       slug: this.$route.params.id,
       resort: {
-        images: []
+        title:'',
+        description:'',
+        images: [],
+
       }
     }
   },
