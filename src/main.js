@@ -10,18 +10,14 @@ import VueResource from 'vue-resource'
 import AirbnbStyleDatepicker from 'vue-airbnb-style-datepicker'
 import 'vue-airbnb-style-datepicker/dist/vue-airbnb-style-datepicker.min.css'
 import VueGtm from 'vue-gtm'
-import VueMeta from 'vue-meta'
+import VueHead from 'vue-head'
 // import './sitemapMiddleware'
 // import VueRouterSitemap from 'vue-router-sitemap'
 
 Vue.use(Vuetify)
 Vue.use(VueRouter)
 Vue.use(VueResource)
-
-Vue.use(VueMeta, {
-  // optional pluginOptions
-  refreshOnceOnNavigation: true
-})
+Vue.use(VueHead)
 
 // Vue.use(VueRouterSitemap)
 Vue.use(AirbnbStyleDatepicker, {
@@ -71,6 +67,35 @@ const router = new VueRouter({
   }
   
 });
+
+function getRoutesList(routes, pre) {
+  return routes.reduce((array, route) => {
+    const path = `${pre}${route.path}`;
+
+    if (route.path !== '*') {
+      array.push(path);
+    }
+
+    if (route.children) {
+      array.push(...getRoutesList(route.children, `${path}/`));
+    }
+
+    return array;
+  }, []);
+}
+
+getRoutesList(router.options.routes, 'https://cranky-nightingale-3731fc.netlify.com');
+
+function getRoutesXML() {
+  const list = getRoutesList(router.options.routes, 'https://cranky-nightingale-3731fc.netlify.com')
+    .map(route => `<url><loc>${route}</loc></url>`)
+    .join('\r\n');
+  return `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+    ${list}
+  </urlset>`;
+}
+
+getRoutesXML();
 
 Vue.config.productionTip = false
 
