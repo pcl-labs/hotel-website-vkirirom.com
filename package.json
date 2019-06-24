@@ -16,6 +16,7 @@
     "vue-airbnb-style-datepicker": "^2.7.1",
     "vue-content-loader": "^0.2.2",
     "vue-gtm": "^2.0.0",
+    "vue-head": "^2.1.1",
     "vue-meta": "^2.0.4",
     "vue-resource": "^1.5.1",
     "vue-router": "^3.0.6",

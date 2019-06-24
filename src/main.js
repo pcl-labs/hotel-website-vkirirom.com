@@ -10,18 +10,14 @@ import VueResource from 'vue-resource'
 import AirbnbStyleDatepicker from 'vue-airbnb-style-datepicker'
 import 'vue-airbnb-style-datepicker/dist/vue-airbnb-style-datepicker.min.css'
 import VueGtm from 'vue-gtm'
-import VueMeta from 'vue-meta'
+import VueHead from 'vue-head'
 // import './sitemapMiddleware'
 // import VueRouterSitemap from 'vue-router-sitemap'
 
 Vue.use(Vuetify)
 Vue.use(VueRouter)
 Vue.use(VueResource)
-
-Vue.use(VueMeta, {
-  // optional pluginOptions
-  refreshOnceOnNavigation: true
-})
+Vue.use(VueHead)
 
 // Vue.use(VueRouterSitemap)
 Vue.use(AirbnbStyleDatepicker, {

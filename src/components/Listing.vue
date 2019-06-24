@@ -556,11 +556,13 @@ export default {
     },
     meta: function()
     { 
-      return{
-        name: 'description', 
-        content: this.resort.description,
-        id: 'desc' 
-      }
+      return[
+        {
+          name: 'description', 
+          content: this.resort.description,
+          id: 'desc' 
+        }
+      ]
     }
   },
   data(){
@@ -606,7 +608,6 @@ export default {
         title:'',
         description:'',
         images: [],
-
       }
     }
   },
