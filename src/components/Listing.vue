@@ -548,23 +548,23 @@ export default {
   components:{
     Footer
   },
+  head:{
+    title: function() {
+      return{
+        inner: this.resort.title,
+      }
+    },
+    meta: function()
+    { 
+      return{
+        name: 'description', 
+        content: this.resort.description,
+        id: 'desc' 
+      }
+    }
+  },
   data(){
     return{
-      head:{
-        title: function() {
-          return{
-            inner: this.resort.title,
-          }
-        },
-        meta: function()
-        { 
-          return{
-            name: 'description', 
-            content: this.resort.description,
-            id: 'desc' 
-          }
-        }
-      },
       toggle0:0,
       toggle1:0,
       beds: false,
