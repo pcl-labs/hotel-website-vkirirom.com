@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <url><loc>https://cranky-nightingale-3731fc.netlify.com/</loc></url>
+  <url><loc>https://cranky-nightingale-3731fc.netlify.com/search</loc></url>
+  <url><loc>https://cranky-nightingale-3731fc.netlify.com/listing/:id</loc></url>
+  <url><loc>https://cranky-nightingale-3731fc.netlify.com/thanks</loc></url>
+  <url><loc>https://cranky-nightingale-3731fc.netlify.com/contact</loc></url>
+  <lastmod>2019-06-24T13:22:14+00:00</lastmod>
+</urlset>
