@@ -4,7 +4,6 @@ import Listing from './components/Listing.vue'
 import thankYou from './components/thankYou.vue'
 import Contact from './components/Contact.vue'
 
-
 export default[
   {
     path:'/',
@@ -25,6 +24,6 @@ export default[
   {
     path:'/contact',
     component: Contact
-  }
+  },
 ]
 
