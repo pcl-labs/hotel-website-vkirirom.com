@@ -299,6 +299,7 @@
                   label="Message"
                   class="mb-4"
                   height="122px"
+                  no-resize
                 >
                 </v-textarea>
               </v-flex>
@@ -499,6 +500,7 @@
                   label="Message"
                   class="mb-4"
                   height="122px"
+                  no-resize
                 >
                 </v-textarea>
               </v-flex>
