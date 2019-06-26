@@ -7,7 +7,7 @@
     <v-spacer></v-spacer>
     <v-toolbar-side-icon class="hidden-md-and-up" @click.stop="drawer = !drawer" style="color:#D8DADE;"></v-toolbar-side-icon>
     <v-toolbar-items class="hidden-sm-and-down">
-      <v-btn flat style="color: #D8DADE; text-transform:capitalize;"><h3 style="font-size: 16px; line-height: 22px; color: #D8DADE;">Accommodation</h3></v-btn>
+      <v-btn flat style="color: #D8DADE; text-transform:capitalize;" to="/search"><h3 style="font-size: 16px; line-height: 22px; color: #D8DADE;">Accommodation</h3></v-btn>
       <v-btn flat style="color: #D8DADE; text-transform:capitalize;"><h3 style="font-size: 16px; line-height: 22px; color: #D8DADE;">Events</h3></v-btn>
       <v-btn flat style="color: #D8DADE; text-transform:capitalize;"><h3 style="font-size: 16px; line-height: 22px; color: #D8DADE;">Experience</h3></v-btn>
       <v-btn flat style="color: #D8DADE; text-transform:capitalize;"><h3 style="font-size: 16px; line-height: 22px; color: #D8DADE;">Food</h3></v-btn>
