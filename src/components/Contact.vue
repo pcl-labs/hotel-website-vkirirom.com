@@ -3,7 +3,7 @@
   <v-container>
     <v-layout row wrap>
       <v-flex xs12 md6>
-        <h1 style="font-size: 36px; color: #FFFFFF; margin-left:-6px; margin-bottom:43px; margin-top:50px;">
+        <h1 style="font-size: 36px; color: #FFFFFF; margin-bottom:43px; margin-top:50px;">
           Contact
         </h1>
         <v-form name="Contact" method="post" netlify ref="form" action="/thanks" v-model="valid" data-netlify="true" class="ma-1">
@@ -58,8 +58,9 @@
               v-model="message"
               color="#B9BCC1"
               name="message"
-              label="Message"
+              label="Write message here..."
               height="128px"
+              no-resize
             >
             </v-textarea>
           </v-flex>
@@ -79,15 +80,17 @@
           </v-flex>
         </v-form>
       </v-flex>
+
+      <!-- Don't change the card text's margins, it'll mess everything up. I know it looks weird on localhost, but it aligns properly on deployment. -->
+      
       <v-flex xs12 md6>
         <v-card 
           width="330px" 
-          height="371px"
           color="#191C21"
           dark
           class="hidden-sm-and-down"
-          style="margin-left:110px; margin-top:50px; border: 1px solid #E1E7ED; box-sizing: border-box; border-radius: 3px;">
-          <v-card-text class="ma-3">
+          style="margin-left:110px; margin-top:50px; border: 1px solid #E1E7ED; border-radius: 3px;">
+          <v-card-text style="padding:30px;">
             <!-- <v-flex xs12>
               <h1 style="font-size: 28px; color: #D8DADE;">
                 Contact Us
@@ -95,7 +98,7 @@
               <p style="font-size: 14px; color: #B9BCC1;" class="ma-1">vKirirom Pine Resort</p>
             </v-flex> -->
             <v-flex xs12>
-              <h2 style="font-size: 20px; color: #D8DADE; margin-left:-6px; margin-bottom:15px;">
+              <h2 style="font-size: 20px; color: #D8DADE; margin-bottom:15px;">
                 Address
               </h2>
               <p style="font-size: 14px; color: #B9BCC1;">Preah Soramarith-Kosamak National Park (Kirirom), Phnom Srouch District, Kompong Speu Province, Cambodia
@@ -104,7 +107,7 @@
               </p>
             </v-flex>
             <v-flex xs12>
-              <h2 style="font-size: 20px; color: #D8DADE; margin-left:-6px; margin-bottom:15px;">
+              <h2 style="font-size: 20px; color: #D8DADE; margin-bottom:15px;">
                 E-Mail
               </h2>
               <p style="font-size: 14px; color: #B9BCC1;">
@@ -112,7 +115,7 @@
               </p>
             </v-flex>
             <v-flex xs12>
-              <h2 style="font-size: 20px; color: #D8DADE; margin-left:-6px; margin-bottom:15px;">
+              <h2 style="font-size: 20px; color: #D8DADE; margin-bottom:15px;">
                 Phone Number
               </h2>
               <p style="font-size: 14px; color: #B9BCC1;">
@@ -122,16 +125,14 @@
           </v-card-text>
         </v-card>
       </v-flex>
-    </v-layout>
-    <v-layout row wrap>
       <v-flex xs12>
         <v-card 
           width="100%" 
           color="#191C21" 
           dark
           class="hidden-md-and-up"
-          style="border: 1px solid #E1E7ED; box-sizing: border-box; border-radius: 3px;">
-          <v-card-text class="ma-3">
+          style="border: 1px solid #E1E7ED; border-radius: 3px; margin:0;">
+          <v-card-text style="padding:30px;">
             <!-- <v-flex xs12>
               <h1 style="font-size: 28px; color: #D8DADE;">
                 Contact
@@ -141,7 +142,7 @@
               </p>
             </v-flex> -->
             <v-flex xs12>
-              <h2 style="font-size: 20px; color: #D8DADE; margin-left:-6px; margin-bottom:15px;">
+              <h2 style="font-size: 20px; color: #D8DADE; margin-bottom:15px;">
                 Address
               </h2>
               <p style="font-size: 14px; color: #B9BCC1;">Preah Soramarith-Kosamak National Park (Kirirom), Phnom Srouch District, Kompong Speu Province, Cambodia
@@ -150,7 +151,7 @@
               </p>
             </v-flex>
             <v-flex xs12>
-              <h2 style="font-size: 20px; color: #D8DADE; margin-left:-6px; margin-bottom:15px;">
+              <h2 style="font-size: 20px; color: #D8DADE; margin-bottom:15px;">
                 E-Mail
               </h2>
               <p style="font-size: 14px; color: #B9BCC1;">
@@ -158,7 +159,7 @@
               </p>
             </v-flex>
             <v-flex xs12>
-              <h2 style="font-size: 20px; color: #D8DADE; margin-left:-6px; margin-bottom:15px;">
+              <h2 style="font-size: 20px; color: #D8DADE; margin-bottom:15px;">
                 Phone Number
               </h2>
               <p style="font-size: 14px; color: #B9BCC1;">
