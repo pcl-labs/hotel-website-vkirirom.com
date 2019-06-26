@@ -3,9 +3,8 @@
       xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+      http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
-  <url><loc>https://cranky-nightingale-3731fc.netlify.com/</loc></url>
   <url><loc>https://cranky-nightingale-3731fc.netlify.com/search/</loc></url>
   <url><loc>https://cranky-nightingale-3731fc.netlify.com/listing/Bungalow/</loc></url>
   <url><loc>https://cranky-nightingale-3731fc.netlify.com/listing/Luxury-Tent/</loc></url>

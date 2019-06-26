@@ -3,7 +3,7 @@
   <v-container>
     <v-layout row wrap>
       <v-flex xs12 md6>
-        <h1 style="font-size: 36px; color: #FFFFFF;" class="mt-3 mb-5">
+        <h1 style="font-size: 36px; color: #FFFFFF; margin-left:-6px; margin-bottom:43px; margin-top:50px;">
           Contact
         </h1>
         <v-form name="Contact" method="post" netlify ref="form" action="/thanks" v-model="valid" data-netlify="true" class="ma-1">
@@ -59,16 +59,17 @@
               color="#B9BCC1"
               name="message"
               label="Message"
+              height="128px"
             >
             </v-textarea>
           </v-flex>
-          <v-flex xs12 class="mt-4 mb-4">
+          <v-flex xs12>
             <v-btn 
               dark 
               block 
               large 
               depressed 
-              style="padding:0; margin:0; background: #F7B947; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; text-transform:capitalize; font-size: 16px; height:74px;" 
+              style="padding:0; margin-top:30px; margin-bottom:25px; background: #F7B947; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; text-transform:capitalize; font-size: 16px; height:74px;" 
               color="#4B7F52"
               type="submit"
               :disabled="!valid"
@@ -78,58 +79,59 @@
           </v-flex>
         </v-form>
       </v-flex>
-    </v-layout>
-    <v-layout row wrap>
       <v-flex xs12 md6>
         <v-card 
-          width="300px" 
-          color="#191C21" 
+          width="330px" 
+          height="371px"
+          color="#191C21"
           dark
-          class="hidden-sm-and-down pa-1"
-          style="position:absolute; top:10%; left:59%; border: 1px solid #E1E7ED; box-sizing: border-box; border-radius: 3px;">
-          <v-card-text>
+          class="hidden-sm-and-down"
+          style="margin-left:110px; margin-top:50px; border: 1px solid #E1E7ED; box-sizing: border-box; border-radius: 3px;">
+          <v-card-text class="ma-3">
             <!-- <v-flex xs12>
               <h1 style="font-size: 28px; color: #D8DADE;">
                 Contact Us
               </h1>
               <p style="font-size: 14px; color: #B9BCC1;" class="ma-1">vKirirom Pine Resort</p>
             </v-flex> -->
-            <v-flex xs12 class="mb-4">
-              <h2 style="font-size: 20px; color: #D8DADE;">
+            <v-flex xs12>
+              <h2 style="font-size: 20px; color: #D8DADE; margin-left:-6px; margin-bottom:15px;">
                 Address
               </h2>
-              <p style="font-size: 14px; color: #B9BCC1;" class="ma-1">Preah Soramarith-Kosamak National Park (Kirirom), Phnom Srouch District, Kompong Speu Province, Cambodia
-              <br>
-              <a href="https://goo.gl/maps/NusquSFKVm2SHrDy7" style="color: #006064;">Get Directions</a>
+              <p style="font-size: 14px; color: #B9BCC1;">Preah Soramarith-Kosamak National Park (Kirirom), Phnom Srouch District, Kompong Speu Province, Cambodia
+                <p>
+                <a href="https://goo.gl/maps/NusquSFKVm2SHrDy7" style="color: #006064;">Get Directions</a>
               </p>
             </v-flex>
-            <v-flex xs12 class="mb-4">
-              <h2 style="font-size: 20px; color: #D8DADE;">
+            <v-flex xs12>
+              <h2 style="font-size: 20px; color: #D8DADE; margin-left:-6px; margin-bottom:15px;">
                 E-Mail
               </h2>
-              <p style="font-size: 14px; color: #B9BCC1;" class="ma-1">
+              <p style="font-size: 14px; color: #B9BCC1;">
                 <a href="mailto:info@vkirirom.com" style="color: #006064;">info@vkirirom.com</a>
               </p>
             </v-flex>
             <v-flex xs12>
-              <h2 style="font-size: 20px; color: #D8DADE;">
+              <h2 style="font-size: 20px; color: #D8DADE; margin-left:-6px; margin-bottom:15px;">
                 Phone Number
               </h2>
-              <p style="font-size: 14px; color: #B9BCC1;" class="ma-1">
+              <p style="font-size: 14px; color: #B9BCC1;">
                 <a href="tel:+(855)78777284" style="color: #006064;">+(855) 78 777 284</a>
               </p>
             </v-flex>
           </v-card-text>
         </v-card>
       </v-flex>
+    </v-layout>
+    <v-layout row wrap>
       <v-flex xs12>
         <v-card 
           width="100%" 
           color="#191C21" 
           dark
-          class="hidden-md-and-up mb-4 mt-4 pa-1"
+          class="hidden-md-and-up"
           style="border: 1px solid #E1E7ED; box-sizing: border-box; border-radius: 3px;">
-          <v-card-text>
+          <v-card-text class="ma-3">
             <!-- <v-flex xs12>
               <h1 style="font-size: 28px; color: #D8DADE;">
                 Contact
@@ -138,28 +140,28 @@
                 Kirirom Institute of Technology
               </p>
             </v-flex> -->
-            <v-flex xs12 class="mb-4">
-              <h2 style="font-size: 20px; color: #D8DADE;">
+            <v-flex xs12>
+              <h2 style="font-size: 20px; color: #D8DADE; margin-left:-6px; margin-bottom:15px;">
                 Address
               </h2>
-              <p style="font-size: 14px; color: #B9BCC1;" class="ma-1">Preah Soramarith-Kosamak National Park (Kirirom), Phnom Srouch District, Kompong Speu Province, Cambodia
-              <br>
-              <a href="https://goo.gl/maps/NusquSFKVm2SHrDy7" style="color: #006064;">Get Directions</a>
+              <p style="font-size: 14px; color: #B9BCC1;">Preah Soramarith-Kosamak National Park (Kirirom), Phnom Srouch District, Kompong Speu Province, Cambodia
+                <p>
+                <a href="https://goo.gl/maps/NusquSFKVm2SHrDy7" style="color: #006064;">Get Directions</a>
               </p>
             </v-flex>
-            <v-flex xs12 class="mb-4">
-              <h2 style="font-size: 20px; color: #D8DADE;">
+            <v-flex xs12>
+              <h2 style="font-size: 20px; color: #D8DADE; margin-left:-6px; margin-bottom:15px;">
                 E-Mail
               </h2>
-              <p style="font-size: 14px; color: #B9BCC1;" class="ma-1">
+              <p style="font-size: 14px; color: #B9BCC1;">
                 <a href="mailto:info@vkirirom.com" style="color: #006064;">info@vkirirom.com</a>
               </p>
             </v-flex>
             <v-flex xs12>
-              <h2 style="font-size: 20px; color: #D8DADE;">
+              <h2 style="font-size: 20px; color: #D8DADE; margin-left:-6px; margin-bottom:15px;">
                 Phone Number
               </h2>
-              <p style="font-size: 14px; color: #B9BCC1;" class="ma-1">
+              <p style="font-size: 14px; color: #B9BCC1;">
                 <a href="tel:+(855)78777284" style="color: #006064;">+(855) 78 777 284</a>
               </p>
             </v-flex>
@@ -203,6 +205,12 @@ export default {
 </script>
 
 <style>
+  .v-input__slot{
+    margin: 0;
+    height: 55px;
+    /*To make the total margin:30px */
+    margin-bottom: 10px; 
+  }
   input:focus, textarea:focus { 
     border-color: 1px solid #3D424E !important;
   }
