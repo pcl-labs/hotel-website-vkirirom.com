@@ -44,130 +44,126 @@
     <v-container>
       <v-layout row wrap>
         <v-flex xs12 md6>
-          <h1 style="color: #FFFFFF;" class="mt-2">{{resort.title}}</h1>
-          <p style="font-size: 16px; color: #687C94;" class="mt-2">Entire {{resort.title}}</p>
-          <div class="text-xs-left mb-5 mt-4 font-weight-regular">
-            <p class="subDescription">
-              <img class="mr-2" :src="MultiUsers" />
-              <span class="mr-3">{{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.capacity }} guests</span>
-              <!-- <span class="mr-5 font-weight-bold">{{ bedRooms.length }} bedrooms</span> -->
-              <span class="mr-3">{{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }} Bed(s)</span>
-              <span>Type: {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}</span>
-            </p>
-          </div>
-          <div class="text-xs-left font-weight-regular">
-            <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
-              {{resort.h2}}
-            </p>
-          </div>
-          <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
-            Location
-          </h2>
-          <p>
-            <a href="https://goo.gl/maps/NusquSFKVm2SHrDy7" style="color: #006064;">Get Directions</a>
-          </p>
-          <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
-            Spaces
-          </h2>
-          <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
-            {{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.spaces[0]}}
-          </p>
-          <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
-            Getting Around
-          </h2>
-          <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
-            {{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.gettingAround}}
-          </p>
-          <v-layout row flex>
-          <v-flex xs12 md6 class="availability">
+          <v-flex xs12>
+            <h1 style="color: #FFFFFF; margin-top:30px;">{{resort.title}}</h1>
+            <p style="font-size: 16px; color: #687C94;" class="mt-2">Entire {{resort.title}}</p>
+            <div class="text-xs-left mb-5 mt-4 font-weight-regular">
+              <p class="subDescription">
+                <img class="mr-2" :src="MultiUsers" />
+                <span class="mr-3">{{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.capacity }} guests</span>
+                <!-- <span class="mr-5 font-weight-bold">{{ bedRooms.length }} bedrooms</span> -->
+                <span class="mr-3">{{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }} Bed(s)</span>
+                <span>Type: {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}</span>
+              </p>
+            </div>
+            <div class="text-xs-left font-weight-regular">
+              <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
+                {{resort.h2}}
+              </p>
+            </div>
             <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
-              Availability
+              Location
             </h2>
-            <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">Updated 3 days ago</p>
-            <!-- <Calendar
-              :fullScreenMobile="false"
-              :mode="'range'"
-              triggerID="availability"
-              monthsToShow="2"
-              :showInput="false"
-              :cardBorder="false"
-              :showActionButtons="false"
-            >
-            </Calendar> -->
+            <p>
+              <a href="https://goo.gl/maps/NusquSFKVm2SHrDy7" style="color: #006064;">Get Directions</a>
+            </p>
+            <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
+              Spaces
+            </h2>
+            <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
+              {{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.spaces[0]}}
+            </p>
+            <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
+              Getting Around
+            </h2>
+            <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
+              {{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.gettingAround}}
+            </p>
+            <v-layout row flex>
+            <v-flex xs12 md6 class="availability">
+              <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
+                Availability
+              </h2>
+              <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">Updated 3 days ago</p>
+              <!-- <Calendar
+                :fullScreenMobile="false"
+                :mode="'range'"
+                triggerID="availability"
+                monthsToShow="2"
+                :showInput="false"
+                :cardBorder="false"
+                :showActionButtons="false"
+              >
+              </Calendar> -->
+            </v-flex>
+            </v-layout>
+            <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
+              Amenities
+            </h2>
           </v-flex>
-          </v-layout>
-          <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
-            Amenities
-          </h2>
+          <v-flex xs12>
+            <v-layout row wrap justify-space-between align-center>
+              <v-flex xs6 md6 class="py-3">
+                <img :src="wifi">
+                <br>
+                <span style="font-size: 16px; color: #B9BCC1;">Wifi</span>
+              </v-flex>
+              <v-flex xs6 md6 class="py-3">
+                <img :src="cutlery">
+                <br>
+                <span style="font-size: 16px; color: #B9BCC1;">Cutlery</span>
+              </v-flex>
+              <v-flex xs6 md6 class="py-3">
+                <img :src="HairDryer">
+                <br>
+                <span style="font-size: 16px; color: #B9BCC1;">Hair Dryer</span>
+              </v-flex>
+              <v-flex xs6 md6 class="py-3">
+                <img :src="Washer">
+                <br>
+                <span style="font-size: 16px; color: #B9BCC1;">Washer</span>
+              </v-flex>
+            </v-layout>
+          </v-flex>
+          <!-- <v-flex xs12 md4>
+            <v-layout row wrap justify-space-between align-center>
+              <v-flex>
+                <v-icon color="#B9BCC1" size="24px">kitchen</v-icon>
+                <span style="font-size: 16px; color: #B9BCC1;">Kitchen</span>
+              </v-flex>
+              <v-flex>
+                <v-icon color="#B9BCC1" size="24px">local_cafe</v-icon>
+                <span style="font-size: 16px; color: #B9BCC1;">Coffee</span>
+              </v-flex>
+              <v-flex>
+                <v-icon color="#B9BCC1" size="24px">local_cafe</v-icon>
+                <span style="font-size: 16px; color: #B9BCC1;">Coffee</span>
+              </v-flex>
+              <v-flex>
+                <v-icon color="#B9BCC1" size="24px">local_cafe</v-icon>
+                <span style="font-size: 16px; color: #B9BCC1;">Coffee</span>
+              </v-flex>
+              <v-flex>
+                <v-icon color="#B9BCC1" size="24px">local_cafe</v-icon>
+                <span style="font-size: 16px; color: #B9BCC1;">Coffee</span>
+              </v-flex>
+            </v-layout>
+          </v-flex> -->
+          <v-flex xs12>
+            <v-btn
+              block
+              color="#F7B947"
+              dark
+              class="text-capitalize font-weight-bold"
+              style="border-radius: 4px; max-width:238px; height:50px; margin-bottom:100px; margin-top:45px;"
+              to="/contact"
+            >
+              Contact<v-icon>keyboard_arrow_right</v-icon>
+            </v-btn>
+          </v-flex>
         </v-flex>
-      </v-layout>
-      <v-layout row wrap class="mb-3">
-        <v-flex xs12 md6>
-          <v-layout row wrap justify-space-between align-center>
-            <v-flex xs6 md6 class="py-3">
-              <img :src="wifi">
-              <br>
-              <span style="font-size: 16px; color: #B9BCC1;">Wifi</span>
-            </v-flex>
-            <v-flex xs6 md6 class="py-3">
-              <img :src="cutlery">
-              <br>
-              <span style="font-size: 16px; color: #B9BCC1;">Cutlery</span>
-            </v-flex>
-            <v-flex xs6 md6 class="py-3">
-              <img :src="HairDryer">
-              <br>
-              <span style="font-size: 16px; color: #B9BCC1;">Hair Dryer</span>
-            </v-flex>
-            <v-flex xs6 md6 class="py-3">
-              <img :src="Washer">
-              <br>
-              <span style="font-size: 16px; color: #B9BCC1;">Washer</span>
-            </v-flex>
-          </v-layout>
-        </v-flex>
-        <!-- <v-flex xs12 md4>
-          <v-layout row wrap justify-space-between align-center>
-            <v-flex>
-              <v-icon color="#B9BCC1" size="24px">kitchen</v-icon>
-              <span style="font-size: 16px; color: #B9BCC1;">Kitchen</span>
-            </v-flex>
-            <v-flex>
-              <v-icon color="#B9BCC1" size="24px">local_cafe</v-icon>
-              <span style="font-size: 16px; color: #B9BCC1;">Coffee</span>
-            </v-flex>
-            <v-flex>
-              <v-icon color="#B9BCC1" size="24px">local_cafe</v-icon>
-              <span style="font-size: 16px; color: #B9BCC1;">Coffee</span>
-            </v-flex>
-            <v-flex>
-              <v-icon color="#B9BCC1" size="24px">local_cafe</v-icon>
-              <span style="font-size: 16px; color: #B9BCC1;">Coffee</span>
-            </v-flex>
-            <v-flex>
-              <v-icon color="#B9BCC1" size="24px">local_cafe</v-icon>
-              <span style="font-size: 16px; color: #B9BCC1;">Coffee</span>
-            </v-flex>
-          </v-layout>
-        </v-flex> -->
-      </v-layout>
-      <v-layout row wrap>
-        <v-flex xs12>
-          <v-btn
-            block
-            color="#F7B947"
-            dark
-            class="text-capitalize font-weight-bold"
-            style="border-radius: 4px; max-width:238px; height:50px; margin-bottom:100px;"
-            to="/contact"
-          >
-            Contact<v-icon>keyboard_arrow_right</v-icon>
-          </v-btn>
-        </v-flex>
-      </v-layout>
-      <v-layout row wrap>
         <v-flex md6 class="hidden-sm-and-down">
-          <v-card class="pa-4 mt-5 ml-2 bookForm" width="300px" color="#191C21" style="position:absolute; top:2%; left:59%; border: 1px solid #E1E7ED; border-radius: 3px;">
+          <v-card class="bookForm" width="300px" color="#191C21" style="border: 1px solid #E1E7ED; border-radius: 3px; margin-top:30px; margin-left:77px; padding:25px;">
             <v-form name="bookForm" method="post" netlify ref="form" v-model="valid"  action="/thanks" data-netlify="true">
               <input type="hidden" name="form-name" value="bookForm"/>
               <v-layout row wrap>
