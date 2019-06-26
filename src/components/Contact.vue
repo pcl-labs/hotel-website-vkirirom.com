@@ -60,6 +60,7 @@
               name="message"
               label="Message"
               height="128px"
+              no-resize
             >
             </v-textarea>
           </v-flex>
