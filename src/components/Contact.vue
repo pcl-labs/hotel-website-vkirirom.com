@@ -3,10 +3,12 @@
   <v-container>
     <v-layout row wrap>
       <v-flex xs12 md6>
-        <h1 style="font-size: 36px; color: #FFFFFF; margin-bottom:43px; margin-top:50px;">
-          Contact
-        </h1>
-        <v-form name="Contact" method="post" netlify ref="form" action="/thanks" v-model="valid" data-netlify="true" class="ma-1">
+        <v-flex xs12>
+          <h1 style="font-size: 36px; color: #FFFFFF; margin-bottom:43px; margin-top:50px;">
+            Contact
+          </h1>
+        </v-flex>
+        <v-form name="Contact" method="post" netlify ref="form" action="/thanks" v-model="valid" data-netlify="true">
           <input type="hidden" name="form-name" value="Contact"/>
           <v-flex xs12>
             <v-text-field
