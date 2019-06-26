@@ -95,7 +95,7 @@
               <p style="font-size: 14px; color: #B9BCC1;" class="ma-1">vKirirom Pine Resort</p>
             </v-flex> -->
             <v-flex xs12>
-              <h2 style="font-size: 20px; color: #D8DADE; margin-left:-6px; margin-bottom:15px;">
+              <h2 style="font-size: 20px; color: #D8DADE; margin-bottom:15px;">
                 Address
               </h2>
               <p style="font-size: 14px; color: #B9BCC1;">Preah Soramarith-Kosamak National Park (Kirirom), Phnom Srouch District, Kompong Speu Province, Cambodia
@@ -104,7 +104,7 @@
               </p>
             </v-flex>
             <v-flex xs12>
-              <h2 style="font-size: 20px; color: #D8DADE; margin-left:-6px; margin-bottom:15px;">
+              <h2 style="font-size: 20px; color: #D8DADE; margin-bottom:15px;">
                 E-Mail
               </h2>
               <p style="font-size: 14px; color: #B9BCC1;">
@@ -112,7 +112,7 @@
               </p>
             </v-flex>
             <v-flex xs12>
-              <h2 style="font-size: 20px; color: #D8DADE; margin-left:-6px; margin-bottom:15px;">
+              <h2 style="font-size: 20px; color: #D8DADE; margin-bottom:15px;">
                 Phone Number
               </h2>
               <p style="font-size: 14px; color: #B9BCC1;">
