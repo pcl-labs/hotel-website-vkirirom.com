@@ -101,7 +101,7 @@
           </h2>
         </v-flex>
       </v-layout>
-      <v-layout row wrap class="mb-5">
+      <v-layout row wrap class="mb-3">
         <v-flex xs12 md6>
           <v-layout row wrap justify-space-between align-center>
             <v-flex xs6 md6 class="py-3">
@@ -150,6 +150,20 @@
             </v-flex>
           </v-layout>
         </v-flex> -->
+      </v-layout>
+      <v-layout row wrap>
+        <v-flex xs12>
+          <v-btn
+            block
+            color="#F7B947"
+            dark
+            class="text-capitalize font-weight-bold"
+            style="border-radius: 4px; max-width:238px; height:50px; margin-bottom:100px;"
+            to="/contact"
+          >
+            Contact<v-icon>keyboard_arrow_right</v-icon>
+          </v-btn>
+        </v-flex>
       </v-layout>
       <v-layout row wrap>
         <v-flex md6 class="hidden-sm-and-down">

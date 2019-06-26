@@ -82,12 +82,11 @@
       <v-flex xs12 md6>
         <v-card 
           width="330px" 
-          height="371px"
           color="#191C21"
           dark
           class="hidden-sm-and-down"
-          style="margin-left:110px; margin-top:50px; border: 1px solid #E1E7ED; box-sizing: border-box; border-radius: 3px;">
-          <v-card-text class="ma-3">
+          style="margin-left:110px; margin-top:50px; border: 1px solid #E1E7ED; border-radius: 3px;">
+          <v-card-text style="padding:30px;">
             <!-- <v-flex xs12>
               <h1 style="font-size: 28px; color: #D8DADE;">
                 Contact Us
@@ -122,16 +121,14 @@
           </v-card-text>
         </v-card>
       </v-flex>
-    </v-layout>
-    <v-layout row wrap>
       <v-flex xs12>
         <v-card 
           width="100%" 
           color="#191C21" 
           dark
           class="hidden-md-and-up"
-          style="border: 1px solid #E1E7ED; box-sizing: border-box; border-radius: 3px;">
-          <v-card-text class="ma-3">
+          style="border: 1px solid #E1E7ED; border-radius: 3px; margin:0;">
+          <v-card-text style="padding:30px;">
             <!-- <v-flex xs12>
               <h1 style="font-size: 28px; color: #D8DADE;">
                 Contact
