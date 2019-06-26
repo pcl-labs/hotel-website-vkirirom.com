@@ -3,7 +3,7 @@
   <v-container>
     <v-layout row wrap>
       <v-flex xs12 md6>
-        <h1 style="font-size: 36px; color: #FFFFFF; margin-left:-6px; margin-bottom:43px; margin-top:50px;">
+        <h1 style="font-size: 36px; color: #FFFFFF; margin-bottom:43px; margin-top:50px;">
           Contact
         </h1>
         <v-form name="Contact" method="post" netlify ref="form" action="/thanks" v-model="valid" data-netlify="true" class="ma-1">
@@ -141,7 +141,7 @@
               </p>
             </v-flex> -->
             <v-flex xs12>
-              <h2 style="font-size: 20px; color: #D8DADE; margin-left:-6px; margin-bottom:15px;">
+              <h2 style="font-size: 20px; color: #D8DADE; margin-bottom:15px;">
                 Address
               </h2>
               <p style="font-size: 14px; color: #B9BCC1;">Preah Soramarith-Kosamak National Park (Kirirom), Phnom Srouch District, Kompong Speu Province, Cambodia
@@ -150,7 +150,7 @@
               </p>
             </v-flex>
             <v-flex xs12>
-              <h2 style="font-size: 20px; color: #D8DADE; margin-left:-6px; margin-bottom:15px;">
+              <h2 style="font-size: 20px; color: #D8DADE; margin-bottom:15px;">
                 E-Mail
               </h2>
               <p style="font-size: 14px; color: #B9BCC1;">
@@ -158,7 +158,7 @@
               </p>
             </v-flex>
             <v-flex xs12>
-              <h2 style="font-size: 20px; color: #D8DADE; margin-left:-6px; margin-bottom:15px;">
+              <h2 style="font-size: 20px; color: #D8DADE; margin-bottom:15px;">
                 Phone Number
               </h2>
               <p style="font-size: 14px; color: #B9BCC1;">

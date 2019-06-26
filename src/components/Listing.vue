@@ -498,6 +498,7 @@
                   color="#B9BCC1"
                   label="Message"
                   class="mb-4"
+                  height="122px"
                 >
                 </v-textarea>
               </v-flex>
