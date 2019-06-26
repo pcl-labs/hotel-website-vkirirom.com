@@ -251,7 +251,7 @@
               </v-flex>
               <v-layout row wrap justify-center justify-space-between>
                  <v-flex mr-2 mb-4>
-                <v-btn-toggle v-model="toggle0" style="background-color:transparent; width:100%;">
+                <v-btn-toggle v-model="toggle0" mandatory style="background-color:transparent; width:100%;">
                   <v-btn :value="resort.modules.hotel.beds[0].type" flat dark outline block text-xs-center style="border: 3px solid #B9BCC1; box-sizing: border-box; border-radius: 3px; height:108px; font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
                     <p class="mt-4">  
                       {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }}
@@ -298,6 +298,7 @@
                   name="Message"
                   label="Message"
                   class="mb-4"
+                  height="122px"
                 >
                 </v-textarea>
               </v-flex>
@@ -567,7 +568,7 @@ export default {
   },
   data(){
     return{
-      toggle0:0,
+      toggle0:1,
       toggle1:0,
       beds: false,
       valid: false,
@@ -632,6 +633,12 @@ export default {
 </script>
 
 <style lang="scss">
+  .v-input__slot{
+    margin: 0;
+    height: 55px;
+    /*To make the total margin:30px */
+    margin-bottom: 10px; 
+  }
   html {
     scroll-behavior: smooth;
   }
