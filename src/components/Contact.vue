@@ -58,7 +58,7 @@
               v-model="message"
               color="#B9BCC1"
               name="message"
-              label="Message"
+              label="Write message here..."
               height="128px"
               no-resize
             >
@@ -80,6 +80,9 @@
           </v-flex>
         </v-form>
       </v-flex>
+
+      <!-- Don't change the card text's margins, it'll mess everything up. I know it looks weird on localhost, but it aligns properly on deployment. -->
+      
       <v-flex xs12 md6>
         <v-card 
           width="330px" 

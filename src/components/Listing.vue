@@ -306,7 +306,7 @@
                   dark
                   color="#B9BCC1"
                   name="Message"
-                  label="Message"
+                  label="Write message here..."
                   class="mb-4"
                   height="122px"
                   no-resize
@@ -507,7 +507,7 @@
                   dark
                   name="Message"
                   color="#B9BCC1"
-                  label="Message"
+                  label="Write message here..."
                   class="mb-4"
                   height="122px"
                   no-resize
