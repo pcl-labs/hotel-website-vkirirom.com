@@ -82,7 +82,7 @@
       <v-flex xs12 md6>
         <v-card 
           width="330px" 
-          height="361px"
+          height="371px"
           color="#191C21"
           dark
           class="hidden-sm-and-down"
