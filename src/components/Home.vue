@@ -249,6 +249,7 @@
         </v-flex>
       </v-layout>
     </v-container>
+    <foo></foo>
     <Footer></Footer>
   </v-container-fluid>
 </template>
@@ -263,12 +264,14 @@ import headerImg from '../assets/freedom-camping-4m-bell-tent-5_copy_3_6e7cf404-
 import food from '../assets/istockphoto-614420320-612x612.jpg'
 import ListCover from './Home/ListCover.vue'
 import Footer from './Footer.vue'
+import VueMarkdown from 'vue-markdown'
 // import { ContentLoader } from 'vue-content-loader'
 
 export default {
   components:{
     ListCover,
     Footer,
+    VueMarkdown
     // ContentLoader
   },
   data() {
