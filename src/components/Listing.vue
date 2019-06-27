@@ -77,7 +77,9 @@
               Getting Around
             </h2>
             <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
-              {{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.gettingAround}}
+              <vue-markdown>
+                {{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.gettingAround}}
+              </vue-markdown>
             </p>
             <v-layout row flex>
             <v-flex xs12 md6 class="availability">
@@ -557,10 +559,12 @@ import bed from '../assets/icons/bed.svg'
 import MultiUsers from '../assets/icons/multiple-users-silhouette.svg'
 import format from 'date-fns/format'
 import Footer from './Footer.vue'
+import VueMarkdown from 'vue-markdown'
 
 export default {
   components:{
-    Footer
+    Footer,
+    VueMarkdown
   },
   head:{
     title: function() {
