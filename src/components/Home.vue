@@ -139,13 +139,27 @@
     <v-layout row wrap justify-space-between>
       <ListCover title="Experiences" class="mb-3 pl-1" style="font-size: 16px; line-height: 19px; color: #D8DADE;"></ListCover>
       <v-flex xs12 sm6 md4 lg4>
-        <v-card height="100%" width="100%" dark color="transparent" href="#" flat >
-          <v-img :src="experience1" height="150px"></v-img>
+        <router-link to="/experience/Family-Fun-Time">
+          <v-carousel height="150px" hide-controls dark width="100%" class="hidden-md-and-up">
+            <v-carousel-item :src="familyfuntime.featuredImage" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item v-if="familyfuntime.images.length > 0" :src="familyfuntime.images[0].url" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item v-if="familyfuntime.images.length > 0" :src="familyfuntime.images[1].url" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item v-if="familyfuntime.images.length > 0" :src="familyfuntime.images[2].url" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item v-if="familyfuntime.images.length > 0" :src="familyfuntime.images[3].url" style="background-size:contain;">
+            </v-carousel-item>
+          </v-carousel>
+        </router-link>
+        <v-card height="100%" width="100%" dark color="transparent" to="/experience/Family-Fun-Time" flat>
+          <v-img :src="familyfuntime.featuredImage" height="150px" class="hidden-sm-and-down"></v-img>
         <v-layout align-start>
           <v-card-text class="pa-1">
             <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Experience</span>
-            <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>Rock Climbing</h3></span>
-            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> 50$ per person</span>
+            <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>{{familyfuntime.title}}</h3></span>
+            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> {{familyfuntime.ctaText}}$ per person</span>
             </p>
           </v-card-text>
         </v-layout>
@@ -293,6 +307,9 @@ export default {
       },
       belltent: {
         images: []
+      },
+      familyfuntime: {
+        images: []
       }
     }
   },
@@ -305,6 +322,9 @@ export default {
     });
     this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/Luxury-Tent').then(function(data){
       this.luxurytent=data.body;
+    });
+    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/Family-Fun-Time').then(function(data){
+      this.familyfuntime=data.body;
     });
   },
 }
