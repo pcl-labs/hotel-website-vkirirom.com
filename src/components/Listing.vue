@@ -77,7 +77,8 @@
               Getting Around
             </h2>
             <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
-              {{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.gettingAround}}
+              <!-- let vue-markdown be inline with text only, else you'll see an ugly white background -->
+              <vue-markdown>{{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.gettingAround}}</vue-markdown>
             </p>
             <v-layout row flex>
             <v-flex xs12 md6 class="availability">
