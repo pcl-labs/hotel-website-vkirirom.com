@@ -77,9 +77,7 @@
               Getting Around
             </h2>
             <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
-              <vue-markdown>
-                {{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.gettingAround}}
-              </vue-markdown>
+              {{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.gettingAround}}
             </p>
             <v-layout row flex>
             <v-flex xs12 md6 class="availability">
