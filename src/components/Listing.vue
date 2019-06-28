@@ -46,19 +46,18 @@
         <v-flex xs12 md6>
           <v-flex xs12>
             <h1 style="color: #FFFFFF; margin-top:30px;">{{resort.title}}</h1>
-            <p style="font-size: 16px; color: #687C94;" class="mt-2">Entire {{resort.title}}</p>
+            <!-- <p style="font-size: 16px; color: #687C94;" class="mt-2">Entire {{resort.title}}</p> -->
             <div class="text-xs-left mb-5 mt-4 font-weight-regular">
               <p class="subDescription">
-                <img class="mr-2" :src="MultiUsers" />
-                <span class="mr-3">{{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.capacity }} guests</span>
+                <span class="mr-3" v-if="resort.modules.hotel.capacity > 0"><img class="mr-2" :src="MultiUsers" /> {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.capacity }} guests</span>
                 <!-- <span class="mr-5 font-weight-bold">{{ bedRooms.length }} bedrooms</span> -->
-                <span class="mr-3">{{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }} Bed(s)</span>
-                <span>Type: {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}</span>
+                <span class="mr-3" v-if="resort.modules.hotel.beds.length > 0">{{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }} Bed(s)</span>
+                <span v-if="resort.modules.hotel.beds.length > 0">Type: {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}</span>
               </p>
             </div>
             <div class="text-xs-left font-weight-regular">
               <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
-                {{resort.h2}}
+                {{resort.description}}
               </p>
             </div>
             <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
@@ -67,25 +66,29 @@
             <p>
               <a href="https://goo.gl/maps/NusquSFKVm2SHrDy7" style="color: #006064;">Get Directions</a>
             </p>
-            <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
-              Spaces
-            </h2>
-            <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
-              {{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.spaces[0]}}
-            </p>
-            <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
-              Getting Around
-            </h2>
-            <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
-              <vue-markdown>{{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.gettingAround}}</vue-markdown>
-            </p>
+            <v-flex v-if="resort.modules.hotel.spaces.length > 0">
+              <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
+                Spaces
+              </h2>
+              <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
+                {{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.spaces[0]}}
+              </p>
+            </v-flex>
+            <v-flex>
+              <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
+                Getting Around
+              </h2>
+              <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
+                <vue-markdown>{{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.gettingAround}}</vue-markdown>
+              </p>
+            </v-flex>
             <v-layout row flex>
-            <v-flex xs12 md6 class="availability">
+            <!-- <v-flex xs12 md6 class="availability">
               <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
                 Availability
               </h2>
               <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">Updated 3 days ago</p>
-              <!-- <Calendar
+              <Calendar
                 :fullScreenMobile="false"
                 :mode="'range'"
                 triggerID="availability"
@@ -94,14 +97,14 @@
                 :cardBorder="false"
                 :showActionButtons="false"
               >
-              </Calendar> -->
-            </v-flex>
+              </Calendar>
+            </v-flex> -->
             </v-layout>
+          </v-flex>
+          <v-flex xs12 v-if="resort.modules.hotel.amenities.length > 0">
             <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
               Amenities
             </h2>
-          </v-flex>
-          <v-flex xs12>
             <v-layout row wrap justify-space-between align-center>
               <v-flex xs6 md6 class="py-3">
                 <img :src="wifi">
@@ -259,7 +262,7 @@
                 dark
               />
               </v-flex>
-              <v-layout row wrap justify-center justify-space-between>
+              <v-layout row wrap justify-center justify-space-between v-if="resort.modules.hotel.beds.length >0">
                 <v-flex mr-2 mb-4>
                 <v-btn-toggle v-model="toggle0" style="background-color:transparent; width:100%;">
                   <v-btn v-if="resort.modules.hotel.beds.length >0" :value="resort.modules.hotel.beds[0].type" flat dark outline block text-xs-center style="border: 3px solid #B9BCC1; box-sizing: border-box; border-radius: 3px; height:108px; font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
@@ -460,7 +463,7 @@
                 @date-two-selected="val => { dateTwo = val }"
               />
               </v-flex>
-              <v-layout row wrap justify-center justify-space-between>
+              <v-layout row wrap justify-center justify-space-between v-if="resort.modules.hotel.beds.length >0">
                 <v-flex mr-2 mb-4>
                 <v-btn-toggle v-model="toggle0" style="background-color:transparent; width:100%;">
                   <v-btn v-if="resort.modules.hotel.beds.length >0" :value="resort.modules.hotel.beds[0].type" flat dark outline block text-xs-center style="border: 3px solid #B9BCC1; box-sizing: border-box; border-radius: 3px; height:108px; font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
