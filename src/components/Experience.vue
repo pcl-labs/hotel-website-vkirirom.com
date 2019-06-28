@@ -5,22 +5,6 @@
         <v-flex xs12 sm12 md6 class="pa-0 overflow-hidden hidden-sm-and-down">
           <v-img class="image" :src="resort.featuredImage" aspect-ratio="1.7"></v-img>
         </v-flex>
-        <v-flex xs12 class="hidden-md-and-up">
-          <v-carousel height="300px" hide-controls dark>
-            <!-- v-if="belltent.images.length > 0" is required to avoid the error "cannot read property 'url' of undefined. 
-            It is needed only when we want to iterate through an array of images, or nested elements.-->
-            <v-carousel-item :src="resort.featuredImage" class="ma-0 pa-0" style="background-size:contain;">
-            </v-carousel-item>
-            <v-carousel-item v-if="resort.images.length > 0" :src="resort.images[0].url" class="ma-0 pa-0" style="background-size:contain;">
-            </v-carousel-item>
-            <v-carousel-item v-if="resort.images.length > 0" :src="resort.images[1].url" class="ma-0 pa-0" style="background-size:contain;">
-            </v-carousel-item>
-            <v-carousel-item v-if="resort.images.length > 0" :src="resort.images[2].url" class="ma-0 pa-0" style="background-size:contain;">
-            </v-carousel-item>
-            <v-carousel-item v-if="resort.images.length > 0" :src="resort.images[3].url" class="ma-0 pa-0" style="background-size:contain;">
-            </v-carousel-item>
-          </v-carousel>
-        </v-flex>
         <v-flex xs12 sm6 class="pa-0 ma-0 overflow-hidden hidden-sm-and-down">
           <v-layout row flex class="pa-0 ma-0 overflow-hidden">
             <v-flex xs12 sm6 class="pa-0 overflow-hidden">
@@ -39,6 +23,22 @@
             </v-flex>
           </v-layout>
         </v-flex>
+        <v-flex xs12 class="hidden-md-and-up">
+          <v-carousel height="300px" hide-controls dark>
+            <!-- v-if="belltent.images.length > 0" is required to avoid the error "cannot read property 'url' of undefined. 
+            It is needed only when we want to iterate through an array of images, or nested elements.-->
+            <v-carousel-item :src="resort.featuredImage">
+            </v-carousel-item>
+            <v-carousel-item v-if="resort.images.length > 0" :src="resort.images[0].url">
+            </v-carousel-item>
+            <v-carousel-item v-if="resort.images.length > 0" :src="resort.images[1].url">
+            </v-carousel-item>
+            <v-carousel-item v-if="resort.images.length > 0" :src="resort.images[2].url">
+            </v-carousel-item>
+            <v-carousel-item v-if="resort.images.length > 0" :src="resort.images[3].url">
+            </v-carousel-item>
+          </v-carousel>
+        </v-flex>
       </v-layout>
     </v-container-fluid>
     <v-container>
@@ -52,7 +52,8 @@
               </h2>
               <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
                 <!-- let vue-markdown be inline with text only, else you'll see an ugly white background -->
-                <vue-markdown>{{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.gettingAround}}</vue-markdown>
+                <!-- Without this v-if, vue-markdown doesn't work -->
+                <vue-markdown v-if="resort.modules.hotel.gettingAround.length >0">{{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.gettingAround}}</vue-markdown>
               </p>
             </div>
             <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
@@ -333,23 +334,6 @@
                 @date-two-selected="val => { dateTwo = val }"
               />
               </v-flex>
-              <!-- idk why is this happening, but without this button, vue-markdown doesn't work -->
-              <v-btn hidden v-if="resort.modules.hotel.beds.length >0">
-              </v-btn>
-              <input
-                name="Type1"
-                hidden
-                :value="toggle1"
-                type="text"
-                readonly
-              />
-              <input
-                name="Type2"
-                hidden
-                :value="toggle0"
-                type="text"
-                readonly
-              />
               <v-flex xs12>
                 <v-textarea
                   outline
@@ -453,8 +437,8 @@ export default {
       slug: this.$route.params.id,
       resort: {
         title:'',
-        description:'',
-        images: [],
+        gettingAround: '',
+        images: []
       }
     }
   },
