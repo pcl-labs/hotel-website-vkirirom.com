@@ -185,34 +185,41 @@
     </v-container>
     <v-container grid-list-md align-content-space-around>
       <h2 style="color: #D8DADE; font-size: 28px;" class="mb-4">Ecotourism</h2>
-      <v-layout row wrap justify-space-between justify-center text-xs-center>
-        <v-flex xs12 sm6 md3 lg3>
-          <v-card height="240px" dark color="#D8DADE" style="border-radius: 3px; min-height:240px;" class="mb-3">
-            <v-card-text><h2 style="color: #FFFFFF; position:absolute; bottom:20px; right:0; left:0;">Protecting Nature</h2></v-card-text>
-          </v-card>
-        </v-flex>
-        <v-spacer></v-spacer>
-        <v-flex xs12 sm6 md3 lg3>
-          <v-card height="240px" dark color="#D8DADE" style="border-radius: 3px; min-height:240px;" class="mb-3">
-            <v-card-text><h2 style="color: #FFFFFF; position:absolute; bottom:20px; right:0; left:0;">Educating Youth</h2></v-card-text>
-          </v-card>
-        </v-flex>
-        <v-flex xs12 sm6 md3 lg3>
-          <v-card height="240px" dark color="#D8DADE" style="border-radius: 3px; min-height:240px;" class="mb-3">
-            <v-card-text><h2 style="color: #FFFFFF; position:absolute; bottom:20px; right:0; left:0;">Growing Organic</h2></v-card-text>
-          </v-card>
-        </v-flex>
-        <v-flex xs12 sm6 md3 lg3>
-          <v-card height="240px" dark color="#D8DADE" style="border-radius: 3px; min-height:240px;" class="mb-3">
-            <v-card-text>
-              <h2 style="color: #FFFFFF; position:absolute; bottom:20px; right:0; left:0;">Buying Locally</h2>
-            </v-card-text>
+      <v-layout row wrap justify-space-between justify-center>
+        <v-flex xs12 sm6 md3 lg3 v-for="blog in blogs" v-bind:key="blog.id">
+          <v-card width="100%" height="100%" dark color="transparent" :to="'/listing/'+ blog.slug" flat >
+            <router-link :to="'/listing/'+ blog.slug">
+              <v-carousel height="240px" hide-controls dark width="100%" class="hidden-md-and-up" v-if="blog.images.length > 0">
+                <v-carousel-item :src="blog.featuredImage" style="background-size:contain;">
+                </v-carousel-item>
+                <v-carousel-item v-for="image in blog.images" v-bind:key="image.order" :src="blog.images[0].url" style="background-size:contain;">
+                </v-carousel-item>
+              </v-carousel>
+            </router-link>
+            <v-img :src="blog.featuredImage" height="240px" class="hidden-sm-and-down">
+              <v-card-text style="position:absolute; bottom:0;">
+                <p>
+                  <!-- <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire {{blog.title}}</span> -->
+                  <span style="color: #FFFFFF; font-size: 17px; "><h3>{{blog.title}}</h3></span>
+                  <span style="font-size: 16px; color: #B9BCC1;" v-if="blog.ctaText>0"> {{blog.ctaText}}$ per night</span>
+                </p>
+              </v-card-text>
+            </v-img>
+            <v-layout align-start>
+              <v-card-text class="pa-1 hidden-md-and-up">
+                <p>
+                  <!-- <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire {{event.title}}</span> -->
+                  <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>{{blog.title}}</h3></span>
+                  <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;" v-if="blog.ctaText>0"> {{blog.ctaText}}$ per night</span>
+                </p>
+              </v-card-text>
+            </v-layout>
           </v-card>
         </v-flex>
       </v-layout>
       <v-layout row wrap justify-space-around justify-center>
-        <v-flex xs12 sm4 md4 lg4>
-          <v-btn block large outline dark style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; max-width:340px; text-transform:capitalize">
+        <v-flex xs12 sm4 md4 lg4 class="mt-3">
+          <v-btn to="/search/blog/" block large outline dark style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; max-width:340px; text-transform:capitalize">
             Learn More <v-icon>keyboard_arrow_right</v-icon>
           </v-btn>
         </v-flex>
@@ -255,6 +262,9 @@ export default {
       events: {
         images: []
       },
+      blogs: {
+        images: []
+      },
     }
   },
   created() {
@@ -266,6 +276,9 @@ export default {
     });
     this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/events').then(function(data){
       this.events=data.body.slice(0,3);
+    });
+    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/blog').then(function(data){
+      this.blogs=data.body.slice(0,4);
     });
   },
 }

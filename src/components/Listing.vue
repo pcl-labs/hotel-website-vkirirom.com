@@ -11,15 +11,15 @@
               <v-img class="image ma-0 pa-0" v-if="resort.images.length > 0" :src="resort.images[0].url" aspect-ratio="1.7"></v-img>
             </v-flex>
             <v-flex xs12 sm6 class="pa-0 overflow-hidden">
-              <v-img class="image" v-if="resort.images.length > 0" :src="resort.images[1].url" aspect-ratio="1.7"></v-img>
+              <v-img class="image" v-if="resort.images.length > 1" :src="resort.images[1].url" aspect-ratio="1.7"></v-img>
             </v-flex>
           </v-layout>
           <v-layout row flex class="pa-0 ma-0 overflow-hidden">
             <v-flex xs12 sm6 class="pa-0 overflow-hidden">
-              <v-img class="image" v-if="resort.images.length > 0" :src="resort.images[2].url" aspect-ratio="1.7"></v-img>
+              <v-img class="image" v-if="resort.images.length > 2" :src="resort.images[2].url" aspect-ratio="1.7"></v-img>
             </v-flex>
             <v-flex xs12 sm6 class="pa-0 overflow-hidden">
-              <v-img class="image" v-if="resort.images.length > 0" :src="resort.images[3].url" aspect-ratio="1.7"></v-img>
+              <v-img class="image" v-if="resort.images.length > 3" :src="resort.images[3].url" aspect-ratio="1.7"></v-img>
             </v-flex>
           </v-layout>
         </v-flex>
@@ -27,15 +27,9 @@
           <v-carousel height="300px" hide-controls dark>
             <!-- v-if="belltent.images.length > 0" is required to avoid the error "cannot read property 'url' of undefined. 
             It is needed only when we want to iterate through an array of images, or nested elements.-->
-            <v-carousel-item :src="resort.featuredImage">
+            <v-carousel-item :src="resort.featuredImage" v-if="resort.images.length > 0">
             </v-carousel-item>
-            <v-carousel-item v-if="resort.images.length > 0" :src="resort.images[0].url">
-            </v-carousel-item>
-            <v-carousel-item v-if="resort.images.length > 0" :src="resort.images[1].url">
-            </v-carousel-item>
-            <v-carousel-item v-if="resort.images.length > 0" :src="resort.images[2].url">
-            </v-carousel-item>
-            <v-carousel-item v-if="resort.images.length > 0" :src="resort.images[3].url">
+            <v-carousel-item v-for="image in resort.images" v-bind:key="image.order" :src="resort.images[0].url" style="background-size:contain;">
             </v-carousel-item>
           </v-carousel>
         </v-flex>
