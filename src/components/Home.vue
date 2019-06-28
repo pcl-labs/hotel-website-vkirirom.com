@@ -254,16 +254,124 @@ export default {
       example4,
 
       accommodations: {
-        images: []
+        title:'',
+        description: '',
+        h2: '',
+        slug: '',
+        backgroundImage: '',
+        featuredImage: '',
+        images: [{
+          order: '',
+          url: '',
+        }],
+        ctaText: '',
+        custom: '',
+        modules: {
+          hotel: {
+            capacity: '',
+            gettingAround: '',
+            location: '',
+            amenities: '',
+            beds: [
+              {
+                count: '',
+                type: '',
+              }
+            ],
+            rules: '',
+            spaces: []
+          }
+        }
       },
       experiences: {
-        images: []
+        title:'',
+        description: '',
+        h2: '',
+        slug: '',
+        backgroundImage: '',
+        featuredImage: '',
+        images: [{
+          order: '',
+          url: '',
+        }],
+        ctaText: '',
+        custom: '',
+        modules: {
+          hotel: {
+            capacity: '',
+            gettingAround: '',
+            location: '',
+            amenities: '',
+            beds: [
+              {
+                count: '',
+                type: '',
+              }
+            ],
+            rules: '',
+            spaces: []
+          }
+        }
       },
       events: {
-        images: []
+        title:'',
+        description: '',
+        h2: '',
+        slug: '',
+        backgroundImage: '',
+        featuredImage: '',
+        images: [{
+          order: '',
+          url: '',
+        }],
+        ctaText: '',
+        custom: '',
+        modules: {
+          hotel: {
+            capacity: '',
+            gettingAround: '',
+            location: '',
+            amenities: '',
+            beds: [
+              {
+                count: '',
+                type: '',
+              }
+            ],
+            rules: '',
+            spaces: []
+          }
+        }
       },
       blogs: {
-        images: []
+        title:'',
+        description: '',
+        h2: '',
+        slug: '',
+        backgroundImage: '',
+        featuredImage: '',
+        images: [{
+          order: '',
+          url: '',
+        }],
+        ctaText: '',
+        custom: '',
+        modules: {
+          hotel: {
+            capacity: '',
+            gettingAround: '',
+            location: '',
+            amenities: '',
+            beds: [
+              {
+                count: '',
+                type: '',
+              }
+            ],
+            rules: '',
+            spaces: []
+          }
+        }
       },
     }
   },
