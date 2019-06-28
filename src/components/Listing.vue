@@ -11,15 +11,15 @@
               <v-img class="image ma-0 pa-0" v-if="resort.images.length > 0" :src="resort.images[0].url" aspect-ratio="1.7"></v-img>
             </v-flex>
             <v-flex xs12 sm6 class="pa-0 overflow-hidden">
-              <v-img class="image" v-if="resort.images.length > 0" :src="resort.images[1].url" aspect-ratio="1.7"></v-img>
+              <v-img class="image" v-if="resort.images.length > 1" :src="resort.images[1].url" aspect-ratio="1.7"></v-img>
             </v-flex>
           </v-layout>
           <v-layout row flex class="pa-0 ma-0 overflow-hidden">
             <v-flex xs12 sm6 class="pa-0 overflow-hidden">
-              <v-img class="image" v-if="resort.images.length > 0" :src="resort.images[2].url" aspect-ratio="1.7"></v-img>
+              <v-img class="image" v-if="resort.images.length > 2" :src="resort.images[2].url" aspect-ratio="1.7"></v-img>
             </v-flex>
             <v-flex xs12 sm6 class="pa-0 overflow-hidden">
-              <v-img class="image" v-if="resort.images.length > 0" :src="resort.images[3].url" aspect-ratio="1.7"></v-img>
+              <v-img class="image" v-if="resort.images.length > 3" :src="resort.images[3].url" aspect-ratio="1.7"></v-img>
             </v-flex>
           </v-layout>
         </v-flex>
@@ -29,13 +29,13 @@
             It is needed only when we want to iterate through an array of images, or nested elements.-->
             <v-carousel-item :src="resort.featuredImage">
             </v-carousel-item>
-            <v-carousel-item v-if="resort.images.length > 0" :src="resort.images[0].url">
+            <v-carousel-item v-if="resort.images.length > 0" :src="resort.images[0].url" style="background-size:contain;">
             </v-carousel-item>
-            <v-carousel-item v-if="resort.images.length > 0" :src="resort.images[1].url">
+            <v-carousel-item v-if="resort.images.length > 1" :src="resort.images[1].url" style="background-size:contain;">
             </v-carousel-item>
-            <v-carousel-item v-if="resort.images.length > 0" :src="resort.images[2].url">
+            <v-carousel-item v-if="resort.images.length > 2" :src="resort.images[2].url" style="background-size:contain;">
             </v-carousel-item>
-            <v-carousel-item v-if="resort.images.length > 0" :src="resort.images[3].url">
+            <v-carousel-item v-if="resort.images.length > 3" :src="resort.images[3].url" style="background-size:contain;">
             </v-carousel-item>
           </v-carousel>
         </v-flex>
@@ -51,8 +51,8 @@
               <p class="subDescription">
                 <span class="mr-3" v-if="resort.modules.hotel.capacity > 0"><img class="mr-2" :src="MultiUsers" /> {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.capacity }} guests</span>
                 <!-- <span class="mr-5 font-weight-bold">{{ bedRooms.length }} bedrooms</span> -->
-                <span class="mr-3" v-if="resort.modules.hotel.beds.length > 0">{{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }} Bed(s)</span>
-                <span v-if="resort.modules.hotel.beds.length > 0">Type: {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}</span>
+                <span class="mr-3" v-if="resort.modules.hotel.beds > 0">{{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }} Bed(s)</span>
+                <span v-if="resort.modules.hotel.beds > 0">Type: {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}</span>
               </p>
             </div>
             <div class="text-xs-left font-weight-regular">
@@ -66,7 +66,7 @@
             <p>
               <a href="https://goo.gl/maps/NusquSFKVm2SHrDy7" style="color: #006064;">Get Directions</a>
             </p>
-            <v-flex v-if="resort.modules.hotel.spaces.length > 0">
+            <v-flex v-if="resort.modules.hotel.spaces > 0">
               <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
                 Spaces
               </h2>
@@ -101,7 +101,7 @@
             </v-flex> -->
             </v-layout>
           </v-flex>
-          <v-flex xs12 v-if="resort.modules.hotel.amenities.length > 0">
+          <v-flex xs12 v-if="resort.modules.hotel.amenities> 0">
             <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
               Amenities
             </h2>
@@ -167,10 +167,10 @@
         </v-flex>
         <v-flex md6 class="hidden-sm-and-down">
           <v-card class="bookForm" width="300px" color="#191C21" style="border: 1px solid #E1E7ED; border-radius: 3px; margin-top:30px; margin-left:77px; padding:25px;">
-            <v-form name="bookForm" method="post" netlify ref="form" v-model="valid"  action="/thanks" data-netlify="true">
-              <input type="hidden" name="form-name" value="bookForm"/>
+            <v-form :name="resort.name" method="post" netlify ref="form" v-model="valid"  action="/thanks" data-netlify="true">
+              <input type="hidden" name="form-name" :value="resort.name"/>
               <v-layout row wrap>
-              <v-flex xs12>
+              <v-flex xs12 v-if="resort.ctaText > 0">
                 <p class="subheading text-xs-center pb-2">
                   <span style="font-weight: bold; font-size: 28px; color: #B9BCC1;">&dollar;{{ resort.ctaText }} </span>
                   <span style="font-size: 16px; color: #B9BCC1;"> per night</span>
@@ -262,7 +262,7 @@
                 dark
               />
               </v-flex>
-              <v-layout row wrap justify-center justify-space-between v-if="resort.modules.hotel.beds.length >0">
+              <v-layout row wrap justify-center justify-space-between v-if="resort.modules.hotel.beds >0">
                 <v-flex mr-2 mb-4>
                 <v-btn-toggle v-model="toggle0" style="background-color:transparent; width:100%;">
                   <v-btn v-if="resort.modules.hotel.beds.length >0" :value="resort.modules.hotel.beds[0].type" flat dark outline block text-xs-center style="border: 3px solid #B9BCC1; box-sizing: border-box; border-radius: 3px; height:108px; font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
@@ -342,7 +342,7 @@
       <v-layout row wrap>
         <v-flex xs12>
           <div id="bookBottom" class="hidden-md-and-up book-bottom">
-          <v-flex xs12>
+          <v-flex xs12 v-if="resort.ctaText > 0">
             <p>
               <span style="font-size: 28px; color: #D8DADE;">&dollar;{{resort.ctaText}}</span>
               <span style="font-size: 16px; color: #B9BCC1;"> per night</span>
@@ -363,8 +363,8 @@
               </v-btn>
             </template>
           <v-card class="bookForm" color="#191C21" style="position:absolute;">
-            <v-form name="Accommodation"  method="post" netlify ref="form" v-model="valid" class="ma-5" action="/thanks" data-netlify="true">
-              <input type="hidden" name="form-name" value="bookForm" />
+            <v-form :name="resort.name"  method="post" netlify ref="form" v-model="valid" class="ma-5" action="/thanks" data-netlify="true">
+              <input type="hidden" name="form-name" :value="resort.name" />
               <v-layout row wrap>
               <v-flex xs1>
                 <v-btn icon dark @click="bookDialog = false">
@@ -372,7 +372,7 @@
                 </v-btn>
               </v-flex>
               <v-spacer></v-spacer>
-              <v-flex xs11>
+              <v-flex xs11 v-if="resort.ctaText > 0">
                 <p class="subheading text-xs-center pb-2">
                   <span style="font-weight: bold; font-size: 28px; color: #B9BCC1;">&dollar;{{ resort.ctaText }} </span>
                   <span style="font-size: 16px; color: #B9BCC1;"> per night</span>
@@ -463,7 +463,7 @@
                 @date-two-selected="val => { dateTwo = val }"
               />
               </v-flex>
-              <v-layout row wrap justify-center justify-space-between v-if="resort.modules.hotel.beds.length >0">
+              <v-layout row wrap justify-center justify-space-between v-if="resort.modules.hotel.beds >0">
                 <v-flex mr-2 mb-4>
                 <v-btn-toggle v-model="toggle0" style="background-color:transparent; width:100%;">
                   <v-btn v-if="resort.modules.hotel.beds.length >0" :value="resort.modules.hotel.beds[0].type" flat dark outline block text-xs-center style="border: 3px solid #B9BCC1; box-sizing: border-box; border-radius: 3px; height:108px; font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
@@ -623,10 +623,42 @@ export default {
       bed,
 
       slug: this.$route.params.id,
+      // categories:[
+      //   {
+      //     id: '',
+      //     name: '',
+      //   }
+      // ],
       resort: {
+        name: '',
         title:'',
-        description:'',
-        images: [],
+        description: '',
+        h2: '',
+        slug: '',
+        backgroundImage: '',
+        featuredImage: '',
+        images: [{
+          order: '',
+          url: '',
+        }],
+        ctaText: '',
+        custom: '',
+        modules: {
+          hotel: {
+            capacity: '',
+            gettingAround: '',
+            location: '',
+            amenities: '',
+            beds: [
+              {
+                count: '',
+                type: '',
+              }
+            ],
+            rules: '',
+            spaces: []
+          }
+        }
       }
     }
   },
@@ -646,6 +678,9 @@ export default {
     this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/'+this.slug).then(function(data){
       this.resort=data.body;
     });
+    // this.$http.get('https://stagingapi.whynot.earth/api/v0/categories').then(function(data){
+    //   this.categories=data.body;
+    // });
   },
 }
 </script>
