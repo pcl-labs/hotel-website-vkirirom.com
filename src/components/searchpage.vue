@@ -2,10 +2,9 @@
 <v-container-fluid>
   <v-container grid-list-md>
     <h1 style="color: #FFFFFF;" class="mb-4">All Results</h1>
-    <h2 style="color: #D8DADE;" class="mb-2">Category</h2>
     <v-layout row wrap justify-space-between justify-center>
       <v-flex xs12 sm6 md4 lg4 v-for="resort in resorts" v-bind:key="resort.id">
-        <v-card width="100%" dark color="transparent" to="/listing/" flat >
+        <v-card width="100%" dark color="transparent" :to="'/listing/'+ resort.slug" flat >
           <router-link :to="'/listing/'+ resort.slug">
             <v-carousel height="150px" hide-controls dark width="100%" class="hidden-md-and-up">
               <v-carousel-item :src="resort.featuredImage" style="background-size:contain;">
@@ -49,11 +48,12 @@ export default {
   },
   data(){
     return{
-      resorts: []
+      resorts: [],
+      id: this.$route.params.id
     }
   },
   created() {
-    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/').then(function(data){
+    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/'+ this.id).then(function(data){
       this.resorts=data.body;
     });
   },

@@ -18,95 +18,40 @@
     </v-card>
     <v-container grid-list-md align-content-space-around>
       <div style="margin-top:0; margin-bottom:0;">
-      <ListCover title="Accommodation" style="color: #D8DADE;" class="mb-2"></ListCover>
+      <h2 style="color: #D8DADE; font-size: 28px;" class="mb-4">Accommodation</h2>
       <v-layout row wrap justify-space-between justify-center>
-        <v-flex xs12 sm6 md4 lg4>
-        <router-link to="/listing/Bell-Tent">
-          <v-carousel height="150px" hide-controls width="100%" class="hidden-md-and-up">
-            <!-- v-if="belltent.images.length > 0" is required to avoid the error "cannot read property 'url' of undefined. 
-            It is needed only when we want to iterate through an array of images, or nested elements.-->
-            <v-carousel-item :src="belltent.featuredImage" style="background-size:contain;">
-            </v-carousel-item>
-            <v-carousel-item v-if="belltent.images.length > 0" :src="belltent.images[0].url" style="background-size:contain;">
-            </v-carousel-item>
-            <v-carousel-item v-if="belltent.images.length > 0" :src="belltent.images[1].url" style="background-size:contain;">
-            </v-carousel-item>
-            <v-carousel-item v-if="belltent.images.length > 0" :src="belltent.images[2].url" style="background-size:contain;">
-            </v-carousel-item>
-            <v-carousel-item v-if="belltent.images.length > 0" :src="belltent.images[3].url" style="background-size:contain;">
-            </v-carousel-item>
-          </v-carousel>
-        </router-link>
-          <v-card width="100%" dark color="transparent" to="/listing/Bell-Tent" flat>
-            <v-img :src="belltent.featuredImage" height="150px" class="hidden-sm-and-down"></v-img>
-          <v-layout align-start>
-            <v-card-text class="pa-1">
-              <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire Khmer Cottage</span>
-              <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>{{belltent.title}}</h3></span>
-              <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> {{belltent.ctaText}}$ per night</span>
-              </p>
-            </v-card-text>
-          </v-layout>
-          </v-card>
-        </v-flex>
-        <v-flex xs12 sm6 md4 lg4>
-        <router-link to="/listing/Bungalow">
-          <v-carousel height="150px" hide-controls dark width="100%" class="hidden-md-and-up">
-            <v-carousel-item :src="bungalow.featuredImage" style="background-size:contain;">
-            </v-carousel-item>
-            <v-carousel-item v-if="bungalow.images.length > 0" :src="bungalow.images[0].url" style="background-size:contain;">
-            </v-carousel-item>
-            <v-carousel-item v-if="bungalow.images.length > 0" :src="bungalow.images[1].url" style="background-size:contain;">
-            </v-carousel-item>
-            <v-carousel-item v-if="bungalow.images.length > 0" :src="bungalow.images[2].url" style="background-size:contain;">
-            </v-carousel-item>
-            <v-carousel-item v-if="bungalow.images.length > 0" :src="bungalow.images[3].url" style="background-size:contain;">
-            </v-carousel-item>
-          </v-carousel>
-        </router-link>
-          <v-card width="100%" dark color="transparent" to="/listing/Bungalow" flat>
-            <v-img :src="bungalow.featuredImage" height="150px" class="hidden-sm-and-down"></v-img>
-          <v-layout align-start>
-            <v-card-text class="pa-1">
-              <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire Bungalow</span>
-              <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>{{bungalow.title}}</h3></span>
-              <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> {{bungalow.ctaText}}$ per night</span>
-              </p>
-            </v-card-text>
-          </v-layout>
-          </v-card>
-        </v-flex>
-        <v-flex xs12 sm6 md4 lg4>
-        <router-link to="/listing/Luxury-Tent">
-          <v-carousel height="150px" hide-controls dark width="100%" class="hidden-md-and-up">
-            <v-carousel-item :src="luxurytent.featuredImage" style="background-size:contain;">
-            </v-carousel-item>
-            <v-carousel-item v-if="luxurytent.images.length > 0" :src="luxurytent.images[0].url" style="background-size:contain;">
-            </v-carousel-item>
-            <v-carousel-item v-if="luxurytent.images.length > 0" :src="luxurytent.images[1].url" style="background-size:contain;">
-            </v-carousel-item>
-            <v-carousel-item v-if="luxurytent.images.length > 0" :src="luxurytent.images[2].url" style="background-size:contain;">
-            </v-carousel-item>
-            <v-carousel-item v-if="luxurytent.images.length > 0" :src="luxurytent.images[3].url" style="background-size:contain;">
-            </v-carousel-item>
-          </v-carousel>
-        </router-link>
-          <v-card width="100%" dark color="transparent" to="/listing/Luxury-Tent" flat >
-            <v-img :src="luxurytent.featuredImage" height="150px" class="hidden-sm-and-down"></v-img>
-          <v-layout align-start>
-            <v-card-text class="pa-1">
-              <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire Luxury Tent</span>
-              <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>{{luxurytent.title}}</h3></span>
-              <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> {{luxurytent.ctaText}}$ per night</span>
-              </p>
-            </v-card-text>
-          </v-layout>
+        <v-flex xs12 sm6 md4 lg4 v-for="accommodation in accommodations" v-bind:key="accommodation.id">
+          <v-card width="100%" dark color="transparent" :to="'/listing/'+ accommodation.slug" flat >
+            <router-link :to="'/listing/'+ accommodation.slug">
+              <v-carousel height="150px" hide-controls dark width="100%" class="hidden-md-and-up">
+                <v-carousel-item :src="accommodation.featuredImage" style="background-size:contain;">
+                </v-carousel-item>
+                <v-carousel-item v-if="accommodation.images.length > 0" :src="accommodation.images[0].url" style="background-size:contain;">
+                </v-carousel-item>
+                <v-carousel-item v-if="accommodation.images.length > 0" :src="accommodation.images[1].url" style="background-size:contain;">
+                </v-carousel-item>
+                <v-carousel-item v-if="accommodation.images.length > 0" :src="accommodation.images[2].url" style="background-size:contain;">
+                </v-carousel-item>
+                <v-carousel-item v-if="accommodation.images.length > 0" :src="accommodation.images[3].url" style="background-size:contain;">
+                </v-carousel-item>
+              </v-carousel>
+            </router-link>
+            <v-img :src="accommodation.featuredImage" height="150px" class="hidden-sm-and-down"></v-img>
+            <v-layout align-start>
+              <v-card-text class="pa-1">
+                <p>
+                  <!-- <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire {{accommodation.title}}</span> -->
+                  <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>{{accommodation.title}}</h3></span>
+                  <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;" v-if="accommodation.ctaText>0"> {{accommodation.ctaText}}$ per night</span>
+                </p>
+              </v-card-text>
+            </v-layout>
           </v-card>
         </v-flex>
       </v-layout>
       <v-layout row wrap justify-space-around justify-center>
         <v-flex xs12 sm4 md4 lg4>
-          <v-btn block large outline dark to="/search" style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; max-width:340px; text-transform:capitalize">
+          <v-btn block large outline dark to="/search/accommodations" style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; max-width:340px; text-transform:capitalize">
             Show all <v-icon>keyboard_arrow_right</v-icon>
           </v-btn>
         </v-flex>
@@ -194,7 +139,7 @@
     </v-layout>
       <v-layout row wrap justify-space-around justify-center>
         <v-flex xs12 sm4 md4 lg4>
-          <v-btn block large outline dark style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; max-width:340px; text-transform:capitalize">
+          <v-btn to="/search/experiences/" block large outline dark style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; max-width:340px; text-transform:capitalize">
             Show all <v-icon>keyboard_arrow_right</v-icon>
           </v-btn>
         </v-flex>
@@ -210,7 +155,7 @@
       </v-layout>
       <v-layout column align-content-space-around align-content-start fill-height class="ml-4">
         <v-flex xs12 md4 sm4 lg4>
-          <v-btn dark large depressed style="background: #F7B947; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; text-transform:capitalize">
+          <v-btn dark large to="/search/food" depressed style="background: #F7B947; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; text-transform:capitalize">
             Menu <v-icon>keyboard_arrow_right</v-icon>
           </v-btn>
         </v-flex>
@@ -295,7 +240,7 @@ export default {
       example4,
       // preload,
 
-      bungalow: {
+      accommodations: {
         images: []
       },
       luxurytent: {
@@ -310,8 +255,8 @@ export default {
     }
   },
   created() {
-    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/Bungalow').then(function(data){
-      this.bungalow=data.body;
+    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/accommodations').then(function(data){
+      this.accommodations=data.body.slice(0,3);
     });
     this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/Bell-Tent').then(function(data){
       this.belltent=data.body;

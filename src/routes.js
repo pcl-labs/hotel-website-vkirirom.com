@@ -11,7 +11,7 @@ export default[
     component: Home
   },
   {
-    path:'/search',
+    path:'/search/:id',
     component: searchpage
   },
   {
