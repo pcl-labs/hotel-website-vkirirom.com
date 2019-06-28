@@ -648,6 +648,12 @@ export default {
 </script>
 
 <style lang="scss">
+  body{
+    overflow-x: hidden;
+  }
+  .container{
+    overflow-x: hidden;
+  }
   .v-input__slot{
     margin: 0;
     height: 55px;
