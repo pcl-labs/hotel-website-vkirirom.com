@@ -134,7 +134,7 @@
           <v-card-text class="pa-1">
             <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire Luxury Tent</span>
             <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>{{piperoom.title}}</h3></span>
-            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> {{piperoom.ctaText}}$$ per night</span>
+            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> {{piperoom.ctaText}}$ per night</span>
             </p>
           </v-card-text>
         </v-layout>
@@ -161,7 +161,7 @@
           <v-card-text class="pa-1">
             <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire Luxury Tent</span>
             <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>{{suite.title}}</h3></span>
-            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> {{suite.ctaText}}$$ per night</span>
+            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> {{suite.ctaText}}$ per night</span>
             </p>
           </v-card-text>
         </v-layout>
@@ -188,13 +188,26 @@
           <v-card-text class="pa-1">
             <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire Luxury Tent</span>
             <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>{{jasmine.title}}</h3></span>
-            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> {{jasmine.ctaText}}$$ per night</span>
+            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> {{jasmine.ctaText}}$ per night</span>
             </p>
           </v-card-text>
         </v-layout>
         </v-card>
       </v-flex>
     </v-layout>
+  </v-container>
+  <v-container>
+    <v-card width="100%" v-for="resort in resorts" v-bind:key="resort.id" dark color="transparent" to="/listing/" flat >
+      <v-img v-if="resort.images.length > 0" :src="resort.featuredImage" height="150px" class="hidden-sm-and-down"></v-img>
+    <v-layout align-start>
+      <v-card-text class="pa-1">
+        <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire {{resort.title}}</span>
+        <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>{{resort.title}}</h3></span>
+        <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> {{resort.ctaText}}$ per night</span>
+        </p>
+      </v-card-text>
+    </v-layout>
+    </v-card>
   </v-container>
   <Footer></Footer>
 </v-container-fluid>
@@ -232,6 +245,7 @@ export default {
       piperoom: {
         images: []
       },
+      resorts: []
     }
   },
   created() {
@@ -255,6 +269,9 @@ export default {
     });
     this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/Luxury-Tent').then(function(data){
       this.luxurytent=data.body;
+    });
+    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/').then(function(data){
+      this.resorts=data.body;
     });
   },
 }
