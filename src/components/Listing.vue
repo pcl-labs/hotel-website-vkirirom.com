@@ -24,12 +24,18 @@
           </v-layout>
         </v-flex>
         <v-flex xs12 class="hidden-md-and-up">
-          <v-carousel height="300px" hide-controls dark v-if="resort.images.length > 0">
+          <v-carousel height="300px" hide-controls dark>
             <!-- v-if="belltent.images.length > 0" is required to avoid the error "cannot read property 'url' of undefined. 
             It is needed only when we want to iterate through an array of images, or nested elements.-->
             <v-carousel-item :src="resort.featuredImage">
             </v-carousel-item>
-            <v-carousel-item v-for="image in resort.images" v-bind:key="image.order" :src="resort.images.url" style="background-size:contain;">
+            <v-carousel-item v-if="resort.images.length > 0" :src="resort.images[0].url" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item v-if="resort.images.length > 1" :src="resort.images[1].url" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item v-if="resort.images.length > 2" :src="resort.images[2].url" style="background-size:contain;">
+            </v-carousel-item>
+            <v-carousel-item v-if="resort.images.length > 3" :src="resort.images[3].url" style="background-size:contain;">
             </v-carousel-item>
           </v-carousel>
         </v-flex>
@@ -619,8 +625,17 @@ export default {
       slug: this.$route.params.id,
       resort: {
         title:'',
-        description:'',
-        images: [],
+        description: '',
+        h2: '',
+        slug: '',
+        backgroundImage: '',
+        featuredImage: '',
+        images: [{
+          order: '',
+          url: '',
+        }],
+        ctaText: '',
+        custom: '',
         modules: {
           hotel: {
             capacity: '',
