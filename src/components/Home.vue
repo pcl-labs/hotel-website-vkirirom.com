@@ -179,7 +179,7 @@
       </v-layout>
       <v-layout row wrap justify-space-around justify-center>
         <v-flex xs12 sm4 md4 lg4>
-          <v-btn block large outline dark style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; max-width:340px; text-transform:capitalize">
+          <v-btn to="/search/events" block large outline dark style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; max-width:340px; text-transform:capitalize">
             Learn More <v-icon>keyboard_arrow_right</v-icon>
           </v-btn>
         </v-flex>
