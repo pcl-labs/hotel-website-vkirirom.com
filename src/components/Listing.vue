@@ -24,12 +24,12 @@
           </v-layout>
         </v-flex>
         <v-flex xs12 class="hidden-md-and-up">
-          <v-carousel height="300px" hide-controls dark>
+          <v-carousel height="300px" hide-controls dark v-if="resort.images.length > 0">
             <!-- v-if="belltent.images.length > 0" is required to avoid the error "cannot read property 'url' of undefined. 
             It is needed only when we want to iterate through an array of images, or nested elements.-->
-            <v-carousel-item :src="resort.featuredImage" v-if="resort.images.length > 0">
+            <v-carousel-item :src="resort.featuredImage">
             </v-carousel-item>
-            <v-carousel-item v-for="image in resort.images" v-bind:key="image.order" :src="resort.images[0].url" style="background-size:contain;">
+            <v-carousel-item v-for="image in resort.images" v-bind:key="image.order" :src="resort.images.url" style="background-size:contain;">
             </v-carousel-item>
           </v-carousel>
         </v-flex>
@@ -45,8 +45,8 @@
               <p class="subDescription">
                 <span class="mr-3" v-if="resort.modules.hotel.capacity > 0"><img class="mr-2" :src="MultiUsers" /> {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.capacity }} guests</span>
                 <!-- <span class="mr-5 font-weight-bold">{{ bedRooms.length }} bedrooms</span> -->
-                <span class="mr-3" v-if="resort.modules.hotel.beds.length > 0">{{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }} Bed(s)</span>
-                <span v-if="resort.modules.hotel.beds.length > 0">Type: {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}</span>
+                <span class="mr-3" v-if="resort.modules.hotel.beds > 0">{{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }} Bed(s)</span>
+                <span v-if="resort.modules.hotel.beds > 0">Type: {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}</span>
               </p>
             </div>
             <div class="text-xs-left font-weight-regular">
@@ -60,7 +60,7 @@
             <p>
               <a href="https://goo.gl/maps/NusquSFKVm2SHrDy7" style="color: #006064;">Get Directions</a>
             </p>
-            <v-flex v-if="resort.modules.hotel.spaces.length > 0">
+            <v-flex v-if="resort.modules.hotel.spaces > 0">
               <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
                 Spaces
               </h2>
@@ -95,7 +95,7 @@
             </v-flex> -->
             </v-layout>
           </v-flex>
-          <v-flex xs12 v-if="resort.modules.hotel.amenities.length > 0">
+          <v-flex xs12 v-if="resort.modules.hotel.amenities> 0">
             <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
               Amenities
             </h2>
@@ -256,7 +256,7 @@
                 dark
               />
               </v-flex>
-              <v-layout row wrap justify-center justify-space-between v-if="resort.modules.hotel.beds.length >0">
+              <v-layout row wrap justify-center justify-space-between v-if="resort.modules.hotel.beds >0">
                 <v-flex mr-2 mb-4>
                 <v-btn-toggle v-model="toggle0" style="background-color:transparent; width:100%;">
                   <v-btn v-if="resort.modules.hotel.beds.length >0" :value="resort.modules.hotel.beds[0].type" flat dark outline block text-xs-center style="border: 3px solid #B9BCC1; box-sizing: border-box; border-radius: 3px; height:108px; font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
@@ -457,7 +457,7 @@
                 @date-two-selected="val => { dateTwo = val }"
               />
               </v-flex>
-              <v-layout row wrap justify-center justify-space-between v-if="resort.modules.hotel.beds.length >0">
+              <v-layout row wrap justify-center justify-space-between v-if="resort.modules.hotel.beds >0">
                 <v-flex mr-2 mb-4>
                 <v-btn-toggle v-model="toggle0" style="background-color:transparent; width:100%;">
                   <v-btn v-if="resort.modules.hotel.beds.length >0" :value="resort.modules.hotel.beds[0].type" flat dark outline block text-xs-center style="border: 3px solid #B9BCC1; box-sizing: border-box; border-radius: 3px; height:108px; font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
@@ -621,6 +621,22 @@ export default {
         title:'',
         description:'',
         images: [],
+        modules: {
+          hotel: {
+            capacity: '',
+            gettingAround: '',
+            location: '',
+            amenities: '',
+            beds: [
+              {
+                count: '',
+                type: '',
+              }
+            ],
+            rules: '',
+            spaces: []
+          }
+        }
       }
     }
   },
