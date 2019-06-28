@@ -137,15 +137,6 @@
       </v-layout>
       </v-img>
       </v-card>
-      <v-flex xs12>
-        <video style="object-fit:cover;" controls width="100%" class="mt-4" poster="https://res.cloudinary.com/die9ji2vn/image/upload/dpr_auto/w_auto/q_auto:low/f_auto/v1561607608/Thumbnail/JPEG/thumbnail_zjzji4.jpg">
-          <source src="https://res.cloudinary.com/die9ji2vn/video/upload/v1560320692/10000000_143443766812356_671027213277999975_n_1_hm0gxb.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </v-flex>
-      </div>
-    </v-container>
-    <v-container grid-list-md align-content-space-around>
       <h2 style="color: #D8DADE; font-size: 28px;" class="mb-4">Events</h2>
       <v-layout row wrap justify-space-between justify-center>
         <v-flex xs12 sm6 md4 lg4 v-for="event in events" v-bind:key="event.id">
@@ -180,6 +171,48 @@
       <v-layout row wrap justify-space-around justify-center>
         <v-flex xs12 sm4 md4 lg4>
           <v-btn to="/search/events" block large outline dark style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; max-width:340px; text-transform:capitalize">
+            Learn More <v-icon>keyboard_arrow_right</v-icon>
+          </v-btn>
+        </v-flex>
+      </v-layout>
+      <v-flex xs12>
+        <video style="object-fit:cover;" controls width="100%" class="mt-4" poster="https://res.cloudinary.com/die9ji2vn/image/upload/dpr_auto/w_auto/q_auto:low/f_auto/v1561607608/Thumbnail/JPEG/thumbnail_zjzji4.jpg">
+          <source src="https://res.cloudinary.com/die9ji2vn/video/upload/v1560320692/10000000_143443766812356_671027213277999975_n_1_hm0gxb.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </v-flex>
+      </div>
+    </v-container>
+    <v-container grid-list-md align-content-space-around>
+      <h2 style="color: #D8DADE; font-size: 28px;" class="mb-4">Ecotourism</h2>
+      <v-layout row wrap justify-space-between justify-center text-xs-center>
+        <v-flex xs12 sm6 md3 lg3>
+          <v-card height="240px" dark color="#D8DADE" style="border-radius: 3px; min-height:240px;" class="mb-3">
+            <v-card-text><h2 style="color: #FFFFFF; position:absolute; bottom:20px; right:0; left:0;">Protecting Nature</h2></v-card-text>
+          </v-card>
+        </v-flex>
+        <v-spacer></v-spacer>
+        <v-flex xs12 sm6 md3 lg3>
+          <v-card height="240px" dark color="#D8DADE" style="border-radius: 3px; min-height:240px;" class="mb-3">
+            <v-card-text><h2 style="color: #FFFFFF; position:absolute; bottom:20px; right:0; left:0;">Educating Youth</h2></v-card-text>
+          </v-card>
+        </v-flex>
+        <v-flex xs12 sm6 md3 lg3>
+          <v-card height="240px" dark color="#D8DADE" style="border-radius: 3px; min-height:240px;" class="mb-3">
+            <v-card-text><h2 style="color: #FFFFFF; position:absolute; bottom:20px; right:0; left:0;">Growing Organic</h2></v-card-text>
+          </v-card>
+        </v-flex>
+        <v-flex xs12 sm6 md3 lg3>
+          <v-card height="240px" dark color="#D8DADE" style="border-radius: 3px; min-height:240px;" class="mb-3">
+            <v-card-text>
+              <h2 style="color: #FFFFFF; position:absolute; bottom:20px; right:0; left:0;">Buying Locally</h2>
+            </v-card-text>
+          </v-card>
+        </v-flex>
+      </v-layout>
+      <v-layout row wrap justify-space-around justify-center>
+        <v-flex xs12 sm4 md4 lg4>
+          <v-btn block large outline dark style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; max-width:340px; text-transform:capitalize">
             Learn More <v-icon>keyboard_arrow_right</v-icon>
           </v-btn>
         </v-flex>
