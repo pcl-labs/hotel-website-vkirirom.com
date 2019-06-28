@@ -17,7 +17,7 @@
       </div>
     </v-card>
     <v-container grid-list-md align-content-space-around>
-      <div style="margin-top:0;">
+      <div style="margin-top:0; margin-bottom:0;">
       <ListCover title="Accommodation" style="color: #D8DADE;" class="mb-2"></ListCover>
       <v-layout row wrap justify-space-between justify-center>
         <v-flex xs12 sm6 md4 lg4>
@@ -217,20 +217,16 @@
       </v-layout>
       </v-img>
       </v-card>
+      <v-flex xs12>
+        <video style="object-fit:cover;" controls width="100%" class="mt-4" poster="https://res.cloudinary.com/die9ji2vn/image/upload/dpr_auto/w_auto/q_auto:low/f_auto/v1561607608/Thumbnail/JPEG/thumbnail_zjzji4.jpg">
+          <source src="https://res.cloudinary.com/die9ji2vn/video/upload/v1560320692/10000000_143443766812356_671027213277999975_n_1_hm0gxb.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </v-flex>
       </div>
-      <video style="object-fit:cover;" controls width="100%" class="mt-4" poster="https://res.cloudinary.com/die9ji2vn/image/upload/dpr_auto/w_auto/q_auto:low/f_auto/v1561607608/Thumbnail/JPEG/thumbnail_zjzji4.jpg">
-        <source src="https://res.cloudinary.com/die9ji2vn/video/upload/v1560320692/10000000_143443766812356_671027213277999975_n_1_hm0gxb.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
     </v-container>
-    <v-container-fluid>
-      <!-- <v-card width="100%">
-        <v-img :src="example4" width="100%" height="300px">
-        </v-img>
-      </v-card> -->
-    </v-container-fluid>
     <v-container grid-list-md align-content-space-around>
-      <ListCover title="Ecotourism" class="mb-3" style="font-size: 16px; line-height: 19px; color: #D8DADE;"></ListCover>
+      <ListCover title="Ecotourism" class="mb-3" style="font-size: 16px; color: #D8DADE;"></ListCover>
       <v-layout row wrap justify-space-between justify-center text-xs-center>
         <v-flex xs12 sm6 md3 lg3>
           <v-card height="240px" dark color="#D8DADE" style="border-radius: 3px; min-height:240px;" class="mb-3">
