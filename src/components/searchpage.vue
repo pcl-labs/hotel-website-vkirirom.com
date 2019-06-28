@@ -38,12 +38,10 @@
 </template>
 
 <script>
-import ListCover from './Home/ListCover.vue'
 import Footer from './Footer.vue'
 
 export default {
   components: {
-    ListCover,
     Footer
   },
   data(){

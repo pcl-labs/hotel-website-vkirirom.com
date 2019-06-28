@@ -81,62 +81,37 @@
         </v-img>
       </v-card>
     <v-divider class="hidden-md-and-up mt-3" style="background-color:#3D424E;"></v-divider>
-    <v-layout row wrap justify-space-between>
-      <ListCover title="Experiences" class="mb-3 pl-1" style="font-size: 16px; line-height: 19px; color: #D8DADE;"></ListCover>
-      <v-flex xs12 sm6 md4 lg4>
-        <router-link to="/experience/Family-Fun-Time">
-          <v-carousel height="150px" hide-controls dark width="100%" class="hidden-md-and-up">
-            <v-carousel-item :src="familyfuntime.featuredImage" style="background-size:contain;">
-            </v-carousel-item>
-            <v-carousel-item v-if="familyfuntime.images.length > 0" :src="familyfuntime.images[0].url" style="background-size:contain;">
-            </v-carousel-item>
-            <v-carousel-item v-if="familyfuntime.images.length > 0" :src="familyfuntime.images[1].url" style="background-size:contain;">
-            </v-carousel-item>
-            <v-carousel-item v-if="familyfuntime.images.length > 0" :src="familyfuntime.images[2].url" style="background-size:contain;">
-            </v-carousel-item>
-            <v-carousel-item v-if="familyfuntime.images.length > 0" :src="familyfuntime.images[3].url" style="background-size:contain;">
-            </v-carousel-item>
-          </v-carousel>
-        </router-link>
-        <v-card height="100%" width="100%" dark color="transparent" to="/experience/Family-Fun-Time" flat>
-          <v-img :src="familyfuntime.featuredImage" height="150px" class="hidden-sm-and-down"></v-img>
-        <v-layout align-start>
-          <v-card-text class="pa-1">
-            <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Experience</span>
-            <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>{{familyfuntime.title}}</h3></span>
-            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> {{familyfuntime.ctaText}}$ per person</span>
-            </p>
-          </v-card-text>
-        </v-layout>
-        </v-card>
-      </v-flex>
-      <v-flex xs12 sm6 md4 lg4>
-        <v-card height="100%" width="100%" dark color="transparent" href="#" flat >
-          <v-img :src="experience1" height="150px"></v-img>
-        <v-layout align-start>
-          <v-card-text class="pa-1">
-            <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Experience</span>
-            <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>Rock Climbing</h3></span>
-            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> 50$ per person</span>
-            </p>
-          </v-card-text>
-        </v-layout>
-        </v-card>
-      </v-flex>
-      <v-flex xs12 sm6 md4 lg4>
-        <v-card height="100%" width="100%" dark color="transparent" href="#" flat >
-          <v-img :src="experience1" height="150px"></v-img>
-        <v-layout align-start>
-          <v-card-text class="pa-1">
-            <p><span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Experience</span>
-            <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>Rock Climbing</h3></span>
-            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> 50$ per person</span>
-            </p>
-          </v-card-text>
-        </v-layout>
-        </v-card>
-      </v-flex>
-    </v-layout>
+    <h2 style="color: #D8DADE; font-size: 28px;" class="mb-4">Experience</h2>
+      <v-layout row wrap justify-space-between justify-center>
+        <v-flex xs12 sm6 md4 lg4 v-for="experience in experiences" v-bind:key="experience.id">
+          <v-card width="100%" dark color="transparent" :to="'/listing/'+ experience.slug" flat >
+            <router-link :to="'/listing/'+ experience.slug">
+              <v-carousel height="150px" hide-controls dark width="100%" class="hidden-md-and-up">
+                <v-carousel-item :src="experience.featuredImage" style="background-size:contain;">
+                </v-carousel-item>
+                <v-carousel-item v-if="experience.images.length > 0" :src="experience.images[0].url" style="background-size:contain;">
+                </v-carousel-item>
+                <v-carousel-item v-if="experience.images.length > 0" :src="experience.images[1].url" style="background-size:contain;">
+                </v-carousel-item>
+                <v-carousel-item v-if="experience.images.length > 0" :src="experience.images[2].url" style="background-size:contain;">
+                </v-carousel-item>
+                <v-carousel-item v-if="experience.images.length > 0" :src="experience.images[3].url" style="background-size:contain;">
+                </v-carousel-item>
+              </v-carousel>
+            </router-link>
+            <v-img :src="experience.featuredImage" height="150px" class="hidden-sm-and-down"></v-img>
+            <v-layout align-start>
+              <v-card-text class="pa-1">
+                <p>
+                  <!-- <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire {{experience.title}}</span> -->
+                  <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>{{experience.title}}</h3></span>
+                  <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;" v-if="experience.ctaText>0"> {{experience.ctaText}}$ per night</span>
+                </p>
+              </v-card-text>
+            </v-layout>
+          </v-card>
+        </v-flex>
+      </v-layout>
       <v-layout row wrap justify-space-around justify-center>
         <v-flex xs12 sm4 md4 lg4>
           <v-btn to="/search/experiences/" block large outline dark style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; max-width:340px; text-transform:capitalize">
@@ -171,29 +146,34 @@
       </div>
     </v-container>
     <v-container grid-list-md align-content-space-around>
-      <ListCover title="Ecotourism" class="mb-3" style="font-size: 16px; color: #D8DADE;"></ListCover>
-      <v-layout row wrap justify-space-between justify-center text-xs-center>
-        <v-flex xs12 sm6 md3 lg3>
-          <v-card height="240px" dark color="#D8DADE" style="border-radius: 3px; min-height:240px;" class="mb-3">
-            <v-card-text><h2 style="color: #FFFFFF; position:absolute; bottom:20px; right:0; left:0;">Protecting Nature</h2></v-card-text>
-          </v-card>
-        </v-flex>
-        <v-spacer></v-spacer>
-        <v-flex xs12 sm6 md3 lg3>
-          <v-card height="240px" dark color="#D8DADE" style="border-radius: 3px; min-height:240px;" class="mb-3">
-            <v-card-text><h2 style="color: #FFFFFF; position:absolute; bottom:20px; right:0; left:0;">Educating Youth</h2></v-card-text>
-          </v-card>
-        </v-flex>
-        <v-flex xs12 sm6 md3 lg3>
-          <v-card height="240px" dark color="#D8DADE" style="border-radius: 3px; min-height:240px;" class="mb-3">
-            <v-card-text><h2 style="color: #FFFFFF; position:absolute; bottom:20px; right:0; left:0;">Growing Organic</h2></v-card-text>
-          </v-card>
-        </v-flex>
-        <v-flex xs12 sm6 md3 lg3>
-          <v-card height="240px" dark color="#D8DADE" style="border-radius: 3px; min-height:240px;" class="mb-3">
-            <v-card-text>
-              <h2 style="color: #FFFFFF; position:absolute; bottom:20px; right:0; left:0;">Buying Locally</h2>
-            </v-card-text>
+      <h2 style="color: #D8DADE; font-size: 28px;" class="mb-4">Events</h2>
+      <v-layout row wrap justify-space-between justify-center>
+        <v-flex xs12 sm6 md4 lg4 v-for="event in events" v-bind:key="event.id">
+          <v-card width="100%" dark color="transparent" :to="'/listing/'+ event.slug" flat >
+            <router-link :to="'/listing/'+ event.slug">
+              <v-carousel height="150px" hide-controls dark width="100%" class="hidden-md-and-up">
+                <v-carousel-item :src="event.featuredImage" style="background-size:contain;">
+                </v-carousel-item>
+                <v-carousel-item v-if="event.images.length > 0" :src="event.images[0].url" style="background-size:contain;">
+                </v-carousel-item>
+                <v-carousel-item v-if="event.images.length > 0" :src="event.images[1].url" style="background-size:contain;">
+                </v-carousel-item>
+                <v-carousel-item v-if="event.images.length > 0" :src="event.images[2].url" style="background-size:contain;">
+                </v-carousel-item>
+                <v-carousel-item v-if="event.images.length > 0" :src="event.images[3].url" style="background-size:contain;">
+                </v-carousel-item>
+              </v-carousel>
+            </router-link>
+            <v-img :src="event.featuredImage" height="150px" class="hidden-sm-and-down"></v-img>
+            <v-layout align-start>
+              <v-card-text class="pa-1">
+                <p>
+                  <!-- <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire {{event.title}}</span> -->
+                  <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>{{event.title}}</h3></span>
+                  <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;" v-if="event.ctaText>0"> {{event.ctaText}}$ per night</span>
+                </p>
+              </v-card-text>
+            </v-layout>
           </v-card>
         </v-flex>
       </v-layout>
@@ -205,30 +185,24 @@
         </v-flex>
       </v-layout>
     </v-container>
-    <foo></foo>
     <Footer></Footer>
   </v-container-fluid>
 </template>
 
 <script>
 import FrontendImg from '../assets/FrontImage.png'
-// import preload from '../assets/preload.png'
 import example4 from '../assets/example4.png'
 import experience1 from '../assets/experience1.jpg'
 import corporateRetreat from '../assets/951820009082492817.jpg'
 import headerImg from '../assets/freedom-camping-4m-bell-tent-5_copy_3_6e7cf404-7d2f-4cac-8bf7-fd04c9dd8854_1024x1024.jpeg'
 import food from '../assets/istockphoto-614420320-612x612.jpg'
-import ListCover from './Home/ListCover.vue'
 import Footer from './Footer.vue'
 import VueMarkdown from 'vue-markdown'
-// import { ContentLoader } from 'vue-content-loader'
 
 export default {
   components:{
-    ListCover,
     Footer,
     VueMarkdown
-    // ContentLoader
   },
   data() {
     return {
@@ -238,34 +212,27 @@ export default {
       food,
       experience1,
       example4,
-      // preload,
 
       accommodations: {
         images: []
       },
-      luxurytent: {
+      experiences: {
         images: []
       },
-      belltent: {
+      events: {
         images: []
       },
-      familyfuntime: {
-        images: []
-      }
     }
   },
   created() {
     this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/accommodations').then(function(data){
       this.accommodations=data.body.slice(0,3);
     });
-    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/Bell-Tent').then(function(data){
-      this.belltent=data.body;
+    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/experiences').then(function(data){
+      this.experiences=data.body.slice(0,3);
     });
-    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/Luxury-Tent').then(function(data){
-      this.luxurytent=data.body;
-    });
-    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/Family-Fun-Time').then(function(data){
-      this.familyfuntime=data.body;
+    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/events').then(function(data){
+      this.events=data.body.slice(0,3);
     });
   },
 }
