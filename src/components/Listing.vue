@@ -167,10 +167,10 @@
         </v-flex>
         <v-flex md6 class="hidden-sm-and-down">
           <v-card class="bookForm" width="300px" color="#191C21" style="border: 1px solid #E1E7ED; border-radius: 3px; margin-top:30px; margin-left:77px; padding:25px;">
-            <v-form name="bookForm" method="post" netlify ref="form" v-model="valid"  action="/thanks" data-netlify="true">
+            <v-form :name="resort.title" method="post" netlify ref="form" v-model="valid"  action="/thanks" data-netlify="true">
               <input type="hidden" name="form-name" value="bookForm"/>
               <v-layout row wrap>
-              <v-flex xs12>
+              <v-flex xs12 v-if="resort.ctaText > 0">
                 <p class="subheading text-xs-center pb-2">
                   <span style="font-weight: bold; font-size: 28px; color: #B9BCC1;">&dollar;{{ resort.ctaText }} </span>
                   <span style="font-size: 16px; color: #B9BCC1;"> per night</span>
@@ -342,7 +342,7 @@
       <v-layout row wrap>
         <v-flex xs12>
           <div id="bookBottom" class="hidden-md-and-up book-bottom">
-          <v-flex xs12>
+          <v-flex xs12 v-if="resort.ctaText > 0">
             <p>
               <span style="font-size: 28px; color: #D8DADE;">&dollar;{{resort.ctaText}}</span>
               <span style="font-size: 16px; color: #B9BCC1;"> per night</span>
@@ -372,7 +372,7 @@
                 </v-btn>
               </v-flex>
               <v-spacer></v-spacer>
-              <v-flex xs11>
+              <v-flex xs11 v-if="resort.ctaText > 0">
                 <p class="subheading text-xs-center pb-2">
                   <span style="font-weight: bold; font-size: 28px; color: #B9BCC1;">&dollar;{{ resort.ctaText }} </span>
                   <span style="font-size: 16px; color: #B9BCC1;"> per night</span>
