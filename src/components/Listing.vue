@@ -167,8 +167,8 @@
         </v-flex>
         <v-flex md6 class="hidden-sm-and-down">
           <v-card class="bookForm" width="300px" color="#191C21" style="border: 1px solid #E1E7ED; border-radius: 3px; margin-top:30px; margin-left:77px; padding:25px;">
-            <v-form :name="categories[resort.name].name" method="post" netlify ref="form" v-model="valid"  action="/thanks" data-netlify="true">
-              <input type="hidden" name="form-name" :value="categories[resort.name].name"/>
+            <v-form v-if="categories.length > 0" :name="categories[resort.name].name" method="post" netlify ref="form" v-model="valid"  action="/thanks" data-netlify="true">
+              <input v-if="categories.length > 0" type="hidden" name="form-name" :value="categories[resort.name].name"/>
               <v-layout row wrap>
               <v-flex xs12 v-if="resort.ctaText > 0">
                 <p class="subheading text-xs-center pb-2">
