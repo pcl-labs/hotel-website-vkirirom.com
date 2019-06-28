@@ -49,16 +49,15 @@
             <p style="font-size: 16px; color: #687C94;" class="mt-2">Entire {{resort.title}}</p>
             <div class="text-xs-left mb-5 mt-4 font-weight-regular">
               <p class="subDescription">
-                <img class="mr-2" :src="MultiUsers" />
-                <span class="mr-3">{{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.capacity }} guests</span>
+                <span class="mr-3" v-if="resort.modules.hotel.capacity > 0"><img class="mr-2" :src="MultiUsers" /> {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.capacity }} guests</span>
                 <!-- <span class="mr-5 font-weight-bold">{{ bedRooms.length }} bedrooms</span> -->
-                <span class="mr-3">{{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }} Bed(s)</span>
-                <span>Type: {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}</span>
+                <span class="mr-3" v-if="resort.modules.hotel.beds.length > 0">{{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }} Bed(s)</span>
+                <span v-if="resort.modules.hotel.beds.length > 0">Type: {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}</span>
               </p>
             </div>
             <div class="text-xs-left font-weight-regular">
               <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
-                {{resort.h2}}
+                {{resort.description}}
               </p>
             </div>
             <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
@@ -97,11 +96,11 @@
               </Calendar> -->
             </v-flex>
             </v-layout>
+          </v-flex>
+          <v-flex xs12 v-if="resort.modules.hotel.amenities.length > 0">
             <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
               Amenities
             </h2>
-          </v-flex>
-          <v-flex xs12>
             <v-layout row wrap justify-space-between align-center>
               <v-flex xs6 md6 class="py-3">
                 <img :src="wifi">

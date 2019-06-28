@@ -25,8 +25,8 @@
         </v-flex>
         <v-flex xs12 class="hidden-md-and-up">
           <v-carousel height="300px" hide-controls dark>
-            <!-- v-if="belltent.images.length > 0" is required to avoid the error "cannot read property 'url' of undefined. 
-            It is needed only when we want to iterate through an array of images, or nested elements.-->
+            <!-- v-if="belltent.images.length > 0" is required to avoid the error "cannot read property 'url' of undefined.
+            also, to toggle data wrt content in db-->
             <v-carousel-item :src="resort.featuredImage">
             </v-carousel-item>
             <v-carousel-item v-if="resort.images.length > 0" :src="resort.images[0].url">
