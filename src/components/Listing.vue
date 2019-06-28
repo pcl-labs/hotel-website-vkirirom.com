@@ -623,9 +623,9 @@ export default {
       bed,
 
       slug: this.$route.params.id,
-      categories:{
-
-      },
+      categories:[
+        
+      ],
       resort: {
         name: '',
         title:'',
