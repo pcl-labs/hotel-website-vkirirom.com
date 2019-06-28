@@ -167,8 +167,8 @@
         </v-flex>
         <v-flex md6 class="hidden-sm-and-down">
           <v-card class="bookForm" width="300px" color="#191C21" style="border: 1px solid #E1E7ED; border-radius: 3px; margin-top:30px; margin-left:77px; padding:25px;">
-            <v-form v-if="categories.length > 0" :name="categories[resort.name].name" method="post" netlify ref="form" v-model="valid"  action="/thanks" data-netlify="true">
-              <input v-if="categories.length > 0" type="hidden" name="form-name" :value="categories[resort.name].name"/>
+            <v-form :name="resort.name" method="post" netlify ref="form" v-model="valid"  action="/thanks" data-netlify="true">
+              <input type="hidden" name="form-name" :value="resort.name"/>
               <v-layout row wrap>
               <v-flex xs12 v-if="resort.ctaText > 0">
                 <p class="subheading text-xs-center pb-2">
@@ -363,8 +363,8 @@
               </v-btn>
             </template>
           <v-card class="bookForm" color="#191C21" style="position:absolute;">
-            <v-form name="Accommodation"  method="post" netlify ref="form" v-model="valid" class="ma-5" action="/thanks" data-netlify="true">
-              <input type="hidden" name="form-name" value="bookForm" />
+            <v-form :name="resort.name"  method="post" netlify ref="form" v-model="valid" class="ma-5" action="/thanks" data-netlify="true">
+              <input type="hidden" name="form-name" :value="resort.name" />
               <v-layout row wrap>
               <v-flex xs1>
                 <v-btn icon dark @click="bookDialog = false">
@@ -623,9 +623,12 @@ export default {
       bed,
 
       slug: this.$route.params.id,
-      categories:[
-        
-      ],
+      // categories:[
+      //   {
+      //     id: '',
+      //     name: '',
+      //   }
+      // ],
       resort: {
         name: '',
         title:'',
@@ -675,9 +678,9 @@ export default {
     this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/'+this.slug).then(function(data){
       this.resort=data.body;
     });
-    this.$http.get('https://stagingapi.whynot.earth/api/v0/categories').then(function(data){
-      this.categories=data.body;
-    });
+    // this.$http.get('https://stagingapi.whynot.earth/api/v0/categories').then(function(data){
+    //   this.categories=data.body;
+    // });
   },
 }
 </script>
