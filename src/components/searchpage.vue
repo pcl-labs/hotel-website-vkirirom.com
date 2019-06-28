@@ -6,7 +6,7 @@
       <v-flex xs12 sm6 md4 lg4 v-for="resort in resorts" v-bind:key="resort.id">
         <v-card width="100%" dark color="transparent" :to="'/listing/'+ resort.slug" flat >
           <router-link :to="'/listing/'+ resort.slug">
-            <v-carousel height="150px" hide-controls dark width="100%" class="hidden-md-and-up" v-if="resort.images.length > 0">
+            <v-carousel height="150px" :cycle="false" hide-controls dark width="100%" class="hidden-md-and-up" v-if="resort.images.length > 0">
               <v-carousel-item :src="resort.featuredImage" style="background-size:contain;">
               </v-carousel-item>
               <v-carousel-item v-for="image in resort.images" v-bind:key="image.order" :src="resort.images[0].url" style="background-size:contain;">

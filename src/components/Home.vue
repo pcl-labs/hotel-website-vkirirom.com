@@ -22,7 +22,7 @@
         <v-flex xs12 sm6 md4 lg4 v-for="accommodation in accommodations" v-bind:key="accommodation.id">
           <v-card dark height="270px" color="#191C21" class="mb-4" :to="'/listing/'+ accommodation.slug" flat style="box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;">
             <router-link :to="'/listing/'+ accommodation.slug">
-              <v-carousel height="150px" hide-controls dark width="100%" class="hidden-md-and-up" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+              <v-carousel height="150px" :cycle="false" hide-controls dark width="100%" class="hidden-md-and-up" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
                 <v-carousel-item :src="accommodation.featuredImage" style="background-size:contain;">
                 </v-carousel-item>
                 <v-carousel-item v-if="accommodation.images.length > 0" :src="accommodation.images[0].url" style="background-size:contain;">
@@ -85,7 +85,7 @@
         <v-flex xs12 sm6 md4 lg4 v-for="experience in experiences" v-bind:key="experience.id">
           <v-card width="100%" height="270px" color="#191C21" class="mb-4" dark :to="'/listing/'+ experience.slug" flat style="box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;">
             <router-link :to="'/listing/'+ experience.slug">
-              <v-carousel height="150px" hide-controls dark width="100%" class="hidden-md-and-up" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+              <v-carousel height="150px" :cycle="false" hide-controls dark width="100%" class="hidden-md-and-up" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
                 <v-carousel-item :src="experience.featuredImage" style="background-size:contain;">
                 </v-carousel-item>
                 <v-carousel-item v-if="experience.images.length > 0" :src="experience.images[0].url" style="background-size:contain;">
@@ -141,7 +141,7 @@
         <v-flex xs12 sm6 md4 lg4 v-for="event in events" v-bind:key="event.id">
           <v-card width="100%" height="270px" color="#191C21" class="mb-4" dark :to="'/listing/'+ event.slug" flat style="box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;">
             <router-link :to="'/listing/'+ event.slug">
-              <v-carousel height="150px" hide-controls dark width="100%" class="hidden-md-and-up" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+              <v-carousel height="150px" :cycle="false" hide-controls dark width="100%" class="hidden-md-and-up" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
                 <v-carousel-item :src="event.featuredImage" style="background-size:contain;">
                 </v-carousel-item>
                 <v-carousel-item v-if="event.images.length > 0" :src="event.images[0].url" style="background-size:contain;">
@@ -187,10 +187,16 @@
         <v-flex xs12 sm6 md4 lg4 v-for="blog in blogs" v-bind:key="blog.id">
           <v-card width="100%" height="270px" class="mb-4" dark color="#191C21" :to="'/listing/'+ blog.slug" flat style="box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;">
             <router-link :to="'/listing/'+ blog.slug">
-              <v-carousel hide-controls dark width="100%" height="150px" class="hidden-md-and-up" v-if="blog.images.length > 0" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
-                <v-carousel-item :src="blog.featuredImage" style="background-size:contain;">
+              <v-carousel hide-controls :cycle="false" dark width="100%" height="150px" class="hidden-md-and-up" v-if="blog.images.length > 0" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+                <v-carousel-item :src="  blog.featuredImage" style="background-size:contain;">
                 </v-carousel-item>
-                <v-carousel-item v-for="image in blog.images" v-bind:key="image.order" :src="blog.images[0].url" style="background-size:contain;">
+                <v-carousel-item v-if=" blog.images.length > 0" :src=" blog.images[0].url" style="background-size:contain;">
+                </v-carousel-item>
+                <v-carousel-item v-if=" blog.images.length > 1" :src=" blog.images[1].url" style="background-size:contain;">
+                </v-carousel-item>
+                <v-carousel-item v-if=" blog.images.length > 2" :src=" blog.images[2].url" style="background-size:contain;">
+                </v-carousel-item>
+                <v-carousel-item v-if=" blog.images.length > 3" :src=" blog.images[3].url" style="background-size:contain;">
                 </v-carousel-item>
               </v-carousel>
             </router-link>
@@ -198,7 +204,7 @@
             <v-layout align-start>
               <v-card-text style="margin:10px; padding: 0;">
                 <p>
-                  <!-- <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire {{event.title}}</span> -->
+                  <!-- <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire {{ blog.title}}</span> -->
                   <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>{{blog.title}}</h3></span>
                   <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;" v-if="blog.ctaText>0"> {{blog.ctaText}}$ per night</span>
                 </p>
