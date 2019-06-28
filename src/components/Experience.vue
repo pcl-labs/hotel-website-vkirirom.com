@@ -52,7 +52,8 @@
               </h2>
               <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
                 <!-- let vue-markdown be inline with text only, else you'll see an ugly white background -->
-                <vue-markdown>{{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.gettingAround}}</vue-markdown>
+                <!-- Without this v-if, vue-markdown doesn't work -->
+                <vue-markdown v-if="resort.modules.hotel.gettingAround.length >0">{{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.gettingAround}}</vue-markdown>
               </p>
             </div>
             <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
@@ -333,23 +334,6 @@
                 @date-two-selected="val => { dateTwo = val }"
               />
               </v-flex>
-              <!-- idk why is this happening, but without this button, vue-markdown doesn't work -->
-              <v-btn hidden v-if="resort.modules.hotel.beds.length >0">
-              </v-btn>
-              <input
-                name="Type1"
-                hidden
-                :value="toggle1"
-                type="text"
-                readonly
-              />
-              <input
-                name="Type2"
-                hidden
-                :value="toggle0"
-                type="text"
-                readonly
-              />
               <v-flex xs12>
                 <v-textarea
                   outline
@@ -453,8 +437,8 @@ export default {
       slug: this.$route.params.id,
       resort: {
         title:'',
-        description:'',
-        images: [],
+        gettingAround: '',
+        images: []
       }
     }
   },

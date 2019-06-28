@@ -360,7 +360,7 @@
               </v-btn>
             </template>
           <v-card class="bookForm" color="#191C21" style="position:absolute;">
-            <v-form name="bookForm"  method="post" netlify ref="form" v-model="valid" class="ma-5" action="/thanks" data-netlify="true">
+            <v-form name="Accommodation"  method="post" netlify ref="form" v-model="valid" class="ma-5" action="/thanks" data-netlify="true">
               <input type="hidden" name="form-name" value="bookForm" />
               <v-layout row wrap>
               <v-flex xs1>
@@ -648,12 +648,6 @@ export default {
 </script>
 
 <style lang="scss">
-  body{
-    overflow-x: hidden;
-  }
-  .container{
-    overflow-x: hidden;
-  }
   .v-input__slot{
     margin: 0;
     height: 55px;
