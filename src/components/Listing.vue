@@ -167,8 +167,8 @@
         </v-flex>
         <v-flex md6 class="hidden-sm-and-down">
           <v-card class="bookForm" width="300px" color="#191C21" style="border: 1px solid #E1E7ED; border-radius: 3px; margin-top:30px; margin-left:77px; padding:25px;">
-            <v-form :name="resort.slug" method="post" netlify ref="form" v-model="valid"  action="/thanks" data-netlify="true">
-              <input type="hidden" name="form-name" :value="resort.slug"/>
+            <v-form :name="categories[resort.name].name" method="post" netlify ref="form" v-model="valid"  action="/thanks" data-netlify="true">
+              <input type="hidden" name="form-name" :value="categories[resort.name].name"/>
               <v-layout row wrap>
               <v-flex xs12 v-if="resort.ctaText > 0">
                 <p class="subheading text-xs-center pb-2">
@@ -623,7 +623,11 @@ export default {
       bed,
 
       slug: this.$route.params.id,
+      categories:{
+
+      },
       resort: {
+        name: '',
         title:'',
         description: '',
         h2: '',
@@ -670,6 +674,9 @@ export default {
   created() {
     this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/'+this.slug).then(function(data){
       this.resort=data.body;
+    });
+    this.$http.get('https://stagingapi.whynot.earth/api/v0/categories').then(function(data){
+      this.categories=data.body;
     });
   },
 }
