@@ -24,7 +24,7 @@
           </v-layout>
         </v-flex>
         <v-flex xs12 class="hidden-md-and-up">
-          <v-carousel height="300px" hide-controls dark>
+          <v-carousel height="300px" hide-controls dark :cycle="false">
             <!-- v-if="belltent.images.length > 0" is required to avoid the error "cannot read property 'url' of undefined. 
             It is needed only when we want to iterate through an array of images, or nested elements.-->
             <v-carousel-item :src="resort.featuredImage">
@@ -64,7 +64,7 @@
               Location
             </h2>
             <p>
-              <a href="https://goo.gl/maps/NusquSFKVm2SHrDy7" style="color: #006064;">Get Directions</a>
+              <a href="https://goo.gl/maps/NusquSFKVm2SHrDy7" style="color: #B9BCC1;">Get Directions</a>
             </p>
             <v-flex v-if="resort.modules.hotel.spaces > 0">
               <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
@@ -327,7 +327,7 @@
               :disabled="!valid"
               style="height:74px;"
             >
-              Book Now <v-icon>keyboard_arrow_right</v-icon>
+              Reserve Now <v-icon>keyboard_arrow_right</v-icon>
             </v-btn>
             <v-flex xs12 text-xs-center class="mt-3">
               <p style="font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
@@ -359,7 +359,7 @@
                 color="#F7B947"
                 v-on="on"
               >
-                Book Now <v-icon>keyboard_arrow_right</v-icon>
+                Reserve Now <v-icon>keyboard_arrow_right</v-icon>
               </v-btn>
             </template>
           <v-card class="bookForm" color="#191C21" style="position:absolute;">
@@ -528,7 +528,7 @@
               :disabled="!valid"
               style="height:74px;"
             >
-              Book Now <v-icon>keyboard_arrow_right</v-icon>
+              Reserve Now <v-icon>keyboard_arrow_right</v-icon>
             </v-btn>
             </v-flex>
             <v-flex xs12 text-xs-center class="mt-3">
