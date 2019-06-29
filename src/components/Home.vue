@@ -56,7 +56,7 @@
         </v-flex>
       </v-layout>
       <v-divider class="hidden-md-and-up mt-3" style="background-color:#3D424E;"></v-divider>
-      <v-card hover dark color="#191C21" style="border-radius: 3px;" width="100%">
+      <v-card hover dark color="#191C21" style="border-radius: 3px;" width="100%" to="/listing/Corporate-Retreat">
         <v-img height="300px" position="center" class="mt-4 pa-1 mb-4" width="100%" src="https://res.cloudinary.com/die9ji2vn/image/upload/dpr_auto/w_auto/q_auto:low/f_auto/v1561438684/Experiences/Invigorating%20Company%20Retreats/10_fotos/1_large_group_ndqlgo.jpg">
           <v-layout row wrap justify-end hidden-sm-and-down>
             <v-flex xs12 md6 sm6 lg6 class="ma-4" align-end>
@@ -72,7 +72,7 @@
           </v-layout>
           <v-layout column align-center justify-center fill-height>
             <v-flex xs12 md6 sm4 lg6>
-              <v-btn dark large depressed style="background: #F7B947; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; text-transform:capitalize" color="#4B7F52">
+              <v-btn to="/listing/Corporate-Retreat" dark large depressed style="background: #F7B947; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; text-transform:capitalize" color="#4B7F52">
                 Book Now <v-icon>keyboard_arrow_right</v-icon>
               </v-btn>
             </v-flex>
@@ -118,7 +118,7 @@
           </v-btn>
         </v-flex>
       </v-layout>
-      <v-card xs12 color="#191C21" width="100%" class="mt-4 mb-4" dark style="border-radius: 3px;" hover>
+      <v-card to="/search/food" xs12 color="#191C21" width="100%" class="mt-4 mb-4" dark style="border-radius: 3px;" hover>
       <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1560151624/Healthy_eyfk5v.jpg" height="300px" position="top" class="pt-3 pl-2">
       <v-layout row wrap justify-start class="mt-4 ml-4 mb-2">
         <v-flex xs12 md4 sm4 lg4>
