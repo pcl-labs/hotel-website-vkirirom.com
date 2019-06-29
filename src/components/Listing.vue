@@ -64,7 +64,7 @@
               Location
             </h2>
             <p>
-              <a href="https://goo.gl/maps/NusquSFKVm2SHrDy7" style="color: #006064;">Get Directions</a>
+              <a href="https://goo.gl/maps/NusquSFKVm2SHrDy7" style="color: #B9BCC1;">Get Directions</a>
             </p>
             <v-flex v-if="resort.modules.hotel.spaces > 0">
               <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
