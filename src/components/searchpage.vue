@@ -1,21 +1,23 @@
 <template>
 <v-container-fluid>
   <v-container grid-list-md>
-    <h1 style="color: #FFFFFF;" class="mb-4">All Results</h1>
     <v-layout row wrap justify-space-between justify-center>
+      <v-flex xs12>
+        <h1 style="color: #FFFFFF;" class="mb-4">Results for {{id}}</h1>
+      </v-flex>
       <v-flex xs12 sm6 md4 lg4 v-for="resort in resorts" v-bind:key="resort.id">
-        <v-card width="100%" dark color="transparent" :to="'/listing/'+ resort.slug" flat >
+        <v-card height="270px" color="#191C21" class="mb-4" width="100%" dark :to="'/listing/'+ resort.slug" flat style="box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;">
           <router-link :to="'/listing/'+ resort.slug">
-            <v-carousel height="150px" :cycle="false" hide-controls dark width="100%" class="hidden-md-and-up" v-if="resort.images.length > 0">
+            <v-carousel height="150px" :cycle="false" hide-controls dark v-if="resort.images.length > 0" width="100%" class="hidden-md-and-up" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
               <v-carousel-item :src="resort.featuredImage" style="background-size:contain;">
               </v-carousel-item>
               <v-carousel-item v-for="image in resort.images" v-bind:key="image.order" :src="resort.images[0].url" style="background-size:contain;">
               </v-carousel-item>
             </v-carousel>
           </router-link>
-          <v-img :src="resort.featuredImage" height="150px" class="hidden-sm-and-down"></v-img>
+          <v-img :src="resort.featuredImage" height="150px" class="hidden-sm-and-down" style="border-top-left-radius: 10px; border-top-right-radius: 10px;"></v-img>
           <v-layout align-start>
-            <v-card-text class="pa-1">
+            <v-card-text style="margin:10px; padding: 0;">
               <p>
                 <!-- <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire {{resort.title}}</span> -->
                 <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>{{resort.title}}</h3></span>
