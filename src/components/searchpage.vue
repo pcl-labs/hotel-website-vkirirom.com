@@ -72,16 +72,19 @@ export default {
   @media only screen and (max-width: 600px) {
     .container{
       max-width: 292px;
+      padding: 0;
     }
   }
   @media only screen and (min-width: 768px) {
     .container{
       max-width: 600px;
+      padding: 0;
     }
   }
   @media only screen and (min-width: 1024px) {
     .container{
       max-width: 900px;
+      padding: 0;
     }
   }
 </style>
