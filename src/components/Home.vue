@@ -57,7 +57,7 @@
       </v-layout>
       <v-divider class="hidden-md-and-up mt-3" style="background-color:#3D424E;"></v-divider>
       <v-card hover dark color="#191C21" style="border-radius: 3px;" width="100%">
-        <v-img :src="corporateRetreat" height="300px" position="top" class="mt-4 pa-1 mb-4" width="100%">
+        <v-img height="300px" position="center" class="mt-4 pa-1 mb-4" width="100%" src="https://res.cloudinary.com/die9ji2vn/image/upload/dpr_auto/w_auto/q_auto:low/f_auto/v1561438684/Experiences/Invigorating%20Company%20Retreats/10_fotos/1_large_group_ndqlgo.jpg">
           <v-layout row wrap justify-end hidden-sm-and-down>
             <v-flex xs12 md6 sm6 lg6 class="ma-4" align-end>
               <h2 style="color: #FFFFFF; font-family: 'Oswald', sans-serif; font-size: 36px;">Your next corporate retreat.</h2>
@@ -114,7 +114,7 @@
       <v-layout row wrap justify-space-around justify-center>
         <v-flex xs12 sm4 md4 lg4>
           <v-btn to="/search/experiences/" block large outline dark style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; max-width:340px; text-transform:capitalize">
-            Show all <v-icon>keyboard_arrow_right</v-icon>
+            Show all <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
           </v-btn>
         </v-flex>
       </v-layout>
@@ -229,7 +229,6 @@
 import FrontendImg from '../assets/FrontImage.png'
 import example4 from '../assets/example4.png'
 import experience1 from '../assets/experience1.jpg'
-import corporateRetreat from '../assets/951820009082492817.jpg'
 import headerImg from '../assets/freedom-camping-4m-bell-tent-5_copy_3_6e7cf404-7d2f-4cac-8bf7-fd04c9dd8854_1024x1024.jpeg'
 import food from '../assets/istockphoto-614420320-612x612.jpg'
 import Footer from './Footer.vue'
@@ -244,7 +243,6 @@ export default {
     return {
       FrontendImg,
       headerImg,
-      corporateRetreat,
       food,
       experience1,
       example4,
@@ -392,7 +390,7 @@ export default {
 #header{
   object-fit: cover;
   box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
-  background: linear-gradient(0deg, #191C21 0%, rgba(25, 28, 33, 0) 50%), url('https://res.cloudinary.com/die9ji2vn/image/upload/v1560155423/top_image_kyv74r.jpg');
+  background: linear-gradient(0deg, #000A0E 0%, rgba(25, 28, 33, 0) 50%), url('https://res.cloudinary.com/die9ji2vn/image/upload/v1560155423/top_image_kyv74r.jpg');
   background-position: bottom;
   background-size: cover;
   background-repeat: no-repeat;
