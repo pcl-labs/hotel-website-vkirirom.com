@@ -327,7 +327,7 @@
               :disabled="!valid"
               style="height:74px;"
             >
-              Book Now <v-icon>keyboard_arrow_right</v-icon>
+              Reserve Now <v-icon>keyboard_arrow_right</v-icon>
             </v-btn>
             <v-flex xs12 text-xs-center class="mt-3">
               <p style="font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
@@ -359,7 +359,7 @@
                 color="#F7B947"
                 v-on="on"
               >
-                Book Now <v-icon>keyboard_arrow_right</v-icon>
+                Reserve Now <v-icon>keyboard_arrow_right</v-icon>
               </v-btn>
             </template>
           <v-card class="bookForm" color="#191C21" style="position:absolute;">
@@ -528,7 +528,7 @@
               :disabled="!valid"
               style="height:74px;"
             >
-              Book Now <v-icon>keyboard_arrow_right</v-icon>
+              Reserve Now <v-icon>keyboard_arrow_right</v-icon>
             </v-btn>
             </v-flex>
             <v-flex xs12 text-xs-center class="mt-3">
