@@ -105,7 +105,7 @@
               </h2>
               <p style="font-size: 14px; color: #B9BCC1;">Preah Soramarith-Kosamak National Park (Kirirom), Phnom Srouch District, Kompong Speu Province, Cambodia
                 <p>
-                <a href="https://goo.gl/maps/NusquSFKVm2SHrDy7" style="color: #006064;">Get Directions</a>
+                <a href="https://goo.gl/maps/NusquSFKVm2SHrDy7" style="color: #B9BCC1;">Get Directions</a>
               </p>
             </v-flex>
             <v-flex xs12>
@@ -113,7 +113,7 @@
                 E-Mail
               </h2>
               <p style="font-size: 14px; color: #B9BCC1;">
-                <a href="mailto:info@vkirirom.com" style="color: #006064;">info@vkirirom.com</a>
+                <a href="mailto:info@vkirirom.com" style="color: #B9BCC1;">info@vkirirom.com</a>
               </p>
             </v-flex>
             <v-flex xs12>
@@ -121,7 +121,7 @@
                 Phone Number
               </h2>
               <p style="font-size: 14px; color: #B9BCC1;">
-                <a href="tel:+(855)78777284" style="color: #006064;">+(855) 78 777 284</a>
+                <a href="tel:+(855)78777284" style="color: #B9BCC1;">+(855) 78 777 284</a>
               </p>
             </v-flex>
           </v-card-text>
