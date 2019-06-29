@@ -175,7 +175,7 @@
         </v-flex>
       </v-layout>
       <v-flex xs12>
-        <video style="object-fit:cover;" controls width="100%" class="mt-4" poster="https://res.cloudinary.com/die9ji2vn/image/upload/dpr_auto/w_auto/q_auto:low/f_auto/v1561607608/Thumbnail/JPEG/thumbnail_zjzji4.jpg">
+        <video style="object-fit:cover;" onclick="this.controls=true; this.play()" width="100%" class="mt-4" poster="https://res.cloudinary.com/die9ji2vn/image/upload/dpr_auto/w_auto/q_auto:low/f_auto/v1561607608/Thumbnail/JPEG/thumbnail_zjzji4.jpg">
           <source src="https://res.cloudinary.com/die9ji2vn/video/upload/v1560320692/10000000_143443766812356_671027213277999975_n_1_hm0gxb.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
