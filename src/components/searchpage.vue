@@ -1,8 +1,10 @@
 <template>
 <v-container-fluid>
   <v-container grid-list-md>
-    <h1 style="color: #FFFFFF;" class="mb-4">All Results</h1>
     <v-layout row wrap justify-space-between justify-center>
+      <v-flex xs12>
+        <h1 style="color: #FFFFFF;" class="mb-4">All Results</h1>
+      </v-flex>
       <v-flex xs12 sm6 md4 lg4 v-for="resort in resorts" v-bind:key="resort.id">
         <v-card width="100%" dark color="transparent" :to="'/listing/'+ resort.slug" flat >
           <router-link :to="'/listing/'+ resort.slug">

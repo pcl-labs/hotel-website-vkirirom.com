@@ -1,5 +1,5 @@
 <template>
-<v-container-fluid>
+<v-container>
   <v-toolbar app dark color="#191C21" dense>
     <router-link to="/">
       <img src="/static/img/icons/Logo.png" style="height:30px;">
@@ -33,7 +33,7 @@
       </v-flex>
     </v-layout>
   </v-navigation-drawer>
-</v-container-fluid>
+</v-container>
 </template>
 
 <script>
