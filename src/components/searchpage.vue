@@ -2,8 +2,8 @@
 <v-container-fluid>
   <v-container grid-list-md>
     <v-layout row wrap>
-      <v-flex xs12>
-        <h1 style="color: #FFFFFF;" class="mb-4">Results for {{id}}</h1>
+      <v-flex xs12 style="margin-top:20px; margin-bottom:20px;">
+        <h1 style="color: #FFFFFF;">Results for {{id}}</h1>
       </v-flex>
       <v-flex xs12 sm6 md4 lg4 v-for="resort in resorts" v-bind:key="resort.id">
         <v-card height="270px" color="#191C21" class="mb-4" width="100%" dark :to="'/listing/'+ resort.slug" flat style="box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;">
