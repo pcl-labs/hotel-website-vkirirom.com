@@ -472,7 +472,7 @@
                 @date-two-selected="val => { dateTwo = val }"
               />
               </v-flex>
-              <v-layout row wrap justify-center justify-space-between v-if="resort.modules.hotel.beds >0">
+              <v-layout row wrap justify-center justify-space-between v-if="resort.modules.hotel.beds && resort.modules.hotel.beds.length >0">
                 <v-flex mr-2 mb-4>
                 <v-btn-toggle v-model="toggle0" style="background-color:transparent; width:100%;">
                   <v-btn v-if="resort.modules.hotel.beds.length >0" :value="resort.modules.hotel.beds[0].type" flat dark outline block text-xs-center style="border: 3px solid #B9BCC1; box-sizing: border-box; border-radius: 3px; height:108px; font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
@@ -595,8 +595,8 @@ export default {
   },
   data(){
     return{
-      toggle0:1,
-      toggle1:0,
+      toggle0:0,
+      toggle1:1,
       beds: false,
       valid: false,
       nameRules: [
