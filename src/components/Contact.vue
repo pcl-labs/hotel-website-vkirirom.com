@@ -1,7 +1,7 @@
 <template>
 <v-container-fluid>
   <v-container>
-    <v-layout row wrap>
+    <v-layout row wrap style="min-height: 100vh;">
       <v-flex xs12 md6>
         <v-flex xs12>
           <h1 style="font-size: 36px; color: #FFFFFF; margin-bottom:43px; margin-top:50px;">

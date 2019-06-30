@@ -1,7 +1,7 @@
 <template>
 <v-container-fluid>
   <v-container grid-list-md>
-    <v-layout row wrap>
+    <v-layout row wrap style="min-height: 100vh;">
       <v-flex xs12 style="margin-top:20px; margin-bottom:20px;">
         <h1 style="color: #FFFFFF;">Results for {{id}}</h1>
       </v-flex>
