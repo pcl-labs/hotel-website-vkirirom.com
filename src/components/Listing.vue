@@ -91,8 +91,8 @@
                 {{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.spaces[0]}}
               </p>
             </v-flex>
-            <v-layout row flex>
-            <!-- <v-flex xs12 md6 class="availability">
+            <!-- <v-layout row flex>
+            <v-flex xs12 md6 class="availability">
               <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
                 Availability
               </h2>
@@ -107,11 +107,11 @@
                 :showActionButtons="false"
               >
               </Calendar>
-            </v-flex> -->
-            </v-layout>
+            </v-flex>
+            </v-layout> -->
           </v-flex>
           <v-flex xs12 v-if="resort.modules.hotel.amenities && resort.modules.hotel.amenities.length >0">
-            <h2 style="font-size: 20px; color: #D8DADE;" class="mb-3 mt-3">
+            <h2 style="font-size: 20px; color: #D8DADE;" class="mb-3 mt-5">
               Amenities
             </h2>
             <v-flex>
@@ -163,6 +163,14 @@
                 <span style="font-size: 16px; color: #B9BCC1;">Coffee</span>
               </v-flex>
             </v-layout> -->
+          </v-flex>
+          <v-flex v-if="resort.modules.hotel.rules && resort.modules.hotel.rules.length >0">
+            <h2 style="font-size: 20px; color: #D8DADE;" class="mb-3 mt-5">
+              Rules
+            </h2>
+            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;">
+              {{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.rules[0]}}
+            </span>
           </v-flex>
           <v-flex xs12>
             <v-btn
