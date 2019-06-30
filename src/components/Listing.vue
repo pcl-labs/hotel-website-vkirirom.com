@@ -52,7 +52,7 @@
                 {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.capacity }} guests
               </v-flex>
               <v-flex v-if="resort.modules.hotel.beds && resort.modules.hotel.beds.length> 0" style="font-size: 16px; line-height: 19px; color: #B9BCC1; margin-top:20px; margin-bottom:20px;">
-                <v-icon size="30" color="#B9BCC1" style="margin-bottom:-5px;">airline_seat_individual_suite</v-icon>
+                <v-icon size="30" color="#B9BCC1" style="margin-bottom:-5px;">hotel</v-icon>
               <span>
                 {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds && resort.modules.hotel.beds[0].count }} 
                 {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds && resort.modules.hotel.beds[0].type }}
