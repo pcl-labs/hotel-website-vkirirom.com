@@ -7,7 +7,6 @@
       mode="out-in"
     >
       <router-view/>
-
     </transition>
   </v-app>
 </template>
@@ -36,7 +35,6 @@ export default {
   }
   html {
     scroll-behavior: smooth;
-    overflow-y: auto;
   }
   
   .fade-enter-active,

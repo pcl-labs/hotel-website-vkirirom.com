@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <div style="background: #191C21; box-shadow: 0px -1px 0px #121416; color: #D8DADE;">
+    <div style="background: #191C21; box-shadow: 0px -1px 0px #121416; color: #D8DADE; width:100%;">
       <v-container grid-list-md align-start>
         <v-layout row wrap justify-space-between class="mt-2">
           <v-flex xs6 sm6 md3 lg3 class="mb-3">
