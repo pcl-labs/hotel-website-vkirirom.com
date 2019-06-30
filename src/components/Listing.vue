@@ -2,24 +2,24 @@
   <v-container-fluid>
     <v-container-fluid class="pa-0 ma-0">
       <v-layout row flex class="pa-0 mx-0">
-        <v-flex xs12 sm12 md6 class="pa-0 overflow-hidden hidden-sm-and-down">
-          <v-img class="image" :src="resort.featuredImage" aspect-ratio="1.7"></v-img>
+        <v-flex class="pa-0 overflow-hidden hidden-sm-and-down">
+          <v-img class="image ma-0 pa-0" :src="resort.featuredImage"></v-img>
         </v-flex>
-        <v-flex xs12 sm6 class="pa-0 ma-0 overflow-hidden hidden-sm-and-down">
+        <v-flex class="pa-0 ma-0 overflow-hidden hidden-sm-and-down" v-if="resort.images">
           <v-layout row flex class="pa-0 ma-0 overflow-hidden">
-            <v-flex xs12 sm6 class="pa-0 overflow-hidden">
-              <v-img class="image ma-0 pa-0" v-if="resort.images.length > 0" :src="resort.images[0].url" aspect-ratio="1.7"></v-img>
+            <v-flex class="pa-0 overflow-hidden" v-if="resort.images.length > 0">
+              <v-img class="image ma-0 pa-0" :src="resort.images[0].url"></v-img>
             </v-flex>
-            <v-flex xs12 sm6 class="pa-0 overflow-hidden">
-              <v-img class="image" v-if="resort.images.length > 1" :src="resort.images[1].url" aspect-ratio="1.7"></v-img>
+            <v-flex class="pa-0 overflow-hidden" v-if="resort.images.length > 1">
+              <v-img class="image" :src="resort.images[1].url"></v-img>
             </v-flex>
           </v-layout>
           <v-layout row flex class="pa-0 ma-0 overflow-hidden">
-            <v-flex xs12 sm6 class="pa-0 overflow-hidden">
-              <v-img class="image" v-if="resort.images.length > 2" :src="resort.images[2].url" aspect-ratio="1.7"></v-img>
+            <v-flex class="pa-0 overflow-hidden" v-if="resort.images.length > 2" >
+              <v-img class="image" :src="resort.images[2].url"></v-img>
             </v-flex>
-            <v-flex xs12 sm6 class="pa-0 overflow-hidden">
-              <v-img class="image" v-if="resort.images.length > 3" :src="resort.images[3].url" aspect-ratio="1.7"></v-img>
+            <v-flex class="pa-0 overflow-hidden" v-if="resort.images.length > 3">
+              <v-img class="image" :src="resort.images[3].url"></v-img>
             </v-flex>
           </v-layout>
         </v-flex>
@@ -42,48 +42,59 @@
       </v-layout>
     </v-container-fluid>
     <v-container>
-      <v-layout row wrap>
+      <v-layout row wrap style="min-height: 100vh;">
         <v-flex xs12 md6>
+          <h1 style="color: #FFFFFF; margin-top:30px;">{{resort.title}}</h1>
           <v-flex xs12>
-            <h1 style="color: #FFFFFF; margin-top:30px;">{{resort.title}}</h1>
-            <!-- <p style="font-size: 16px; color: #687C94;" class="mt-2">Entire {{resort.title}}</p> -->
-            <div class="text-xs-left mb-5 mt-4 font-weight-regular">
-              <p class="subDescription">
-                <span class="mr-3" v-if="resort.modules.hotel.capacity > 0"><img class="mr-2" :src="MultiUsers" /> {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.capacity }} guests</span>
-                <!-- <span class="mr-5 font-weight-bold">{{ bedRooms.length }} bedrooms</span> -->
-                <span class="mr-3" v-if="resort.modules.hotel.beds > 0">{{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }} Bed(s)</span>
-                <span v-if="resort.modules.hotel.beds > 0">Type: {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}</span>
-              </p>
-            </div>
-            <div class="text-xs-left font-weight-regular">
+            <v-layout row wrap style="height:100%">
+              <v-flex v-if="resort.modules.hotel.capacity" style="font-size: 16px; color: #B9BCC1; margin-top:20px; margin-bottom:20px;">
+                <v-icon size="30" color="#B9BCC1" style="margin-bottom:-5px;">supervisor_account</v-icon> 
+                {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.capacity }} guests
+              </v-flex>
+              <v-flex v-if="resort.modules.hotel.beds && resort.modules.hotel.beds.length> 0" style="font-size: 16px; line-height: 19px; color: #B9BCC1; margin-top:20px; margin-bottom:20px;">
+                <v-icon size="30" color="#B9BCC1" style="margin-bottom:-5px;">hotel</v-icon>
+              <span>
+                {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds && resort.modules.hotel.beds[0].count }} 
+                {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds && resort.modules.hotel.beds[0].type }}
+              </span>
+              <span v-if="resort.modules.hotel.beds.length> 1">
+                {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds && resort.modules.hotel.beds[1].count }} 
+                {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds && resort.modules.hotel.beds[1].type }}
+              </span>
+              <span>Bed(s)</span>
+              </v-flex>
+            </v-layout>
+            <v-flex v-if="resort.description" style="height:100%" class="mt-3">
               <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
                 {{resort.description}}
               </p>
-            </div>
-            <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
-              Location
-            </h2>
-            <p>
-              <a href="https://goo.gl/maps/NusquSFKVm2SHrDy7" style="color: #B9BCC1;">Get Directions</a>
-            </p>
-            <v-flex v-if="resort.modules.hotel.spaces > 0">
-              <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
+            </v-flex>
+            <v-flex v-if="resort.modules.hotel.gettingAround" style="height:100%;">
+              <!-- <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
+                Description
+              </h2> -->
+              <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
+                <vue-markdown>{{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.gettingAround}}</vue-markdown>
+              </p>
+            </v-flex>
+            <v-flex xs12 v-if="resort.modules.hotel.location" style="height:100%;">
+              <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-3">
+                Location
+              </h2>
+              <p>
+                <a :href="resort.modules.hotel.location" style="color: #B9BCC1;">Get Directions</a>
+              </p>
+            </v-flex>
+            <v-flex v-if="resort.modules.hotel.spaces && resort.modules.hotel.spaces.length > 0">
+              <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-3">
                 Spaces
               </h2>
               <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
                 {{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.spaces[0]}}
               </p>
             </v-flex>
-            <v-flex>
-              <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
-                Getting Around
-              </h2>
-              <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
-                <vue-markdown>{{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.gettingAround}}</vue-markdown>
-              </p>
-            </v-flex>
-            <v-layout row flex>
-            <!-- <v-flex xs12 md6 class="availability">
+            <!-- <v-layout row flex>
+            <v-flex xs12 md6 class="availability">
               <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
                 Availability
               </h2>
@@ -98,14 +109,19 @@
                 :showActionButtons="false"
               >
               </Calendar>
-            </v-flex> -->
-            </v-layout>
+            </v-flex>
+            </v-layout> -->
           </v-flex>
-          <v-flex xs12 v-if="resort.modules.hotel.amenities> 0">
-            <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
+          <v-flex xs12 v-if="resort.modules.hotel.amenities && resort.modules.hotel.amenities.length >0">
+            <h2 style="font-size: 20px; color: #D8DADE;" class="mb-3 mt-3">
               Amenities
             </h2>
-            <v-layout row wrap justify-space-between align-center>
+            <v-flex style="height:100%;">
+              <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> 
+                {{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.amenities[0]}}
+              </span>
+            </v-flex>
+            <!-- <v-layout row wrap justify-space-between align-center>
               <v-flex xs6 md6 class="py-3">
                 <img :src="wifi">
                 <br>
@@ -126,10 +142,8 @@
                 <br>
                 <span style="font-size: 16px; color: #B9BCC1;">Washer</span>
               </v-flex>
-            </v-layout>
-          </v-flex>
-          <!-- <v-flex xs12 md4>
-            <v-layout row wrap justify-space-between align-center>
+            </v-layout> -->
+            <!-- <v-layout row wrap justify-space-between align-center>
               <v-flex>
                 <v-icon color="#B9BCC1" size="24px">kitchen</v-icon>
                 <span style="font-size: 16px; color: #B9BCC1;">Kitchen</span>
@@ -150,8 +164,16 @@
                 <v-icon color="#B9BCC1" size="24px">local_cafe</v-icon>
                 <span style="font-size: 16px; color: #B9BCC1;">Coffee</span>
               </v-flex>
-            </v-layout>
-          </v-flex> -->
+            </v-layout> -->
+          </v-flex>
+          <v-flex v-if="resort.modules.hotel.rules && resort.modules.hotel.rules.length >0">
+            <h2 style="font-size: 20px; color: #D8DADE; height:100%;" class="mb-3 mt-3">
+              Rules
+            </h2>
+            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;">
+              {{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.rules[0]}}
+            </span>
+          </v-flex>
           <v-flex xs12>
             <v-btn
               block
@@ -166,7 +188,7 @@
           </v-flex>
         </v-flex>
         <v-flex md6 class="hidden-sm-and-down">
-          <v-card class="bookForm" width="300px" color="#191C21" style="border: 1px solid #E1E7ED; border-radius: 3px; margin-top:30px; margin-left:77px; padding:25px;">
+          <v-card class="bookForm" width="300px" color="#191C21" style="border: 1px solid #E1E7ED; border-radius: 3px; margin-top:30px; margin-bottom:30px; margin-left:77px; padding:25px;">
             <v-form :name="resort.name" method="post" netlify ref="form" v-model="valid"  action="/thanks" data-netlify="true">
               <input type="hidden" name="form-name" :value="resort.name"/>
               <v-layout row wrap>
@@ -230,63 +252,63 @@
                 <v-icon slot="append" color="#B9BCC1">local_phone</v-icon>
                 </v-text-field>
               </v-flex>
-              <v-flex xs12>
-              <v-text-field
-                outline
-                dark
-                type="text"
-                name="Date"
-                color="#B9BCC1"
-                id="datepicker"
-                readonly
-                :rules="dateRules"
-                :value="formatDates(dateOne, dateTwo)"
-                >
-                <v-icon slot="append" color="#B9BCC1">event</v-icon>
-                <p slot="label">
-                  Check in 
-                  <v-icon color="#B9BCC1" style="font-size:30px; width:30px; height:18px;">arrow_right_alt</v-icon> 
-                  Check out
-                </p>
-                </v-text-field>
-              <AirbnbStyleDatepicker
-                :trigger-element-id="'datepicker'"
-                :mode="'range'"
-                :fullscreen-mobile="false"
-                :date-one="dateOne"
-                :date-two="dateTwo"
-                @date-one-selected="val => { dateOne = val }"
-                @date-two-selected="val => { dateTwo = val }"
-                style="left:-70%; top:60%;"
-                :show-shortcuts-menu-trigger="false"
-                dark
-              />
-              </v-flex>
-              <v-layout row wrap justify-center justify-space-between v-if="resort.modules.hotel.beds >0">
-                <v-flex mr-2 mb-4>
-                <v-btn-toggle v-model="toggle0" style="background-color:transparent; width:100%;">
-                  <v-btn v-if="resort.modules.hotel.beds.length >0" :value="resort.modules.hotel.beds[0].type" flat dark outline block text-xs-center style="border: 3px solid #B9BCC1; box-sizing: border-box; border-radius: 3px; height:108px; font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
-                    <p class="mt-4">  
-                      {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }}
-                      {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}
-                    <br>
-                      <v-img class="mt-1 ml-3" width="22px" height="20px" :src="bed"></v-img>
-                    </p>
-                  </v-btn>
-                </v-btn-toggle>
+              <v-flex xs12 v-if="resort.modules.hotel.beds && resort.modules.hotel.beds.length >0">
+                <v-text-field
+                  outline
+                  dark
+                  type="text"
+                  name="Date"
+                  color="#B9BCC1"
+                  id="datepicker"
+                  readonly
+                  :rules="dateRules"
+                  :value="formatDates(dateOne, dateTwo)"
+                  >
+                  <v-icon slot="append" color="#B9BCC1">event</v-icon>
+                  <p slot="label">
+                    Check in 
+                    <v-icon color="#B9BCC1" style="font-size:30px; width:30px; height:18px;">arrow_right_alt</v-icon> 
+                    Check out
+                  </p>
+                  </v-text-field>
+                <AirbnbStyleDatepicker
+                  :trigger-element-id="'datepicker'"
+                  :mode="'range'"
+                  :fullscreen-mobile="false"
+                  :date-one="dateOne"
+                  :date-two="dateTwo"
+                  @date-one-selected="val => { dateOne = val }"
+                  @date-two-selected="val => { dateTwo = val }"
+                  style="left:-70%; top:60%;"
+                  :show-shortcuts-menu-trigger="false"
+                  dark
+                />
                 </v-flex>
-                <v-flex ml-2 mb-4>
+              <v-layout row wrap justify-center justify-space-between v-if="resort.modules.hotel.beds && resort.modules.hotel.beds.length >0">
+                <v-flex style="margin-bottom:30px;">
+                  <v-btn-toggle v-model="toggle0" mandatory style="background-color:transparent; width:100%;">
+                    <v-btn v-if="resort.modules.hotel.beds.length >0" :value="resort.modules.hotel.beds[0].type" flat dark outline block text-xs-center style="margin-right:10px; border: 3px solid #B9BCC1; box-sizing: border-box; border-radius: 3px; height:108px; font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
+                      <p class="mt-4">
+                        {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }}
+                        {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}
+                      <br>
+                        <v-img class="mt-1 ml-3" width="22px" height="20px" :src="bed"></v-img>
+                      </p>
+                    </v-btn>
+                    <v-btn v-if="resort.modules.hotel.beds.length >0" :value="resort.modules.hotel.beds[0].type" flat dark outline block text-xs-center style="margin-left:10px; border: 3px solid #B9BCC1; box-sizing: border-box; border-radius: 3px; height:108px; font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
+                      <p class="mt-4">  
+                        {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }}
+                        {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}
+                      <br>
+                        <v-img class="mt-1 ml-3" width="22px" height="20px" :src="bed"></v-img>
+                      </p>
+                    </v-btn>
+                  </v-btn-toggle>
+                </v-flex>
+                <!-- <v-flex ml-2 mb-4>
                 <v-btn-toggle v-model="toggle1" style="width:100%; background-color:transparent;">
-                  <v-btn v-if="resort.modules.hotel.beds.length >0" :value="resort.modules.hotel.beds[0].type" flat dark outline block text-xs-center style="border: 3px solid #B9BCC1; box-sizing: border-box; border-radius: 3px; height:108px; font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
-                    <p class="mt-4">  
-                      {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }}
-                      {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}
-                    <br>
-                      <v-img class="mt-1 ml-3" width="22px" height="20px" :src="bed"></v-img>
-                    </p>
-                  </v-btn>
                 </v-btn-toggle>
-                </v-flex>
+                </v-flex> -->
               </v-layout>
               <input
                 name="Type1"
@@ -432,70 +454,66 @@
                 <v-icon slot="append" color="#B9BCC1">local_phone</v-icon>
                 </v-text-field>
               </v-flex>
-              <v-flex xs12>
-              <v-text-field
-                outline
-                dark
-                type="text"
-                name="Date"
-                readonly
-                color="#B9BCC1"
-                id="datepicker-trigger"
-                :rules="dateRules"
-                :value="formatDates(dateOne, dateTwo)"
-                >
-                <v-icon slot="append" color="#B9BCC1">event</v-icon>
-                <p slot="label">
-                  Check in 
-                  <v-icon color="#B9BCC1" style="font-size:30px; width:30px; height:18px;">arrow_right_alt</v-icon> 
-                  Check out
-                </p>
-                </v-text-field>
-              <AirbnbStyleDatepicker
-                :trigger-element-id="'datepicker-trigger'"
-                :mode="'range'"
-                style="width:100%; height:100%;"
-                :fullscreen-mobile="true"
-                :date-one="dateOne"
-                :show-shortcuts-menu-trigger="false"
-                :date-two="dateTwo"
-                @date-one-selected="val => { dateOne = val }"
-                @date-two-selected="val => { dateTwo = val }"
-              />
+              <v-flex xs12 v-if="resort.modules.hotel.beds && resort.modules.hotel.beds.length >0">
+                <v-text-field
+                  outline
+                  dark
+                  type="text"
+                  name="Date"
+                  readonly
+                  color="#B9BCC1"
+                  id="datepicker-trigger"
+                  :rules="dateRules"
+                  :value="formatDates(dateOne, dateTwo)"
+                  >
+                  <v-icon slot="append" color="#B9BCC1">event</v-icon>
+                  <p slot="label">
+                    Check in 
+                    <v-icon color="#B9BCC1" style="font-size:30px; width:30px; height:18px;">arrow_right_alt</v-icon> 
+                    Check out
+                  </p>
+                  </v-text-field>
+                <AirbnbStyleDatepicker
+                  :trigger-element-id="'datepicker-trigger'"
+                  :mode="'range'"
+                  style="width:100%; height:100%;"
+                  :fullscreen-mobile="true"
+                  :date-one="dateOne"
+                  :show-shortcuts-menu-trigger="false"
+                  :date-two="dateTwo"
+                  @date-one-selected="val => { dateOne = val }"
+                  @date-two-selected="val => { dateTwo = val }"
+                />
               </v-flex>
-              <v-layout row wrap justify-center justify-space-between v-if="resort.modules.hotel.beds >0">
-                <v-flex mr-2 mb-4>
-                <v-btn-toggle v-model="toggle0" style="background-color:transparent; width:100%;">
-                  <v-btn v-if="resort.modules.hotel.beds.length >0" :value="resort.modules.hotel.beds[0].type" flat dark outline block text-xs-center style="border: 3px solid #B9BCC1; box-sizing: border-box; border-radius: 3px; height:108px; font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
-                    <p class="mt-4">  
-                      {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }}
-                      {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}
-                    <br>
-                      <v-img class="mt-1 ml-3" width="22px" height="20px" :src="bed"></v-img>
-                    </p>
-                  </v-btn>
-                </v-btn-toggle>
-                </v-flex>
-                <v-flex ml-2 mb-4>
-                <v-btn-toggle v-model="toggle1" style="width:100%; background-color:transparent;">
-                  <v-btn v-if="resort.modules.hotel.beds.length >0" :value="resort.modules.hotel.beds[0].type" flat dark outline block text-xs-center style="border: 3px solid #B9BCC1; box-sizing: border-box; border-radius: 3px; height:108px; font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
-                    <p class="mt-4">  
-                      {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }}
-                      {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}
-                    <br>
-                      <v-img class="mt-1 ml-3" width="22px" height="20px" :src="bed"></v-img>
-                    </p>
-                  </v-btn>
-                </v-btn-toggle>
+              <v-layout row wrap justify-center justify-space-between v-if="resort.modules.hotel.beds && resort.modules.hotel.beds.length >0">
+                <v-flex style="margin-bottom:30px;">
+                  <v-btn-toggle v-model="toggle0" mandatory style="background-color:transparent; width:100%;">
+                    <v-btn v-if="resort.modules.hotel.beds.length >0" :value="resort.modules.hotel.beds[0].type" flat dark outline block text-xs-center style="margin-right:10px; border: 3px solid #B9BCC1; box-sizing: border-box; border-radius: 3px; height:108px; font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
+                      <p class="mt-4">
+                        {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }}
+                        {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}
+                      <br>
+                        <v-img class="mt-1 ml-3" width="22px" height="20px" :src="bed"></v-img>
+                      </p>
+                    </v-btn>
+                    <v-btn v-if="resort.modules.hotel.beds.length >0" :value="resort.modules.hotel.beds[0].type" flat dark outline block text-xs-center style="margin-left:10px; border: 3px solid #B9BCC1; box-sizing: border-box; border-radius: 3px; height:108px; font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
+                      <p class="mt-4">  
+                        {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }}
+                        {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}
+                      <br>
+                        <v-img class="mt-1 ml-3" width="22px" height="20px" :src="bed"></v-img>
+                      </p>
+                    </v-btn>
+                  </v-btn-toggle>
                 </v-flex>
               </v-layout>
-              <input
+              <!-- <input
                 name="Type1"
                 hidden
                 :value="toggle1"
                 type="text"
                 readonly
-              />
+              /> -->
               <input
                 name="Type2"
                 hidden
@@ -557,7 +575,6 @@ import HairDryer from '../assets/icons/hair-dryer.svg'
 import Washer from '../assets/icons/washing-machine.svg'
 import cutlery from '../assets/icons/cutlery.svg'
 import bed from '../assets/icons/bed.svg'
-import MultiUsers from '../assets/icons/multiple-users-silhouette.svg'
 import format from 'date-fns/format'
 import Footer from './Footer.vue'
 import VueMarkdown from 'vue-markdown'
@@ -586,8 +603,7 @@ export default {
   },
   data(){
     return{
-      toggle0:1,
-      toggle1:0,
+      toggle0:0,
       beds: false,
       valid: false,
       nameRules: [
@@ -615,7 +631,6 @@ export default {
       dateTwo: '',
 
       //images
-      MultiUsers,
       wifi,
       HairDryer,
       Washer,
@@ -712,10 +727,6 @@ export default {
   .gradient{
     background-image: linear-gradient(0deg, #191C21 0%, rgba(25, 28, 33, 0) 50%);
     box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
-  }
-  .subDescription{
-    color:#B9BCC1;
-    font-size: 16px;
   }
   .image{
     transition:  0.8s ease;

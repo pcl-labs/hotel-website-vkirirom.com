@@ -1,9 +1,9 @@
 <template>
 <v-container-fluid>
   <v-container grid-list-md>
-    <v-layout column wrap justify-center class="text-xs-center">
+    <v-layout column wrap justify-center class="text-xs-center" style="min-height: 100vh;">
     <v-flex xs12 md6 sm6 lg6 class="hidden-sm-and-down">
-      <v-card dark color="#191C21" style="color:#B9BCC1; top:-100px;" height="100%">
+      <v-card dark color="#191C21" style="color:#B9BCC1;" height="100%">
         <v-card-text class="headline font-weight-bold display-4 text-xs-center">
           <span style="color:#B9BCC1; margin:20px;">Congratulations, your booking has been successfully made.</span>
         </v-card-text>
