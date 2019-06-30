@@ -66,7 +66,7 @@
             <p>
               <a href="https://goo.gl/maps/NusquSFKVm2SHrDy7" style="color: #B9BCC1;">Get Directions</a>
             </p>
-            <v-flex v-if="resort.modules.hotel.spaces > 0">
+            <v-flex v-if="resort.modules.hotel.spaces && resort.modules.hotel.spaces.length > 0">
               <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
                 Spaces
               </h2>
@@ -74,7 +74,7 @@
                 {{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.spaces[0]}}
               </p>
             </v-flex>
-            <v-flex>
+            <v-flex v-if="resort.modules.hotel.gettingAround">
               <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
                 Getting Around
               </h2>
