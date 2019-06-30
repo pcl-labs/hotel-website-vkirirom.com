@@ -18,7 +18,7 @@
     </v-card>
     <v-container grid-list-md>
       <h2 style="color: #D8DADE; font-size: 28px;" class="mb-4">Accommodation</h2>
-      <v-layout row wrap justify-space-between>
+      <v-layout row wrap>
         <v-flex xs12 sm6 md4 lg4 v-for="accommodation in accommodations" v-bind:key="accommodation.id">
           <v-card dark height="270px" color="#191C21" class="mb-4" :to="'/listing/'+ accommodation.slug" flat style="box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;">
             <router-link :to="'/listing/'+ accommodation.slug">
@@ -475,12 +475,12 @@ export default {
 }
 @media only screen and (min-width: 768px) {
   .container{
-    max-width: 600px;
+    max-width: 650px;
   }
 }
 @media only screen and (min-width: 1024px) {
   .container{
-    max-width: 900px;
+    max-width: 950px;
   }
 }
 

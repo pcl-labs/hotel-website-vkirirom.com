@@ -42,11 +42,11 @@
       </v-layout>
     </v-container-fluid>
     <v-container>
-      <v-layout row wrap>
+      <v-layout row wrap style="height:100%">
         <v-flex xs12 md6>
           <h1 style="color: #FFFFFF; margin-top:30px;">{{resort.title}}</h1>
           <v-flex xs12>
-            <v-layout row wrap>
+            <v-layout row wrap style="height:100%">
               <v-flex v-if="resort.modules.hotel.capacity" style="font-size: 16px; color: #B9BCC1; margin-top:20px; margin-bottom:20px;">
                 <v-icon size="30" color="#B9BCC1" style="margin-bottom:-5px;">supervisor_account</v-icon> 
                 {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.capacity }} guests
@@ -64,12 +64,12 @@
               <span>Bed(s)</span>
               </v-flex>
             </v-layout>
-            <v-flex v-if="resort.description">
+            <v-flex v-if="resort.description" style="height:100%" class="mt-3">
               <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
                 {{resort.description}}
               </p>
             </v-flex>
-            <v-flex v-if="resort.modules.hotel.gettingAround">
+            <v-flex v-if="resort.modules.hotel.gettingAround" style="height:100%;">
               <!-- <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
                 Description
               </h2> -->
@@ -77,14 +77,16 @@
                 <vue-markdown>{{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.gettingAround}}</vue-markdown>
               </p>
             </v-flex>
-            <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
-              Location
-            </h2>
-            <p>
-              <a href="https://goo.gl/maps/NusquSFKVm2SHrDy7" style="color: #B9BCC1;">Get Directions</a>
-            </p>
+            <v-flex xs12 v-if="resort.modules.hotel.location" style="height:100%;">
+              <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-3">
+                Location
+              </h2>
+              <p>
+                <a :href="resort.modules.hotel.location" style="color: #B9BCC1;">Get Directions</a>
+              </p>
+            </v-flex>
             <v-flex v-if="resort.modules.hotel.spaces && resort.modules.hotel.spaces.length > 0">
-              <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
+              <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-3">
                 Spaces
               </h2>
               <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
@@ -111,10 +113,10 @@
             </v-layout> -->
           </v-flex>
           <v-flex xs12 v-if="resort.modules.hotel.amenities && resort.modules.hotel.amenities.length >0">
-            <h2 style="font-size: 20px; color: #D8DADE;" class="mb-3 mt-5">
+            <h2 style="font-size: 20px; color: #D8DADE;" class="mb-3 mt-3">
               Amenities
             </h2>
-            <v-flex>
+            <v-flex style="height:100%;">
               <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> 
                 {{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.amenities[0]}}
               </span>
@@ -165,7 +167,7 @@
             </v-layout> -->
           </v-flex>
           <v-flex v-if="resort.modules.hotel.rules && resort.modules.hotel.rules.length >0">
-            <h2 style="font-size: 20px; color: #D8DADE;" class="mb-3 mt-5">
+            <h2 style="font-size: 20px; color: #D8DADE; height:100%;" class="mb-3 mt-3">
               Rules
             </h2>
             <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;">
