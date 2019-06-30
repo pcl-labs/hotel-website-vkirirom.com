@@ -2,24 +2,24 @@
   <v-container-fluid>
     <v-container-fluid class="pa-0 ma-0">
       <v-layout row flex class="pa-0 mx-0">
-        <v-flex xs12 sm12 md6 class="pa-0 overflow-hidden hidden-sm-and-down">
-          <v-img class="image" :src="resort.featuredImage" aspect-ratio="1.7"></v-img>
+        <v-flex class="pa-0 overflow-hidden hidden-sm-and-down">
+          <v-img class="image ma-0 pa-0" :src="resort.featuredImage"></v-img>
         </v-flex>
-        <v-flex xs12 sm6 class="pa-0 ma-0 overflow-hidden hidden-sm-and-down">
+        <v-flex class="pa-0 ma-0 overflow-hidden hidden-sm-and-down" v-if="resort.images">
           <v-layout row flex class="pa-0 ma-0 overflow-hidden">
-            <v-flex xs12 sm6 class="pa-0 overflow-hidden">
-              <v-img class="image ma-0 pa-0" v-if="resort.images.length > 0" :src="resort.images[0].url" aspect-ratio="1.7"></v-img>
+            <v-flex class="pa-0 overflow-hidden" v-if="resort.images.length > 0">
+              <v-img class="image ma-0 pa-0" :src="resort.images[0].url"></v-img>
             </v-flex>
-            <v-flex xs12 sm6 class="pa-0 overflow-hidden">
-              <v-img class="image" v-if="resort.images.length > 1" :src="resort.images[1].url" aspect-ratio="1.7"></v-img>
+            <v-flex class="pa-0 overflow-hidden" v-if="resort.images.length > 1">
+              <v-img class="image" :src="resort.images[1].url"></v-img>
             </v-flex>
           </v-layout>
           <v-layout row flex class="pa-0 ma-0 overflow-hidden">
-            <v-flex xs12 sm6 class="pa-0 overflow-hidden">
-              <v-img class="image" v-if="resort.images.length > 2" :src="resort.images[2].url" aspect-ratio="1.7"></v-img>
+            <v-flex class="pa-0 overflow-hidden" v-if="resort.images.length > 2" >
+              <v-img class="image" :src="resort.images[2].url"></v-img>
             </v-flex>
-            <v-flex xs12 sm6 class="pa-0 overflow-hidden">
-              <v-img class="image" v-if="resort.images.length > 3" :src="resort.images[3].url" aspect-ratio="1.7"></v-img>
+            <v-flex class="pa-0 overflow-hidden" v-if="resort.images.length > 3">
+              <v-img class="image" :src="resort.images[3].url"></v-img>
             </v-flex>
           </v-layout>
         </v-flex>
@@ -44,22 +44,39 @@
     <v-container>
       <v-layout row wrap>
         <v-flex xs12 md6>
+          <h1 style="color: #FFFFFF; margin-top:30px;">{{resort.title}}</h1>
           <v-flex xs12>
-            <h1 style="color: #FFFFFF; margin-top:30px;">{{resort.title}}</h1>
-            <!-- <p style="font-size: 16px; color: #687C94;" class="mt-2">Entire {{resort.title}}</p> -->
-            <div class="text-xs-left mb-5 mt-4 font-weight-regular">
-              <p class="subDescription">
-                <span class="mr-3" v-if="resort.modules.hotel.capacity > 0"><img class="mr-2" :src="MultiUsers" /> {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.capacity }} guests</span>
-                <!-- <span class="mr-5 font-weight-bold">{{ bedRooms.length }} bedrooms</span> -->
-                <span class="mr-3" v-if="resort.modules.hotel.beds > 0">{{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }} Bed(s)</span>
-                <span v-if="resort.modules.hotel.beds > 0">Type: {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}</span>
-              </p>
-            </div>
-            <div class="text-xs-left font-weight-regular">
+            <v-layout row wrap>
+              <v-flex v-if="resort.modules.hotel.capacity" style="font-size: 16px; color: #B9BCC1; margin-top:20px; margin-bottom:20px;">
+                <v-icon size="30" color="#B9BCC1" style="margin-bottom:-5px;">supervisor_account</v-icon> 
+                {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.capacity }} guests
+              </v-flex>
+              <v-flex v-if="resort.modules.hotel.beds && resort.modules.hotel.beds.length> 0" style="font-size: 16px; line-height: 19px; color: #B9BCC1; margin-top:20px; margin-bottom:20px;">
+                <v-icon size="30" color="#B9BCC1" style="margin-bottom:-5px;">airline_seat_individual_suite</v-icon>
+              <span>
+                {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds && resort.modules.hotel.beds[0].count }} 
+                {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds && resort.modules.hotel.beds[0].type }}
+              </span>
+              <span v-if="resort.modules.hotel.beds.length> 1">
+                {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds && resort.modules.hotel.beds[1].count }} 
+                {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds && resort.modules.hotel.beds[1].type }}
+              </span>
+              <span>Bed(s)</span>
+              </v-flex>
+            </v-layout>
+            <v-flex v-if="resort.description">
               <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
                 {{resort.description}}
               </p>
-            </div>
+            </v-flex>
+            <v-flex v-if="resort.modules.hotel.gettingAround">
+              <!-- <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
+                Description
+              </h2> -->
+              <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
+                <vue-markdown>{{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.gettingAround}}</vue-markdown>
+              </p>
+            </v-flex>
             <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
               Location
             </h2>
@@ -72,14 +89,6 @@
               </h2>
               <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
                 {{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.spaces[0]}}
-              </p>
-            </v-flex>
-            <v-flex v-if="resort.modules.hotel.gettingAround">
-              <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
-                Getting Around
-              </h2>
-              <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
-                <vue-markdown>{{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.gettingAround}}</vue-markdown>
               </p>
             </v-flex>
             <v-layout row flex>
@@ -262,7 +271,7 @@
                 dark
               />
               </v-flex>
-              <v-layout row wrap justify-center justify-space-between v-if="resort.modules.hotel.beds >0">
+              <v-layout row wrap justify-center justify-space-between v-if="resort.modules.hotel.beds && resort.modules.hotel.beds.length >0">
                 <v-flex mr-2 mb-4>
                 <v-btn-toggle v-model="toggle0" style="background-color:transparent; width:100%;">
                   <v-btn v-if="resort.modules.hotel.beds.length >0" :value="resort.modules.hotel.beds[0].type" flat dark outline block text-xs-center style="border: 3px solid #B9BCC1; box-sizing: border-box; border-radius: 3px; height:108px; font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
@@ -713,10 +722,6 @@ export default {
     background-image: linear-gradient(0deg, #191C21 0%, rgba(25, 28, 33, 0) 50%);
     box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
-  .subDescription{
-    color:#B9BCC1;
-    font-size: 16px;
-  }
   .image{
     transition:  0.8s ease;
     -webkit-transition: 0.8s ease;
@@ -760,19 +765,16 @@ input:-webkit-autofill {
   @media only screen and (max-width: 600px) {
     .container{
       max-width: 292px;
-      padding: 0;
     }
   }
   @media only screen and (min-width: 768px) {
     .container{
       max-width: 600px;
-      padding: 0;
     }
   }
   @media only screen and (min-width: 1024px) {
     .container{
       max-width: 900px;
-      padding: 0;
     }
   }
 </style>

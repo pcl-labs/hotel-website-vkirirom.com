@@ -180,8 +180,44 @@
           Your browser does not support the video tag.
         </video>
       </v-flex>
-    </v-container>
-    <v-container grid-list-md align-content-space-around>
+      <h2 style="color: #D8DADE; font-size: 28px;" class="mt-2 mb-4">Sales</h2>
+      <v-layout row wrap justify-space-between justify-center>
+        <v-flex xs12 sm6 md4 lg4 v-for="sale in sales" v-bind:key="sale.id">
+          <v-card width="100%" height="270px" color="#191C21" class="mb-4" dark :to="'/listing/'+ sale.slug" flat style="box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;">
+            <router-link :to="'/listing/'+ sale.slug">
+              <v-carousel height="150px" :cycle="false" hide-controls dark width="100%" class="hidden-md-and-up" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+                <v-carousel-item :src="sale.featuredImage" style="background-size:contain;">
+                </v-carousel-item>
+                <v-carousel-item v-if="sale.images.length > 0" :src="sale.images[0].url" style="background-size:contain;">
+                </v-carousel-item>
+                <v-carousel-item v-if="sale.images.length > 0" :src="sale.images[1].url" style="background-size:contain;">
+                </v-carousel-item>
+                <v-carousel-item v-if="sale.images.length > 0" :src="sale.images[2].url" style="background-size:contain;">
+                </v-carousel-item>
+                <v-carousel-item v-if="sale.images.length > 0" :src="sale.images[3].url" style="background-size:contain;">
+                </v-carousel-item>
+              </v-carousel>
+            </router-link>
+            <v-img :src="sale.featuredImage" height="150px" class="hidden-sm-and-down" style="border-top-left-radius: 10px; border-top-right-radius: 10px;"></v-img>
+            <v-layout align-start>
+              <v-card-text style="margin:10px; padding: 0;">
+                <p>
+                  <!-- <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire {{sale.title}}</span> -->
+                  <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>{{sale.title}}</h3></span>
+                  <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;" v-if="sale.ctaText>0"> {{sale.ctaText}}$ per night</span>
+                </p>
+              </v-card-text>
+            </v-layout>
+          </v-card>
+        </v-flex>
+      </v-layout>
+      <v-layout row wrap justify-space-around justify-center>
+        <v-flex xs12 sm4 md4 lg4>
+          <v-btn to="/search/sales/" block large outline dark style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; max-width:340px; text-transform:capitalize">
+            Show all <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
+          </v-btn>
+        </v-flex>
+      </v-layout>
       <h2 style="color: #D8DADE; font-size: 28px;" class="mb-4">Ecotourism</h2>
       <v-layout row wrap justify-space-between justify-center>
         <v-flex xs12 sm6 md4 lg4 v-for="blog in blogs" v-bind:key="blog.id">
@@ -367,6 +403,36 @@ export default {
           }
         }
       },
+      sales: {
+        title:'',
+        description: '',
+        h2: '',
+        slug: '',
+        backgroundImage: '',
+        featuredImage: '',
+        images: [{
+          order: '',
+          url: '',
+        }],
+        ctaText: '',
+        custom: '',
+        modules: {
+          hotel: {
+            capacity: '',
+            gettingAround: '',
+            location: '',
+            amenities: '',
+            beds: [
+              {
+                count: '',
+                type: '',
+              }
+            ],
+            rules: '',
+            spaces: []
+          }
+        }
+      },
     }
   },
   created() {
@@ -381,6 +447,9 @@ export default {
     });
     this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/blog').then(function(data){
       this.blogs=data.body.slice(0,3);
+    });
+    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/sales').then(function(data){
+      this.sales=data.body.slice(0,3);
     });
   },
 }
@@ -411,19 +480,16 @@ export default {
 @media only screen and (max-width: 600px) {
   .container{
     max-width: 292px;
-    padding: 0;
   }
 }
 @media only screen and (min-width: 768px) {
   .container{
     max-width: 600px;
-    padding: 0;
   }
 }
 @media only screen and (min-width: 1024px) {
   .container{
     max-width: 900px;
-    padding: 0;
   }
 }
 
