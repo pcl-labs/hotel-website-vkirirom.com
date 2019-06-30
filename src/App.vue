@@ -36,6 +36,7 @@ export default {
   }
   html {
     scroll-behavior: smooth;
+    overflow-y: auto;
   }
   
   .fade-enter-active,
