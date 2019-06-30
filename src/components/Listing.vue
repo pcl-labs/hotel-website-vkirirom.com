@@ -110,11 +110,16 @@
             </v-flex> -->
             </v-layout>
           </v-flex>
-          <v-flex xs12 v-if="resort.modules.hotel.amenities> 0">
-            <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
+          <v-flex xs12 v-if="resort.modules.hotel.amenities && resort.modules.hotel.amenities.length >0">
+            <h2 style="font-size: 20px; color: #D8DADE;" class="mb-3 mt-3">
               Amenities
             </h2>
-            <v-layout row wrap justify-space-between align-center>
+            <v-flex>
+              <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> 
+                {{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.amenities[0]}}
+              </span>
+            </v-flex>
+            <!-- <v-layout row wrap justify-space-between align-center>
               <v-flex xs6 md6 class="py-3">
                 <img :src="wifi">
                 <br>
@@ -135,10 +140,8 @@
                 <br>
                 <span style="font-size: 16px; color: #B9BCC1;">Washer</span>
               </v-flex>
-            </v-layout>
-          </v-flex>
-          <!-- <v-flex xs12 md4>
-            <v-layout row wrap justify-space-between align-center>
+            </v-layout> -->
+            <!-- <v-layout row wrap justify-space-between align-center>
               <v-flex>
                 <v-icon color="#B9BCC1" size="24px">kitchen</v-icon>
                 <span style="font-size: 16px; color: #B9BCC1;">Kitchen</span>
@@ -159,8 +162,8 @@
                 <v-icon color="#B9BCC1" size="24px">local_cafe</v-icon>
                 <span style="font-size: 16px; color: #B9BCC1;">Coffee</span>
               </v-flex>
-            </v-layout>
-          </v-flex> -->
+            </v-layout> -->
+          </v-flex>
           <v-flex xs12>
             <v-btn
               block
