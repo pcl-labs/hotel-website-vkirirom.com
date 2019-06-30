@@ -250,38 +250,38 @@
                 <v-icon slot="append" color="#B9BCC1">local_phone</v-icon>
                 </v-text-field>
               </v-flex>
-              <v-flex xs12>
-              <v-text-field
-                outline
-                dark
-                type="text"
-                name="Date"
-                color="#B9BCC1"
-                id="datepicker"
-                readonly
-                :rules="dateRules"
-                :value="formatDates(dateOne, dateTwo)"
-                >
-                <v-icon slot="append" color="#B9BCC1">event</v-icon>
-                <p slot="label">
-                  Check in 
-                  <v-icon color="#B9BCC1" style="font-size:30px; width:30px; height:18px;">arrow_right_alt</v-icon> 
-                  Check out
-                </p>
-                </v-text-field>
-              <AirbnbStyleDatepicker
-                :trigger-element-id="'datepicker'"
-                :mode="'range'"
-                :fullscreen-mobile="false"
-                :date-one="dateOne"
-                :date-two="dateTwo"
-                @date-one-selected="val => { dateOne = val }"
-                @date-two-selected="val => { dateTwo = val }"
-                style="left:-70%; top:60%;"
-                :show-shortcuts-menu-trigger="false"
-                dark
-              />
-              </v-flex>
+              <v-flex xs12 v-if="resort.modules.hotel.beds && resort.modules.hotel.beds.length >0">
+                <v-text-field
+                  outline
+                  dark
+                  type="text"
+                  name="Date"
+                  color="#B9BCC1"
+                  id="datepicker"
+                  readonly
+                  :rules="dateRules"
+                  :value="formatDates(dateOne, dateTwo)"
+                  >
+                  <v-icon slot="append" color="#B9BCC1">event</v-icon>
+                  <p slot="label">
+                    Check in 
+                    <v-icon color="#B9BCC1" style="font-size:30px; width:30px; height:18px;">arrow_right_alt</v-icon> 
+                    Check out
+                  </p>
+                  </v-text-field>
+                <AirbnbStyleDatepicker
+                  :trigger-element-id="'datepicker'"
+                  :mode="'range'"
+                  :fullscreen-mobile="false"
+                  :date-one="dateOne"
+                  :date-two="dateTwo"
+                  @date-one-selected="val => { dateOne = val }"
+                  @date-two-selected="val => { dateTwo = val }"
+                  style="left:-70%; top:60%;"
+                  :show-shortcuts-menu-trigger="false"
+                  dark
+                />
+                </v-flex>
               <v-layout row wrap justify-center justify-space-between v-if="resort.modules.hotel.beds && resort.modules.hotel.beds.length >0">
                 <v-flex mr-2 mb-4>
                 <v-btn-toggle v-model="toggle0" style="background-color:transparent; width:100%;">
@@ -452,36 +452,36 @@
                 <v-icon slot="append" color="#B9BCC1">local_phone</v-icon>
                 </v-text-field>
               </v-flex>
-              <v-flex xs12>
-              <v-text-field
-                outline
-                dark
-                type="text"
-                name="Date"
-                readonly
-                color="#B9BCC1"
-                id="datepicker-trigger"
-                :rules="dateRules"
-                :value="formatDates(dateOne, dateTwo)"
-                >
-                <v-icon slot="append" color="#B9BCC1">event</v-icon>
-                <p slot="label">
-                  Check in 
-                  <v-icon color="#B9BCC1" style="font-size:30px; width:30px; height:18px;">arrow_right_alt</v-icon> 
-                  Check out
-                </p>
-                </v-text-field>
-              <AirbnbStyleDatepicker
-                :trigger-element-id="'datepicker-trigger'"
-                :mode="'range'"
-                style="width:100%; height:100%;"
-                :fullscreen-mobile="true"
-                :date-one="dateOne"
-                :show-shortcuts-menu-trigger="false"
-                :date-two="dateTwo"
-                @date-one-selected="val => { dateOne = val }"
-                @date-two-selected="val => { dateTwo = val }"
-              />
+              <v-flex xs12 v-if="resort.modules.hotel.beds && resort.modules.hotel.beds.length >0">
+                <v-text-field
+                  outline
+                  dark
+                  type="text"
+                  name="Date"
+                  readonly
+                  color="#B9BCC1"
+                  id="datepicker-trigger"
+                  :rules="dateRules"
+                  :value="formatDates(dateOne, dateTwo)"
+                  >
+                  <v-icon slot="append" color="#B9BCC1">event</v-icon>
+                  <p slot="label">
+                    Check in 
+                    <v-icon color="#B9BCC1" style="font-size:30px; width:30px; height:18px;">arrow_right_alt</v-icon> 
+                    Check out
+                  </p>
+                  </v-text-field>
+                <AirbnbStyleDatepicker
+                  :trigger-element-id="'datepicker-trigger'"
+                  :mode="'range'"
+                  style="width:100%; height:100%;"
+                  :fullscreen-mobile="true"
+                  :date-one="dateOne"
+                  :show-shortcuts-menu-trigger="false"
+                  :date-two="dateTwo"
+                  @date-one-selected="val => { dateOne = val }"
+                  @date-two-selected="val => { dateTwo = val }"
+                />
               </v-flex>
               <v-layout row wrap justify-center justify-space-between v-if="resort.modules.hotel.beds && resort.modules.hotel.beds.length >0">
                 <v-flex mr-2 mb-4>
