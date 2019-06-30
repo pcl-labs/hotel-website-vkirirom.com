@@ -22,7 +22,7 @@
         <v-flex xs12 sm6 md4 lg4 v-for="accommodation in accommodations" v-bind:key="accommodation.id">
           <v-card dark height="270px" color="#191C21" class="mb-4" :to="'/listing/'+ accommodation.slug" flat style="box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;">
             <router-link :to="'/listing/'+ accommodation.slug">
-              <v-carousel height="150px" :cycle="false" hide-controls dark width="100%" class="hidden-md-and-up" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+              <v-carousel height="150px" :cycle="false" hide-controls dark width="100%" class="hidden-md-and-up" v-if="accommodation.images && accommodation.images.length > 0" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
                 <v-carousel-item :src="accommodation.featuredImage" style="background-size:contain;">
                 </v-carousel-item>
                 <v-carousel-item v-if="accommodation.images.length > 0" :src="accommodation.images[0].url" style="background-size:contain;">
@@ -85,7 +85,7 @@
         <v-flex xs12 sm6 md4 lg4 v-for="experience in experiences" v-bind:key="experience.id">
           <v-card width="100%" height="270px" color="#191C21" class="mb-4" dark :to="'/listing/'+ experience.slug" flat style="box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;">
             <router-link :to="'/listing/'+ experience.slug">
-              <v-carousel height="150px" :cycle="false" hide-controls dark width="100%" class="hidden-md-and-up" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+              <v-carousel height="150px" :cycle="false" hide-controls dark width="100%" class="hidden-md-and-up" v-if="experience.images && experience.images.length > 0" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
                 <v-carousel-item :src="experience.featuredImage" style="background-size:contain;">
                 </v-carousel-item>
                 <v-carousel-item v-if="experience.images.length > 0" :src="experience.images[0].url" style="background-size:contain;">
@@ -141,7 +141,7 @@
         <v-flex xs12 sm6 md4 lg4 v-for="event in events" v-bind:key="event.id">
           <v-card width="100%" height="270px" color="#191C21" class="mb-4" dark :to="'/listing/'+ event.slug" flat style="box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;">
             <router-link :to="'/listing/'+ event.slug">
-              <v-carousel height="150px" :cycle="false" hide-controls dark width="100%" class="hidden-md-and-up" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+              <v-carousel height="150px" :cycle="false" hide-controls dark width="100%" class="hidden-md-and-up" v-if="event.images && event.images.length > 0" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
                 <v-carousel-item :src="event.featuredImage" style="background-size:contain;">
                 </v-carousel-item>
                 <v-carousel-item v-if="event.images.length > 0" :src="event.images[0].url" style="background-size:contain;">
@@ -185,7 +185,7 @@
         <v-flex xs12 sm6 md4 lg4 v-for="sale in sales" v-bind:key="sale.id">
           <v-card width="100%" height="270px" color="#191C21" class="mb-4" dark :to="'/listing/'+ sale.slug" flat style="box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;">
             <router-link :to="'/listing/'+ sale.slug">
-              <v-carousel height="150px" :cycle="false" hide-controls dark width="100%" class="hidden-md-and-up" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+              <v-carousel height="150px" :cycle="false" hide-controls dark width="100%" class="hidden-md-and-up" v-if="sale.images && sale.images.length > 0" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
                 <v-carousel-item :src="sale.featuredImage" style="background-size:contain;">
                 </v-carousel-item>
                 <v-carousel-item v-if="sale.images.length > 0" :src="sale.images[0].url" style="background-size:contain;">
@@ -223,7 +223,7 @@
         <v-flex xs12 sm6 md4 lg4 v-for="blog in blogs" v-bind:key="blog.id">
           <v-card width="100%" height="270px" class="mb-4" dark color="#191C21" :to="'/listing/'+ blog.slug" flat style="box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;">
             <router-link :to="'/listing/'+ blog.slug">
-              <v-carousel hide-controls :cycle="false" dark width="100%" height="150px" class="hidden-md-and-up" v-if="blog.images.length > 0" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+              <v-carousel hide-controls :cycle="false" dark width="100%" height="150px" class="hidden-md-and-up" v-if="blog.images && blog.images.length > 0" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
                 <v-carousel-item :src="  blog.featuredImage" style="background-size:contain;">
                 </v-carousel-item>
                 <v-carousel-item v-if=" blog.images.length > 0" :src=" blog.images[0].url" style="background-size:contain;">
@@ -262,11 +262,6 @@
 </template>
 
 <script>
-import FrontendImg from '../assets/FrontImage.png'
-import example4 from '../assets/example4.png'
-import experience1 from '../assets/experience1.jpg'
-import headerImg from '../assets/freedom-camping-4m-bell-tent-5_copy_3_6e7cf404-7d2f-4cac-8bf7-fd04c9dd8854_1024x1024.jpeg'
-import food from '../assets/istockphoto-614420320-612x612.jpg'
 import Footer from './Footer.vue'
 import VueMarkdown from 'vue-markdown'
 
@@ -277,11 +272,7 @@ export default {
   },
   data() {
     return {
-      FrontendImg,
-      headerImg,
       food,
-      experience1,
-      example4,
 
       accommodations: {
         title:'',
