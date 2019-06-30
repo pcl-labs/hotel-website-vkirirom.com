@@ -218,8 +218,6 @@
           </v-btn>
         </v-flex>
       </v-layout>
-    </v-container>
-    <v-container grid-list-md align-content-space-around>
       <h2 style="color: #D8DADE; font-size: 28px;" class="mb-4">Ecotourism</h2>
       <v-layout row wrap justify-space-between justify-center>
         <v-flex xs12 sm6 md4 lg4 v-for="blog in blogs" v-bind:key="blog.id">
