@@ -189,7 +189,7 @@
         </v-flex>
         <v-flex md6 class="hidden-sm-and-down">
           <v-card class="bookForm" width="300px" color="#191C21" style="border: 1px solid #E1E7ED; border-radius: 3px; margin-top:30px; margin-bottom:30px; margin-left:77px; padding:25px;">
-            <v-form :name="resort.name" id="my-form" method="post" netlify ref="form" v-model="valid"  action="/thanks" data-netlify="true">
+            <v-form :name="resort.name" method="post" netlify ref="form" v-model="valid"  action="/thanks" data-netlify="true">
               <input type="hidden" name="form-name" :value="resort.name"/>
               <v-layout row wrap>
               <v-flex xs12 v-if="resort.ctaText > 0">
@@ -347,7 +347,6 @@
               type="submit"
               :ripple="false"
               :disabled="!valid"
-              @click="submit()"
               style="height:74px;"
             >
               Reserve Now <v-icon>keyboard_arrow_right</v-icon>
@@ -386,7 +385,7 @@
               </v-btn>
             </template>
           <v-card class="bookForm" color="#191C21" style="position:absolute;">
-            <v-form :name="resort.name" id="my-form" method="post" netlify ref="form" v-model="valid" class="ma-5" action="/thanks" data-netlify="true">
+            <v-form :name="resort.name"  method="post" netlify ref="form" v-model="valid" class="ma-5" action="/thanks" data-netlify="true">
               <input type="hidden" name="form-name" :value="resort.name" />
               <v-layout row wrap>
               <v-flex xs1>
@@ -689,16 +688,6 @@ export default {
       }
       return formattedDates;
     },
-    submit(){
-      $("#my-form").submit(function(e) {
-        e.preventDefault();
-
-        var $form = $(this);
-        $.post($form.attr("action"), $form.serialize()).then(function() {
-          alert("Thank you!");
-        });
-      });
-    }
   },
   created() {
     this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/'+this.slug).then(function(data){
