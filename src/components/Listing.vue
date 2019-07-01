@@ -1,22 +1,22 @@
 <template>
   <v-container-fluid>
     <v-container-fluid class="pa-0 ma-0">
-      <v-layout row flex class="pa-0 mx-0">
+      <v-layout row flex class="pa-0 mx-0" style="max-height:470px;">
         <v-flex class="pa-0 overflow-hidden hidden-sm-and-down">
-          <v-img class="image ma-0 pa-0" :src="resort.featuredImage" style="max-height:500px;"></v-img>
+          <v-img class="image ma-0 pa-0" :src="resort.featuredImage"></v-img>
         </v-flex>
-        <v-flex class="pa-0 ma-0 overflow-hidden hidden-sm-and-down" v-if="resort.images && resort.images.length>0">
-          <v-layout row flex class="pa-0 ma-0 overflow-hidden">
+        <v-flex class="pa-0 ma-0 overflow-hidden hidden-sm-and-down" v-if="resort.images && resort.images.length>0" style="max-height:470px;">
+          <v-layout row flex class="pa-0 ma-0 overflow-hidden" style="max-height:235px;">
             <v-flex class="pa-0 overflow-hidden" v-if="resort.images.length > 0">
               <v-img class="image ma-0 pa-0" :src="resort.images[0].url"></v-img>
             </v-flex>
-            <v-flex class="pa-0 overflow-hidden" v-if="resort.images.length > 1">
-              <v-img class="image" :src="resort.images[1].url"></v-img>
+            <v-flex class="pa-0 overflow-hidden" v-if="resort.images.length > 2">
+              <v-img class="image" :src="resort.images[2].url"></v-img>
             </v-flex>
           </v-layout>
-          <v-layout row flex class="pa-0 ma-0 overflow-hidden">
-            <v-flex class="pa-0 overflow-hidden" v-if="resort.images.length > 2" >
-              <v-img class="image" :src="resort.images[2].url"></v-img>
+          <v-layout row flex class="pa-0 ma-0 overflow-hidden" style="max-height:235px;">
+            <v-flex class="pa-0 overflow-hidden" v-if="resort.images.length > 1" >
+              <v-img class="image" :src="resort.images[1].url"></v-img>
             </v-flex>
             <v-flex class="pa-0 overflow-hidden" v-if="resort.images.length > 3">
               <v-img class="image" :src="resort.images[3].url"></v-img>
