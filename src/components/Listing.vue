@@ -51,7 +51,7 @@
                 <v-icon size="30" color="#B9BCC1" style="margin-bottom:-5px;">supervisor_account</v-icon> 
                 {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.capacity }} guests
               </v-flex>
-              <v-flex v-if="resort.modules.hotel.beds && resort.modules.hotel.beds.length> 0" style="font-size: 16px; line-height: 19px; color: #B9BCC1; margin-top:20px; margin-bottom:20px;">
+              <v-flex v-if="resort.modules.hotel.beds && resort.modules.hotel.beds.length> 0" style="font-size: 16px; color: #B9BCC1; margin-top:20px; margin-bottom:20px;">
                 <v-icon size="30" color="#B9BCC1" style="margin-bottom:-5px;">hotel</v-icon>
               <span>
                 {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds && resort.modules.hotel.beds[0].count }} 
@@ -174,7 +174,7 @@
               {{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.rules[0]}}
             </span>
           </v-flex>
-          <v-flex xs12>
+          <!-- <v-flex xs12>
             <v-btn
               block
               color="#F7B947"
@@ -185,7 +185,7 @@
             >
               Contact<v-icon>keyboard_arrow_right</v-icon>
             </v-btn>
-          </v-flex>
+          </v-flex> -->
         </v-flex>
         <v-flex md6 class="hidden-sm-and-down">
           <v-card class="bookForm" width="300px" color="#191C21" style="border: 1px solid #E1E7ED; border-radius: 3px; margin-top:30px; margin-bottom:30px; margin-left:77px; padding:25px;">
