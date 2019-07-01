@@ -186,6 +186,7 @@
               Contact<v-icon>keyboard_arrow_right</v-icon>
             </v-btn>
           </v-flex> -->
+        <div style="margin:80px;"></div>
         </v-flex>
         <v-flex md6 class="hidden-sm-and-down">
           <v-card class="bookForm" width="300px" color="#191C21" style="border: 1px solid #E1E7ED; border-radius: 3px; margin-top:30px; margin-bottom:30px; margin-left:77px; padding:25px;">
@@ -349,7 +350,7 @@
               :disabled="!valid"
               style="height:74px;"
             >
-              Reserve Now <v-icon>keyboard_arrow_right</v-icon>
+              Reserve Now <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
             </v-btn>
             <v-flex xs12 text-xs-center class="mt-3">
               <p style="font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
@@ -381,7 +382,7 @@
                 color="#F7B947"
                 v-on="on"
               >
-                Reserve Now <v-icon>keyboard_arrow_right</v-icon>
+                Reserve Now <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
               </v-btn>
             </template>
           <v-card class="bookForm" color="#191C21" style="position:absolute;">
@@ -546,7 +547,7 @@
               :disabled="!valid"
               style="height:74px;"
             >
-              Reserve Now <v-icon>keyboard_arrow_right</v-icon>
+              Reserve Now <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
             </v-btn>
             </v-flex>
             <v-flex xs12 text-xs-center class="mt-3">
