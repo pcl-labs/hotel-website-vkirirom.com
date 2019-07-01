@@ -3,9 +3,9 @@
     <v-container-fluid class="pa-0 ma-0">
       <v-layout row flex class="pa-0 mx-0">
         <v-flex class="pa-0 overflow-hidden hidden-sm-and-down">
-          <v-img class="image ma-0 pa-0" :src="resort.featuredImage"></v-img>
+          <v-img class="image ma-0 pa-0" :src="resort.featuredImage" style="max-height:500px;"></v-img>
         </v-flex>
-        <v-flex class="pa-0 ma-0 overflow-hidden hidden-sm-and-down" v-if="resort.images">
+        <v-flex class="pa-0 ma-0 overflow-hidden hidden-sm-and-down" v-if="resort.images && resort.images.length>0">
           <v-layout row flex class="pa-0 ma-0 overflow-hidden">
             <v-flex class="pa-0 overflow-hidden" v-if="resort.images.length > 0">
               <v-img class="image ma-0 pa-0" :src="resort.images[0].url"></v-img>
