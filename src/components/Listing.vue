@@ -73,9 +73,9 @@
               <!-- <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
                 Description
               </h2> -->
-              <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
-                <vue-markdown>{{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.gettingAround}}</vue-markdown>
-              </p>
+              <div class="description">
+                <p><vue-markdown>{{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.gettingAround}}</vue-markdown></p>
+              </div>
             </v-flex>
             <v-flex xs12 v-if="resort.modules.hotel.location" style="height:100%;">
               <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-3">
@@ -488,7 +488,9 @@
               </v-flex>
               <!-- <v-btn @click="computePrice(dateOne, dateTwo)">display prices</v-btn> -->
               <v-flex xs12 style="margin-bottom:10px;" v-if="finalPrice > 0">
-                <!-- <span v-for="price in prices" v-bind:key="price.id">{{price.amount}}</span> -->
+                <v-flex v-for="price in prices" v-bind:key="price.id" style="font-size: 16px; color: #B9BCC1;">
+                  <v-flex>{{price.date}}</v-flex><v-flex>{{price.amount}}</v-flex>
+                </v-flex>
                 <p style="font-size: 16px; color: #B9BCC1;">
                   Total Price: {{finalPrice}} $
                 </p>
@@ -766,30 +768,39 @@ export default {
   //   color: #B9BCC1 !important;
   // }
 
-@-webkit-keyframes autofill {
-    to {
-        color: white;
-        background: transparent;
+  @-webkit-keyframes autofill {
+      to {
+          color: white;
+          background: transparent;
+      }
+  }
+
+  input:-webkit-autofill {
+      -webkit-animation-name: autofill;
+      -webkit-animation-fill-mode: both;
+  }
+
+  #bookBottom {
+    height: 80px;
+    width: 100vw;
+    background:#191C21;
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(0,0,0,0.12);
+  }
+
+  .description{
+    /deep/ p {
+      font-size: 16px; 
+      line-height: 24px; 
+      color: #B9BCC1; 
+      text-decoration:none;
     }
-}
-
-input:-webkit-autofill {
-    -webkit-animation-name: autofill;
-    -webkit-animation-fill-mode: both;
-}
-
-#bookBottom {
-  height: 80px;
-  width: 100vw;
-  background:#191C21;
-  position: fixed;
-  bottom: 0;
-  text-align: center;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-top: 1px solid rgba(0,0,0,0.12);
-}
+  }
 
   @media only screen and (max-width: 600px) {
     .container{

@@ -6,7 +6,8 @@
       name="fade"
       mode="out-in"
     >
-      <router-view/>
+      <router-view :key="$route.name + ($route.params.id || '')"/> 
+      <!-- for reloading created while trying to navigate to different ids in the dynamic route -->
     </transition>
   </v-app>
 </template>

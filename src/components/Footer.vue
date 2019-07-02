@@ -7,27 +7,47 @@
             <h3>Engage</h3>
             <br>
             <ul style="list-style:none; padding:0; margin:0;">
-              <li class="mb-2"><router-link to="/Contact" style="text-decoration:none; color:#D8DADE;">Contact</router-link></li>
+              <li class="mb-2">
+                <router-link to="/Contact" style="text-decoration:none; color:#D8DADE;">
+                  Contact
+                </router-link>
+              </li>
               <li class="mb-2"><a href="http://asiato.asia/" style="text-decoration:none; color:#D8DADE;">About</a></li>
-              <li class="mb-2">Book Now</li>
+              <!-- <li class="mb-2">Book Now</li> -->
             </ul>
           </v-flex>
           <v-flex xs6 sm6 md3 lg3 class="mb-3">
             <h3>Invest</h3>
             <br>
             <ul style="list-style:none; padding:0; margin:0;">
-              <li class="mb-2">Lease a Property</li>
-              <li class="mb-2">Collaborate</li>
-              <li class="mb-2">Partner</li>
+              <li class="mb-2">
+                <router-link to="/listing/nature-city-investment-cambodia-property" style="text-decoration:none; color:#D8DADE;">
+                  Lease a Property
+                </router-link>
+              </li>
+              <!-- <li class="mb-2">Collaborate</li> -->
+              <li class="mb-2">
+                <router-link to="/listing/partner" style="text-decoration:none; color:#D8DADE;">
+                  Partner
+                </router-link>
+              </li>
             </ul>
           </v-flex>
           <v-flex xs12 sm6 md3 lg3 class="mb-3">
             <h3>Learn</h3>
             <br>
             <ul style="list-style:none; padding:0; margin:0;">
-              <li class="mb-2">Community Outreach</li>
-              <li class="mb-2">Our Scholarship Program</li>
-              <li class="mb-2">Proudly Powered by KIT</li>
+              <!-- <li class="mb-2">Community Outreach</li> -->
+              <li class="mb-2">
+                <router-link to="/listing/our-scholarship-program" style="text-decoration:none; color:#D8DADE;">
+                  Our Scholarship Program
+                </router-link>
+              </li>
+              <li class="mb-2">
+                <a href="https://kit.edu.kh" style="text-decoration:none; color:#D8DADE;">
+                  Proudly Powered by KIT
+                </a>
+              </li>
             </ul>
           </v-flex>
         </v-layout>
