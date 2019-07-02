@@ -73,9 +73,9 @@
               <!-- <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
                 Description
               </h2> -->
-              <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
-                <vue-markdown>{{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.gettingAround}}</vue-markdown>
-              </p>
+              <div class="description">
+                <p><vue-markdown>{{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.gettingAround}}</vue-markdown></p>
+              </div>
             </v-flex>
             <v-flex xs12 v-if="resort.modules.hotel.location" style="height:100%;">
               <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-3">
@@ -282,8 +282,19 @@
                   @date-two-selected="val => { dateTwo = val }"
                   style="left:-70%; top:60%;"
                   :show-shortcuts-menu-trigger="false"
-                  dark
+                  @apply="computePrice(dateOne, dateTwo)"
                 />
+              </v-flex>
+              <v-flex xs12 style="margin-bottom:30px;" v-if="finalPrice > 0">
+                <v-layout row wrap v-for="price in prices" v-bind:key="price.id">
+                  <v-flex xs6 style="font-size: 16px; color: #B9BCC1;">{{formatDates(price.date)}}</v-flex>
+                  <v-flex xs6 style="font-size: 16px; color: #B9BCC1;" class="text-xs-right">${{price.amount}}</v-flex>
+                </v-layout>
+                <v-divider style="background-color:#3D424E; margin-top:20px; margin-bottom:10px;"></v-divider>
+                <v-layout row wrap>
+                  <v-flex xs6><h3 style="font-size: 20px; color: #D8DADE;">Total</h3></v-flex>
+                  <v-flex xs6 class="text-xs-right"><h3 style="font-size: 20px; color: #D8DADE;">${{finalPrice}}</h3></v-flex>
+                </v-layout>
               </v-flex>
               <v-layout row wrap justify-center justify-space-between v-if="resort.modules.hotel.beds && resort.modules.hotel.beds.length >0">
                 <v-flex style="margin-bottom:30px;">
@@ -477,9 +488,20 @@
                   :date-two="dateTwo"
                   @date-one-selected="val => { dateOne = val }"
                   @date-two-selected="val => { dateTwo = val }"
+                  @apply="computePrice(dateOne, dateTwo)"
                 />
               </v-flex>
-              <!-- <v-btn @click="computePrice(dateOne, dateTwo)">display prices</v-btn> -->
+              <v-flex xs12 style="margin-bottom:30px;" v-if="finalPrice > 0">
+                <v-layout row wrap v-for="price in prices" v-bind:key="price.id">
+                  <v-flex xs6 style="font-size: 16px; color: #B9BCC1;">{{formatDates(price.date)}}</v-flex>
+                  <v-flex xs6 style="font-size: 16px; color: #B9BCC1;" class="text-xs-right">${{price.amount}}</v-flex>
+                </v-layout>
+                <v-divider style="background-color:#3D424E; margin-top:20px; margin-bottom:10px;"></v-divider>
+                <v-layout row wrap>
+                  <v-flex xs6><h3 style="font-size: 20px; color: #D8DADE;">Total</h3></v-flex>
+                  <v-flex xs6 class="text-xs-right"><h3 style="font-size: 20px; color: #D8DADE;">${{finalPrice}}</h3></v-flex>
+                </v-layout>
+              </v-flex>
               <v-layout row wrap justify-center justify-space-between v-if="resort.modules.hotel.beds && resort.modules.hotel.beds.length >0">
                 <v-flex style="margin-bottom:30px;">
                   <v-btn-toggle v-model="toggle0" mandatory style="background-color:transparent; width:100%;">
@@ -621,7 +643,7 @@ export default {
       bookDialog: false,
 
       // states
-      dateFormat: 'YYYY-MM-DD',
+      dateFormat: 'D MMM',
       dateOne: '',
       dateTwo: '',
 
@@ -640,9 +662,8 @@ export default {
       //   }
       // ],
       prices: [{
-        id:'',
-        amount:'',
       }],
+      finalPrice:'',
       resort: {
         id: '',
         name: '',
@@ -691,13 +712,13 @@ export default {
     computePrice(dateOne, dateTwo) {
       let totalPrice = 0;
       let i;
-      this.$http.get('https://stagingapi.whynot.earth/api/v0/hotels/6/prices?startDate=' + this.dateOne + '&endDate=' + this.dateTwo).then(function(data){
+      this.$http.get('https://stagingapi.whynot.earth/api/v0/hotels/' + this.resort.id + '/prices?startDate=' + this.dateOne + '&endDate=' + this.dateTwo).then(function(data){
         this.prices=data.body;
+        for (i = 0; i < this.prices.length; i++) { 
+            totalPrice += this.prices[i].amount;
+          }
+        this.finalPrice=totalPrice;
       });
-      for (i = 0; i <= this.prices.length; i++) { 
-        totalPrice += this.prices[i].amount;
-      }
-      console.log(totalPrice);
     }
   },
   created() {
@@ -754,30 +775,39 @@ export default {
   //   color: #B9BCC1 !important;
   // }
 
-@-webkit-keyframes autofill {
-    to {
-        color: white;
-        background: transparent;
+  @-webkit-keyframes autofill {
+      to {
+          color: white;
+          background: transparent;
+      }
+  }
+
+  input:-webkit-autofill {
+      -webkit-animation-name: autofill;
+      -webkit-animation-fill-mode: both;
+  }
+
+  #bookBottom {
+    height: 80px;
+    width: 100vw;
+    background:#191C21;
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(0,0,0,0.12);
+  }
+
+  .description{
+    /deep/ p {
+      font-size: 16px; 
+      line-height: 24px; 
+      color: #B9BCC1; 
+      text-decoration:none;
     }
-}
-
-input:-webkit-autofill {
-    -webkit-animation-name: autofill;
-    -webkit-animation-fill-mode: both;
-}
-
-#bookBottom {
-  height: 80px;
-  width: 100vw;
-  background:#191C21;
-  position: fixed;
-  bottom: 0;
-  text-align: center;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-top: 1px solid rgba(0,0,0,0.12);
-}
+  }
 
   @media only screen and (max-width: 600px) {
     .container{
