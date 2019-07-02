@@ -285,7 +285,7 @@
                   @apply="computePrice(dateOne, dateTwo)"
                 />
               </v-flex>
-              <v-flex xs12 style="margin-bottom:10px;">
+              <v-flex xs12 style="margin-bottom:10px;" v-if="finalPrice > 0">
                 <!-- <span v-for="price in prices" v-bind:key="price.id">{{price.amount}}+</span> -->
                 <p style="font-size: 16px; color: #B9BCC1;">
                   Total Price: {{finalPrice}} $
@@ -487,7 +487,7 @@
                 />
               </v-flex>
               <!-- <v-btn @click="computePrice(dateOne, dateTwo)">display prices</v-btn> -->
-              <v-flex xs12 style="margin-bottom:10px;">
+              <v-flex xs12 style="margin-bottom:10px;" v-if="finalPrice > 0">
                 <!-- <span v-for="price in prices" v-bind:key="price.id">{{price.amount}}</span> -->
                 <p style="font-size: 16px; color: #B9BCC1;">
                   Total Price: {{finalPrice}} $
@@ -653,8 +653,6 @@ export default {
       //   }
       // ],
       prices: [{
-        id:'',
-        amount:'',
       }],
       finalPrice:'',
       resort: {
@@ -705,7 +703,7 @@ export default {
     computePrice(dateOne, dateTwo) {
       let totalPrice = 0;
       let i;
-      this.$http.get('https://stagingapi.whynot.earth/api/v0/hotels/6/prices?startDate=' + this.dateOne + '&endDate=' + this.dateTwo).then(function(data){
+      this.$http.get('https://stagingapi.whynot.earth/api/v0/hotels/' + this.resort.id + '/prices?startDate=' + this.dateOne + '&endDate=' + this.dateTwo).then(function(data){
         this.prices=data.body;
         for (i = 0; i < this.prices.length; i++) { 
             totalPrice += this.prices[i].amount;
