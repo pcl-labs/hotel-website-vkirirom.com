@@ -282,8 +282,14 @@
                   @date-two-selected="val => { dateTwo = val }"
                   style="left:-70%; top:60%;"
                   :show-shortcuts-menu-trigger="false"
-                  dark
+                  @apply="computePrice(dateOne, dateTwo)"
                 />
+              </v-flex>
+              <v-flex xs12 style="margin-bottom:10px;">
+                <!-- <span v-for="price in prices" v-bind:key="price.id">{{price.amount}}+</span> -->
+                <p style="font-size: 16px; color: #B9BCC1;">
+                  Total Price: {{finalPrice}} $
+                </p>
               </v-flex>
               <v-layout row wrap justify-center justify-space-between v-if="resort.modules.hotel.beds && resort.modules.hotel.beds.length >0">
                 <v-flex style="margin-bottom:30px;">
@@ -477,9 +483,16 @@
                   :date-two="dateTwo"
                   @date-one-selected="val => { dateOne = val }"
                   @date-two-selected="val => { dateTwo = val }"
+                  @apply="computePrice(dateOne, dateTwo)"
                 />
               </v-flex>
               <!-- <v-btn @click="computePrice(dateOne, dateTwo)">display prices</v-btn> -->
+              <v-flex xs12 style="margin-bottom:10px;">
+                <!-- <span v-for="price in prices" v-bind:key="price.id">{{price.amount}}</span> -->
+                <p style="font-size: 16px; color: #B9BCC1;">
+                  Total Price: {{finalPrice}} $
+                </p>
+              </v-flex>
               <v-layout row wrap justify-center justify-space-between v-if="resort.modules.hotel.beds && resort.modules.hotel.beds.length >0">
                 <v-flex style="margin-bottom:30px;">
                   <v-btn-toggle v-model="toggle0" mandatory style="background-color:transparent; width:100%;">
@@ -643,6 +656,7 @@ export default {
         id:'',
         amount:'',
       }],
+      finalPrice:'',
       resort: {
         id: '',
         name: '',
@@ -693,11 +707,11 @@ export default {
       let i;
       this.$http.get('https://stagingapi.whynot.earth/api/v0/hotels/6/prices?startDate=' + this.dateOne + '&endDate=' + this.dateTwo).then(function(data){
         this.prices=data.body;
+        for (i = 0; i < this.prices.length; i++) { 
+            totalPrice += this.prices[i].amount;
+          }
+        this.finalPrice=totalPrice;
       });
-      for (i = 0; i <= this.prices.length; i++) { 
-        totalPrice += this.prices[i].amount;
-      }
-      console.log(totalPrice);
     }
   },
   created() {
