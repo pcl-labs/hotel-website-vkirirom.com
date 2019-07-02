@@ -29,6 +29,10 @@ export default[
   {
     path:'/experience/:id',
     component: Experience
-  }
+  },
+  {
+    path: '/nature-city-investment-cambodia-property',
+    redirect: '/listing/nature-city-investment-cambodia-property'
+  },
 ]
 

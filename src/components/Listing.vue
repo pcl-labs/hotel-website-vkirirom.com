@@ -285,11 +285,16 @@
                   @apply="computePrice(dateOne, dateTwo)"
                 />
               </v-flex>
-              <v-flex xs12 style="margin-bottom:10px;" v-if="finalPrice > 0">
-                <!-- <span v-for="price in prices" v-bind:key="price.id">{{price.amount}}+</span> -->
-                <p style="font-size: 16px; color: #B9BCC1;">
-                  Total Price: {{finalPrice}} $
-                </p>
+              <v-flex xs12 style="margin-bottom:30px;" v-if="finalPrice > 0">
+                <v-layout row wrap v-for="price in prices" v-bind:key="price.id">
+                  <v-flex xs6 style="font-size: 16px; color: #B9BCC1;">{{formatDates(price.date)}}</v-flex>
+                  <v-flex xs6 style="font-size: 16px; color: #B9BCC1;" class="text-xs-right">${{price.amount}}</v-flex>
+                </v-layout>
+                <v-divider style="background-color:#3D424E; margin-top:20px; margin-bottom:10px;"></v-divider>
+                <v-layout row wrap>
+                  <v-flex xs6><h3 style="font-size: 20px; color: #D8DADE;">Total</h3></v-flex>
+                  <v-flex xs6 class="text-xs-right"><h3 style="font-size: 20px; color: #D8DADE;">${{finalPrice}}</h3></v-flex>
+                </v-layout>
               </v-flex>
               <v-layout row wrap justify-center justify-space-between v-if="resort.modules.hotel.beds && resort.modules.hotel.beds.length >0">
                 <v-flex style="margin-bottom:30px;">
@@ -486,14 +491,16 @@
                   @apply="computePrice(dateOne, dateTwo)"
                 />
               </v-flex>
-              <!-- <v-btn @click="computePrice(dateOne, dateTwo)">display prices</v-btn> -->
-              <v-flex xs12 style="margin-bottom:10px;" v-if="finalPrice > 0">
-                <v-flex v-for="price in prices" v-bind:key="price.id" style="font-size: 16px; color: #B9BCC1;">
-                  <v-flex>{{price.date}}</v-flex><v-flex>{{price.amount}}</v-flex>
-                </v-flex>
-                <p style="font-size: 16px; color: #B9BCC1;">
-                  Total Price: {{finalPrice}} $
-                </p>
+              <v-flex xs12 style="margin-bottom:30px;" v-if="finalPrice > 0">
+                <v-layout row wrap v-for="price in prices" v-bind:key="price.id">
+                  <v-flex xs6 style="font-size: 16px; color: #B9BCC1;">{{formatDates(price.date)}}</v-flex>
+                  <v-flex xs6 style="font-size: 16px; color: #B9BCC1;" class="text-xs-right">${{price.amount}}</v-flex>
+                </v-layout>
+                <v-divider style="background-color:#3D424E; margin-top:20px; margin-bottom:10px;"></v-divider>
+                <v-layout row wrap>
+                  <v-flex xs6><h3 style="font-size: 20px; color: #D8DADE;">Total</h3></v-flex>
+                  <v-flex xs6 class="text-xs-right"><h3 style="font-size: 20px; color: #D8DADE;">${{finalPrice}}</h3></v-flex>
+                </v-layout>
               </v-flex>
               <v-layout row wrap justify-center justify-space-between v-if="resort.modules.hotel.beds && resort.modules.hotel.beds.length >0">
                 <v-flex style="margin-bottom:30px;">
@@ -636,7 +643,7 @@ export default {
       bookDialog: false,
 
       // states
-      dateFormat: 'YYYY-MM-DD',
+      dateFormat: 'D MMM',
       dateOne: '',
       dateTwo: '',
 
