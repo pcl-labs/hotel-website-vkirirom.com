@@ -814,6 +814,15 @@ export default {
       font-size: 36px;
       color: #FFFFFF;
     }
+    li{
+      color: #B9BCC1;
+      font-size: 16px;
+    }
+    td{
+      color: #B9BCC1;
+      font-size: 16px;
+      padding-right: 10px;
+    }
   }
 
   @media only screen and (max-width: 600px) {
