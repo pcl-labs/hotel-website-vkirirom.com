@@ -218,7 +218,7 @@
           </v-btn>
         </v-flex>
       </v-layout>
-      <h2 style="color: #D8DADE; font-size: 28px;" class="mb-4">Ecotourism</h2>
+      <h2 style="color: #D8DADE; font-size: 28px;" class="mb-4 mt-3">Ecotourism</h2>
       <v-layout row wrap justify-space-between justify-center>
         <v-flex xs12 sm6 md4 lg4 v-for="blog in blogs" v-bind:key="blog.id">
           <v-card width="100%" height="270px" class="mb-4" dark color="#191C21" :to="'/listing/'+ blog.slug" flat style="box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;">
