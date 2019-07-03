@@ -281,7 +281,7 @@
                   <v-flex xs6><h3 style="font-size: 20px; color: #D8DADE;">Total</h3></v-flex>
                   <v-flex xs6 class="text-xs-right"><h3 style="font-size: 20px; color: #D8DADE;">${{finalPrice}}</h3></v-flex>
                 </v-layout>
-                <input name="Amount" hidden :value="finalPrice" type="text" readonly />
+                <input name="Amount (in $)" hidden :value="finalPrice" type="text" readonly />
               </v-flex>
               <v-layout row wrap justify-center justify-space-between v-if="resort.modules.hotel.beds && resort.modules.hotel.beds.length >0">
                 <v-flex style="margin-bottom:30px;">
@@ -492,7 +492,7 @@
                   <v-flex xs6><h3 style="font-size: 20px; color: #D8DADE;">Total</h3></v-flex>
                   <v-flex xs6 class="text-xs-right"><h3 style="font-size: 20px; color: #D8DADE;">${{finalPrice}}</h3></v-flex>
                 </v-layout>
-                <input name="Amount" hidden :value="finalPrice" type="text" readonly />
+                <input name="Amount (in $)" hidden :value="finalPrice" type="text" readonly />
               </v-flex>
               <v-layout row wrap justify-center justify-space-between v-if="resort.modules.hotel.beds && resort.modules.hotel.beds.length >0">
                 <v-flex style="margin-bottom:30px;">
