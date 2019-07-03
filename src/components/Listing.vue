@@ -821,6 +821,7 @@ export default {
     td{
       color: #B9BCC1;
       font-size: 16px;
+      padding-right: 10px;
     }
   }
 
