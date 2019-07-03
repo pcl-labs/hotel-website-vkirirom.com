@@ -93,24 +93,6 @@
                 {{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.spaces[0]}}
               </p>
             </v-flex>
-            <!-- <v-layout row flex>
-            <v-flex xs12 md6 class="availability">
-              <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
-                Availability
-              </h2>
-              <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">Updated 3 days ago</p>
-              <Calendar
-                :fullScreenMobile="false"
-                :mode="'range'"
-                triggerID="availability"
-                monthsToShow="2"
-                :showInput="false"
-                :cardBorder="false"
-                :showActionButtons="false"
-              >
-              </Calendar>
-            </v-flex>
-            </v-layout> -->
           </v-flex>
           <v-flex xs12 v-if="resort.modules.hotel.amenities && resort.modules.hotel.amenities.length >0">
             <h2 style="font-size: 20px; color: #D8DADE;" class="mb-3 mt-3">
@@ -299,6 +281,7 @@
                   <v-flex xs6><h3 style="font-size: 20px; color: #D8DADE;">Total</h3></v-flex>
                   <v-flex xs6 class="text-xs-right"><h3 style="font-size: 20px; color: #D8DADE;">${{finalPrice}}</h3></v-flex>
                 </v-layout>
+                <input name="Amount" hidden :value="finalPrice" type="text" readonly />
               </v-flex>
               <v-layout row wrap justify-center justify-space-between v-if="resort.modules.hotel.beds && resort.modules.hotel.beds.length >0">
                 <v-flex style="margin-bottom:30px;">
@@ -509,6 +492,7 @@
                   <v-flex xs6><h3 style="font-size: 20px; color: #D8DADE;">Total</h3></v-flex>
                   <v-flex xs6 class="text-xs-right"><h3 style="font-size: 20px; color: #D8DADE;">${{finalPrice}}</h3></v-flex>
                 </v-layout>
+                <input name="Amount" hidden :value="finalPrice" type="text" readonly />
               </v-flex>
               <v-layout row wrap justify-center justify-space-between v-if="resort.modules.hotel.beds && resort.modules.hotel.beds.length >0">
                 <v-flex style="margin-bottom:30px;">
