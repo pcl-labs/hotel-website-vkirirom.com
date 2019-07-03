@@ -253,7 +253,10 @@
                 <v-icon slot="append" color="#B9BCC1">local_phone</v-icon>
                 </v-text-field>
               </v-flex>
-              <v-flex xs12>
+
+              <!-- resort.name is a temporary fix for category name, ideally category id should be used-->
+
+              <v-flex xs12 v-if="resort.name=='accommodations' || resort.name=='events' || resort.name=='experiences'">
                 <v-text-field
                   outline
                   dark
@@ -267,9 +270,10 @@
                   >
                   <v-icon slot="append" color="#B9BCC1">event</v-icon>
                   <p slot="label">
-                    Check in 
+                    <!-- Check in 
                     <v-icon color="#B9BCC1" style="font-size:30px; width:30px; height:18px;">arrow_right_alt</v-icon> 
-                    Check out
+                    Check out -->
+                    Reserve dates
                   </p>
                   </v-text-field>
                 <AirbnbStyleDatepicker
@@ -459,7 +463,10 @@
                 <v-icon slot="append" color="#B9BCC1">local_phone</v-icon>
                 </v-text-field>
               </v-flex>
-              <v-flex xs12>
+
+              <!-- resort.name is a temporary fix for category name, ideally category id should be used-->
+
+              <v-flex xs12 v-if="resort.name=='accommodations' || resort.name=='events' || resort.name=='experiences'">
                 <v-text-field
                   outline
                   dark
@@ -473,9 +480,10 @@
                   >
                   <v-icon slot="append" color="#B9BCC1">event</v-icon>
                   <p slot="label">
-                    Check in 
+                    <!-- Check in 
                     <v-icon color="#B9BCC1" style="font-size:30px; width:30px; height:18px;">arrow_right_alt</v-icon> 
-                    Check out
+                    Check out -->
+                    Reserve dates
                   </p>
                   </v-text-field>
                 <AirbnbStyleDatepicker
