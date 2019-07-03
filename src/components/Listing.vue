@@ -74,7 +74,7 @@
                 Description
               </h2> -->
               <div class="description">
-                <p><vue-markdown>{{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.gettingAround}}</vue-markdown></p>
+                <vue-markdown>{{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.gettingAround}}</vue-markdown>
               </div>
             </v-flex>
             <v-flex xs12 v-if="resort.modules.hotel.location" style="height:100%;">
@@ -673,6 +673,7 @@ export default {
         custom: '',
         modules: {
           hotel: {
+            id: '',
             capacity: '',
             gettingAround: '',
             location: '',
@@ -704,7 +705,7 @@ export default {
     computePrice(dateOne, dateTwo) {
       let totalPrice = 0;
       let i;
-      this.$http.get('https://stagingapi.whynot.earth/api/v0/hotels/' + this.resort.id + '/prices?startDate=' + this.dateOne + '&endDate=' + this.dateTwo).then(function(data){
+      this.$http.get('https://stagingapi.whynot.earth/api/v0/hotels/' + this.resort.modules.hotel.id + '/prices?startDate=' + this.dateOne + '&endDate=' + this.dateTwo).then(function(data){
         this.prices=data.body;
         for (i = 0; i < this.prices.length; i++) { 
             totalPrice += this.prices[i].amount;
@@ -793,11 +794,25 @@ export default {
   }
 
   .description{
-    /deep/ p {
-      font-size: 16px; 
-      line-height: 24px; 
+    a{
       color: #B9BCC1; 
       text-decoration:none;
+    }
+    p{
+      color: #B9BCC1;
+      font-size: 16px; 
+    }
+    h2{
+      color: #D8DADE;
+      font-size: 28px;
+    }
+    h3{
+      font-size: 20px;
+      color: #D8DADE;
+    }
+    h1{
+      font-size: 36px;
+      color: #FFFFFF;
     }
   }
 
