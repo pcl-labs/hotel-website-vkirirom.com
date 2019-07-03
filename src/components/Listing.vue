@@ -673,6 +673,7 @@ export default {
         custom: '',
         modules: {
           hotel: {
+            id: '',
             capacity: '',
             gettingAround: '',
             location: '',
