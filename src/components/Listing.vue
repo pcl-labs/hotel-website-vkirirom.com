@@ -529,7 +529,7 @@ export default {
       bookDialog: false,
 
       // states
-      dateFormat: 'D MMM',
+      dateFormat: 'ddd, D MMM',
       dateOne: '',
       dateTwo: '',
 
