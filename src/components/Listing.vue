@@ -261,9 +261,6 @@
                   >
                   <v-icon slot="append" color="#B9BCC1">event</v-icon>
                   <p slot="label">
-                    <!-- Check in 
-                    <v-icon color="#B9BCC1" style="font-size:30px; width:30px; height:18px;">arrow_right_alt</v-icon> 
-                    Check out -->
                     Reserve dates
                   </p>
                   </v-text-field>
@@ -704,16 +701,15 @@ export default {
     computePrice(dateOne, dateTwo) {
       let totalPrice = 0;
       let i;
-      let vat;
       this.$http.get('https://stagingapi.whynot.earth/api/v0/hotels/' + this.resort.modules.hotel.id + '/prices?startDate=' + this.dateOne + '&endDate=' + this.dateTwo).then(function(data){
         this.prices=data.body;
         for (i = 0; i < this.prices.length; i++) { 
             totalPrice += this.prices[i].amount;
           }
-        this.vat= (totalPrice/10).toFixed(2);
-        
-        totalPrice+= this.vat;
-        this.finalPrice=totalPrice;
+        this.vat= totalPrice*0.1;
+        totalPrice= totalPrice + this.vat;
+        this.vat= this.vat.toFixed(2);
+        this.finalPrice=totalPrice.toFixed(2);
       });
     }
   },
