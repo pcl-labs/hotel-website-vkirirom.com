@@ -212,13 +212,11 @@
 </template>
 
 <script>
-import Footer from './Footer.vue'
-import VueMarkdown from 'vue-markdown'
+const Footer = () => import ('@/components/Footer.vue')
 
 export default {
   components:{
     Footer,
-    VueMarkdown
   },
   data() {
     return {

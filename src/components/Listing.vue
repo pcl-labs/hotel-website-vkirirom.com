@@ -480,7 +480,7 @@
 import format from 'date-fns/format'
 
 //components
-import Footer from './Footer.vue'
+const Footer = () => import ('@/components/Footer.vue')
 import VueMarkdown from 'vue-markdown'
 
 export default {

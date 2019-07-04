@@ -1,9 +1,8 @@
-import Home from './components/Home.vue'
-import searchpage from './components/searchpage.vue'
-import Listing from './components/Listing.vue'
-import Experience from './components/Experience.vue'
-import thankYou from './components/thankYou.vue'
-import Contact from './components/Contact.vue'
+const Home = () => import ('./components/Home.vue')
+const searchpage = () => import ('./components/searchpage.vue')
+const Listing = () => import ('./components/Listing.vue')
+const thankYou = () => import ('./components/thankYou.vue')
+const Contact = () => import ('./components/Contact.vue')
 
 export default[
   {
@@ -25,10 +24,6 @@ export default[
   {
     path:'/contact',
     component: Contact
-  },
-  {
-    path:'/experience/:id',
-    component: Experience
   },
   {
     path: '/nature-city-investment-cambodia-property',
