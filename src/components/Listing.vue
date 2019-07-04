@@ -29,13 +29,7 @@
             It is needed only when we want to iterate through an array of images, or nested elements.-->
             <v-carousel-item :src="resort.featuredImage">
             </v-carousel-item>
-            <v-carousel-item v-if="resort.images.length > 0" :src="resort.images[0].url" style="background-size:contain;">
-            </v-carousel-item>
-            <v-carousel-item v-if="resort.images.length > 1" :src="resort.images[1].url" style="background-size:contain;">
-            </v-carousel-item>
-            <v-carousel-item v-if="resort.images.length > 2" :src="resort.images[2].url" style="background-size:contain;">
-            </v-carousel-item>
-            <v-carousel-item v-if="resort.images.length > 3" :src="resort.images[3].url" style="background-size:contain;">
+            <v-carousel-item v-for="image in resort.images.slice(0,4)" v-bind:key="image.url" :src="image.url" style="background-size:contain;">
             </v-carousel-item>
           </v-carousel>
         </v-flex>
@@ -52,7 +46,7 @@
                 {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.capacity }} guests
               </v-flex>
               <v-flex v-if="resort.modules.hotel.beds && resort.modules.hotel.beds.length> 0" style="font-size: 16px; color: #B9BCC1; margin-top:20px; margin-bottom:20px;">
-                <v-icon size="30" color="#B9BCC1" style="margin-bottom:-5px;" v-if="resort.modules.hotel.beds.length >0">hotel</v-icon>
+                <v-icon size="30" color="#B9BCC1" style="margin-bottom:-5px;">hotel</v-icon>
               <span>
                 {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds && resort.modules.hotel.beds[0].count }} 
                 {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds && resort.modules.hotel.beds[0].type }}
