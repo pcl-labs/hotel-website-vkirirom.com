@@ -285,6 +285,10 @@
                   <v-flex xs6 style="font-size: 16px; color: #B9BCC1;">{{formatDates(price.date)}}</v-flex>
                   <v-flex xs6 style="font-size: 16px; color: #B9BCC1;" class="text-xs-right">${{price.amount}}</v-flex>
                 </v-layout>
+                <v-layout row wrap>
+                  <v-flex XS6 style="font-size: 16px; color: #B9BCC1;">VAT (10%)</v-flex>
+                  <v-flex XS6 style="font-size: 16px; color: #B9BCC1;" class="text-xs-right">${{vat}}</v-flex>
+                </v-layout>
                 <v-divider style="background-color:#3D424E; margin-top:20px; margin-bottom:10px;"></v-divider>
                 <v-layout row wrap>
                   <v-flex xs6><h3 style="font-size: 20px; color: #D8DADE;">Total</h3></v-flex>
@@ -513,6 +517,10 @@
                   <v-flex xs6 style="font-size: 16px; color: #B9BCC1;">{{formatDates(price.date)}}</v-flex>
                   <v-flex xs6 style="font-size: 16px; color: #B9BCC1;" class="text-xs-right">${{price.amount}}</v-flex>
                 </v-layout>
+                <v-layout row wrap>
+                  <v-flex XS6 style="font-size: 16px; color: #B9BCC1;">VAT (10%)</v-flex>
+                  <v-flex XS6 style="font-size: 16px; color: #B9BCC1;" class="text-xs-right">${{vat}}</v-flex>
+                </v-layout>
                 <v-divider style="background-color:#3D424E; margin-top:20px; margin-bottom:10px;"></v-divider>
                 <v-layout row wrap>
                   <v-flex xs6><h3 style="font-size: 20px; color: #D8DADE;">Total</h3></v-flex>
@@ -645,6 +653,7 @@ export default {
       prices: [{
       }],
       finalPrice:'',
+      vat: '',
       resort: {
         id: '',
         name: '',
@@ -695,11 +704,15 @@ export default {
     computePrice(dateOne, dateTwo) {
       let totalPrice = 0;
       let i;
+      let vat;
       this.$http.get('https://stagingapi.whynot.earth/api/v0/hotels/' + this.resort.modules.hotel.id + '/prices?startDate=' + this.dateOne + '&endDate=' + this.dateTwo).then(function(data){
         this.prices=data.body;
         for (i = 0; i < this.prices.length; i++) { 
             totalPrice += this.prices[i].amount;
           }
+        this.vat= (totalPrice/10).toFixed(2);
+        
+        totalPrice+= this.vat;
         this.finalPrice=totalPrice;
       });
     }
