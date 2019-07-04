@@ -8,14 +8,14 @@
             <br>
             <ul style="list-style:none; padding:0; margin:0;">
               <li class="mb-2">
-                <router-link to="/Contact">
+                <router-link to="/Contact" class="link">
                   Contact
                 </router-link>
               </li>
-              <li class="mb-2"><a href="http://asiato.asia/" target="_blank">About</a></li>
+              <li class="mb-2"><a href="http://asiato.asia/" target="_blank" class="link">About</a></li>
               <!-- <li class="mb-2">Book Now</li> -->
               <li class="mb-2">
-                <router-link to="/listing/in-the-press">
+                <router-link to="/listing/in-the-press" class="link">
                   In the press
                 </router-link>
               </li>
@@ -26,7 +26,7 @@
             <br>
             <ul style="list-style:none; padding:0; margin:0;">
               <li class="mb-2">
-                <router-link to="/listing/nature-city-investment-cambodia-property">
+                <router-link to="/listing/nature-city-investment-cambodia-property" class="link">
                   Lease a Property
                 </router-link>
               </li>
@@ -44,12 +44,12 @@
             <ul style="list-style:none; padding:0; margin:0;">
               <!-- <li class="mb-2">Community Outreach</li> -->
               <li class="mb-2">
-                <router-link to="/listing/our-scholarship-program">
+                <router-link to="/listing/our-scholarship-program" class="link">
                   Our Scholarship Program
                 </router-link>
               </li>
               <li class="mb-2">
-                <a href="https://kit.edu.kh" target="_blank">
+                <a href="https://kit.edu.kh" target="_blank" class="link">
                   Proudly Powered by KIT
                 </a>
               </li>
@@ -68,7 +68,7 @@ export default {
 </script>
 
 <style>
-a{
+.link{
   text-decoration:none; 
   color:#D8DADE;
 }
