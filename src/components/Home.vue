@@ -376,7 +376,7 @@ export default {
       },
     }
   },
-  mounted() {
+  created() {
     this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/accommodations').then(function(data){
       this.accommodations=data.body.slice(0,3)
     });
