@@ -717,9 +717,6 @@ export default {
     this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/'+this.slug).then(function(data){
       this.resort=data.body;
     });
-    // this.$http.get('https://stagingapi.whynot.earth/api/v0/categories').then(function(data){
-    //   this.categories=data.body;
-    // });
   },
 }
 </script>
@@ -760,12 +757,6 @@ export default {
       transform: scale(1.1);
     }
   }
-  // .hidden-sm-and-down .v-icon {
-  //   color: #B9BCC1 !important;
-  // }
-  // .hidden-md-and-up .v-icon {
-  //   color: #B9BCC1 !important;
-  // }
 
   @-webkit-keyframes autofill {
       to {

@@ -5,44 +5,35 @@
         <v-container grid-list-md>
           <v-layout row wrap align-end justify-start hidden-sm-and-down>
             <v-flex xs12 sm6 md3 lg3>
-              <h1 style="color: #FFFFFF; bottom:20px; position:absolute; font-family: 'Oswald', sans-serif; font-size: 70px;">Book your nature retreat</h1>
+              <h1 class="headerh1">Book your nature retreat</h1>
             </v-flex>
           </v-layout>
           <v-layout row wrap align-end justify-start hidden-md-and-up>
             <v-flex xs12 sm6 md3 lg3>
-              <h1 style="color: #FFFFFF; bottom:20px; position:absolute; font-family: 'Oswald', sans-serif; font-size: 45px;">Book your nature retreat</h1>
+              <h1 class="headerh1">Book your nature retreat</h1>
             </v-flex>
           </v-layout>
         </v-container>
       </div>
     </v-card>
     <v-container grid-list-md>
-      <h2 style="color: #D8DADE; font-size: 28px;" class="mb-4">Accommodation</h2>
+      <h2 class="mb-4 listTitle">Accommodation</h2>
       <v-layout row wrap>
         <v-flex xs12 sm6 md4 lg4 v-for="accommodation in accommodations" v-bind:key="accommodation.id">
-          <v-card dark height="270px" color="#191C21" class="mb-4" :to="'/listing/'+ accommodation.slug" flat style="box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;">
+          <v-card dark height="270px" color="#191C21" class="mb-4 card" :to="'/listing/'+ accommodation.slug" flat>
             <router-link :to="'/listing/'+ accommodation.slug">
               <v-carousel height="150px" :cycle="false" hide-controls dark width="100%" class="hidden-md-and-up" v-if="accommodation.images && accommodation.images.length > 0" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
                 <v-carousel-item :src="accommodation.featuredImage" style="background-size:contain;">
                 </v-carousel-item>
-                <v-carousel-item v-if="accommodation.images.length > 0" :src="accommodation.images[0].url" style="background-size:contain;">
-                </v-carousel-item>
-                <v-carousel-item v-if="accommodation.images.length > 1" :src="accommodation.images[1].url" style="background-size:contain;">
-                </v-carousel-item>
-                <v-carousel-item v-if="accommodation.images.length > 2" :src="accommodation.images[2].url" style="background-size:contain;">
-                </v-carousel-item>
-                <v-carousel-item v-if="accommodation.images.length > 3" :src="accommodation.images[3].url" style="background-size:contain;">
+                <v-carousel-item v-for="image in accommodation.images.slice(0,4)" v-bind:key="image.url" :src="image.url" style="background-size:contain;">
                 </v-carousel-item>
               </v-carousel>
             </router-link>
             <v-img :src="accommodation.featuredImage" height="150px" class="hidden-sm-and-down" style="border-top-left-radius: 10px; border-top-right-radius: 10px;"></v-img>
             <v-layout align-start>
               <v-card-text style="margin:10px; padding: 0;">
-                <p>
-                  <!-- <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire {{accommodation.title}}</span> -->
-                  <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>{{accommodation.title}}</h3></span>
-                  <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;" v-if="accommodation.ctaText>0"> {{accommodation.ctaText}}$ per night</span>
-                </p>
+                <span class="cardTitle"><h3>{{accommodation.title}}</h3></span>
+                <span class="cardSubtitle" v-if="accommodation.ctaText>0">Starting from {{accommodation.ctaText}}$ per night</span>
               </v-card-text>
             </v-layout>
           </v-card>
@@ -50,20 +41,15 @@
       </v-layout>
       <v-layout row wrap justify-space-around justify-center>
         <v-flex xs12 sm4 md4 lg4>
-          <v-btn block large outline dark to="/search/accommodations" style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; max-width:340px; text-transform:capitalize">
+          <v-btn block large outline dark to="/search/accommodations" class="showAllbtn">
             Show all <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
           </v-btn>
         </v-flex>
       </v-layout>
       <v-divider class="hidden-md-and-up mt-3" style="background-color:#3D424E;"></v-divider>
-      <v-card hover dark color="#191C21" style="border-radius: 3px;" width="100%" to="/listing/Invigorating-company-retreats">
-        <v-img height="300px" position="center" class="mt-4 pa-1 mb-4" width="100%" src="https://res.cloudinary.com/die9ji2vn/image/upload/dpr_auto/w_auto/q_auto:low/f_auto/v1561438684/Experiences/Invigorating%20Company%20Retreats/10_fotos/1_large_group_ndqlgo.jpg">
-          <v-layout row wrap justify-end hidden-sm-and-down>
-            <v-flex xs12 md6 sm6 lg6 class="ma-4" align-end>
-              <h2 style="color: #FFFFFF; font-family: 'Oswald', sans-serif; font-size: 36px;">Your next corporate retreat.</h2>
-            </v-flex>
-          </v-layout>
-          <v-layout row wrap justify-center hidden-md-and-up text-xs-center>
+      <v-card hover dark color="#191C21" style="border-radius: 3px;" width="100%" to="/listing/Large-Company-Retreats-in-Nature-and-Team-Building">
+        <v-img height="300px" position="center" class="mt-4 pa-1 mb-4" width="100%" src="https://res.cloudinary.com/die9ji2vn/image/upload/dpr_auto/w_auto/q_auto:low/f_auto/v1562223032/group/group-retreat_s3ksth.jpg">
+          <v-layout row wrap justify-center text-xs-center>
             <v-flex xs12 align-center >
               <h2 style="color: #FFFFFF; font-family: 'Oswald', sans-serif; font-size: 36px; text-align: center; margin-top:30px;">
                 Your next corporate retreat.
@@ -72,7 +58,7 @@
           </v-layout>
           <v-layout column align-center justify-center fill-height>
             <v-flex xs12 md6 sm4 lg6>
-              <v-btn to="/listing/Invigorating-company-retreats" dark large depressed style="background: #F7B947; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; text-transform:capitalize" color="#4B7F52">
+              <v-btn to="/listing/Large-Company-Retreats-in-Nature-and-Team-Building" dark large depressed class="menubtn" color="#F7B947">
                 Book Now <v-icon>keyboard_arrow_right</v-icon>
               </v-btn>
             </v-flex>
@@ -80,32 +66,23 @@
         </v-img>
       </v-card>
     <v-divider class="hidden-md-and-up mt-3" style="background-color:#3D424E;"></v-divider>
-    <h2 style="color: #D8DADE; font-size: 28px;" class="mt-2 mb-4">Experience</h2>
+    <h2 class="mt-2 mb-4 listTitle">Experience</h2>
       <v-layout row wrap>
         <v-flex xs12 sm6 md4 lg4 v-for="experience in experiences" v-bind:key="experience.id">
-          <v-card width="100%" height="270px" color="#191C21" class="mb-4" dark :to="'/listing/'+ experience.slug" flat style="box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;">
+          <v-card width="100%" height="270px" color="#191C21" class="mb-4 card" dark :to="'/listing/'+ experience.slug" flat style="box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;">
             <router-link :to="'/listing/'+ experience.slug">
               <v-carousel height="150px" :cycle="false" hide-controls dark width="100%" class="hidden-md-and-up" v-if="experience.images && experience.images.length > 0" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
                 <v-carousel-item :src="experience.featuredImage" style="background-size:contain;">
                 </v-carousel-item>
-                <v-carousel-item v-if="experience.images.length > 0" :src="experience.images[0].url" style="background-size:contain;">
-                </v-carousel-item>
-                <v-carousel-item v-if="experience.images.length > 1" :src="experience.images[1].url" style="background-size:contain;">
-                </v-carousel-item>
-                <v-carousel-item v-if="experience.images.length > 2" :src="experience.images[2].url" style="background-size:contain;">
-                </v-carousel-item>
-                <v-carousel-item v-if="experience.images.length > 3" :src="experience.images[3].url" style="background-size:contain;">
+                <v-carousel-item v-for="image in experience.images.slice(0,4)" v-bind:key="image.url" :src="image.url" style="background-size:contain;">
                 </v-carousel-item>
               </v-carousel>
             </router-link>
             <v-img :src="experience.featuredImage" height="150px" class="hidden-sm-and-down" style="border-top-left-radius: 10px; border-top-right-radius: 10px;"></v-img>
             <v-layout align-start>
               <v-card-text style="margin:10px; padding: 0;">
-                <p>
-                  <!-- <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire {{experience.title}}</span> -->
-                  <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>{{experience.title}}</h3></span>
-                  <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;" v-if="experience.ctaText>0"> {{experience.ctaText}}$ per night</span>
-                </p>
+                <span class="cardTitle"><h3>{{experience.title}}</h3></span>
+                <span class="cardSubtitle" v-if="experience.ctaText>0">Starting from {{experience.ctaText}}$ per night</span>
               </v-card-text>
             </v-layout>
           </v-card>
@@ -113,55 +90,46 @@
       </v-layout>
       <v-layout row wrap justify-space-around justify-center>
         <v-flex xs12 sm4 md4 lg4>
-          <v-btn to="/search/experiences/" block large outline dark style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; max-width:340px; text-transform:capitalize">
+          <v-btn to="/search/experiences/" block large outline dark class="showAllbtn">
             Show all <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
           </v-btn>
         </v-flex>
       </v-layout>
       <v-card to="/search/food" xs12 color="#191C21" width="100%" class="mt-4 mb-4" dark style="border-radius: 3px;" hover>
-      <v-img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1560151624/Healthy_eyfk5v.jpg" height="300px" position="top" class="pt-3 pl-2">
-      <v-layout row wrap justify-start class="mt-4 ml-4 mb-2">
+      <v-img  height="300px" class="pt-3 pl-2" src="https://res.cloudinary.com/die9ji2vn/image/upload/dpr_auto/w_auto/q_auto:low/f_auto/v1562224268/food/Indian_bi8dn7-Original_ueby7h.jpg">
+      <v-layout row wrap justify-start class="mt-4 mb-2 ml-4">
         <v-flex xs12 md4 sm4 lg4>
           <h2 style="color: #FFFFFF; font-family: 'Oswald', sans-serif; font-size: 34px;">
             “Best lunch stop in Kirirom.”
           </h2>
         </v-flex>
       </v-layout>
-      <v-layout column align-content-space-around align-content-start fill-height class="ml-4">
+      <v-layout column align-content-space-around align-content-start fill-height>
         <v-flex xs12 md4 sm4 lg4>
-          <v-btn dark large to="/search/food" depressed style="background: #F7B947; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; text-transform:capitalize">
+          <v-btn dark large to="/search/food" depressed class="menubtn ml-4" color="#F7B947">
             Menu <v-icon>keyboard_arrow_right</v-icon>
           </v-btn>
         </v-flex>
       </v-layout>
       </v-img>
       </v-card>
-      <h2 style="color: #D8DADE; font-size: 28px;" class="mb-4">Events</h2>
+      <h2 class="mb-4 listTitle">Events</h2>
       <v-layout row wrap>
         <v-flex xs12 sm6 md4 lg4 v-for="event in events" v-bind:key="event.id">
-          <v-card width="100%" height="270px" color="#191C21" class="mb-4" dark :to="'/listing/'+ event.slug" flat style="box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;">
+          <v-card width="100%" height="270px" color="#191C21" class="mb-4 card" dark :to="'/listing/'+ event.slug" flat style="box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;">
             <router-link :to="'/listing/'+ event.slug">
               <v-carousel height="150px" :cycle="false" hide-controls dark width="100%" class="hidden-md-and-up" v-if="event.images && event.images.length > 0" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
                 <v-carousel-item :src="event.featuredImage" style="background-size:contain;">
                 </v-carousel-item>
-                <v-carousel-item v-if="event.images.length > 0" :src="event.images[0].url" style="background-size:contain;">
-                </v-carousel-item>
-                <v-carousel-item v-if="event.images.length > 1" :src="event.images[1].url" style="background-size:contain;">
-                </v-carousel-item>
-                <v-carousel-item v-if="event.images.length > 2" :src="event.images[2].url" style="background-size:contain;">
-                </v-carousel-item>
-                <v-carousel-item v-if="event.images.length > 3" :src="event.images[3].url" style="background-size:contain;">
+                <v-carousel-item v-for="image in event.images.slice(0,4)" v-bind:key="image.url" :src="image.url" style="background-size:contain;">
                 </v-carousel-item>
               </v-carousel>
             </router-link>
             <v-img :src="event.featuredImage" height="150px" class="hidden-sm-and-down" style="border-top-left-radius: 10px; border-top-right-radius: 10px;"></v-img>
             <v-layout align-start>
               <v-card-text style="margin:10px; padding: 0;">
-                <p>
-                  <!-- <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire {{event.title}}</span> -->
-                  <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>{{event.title}}</h3></span>
-                  <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;" v-if="event.ctaText>0"> {{event.ctaText}}$ per night</span>
-                </p>
+                <span class="cardTitle"><h3>{{event.title}}</h3></span>
+                <span class="cardSubtitle" v-if="event.ctaText>0">Starting from {{event.ctaText}}$ per night</span>
               </v-card-text>
             </v-layout>
           </v-card>
@@ -169,7 +137,7 @@
       </v-layout>
       <v-layout row wrap justify-space-around justify-center>
         <v-flex xs12 sm4 md4 lg4>
-          <v-btn to="/search/events" block large outline dark style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; max-width:340px; text-transform:capitalize">
+          <v-btn to="/search/events" block large outline dark class="showAllbtn">
             Show all <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
           </v-btn>
         </v-flex>
@@ -180,32 +148,23 @@
           Your browser does not support the video tag.
         </video>
       </v-flex>
-      <h2 style="color: #D8DADE; font-size: 28px;" class="mt-2 mb-4">Lease</h2>
+      <h2 class="mt-2 mb-4 listTitle">Lease</h2>
       <v-layout row wrap>
         <v-flex xs12 sm6 md4 lg4 v-for="lease in leases" v-bind:key="lease.id">
-          <v-card width="100%" height="270px" color="#191C21" class="mb-4" dark :to="'/listing/'+ lease.slug" flat style="box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;">
+          <v-card width="100%" height="270px" color="#191C21" class="mb-4 card" dark :to="'/listing/'+ lease.slug" flat style="box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;">
             <router-link :to="'/listing/'+ lease.slug">
               <v-carousel height="150px" :cycle="false" hide-controls dark width="100%" class="hidden-md-and-up" v-if="lease.images && lease.images.length > 0" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
                 <v-carousel-item :src="lease.featuredImage" style="background-size:contain;">
                 </v-carousel-item>
-                <v-carousel-item v-if="lease.images.length > 0" :src="lease.images[0].url" style="background-size:contain;">
-                </v-carousel-item>
-                <v-carousel-item v-if="lease.images.length > 1" :src="lease.images[1].url" style="background-size:contain;">
-                </v-carousel-item>
-                <v-carousel-item v-if="lease.images.length > 2" :src="lease.images[2].url" style="background-size:contain;">
-                </v-carousel-item>
-                <v-carousel-item v-if="lease.images.length > 3" :src="lease.images[3].url" style="background-size:contain;">
+                <v-carousel-item v-for="image in lease.images.slice(0,4)" v-bind:key="image.url" :src="image.url" style="background-size:contain;">
                 </v-carousel-item>
               </v-carousel>
             </router-link>
             <v-img :src="lease.featuredImage" height="150px" class="hidden-sm-and-down" style="border-top-left-radius: 10px; border-top-right-radius: 10px;"></v-img>
             <v-layout align-start>
               <v-card-text style="margin:10px; padding: 0;">
-                <p>
-                  <!-- <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire {{lease.title}}</span> -->
-                  <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>{{lease.title}}</h3></span>
-                  <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;" v-if="lease.ctaText>0"> {{lease.ctaText}}$ per night</span>
-                </p>
+                <span class="cardTitle"><h3>{{lease.title}}</h3></span>
+                <span class="cardSubtitle" v-if="lease.ctaText>0">Starting from {{lease.ctaText}}$ per night</span>
               </v-card-text>
             </v-layout>
           </v-card>
@@ -213,37 +172,28 @@
       </v-layout>
       <v-layout row wrap justify-space-around justify-center>
         <v-flex xs12 sm4 md4 lg4>
-          <v-btn to="/search/lease/" block large outline dark style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; max-width:340px; text-transform:capitalize">
+          <v-btn to="/search/lease/" block large outline dark class="showAllbtn">
             Show all <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
           </v-btn>
         </v-flex>
       </v-layout>
-      <h2 style="color: #D8DADE; font-size: 28px;" class="mb-4 mt-3">Ecotourism</h2>
+      <h2 class="mb-4 mt-3 listTitle">Ecotourism</h2>
       <v-layout row wrap>
         <v-flex xs12 sm6 md4 lg4 v-for="ecotourism in ecotourisms" v-bind:key="ecotourism.id">
-          <v-card width="100%" height="270px" class="mb-4" dark color="#191C21" :to="'/listing/'+ ecotourism.slug" flat style="box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;">
+          <v-card width="100%" height="270px" class="mb-4 card" dark color="#191C21" :to="'/listing/'+ ecotourism.slug" flat style="box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;">
             <router-link :to="'/listing/'+ ecotourism.slug">
               <v-carousel hide-controls :cycle="false" dark width="100%" height="150px" class="hidden-md-and-up" v-if="ecotourism.images && ecotourism.images.length > 0" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
                 <v-carousel-item :src="ecotourism.featuredImage" style="background-size:contain;">
                 </v-carousel-item>
-                <v-carousel-item v-if=" ecotourism.images.length > 0" :src=" ecotourism.images[0].url" style="background-size:contain;">
-                </v-carousel-item>
-                <v-carousel-item v-if=" ecotourism.images.length > 1" :src=" ecotourism.images[1].url" style="background-size:contain;">
-                </v-carousel-item>
-                <v-carousel-item v-if=" ecotourism.images.length > 2" :src=" ecotourism.images[2].url" style="background-size:contain;">
-                </v-carousel-item>
-                <v-carousel-item v-if=" ecotourism.images.length > 3" :src=" ecotourism.images[3].url" style="background-size:contain;">
+                <v-carousel-item v-for="image in ecotourism.images.slice(0,4)" v-bind:key="image.url" :src="image.url" style="background-size:contain;">
                 </v-carousel-item>
               </v-carousel>
             </router-link>
             <v-img :src="ecotourism.featuredImage" height="150px" class="hidden-sm-and-down" style="border-top-left-radius: 10px; border-top-right-radius: 10px;"></v-img>
             <v-layout align-start>
               <v-card-text style="margin:10px; padding: 0;">
-                <p>
-                  <!-- <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire {{ ecotourism.title}}</span> -->
-                  <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>{{ecotourism.title}}</h3></span>
-                  <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;" v-if="ecotourism.ctaText>0"> {{ecotourism.ctaText}}$ per night</span>
-                </p>
+                <span class="cardTitle"><h3>{{ecotourism.title}}</h3></span>
+                <span class="cardSubtitle" v-if="ecotourism.ctaText>0">Starting from {{ecotourism.ctaText}}$ per night</span>
               </v-card-text>
             </v-layout>
           </v-card>
@@ -251,7 +201,7 @@
       </v-layout>
       <v-layout row wrap justify-space-around justify-center>
         <v-flex xs12 sm4 md4 lg4 class="mt-3">
-          <v-btn to="/search/ecotourism/" block large outline dark style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; max-width:340px; text-transform:capitalize">
+          <v-btn to="/search/ecotourism/" block large outline dark class="showAllbtn">
             Learn More <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
           </v-btn>
         </v-flex>
@@ -488,6 +438,28 @@ export default {
   height: 300px;
 }
 
+.menubtn{
+  box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; text-transform:capitalize;
+  margin: 0;
+}
+.showAllbtn{
+  border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; max-width:340px; text-transform:capitalize;
+}
+.headerh1{
+  color: #FFFFFF; bottom:20px; position:absolute; font-family: 'Oswald', sans-serif; font-size: 45px;
+}
+.card{
+  box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;
+}
+.cardTitle{
+  color: #FFFFFF; font-size: 17px; line-height: 27px;
+}
+.cardSubtitle{
+  font-size: 16px; line-height: 22px; color: #B9BCC1;
+}
+.listTitle{
+  color: #D8DADE; font-size: 28px;
+}
 html {
   scroll-behavior: smooth;
 }
