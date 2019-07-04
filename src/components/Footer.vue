@@ -32,7 +32,7 @@
               </li>
               <!-- <li class="mb-2">Collaborate</li> -->
               <li class="mb-2">
-                <router-link to="/listing/partner">
+                <router-link to="/listing/partner" class="link">
                   Partner
                 </router-link>
               </li>

@@ -64,9 +64,6 @@
               </p>
             </v-flex>
             <v-flex v-if="resort.modules.hotel.gettingAround" style="height:100%;">
-              <!-- <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-5">
-                Description
-              </h2> -->
               <div class="description">
                 <vue-markdown>{{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.gettingAround}}</vue-markdown>
               </div>
@@ -97,50 +94,6 @@
                 {{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.amenities[0]}}
               </span>
             </v-flex>
-            <!-- <v-layout row wrap justify-space-between align-center>
-              <v-flex xs6 md6 class="py-3">
-                <img :src="wifi">
-                <br>
-                <span style="font-size: 16px; color: #B9BCC1;">Wifi</span>
-              </v-flex>
-              <v-flex xs6 md6 class="py-3">
-                <img :src="cutlery">
-                <br>
-                <span style="font-size: 16px; color: #B9BCC1;">Cutlery</span>
-              </v-flex>
-              <v-flex xs6 md6 class="py-3">
-                <img :src="HairDryer">
-                <br>
-                <span style="font-size: 16px; color: #B9BCC1;">Hair Dryer</span>
-              </v-flex>
-              <v-flex xs6 md6 class="py-3">
-                <img :src="Washer">
-                <br>
-                <span style="font-size: 16px; color: #B9BCC1;">Washer</span>
-              </v-flex>
-            </v-layout> -->
-            <!-- <v-layout row wrap justify-space-between align-center>
-              <v-flex>
-                <v-icon color="#B9BCC1" size="24px">kitchen</v-icon>
-                <span style="font-size: 16px; color: #B9BCC1;">Kitchen</span>
-              </v-flex>
-              <v-flex>
-                <v-icon color="#B9BCC1" size="24px">local_cafe</v-icon>
-                <span style="font-size: 16px; color: #B9BCC1;">Coffee</span>
-              </v-flex>
-              <v-flex>
-                <v-icon color="#B9BCC1" size="24px">local_cafe</v-icon>
-                <span style="font-size: 16px; color: #B9BCC1;">Coffee</span>
-              </v-flex>
-              <v-flex>
-                <v-icon color="#B9BCC1" size="24px">local_cafe</v-icon>
-                <span style="font-size: 16px; color: #B9BCC1;">Coffee</span>
-              </v-flex>
-              <v-flex>
-                <v-icon color="#B9BCC1" size="24px">local_cafe</v-icon>
-                <span style="font-size: 16px; color: #B9BCC1;">Coffee</span>
-              </v-flex>
-            </v-layout> -->
           </v-flex>
           <v-flex v-if="resort.modules.hotel.rules && resort.modules.hotel.rules.length >0">
             <h2 style="font-size: 20px; color: #D8DADE; height:100%;" class="mb-3 mt-3">
@@ -150,18 +103,6 @@
               {{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.rules[0]}}
             </span>
           </v-flex>
-          <!-- <v-flex xs12>
-            <v-btn
-              block
-              color="#F7B947"
-              dark
-              class="text-capitalize font-weight-bold"
-              style="border-radius: 4px; max-width:238px; height:50px; margin-bottom:100px; margin-top:45px;"
-              to="/contact"
-            >
-              Contact<v-icon>keyboard_arrow_right</v-icon>
-            </v-btn>
-          </v-flex> -->
         <div style="margin:80px;"></div>
         </v-flex>
         <v-flex md6 class="hidden-sm-and-down">
@@ -293,39 +234,6 @@
                 </v-layout>
                 <input name="Amount (in $)" hidden :value="finalPrice" type="text" readonly />
               </v-flex>
-              <v-layout row wrap justify-center justify-space-between v-if="resort.modules.hotel.beds && resort.modules.hotel.beds.length >0">
-                <v-flex style="margin-bottom:30px;">
-                  <!-- <v-btn-toggle v-model="toggle0" mandatory style="background-color:transparent; width:100%;">
-                    <v-btn v-if="resort.modules.hotel.beds.length >0" :value="resort.modules.hotel.beds[0].type" flat dark outline block text-xs-center class="text-capitalize" style="border: 3px solid #B9BCC1; box-sizing: border-box; border-radius: 3px; height:108px; font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
-                      <p class="mt-4">
-                        {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }}
-                        {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].type }}
-                      <br>
-                        <v-img class="mt-1 ml-3" width="22px" height="20px" :src="bed"></v-img>
-                      </p>
-                    </v-btn>
-                    <v-btn v-if="resort.modules.hotel.beds.length >1" :value="resort.modules.hotel.beds[1].type" flat dark outline block text-xs-center class="text-capitalize" style="margin-left:20px; border: 3px solid #B9BCC1; box-sizing: border-box; border-radius: 3px; height:108px; font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
-                      <p class="mt-4">  
-                        {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[1] && resort.modules.hotel.beds[1].count }}
-                        {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[1] && resort.modules.hotel.beds[1].type }}
-                      <br>
-                        <v-img class="mt-1 ml-3" width="22px" height="20px" :src="bed"></v-img>
-                      </p>
-                    </v-btn>
-                  </v-btn-toggle> -->
-                </v-flex>
-                <!-- <v-flex ml-2 mb-4>
-                <v-btn-toggle v-model="toggle1" style="width:100%; background-color:transparent;">
-                </v-btn-toggle>
-                </v-flex> -->
-              </v-layout>
-              <!-- <input
-                name="Type"
-                hidden
-                :value="toggle0"
-                type="text"
-                readonly
-              /> -->
               <v-flex xs12>
                 <v-textarea
                   outline
@@ -401,8 +309,6 @@
                   <span style="font-weight: bold; font-size: 28px; color: #B9BCC1;">&dollar;{{ resort.ctaText }} </span>
                   <span style="font-size: 16px; color: #B9BCC1;"> per night</span>
                 </p>
-                <!-- <Rating :rating="rating" :counter="counter"/> -->
-                <!-- <v-divider class="mt-3 mb-3" style="background-color:#3D424E;"></v-divider> -->
               </v-flex>
               <v-flex xs12>
                 <v-text-field
@@ -571,15 +477,9 @@
 </template>
 
 <script>
-//components
-
-// icons
-import wifi from '../assets/icons/wifi.svg'
-import HairDryer from '../assets/icons/hair-dryer.svg'
-import Washer from '../assets/icons/washing-machine.svg'
-import cutlery from '../assets/icons/cutlery.svg'
-import bed from '../assets/icons/bed.svg'
 import format from 'date-fns/format'
+
+//components
 import Footer from './Footer.vue'
 import VueMarkdown from 'vue-markdown'
 
@@ -633,20 +533,8 @@ export default {
       dateOne: '',
       dateTwo: '',
 
-      //images
-      wifi,
-      HairDryer,
-      Washer,
-      cutlery,
-      bed,
-
       slug: this.$route.params.id,
-      // categories:[
-      //   {
-      //     id: '',
-      //     name: '',
-      //   }
-      // ],
+
       prices: [{
       }],
       finalPrice:'',
