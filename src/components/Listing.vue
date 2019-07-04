@@ -227,13 +227,28 @@
                   v-model="phone"
                   label="Phone"
                   name="Phone"
-                  color="#B9BCC1"
                   required
                   dark
                   :rules="phoneRules"
                 >
                 <v-icon slot="append" color="#B9BCC1">local_phone</v-icon>
                 </v-text-field>
+              </v-flex>
+              <v-flex v-if="resort.modules.hotel && resort.modules.hotel.beds.length >0">
+                <v-select name="Type" :items="resort.modules.hotel.beds" dark outline label="Bed Type" color="#B9BCC1" type="text">
+                  <template slot="selection" slot-scope="data">
+                    {{data.item.count}} {{data.item.type}}
+                  </template>
+                  <template slot="item" slot-scope="data">
+                    <template>
+                      <v-list-tile-content>
+                        <v-list-tile-title>
+                          {{data.item.count}} {{data.item.type}}
+                        </v-list-tile-title>
+                      </v-list-tile-content>
+                    </template>
+                  </template>
+                </v-select>
               </v-flex>
 
               <!-- resort.name is a temporary fix for category name, ideally category id should be used-->
@@ -285,7 +300,7 @@
               </v-flex>
               <v-layout row wrap justify-center justify-space-between v-if="resort.modules.hotel.beds && resort.modules.hotel.beds.length >0">
                 <v-flex style="margin-bottom:30px;">
-                  <v-btn-toggle v-model="toggle0" mandatory style="background-color:transparent; width:100%;">
+                  <!-- <v-btn-toggle v-model="toggle0" mandatory style="background-color:transparent; width:100%;">
                     <v-btn v-if="resort.modules.hotel.beds.length >0" :value="resort.modules.hotel.beds[0].type" flat dark outline block text-xs-center class="text-capitalize" style="border: 3px solid #B9BCC1; box-sizing: border-box; border-radius: 3px; height:108px; font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
                       <p class="mt-4">
                         {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds[0] && resort.modules.hotel.beds[0].count }}
@@ -302,20 +317,20 @@
                         <v-img class="mt-1 ml-3" width="22px" height="20px" :src="bed"></v-img>
                       </p>
                     </v-btn>
-                  </v-btn-toggle>
+                  </v-btn-toggle> -->
                 </v-flex>
                 <!-- <v-flex ml-2 mb-4>
                 <v-btn-toggle v-model="toggle1" style="width:100%; background-color:transparent;">
                 </v-btn-toggle>
                 </v-flex> -->
               </v-layout>
-              <input
+              <!-- <input
                 name="Type"
                 hidden
                 :value="toggle0"
                 type="text"
                 readonly
-              />
+              /> -->
               <v-flex xs12>
                 <v-textarea
                   outline
@@ -445,6 +460,23 @@
                 >
                 <v-icon slot="append" color="#B9BCC1">local_phone</v-icon>
                 </v-text-field>
+              </v-flex>
+
+              <v-flex v-if="resort.modules.hotel && resort.modules.hotel.beds.length >0">
+                <v-select name="Type" :items="resort.modules.hotel.beds" dark outline label="Bed Type" color="#B9BCC1" type="text">
+                  <template slot="selection" slot-scope="data">
+                    {{data.item.count}} {{data.item.type}}
+                  </template>
+                  <template slot="item" slot-scope="data">
+                    <template>
+                      <v-list-tile-content>
+                        <v-list-tile-title>
+                          {{data.item.count}} {{data.item.type}}
+                        </v-list-tile-title>
+                      </v-list-tile-content>
+                    </template>
+                  </template>
+                </v-select>
               </v-flex>
 
               <!-- resort.name is a temporary fix for category name, ideally category id should be used-->
@@ -613,7 +645,6 @@ export default {
   data(){
     return{
       toggle0:0,
-      beds: false,
       valid: false,
       nameRules: [
         v => !!v || 'Name is required',
@@ -680,6 +711,7 @@ export default {
             amenities: '',
             beds: [
               {
+                id: '',
                 count: '',
                 type: '',
               }

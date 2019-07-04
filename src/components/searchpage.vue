@@ -18,13 +18,7 @@
             <v-carousel height="150px" :cycle="false" hide-controls dark width="100%" class="hidden-md-and-up" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
               <v-carousel-item :src="resort.featuredImage">
               </v-carousel-item>
-              <v-carousel-item v-if="resort.images.length > 0" :src="resort.images[0].url" style="background-size:contain;">
-              </v-carousel-item>
-              <v-carousel-item v-if="resort.images.length > 1" :src="resort.images[1].url" style="background-size:contain;">
-              </v-carousel-item>
-              <v-carousel-item v-if="resort.images.length > 2" :src="resort.images[2].url" style="background-size:contain;">
-              </v-carousel-item>
-              <v-carousel-item v-if="resort.images.length > 3" :src="resort.images[3].url" style="background-size:contain;">
+              <v-carousel-item v-for="image in resort.images.slice(0,4)" v-bind:key="image.url" :src="image.url" style="background-size:contain;">
               </v-carousel-item>
             </v-carousel>
           </router-link>
