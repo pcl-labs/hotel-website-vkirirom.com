@@ -220,6 +220,18 @@
                   @apply="computePrice(dateOne, dateTwo)"
                 />
               </v-flex>
+              <v-flex xs12>
+                <v-checkbox 
+                  v-model="checkbox" 
+                  label="Do you need transportation?"
+                  color="#B9BCC1"
+                  dark
+                  style="margin:0; padding:0;"
+                  height="30px"
+                >
+                </v-checkbox>
+                <input hidden name="Transportation needed" :value="checkbox" />
+              </v-flex>
               <v-flex xs12 style="margin-bottom:30px;" v-if="finalPrice > 0">
                 <v-layout row wrap v-for="price in prices" v-bind:key="price.id">
                   <v-flex xs6 style="font-size: 16px; color: #B9BCC1;">{{formatDates(price.date)}}</v-flex>
@@ -415,6 +427,18 @@
                   @apply="computePrice(dateOne, dateTwo)"
                 />
               </v-flex>
+              <v-flex xs12>
+                <v-checkbox 
+                  v-model="checkbox" 
+                  label="Do you need transportation?"
+                  color="#B9BCC1"
+                  dark
+                  style="margin:0; padding:0;"
+                  height="30px"
+                >
+                </v-checkbox>
+                <input hidden name="Transportation needed" :value="checkbox" />
+              </v-flex>
               <v-flex xs12 style="margin-bottom:30px;" v-if="finalPrice > 0">
                 <v-layout row wrap v-for="price in prices" v-bind:key="price.id">
                   <v-flex xs6 style="font-size: 16px; color: #B9BCC1;">{{formatDates(price.date)}}</v-flex>
@@ -507,6 +531,7 @@ export default {
   },
   data(){
     return{
+      checkbox: false,
       toggle0:0,
       valid: false,
       nameRules: [
