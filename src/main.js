@@ -9,7 +9,6 @@ import Routes from './routes'
 import VueResource from 'vue-resource'
 import AirbnbStyleDatepicker from 'vue-airbnb-style-datepicker'
 import 'vue-airbnb-style-datepicker/dist/vue-airbnb-style-datepicker.min.css'
-import VueGtm from 'vue-gtm'
 import VueHead from 'vue-head'
 import VueMarkdown from 'vue-markdown'
 
@@ -52,14 +51,6 @@ Vue.use(AirbnbStyleDatepicker, {
     hoveredInRange: '#9bdba4',
     keyboardShortcuts: '#4B7F52'
   },
-});
-
-Vue.use(VueGtm, {
-  id: 'GTM-PMXGLXR', // Your GTM ID
-  enabled: true, // defaults to true. Plugin can be disabled by setting this to false for Ex: enabled: !!GDPR_Cookie (optional)
-  debug: true, // Whether or not display console logs debugs (optional)
-  vueRouter: router, // Pass the router instance to automatically sync with router (optional)
-  ignoredViews: ['homepage'] // If router, you can exclude some routes name (case insensitive) (optional)
 });
 
 const router = new VueRouter({
