@@ -13,7 +13,7 @@
         </v-flex>
       </v-flex>
       <v-flex xs12 sm6 md4 lg4 v-for="resort in resorts" v-bind:key="resort.id">
-        <v-card height="270px" color="#191C21" class="mb-4" width="100%" dark :to="'/listing/'+ resort.slug" flat style="box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;">
+        <v-card color="#191C21" class="mb-4 card" width="100%" dark :to="'/listing/'+ resort.slug" flat>
           <router-link :to="'/listing/'+ resort.slug">
             <v-carousel height="150px" :cycle="false" hide-controls dark width="100%" class="hidden-md-and-up" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
               <v-carousel-item :src="resort.featuredImage">
@@ -28,7 +28,7 @@
               <p>
                 <!-- <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire {{resort.title}}</span> -->
                 <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>{{resort.title}}</h3></span>
-                <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;" v-if="resort.ctaText>0"> {{resort.ctaText}}$ per night</span>
+                <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;" v-if="resort.ctaText>0">Starting from {{resort.ctaText}}$ per night</span>
               </p>
             </v-card-text>
           </v-layout>
@@ -75,6 +75,10 @@ export default {
       font-size: 7px !important;
       color: white !important;
     }
+  }
+  .card{
+    box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;
+    height: 270px;
   }
   @media only screen and (max-width: 600px) {
     .container{

@@ -112,6 +112,7 @@
               <v-layout row wrap>
               <v-flex xs12 v-if="resort.ctaText > 0">
                 <p class="subheading text-xs-center pb-2">
+                  <span style="font-size: 16px; color: #B9BCC1;">Starting from </span>
                   <span style="font-weight: bold; font-size: 28px; color: #B9BCC1;">&dollar;{{ resort.ctaText }} </span>
                   <span style="font-size: 16px; color: #B9BCC1;"> per night</span>
                 </p>
@@ -162,6 +163,7 @@
                   v-model="phone"
                   label="Phone"
                   name="Phone"
+                  color="#B9BCC1"
                   required
                   dark
                   :rules="phoneRules"
@@ -276,10 +278,9 @@
           <div id="bookBottom" class="hidden-md-and-up book-bottom">
           <v-flex xs12 v-if="resort.ctaText > 0">
             <p>
-              <span style="font-size: 28px; color: #D8DADE;">&dollar;{{resort.ctaText}}</span>
-              <span style="font-size: 16px; color: #B9BCC1;"> per night</span>
+              <span style="font-size: 28px; color: #D8DADE;">&dollar;{{resort.ctaText}}+</span>
+              <span style="font-size: 16px; color: #B9BCC1;">/night</span>
             </p>
-            <!-- <Rating :rating="rating" :counter="counter"/> -->
           </v-flex>
           <v-flex xs12 class="hidden-md-and-up">
           <v-dialog v-model="bookDialog" fullscreen hide-overlay transition="dialog-bottom-transition">
@@ -299,15 +300,15 @@
               <input type="hidden" name="form-name" :value="resort.name" />
               <v-layout row wrap>
               <v-flex xs1>
-                <v-btn icon dark @click="bookDialog = false">
-                  <v-icon color="#B9BCC1">close</v-icon>
+                <v-btn icon dark @click="bookDialog = false" style="margin:0;">
+                  <v-icon color="#B9BCC1" size="40">close</v-icon>
                 </v-btn>
               </v-flex>
               <v-spacer></v-spacer>
               <v-flex xs11 v-if="resort.ctaText > 0">
-                <p class="subheading text-xs-center pb-2">
-                  <span style="font-weight: bold; font-size: 28px; color: #B9BCC1;">&dollar;{{ resort.ctaText }} </span>
-                  <span style="font-size: 16px; color: #B9BCC1;"> per night</span>
+                <p class="pb-2 text-xs-center">
+                  <span style="font-weight: bold; font-size: 28px; color: #B9BCC1;"> &dollar;{{ resort.ctaText }}+</span>
+                  <span style="font-size: 16px; color: #B9BCC1;">/night</span>
                 </p>
               </v-flex>
               <v-flex xs12>
@@ -364,7 +365,7 @@
               </v-flex>
 
               <v-flex v-if="resort.modules.hotel && resort.modules.hotel.beds.length >0">
-                <v-select name="Type" item-value="type" :items="resort.modules.hotel.beds" dark outline label="Bed Type" color="#B9BCC1" type="text">
+                <v-select name="Type" v-model="bedType" item-text="type" item-value="type" :items="resort.modules.hotel.beds" return-object dark outline label="Bed Type" color="#B9BCC1" type="text">
                   <template slot="selection" slot-scope="data">
                     {{data.item.count}} {{data.item.type}}
                   </template>
@@ -539,6 +540,7 @@ export default {
       }],
       finalPrice:'',
       vat: '',
+      bedType: {count: '', type: ''},
       resort: {
         id: '',
         name: '',
@@ -666,7 +668,7 @@ export default {
     bottom: 0;
     text-align: center;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between;    
     align-items: center;
     border-top: 1px solid rgba(0,0,0,0.12);
   }
