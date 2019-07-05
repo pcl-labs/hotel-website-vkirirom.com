@@ -53,6 +53,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <h1 style="color: #FFFFFF; margin-top:30px;">{{resort.title}}</h1>
           <v-flex xs12>
             <v-layout row wrap style="height:100%">
+              <v-flex v-if="resort.name=='blog'" style="font-size: 16px; color: #B9BCC1; margin-top:20px; margin-bottom:20px;">Published July 5, 2019 </v-flex>
               <v-flex v-if="resort.modules.hotel && resort.modules.hotel.capacity" style="font-size: 16px; color: #B9BCC1; margin-top:20px; margin-bottom:20px;">
                 <v-icon size="30" color="#B9BCC1" style="margin-bottom:-5px;">supervisor_account</v-icon> 
                 {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.capacity }} guests
