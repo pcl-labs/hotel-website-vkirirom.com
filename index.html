@@ -35,7 +35,7 @@
           if (file.match(/\.(js|css)$/)) { %>
     <link rel="<%= chunk.initial?'preload':'prefetch' %>" href="<%= htmlWebpackPlugin.files.publicPath + file %>" as="<%= file.match(/\.css$/)?'style':'script' %>"><% }}} %>
 
-    <script type="application/ld+json">
+    <script async defer type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Hotel",
