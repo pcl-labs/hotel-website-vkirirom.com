@@ -41,11 +41,11 @@
           <h1 style="color: #FFFFFF; margin-top:30px;">{{resort.title}}</h1>
           <v-flex xs12>
             <v-layout row wrap style="height:100%">
-              <v-flex v-if="resort.modules.hotel.capacity" style="font-size: 16px; color: #B9BCC1; margin-top:20px; margin-bottom:20px;">
+              <v-flex v-if="resort.modules.hotel && resort.modules.hotel.capacity" style="font-size: 16px; color: #B9BCC1; margin-top:20px; margin-bottom:20px;">
                 <v-icon size="30" color="#B9BCC1" style="margin-bottom:-5px;">supervisor_account</v-icon> 
                 {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.capacity }} guests
               </v-flex>
-              <v-flex v-if="resort.modules.hotel.beds && resort.modules.hotel.beds.length> 0" style="font-size: 16px; color: #B9BCC1; margin-top:20px; margin-bottom:20px;">
+              <v-flex v-if="resort.modules.hotel && resort.modules.hotel.beds && resort.modules.hotel.beds.length> 0" style="font-size: 16px; color: #B9BCC1; margin-top:20px; margin-bottom:20px;">
                 <v-icon size="30" color="#B9BCC1" style="margin-bottom:-5px;">hotel</v-icon>
               <span>
                 {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds && resort.modules.hotel.beds[0].count }} 
@@ -63,12 +63,12 @@
                 {{resort.description}}
               </p>
             </v-flex>
-            <v-flex v-if="resort.modules.hotel.gettingAround" style="height:100%;">
+            <v-flex v-if="resort.modules.hotel && resort.modules.hotel.gettingAround" style="height:100%;">
               <div class="description">
                 <vue-markdown>{{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.gettingAround}}</vue-markdown>
               </div>
             </v-flex>
-            <v-flex xs12 v-if="resort.modules.hotel.location" style="height:100%;">
+            <v-flex xs12 v-if="resort.modules.hotel && resort.modules.hotel.location" style="height:100%;">
               <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-3">
                 Location
               </h2>
@@ -76,7 +76,7 @@
                 <a :href="resort.modules.hotel.location" style="color: #B9BCC1;">Get Directions</a>
               </p>
             </v-flex>
-            <v-flex v-if="resort.modules.hotel.spaces && resort.modules.hotel.spaces.length > 0">
+            <v-flex v-if="resort.modules.hotel && resort.modules.hotel.spaces && resort.modules.hotel.spaces.length > 0">
               <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-3">
                 Spaces
               </h2>
@@ -85,7 +85,7 @@
               </p>
             </v-flex>
           </v-flex>
-          <v-flex xs12 v-if="resort.modules.hotel.amenities && resort.modules.hotel.amenities.length >0">
+          <v-flex xs12 v-if="resort.modules.hotel && resort.modules.hotel.amenities && resort.modules.hotel.amenities.length >0">
             <h2 style="font-size: 20px; color: #D8DADE;" class="mb-3 mt-3">
               Amenities
             </h2>
@@ -95,7 +95,7 @@
               </span>
             </v-flex>
           </v-flex>
-          <v-flex v-if="resort.modules.hotel.rules && resort.modules.hotel.rules.length >0">
+          <v-flex v-if="resort.modules.hotel && resort.modules.hotel.rules && resort.modules.hotel.rules.length >0">
             <h2 style="font-size: 20px; color: #D8DADE; height:100%;" class="mb-3 mt-3">
               Rules
             </h2>
@@ -263,7 +263,7 @@
             >
               Reserve Now <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
             </v-btn>
-            <v-flex xs12 text-xs-center class="mt-3" v-if="resort.ctaText">
+            <v-flex xs12 text-xs-center class="mt-3" v-if="resort.ctaText>0">
               <p style="font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
                 You won't be charged yet.
               </p>
@@ -459,7 +459,7 @@
               Reserve Now <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
             </v-btn>
             </v-flex>
-            <v-flex xs12 text-xs-center class="mt-3"  v-if="resort.ctaText">
+            <v-flex xs12 text-xs-center class="mt-3"  v-if="resort.ctaText>0">
               <p style="font-weight: bold; font-size: 14px; color: #B9BCC1;">
                 You won't be charged yet.
               </p>
