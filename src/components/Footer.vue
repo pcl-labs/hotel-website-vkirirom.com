@@ -49,9 +49,9 @@
                 </router-link>
               </li>
               <li class="mb-2">
-                <a href="https://kit.edu.kh" target="_blank" class="link">
+                <router-link to="/listing/Proudly-Powered-by-KIT-Students" class="link">
                   Proudly Powered by KIT
-                </a>
+                </router-link>
               </li>
             </ul>
           </v-flex>
