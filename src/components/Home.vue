@@ -211,7 +211,7 @@
   </v-container-fluid>
 </template>
 
-<script defer>
+<script>
 const Footer = () => import ('@/components/Footer.vue')
 
 export default {
