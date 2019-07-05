@@ -172,7 +172,7 @@
                 </v-text-field>
               </v-flex>
               <v-flex v-if="resort.modules.hotel && resort.modules.hotel.beds.length >0">
-                <v-select name="Type" v-model="bedType" item-text="type" item-value="type" return-object :items="resort.modules.hotel.beds" dark outline label="Bed Type" color="#B9BCC1" type="text">
+                <v-select v-model="bedType" item-text="type" item-value="type" return-object :items="resort.modules.hotel.beds" dark outline label="Bed Type" color="#B9BCC1" type="text">
                   <template slot="selection" slot-scope="data">
                     {{data.item.count}} {{data.item.type}}
                   </template>
@@ -186,6 +186,7 @@
                     </template>
                   </template>
                 </v-select>
+                <input name="Bed count and type" :value=" bedType.count + bedType.type"/>
               </v-flex>
 
               <!-- resort.name is a temporary fix for category name, ideally category id should be used-->
@@ -377,7 +378,7 @@
               </v-flex>
 
               <v-flex v-if="resort.modules.hotel && resort.modules.hotel.beds.length >0">
-                <v-select name="Type" v-model="bedType" item-text="count" item-value="type" return-object :items="resort.modules.hotel.beds" dark outline label="Bed Type" color="#B9BCC1" type="text">
+                <v-select v-model="bedType" item-text="count" item-value="type" return-object :items="resort.modules.hotel.beds" dark outline label="Bed Type" color="#B9BCC1" type="text">
                   <template slot="selection" slot-scope="data">
                     {{data.item.count}} {{data.item.type}}
                   </template>
@@ -391,6 +392,7 @@
                     </template>
                   </template>
                 </v-select>
+                <input hidden name="Bed count and type" :value=" bedType.count + bedType.type"/>
               </v-flex>
               <!-- resort.name is a temporary fix for category name, ideally category id should be used-->
 
