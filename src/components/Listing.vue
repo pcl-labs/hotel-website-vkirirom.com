@@ -1,3 +1,15 @@
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PMXGLXR');</script>
+<!-- End Google Tag Manager -->
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PMXGLXR"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
 <template>
   <v-container-fluid>
     <v-container-fluid class="pa-0 ma-0">
@@ -41,6 +53,7 @@
           <h1 style="color: #FFFFFF; margin-top:30px;">{{resort.title}}</h1>
           <v-flex xs12>
             <v-layout row wrap style="height:100%">
+              <v-flex v-if="resort.name=='blog'" style="font-size: 16px; color: #B9BCC1; margin-top:20px; margin-bottom:20px;">Published July 5, 2019 </v-flex>
               <v-flex v-if="resort.modules.hotel && resort.modules.hotel.capacity" style="font-size: 16px; color: #B9BCC1; margin-top:20px; margin-bottom:20px;">
                 <v-icon size="30" color="#B9BCC1" style="margin-bottom:-5px;">supervisor_account</v-icon> 
                 {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.capacity }} guests
