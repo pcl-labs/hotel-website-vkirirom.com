@@ -275,7 +275,7 @@
             >
               Reserve Now <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
             </v-btn>
-            <v-flex xs12 text-xs-center class="mt-3" v-if="resort.ctaText>0">
+            <v-flex xs12 text-xs-center class="mt-3" v-if="resort.name=='accommodations' || resort.name=='events' || resort.name=='experiences'">
               <p style="font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
                 You won't be charged yet.
               </p>
@@ -483,7 +483,7 @@
               Reserve Now <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
             </v-btn>
             </v-flex>
-            <v-flex xs12 text-xs-center class="mt-3"  v-if="resort.ctaText>0">
+            <v-flex xs12 text-xs-center class="mt-3" v-if="resort.name=='accommodations' || resort.name=='events' || resort.name=='experiences'">
               <p style="font-weight: bold; font-size: 14px; color: #B9BCC1;">
                 You won't be charged yet.
               </p>
