@@ -220,8 +220,6 @@ export default {
   },
   data() {
     return {
-      food,
-
       accommodations: {
         title:'',
         description: '',
