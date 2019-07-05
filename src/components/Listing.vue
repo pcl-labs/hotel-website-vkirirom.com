@@ -365,7 +365,7 @@
               </v-flex>
 
               <v-flex v-if="resort.modules.hotel && resort.modules.hotel.beds.length >0">
-                <v-select name="Type" v-model="bedType" item-text="type" item-value="type" return-object :items="resort.modules.hotel.beds" dark outline label="Bed Type" color="#B9BCC1" type="text">
+                <v-select v-model="bedType" item-text="type" item-value="type" return-object :items="resort.modules.hotel.beds" dark outline label="Bed Type" color="#B9BCC1" type="text">
                   <template slot="selection" slot-scope="data">
                     {{data.item.count}} {{data.item.type}}
                   </template>
@@ -380,7 +380,7 @@
                   </template>
                 </v-select>
               </v-flex>
-
+              <input name="Type" type="text" :value="bedType"/>
               <!-- resort.name is a temporary fix for category name, ideally category id should be used-->
 
               <v-flex xs12 v-if="resort.name=='accommodations' || resort.name=='events' || resort.name=='experiences'">
