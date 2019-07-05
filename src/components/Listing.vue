@@ -220,7 +220,7 @@
                   @apply="computePrice(dateOne, dateTwo)"
                 />
               </v-flex>
-              <v-flex xs12>
+              <v-flex xs12 v-if="resort.name=='accommodations' || resort.name=='events' || resort.name=='experiences'">
                 <v-checkbox 
                   v-model="checkbox" 
                   label="Do you need transportation?"
@@ -427,7 +427,7 @@
                   @apply="computePrice(dateOne, dateTwo)"
                 />
               </v-flex>
-              <v-flex xs12>
+              <v-flex xs12 v-if="resort.name=='accommodations' || resort.name=='events' || resort.name=='experiences'">
                 <v-checkbox 
                   v-model="checkbox" 
                   label="Do you need transportation?"
