@@ -8,12 +8,17 @@
             <br>
             <ul style="list-style:none; padding:0; margin:0;">
               <li class="mb-2">
-                <router-link to="/Contact" style="text-decoration:none; color:#D8DADE;">
+                <router-link to="/Contact" class="link">
                   Contact
                 </router-link>
               </li>
-              <li class="mb-2"><a href="http://asiato.asia/" style="text-decoration:none; color:#D8DADE;">About</a></li>
+              <li class="mb-2"><a href="http://asiato.asia/" target="_blank" class="link">About</a></li>
               <!-- <li class="mb-2">Book Now</li> -->
+              <li class="mb-2">
+                <router-link to="/listing/in-the-press" class="link">
+                  In the press
+                </router-link>
+              </li>
             </ul>
           </v-flex>
           <v-flex xs6 sm6 md3 lg3 class="mb-3">
@@ -21,13 +26,13 @@
             <br>
             <ul style="list-style:none; padding:0; margin:0;">
               <li class="mb-2">
-                <router-link to="/listing/nature-city-investment-cambodia-property" style="text-decoration:none; color:#D8DADE;">
+                <router-link to="/listing/nature-city-investment-cambodia-property" class="link">
                   Lease a Property
                 </router-link>
               </li>
               <!-- <li class="mb-2">Collaborate</li> -->
               <li class="mb-2">
-                <router-link to="/listing/partner" style="text-decoration:none; color:#D8DADE;">
+                <router-link to="/listing/partner" class="link">
                   Partner
                 </router-link>
               </li>
@@ -39,12 +44,12 @@
             <ul style="list-style:none; padding:0; margin:0;">
               <!-- <li class="mb-2">Community Outreach</li> -->
               <li class="mb-2">
-                <router-link to="/listing/our-scholarship-program" style="text-decoration:none; color:#D8DADE;">
+                <router-link to="/listing/our-scholarship-program" class="link">
                   Our Scholarship Program
                 </router-link>
               </li>
               <li class="mb-2">
-                <a href="https://kit.edu.kh" style="text-decoration:none; color:#D8DADE;">
+                <a href="https://kit.edu.kh" target="_blank" class="link">
                   Proudly Powered by KIT
                 </a>
               </li>
@@ -63,5 +68,8 @@ export default {
 </script>
 
 <style>
-
+.link{
+  text-decoration:none; 
+  color:#D8DADE;
+}
 </style>

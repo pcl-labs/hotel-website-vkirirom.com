@@ -8,8 +8,7 @@
     <title>vKirirom Pine Resort</title>
 
     <meta name="google-site-verification" content="lQ32e_y6Y6CNCLiACK2ihX2VHFbVQDl0rawQy2DlDAs" />
-
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
+    
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet" type="text/css">
 
     <!-- Oswald -->
@@ -95,7 +94,7 @@
   </head>
   <body>
     <noscript>
-      This is your fallback content in case JavaScript fails to load.
+      JavaScript failed to load, please reload.
     </noscript>
     <div id="app"></div>
     <!-- Todo: only include in production -->
@@ -107,7 +106,8 @@
       <input type="text" name="E-mail" />
       <input type="text" name="Phone" />
       <input type="text" name="Date" />
-      <input type="text" name="Type" />
+      <input type="text" name="Bed count and type" />
+      <input type="text" name="Transportation needed" />
       <input type="text" name="Amount (in $)" />
       <!-- <input type="text" name="Type2" /> -->
       <input type="text" name="Message" />
@@ -119,6 +119,7 @@
       <input type="text" name="Phone" />
       <input type="text" name="Date" />
       <input type="text" name="Amount (in $)" />
+      <input type="text" name="Transportation needed" />
       <input type="text" name="Message" />
     </form>
     <form name="events" netlify hidden action="/thanks" data-netlify="true">
@@ -128,9 +129,24 @@
       <input type="text" name="Phone" />
       <input type="text" name="Date" />
       <input type="text" name="Amount (in $)" />
+      <input type="text" name="Transportation needed" />
       <input type="text" name="Message" />
     </form>
     <form name="blog" netlify hidden action="/thanks" data-netlify="true">
+      <input type="text" name="Name" />
+      <input type="text" name="Property"/>
+      <input type="text" name="E-mail" />
+      <input type="text" name="Phone" />
+      <input type="text" name="Message" />
+    </form>
+    <form name="ecotourism" netlify hidden action="/thanks" data-netlify="true">
+      <input type="text" name="Name" />
+      <input type="text" name="Property"/>
+      <input type="text" name="E-mail" />
+      <input type="text" name="Phone" />
+      <input type="text" name="Message" />
+    </form>
+    <form name="landing" netlify hidden action="/thanks" data-netlify="true">
       <input type="text" name="Name" />
       <input type="text" name="Property"/>
       <input type="text" name="E-mail" />
@@ -151,7 +167,7 @@
       <input type="text" name="Phone" />
       <input type="text" name="Message" />
     </form>
-    <form name="sales" netlify hidden action="/thanks" data-netlify="true">
+    <form name="lease" netlify hidden action="/thanks" data-netlify="true">
       <input type="text" name="Name" />
       <input type="text" name="Property"/>
       <input type="text" name="E-mail" />

@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Toolbar from '@/components/Toolbar';
+const Toolbar = () => import ('@/components/Toolbar.vue')
 
 export default {
   name: "app",

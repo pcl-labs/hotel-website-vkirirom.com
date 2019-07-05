@@ -178,13 +178,13 @@
 </template>
 
 <script>
-import Footer from './Footer.vue'
+const Footer = () => import ('@/components/Footer.vue')
 
 export default {
-  
   components:{
     Footer
   },
+
   data(){
     return{
       valid: false,
@@ -197,10 +197,14 @@ export default {
       ],
       emailRules: [
         v => !!v || 'E-mail is required',
-        v => /.+@.+/.test(v) || 'E-mail must be valid'
+        v => /.+@.+/.test(v) || 'E-mail must be valid',
+        v => (v || '').indexOf(' ') < 0 || 'No spaces are allowed'
       ],
       phoneRules: [
         v => !!v || 'Phone no. is required',
+        v => (v || '').length <= 10 || 'A maximum of 10 characters is allowed',
+        v => (v || '').length >= 9 || 'A minimum of 9 characters is needed',
+        v => (v || '').indexOf(' ') < 0 || 'No spaces are allowed'
       ],
     }
   }
