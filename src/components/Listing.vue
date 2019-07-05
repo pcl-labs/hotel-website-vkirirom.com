@@ -172,7 +172,7 @@
                 </v-text-field>
               </v-flex>
               <v-flex v-if="resort.modules.hotel && resort.modules.hotel.beds.length >0">
-                <v-select name="Type" item-value="type" :items="resort.modules.hotel.beds" dark outline label="Bed Type" color="#B9BCC1" type="text">
+                <v-select name="Type" v-model="bedType" item-text="type" item-value="type" return-object :items="resort.modules.hotel.beds" dark outline label="Bed Type" color="#B9BCC1" type="text">
                   <template slot="selection" slot-scope="data">
                     {{data.item.count}} {{data.item.type}}
                   </template>
@@ -263,7 +263,7 @@
             >
               Reserve Now <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
             </v-btn>
-            <v-flex xs12 text-xs-center class="mt-3">
+            <v-flex xs12 text-xs-center class="mt-3" v-if="resort.ctaText">
               <p style="font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
                 You won't be charged yet.
               </p>
@@ -365,7 +365,7 @@
               </v-flex>
 
               <v-flex v-if="resort.modules.hotel && resort.modules.hotel.beds.length >0">
-                <v-select v-model="bedType" item-text="type" item-value="type" return-object :items="resort.modules.hotel.beds" dark outline label="Bed Type" color="#B9BCC1" type="text">
+                <v-select name="Type" v-model="bedType" item-text="type" item-value="type" return-object :items="resort.modules.hotel.beds" dark outline label="Bed Type" color="#B9BCC1" type="text">
                   <template slot="selection" slot-scope="data">
                     {{data.item.count}} {{data.item.type}}
                   </template>
@@ -380,7 +380,6 @@
                   </template>
                 </v-select>
               </v-flex>
-              <input name="Type" type="text" :value="bedType"/>
               <!-- resort.name is a temporary fix for category name, ideally category id should be used-->
 
               <v-flex xs12 v-if="resort.name=='accommodations' || resort.name=='events' || resort.name=='experiences'">
@@ -460,7 +459,7 @@
               Reserve Now <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
             </v-btn>
             </v-flex>
-            <v-flex xs12 text-xs-center class="mt-3">
+            <v-flex xs12 text-xs-center class="mt-3"  v-if="resort.ctaText">
               <p style="font-weight: bold; font-size: 14px; color: #B9BCC1;">
                 You won't be charged yet.
               </p>
