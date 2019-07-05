@@ -1,17 +1,17 @@
 <template>
 <v-container-fluid>
   <v-container grid-list-md>
-    <v-layout row wrap style="min-height: 100vh;">
-      <v-flex xs12 style="margin-top:20px; margin-bottom:20px;">
-        <h1 style="color: #FFFFFF;">Results for {{id}}</h1>
-        <v-flex xs12 v-if="id=='food'">
-          <p style="font-size: 16px; line-height: 22px; color: #B9BCC1; margin-top:30px;">
-            “Best lunch spot in Kirirom” (Lonely Planet Guidebook).
-            <br>vKirirom’s iconic open-air restaurant serves an array of international dishes to complement its core traditional Khmer food. The restaurant strives to create wonderful healthy food that is locally sourced from local farmers or grown in vKirirom’s own organic garden.
-            <p style="font-size: 16px; line-height: 22px; color: #B9BCC1;">Book your stay at vKirirom today and enjoy our array of international food!
-          </p>
-        </v-flex>
+    <v-flex xs12 style="margin-top:20px; margin-bottom:20px;">
+      <h1 style="color: #FFFFFF;">Results for {{id}}</h1>
+      <v-flex xs12 v-if="id=='food'">
+        <p style="font-size: 16px; line-height: 22px; color: #B9BCC1; margin-top:30px;">
+          “Best lunch spot in Kirirom” (Lonely Planet Guidebook).
+          <br>vKirirom’s iconic open-air restaurant serves an array of international dishes to complement its core traditional Khmer food. The restaurant strives to create wonderful healthy food that is locally sourced from local farmers or grown in vKirirom’s own organic garden.
+          <p style="font-size: 16px; line-height: 22px; color: #B9BCC1;">Book your stay at vKirirom today and enjoy our array of international food!
+        </p>
       </v-flex>
+    </v-flex>
+    <v-layout row wrap style="min-height: 100vh;">
       <v-flex xs12 sm6 md4 lg4 v-for="resort in resorts" v-bind:key="resort.id">
         <v-card color="#191C21" class="mb-4 card" width="100%" dark :to="'/listing/'+ resort.slug" flat>
           <router-link :to="'/listing/'+ resort.slug">
