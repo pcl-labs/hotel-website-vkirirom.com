@@ -1,55 +1,43 @@
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PMXGLXR');</script>
-<!-- End Google Tag Manager -->
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PMXGLXR"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-
 <template>
-<v-container-fluid>
-  <v-container grid-list-md>
-    <v-flex xs12 style="margin-top:20px; margin-bottom:20px;">
-      <h1 style="color: #FFFFFF;">Results for {{id}}</h1>
-      <v-flex xs12 v-if="id=='food'">
-        <p style="font-size: 16px; line-height: 22px; color: #B9BCC1; margin-top:30px;">
-          “Best lunch spot in Kirirom” (Lonely Planet Guidebook).
-          <br>vKirirom’s iconic open-air restaurant serves an array of international dishes to complement its core traditional Khmer food. The restaurant strives to create wonderful healthy food that is locally sourced from local farmers or grown in vKirirom’s own organic garden.
-          <p style="font-size: 16px; line-height: 22px; color: #B9BCC1;">Book your stay at vKirirom today and enjoy our array of international food!
-        </p>
+  <v-container-fluid>
+    <v-container grid-list-md>
+      <v-flex xs12 style="margin-top:20px; margin-bottom:20px;">
+        <h1 style="color: #FFFFFF;">Results for {{id}}</h1>
+        <v-flex xs12 v-if="id=='food'">
+          <p style="font-size: 16px; line-height: 22px; color: #B9BCC1; margin-top:30px;">
+            “Best lunch spot in Kirirom” (Lonely Planet Guidebook).
+            <br>vKirirom’s iconic open-air restaurant serves an array of international dishes to complement its core traditional Khmer food. The restaurant strives to create wonderful healthy food that is locally sourced from local farmers or grown in vKirirom’s own organic garden.
+            <p style="font-size: 16px; line-height: 22px; color: #B9BCC1;">Book your stay at vKirirom today and enjoy our array of international food!
+          </p>
+        </v-flex>
       </v-flex>
-    </v-flex>
-    <v-layout row wrap style="min-height: 100vh;">
-      <v-flex xs12 sm6 md4 lg4 v-for="resort in resorts" v-bind:key="resort.id">
-        <v-card color="#191C21" class="mb-4 card" width="100%" dark :to="'/listing/'+ resort.slug" flat>
-          <router-link :to="'/listing/'+ resort.slug">
-            <v-carousel height="150px" :cycle="false" hide-controls dark width="100%" class="hidden-md-and-up" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
-              <v-carousel-item :src="resort.featuredImage">
-              </v-carousel-item>
-              <v-carousel-item v-for="image in resort.images.slice(0,4)" v-bind:key="image.url" :src="image.url" style="background-size:contain;">
-              </v-carousel-item>
-            </v-carousel>
-          </router-link>
-          <v-img :src="resort.featuredImage" height="150px" class="hidden-sm-and-down" style="border-top-left-radius: 10px; border-top-right-radius: 10px;"></v-img>
-          <v-layout align-start>
-            <v-card-text style="margin:10px; padding: 0;">
-              <p>
-                <!-- <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire {{resort.title}}</span> -->
-                <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>{{resort.title}}</h3></span>
-                <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;" v-if="resort.ctaText>0">Starting from {{resort.ctaText}}$ per night</span>
-              </p>
-            </v-card-text>
-          </v-layout>
-        </v-card>
-      </v-flex>
-    </v-layout>
-  </v-container>
-  <Footer></Footer>
-</v-container-fluid>
+      <v-layout row wrap style="min-height: 100vh;">
+        <v-flex xs12 sm6 md4 lg4 v-for="resort in resorts" v-bind:key="resort.id">
+          <v-card color="#191C21" class="mb-4 card" width="100%" dark :to="'/listing/'+ resort.slug" flat>
+            <router-link :to="'/listing/'+ resort.slug">
+              <v-carousel height="150px" :cycle="false" hide-controls dark width="100%" class="hidden-md-and-up" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+                <v-carousel-item :src="resort.featuredImage">
+                </v-carousel-item>
+                <v-carousel-item v-for="image in resort.images.slice(0,4)" v-bind:key="image.url" :src="image.url" style="background-size:contain;">
+                </v-carousel-item>
+              </v-carousel>
+            </router-link>
+            <v-img :src="resort.featuredImage" height="150px" class="hidden-sm-and-down" style="border-top-left-radius: 10px; border-top-right-radius: 10px;"></v-img>
+            <v-layout align-start>
+              <v-card-text style="margin:10px; padding: 0;">
+                <p>
+                  <!-- <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire {{resort.title}}</span> -->
+                  <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>{{resort.title}}</h3></span>
+                  <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;" v-if="resort.ctaText>0">Starting from {{resort.ctaText}}$ per night</span>
+                </p>
+              </v-card-text>
+            </v-layout>
+          </v-card>
+        </v-flex>
+      </v-layout>
+    </v-container>
+    <Footer></Footer>
+  </v-container-fluid>
 </template>
 
 <script>
