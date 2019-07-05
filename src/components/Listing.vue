@@ -186,7 +186,7 @@
                     </template>
                   </template>
                 </v-select>
-                <input hidden name="Bed count and type" :value=" bedType.count + bedType.type"/>
+                <input hidden name="Bed count and type" :value=" bedType.count + ',' + bedType.type"/>
               </v-flex>
 
               <!-- resort.name is a temporary fix for category name, ideally category id should be used-->
@@ -392,7 +392,7 @@
                     </template>
                   </template>
                 </v-select>
-                <input hidden name="Bed count and type" :value=" bedType.count + bedType.type"/>
+                <input hidden name="Bed count and type" :value=" bedType.count + ',' + bedType.type"/>
               </v-flex>
               <!-- resort.name is a temporary fix for category name, ideally category id should be used-->
 
