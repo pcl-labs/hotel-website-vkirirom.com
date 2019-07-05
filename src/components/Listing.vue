@@ -365,7 +365,7 @@
               </v-flex>
 
               <v-flex v-if="resort.modules.hotel && resort.modules.hotel.beds.length >0">
-                <v-select name="Type" v-model="bedType" item-text="type" item-value="type" :items="resort.modules.hotel.beds" return-object dark outline label="Bed Type" color="#B9BCC1" type="text">
+                <v-select name="Type" v-model="bedType" item-text="type" item-value="type" return-object :items="resort.modules.hotel.beds" dark outline label="Bed Type" color="#B9BCC1" type="text">
                   <template slot="selection" slot-scope="data">
                     {{data.item.count}} {{data.item.type}}
                   </template>
@@ -540,7 +540,7 @@ export default {
       }],
       finalPrice:'',
       vat: '',
-      bedType: {count: '', type: ''},
+      bedType: [],
       resort: {
         id: '',
         name: '',
