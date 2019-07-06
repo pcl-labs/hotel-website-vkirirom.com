@@ -396,7 +396,7 @@ export default {
 #header{
   object-fit: cover;
   box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
-  background: linear-gradient(0deg, #000A0E 0%, rgba(25, 28, 33, 0) 50%), url('https://res.cloudinary.com/die9ji2vn/image/upload/dpr_auto/w_auto/q_auto:low/f_auto/v1561963925/tree/tree_d39rro.jpg');
+  background: linear-gradient(0deg, #000A0E 0%, rgba(25, 28, 33, 0) 50%), url('https://res.cloudinary.com/die9ji2vn/image/upload/c_scale,q_auto:low,w_720,f_auto/v1561963925/tree/tree_d39rro.jpg');
   // background-position: bottom;
   background-size: cover;
   background-repeat: no-repeat;
