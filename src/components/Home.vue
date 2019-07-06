@@ -19,7 +19,7 @@
     <v-container grid-list-md>
       <h2 class="mb-4 listTitle">Accommodation</h2>
       <v-layout row wrap>
-        <v-flex xs12 sm6 md4 lg4 v-for="accommodation in accommodations" v-bind:key="accommodation.id">
+        <v-flex xs12 sm6 md4 lg4 v-for="accommodation in accommodations.slice(0,4)" v-bind:key="accommodation.id">
           <v-card dark height="270px" color="#191C21" class="mb-4 card" :to="'/listing/'+ accommodation.slug" flat>
             <router-link :to="'/listing/'+ accommodation.slug">
               <v-carousel height="150px" :cycle="false" hide-controls dark width="100%" class="hidden-md-and-up" v-if="accommodation.images && accommodation.images.length > 0" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
@@ -68,7 +68,7 @@
     <v-divider class="hidden-md-and-up mt-3" style="background-color:#3D424E;"></v-divider>
     <h2 class="mt-2 mb-4 listTitle">Experience</h2>
       <v-layout row wrap>
-        <v-flex xs12 sm6 md4 lg4 v-for="experience in experiences" v-bind:key="experience.id">
+        <v-flex xs12 sm6 md4 lg4 v-for="experience in experiences.slice(0,4)" v-bind:key="experience.id">
           <v-card width="100%" height="270px" color="#191C21" class="mb-4 card" dark :to="'/listing/'+ experience.slug" flat style="box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;">
             <router-link :to="'/listing/'+ experience.slug">
               <v-carousel height="150px" :cycle="false" hide-controls dark width="100%" class="hidden-md-and-up" v-if="experience.images && experience.images.length > 0" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
@@ -115,7 +115,7 @@
       </v-card>
       <h2 class="mb-4 listTitle">Events</h2>
       <v-layout row wrap>
-        <v-flex xs12 sm6 md4 lg4 v-for="event in events" v-bind:key="event.id">
+        <v-flex xs12 sm6 md4 lg4 v-for="event in events.slice(0,4)" v-bind:key="event.id">
           <v-card width="100%" height="270px" color="#191C21" class="mb-4 card" dark :to="'/listing/'+ event.slug" flat style="box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;">
             <router-link :to="'/listing/'+ event.slug">
               <v-carousel height="150px" :cycle="false" hide-controls dark width="100%" class="hidden-md-and-up" v-if="event.images && event.images.length > 0" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
@@ -150,7 +150,7 @@
       </v-flex>
       <h2 class="mt-2 mb-4 listTitle">Lease</h2>
       <v-layout row wrap>
-        <v-flex xs12 sm6 md4 lg4 v-for="lease in leases" v-bind:key="lease.id">
+        <v-flex xs12 sm6 md4 lg4 v-for="lease in leases.slice(0,4)" v-bind:key="lease.id">
           <v-card width="100%" height="270px" color="#191C21" class="mb-4 card" dark :to="'/listing/'+ lease.slug" flat style="box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;">
             <router-link :to="'/listing/'+ lease.slug">
               <v-carousel height="150px" :cycle="false" hide-controls dark width="100%" class="hidden-md-and-up" v-if="lease.images && lease.images.length > 0" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
@@ -179,7 +179,7 @@
       </v-layout>
       <h2 class="mb-4 mt-3 listTitle">Ecotourism</h2>
       <v-layout row wrap>
-        <v-flex xs12 sm6 md4 lg4 v-for="ecotourism in ecotourisms" v-bind:key="ecotourism.id">
+        <v-flex xs12 sm6 md4 lg4 v-for="ecotourism in ecotourisms.slice(0,4)" v-bind:key="ecotourism.id">
           <v-card width="100%" height="270px" class="mb-4 card" dark color="#191C21" :to="'/listing/'+ ecotourism.slug" flat style="box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;">
             <router-link :to="'/listing/'+ ecotourism.slug">
               <v-carousel hide-controls :cycle="false" dark width="100%" height="150px" class="hidden-md-and-up" v-if="ecotourism.images && ecotourism.images.length > 0" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">

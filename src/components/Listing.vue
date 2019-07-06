@@ -1,7 +1,7 @@
 <template>
   <v-container-fluid>
     <v-container-fluid class="pa-0 ma-0">
-      <v-layout row flex class="pa-0 mx-0" style="max-height:470px;">
+      <v-layout row flex class="pa-0 mx-0" style="height:470px;">
         <v-flex class="pa-0 overflow-hidden hidden-sm-and-down">
           <v-img class="image ma-0 pa-0" :src="resort.featuredImage"></v-img>
         </v-flex>
