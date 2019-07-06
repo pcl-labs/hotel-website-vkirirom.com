@@ -1,11 +1,11 @@
 <template>
   <v-container-fluid>
     <v-container-fluid class="pa-0 ma-0">
-      <v-layout row flex class="pa-0 mx-0" style="max-height:470px;">
-        <v-flex class="pa-0 overflow-hidden hidden-sm-and-down">
+      <v-layout row flex class="pa-0 mx-0">
+        <v-flex class="pa-0 overflow-hidden hidden-sm-and-down" style="height:470px;">
           <v-img class="image ma-0 pa-0" :src="resort.featuredImage"></v-img>
         </v-flex>
-        <v-flex class="pa-0 ma-0 overflow-hidden hidden-sm-and-down" v-if="resort.images && resort.images.length>0" style="max-height:470px;">
+        <v-flex class="pa-0 ma-0 overflow-hidden hidden-sm-and-down" v-if="resort.images && resort.images.length>0" style="height:470px;">
           <v-layout row flex class="pa-0 ma-0 overflow-hidden" style="max-height:235px;">
             <v-flex class="pa-0 overflow-hidden" v-if="resort.images.length > 0">
               <v-img class="image ma-0 pa-0" :src="resort.images[0].url"></v-img>
@@ -29,7 +29,7 @@
             It is needed only when we want to iterate through an array of images, or nested elements.-->
             <v-carousel-item :src="resort.featuredImage">
             </v-carousel-item>
-            <v-carousel-item v-for="image in resort.images.slice(0,4)" v-bind:key="image.url" :src="image.url" style="background-size:contain;">
+            <v-carousel-item v-for="image in resort.images.slice(0,4)" v-bind:key="image.url" :src="image.url">
             </v-carousel-item>
           </v-carousel>
         </v-flex>
