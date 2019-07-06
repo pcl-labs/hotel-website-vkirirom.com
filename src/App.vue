@@ -1,14 +1,8 @@
 <template>
   <v-app style="background: linear-gradient(115.51deg, #00243E 0%, #003E3A 100%);" id="app">
     <Toolbar></Toolbar>
-
-    <transition
-      name="fade"
-      mode="out-in"
-    >
       <router-view :key="$route.name + ($route.params.id || '')"/> 
       <!-- for reloading created while trying to navigate to different ids in the dynamic route -->
-    </transition>
   </v-app>
 </template>
 
