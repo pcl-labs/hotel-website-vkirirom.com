@@ -614,7 +614,7 @@ export default {
       if (dateOne) {
         formattedDates = format(dateOne, this.dateFormat);
       }
-      if (dateTwo) {
+      if (dateTwo && dateTwo != dateOne) {
         formattedDates += ' - ' + format(dateTwo, this.dateFormat);
       }
       return formattedDates;
