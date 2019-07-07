@@ -215,7 +215,7 @@
                   :fullscreen-mobile="false"
                   :date-one="dateOne"
                   :date-two="dateTwo"
-                  @date-one-selected="val => { dateOne = val }"
+                  @date-one-selected="val => { dateOne = val, dateTwo = val }"
                   @date-two-selected="val => { dateTwo = val }"
                   style="left:-70%; top:60%;"
                   :show-shortcuts-menu-trigger="false"
@@ -425,7 +425,7 @@
                   :date-one="dateOne"
                   :show-shortcuts-menu-trigger="false"
                   :date-two="dateTwo"
-                  @date-one-selected="val => { dateOne = val }"
+                  @date-one-selected="val => { dateOne = val, dateTwo = val }"
                   @date-two-selected="val => { dateTwo = val }"
                   @apply="computePrice(dateOne, dateTwo)"
                 />
