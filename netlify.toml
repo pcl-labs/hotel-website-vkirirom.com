@@ -2,9 +2,3 @@
   from = "/*"
   to = "/"
   status = 200
-
-[[redirects]]
-  from = "/thanks"
-  to = "/thankYou"
-  status = 301
-  force = true
