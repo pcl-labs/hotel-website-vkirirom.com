@@ -12,6 +12,7 @@
       <v-btn flat class="button" to="/search/experiences"><h3 class="desktop">Experience</h3></v-btn>
       <v-btn flat class="button" to="/search/food"><h3 class="desktop">Food</h3></v-btn>
       <v-btn flat class="button" to="/search/blog"><h3 class="desktop">Blog</h3></v-btn>
+      <v-btn flat class="button" to="/listing/Pine-View-Kitchen-PVK"><h3 class="desktop">Pine View Kitchen</h3></v-btn>
     </v-toolbar-items>
   </v-toolbar>
   <v-navigation-drawer dark style="box-shadow: 0px 1px 0px #121416; position:fixed; background:#191C21;" class="hidden-md-and-up" temporary v-model="drawer">
@@ -30,6 +31,9 @@
       </v-flex>
       <v-flex>
         <v-btn flat block to="/search/blog" class="mt-2 button"><h3>Blog</h3></v-btn>
+      </v-flex>
+      <v-flex>
+        <v-btn flat block to="/listing/Pine-View-Kitchen-PVK" class="mt-2 button"><h3>Pine View Kitchen</h3></v-btn>
       </v-flex>
     </v-layout>
   </v-navigation-drawer>
