@@ -315,13 +315,13 @@
               <input type="hidden" name="form-name" :value="resort.name" />
               <v-layout row wrap>
               <v-flex xs1>
-                <v-btn icon dark @click="bookDialog = false" style="margin:0;">
-                  <v-icon color="#B9BCC1" size="40">close</v-icon>
+                <v-btn icon dark @click="bookDialog = false" style="margin:0; margin-bottom:20px;">
+                  <v-icon color="#B9BCC1" size="35">close</v-icon>
                 </v-btn>
               </v-flex>
               <v-spacer></v-spacer>
               <v-flex xs11 v-if="resort.ctaText > 0">
-                <p class="pb-2 text-xs-center">
+                <p class="text-xs-center" style="margin:0; margin-bottom:20px;">
                   <span style="font-weight: bold; font-size: 28px; color: #B9BCC1;"> &dollar;{{ resort.ctaText }}+</span>
                   <span style="font-size: 16px; color: #B9BCC1;">/night</span>
                 </p>
