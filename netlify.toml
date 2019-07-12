@@ -2,11 +2,3 @@
   from = "/*"
   to = "/"
   status = 200
-
-[[redirects]]
-  from= "/jp"
-  to = "http://jp.vkirirom.com"
-
-[[redirects]]
-  from= "/kh"
-  to = "http://kh.vkirirom.com"
