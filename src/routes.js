@@ -29,9 +29,5 @@ export default[
     path: '/nature-city-investment-cambodia-property',
     redirect: '/listing/nature-city-investment-cambodia-property'
   },
-  {
-    path: '/*/',
-    redirect: '/'
-  },
 ]
 
