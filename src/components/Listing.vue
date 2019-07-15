@@ -201,15 +201,13 @@
                   name="Date"
                   color="#B9BCC1"
                   id="datepicker"
+                  label="Reserve Dates"
                   readonly
                   :rules="dateRules"
                   :value="formatDates(dateOne, dateTwo)"
-                  >
+                >
                   <v-icon slot="append" color="#B9BCC1">event</v-icon>
-                  <p slot="label">
-                    Reserve dates
-                  </p>
-                  </v-text-field>
+                </v-text-field>
                 <AirbnbStyleDatepicker
                   :trigger-element-id="'datepicker'"
                   :mode="'range'"
@@ -407,17 +405,12 @@
                   name="Date"
                   readonly
                   color="#B9BCC1"
+                  label="Reserve Dates"
                   id="datepicker-trigger"
                   :rules="dateRules"
                   :value="formatDates(dateOne, dateTwo)"
                   >
                   <v-icon slot="append" color="#B9BCC1">event</v-icon>
-                  <p slot="label">
-                    <!-- Check in 
-                    <v-icon color="#B9BCC1" style="font-size:30px; width:30px; height:18px;">arrow_right_alt</v-icon> 
-                    Check out -->
-                    Reserve dates
-                  </p>
                   </v-text-field>
                 <AirbnbStyleDatepicker
                   :trigger-element-id="'datepicker-trigger'"
