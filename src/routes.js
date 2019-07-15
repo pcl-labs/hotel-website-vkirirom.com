@@ -29,13 +29,13 @@ export default[
     path: '/nature-city-investment-cambodia-property',
     redirect: '/listing/nature-city-investment-cambodia-property'
   },
-  {
-    path: '/jp',
-    beforeEnter(to, from, next) {
-        // Put the full page url including the protocol http(s) below
-        window.location = "http://jp.vkirirom.com"
-    }
-  },
+  // {
+  //   path: '/jp',
+  //   beforeEnter(to, from, next) {
+  //       // Put the full page url including the protocol http(s) below
+  //       window.location = "http://jp.vkirirom.com"
+  //   }
+  // },
   {
     path: '/kh',
     beforeEnter(to, from, next) {
