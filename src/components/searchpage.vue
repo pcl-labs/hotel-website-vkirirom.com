@@ -54,7 +54,7 @@ export default {
     }
   },
   created() {
-    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/'+ this.id).then(function(data){
+    this.$http.get('https://api.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/'+ this.id).then(function(data){
       this.resorts=data.body;
     });
   },
