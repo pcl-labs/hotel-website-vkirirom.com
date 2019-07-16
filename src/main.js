@@ -27,10 +27,10 @@ Vue.use(VueMarkdown)
 
 // Vue.use(VueRouterSitemap)
 Vue.use(AirbnbStyleDatepicker, {
-  sundayFirst: false,
+  sundayFirst: true,
   dateLabelFormat: 'dddd, MMMM D, YYYY',
-  days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-  daysShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+  days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+  daysShort: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
   monthNames: [
     'January',
     'February',
