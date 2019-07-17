@@ -11,7 +11,7 @@
           </p>
         </v-flex>
       </v-flex>
-      <v-layout row wrap style="min-height: 100vh;">
+      <v-layout row wrap>
         <v-flex xs12 sm6 md4 lg4 v-for="resort in resorts" v-bind:key="resort.id">
           <v-card color="#191C21" class="mb-4 card" width="100%" dark :to="'/listing/'+ resort.slug" flat>
             <router-link :to="'/listing/'+ resort.slug">
