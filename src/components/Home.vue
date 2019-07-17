@@ -373,19 +373,19 @@ export default {
     }
   },
   created() {
-    this.$http.get('https://api.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/accommodations').then(function(data){
+    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/accommodations').then(function(data){
       this.accommodations=data.body.slice(0,3)
     });
-    this.$http.get('https://api.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/experiences').then(function(data){
+    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/experiences').then(function(data){
       this.experiences=data.body.slice(0,3)
     });
-    this.$http.get('https://api.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/events').then(function(data){
+    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/events').then(function(data){
       this.events=data.body.slice(0,3)
     });
-    this.$http.get('https://api.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/ecotourism').then(function(data){
+    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/ecotourism').then(function(data){
       this.ecotourisms=data.body.slice(0,3)
     });
-    this.$http.get('https://api.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/lease').then(function(data){
+    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/lease').then(function(data){
       this.leases=data.body.slice(0,3)
     });
   },

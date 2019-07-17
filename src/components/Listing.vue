@@ -618,7 +618,7 @@ export default {
     computePrice(dateOne, dateTwo) {
       let totalPrice = 0;
       let i;
-      this.$http.get('https://api.whynot.earth/api/v0/hotels/' + this.resort.modules.hotel.id + '/prices?startDate=' + this.dateOne + '&endDate=' + this.dateTwo).then(function(data){
+      this.$http.get('https://stagingapi.whynot.earth/api/v0/hotels/' + this.resort.modules.hotel.id + '/prices?startDate=' + this.dateOne + '&endDate=' + this.dateTwo).then(function(data){
         this.prices=data.body;
         for (i = 0; i < this.prices.length; i++) { 
             totalPrice += this.prices[i].amount;
@@ -631,7 +631,7 @@ export default {
     }
   },
   created() {
-    this.$http.get('https://api.whynot.earth/api/v0/pages/slug/vkirirom/'+this.slug).then(function(data){
+    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/'+this.slug).then(function(data){
       this.resort=data.body;
     });
   },
