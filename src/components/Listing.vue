@@ -269,7 +269,7 @@
               block
               color="#F7B947"
               dark
-              class="text-capitalize font-weight-bold form-button"
+              class="text-capitalize font-weight-bold"
               type="submit"
               :ripple="false"
               :disabled="!valid"
@@ -470,17 +470,17 @@
               </v-flex>
             <v-flex xs12>
               <v-btn
-              block
-              color="#F7B947"
-              dark
-              class="text-capitalize font-weight-bold form-button"
-              type="submit"
-              :ripple="false"
-              :disabled="!valid"
-              style="height:74px;"
-            >
-              Reserve Now <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
-            </v-btn>
+                block
+                color="#F7B947"
+                dark
+                class="text-capitalize font-weight-bold"
+                type="submit"
+                :ripple="false"
+                :disabled="!valid"
+                style="height:74px;"
+              >
+                Reserve Now <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
+              </v-btn>
             </v-flex>
             <v-flex xs12 text-xs-center class="mt-3" v-if="resort.name=='accommodations' || resort.name=='events' || resort.name=='experiences'">
               <p style="font-weight: bold; font-size: 14px; color: #B9BCC1;">
