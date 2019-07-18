@@ -269,7 +269,7 @@
               block
               color="#F7B947"
               dark
-              class="text-capitalize font-weight-bold form-button"
+              class="text-capitalize font-weight-bold"
               type="submit"
               :ripple="false"
               :disabled="!valid"
@@ -468,20 +468,23 @@
                 >
                 </v-textarea>
               </v-flex>
-            <v-flex xs12>
-              <v-btn
-              block
-              color="#F7B947"
-              dark
-              class="text-capitalize font-weight-bold form-button"
-              type="submit"
-              :ripple="false"
-              :disabled="!valid"
-              style="height:74px;"
-            >
-              Reserve Now <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
-            </v-btn>
-            </v-flex>
+            <v-dialog v-model="auth" fullscreen hide-overlay transition="dialog-bottom-transition">
+              <template v-slot:activator="{ on }">                
+                <v-btn
+                  block
+                  color="#F7B947"
+                  dark
+                  class="text-capitalize font-weight-bold"
+                  :ripple="false"
+                  :disabled="!valid"
+                  style="height:74px;"
+                  v-on="on"
+                >
+                  Reserve Now <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
+                </v-btn>
+              </template>
+              <Login></Login>
+            </v-dialog>
             <v-flex xs12 text-xs-center class="mt-3" v-if="resort.name=='accommodations' || resort.name=='events' || resort.name=='experiences'">
               <p style="font-weight: bold; font-size: 14px; color: #B9BCC1;">
                 You won't be charged yet.
@@ -505,11 +508,13 @@ import format from 'date-fns/format'
 //components
 const Footer = () => import ('@/components/Footer.vue')
 import VueMarkdown from 'vue-markdown'
+const Login = () => import ('@/components/Auth/Login.vue')
 
 export default {
   components:{
     Footer,
-    VueMarkdown
+    VueMarkdown,
+    Login
   },
   head:{
     title: function() {
@@ -555,6 +560,7 @@ export default {
       phone: '',
 
       bookDialog: false,
+      auth: false,
 
       // states
       dateFormat: 'ddd, D MMM',
@@ -564,7 +570,9 @@ export default {
       slug: this.$route.params.id,
 
       prices: [{
+
       }],
+      
       finalPrice:'',
       vat: '',
       bedType: {count:'', type:''},
@@ -618,7 +626,7 @@ export default {
     computePrice(dateOne, dateTwo) {
       let totalPrice = 0;
       let i;
-      this.$http.get('https://api.whynot.earth/api/v0/hotels/' + this.resort.modules.hotel.id + '/prices?startDate=' + this.dateOne + '&endDate=' + this.dateTwo).then(function(data){
+      this.$http.get('https://stagingapi.whynot.earth/api/v0/hotels/' + this.resort.modules.hotel.id + '/prices?startDate=' + this.dateOne + '&endDate=' + this.dateTwo).then(function(data){
         this.prices=data.body;
         for (i = 0; i < this.prices.length; i++) { 
             totalPrice += this.prices[i].amount;
@@ -631,7 +639,7 @@ export default {
     }
   },
   created() {
-    this.$http.get('https://api.whynot.earth/api/v0/pages/slug/vkirirom/'+this.slug).then(function(data){
+    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/'+this.slug).then(function(data){
       this.resort=data.body;
     });
   },
