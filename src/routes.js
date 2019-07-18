@@ -3,6 +3,7 @@ const searchpage = () => import ('./components/searchpage.vue')
 const Listing = () => import ('./components/Listing.vue')
 const thankYou = () => import ('./components/thankYou.vue')
 const Contact = () => import ('./components/Contact.vue')
+const Login = () => import ('./components/Auth/Login.vue')
 
 export default[
   {
@@ -24,6 +25,10 @@ export default[
   {
     path:'/contact',
     component: Contact
+  },
+  {
+    path:'/login',
+    component: Login
   },
   {
     path: '/nature-city-investment-cambodia-property',

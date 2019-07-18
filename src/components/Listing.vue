@@ -564,7 +564,9 @@ export default {
       slug: this.$route.params.id,
 
       prices: [{
+
       }],
+      
       finalPrice:'',
       vat: '',
       bedType: {count:'', type:''},
