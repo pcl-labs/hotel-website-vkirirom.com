@@ -95,12 +95,11 @@ function getRoutesXML() {
 
 getRoutesXML();
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
-/* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  router: router,
-  template: '<App/>',
-  components: { App }
-})
+  router,
+  // store,
+  render: (h) => h(App),
+}).$mount('#app');
+
