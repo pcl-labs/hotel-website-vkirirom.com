@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <div>
     <v-card dark>
       <div id="header">
         <v-container grid-list-md>
@@ -208,7 +208,7 @@
       </v-layout>
     </v-container>
     <Footer></Footer>
-  </v-container>
+  </div>
 </template>
 
 <script>
