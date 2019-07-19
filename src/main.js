@@ -12,6 +12,7 @@ import AirbnbStyleDatepicker from 'vue-airbnb-style-datepicker'
 import 'vue-airbnb-style-datepicker/dist/vue-airbnb-style-datepicker.min.css'
 import VueHead from 'vue-head'
 import VueMarkdown from 'vue-markdown'
+import './registerServiceWorker'
 
 // import './sitemapMiddleware'
 // import VueRouterSitemap from 'vue-router-sitemap'
