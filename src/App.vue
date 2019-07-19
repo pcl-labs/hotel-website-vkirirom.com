@@ -1,46 +1,38 @@
 <template>
-  <v-app style="background: linear-gradient(115.51deg, #00243E 0%, #003E3A 100%);" id="app">
-    <Toolbar></Toolbar>
-      <router-view :key="$route.name + ($route.params.id || '')"/> 
-      <!-- for reloading created while trying to navigate to different ids in the dynamic route -->
+  <v-app>
+    <v-toolbar app>
+      <v-toolbar-title class="headline text-uppercase">
+        <span>Vuetify</span>
+        <span class="font-weight-light">MATERIAL DESIGN</span>
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn
+        flat
+        href="https://github.com/vuetifyjs/vuetify/releases/latest"
+        target="_blank"
+      >
+        <span class="mr-2">Latest Release</span>
+      </v-btn>
+    </v-toolbar>
+
+    <v-content>
+      <HelloWorld/>
+    </v-content>
   </v-app>
 </template>
 
 <script>
-const Toolbar = () => import ('@/components/Toolbar.vue')
+import HelloWorld from './components/HelloWorld'
 
 export default {
-  name: "app",
+  name: 'App',
   components: {
-    Toolbar,
+    HelloWorld
   },
-
+  data () {
+    return {
+      //
+    }
+  }
 }
 </script>
-
-<style>
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
-  }
-  body{
-    overflow-x: hidden;
-  }
-  html {
-    scroll-behavior: smooth;
-  }
-  
-  .fade-enter-active,
-  .fade-leave-active {
-    transition-duration: 0.3s;
-    transition-property: opacity;
-    transition-timing-function: ease;
-  }
-
-  .fade-enter,
-  .fade-leave-active {
-    opacity: 0
-  }
-</style>
