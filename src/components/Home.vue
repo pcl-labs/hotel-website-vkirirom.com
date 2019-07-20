@@ -238,11 +238,16 @@ export default {
             capacity: '',
             gettingAround: '',
             location: '',
-            amenities: '',
-            beds: [
+            roomTypes:[
               {
-                count: '',
-                type: '',
+                amenities: '',
+                beds: [
+                  {
+                    id: '',
+                    count: '',
+                    type: '',
+                  }
+                ],
               }
             ],
             rules: '',
@@ -268,11 +273,16 @@ export default {
             capacity: '',
             gettingAround: '',
             location: '',
-            amenities: '',
-            beds: [
+            roomTypes:[
               {
-                count: '',
-                type: '',
+                amenities: '',
+                beds: [
+                  {
+                    id: '',
+                    count: '',
+                    type: '',
+                  }
+                ],
               }
             ],
             rules: '',
@@ -298,11 +308,16 @@ export default {
             capacity: '',
             gettingAround: '',
             location: '',
-            amenities: '',
-            beds: [
+            roomTypes:[
               {
-                count: '',
-                type: '',
+                amenities: '',
+                beds: [
+                  {
+                    id: '',
+                    count: '',
+                    type: '',
+                  }
+                ],
               }
             ],
             rules: '',
@@ -328,11 +343,16 @@ export default {
             capacity: '',
             gettingAround: '',
             location: '',
-            amenities: '',
-            beds: [
+            roomTypes:[
               {
-                count: '',
-                type: '',
+                amenities: '',
+                beds: [
+                  {
+                    id: '',
+                    count: '',
+                    type: '',
+                  }
+                ],
               }
             ],
             rules: '',
@@ -358,11 +378,16 @@ export default {
             capacity: '',
             gettingAround: '',
             location: '',
-            amenities: '',
-            beds: [
+            roomTypeS:[
               {
-                count: '',
-                type: '',
+                amenities: '',
+                beds: [
+                  {
+                    id: '',
+                    count: '',
+                    type: '',
+                  }
+                ],
               }
             ],
             rules: '',

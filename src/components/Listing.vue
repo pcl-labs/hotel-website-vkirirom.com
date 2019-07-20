@@ -46,16 +46,16 @@
                 <v-icon size="30" color="#B9BCC1" style="margin-bottom:-5px;">supervisor_account</v-icon> 
                 {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.capacity }} guests
               </v-flex>
-              <v-flex v-if="resort.modules.hotel && resort.modules.hotel.beds && resort.modules.hotel.beds.length> 0" style="font-size: 16px; color: #B9BCC1; margin-top:20px; margin-bottom:20px;">
+              <v-flex v-if="resort.modules.hotel && resort.modules.hotel.roomTypes.length>0 && resort.modules.hotel.roomTypes[0].beds.length>0" style="font-size: 16px; color: #B9BCC1; margin-top:20px; margin-bottom:20px;">
                 <v-icon size="30" color="#B9BCC1" style="margin-bottom:-5px;">hotel</v-icon>
               <span>
-                {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds && resort.modules.hotel.beds[0].count }} 
-                {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds && resort.modules.hotel.beds[0].type }}
+                {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.roomTypes && resort.modules.hotel.roomTypes[0].beds && resort.modules.hotel.roomTypes[0].beds[0].count }} 
+                {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.roomTypes && resort.modules.hotel.roomTypes[0].beds && resort.modules.hotel.roomTypes[0].beds[0].type }}
               </span>
-              <span v-if="resort.modules.hotel.beds.length> 1">
+              <span v-if="resort.modules.hotel.roomTypes[0].beds.length> 1">
                 /
-                {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds && resort.modules.hotel.beds[1].count }} 
-                {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.beds && resort.modules.hotel.beds[1].type }}
+                {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.roomTypes && resort.modules.hotel.roomTypes[0].beds && resort.modules.hotel.roomTypes[0].beds[1].count }} 
+                {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.roomTypes && resort.modules.hotel.roomTypes[0].beds && resort.modules.hotel.roomTypes[0].beds[1].type }}
               </span>
               <span>Bed(s)</span>
               </v-flex>
@@ -87,13 +87,13 @@
               </p>
             </v-flex>
           </v-flex>
-          <v-flex xs12 v-if="resort.modules.hotel && resort.modules.hotel.amenities && resort.modules.hotel.amenities.length >0">
+          <v-flex xs12 v-if="resort.modules.hotel && resort.modules.hotel.roomTypes.length>0 && resort.modules.hotel.roomTypes[0].amenities.length >0">
             <h2 style="font-size: 20px; color: #D8DADE;" class="mb-3 mt-3">
               Amenities
             </h2>
             <v-flex style="height:100%;">
               <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> 
-                {{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.amenities[0]}}
+                {{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.roomTypes[0] && resort.modules.hotel.roomTypes[0].amenities[0]}}
               </span>
             </v-flex>
           </v-flex>
@@ -173,8 +173,8 @@
                 <v-icon slot="append" color="#B9BCC1">local_phone</v-icon>
                 </v-text-field>
               </v-flex>
-              <v-flex v-if="resort.modules.hotel && resort.modules.hotel.beds.length >0">
-                <v-select v-model="bedType" item-text="type" item-value="type" return-object :items="resort.modules.hotel.beds" dark outline label="Bed Type" color="#B9BCC1" type="text">
+              <v-flex v-if="resort.modules.hotel && resort.modules.hotel.roomTypes.length>0 && resort.modules.hotel.roomTypes[0].beds.length>0">
+                <v-select v-model="bedType" item-text="type" item-value="type" return-object :items="resort.modules.hotel.roomTypes[0].beds" dark outline label="Bed Type" color="#B9BCC1" type="text">
                   <template slot="selection" slot-scope="data">
                     {{data.item.count}} {{data.item.type}}
                   </template>
@@ -378,8 +378,8 @@
                 </v-text-field>
               </v-flex>
 
-              <v-flex v-if="resort.modules.hotel && resort.modules.hotel.beds.length >0">
-                <v-select v-model="bedType" item-text="count" item-value="type" return-object :items="resort.modules.hotel.beds" dark outline label="Bed Type" color="#B9BCC1" type="text">
+              <v-flex v-if="resort.modules.hotel && resort.modules.hotel.roomTypes.length>0 && resort.modules.hotel.roomTypes[0].beds.length>0">
+                <v-select v-model="bedType" item-text="count" item-value="type" return-object :items="resort.modules.hotel.roomTypes[0].beds" dark outline label="Bed Type" color="#B9BCC1" type="text">
                   <template slot="selection" slot-scope="data">
                     {{data.item.count}} {{data.item.type}}
                   </template>
@@ -597,12 +597,16 @@ export default {
             capacity: '',
             gettingAround: '',
             location: '',
-            amenities: '',
-            beds: [
+            roomTypeS:[
               {
-                id: '',
-                count: '',
-                type: '',
+                amenities: '',
+                beds: [
+                  {
+                    id: '',
+                    count: '',
+                    type: '',
+                  }
+                ],
               }
             ],
             rules: '',

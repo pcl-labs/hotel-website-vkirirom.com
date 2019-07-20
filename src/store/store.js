@@ -22,8 +22,8 @@ export const store = new Vuex.Store({
   actions:{
     login(context){
       Vue.http.post('https://stagingapi.whynot.earth/api/v0/authentication/login', {
-        email: context.email,
-        password: context.password
+        email: context.state.email,
+        password: context.state.password
       }).then(function(data){
           console.log(data);
       });
