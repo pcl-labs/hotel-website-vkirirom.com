@@ -27,6 +27,14 @@ export const store = new Vuex.Store({
       }).then(function(data){
           console.log(data);
       });
+    },
+    register(context){
+      Vue.http.post('https://stagingapi.whynot.earth/api/v0/authentication/register', {
+        email: context.state.email,
+        password: context.state.password
+      }).then(function(data){
+          console.log(data);
+      });
     }
   },
 
