@@ -1,5 +1,5 @@
 <template>
-  <v-form name="Login" v-model="valid">      
+  <v-form name="Register" v-model="valid">      
     <v-layout row wrap class="ma-4">
       <v-flex xs12>
         <v-btn block flat class="btn">Continue with Facebook</v-btn>
@@ -66,15 +66,12 @@
         </a>
       </v-flex>
       <v-flex xs12>
-        <v-btn block color="#F7B947" class="formBtn" dark @click="login()" :disabled="!valid">
+        <v-btn block color="#F7B947" class="formBtn" dark @click="register()" :disabled="!valid">
           Sign up
         </v-btn>
       </v-flex>
       <v-flex xs12>
         <v-divider style="background-color:#3D424E; margin-bottom:10px"></v-divider>
-      </v-flex>
-      <v-flex xs12 text-xs-center>
-        <span class="normalText">Don't have an account?</span> <a class="yellowLink">Sign up</a>
       </v-flex>
     </v-layout>
   </v-form>      
@@ -94,13 +91,13 @@ export default {
       ],
       passwordRules: [
         v => !!v || 'Password is required',
-        v => (v || '').indexOf(' ') < 0 || 'No spaces are allowed'
+        v => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/.test(v) || 'Password must contain at least 1 lowercase character, 1 uppercase character, 1 special character, 1 number'
       ],
     }
   },
   methods:{
-    login(){
-      this.$store.dispatch('login')
+    register(){
+      this.$store.dispatch('register')
     }
   },
   computed:{

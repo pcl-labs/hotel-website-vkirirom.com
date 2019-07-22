@@ -112,176 +112,192 @@
             <v-form :name="resort.name" method="post" netlify ref="form" v-model="valid"  action="/thanks" data-netlify="true">
               <input type="hidden" name="form-name" :value="resort.name"/>
               <v-layout row wrap>
-              <v-flex xs12 v-if="resort.ctaText > 0">
-                <p class="subheading text-xs-center pb-2">
-                  <span style="font-size: 16px; color: #B9BCC1;">Starting from </span>
-                  <span style="font-weight: bold; font-size: 28px; color: #B9BCC1;">&dollar;{{ resort.ctaText }} </span>
-                  <span style="font-size: 16px; color: #B9BCC1;"> per night</span>
-                </p>
-                <!-- <Rating :rating="rating" :counter="counter"/> -->
-                <v-divider class="mb-4" style="background-color:#3D424E;"></v-divider>
-              </v-flex>
-              <v-flex xs12>
-                <v-text-field
-                  v-model="name"
-                  outline
-                  label="Enter your name"
-                  name="Name"
-                  color="#B9BCC1"
-                  required
-                  dark
-                  :rules="nameRules"
-                >
-                <v-icon slot="append" color="#B9BCC1">person</v-icon>
-              </v-text-field>
-              </v-flex>
-              <v-flex xs12>
-                <input
-                  v-model="slug"
-                  hidden
-                  name="Property"
-                  color="#B9BCC1"
-                  dark
-                  readonly
-                >
-              </v-flex>
-              <v-flex xs12>
-                <v-text-field
-                  v-model="email"
-                  outline
-                  color="#B9BCC1"
-                  label="Enter e-mail address"
-                  name="E-mail"
-                  required
-                  dark
-                  :rules="emailRules"
-                >
-                <v-icon slot="append" color="#B9BCC1">email</v-icon>
+                <v-flex xs12 v-if="resort.ctaText > 0">
+                  <p class="subheading text-xs-center pb-2">
+                    <span style="font-size: 16px; color: #B9BCC1;">Starting from </span>
+                    <span style="font-weight: bold; font-size: 28px; color: #B9BCC1;">&dollar;{{ resort.ctaText }} </span>
+                    <span style="font-size: 16px; color: #B9BCC1;"> per night</span>
+                  </p>
+                  <!-- <Rating :rating="rating" :counter="counter"/> -->
+                  <v-divider class="mb-4" style="background-color:#3D424E;"></v-divider>
+                </v-flex>
+                <v-flex xs12>
+                  <v-text-field
+                    v-model="name"
+                    outline
+                    label="Enter your name"
+                    name="Name"
+                    color="#B9BCC1"
+                    required
+                    dark
+                    :rules="nameRules"
+                  >
+                  <v-icon slot="append" color="#B9BCC1">person</v-icon>
                 </v-text-field>
-              </v-flex>
-              <v-flex xs12>
-                <v-text-field
-                  outline
-                  v-model="phone"
-                  label="Phone"
-                  name="Phone"
-                  color="#B9BCC1"
-                  required
-                  dark
-                  :rules="phoneRules"
-                >
-                <v-icon slot="append" color="#B9BCC1">local_phone</v-icon>
-                </v-text-field>
-              </v-flex>
-              <v-flex v-if="resort.modules.hotel && resort.modules.hotel.roomTypes.length>0 && resort.modules.hotel.roomTypes[0].beds.length>0">
-                <v-select v-model="bedType" item-text="type" item-value="type" return-object :items="resort.modules.hotel.roomTypes[0].beds" dark outline label="Bed Type" color="#B9BCC1" type="text">
-                  <template slot="selection" slot-scope="data">
-                    {{data.item.count}} {{data.item.type}}
-                  </template>
-                  <template slot="item" slot-scope="data">
-                    <template>
-                      <v-list-tile-content>
-                        <v-list-tile-title>
-                          {{data.item.count}} {{data.item.type}}
-                        </v-list-tile-title>
-                      </v-list-tile-content>
+                </v-flex>
+                <v-flex xs12>
+                  <input
+                    v-model="slug"
+                    hidden
+                    name="Property"
+                    color="#B9BCC1"
+                    dark
+                    readonly
+                  >
+                </v-flex>
+                <v-flex xs12>
+                  <v-text-field
+                    v-model="email"
+                    outline
+                    color="#B9BCC1"
+                    label="Enter e-mail address"
+                    name="E-mail"
+                    required
+                    dark
+                    :rules="emailRules"
+                  >
+                  <v-icon slot="append" color="#B9BCC1">email</v-icon>
+                  </v-text-field>
+                </v-flex>
+                <v-flex xs12>
+                  <v-text-field
+                    outline
+                    v-model="phone"
+                    label="Phone"
+                    name="Phone"
+                    color="#B9BCC1"
+                    required
+                    dark
+                    :rules="phoneRules"
+                  >
+                  <v-icon slot="append" color="#B9BCC1">local_phone</v-icon>
+                  </v-text-field>
+                </v-flex>
+                <v-flex v-if="resort.modules.hotel && resort.modules.hotel.roomTypes.length>0 && resort.modules.hotel.roomTypes[0].beds.length>0">
+                  <v-select v-model="bedType" item-text="type" item-value="type" return-object :items="resort.modules.hotel.roomTypes[0].beds" dark outline label="Bed Type" color="#B9BCC1" type="text">
+                    <template slot="selection" slot-scope="data">
+                      {{data.item.count}} {{data.item.type}}
                     </template>
-                  </template>
-                </v-select>
-                <input hidden name="Bed count and type" :value=" bedType.count + ',' + bedType.type"/>
-              </v-flex>
+                    <template slot="item" slot-scope="data">
+                      <template>
+                        <v-list-tile-content>
+                          <v-list-tile-title>
+                            {{data.item.count}} {{data.item.type}}
+                          </v-list-tile-title>
+                        </v-list-tile-content>
+                      </template>
+                    </template>
+                  </v-select>
+                  <input hidden name="Bed count and type" :value=" bedType.count + ',' + bedType.type"/>
+                </v-flex>
 
-              <!-- resort.name is a temporary fix for category name, ideally category id should be used-->
+                <!-- resort.name is a temporary fix for category name, ideally category id should be used-->
 
-              <v-flex xs12 v-if="resort.name=='accommodations' || resort.name=='events' || resort.name=='experiences'">
-                <v-text-field
-                  outline
-                  dark
-                  type="text"
-                  name="Date"
-                  color="#B9BCC1"
-                  id="datepicker"
-                  label="Reserve Dates"
-                  readonly
-                  :rules="dateRules"
-                  :value="formatDates(dateOne, dateTwo)"
-                >
-                  <v-icon slot="append" color="#B9BCC1">event</v-icon>
-                </v-text-field>
-                <AirbnbStyleDatepicker
-                  :trigger-element-id="'datepicker'"
-                  :mode="'range'"
-                  :fullscreen-mobile="false"
-                  :min-date="new Date()"
-                  :date-one="dateOne"
-                  :date-two="dateTwo"
-                  @date-one-selected="val => { dateOne = val, dateTwo = val }"
-                  @date-two-selected="val => { dateTwo = val }"
-                  style="left:-70%; top:60%;"
-                  :show-shortcuts-menu-trigger="false"
-                  @apply="computePrice(dateOne, dateTwo)"
-                />
+                <v-flex xs12 v-if="resort.name=='accommodations' || resort.name=='events' || resort.name=='experiences'">
+                  <v-text-field
+                    outline
+                    dark
+                    type="text"
+                    name="Date"
+                    color="#B9BCC1"
+                    id="datepicker"
+                    label="Reserve Dates"
+                    readonly
+                    :rules="dateRules"
+                    :value="formatDates(dateOne, dateTwo)"
+                  >
+                    <v-icon slot="append" color="#B9BCC1">event</v-icon>
+                  </v-text-field>
+                  <AirbnbStyleDatepicker
+                    :trigger-element-id="'datepicker'"
+                    :mode="'range'"
+                    :fullscreen-mobile="false"
+                    :min-date="new Date()"
+                    :date-one="dateOne"
+                    :date-two="dateTwo"
+                    @date-one-selected="val => { dateOne = val, dateTwo = val }"
+                    @date-two-selected="val => { dateTwo = val }"
+                    style="left:-70%; top:60%;"
+                    :show-shortcuts-menu-trigger="false"
+                    @apply="computePrice(dateOne, dateTwo)"
+                  />
+                </v-flex>
+                <v-flex xs12 v-if="resort.name=='accommodations' || resort.name=='events' || resort.name=='experiences'">
+                  <v-checkbox 
+                    v-model="checkbox" 
+                    label="Do you need transportation?"
+                    color="#B9BCC1"
+                    dark
+                    style="margin:0; padding:0;"
+                    height="30px"
+                  >
+                  </v-checkbox>
+                  <input hidden name="Transportation needed" :value="checkbox" />
+                </v-flex>
+                <v-flex xs12 style="margin-bottom:30px;" v-if="finalPrice > 0">
+                  <v-layout row wrap v-for="price in prices" v-bind:key="price.id">
+                    <v-flex xs6 style="font-size: 16px; color: #B9BCC1;">{{formatDates(price.date)}}</v-flex>
+                    <v-flex xs6 style="font-size: 16px; color: #B9BCC1;" class="text-xs-right">${{price.amount}}</v-flex>
+                  </v-layout>
+                  <v-layout row wrap>
+                    <v-flex XS6 style="font-size: 16px; color: #B9BCC1;">VAT (10%)</v-flex>
+                    <v-flex XS6 style="font-size: 16px; color: #B9BCC1;" class="text-xs-right">${{vat}}</v-flex>
+                  </v-layout>
+                  <v-divider style="background-color:#3D424E; margin-top:20px; margin-bottom:10px;"></v-divider>
+                  <v-layout row wrap>
+                    <v-flex xs6><h3 style="font-size: 20px; color: #D8DADE;">Total</h3></v-flex>
+                    <v-flex xs6 class="text-xs-right"><h3 style="font-size: 20px; color: #D8DADE;">${{finalPrice}}</h3></v-flex>
+                  </v-layout>
+                  <input name="Amount (in $)" hidden :value="finalPrice" type="text" readonly />
+                </v-flex>
+                <v-flex xs12>
+                  <v-textarea
+                    outline
+                    hide-details
+                    dark
+                    color="#B9BCC1"
+                    name="Message"
+                    label="Write message here..."
+                    class="mb-4"
+                    height="122px"
+                    no-resize
+                  >
+                  </v-textarea>
+                </v-flex>
+              </v-layout>
+              <v-dialog v-model="auth1" hide-overlay transition="dialog-bottom-transition">
+                <template v-slot:activator="{ on }">                
+                  <v-btn
+                    block
+                    color="#F7B947"
+                    dark
+                    class="text-capitalize font-weight-bold"
+                    :ripple="false"
+                    :disabled="!valid"
+                    style="height:74px;"
+                    v-on="on"
+                  >
+                    Reserve Now <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
+                  </v-btn>
+                </template>
+                <v-card color="#191C21" dark style="border: 1px solid #E1E7ED; border-radius: 3px; margin:0; max-width:583px;">
+                  <v-flex xs2>
+                    <v-btn icon dark @click="auth1 = !auth" style="margin:0; margin-bottom:20px;">
+                      <v-icon color="#B9BCC1" size="25">close</v-icon>
+                    </v-btn>
+                  </v-flex>
+                    <Login v-if="register"></Login>
+                    <SignUp v-if="!register"></SignUp>
+                  <v-flex xs12 text-xs-center>
+                    <span class="normalText">Don't have an account?</span> <a @click="register=!register" class="yellowLink">{{register?'Sign up':'Log in'}}</a>
+                  </v-flex>
+                </v-card>
+              </v-dialog>
+              <v-flex xs12 text-xs-center class="mt-3" v-if="resort.name=='accommodations' || resort.name=='events' || resort.name=='experiences'">
+                <p style="font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
+                  You won't be charged yet.
+                </p>
               </v-flex>
-              <v-flex xs12 v-if="resort.name=='accommodations' || resort.name=='events' || resort.name=='experiences'">
-                <v-checkbox 
-                  v-model="checkbox" 
-                  label="Do you need transportation?"
-                  color="#B9BCC1"
-                  dark
-                  style="margin:0; padding:0;"
-                  height="30px"
-                >
-                </v-checkbox>
-                <input hidden name="Transportation needed" :value="checkbox" />
-              </v-flex>
-              <v-flex xs12 style="margin-bottom:30px;" v-if="finalPrice > 0">
-                <v-layout row wrap v-for="price in prices" v-bind:key="price.id">
-                  <v-flex xs6 style="font-size: 16px; color: #B9BCC1;">{{formatDates(price.date)}}</v-flex>
-                  <v-flex xs6 style="font-size: 16px; color: #B9BCC1;" class="text-xs-right">${{price.amount}}</v-flex>
-                </v-layout>
-                <v-layout row wrap>
-                  <v-flex XS6 style="font-size: 16px; color: #B9BCC1;">VAT (10%)</v-flex>
-                  <v-flex XS6 style="font-size: 16px; color: #B9BCC1;" class="text-xs-right">${{vat}}</v-flex>
-                </v-layout>
-                <v-divider style="background-color:#3D424E; margin-top:20px; margin-bottom:10px;"></v-divider>
-                <v-layout row wrap>
-                  <v-flex xs6><h3 style="font-size: 20px; color: #D8DADE;">Total</h3></v-flex>
-                  <v-flex xs6 class="text-xs-right"><h3 style="font-size: 20px; color: #D8DADE;">${{finalPrice}}</h3></v-flex>
-                </v-layout>
-                <input name="Amount (in $)" hidden :value="finalPrice" type="text" readonly />
-              </v-flex>
-              <v-flex xs12>
-                <v-textarea
-                  outline
-                  hide-details
-                  dark
-                  color="#B9BCC1"
-                  name="Message"
-                  label="Write message here..."
-                  class="mb-4"
-                  height="122px"
-                  no-resize
-                >
-                </v-textarea>
-              </v-flex>
-            </v-layout>
-            <v-btn
-              block
-              color="#F7B947"
-              dark
-              class="text-capitalize font-weight-bold"
-              type="submit"
-              :ripple="false"
-              :disabled="!valid"
-              style="height:74px;"
-            >
-              Reserve Now <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
-            </v-btn>
-            <v-flex xs12 text-xs-center class="mt-3" v-if="resort.name=='accommodations' || resort.name=='events' || resort.name=='experiences'">
-              <p style="font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
-                You won't be charged yet.
-              </p>
-            </v-flex>
             </v-form>
           </v-card>
         </v-flex>
@@ -468,7 +484,7 @@
                 >
                 </v-textarea>
               </v-flex>
-            <v-dialog v-model="auth" fullscreen hide-overlay transition="dialog-bottom-transition">
+            <v-dialog v-model="auth2" fullscreen hide-overlay transition="dialog-bottom-transition">
               <template v-slot:activator="{ on }">                
                 <v-btn
                   block
@@ -483,13 +499,17 @@
                   Reserve Now <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
                 </v-btn>
               </template>
-              <v-card color="#191C21" dark width="100%" style="position:absolute; border: 1px solid #E1E7ED; border-radius: 3px; margin:0; ">
+              <v-card color="#191C21" dark width="100%" style="position:absolute;">
                 <v-flex xs2>
-                  <v-btn icon dark @click="auth = !auth" style="margin:0; margin-bottom:20px;">
+                  <v-btn icon dark @click="auth2 = !auth" style="margin:0; margin-bottom:20px;">
                     <v-icon color="#B9BCC1" size="25">close</v-icon>
                   </v-btn>
                 </v-flex>
-                <Login></Login>
+                  <Login v-if="register"></Login>
+                  <SignUp v-if="!register"></SignUp>
+                <v-flex xs12 text-xs-center>
+                  <span class="normalText">Don't have an account?</span> <a @click="register=!register" class="yellowLink">{{register?'Sign up':'Log in'}}</a>
+                </v-flex>
               </v-card>
             </v-dialog>
             <v-flex xs12 text-xs-center class="mt-3" v-if="resort.name=='accommodations' || resort.name=='events' || resort.name=='experiences'">
@@ -513,15 +533,17 @@
 import format from 'date-fns/format'
 
 //components
-const Footer = () => import ('@/components/Footer.vue')
 import VueMarkdown from 'vue-markdown'
+const Footer = () => import ('@/components/Footer.vue')
 const Login = () => import ('@/components/Auth/Login.vue')
+const SignUp = () => import ('@/components/Auth/SignUp.vue')
 
 export default {
   components:{
     Footer,
     VueMarkdown,
-    Login
+    Login,
+    SignUp
   },
   head:{
     title: function() {
@@ -545,6 +567,7 @@ export default {
       checkbox: false,
       toggle0:0,
       valid: false,
+      register: true,
       nameRules: [
         v => !!v || 'Name is required',
       ],
@@ -567,7 +590,8 @@ export default {
       phone: '',
 
       bookDialog: false,
-      auth: false,
+      auth1: false,
+      auth2: false,
 
       // states
       dateFormat: 'ddd, D MMM',

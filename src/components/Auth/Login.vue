@@ -73,9 +73,6 @@
       <v-flex xs12>
         <v-divider style="background-color:#3D424E; margin-bottom:10px"></v-divider>
       </v-flex>
-      <v-flex xs12 text-xs-center>
-        <span class="normalText">Don't have an account?</span> <a class="yellowLink">Sign up</a>
-      </v-flex>
     </v-layout>
   </v-form>      
 </template>
@@ -93,9 +90,8 @@ export default {
         v => (v || '').indexOf(' ') < 0 || 'No spaces are allowed'
       ],
       passwordRules: [
-        v => !!v || 'E-mail is required',
-        v => /.+@.+/.test(v) || 'E-mail must be valid',
-        v => (v || '').indexOf(' ') < 0 || 'No spaces are allowed'
+        v => !!v || 'Password is required',
+        v => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/.test(v) || 'Password must contain at least 1 lowercase character, 1 uppercase character, 1 special character & 1 number'
       ],
     }
   },
