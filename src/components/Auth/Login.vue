@@ -1,89 +1,83 @@
 <template>
-  <v-card color="#191C21" dark width="100%" height="100%" style="position:absolute; border: 1px solid #E1E7ED; border-radius: 3px; margin:0; min-height:683px;">
-    <v-form name="Login" v-model="valid">      
-      <v-layout row wrap class="ma-4">
-        <v-flex text-xs-left>
-          <v-btn icon dark @click="auth = false" style="margin:0; margin-bottom:20px;">
-            <v-icon color="#B9BCC1" size="25">close</v-icon>
-          </v-btn>
-        </v-flex>
-        <v-flex xs12>
-          <v-btn block flat class="btn">Continue with Facebook</v-btn>
-        </v-flex>
-        <v-flex xs12>
-          <v-btn block flat class="btn">Continue with Instagram</v-btn>
-        </v-flex>
-        <v-flex xs12>
-          <v-btn block flat class="btn">Continue with Google</v-btn>
-        </v-flex>
-        <v-flex xs5 style="margin-bottom:15px;">
-          <v-divider style="background-color:#3D424E;"></v-divider>
-        </v-flex>
-        <v-flex xs2 text-xs-center style="margin-top:-12px; margin-bottom:15px;">
-          <span class="normalText">or</span>
-        </v-flex>
-        <v-flex xs5 style="margin-bottom:15px;">
-          <v-divider style="background-color:#3D424E;"></v-divider>
-        </v-flex>
-        <v-flex xs12>
-          <v-text-field
-            v-model="email"
-            outline
-            label="E-mail address"
-            name="E-mail"
-            color="#B9BCC1"
-            type="email"
-            required
-            dark
-            :rules="emailRules"
-          >
-          <v-icon slot="append" color="#B9BCC1">email</v-icon>
-          </v-text-field>
-        </v-flex>
-        <v-flex xs12>
-          <v-text-field
-            v-model="password"
-            outline
-            label="Password"
-            name="Password"
-            color="#B9BCC1"
-            required
-            :type="visible ? 'text' : 'password'"
-            dark
-          >
-            <v-icon slot="append" color="#B9BCC1">lock</v-icon>
-          </v-text-field>
-        </v-flex>
-        <v-flex xs6>
-          <v-checkbox 
-            v-model="remember" 
-            label="Remember me"
-            color="#B9BCC1"
-            dark
-            style="margin:0; padding:0;"
-            height="22px"
-          >
-          </v-checkbox>
-        </v-flex>
-        <v-flex xs6 text-xs-right>
-          <a @click="visible=!visible" class="yellowLink">
-            {{visible?'Hide':'Show'}} Password
-          </a>
-        </v-flex>
-        <v-flex xs12>
-          <v-btn block color="#F7B947" class="formBtn" dark @click="login()" :disabled="!valid">
-            Log in
-          </v-btn>
-        </v-flex>
-        <v-flex xs12>
-          <v-divider style="background-color:#3D424E; margin-bottom:10px"></v-divider>
-        </v-flex>
-        <v-flex xs12 text-xs-center>
-          <span class="normalText">Don't have an account?</span> <a class="yellowLink">Sign up</a>
-        </v-flex>
-      </v-layout>
-    </v-form>      
-  </v-card>
+  <v-form name="Login" v-model="valid">      
+    <v-layout row wrap class="ma-4">
+      <v-flex xs12>
+        <v-btn block flat class="btn">Continue with Facebook</v-btn>
+      </v-flex>
+      <v-flex xs12>
+        <v-btn block flat class="btn">Continue with Instagram</v-btn>
+      </v-flex>
+      <v-flex xs12>
+        <v-btn block flat class="btn">Continue with Google</v-btn>
+      </v-flex>
+      <v-flex xs5 style="margin-bottom:15px;">
+        <v-divider style="background-color:#3D424E;"></v-divider>
+      </v-flex>
+      <v-flex xs2 text-xs-center style="margin-top:-12px; margin-bottom:15px;">
+        <span class="normalText">or</span>
+      </v-flex>
+      <v-flex xs5 style="margin-bottom:15px;">
+        <v-divider style="background-color:#3D424E;"></v-divider>
+      </v-flex>
+      <v-flex xs12>
+        <v-text-field
+          v-model="email"
+          outline
+          label="E-mail address"
+          name="E-mail"
+          color="#B9BCC1"
+          type="email"
+          required
+          dark
+          :rules="emailRules"
+        >
+        <v-icon slot="append" color="#B9BCC1">email</v-icon>
+        </v-text-field>
+      </v-flex>
+      <v-flex xs12>
+        <v-text-field
+          v-model="password"
+          outline
+          label="Password"
+          name="Password"
+          color="#B9BCC1"
+          required
+          :type="visible ? 'text' : 'password'"
+          dark
+          :rules="passwordRules"
+        >
+          <v-icon slot="append" color="#B9BCC1">lock</v-icon>
+        </v-text-field>
+      </v-flex>
+      <v-flex xs6>
+        <v-checkbox 
+          v-model="remember" 
+          label="Remember me"
+          color="#B9BCC1"
+          dark
+          style="margin:0; padding:0;"
+          height="22px"
+        >
+        </v-checkbox>
+      </v-flex>
+      <v-flex xs6 text-xs-right>
+        <a @click="visible=!visible" class="yellowLink">
+          {{visible?'Hide':'Show'}} Password
+        </a>
+      </v-flex>
+      <v-flex xs12>
+        <v-btn block color="#F7B947" class="formBtn" dark @click="login()" :disabled="!valid">
+          Log in
+        </v-btn>
+      </v-flex>
+      <v-flex xs12>
+        <v-divider style="background-color:#3D424E; margin-bottom:10px"></v-divider>
+      </v-flex>
+      <v-flex xs12 text-xs-center>
+        <span class="normalText">Don't have an account?</span> <a class="yellowLink">Sign up</a>
+      </v-flex>
+    </v-layout>
+  </v-form>      
 </template>
 
 <script>

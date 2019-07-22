@@ -483,7 +483,14 @@
                   Reserve Now <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
                 </v-btn>
               </template>
-              <Login></Login>
+              <v-card color="#191C21" dark width="100%" style="position:absolute; border: 1px solid #E1E7ED; border-radius: 3px; margin:0; ">
+                <v-flex xs2>
+                  <v-btn icon dark @click="auth = !auth" style="margin:0; margin-bottom:20px;">
+                    <v-icon color="#B9BCC1" size="25">close</v-icon>
+                  </v-btn>
+                </v-flex>
+                <Login></Login>
+              </v-card>
             </v-dialog>
             <v-flex xs12 text-xs-center class="mt-3" v-if="resort.name=='accommodations' || resort.name=='events' || resort.name=='experiences'">
               <p style="font-weight: bold; font-size: 14px; color: #B9BCC1;">
