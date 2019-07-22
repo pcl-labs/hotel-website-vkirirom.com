@@ -12,7 +12,7 @@ import AirbnbStyleDatepicker from 'vue-airbnb-style-datepicker'
 import 'vue-airbnb-style-datepicker/dist/vue-airbnb-style-datepicker.min.css'
 import VueHead from 'vue-head'
 import VueMarkdown from 'vue-markdown'
-import {store} from './store/store'
+import './registerServiceWorker'
 
 // import './sitemapMiddleware'
 // import VueRouterSitemap from 'vue-router-sitemap'
@@ -96,13 +96,10 @@ function getRoutesXML() {
 
 getRoutesXML();
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
-/* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  router: router,
-  store: store,
-  template: '<App/>',
-  components: { App }
-})
+  router,
+  // store,
+  render: (h) => h(App),
+}).$mount('#app');
