@@ -1,5 +1,5 @@
 <template>
-  <v-container-fluid>
+  <div>
     <v-card dark>
       <div id="header">
         <v-container grid-list-md>
@@ -19,7 +19,7 @@
     <v-container grid-list-md>
       <h2 class="mb-4 listTitle">Accommodation</h2>
       <v-layout row wrap>
-        <v-flex xs12 sm6 md4 lg4 v-for="accommodation in accommodations.slice(0,4)" v-bind:key="accommodation.id">
+        <v-flex xs12 sm6 md4 lg4 v-for="accommodation in accommodations" v-bind:key="accommodation.id">
           <v-card dark height="270px" color="#191C21" class="mb-4 card" :to="'/listing/'+ accommodation.slug" flat>
             <router-link :to="'/listing/'+ accommodation.slug">
               <v-carousel height="150px" :cycle="false" hide-controls dark width="100%" class="hidden-md-and-up" v-if="accommodation.images && accommodation.images.length > 0" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
@@ -208,7 +208,7 @@
       </v-layout>
     </v-container>
     <Footer></Footer>
-  </v-container-fluid>
+  </div>
 </template>
 
 <script>
@@ -220,172 +220,27 @@ export default {
   },
   data() {
     return {
-      accommodations: {
-        title:'',
-        description: '',
-        h2: '',
-        slug: '',
-        backgroundImage: '',
-        featuredImage: '',
-        images: [{
-          order: '',
-          url: '',
-        }],
-        ctaText: '',
-        custom: '',
-        modules: {
-          hotel: {
-            capacity: '',
-            gettingAround: '',
-            location: '',
-            amenities: '',
-            beds: [
-              {
-                count: '',
-                type: '',
-              }
-            ],
-            rules: '',
-            spaces: []
-          }
-        }
-      },
-      experiences: {
-        title:'',
-        description: '',
-        h2: '',
-        slug: '',
-        backgroundImage: '',
-        featuredImage: '',
-        images: [{
-          order: '',
-          url: '',
-        }],
-        ctaText: '',
-        custom: '',
-        modules: {
-          hotel: {
-            capacity: '',
-            gettingAround: '',
-            location: '',
-            amenities: '',
-            beds: [
-              {
-                count: '',
-                type: '',
-              }
-            ],
-            rules: '',
-            spaces: []
-          }
-        }
-      },
-      events: {
-        title:'',
-        description: '',
-        h2: '',
-        slug: '',
-        backgroundImage: '',
-        featuredImage: '',
-        images: [{
-          order: '',
-          url: '',
-        }],
-        ctaText: '',
-        custom: '',
-        modules: {
-          hotel: {
-            capacity: '',
-            gettingAround: '',
-            location: '',
-            amenities: '',
-            beds: [
-              {
-                count: '',
-                type: '',
-              }
-            ],
-            rules: '',
-            spaces: []
-          }
-        }
-      },
-      ecotourisms: {
-        title:'',
-        description: '',
-        h2: '',
-        slug: '',
-        backgroundImage: '',
-        featuredImage: '',
-        images: [{
-          order: '',
-          url: '',
-        }],
-        ctaText: '',
-        custom: '',
-        modules: {
-          hotel: {
-            capacity: '',
-            gettingAround: '',
-            location: '',
-            amenities: '',
-            beds: [
-              {
-                count: '',
-                type: '',
-              }
-            ],
-            rules: '',
-            spaces: []
-          }
-        }
-      },
-      leases: {
-        title:'',
-        description: '',
-        h2: '',
-        slug: '',
-        backgroundImage: '',
-        featuredImage: '',
-        images: [{
-          order: '',
-          url: '',
-        }],
-        ctaText: '',
-        custom: '',
-        modules: {
-          hotel: {
-            capacity: '',
-            gettingAround: '',
-            location: '',
-            amenities: '',
-            beds: [
-              {
-                count: '',
-                type: '',
-              }
-            ],
-            rules: '',
-            spaces: []
-          }
-        }
-      },
+      accommodations: [],
+      experiences: [],
+      events: [],
+      ecotourisms: [],
+      leases: [],
     }
   },
   created() {
-    this.$http.get('https://api.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/accommodations').then(function(data){
+    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/accommodations').then(function(data){
       this.accommodations=data.body.slice(0,3)
     });
-    this.$http.get('https://api.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/experiences').then(function(data){
+    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/experiences').then(function(data){
       this.experiences=data.body.slice(0,3)
     });
-    this.$http.get('https://api.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/events').then(function(data){
+    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/events').then(function(data){
       this.events=data.body.slice(0,3)
     });
-    this.$http.get('https://api.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/ecotourism').then(function(data){
+    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/ecotourism').then(function(data){
       this.ecotourisms=data.body.slice(0,3)
     });
-    this.$http.get('https://api.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/lease').then(function(data){
+    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/lease').then(function(data){
       this.leases=data.body.slice(0,3)
     });
   },

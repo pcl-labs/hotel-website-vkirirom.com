@@ -1,6 +1,6 @@
 <template>
   <v-container-fluid>
-    <v-container grid-list-md>
+    <v-container grid-list-md style="min-height:100vh;">
       <v-flex xs12 style="margin-top:20px; margin-bottom:20px;">
         <h1 style="color: #FFFFFF;">Results for {{id}}</h1>
         <v-flex xs12 v-if="id=='food'">
@@ -11,7 +11,7 @@
           </p>
         </v-flex>
       </v-flex>
-      <v-layout row wrap style="min-height: 100vh;">
+      <v-layout row wrap>
         <v-flex xs12 sm6 md4 lg4 v-for="resort in resorts" v-bind:key="resort.id">
           <v-card color="#191C21" class="mb-4 card" width="100%" dark :to="'/listing/'+ resort.slug" flat>
             <router-link :to="'/listing/'+ resort.slug">
@@ -54,7 +54,7 @@ export default {
     }
   },
   created() {
-    this.$http.get('https://api.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/'+ this.id).then(function(data){
+    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/'+ this.id).then(function(data){
       this.resorts=data.body;
     });
   },
