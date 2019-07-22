@@ -97,24 +97,24 @@ export default {
   },
   methods:{
     register(){
-      this.$store.dispatch('register')
+      this.$store.dispatch('auth/register')
     }
   },
   computed:{
     email:{
       get(){
-        return this.$store.state.email;
+        return this.$store.state["auth/email"];
       },
       set(value){
-        this.$store.commit('updateEmail', value)
+        this.$store.commit('auth/updateEmail', value)
       }
     },
     password:{
       get(){
-        return this.$store.state.password;
+        return this.$store.state["auth/password"];
       },
       set(value){
-        this.$store.commit('updatePassword', value)
+        this.$store.commit('auth/updatePassword', value)
       }
     }
   }
