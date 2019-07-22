@@ -1,0 +1,512 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"eig",
+				"eigenvalues"
+			],
+			[
+				"test",
+				"test_in_degree_out_degree_difference"
+			],
+			[
+				"in",
+				"in_degree"
+			],
+			[
+				"hist",
+				"hist_ave"
+			],
+			[
+				"num",
+				"num_trials"
+			],
+			[
+				"H_",
+				"H_angle"
+			],
+			[
+				"file",
+				"filtered"
+			],
+			[
+				"lf",
+				"lfpmat"
+			],
+			[
+				"fil",
+				"filtered"
+			],
+			[
+				"sa",
+				"sampling_rate"
+			],
+			[
+				"low",
+				"lowcut"
+			],
+			[
+				"butte",
+				"butter_bandpass"
+			],
+			[
+				"high",
+				"highcut"
+			],
+			[
+				"ave",
+				"average_lfp"
+			],
+			[
+				"plt",
+				"plot_lfp"
+			],
+			[
+				"asr",
+				"adrs"
+			],
+			[
+				"P",
+				"PWelch_spec"
+			],
+			[
+				"lfp",
+				"lfpmat"
+			],
+			[
+				"strea",
+				"plot_streamplot"
+			],
+			[
+				"dw",
+				"dWdt0"
+			],
+			[
+				"dvdt",
+				"dVdt0"
+			],
+			[
+				"find",
+				"find_intersections"
+			],
+			[
+				"WE",
+				"WEqual0"
+			],
+			[
+				"VE",
+				"VEqual"
+			],
+			[
+				"V",
+				"VCa"
+			],
+			[
+				"g",
+				"gCa"
+			],
+			[
+				"set_",
+				"set_xlabel"
+			],
+			[
+				"com",
+				"ComplexVector"
+			],
+			[
+				"Co",
+				"ComplexVector"
+			],
+			[
+				"C",
+				"ComplexVector"
+			],
+			[
+				"Comple",
+				"Complex"
+			],
+			[
+				"complex",
+				"Complex"
+			],
+			[
+				"li",
+				"li\tTag"
+			],
+			[
+				"head",
+				"header\tTag"
+			],
+			[
+				"max",
+				"max-width"
+			],
+			[
+				"list",
+				"list-style-type"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"backg",
+				"background-image"
+			],
+			[
+				"wo",
+				"workplace"
+			],
+			[
+				"border-c",
+				"border-color"
+			],
+			[
+				"text-dec",
+				"text-decoration"
+			],
+			[
+				"font-s",
+				"font-size"
+			],
+			[
+				"font",
+				"font-family"
+			],
+			[
+				"text-ali",
+				"text-align"
+			],
+			[
+				"backgro",
+				"background-color"
+			],
+			[
+				"fra",
+				"frame\tTag"
+			],
+			[
+				"tar",
+				"targetframe"
+			],
+			[
+				"b",
+				"b\tTag"
+			],
+			[
+				"th",
+				"th\tTag"
+			],
+			[
+				"cel",
+				"cellspacing\tAttr"
+			],
+			[
+				"bd",
+				"bdo\tTag"
+			],
+			[
+				"h",
+				"h3\tTag"
+			],
+			[
+				"ti",
+				"title\tTag"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"install",
+				"Install Package Control"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/abolfazl/www/vkirirom"
+	],
+	"file_history":
+	[
+		"/home/abolfazl/www/ludo/vue.config.js",
+		"/home/abolfazl/www/ludo/public/index.html",
+		"/home/abolfazl/www/vkirirom/public/index.html",
+		"/home/abolfazl/www/vkirirom/.gitignore",
+		"/home/abolfazl/www/hotel-website-vkirirom.com/.babelrc",
+		"/home/abolfazl/www/hotel-website-vkirirom.com/.gitignore",
+		"/home/abolfazl/www/vkirirom/src/main.js",
+		"/home/abolfazl/www/vkirirom/public/manifest.json",
+		"/home/abolfazl/www/hotel-website-vkirirom.com/index.html",
+		"/home/abolfazl/www/hotel-website-vkirirom.com/static/manifest.json",
+		"/home/abolfazl/Desktop/tozih.txt",
+		"/home/abolfazl/Desktop/Game.of.Thrones.S01E01.srt",
+		"/home/abolfazl/git/my_neural/DiGraph/output_adjacency_DAG.txt",
+		"/home/abolfazl/git/my_neural/DiGraph/correctness.py",
+		"/home/abolfazl/Downloads/GoT/game-of-thrones-first-season-1_farsi_persian-822204/Game.of.Thrones.S01E01.srt",
+		"/home/abolfazl/Downloads/GoT/game-of-thrones-first-season-1_farsi_persian-741308/Episode 01 - Winter is Coming.srt",
+		"/home/abolfazl/Desktop/example-file.txt",
+		"/home/abolfazl/git/my_neural/DiGraph/output_adjacency_DBG.txt",
+		"/home/abolfazl/Documents/text-pdf-word/post address",
+		"/home/abolfazl/Desktop/download",
+		"/home/abolfazl/git/misc/quick_guides/CPP_guide.cpp",
+		"/home/abolfazl/workspace/DiGraph/output_adjacency_DBG.txt",
+		"/home/abolfazl/Desktop/MT.txt",
+		"/home/abolfazl/workspace/DiGraph/DBG.java",
+		"/home/abolfazl/workspace/DiGraph/DBG.class",
+		"/home/abolfazl/workspace/DiGraph/output_adjacency.txt",
+		"/home/abolfazl/workspace/DiGraph/output_adjacency_U.txt",
+		"/home/abolfazl/workspace/DiGraph/output_edgeList_DAG.xls",
+		"/home/abolfazl/workspace/DiGraph/output_adjacency_DAG.txt",
+		"/home/abolfazl/workspace/DiGraph/graph5.java",
+		"/home/abolfazl/Desktop/java",
+		"/home/abolfazl/git/my_neural/Digraph/Re- list jar files/DAG.java",
+		"/home/abolfazl/Desktop/IPM/Day2/Data/pl1.py",
+		"/home/abolfazl/Desktop/IPM/Day3/p1.py",
+		"/home/abolfazl/Desktop/IPM/Day1/Exercises/1-Raster plot/PlotRaster.m",
+		"/home/abolfazl/Desktop/IPM/Day1/Spike Sorting, Slides and Solution Code/Workshop_Electrophysiology.m",
+		"/home/abolfazl/Desktop/ipm.txt",
+		"/home/abolfazl/Active_Projects/Python_Workshop/Workshop_scripting2016/codes/05plot/subplot/sub-1.py",
+		"/home/abolfazl/Desktop/IPM/Day2/Data/pl.py",
+		"/home/abolfazl/Desktop/IPM/Day2/Data/test.py",
+		"/home/abolfazl/Desktop/IPM/Day1/sol.txt",
+		"/home/abolfazl/Desktop/IPM/Day1/Exercises/exercise solutions/psth.m",
+		"/home/abolfazl/Desktop/IPM/Day1/Exercises/exercise solutions/PlotRaster.m",
+		"/home/abolfazl/Desktop/IPM/Day1/Exercises/1-Raster plot/raster.m",
+		"/home/abolfazl/Desktop/IPM/Exercises/2-Tuning curve & PSTH/pl.py",
+		"/home/abolfazl/Desktop/IPM/Exercises/1-Raster plot/pl.py",
+		"/home/abolfazl/Active_Projects/Python_Workshop/Workshop_scripting2016/codes/03_func/find_intersections_p.py",
+		"/home/abolfazl/git/my_neural/PRC/morris-lecar/prc-morris-lecar.py",
+		"/home/abolfazl/git/my_neural/PRC/morris-lecar/functions.py",
+		"/home/abolfazl/git/my_neural/PRC/morris-lecar/makefile",
+		"/home/abolfazl/git/my_neural/PRC/morris-lecar/back/test/prc-morris-lecar.py",
+		"/home/abolfazl/git/my_neural/PRC/morris-lecar/back/functions.py",
+		"/home/abolfazl/Downloads/subplot1.py",
+		"/home/abolfazl/git/my_neural/WC/phase_plane/npp.py",
+		"/home/abolfazl/git/my_neural/WC/phase_plane/modules.py",
+		"/home/abolfazl/Desktop/prc/ml.ode",
+		"/home/abolfazl/Desktop/masir.txt",
+		"/home/abolfazl/git/my_neural/PRC/morris-lecar/heav/prc-morris-lecar.py",
+		"/home/abolfazl/git/my_neural/PRC/morris-lecar/heav/functions.py",
+		"/home/abolfazl/Desktop/prc/link.txt",
+		"/home/abolfazl/Desktop/prc/ml.ode.txt",
+		"/home/abolfazl/git/my_neural/PRC/ML/functions.py",
+		"/home/abolfazl/git/my_neural/PRC/ML/prc-morris-lecar.py",
+		"/home/abolfazl/Desktop/link.txt",
+		"/home/abolfazl/Desktop/prc/PRC_Estimator/prc_estimator.m",
+		"/home/abolfazl/git/my_neural/PRC/hodgkin_huxley/functions.py",
+		"/home/abolfazl/git/my_neural/PRC/hodgkin_huxley/config.py",
+		"/home/abolfazl/git/my_neural/PRC/hodgkin_huxley/prc_single_current.py",
+		"/home/abolfazl/git/my_neural/OA-ansatz/src/SddeSolver.i",
+		"/home/abolfazl/Active_Projects/Python_Workshop/Workshop_scripting2016/codes/mixed/swig/05calss_vector/example.cpp",
+		"/home/abolfazl/Active_Projects/Python_Workshop/Workshop_scripting2016/codes/mixed/swig/06complex/example.i",
+		"/home/abolfazl/Active_Projects/Python_Workshop/Workshop_scripting2016/codes/mixed/swig/02_vector/runme.py",
+		"/home/abolfazl/Active_Projects/Python_Workshop/Workshop_scripting2016/codes/mixed/swig/06complex/test.py",
+		"/home/abolfazl/Active_Projects/Python_Workshop/Workshop_scripting2016/codes/mixed/swig/06complex/example.h",
+		"/home/abolfazl/Active_Projects/Python_Workshop/Workshop_scripting2016/codes/mixed/swig/06complex/example.cpp",
+		"/home/abolfazl/git/my_neural/OA-ansatz/src/SddeSolver.h",
+		"/home/abolfazl/git/my_neural/OA-ansatz/src/hmn_ens.py",
+		"/home/abolfazl/git/my_neural/OA-ansatz/src/SddeSolver.cpp",
+		"/home/abolfazl/Active_Projects/Python_Workshop/Workshop_scripting2016/codes/mixed/swig/02_vector/example.py",
+		"/home/abolfazl/git/cpp_workshop/array_vector/complex_vector.cpp",
+		"/home/abolfazl/git/cpp_workshop/array_vector/valarray_vector_compar.cpp",
+		"/home/abolfazl/git/cpp_workshop/array_vector/2dComplexVector.cpp",
+		"/home/abolfazl/git/cpp_workshop/array_vector/test.cpp",
+		"/home/abolfazl/git/cpp_workshop/array_vector/2dvalarray.cpp",
+		"/home/abolfazl/Active_Projects/Python_Workshop/Workshop_scripting2016/codes/mixed/swig/06complex/Makefile",
+		"/home/abolfazl/Active_Projects/Python_Workshop/Workshop_scripting2016/codes/mixed/swig/06complex/test.i",
+		"/home/abolfazl/git/my_neural/OA-ansatz/src/test.py",
+		"/home/abolfazl/git/my_neural/OA-ansatz/src/back/test.py",
+		"/home/abolfazl/git/my_neural/OA-ansatz/src/back/hmn_ens.py",
+		"/home/abolfazl/git/my_neural/OA-ansatz/src/back/delta_dirac.py",
+		"/home/abolfazl/git/my_neural/OA-ansatz/src/delta_dirac.py",
+		"/home/abolfazl/git/my_neural/OA-ansatz/src/a2.cpp",
+		"/home/abolfazl/git/my_neural/OA-ansatz/src/a1.cpp",
+		"/home/abolfazl/Active_Projects/Python_Workshop/Workshop_scripting2016/codes/mixed/swig/04class/example.cpp",
+		"/home/abolfazl/Active_Projects/Python_Workshop/Workshop_scripting2016/codes/mixed/swig/04class/example.i",
+		"/home/abolfazl/Active_Projects/Python_Workshop/Workshop_scripting2016/codes/mixed/swig/04class/runme.py",
+		"/home/abolfazl/Active_Projects/Python_Workshop/Workshop_scripting2016/codes/mixed/swig/04class/Makefile",
+		"/home/abolfazl/git/cpp_workshop/array_vector/01resize.cpp",
+		"/home/abolfazl/Desktop/test.cpp",
+		"/home/abolfazl/git/my_neural/SDDE_DDE/kuramoto/correctness_test/3km/src/3km.cpp",
+		"/home/abolfazl/git/my_neural/functional_network/frequency_effect/delay_k_w_range/src/hmn_ens.py",
+		"/home/abolfazl/git/my_neural/OA-ansatz/src/modules.py",
+		"/home/abolfazl/git/my_neural/OA-ansatz/src/a.cpp",
+		"/home/abolfazl/git/my_neural/OA-ansatz/src/R.txt",
+		"/home/abolfazl/git/misc/quick_guides/quick_plot/quick_plot.py",
+		"/home/abolfazl/git/my_neural/OA-ansatz/src/1.py",
+		"/home/abolfazl/git/my_neural/SDDE_DDE/kuramoto/src/versions/campare_pydelay/main_pydelay.py",
+		"/home/abolfazl/git/my_neural/SDDE_DDE/kuramoto/src/versions/campare_pydelay/3Kuramoto.py",
+		"/home/abolfazl/git/my_neural/functional_network/frequency_effect/delay_k_w_range/CPP_ENGIN/py/main_pydelay.py",
+		"/home/abolfazl/git/misc/DSTools/pydelay/examples/01ccode_example.py",
+		"/home/abolfazl/git/misc/DSTools/pydelay/examples/02fhn.py",
+		"/home/abolfazl/git/misc/DSTools/pydelay/examples/03noise.py",
+		"/home/abolfazl/git/misc/DSTools/pydelay/examples/_dde23.py",
+		"/home/abolfazl/git/misc/DSTools/pydelay/examples/lk.py",
+		"/home/abolfazl/git/misc/DSTools/pydelay/examples/mackey-glass.py",
+		"/home/abolfazl/git/misc/DSTools/pydelay/examples/exer1/exer1.py",
+		"/home/abolfazl/git/misc/DSTools/pydelay/examples/examp1_e2/exam1.py",
+		"/home/abolfazl/git/misc/DSTools/pydelay/examples/examp1/exam1.py",
+		"/home/abolfazl/git/my_neural/WC/two_node/edit/compare_ddeint_pydelay.py",
+		"/home/abolfazl/Desktop/lee/niu-deltadirac1.py",
+		"/home/abolfazl/Desktop/lee/niu-deltadirac2.py",
+		"/home/abolfazl/git/misc/DSTools/dynamical_systems/fitz_hugh_bifurcation.py",
+		"/home/abolfazl/git/misc/html/w3school/layout-flexbox.html",
+		"/home/abolfazl/git/misc/html/w3school/layout.html",
+		"/home/abolfazl/git/misc/html/w3school/head.html",
+		"/home/abolfazl/git/misc/html/w3school/first-javascript.html",
+		"/home/abolfazl/git/misc/html/w3school/styles.css",
+		"/home/abolfazl/git/misc/html/w3school/css-external-style.html"
+	],
+	"find":
+	{
+		"height": 27.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "project.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 248.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

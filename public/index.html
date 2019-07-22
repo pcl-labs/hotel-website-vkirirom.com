@@ -3,7 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="<%= BASE_URL %>img/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="<%= BASE_URL %>img/icons/favicon.ico">
+    <!--[if IE]><link rel="shortcut icon" href="/img/icons/favicon.ico"><![endif]-->
     <meta name="description" content="Corporate retreats in Cambodia with affordable group rates, comfortable glamping lodging and all- inclusive packages in remote Cambodia wilderness.">
     <title>vKirirom Pine Resort</title>
     <!-- Google Tag Manager -->
@@ -19,27 +23,20 @@
 
     <!-- Oswald -->
     <link href="https://fonts.googleapis.com/css?family=Oswald:400,700&display=swap" rel="stylesheet">
-    
-    <link rel="icon" type="image/png" sizes="32x32" href="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/favicon.ico">
-    <link rel="icon" type="image/png" sizes="16x16" href="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/favicon.ico">
-    <!--[if IE]><link rel="shortcut icon" href="/static/img/icons/favicon.ico"><![endif]-->
+
     <!-- Add to home screen for Android and modern mobile browsers -->
-    <link rel="manifest" href="<%= htmlWebpackPlugin.files.publicPath %>static/manifest.json">
+    <link rel="manifest" href="<%= BASE_URL %>manifest.json">
     <meta name="theme-color" content="#191C21">
 
     <!-- Add to home screen for Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="vKirirom Pine Resort">
-    <link rel="apple-touch-icon" href="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/apple-touch-icon-152x152.png">
-    <link rel="mask-icon" href="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/safari-pinned-tab.svg" color="#191C21">
+    <link rel="apple-touch-icon" href="<%= BASE_URL %>img/icons/apple-touch-icon-152x152.png">
+    <link rel="mask-icon" href="<%= BASE_URL %>img/icons/safari-pinned-tab.svg" color="#191C21">
     <!-- Add to home screen for Windows -->
-    <meta name="msapplication-TileImage" content="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/msapplication-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="<%= BASE_URL %>img/icons/msapplication-icon-144x144.png">
     <meta name="msapplication-TileColor" content="#000000">
-    <% for (var chunk of webpack.chunks) {
-        for (var file of chunk.files) {
-          if (file.match(/\.(js|css)$/)) { %>
-    <link rel="<%= chunk.initial?'preload':'prefetch' %>" href="<%= htmlWebpackPlugin.files.publicPath + file %>" as="<%= file.match(/\.css$/)?'style':'script' %>"><% }}} %>
 
     <script type="application/ld+json">
       {
@@ -100,7 +97,7 @@
   </head>
   <body>
     <noscript>
-      JavaScript failed to load, please reload.
+      <strong>JavaScript failed to load, please reload.</strong>
     </noscript>
     <div id="app"></div>
     <!-- Todo: only include in production -->
@@ -191,4 +188,5 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PMXGLXR"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
+  </body>
 </html>
