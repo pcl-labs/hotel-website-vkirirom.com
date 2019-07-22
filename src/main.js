@@ -12,6 +12,7 @@ import AirbnbStyleDatepicker from 'vue-airbnb-style-datepicker'
 import 'vue-airbnb-style-datepicker/dist/vue-airbnb-style-datepicker.min.css'
 import VueHead from 'vue-head'
 import VueMarkdown from 'vue-markdown'
+import {store} from './store/store'
 import './registerServiceWorker'
 
 // import './sitemapMiddleware'
@@ -67,39 +68,39 @@ const router = new VueRouter({
   
 });
 
-function getRoutesList(routes, pre) {
-  return routes.reduce((array, route) => {
-    const path = `${pre}${route.path}`;
+// function getRoutesList(routes, pre) {
+//   return routes.reduce((array, route) => {
+//     const path = `${pre}${route.path}`;
 
-    if (route.path !== '*') {
-      array.push(path);
-    }
+//     if (route.path !== '*') {
+//       array.push(path);
+//     }
 
-    if (route.children) {
-      array.push(...getRoutesList(route.children, `${path}/`));
-    }
+//     if (route.children) {
+//       array.push(...getRoutesList(route.children, `${path}/`));
+//     }
 
-    return array;
-  }, []);
-}
+//     return array;
+//   }, []);
+// }
 
-getRoutesList(router.options.routes, 'https://cranky-nightingale-3731fc.netlify.com');
+// getRoutesList(router.options.routes, 'https://cranky-nightingale-3731fc.netlify.com');
 
-function getRoutesXML() {
-  const list = getRoutesList(router.options.routes, 'https://cranky-nightingale-3731fc.netlify.com')
-    .map(route => `<url><loc>${route}</loc></url>`)
-    .join('\r\n');
-  return `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-    ${list}
-  </urlset>`;
-}
+// function getRoutesXML() {
+//   const list = getRoutesList(router.options.routes, 'https://cranky-nightingale-3731fc.netlify.com')
+//     .map(route => `<url><loc>${route}</loc></url>`)
+//     .join('\r\n');
+//   return `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+//     ${list}
+//   </urlset>`;
+// }
 
-getRoutesXML();
+// getRoutesXML();
 
 Vue.config.productionTip = false;
 
 new Vue({
   router,
-  // store,
+  store,
   render: (h) => h(App),
 }).$mount('#app');
