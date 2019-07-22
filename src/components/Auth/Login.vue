@@ -1,28 +1,21 @@
 <template>
-  <v-card color="#191C21" dark width="100%" height="100%" style="position:absolute; border: 1px solid #E1E7ED; border-radius: 3px; margin:0; min-height:683px;">
-    <v-form name="Login" v-model="valid">      
-      <v-layout row wrap class="ma-4">
-        <v-flex text-xs-left>
-          <v-btn icon dark @click="auth = false" style="margin:0; margin-bottom:20px;">
-            <v-icon color="#B9BCC1" size="25">close</v-icon>
-          </v-btn>
+  <v-form name="Login" v-model="valid">
+    <v-container grid-list-md>      
+      <v-layout row wrap class="ml-4 mr-4">
+        <v-flex xs12 class="headerText" text-xs-center>Log in with</v-flex>
+        <v-flex xs6>
+          <v-btn block flat class="btn">Facebook</v-btn>
         </v-flex>
-        <v-flex xs12>
-          <v-btn block flat class="btn">Continue with Facebook</v-btn>
+        <v-flex xs6>
+          <v-btn block flat class="btn">Google</v-btn>
         </v-flex>
-        <v-flex xs12>
-          <v-btn block flat class="btn">Continue with Instagram</v-btn>
-        </v-flex>
-        <v-flex xs12>
-          <v-btn block flat class="btn">Continue with Google</v-btn>
-        </v-flex>
-        <v-flex xs5 style="margin-bottom:15px;">
+        <v-flex xs5 style="margin-bottom:6px;">
           <v-divider style="background-color:#3D424E;"></v-divider>
         </v-flex>
-        <v-flex xs2 text-xs-center style="margin-top:-12px; margin-bottom:15px;">
+        <v-flex xs2 text-xs-center style="margin-top:-6px; margin-bottom:6px; padding:0;">
           <span class="normalText">or</span>
         </v-flex>
-        <v-flex xs5 style="margin-bottom:15px;">
+        <v-flex xs5 style="margin-bottom:6px;">
           <v-divider style="background-color:#3D424E;"></v-divider>
         </v-flex>
         <v-flex xs12>
@@ -50,6 +43,7 @@
             required
             :type="visible ? 'text' : 'password'"
             dark
+            :rules="passwordRules"
           >
             <v-icon slot="append" color="#B9BCC1">lock</v-icon>
           </v-text-field>
@@ -71,19 +65,16 @@
           </a>
         </v-flex>
         <v-flex xs12>
-          <v-btn block color="#F7B947" class="formBtn" dark @click="login()" :disabled="!valid">
+          <v-btn block color="#F7B947" style="font-size:16px;" class="formBtn" dark @click="login()" :disabled="!valid">
             Log in
           </v-btn>
         </v-flex>
         <v-flex xs12>
-          <v-divider style="background-color:#3D424E; margin-bottom:10px"></v-divider>
-        </v-flex>
-        <v-flex xs12 text-xs-center>
-          <span class="normalText">Don't have an account?</span> <a class="yellowLink">Sign up</a>
+          <v-divider style="background-color:#3D424E; margin-top:10px; margin-bottom:5px"></v-divider>
         </v-flex>
       </v-layout>
-    </v-form>      
-  </v-card>
+    </v-container>
+  </v-form>      
 </template>
 
 <script>
@@ -99,32 +90,31 @@ export default {
         v => (v || '').indexOf(' ') < 0 || 'No spaces are allowed'
       ],
       passwordRules: [
-        v => !!v || 'E-mail is required',
-        v => /.+@.+/.test(v) || 'E-mail must be valid',
-        v => (v || '').indexOf(' ') < 0 || 'No spaces are allowed'
+        v => !!v || 'Password is required',
+        v => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/.test(v) || 'Password must contain at least 1 lowercase character, 1 uppercase character, 1 special character & 1 number'
       ],
     }
   },
   methods:{
     login(){
-      this.$store.dispatch('login')
+      this.$store.dispatch('auth/login')
     }
   },
   computed:{
     email:{
       get(){
-        return this.$store.state.email;
+        return this.$store.getters["auth/email"];
       },
       set(value){
-        this.$store.commit('updateEmail', value)
+        this.$store.commit('auth/updateEmail', value)
       }
     },
     password:{
       get(){
-        return this.$store.state.password;
+        return this.$store.getters["auth/password"];
       },
       set(value){
-        this.$store.commit('updatePassword', value)
+        this.$store.commit('auth/updatePassword', value)
       }
     }
   }
@@ -133,7 +123,13 @@ export default {
 
 <style>
   .formBtn{
-    height:55px; margin-bottom:20px; border-radius: 3px; text-transform: capitalize;
+    height:55px; margin-bottom:10px; border-radius: 3px; text-transform: capitalize;
+  }
+  .headerText{
+    font-size:20px;
+    color: #B9BCC1;
+    margin-bottom: 5px;
+    margin-top:-10px;
   }
   .btn{
     border: 2px solid #B9BCC1;
@@ -142,14 +138,14 @@ export default {
     text-transform: capitalize;
     font-size: 16px;
     color: #B9BCC1;
-    margin-bottom:26px;
+    margin-bottom:13px;
     padding: 0;
   }
   .v-input__slot{
     margin: 0;
     height: 55px;
     /*To make the total margin:30px */
-    margin-bottom: 10px; 
+    margin-bottom: 5px; 
   }
   .yellowLink{
     font-size:16px; text-decoration:none; color: #F7B947;

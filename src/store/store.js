@@ -1,33 +1,15 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue"
+import Vuex from "vuex"
+import auth from "./modules/auth.js"
 
-Vue.use(Vuex)
+Vue.use(Vuex);
+
+// const vuexPersist = new VuexPersist({
+//   storage: window.localStorage
+// });
 
 export const store = new Vuex.Store({
-  state:{
-    email: '',
-    password: '',
-  },
-  getters:{
-
-  },
-  mutations:{
-    updateEmail (state, email) {
-      state.email = email
-    },
-    updatePassword (state, password) {
-      state.password = password
-    }
-  },
-  actions:{
-    login(context){
-      Vue.http.post('https://stagingapi.whynot.earth/api/v0/authentication/login', {
-        email: context.email,
-        password: context.password
-      }).then(function(data){
-          console.log(data);
-      });
-    }
-  },
-
-})
+  modules: {
+    auth
+  }
+});
