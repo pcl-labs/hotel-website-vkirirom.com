@@ -265,34 +265,36 @@
                   </v-textarea>
                 </v-flex>
               </v-layout>
-              <v-dialog v-model="auth1" hide-overlay transition="dialog-bottom-transition">
-                <template v-slot:activator="{ on }">                
-                  <v-btn
-                    block
-                    color="#F7B947"
-                    dark
-                    class="text-capitalize font-weight-bold"
-                    :ripple="false"
-                    :disabled="!valid"
-                    style="height:74px;"
-                    v-on="on"
-                  >
-                    Reserve Now <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
-                  </v-btn>
-                </template>
-                <v-card color="#191C21" dark style="border: 1px solid #E1E7ED; border-radius: 3px; margin:0; max-width:583px;">
-                  <v-flex xs2>
-                    <v-btn icon dark @click="auth1 = !auth" style="margin:0; margin-bottom:20px;">
-                      <v-icon color="#B9BCC1" size="25">close</v-icon>
+              <v-layout row wrap justify-center>
+                <v-dialog v-model="auth1" persistent max-width="583px">
+                  <template v-slot:activator="{ on }">                
+                    <v-btn
+                      block
+                      color="#F7B947"
+                      dark
+                      class="text-capitalize font-weight-bold"
+                      :ripple="false"
+                      :disabled="!valid"
+                      style="height:74px;"
+                      v-on="on"
+                    >
+                      Reserve Now <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
                     </v-btn>
-                  </v-flex>
-                    <Login v-if="register"></Login>
-                    <SignUp v-if="!register"></SignUp>
-                  <v-flex xs12 text-xs-center>
-                    <span class="normalText">Don't have an account?</span> <a @click="register=!register" class="yellowLink">{{register?'Sign up':'Log in'}}</a>
-                  </v-flex>
-                </v-card>
-              </v-dialog>
+                  </template>
+                  <v-card color="#191C21" dark style="border: 1px solid #E1E7ED; border-radius: 3px; margin:0;">
+                    <v-flex xs2>
+                      <v-btn icon dark @click="auth1 = !auth1" style="margin:0; margin:10px;">
+                        <v-icon color="#B9BCC1" size="25">close</v-icon>
+                      </v-btn>
+                    </v-flex>
+                      <Login v-if="register"></Login>
+                      <SignUp v-if="!register"></SignUp>
+                    <v-flex xs12 text-xs-center style="margin-bottom:30px;">
+                      <span class="normalText">Don't have an account?</span> <a @click="register=!register" class="yellowLink">{{register?'Sign up':'Log in'}}</a>
+                    </v-flex>
+                  </v-card>
+                </v-dialog>
+              </v-layout>
               <v-flex xs12 text-xs-center class="mt-3" v-if="resort.name=='accommodations' || resort.name=='events' || resort.name=='experiences'">
                 <p style="font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;">
                   You won't be charged yet.
@@ -501,13 +503,13 @@
               </template>
               <v-card color="#191C21" dark width="100%" style="position:absolute;">
                 <v-flex xs2>
-                  <v-btn icon dark @click="auth2 = !auth" style="margin:0; margin-bottom:20px;">
+                  <v-btn icon dark @click="auth2 = !auth2" style="margin:0; margin:10px;">
                     <v-icon color="#B9BCC1" size="25">close</v-icon>
                   </v-btn>
                 </v-flex>
                   <Login v-if="register"></Login>
                   <SignUp v-if="!register"></SignUp>
-                <v-flex xs12 text-xs-center>
+                <v-flex xs12 text-xs-center style="margin-bottom:30px;">
                   <span class="normalText">Don't have an account?</span> <a @click="register=!register" class="yellowLink">{{register?'Sign up':'Log in'}}</a>
                 </v-flex>
               </v-card>
