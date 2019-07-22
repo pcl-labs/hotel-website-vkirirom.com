@@ -1,6 +1,6 @@
 <template>
-  <v-container-fluid>
-    <v-container-fluid class="pa-0 ma-0">
+  <div>
+    <div class="pa-0 ma-0">
       <v-layout row flex class="pa-0 mx-0">
         <v-flex class="pa-0 overflow-hidden hidden-sm-and-down" style="height:470px;">
           <v-img class="image ma-0 pa-0" :src="resort.featuredImage"></v-img>
@@ -34,7 +34,7 @@
           </v-carousel>
         </v-flex>
       </v-layout>
-    </v-container-fluid>
+    </div>
     <v-container>
       <v-layout row wrap style="min-height: 100vh;">
         <v-flex xs12 md6>
@@ -290,7 +290,7 @@
                       <Login v-if="register"></Login>
                       <SignUp v-if="!register"></SignUp>
                     <v-flex xs12 text-xs-center style="margin-bottom:30px;">
-                      <span class="normalText">Don't have an account?</span> <a @click="register=!register" class="yellowLink">{{register?'Sign up':'Log in'}}</a>
+                      <span class="normalText">Don't have an account? </span> <a @click="register=!register" class="yellowLink"> {{register?'Sign up':'Log in'}}</a>
                     </v-flex>
                   </v-card>
                 </v-dialog>
@@ -510,7 +510,7 @@
                   <Login v-if="register"></Login>
                   <SignUp v-if="!register"></SignUp>
                 <v-flex xs12 text-xs-center style="margin-bottom:30px;">
-                  <span class="normalText">Don't have an account?</span> <a @click="register=!register" class="yellowLink">{{register?'Sign up':'Log in'}}</a>
+                  <span class="normalText">Don't have an account? </span> <a @click="register=!register" class="yellowLink"> {{register?'Sign up':'Log in'}}</a>
                 </v-flex>
               </v-card>
             </v-dialog>
@@ -528,7 +528,7 @@
       </v-flex>
     </v-layout>
   <Footer class="hidden-sm-and-down"></Footer>
-  </v-container-fluid>
+  </div>
 </template>
 
 <script>
