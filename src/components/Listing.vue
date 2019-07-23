@@ -61,9 +61,9 @@
               </v-flex>
             </v-layout>
             <v-flex v-if="resort.description" style="height:100%" class="mt-3">
-              <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
-                {{resort.description}}
-              </p>
+              <div class="description">
+                <vue-markdown>{{resort.description}}</vue-markdown>
+              </div>
             </v-flex>
             <v-flex v-if="resort.modules.hotel && resort.modules.hotel.gettingAround" style="height:100%;">
               <div class="description">
