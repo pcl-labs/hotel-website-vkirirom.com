@@ -630,7 +630,7 @@ export default {
             capacity: '',
             gettingAround: '',
             location: '',
-            roomTypeS:[
+            roomTypes:[
               {
                 amenities: '',
                 beds: [
@@ -640,6 +640,7 @@ export default {
                     type: '',
                   }
                 ],
+                id:'',
               }
             ],
             rules: '',
@@ -663,7 +664,7 @@ export default {
     computePrice(dateOne, dateTwo) {
       let totalPrice = 0;
       let i;
-      this.$http.get('https://stagingapi.whynot.earth/api/v0/hotels/' + this.resort.modules.hotel.id + '/prices?startDate=' + this.dateOne + '&endDate=' + this.dateTwo).then(function(data){
+      this.$http.get('https://stagingapi.whynot.earth/api/v0/roomtypes/' + this.resort.modules.hotel.roomTypes[0].id + '/prices?startDate=' + this.dateOne + '&endDate=' + this.dateTwo).then(function(data){
         this.prices=data.body;
         for (i = 0; i < this.prices.length; i++) { 
             totalPrice += this.prices[i].amount;
