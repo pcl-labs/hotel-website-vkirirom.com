@@ -61,9 +61,9 @@
               </v-flex>
             </v-layout>
             <v-flex v-if="resort.description" style="height:100%" class="mt-3">
-              <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
-                {{resort.description}}
-              </p>
+              <div class="description">
+                <vue-markdown>{{resort.description}}</vue-markdown>
+              </div>
             </v-flex>
             <v-flex v-if="resort.modules.hotel && resort.modules.hotel.gettingAround" style="height:100%;">
               <div class="description">
@@ -82,7 +82,7 @@
               <h2 style="font-size: 20px; line-height: 23px; color: #D8DADE;" class="mb-3 mt-3">
                 Spaces
               </h2>
-              <p style="font-size: 16px; line-height: 24px; color: #B9BCC1;">
+              <p class="normalText">
                 {{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.spaces[0]}}
               </p>
             </v-flex>
@@ -92,7 +92,7 @@
               Amenities
             </h2>
             <v-flex style="height:100%;">
-              <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;"> 
+              <span class="normalText"> 
                 {{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.roomTypes[0] && resort.modules.hotel.roomTypes[0].amenities[0]}}
               </span>
             </v-flex>
@@ -101,7 +101,7 @@
             <h2 style="font-size: 20px; color: #D8DADE; height:100%;" class="mb-3 mt-3">
               Rules
             </h2>
-            <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;">
+            <span class="normalText">
               {{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.rules[0]}}
             </span>
           </v-flex>
@@ -114,9 +114,9 @@
               <v-layout row wrap>
                 <v-flex xs12 v-if="resort.ctaText > 0">
                   <p class="subheading text-xs-center pb-2">
-                    <span style="font-size: 16px; color: #B9BCC1;">Starting from </span>
+                    <span class="normalText">Starting from </span>
                     <span style="font-weight: bold; font-size: 28px; color: #B9BCC1;">&dollar;{{ resort.ctaText }} </span>
-                    <span style="font-size: 16px; color: #B9BCC1;"> per night</span>
+                    <span class="normalText"> per night</span>
                   </p>
                   <!-- <Rating :rating="rating" :counter="counter"/> -->
                   <v-divider class="mb-4" style="background-color:#3D424E;"></v-divider>
@@ -236,12 +236,12 @@
                 </v-flex>
                 <v-flex xs12 style="margin-bottom:30px;" v-if="finalPrice > 0">
                   <v-layout row wrap v-for="price in prices" v-bind:key="price.id">
-                    <v-flex xs6 style="font-size: 16px; color: #B9BCC1;">{{formatDates(price.date)}}</v-flex>
-                    <v-flex xs6 style="font-size: 16px; color: #B9BCC1;" class="text-xs-right">${{price.amount}}</v-flex>
+                    <v-flex xs6 class="normalText">{{formatDates(price.date)}}</v-flex>
+                    <v-flex xs6 class="text-xs-right normalText">${{price.amount}}</v-flex>
                   </v-layout>
                   <v-layout row wrap>
-                    <v-flex XS6 style="font-size: 16px; color: #B9BCC1;">VAT (10%)</v-flex>
-                    <v-flex XS6 style="font-size: 16px; color: #B9BCC1;" class="text-xs-right">${{vat}}</v-flex>
+                    <v-flex XS6 class="normalText">VAT (10%)</v-flex>
+                    <v-flex XS6 class="text-xs-right normalText">${{vat}}</v-flex>
                   </v-layout>
                   <v-divider style="background-color:#3D424E; margin-top:20px; margin-bottom:10px;"></v-divider>
                   <v-layout row wrap>
@@ -311,7 +311,7 @@
           <v-flex xs12 v-if="resort.ctaText > 0">
             <p>
               <span style="font-size: 28px; color: #D8DADE;">&dollar;{{resort.ctaText}}+</span>
-              <span style="font-size: 16px; color: #B9BCC1;">/night</span>
+              <span class="normalText">/night</span>
             </p>
           </v-flex>
           <v-flex xs12 class="hidden-md-and-up">
@@ -340,7 +340,7 @@
               <v-flex xs11 v-if="resort.ctaText > 0">
                 <p class="text-xs-center" style="margin:0; margin-bottom:20px;">
                   <span style="font-weight: bold; font-size: 28px; color: #B9BCC1;"> &dollar;{{ resort.ctaText }}+</span>
-                  <span style="font-size: 16px; color: #B9BCC1;">/night</span>
+                  <span class="normalText">/night</span>
                 </p>
               </v-flex>
               <v-flex xs12>
@@ -458,12 +458,12 @@
               </v-flex>
               <v-flex xs12 style="margin-bottom:30px;" v-if="finalPrice > 0">
                 <v-layout row wrap v-for="price in prices" v-bind:key="price.id">
-                  <v-flex xs6 style="font-size: 16px; color: #B9BCC1;">{{formatDates(price.date)}}</v-flex>
-                  <v-flex xs6 style="font-size: 16px; color: #B9BCC1;" class="text-xs-right">${{price.amount}}</v-flex>
+                  <v-flex xs6 class="normalText">{{formatDates(price.date)}}</v-flex>
+                  <v-flex xs6 class="text-xs-right normalText">${{price.amount}}</v-flex>
                 </v-layout>
                 <v-layout row wrap>
-                  <v-flex XS6 style="font-size: 16px; color: #B9BCC1;">VAT (10%)</v-flex>
-                  <v-flex XS6 style="font-size: 16px; color: #B9BCC1;" class="text-xs-right">${{vat}}</v-flex>
+                  <v-flex XS6 class="normalText">VAT (10%)</v-flex>
+                  <v-flex XS6 class="text-xs-right normalText">${{vat}}</v-flex>
                 </v-layout>
                 <v-divider style="background-color:#3D424E; margin-top:20px; margin-bottom:10px;"></v-divider>
                 <v-layout row wrap>
@@ -719,7 +719,9 @@ export default {
       transform: scale(1.1);
     }
   }
-
+  .normalText{
+    font-size: 16px; color: #B9BCC1;
+  }
   @-webkit-keyframes autofill {
       to {
           color: white;
