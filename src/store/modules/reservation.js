@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
 export default {
-  nampespaced:true,
+  namespaced:true,
   state:{
     dateOne: '',
     dateTwo: '',
