@@ -597,8 +597,6 @@ export default {
 
       // states
       dateFormat: 'ddd, D MMM',
-      dateOne: '',
-      dateTwo: '',
 
       slug: this.$route.params.id,
 
@@ -674,6 +672,24 @@ export default {
         this.vat= this.vat.toFixed(2);
         this.finalPrice=totalPrice.toFixed(2);
       });
+    }
+  },
+  computed:{
+    dateOne:{
+      get(){
+        return this.$store.getters["reservation/dateOne"];
+      },
+      set(value){
+        this.$store.commit('reservation/updateDateOne', value);
+      }
+    },
+    dateTwo:{
+      get(){
+        return this.$store.getters["reservation/dateTwo"];
+      },
+      set(value){
+        this.$store.commit('reservation/updateDateTwo', value);
+      }
     }
   },
   created() {

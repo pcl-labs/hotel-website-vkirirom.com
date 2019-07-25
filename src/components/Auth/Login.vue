@@ -106,7 +106,7 @@ export default {
         return this.$store.getters["auth/email"];
       },
       set(value){
-        this.$store.commit('auth/updateEmail', value)
+        this.$store.commit('auth/updateEmail', value);
       }
     },
     password:{
@@ -114,7 +114,7 @@ export default {
         return this.$store.getters["auth/password"];
       },
       set(value){
-        this.$store.commit('auth/updatePassword', value)
+        this.$store.commit('auth/updatePassword', value);
       }
     }
   }
