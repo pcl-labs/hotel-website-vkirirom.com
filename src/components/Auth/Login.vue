@@ -1,6 +1,6 @@
 <template>
   <v-form name="Login" v-model="valid">
-    <v-container grid-list-md>      
+    <v-container class="login-container" grid-list-md>      
       <v-layout row wrap class="ml-4 mr-4">
         <v-flex xs12 class="headerText" text-xs-center>Log in with</v-flex>
         <v-flex xs6>
@@ -164,5 +164,9 @@ export default {
   input:-webkit-autofill {
       -webkit-animation-name: autofill;
       -webkit-animation-fill-mode: both;
+  }
+
+  .login-container {
+    max-width: none;
   }
 </style>

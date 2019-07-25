@@ -321,19 +321,16 @@ input:-webkit-autofill {
   }
 }
 
-@media only screen and (max-width: 600px) {
-  .container {
+.container {
+  @media only screen and (max-width: 600px) {
     max-width: 292px;
   }
-}
-@media only screen and (min-width: 768px) {
-  .container {
+  @media only screen and (min-width: 768px) {
     max-width: 600px;
   }
-}
-@media only screen and (min-width: 1024px) {
-  .container {
+  @media only screen and (min-width: 1024px) {
     max-width: 900px;
   }
 }
+</style>
 </style>
