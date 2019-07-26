@@ -267,10 +267,6 @@ export default {
 
       slug: this.$route.params.id,
 
-      prices: [],
-
-      finalPrice: "",
-      vat: "",
       bedType: { count: "", type: "" }
     };
   },
@@ -299,7 +295,16 @@ export default {
       set(value) {
         this.$store.commit("reservation/updateDateTwo", value);
       }
-    }
+    },
+    prices() {
+      return this.$store.getters["reservation/prices"];
+    },
+    finalPrice() {
+      return this.$store.getters["reservation/finalPrice"];
+    },
+    vat() {
+      return this.$store.getters["reservation/vat"].toFixed(2);
+    },
   },
   methods: {
     formatDates,

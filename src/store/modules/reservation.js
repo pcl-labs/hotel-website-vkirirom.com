@@ -61,6 +61,9 @@ export default {
     },
     dateTwo(state) {
       return state.dateTwo;
+    },
+    prices(state) {
+      return state.prices;
     }
   }
 };
