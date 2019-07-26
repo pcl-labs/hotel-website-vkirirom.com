@@ -164,6 +164,7 @@
       </v-flex>
       <v-flex xs12>
         <v-textarea
+          v-model="message"
           outline
           hide-details
           dark
@@ -229,8 +230,10 @@
 <script>
 import { formatDates } from "@/helpers.js";
 import format from "date-fns/format";
+import { debounce } from "lodash-es";
 const Login = () => import("@/components/Auth/Login.vue");
 const SignUp = () => import("@/components/Auth/SignUp.vue");
+const TEXTFIELDS_DEBOUNCE_TIME = 200;
 
 export default {
   name: "reservation-form-desktop",
@@ -256,17 +259,12 @@ export default {
         v => (v || "").indexOf(" ") < 0 || "No spaces are allowed"
       ],
       dateRules: [v => !!v || "Dates are required"],
-      name: "",
-      email: "",
-      phone: "",
 
       bookDialog: false,
       auth1: false,
       auth2: false,
 
       slug: this.$route.params.id,
-
-      bedType: { count: "", type: "" }
     };
   },
   props: {
@@ -311,7 +309,47 @@ export default {
       set(value) {
         this.$store.commit("reservation/updateTransportation", value);
       }
-    }
+    },
+    message: {
+      get() {
+        return this.$store.getters["reservation/message"];
+      },
+      set: debounce(function(value) {
+        this.$store.commit("reservation/updateMessage", value);
+      }, TEXTFIELDS_DEBOUNCE_TIME)
+    },
+    name: {
+      get() {
+        return this.$store.getters["reservation/name"];
+      },
+      set: debounce(function(value) {
+        this.$store.commit("reservation/updateName", value);
+      }, TEXTFIELDS_DEBOUNCE_TIME)
+    },
+    email: {
+      get() {
+        return this.$store.getters["reservation/email"];
+      },
+      set: debounce(function(value) {
+        this.$store.commit("reservation/updateEmail", value);
+      }, TEXTFIELDS_DEBOUNCE_TIME)
+    },
+    phone: {
+      get() {
+        return this.$store.getters["reservation/phone"];
+      },
+      set: debounce(function(value) {
+        this.$store.commit("reservation/updatePhone", value);
+      }, TEXTFIELDS_DEBOUNCE_TIME)
+    },
+    bedType: {
+      get() {
+        return this.$store.getters["reservation/bedType"];
+      },
+      set(value) {
+        this.$store.commit("reservation/updateBedType", value);
+      }
+    },
   },
   methods: {
     formatDates,

@@ -4,6 +4,11 @@ export default {
   namespaced: true,
   state: {
     transportation: false,
+    message: "",
+    name: "",
+    email: "",
+    phone: "",
+    bedType: { count: "", type: "" },
     dateOne: "",
     dateTwo: "",
     vat: "",
@@ -28,7 +33,22 @@ export default {
     },
     updateTransportation(state, payload) {
       state.transportation = payload;
-    }
+    },
+    updateMessage(state, payload) {
+      state.message = payload;
+    },
+    updateName(state, payload) {
+      state.name = payload;
+    },
+    updateEmail(state, payload) {
+      state.email = payload;
+    },
+    updatePhone(state, payload) {
+      state.phone = payload;
+    },
+    updateBedType(state, payload) {
+      state.bedType = payload;
+    },
   },
   actions: {
     getPrices(context, { roomTypeId, dateOne, dateTwo }) {
@@ -71,6 +91,21 @@ export default {
     },
     transportation(state) {
       return state.transportation;
+    },
+    message(state) {
+      return state.message;
+    },
+    name(state) {
+      return state.name;
+    },
+    email(state) {
+      return state.email;
+    },
+    phone(state) {
+      return state.phone;
+    },
+    bedType(state) {
+      return state.bedType;
     },
   }
 };
