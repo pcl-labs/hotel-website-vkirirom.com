@@ -1,6 +1,6 @@
 <template>
   <v-form name="Register" v-model="valid">
-    <v-container grid-list-md>      
+    <v-container class="signup-container" grid-list-md>      
       <v-layout row wrap class="ml-4 mr-4">
         <v-flex xs12 class="headerText" text-xs-center>Sign up with</v-flex>
         <v-flex xs6>
@@ -163,5 +163,9 @@ export default {
   input:-webkit-autofill {
       -webkit-animation-name: autofill;
       -webkit-animation-fill-mode: both;
+  }
+
+  .signup-container {
+    max-width: none;
   }
 </style>
