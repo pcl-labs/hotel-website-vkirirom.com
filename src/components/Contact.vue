@@ -195,7 +195,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .v-input__slot{
     margin: 0;
     height: 55px;
@@ -208,18 +208,18 @@ export default {
     margin:0;
     padding:0;
     background-color: #191C21;
-  }
-  .card h2{
-    font-size: 20px;
-    color: #D8DADE;
-    margin-bottom:15px;
-  }
-  .card p{
-    font-size: 14px;
-    color: #B9BCC1;
-  }
-  .card a{
-    color: #B9BCC1;
+    h2{
+      font-size: 20px;
+      color: #D8DADE;
+      margin-bottom:15px;
+    }
+    p{
+      font-size: 14px;
+      color: #B9BCC1;
+    }
+    a{
+      color: #B9BCC1;
+    }
   }
   input:focus, textarea:focus { 
     border-color: 1px solid #3D424E !important;

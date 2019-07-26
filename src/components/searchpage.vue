@@ -65,17 +65,6 @@ export default {
   html {
     scroll-behavior: smooth;
   }
-  .v-carousel__controls{
-  background: linear-gradient(0deg, #191C21 0%, rgba(25, 28, 33, 0) 50%);
-    .v-btn__content{
-      margin: 0;
-      padding: 0;
-    }
-    .v-icon{
-      font-size: 7px !important;
-      color: white !important;
-    }
-  }
   .card{
     box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;
     height: 270px;
