@@ -87,6 +87,20 @@ export default {
   .container{
     padding:0;
   }
+  .headerText{
+    margin-top:20px; 
+    margin-bottom:30px;
+    p{
+      font-size: 16px;
+      line-height: 22px;
+      color: #B9BCC1;
+    }
+
+    h1{
+      color: #FFFFFF;
+      margin-bottom: 20px;
+    }
+  }
   @media only screen and (max-width: 600px) {
     .container{
       max-width: 292px;
