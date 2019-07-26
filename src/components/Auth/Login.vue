@@ -1,6 +1,6 @@
 <template>
   <v-form name="Login" v-model="valid">
-    <v-container grid-list-md>      
+    <v-container class="login-container" grid-list-md>      
       <v-layout row wrap class="ml-4 mr-4">
         <v-flex xs12 class="headerText" text-xs-center>Log in with</v-flex>
         <v-flex xs6>
@@ -106,7 +106,7 @@ export default {
         return this.$store.getters["auth/email"];
       },
       set(value){
-        this.$store.commit('auth/updateEmail', value)
+        this.$store.commit('auth/updateEmail', value);
       }
     },
     password:{
@@ -114,7 +114,7 @@ export default {
         return this.$store.getters["auth/password"];
       },
       set(value){
-        this.$store.commit('auth/updatePassword', value)
+        this.$store.commit('auth/updatePassword', value);
       }
     }
   }
@@ -164,5 +164,9 @@ export default {
   input:-webkit-autofill {
       -webkit-animation-name: autofill;
       -webkit-animation-fill-mode: both;
+  }
+
+  .login-container {
+    max-width: none;
   }
 </style>
