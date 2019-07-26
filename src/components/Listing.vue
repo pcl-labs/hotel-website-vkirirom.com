@@ -325,9 +325,9 @@ input:-webkit-autofill {
     font-size: 16px;
     padding-right: 10px;
   }
-}
-
-.container {
+  .container{
+    padding:0;
+  }
   @media only screen and (max-width: 600px) {
     max-width: 292px;
   }
