@@ -52,25 +52,25 @@
                 style="font-size: 16px; color: #B9BCC1; margin-top:20px; margin-bottom:20px;"
               >Published July 5, 2019</v-flex>
               <v-flex
-                v-if="resort.modules.hotel && resort.modules.hotel.capacity"
+                v-if="getResortHotel().capacity"
                 style="font-size: 16px; color: #B9BCC1; margin-top:20px; margin-bottom:20px;"
               >
                 <v-icon size="30" color="#B9BCC1" style="margin-bottom:-5px;">supervisor_account</v-icon>
-                {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.capacity }} guests
+                {{ getResortHotel().capacity }} guests
               </v-flex>
               <v-flex
-                v-if="resort.modules.hotel && resort.modules.hotel.roomTypes.length>0 && resort.modules.hotel.roomTypes[0].beds.length>0"
+                v-if="getHotelRoomBeds({roomType: 0}).length > 0"
                 style="font-size: 16px; color: #B9BCC1; margin-top:20px; margin-bottom:20px;"
               >
                 <v-icon size="30" color="#B9BCC1" style="margin-bottom:-5px;">hotel</v-icon>
                 <span>
-                  {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.roomTypes && resort.modules.hotel.roomTypes[0].beds && resort.modules.hotel.roomTypes[0].beds[0].count }}
-                  {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.roomTypes && resort.modules.hotel.roomTypes[0].beds && resort.modules.hotel.roomTypes[0].beds[0].type }}
+                  {{ getRoomBed({roomType: 0, bed: 0}).count }}
+                  {{ getRoomBed({roomType: 0, bed: 0}).type }}
                 </span>
-                <span v-if="resort.modules.hotel.roomTypes[0].beds.length> 1">
+                <span v-if="getHotelRoomBeds({roomType: 0}).length > 1">
                   /
-                  {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.roomTypes && resort.modules.hotel.roomTypes[0].beds && resort.modules.hotel.roomTypes[0].beds[1].count }}
-                  {{ resort && resort.modules && resort.modules.hotel && resort.modules.hotel.roomTypes && resort.modules.hotel.roomTypes[0].beds && resort.modules.hotel.roomTypes[0].beds[1].type }}
+                  {{ getRoomBed({roomType: 0, bed: 1}).count }}
+                  {{ getRoomBed({roomType: 0, bed: 1}).type }}
                 </span>
                 <span>Bed(s)</span>
               </v-flex>
@@ -80,57 +80,40 @@
                 <vue-markdown>{{resort.description}}</vue-markdown>
               </div>
             </v-flex>
-            <v-flex
-              v-if="resort.modules.hotel && resort.modules.hotel.gettingAround"
-              style="height:100%;"
-            >
+            <v-flex v-if="getResortHotel().gettingAround" style="height:100%;">
               <div class="description">
-                <vue-markdown>{{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.gettingAround}}</vue-markdown>
+                <vue-markdown>{{getResortHotel().gettingAround}}</vue-markdown>
               </div>
             </v-flex>
-            <v-flex
-              xs12
-              v-if="resort.modules.hotel && resort.modules.hotel.location"
-              style="height:100%;"
-            >
+            <v-flex xs12 v-if="getResortHotel().location" style="height:100%;">
               <h2
                 style="font-size: 20px; line-height: 23px; color: #D8DADE;"
                 class="mb-3 mt-3"
               >Location</h2>
               <p>
-                <a :href="resort.modules.hotel.location" style="color: #B9BCC1;">Get Directions</a>
+                <a :href="getResortHotel().location" style="color: #B9BCC1;">Get Directions</a>
               </p>
             </v-flex>
-            <v-flex
-              v-if="resort.modules.hotel && resort.modules.hotel.spaces && resort.modules.hotel.spaces.length > 0"
-            >
+            <v-flex v-if="getResortHotelSpaces().length > 0">
               <h2
                 style="font-size: 20px; line-height: 23px; color: #D8DADE;"
                 class="mb-3 mt-3"
               >Spaces</h2>
-              <p
-                class="normalText"
-              >{{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.spaces[0]}}</p>
+              <p class="normalText">{{getResortHotelSpaces()[0]}}</p>
             </v-flex>
           </v-flex>
           <v-flex
             xs12
-            v-if="resort.modules.hotel && resort.modules.hotel.roomTypes.length>0 && resort.modules.hotel.roomTypes[0].amenities.length >0"
+            v-if="getResortRoom({roomType: 0}).amenities.length > 0"
           >
             <h2 style="font-size: 20px; color: #D8DADE;" class="mb-3 mt-3">Amenities</h2>
             <v-flex style="height:100%;">
-              <span
-                class="normalText"
-              >{{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.roomTypes[0] && resort.modules.hotel.roomTypes[0].amenities[0]}}</span>
+              <span class="normalText">{{getResortRoom({roomType: 0}).amenities[0]}}</span>
             </v-flex>
           </v-flex>
-          <v-flex
-            v-if="resort.modules.hotel && resort.modules.hotel.rules && resort.modules.hotel.rules.length >0"
-          >
+          <v-flex v-if="getResortHotelRules().length > 0">
             <h2 style="font-size: 20px; color: #D8DADE; height:100%;" class="mb-3 mt-3">Rules</h2>
-            <span
-              class="normalText"
-            >{{resort && resort.modules && resort.modules.hotel && resort.modules.hotel.rules[0]}}</span>
+            <span class="normalText">{{getResortHotelRules()[0]}}</span>
           </v-flex>
           <div style="margin:80px;"></div>
         </v-flex>
@@ -174,9 +157,9 @@ const ReservationFormMobile = () =>
   import("@/components/ReservationFormMobile.vue");
 
 const defaultResort = {
-  title: '...',
-  description: ''
-}
+  title: "...",
+  description: ""
+};
 
 export default {
   components: {
@@ -211,6 +194,29 @@ export default {
       this.$store.dispatch("resort/getItemBySlug", this.slug).then(() => {
         this.$emit("updateHead");
       });
+    },
+    getHotelRoomBeds({ roomType }) {
+      const resortRoomType = this.getResortRoom({ roomType });
+      return resortRoomType && resortRoomType.beds;
+    },
+    getRoomBed({ roomType, bed }) {
+      const beds = this.getHotelRoomBeds({ roomType });
+      return beds && beds[bed];
+    },
+    getResortRoom({ roomType }) {
+      const hotel = this.getResortHotel();
+      return hotel && hotel.roomTypes && hotel.roomTypes[roomType];
+    },
+    getResortHotelRules() {
+      const hotel = this.getResortHotel();
+      return hotel.rules || [];
+    },
+    getResortHotelSpaces() {
+      const hotel = this.getResortHotel();
+      return hotel.spaces || [];
+    },
+    getResortHotel() {
+      return this.resort && this.resort.modules && this.resort.modules.hotel;
     }
   },
   computed: {
