@@ -5,18 +5,18 @@ export default {
   state: {},
   mutations: {
     addItem(state, payload) {
-      Vue.set(state, payload.slug, payload)
+      Vue.set(state, payload.slug, payload);
     }
   },
   actions: {
     getItemBySlug(context, slug) {
-      return Vue.http.get("https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/" + slug).then(function(data) {
+      return Vue.http.get("https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/" + slug).then(data => {
         context.commit("addItem", data.body);
       });
     }
   },
   getters: {
-    getItemBySlug: (state) => slug => {
+    getItemBySlug: state => slug => {
       return state[slug];
     }
   }

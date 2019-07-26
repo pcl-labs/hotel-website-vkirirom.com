@@ -125,7 +125,7 @@
           @date-two-selected="val => { dateTwo = val }"
           style="left:-70%; top:60%;"
           :show-shortcuts-menu-trigger="false"
-          @apply="computePrice(dateOne, dateTwo)"
+          @apply="getPrices(dateOne, dateTwo)"
         />
       </v-flex>
       <v-flex
@@ -227,7 +227,7 @@
 </template>
 
 <script>
-import { computePrice, formatDates } from "@/helpers.js";
+import { formatDates } from "@/helpers.js";
 import format from "date-fns/format";
 const Login = () => import("@/components/Auth/Login.vue");
 const SignUp = () => import("@/components/Auth/SignUp.vue");
@@ -267,7 +267,7 @@ export default {
 
       slug: this.$route.params.id,
 
-      prices: [{}],
+      prices: [],
 
       finalPrice: "",
       vat: "",
@@ -302,21 +302,17 @@ export default {
     }
   },
   methods: {
-    computePrice() {
-      let totalPrice = 0;
-      let i;
-      computePrice(this.resort, this.dateOne, this.dateTwo).then(data => {
-        this.prices = data.body;
-        for (i = 0; i < this.prices.length; i++) {
-          totalPrice += this.prices[i].amount;
-        }
-        this.vat = totalPrice * 0.1;
-        totalPrice = totalPrice + this.vat;
-        this.vat = this.vat.toFixed(2);
-        this.finalPrice = totalPrice.toFixed(2);
+    formatDates,
+    getPrices() {
+      const dateOne = this.dateOne;
+      const dateTwo = this.dateTwo;
+      const roomTypeId = this.resort.modules.hotel.roomTypes[0].id;
+      this.$store.dispatch("reservation/getPrices", {
+        roomTypeId,
+        dateOne,
+        dateTwo
       });
-    },
-    formatDates
+    }
   }
 };
 </script>

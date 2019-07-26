@@ -1,51 +1,66 @@
-import Vue from 'vue'
+import Vue from "vue";
 
 export default {
-  namespaced:true,
-  state:{
-    dateOne: '',
-    dateTwo: '',
-    vat: '',
-    finalPrice: '',
-    prices: [{
+  namespaced: true,
+  state: {
+    dateOne: "",
+    dateTwo: "",
+    vat: "",
+    finalPrice: "",
+    prices: []
+  },
+  mutations: {
+    updateDateOne(state, payload) {
+      state.dateOne = payload;
+    },
+    updateDateTwo(state, payload) {
+      state.dateTwo = payload;
+    },
+    updateVat(state, payload) {
+      state.vat = payload;
+    },
+    updateFinalPrice(state, payload) {
+      state.finalPrice = payload;
+    },
+    updatePrices(state, payload) {
+      state.prices = payload;
+    }
+  },
+  actions: {
+    getPrices(context, { roomTypeId, dateOne, dateTwo }) {
+      return Vue.http
+        .get(
+          `https://stagingapi.whynot.earth/api/v0/roomtypes/${roomTypeId}/prices?startDate=${dateOne}&endDate=${dateTwo}`
+        )
+        .then(data => {
+          let totalPrice = 0;
+          const prices = data.body;
+          for (let i = 0; i < prices.length; i++) {
+            totalPrice += prices[i].amount;
+          }
+          const vat = totalPrice * 0.1;
+          totalPrice = totalPrice + vat;
+          // vat = vat.toFixed(2);
+          const finalPrice = totalPrice.toFixed(2);
 
-    }],
-  },
-  getters:{
-    vat: state => {
-      return state.vat
-    },
-    finalPrice: state => {
-      return state.finalPrice
-    },
-    dateOne: state => {
-      return state.dateOne
-    },
-    dateTwo: state => {
-      return state.dateTwo
+          context.commit("updatePrices", prices);
+          context.commit("updateVat", vat);
+          context.commit("updateFinalPrice", finalPrice);
+        });
     }
   },
-  mutations:{
-    updateDateOne(state, dateOne) {
-      state.dateOne = dateOne
+  getters: {
+    vat(state) {
+      return state.vat;
     },
-    updateDateTwo(state, dateTwo) {
-      state.dateTwo = dateTwo
+    finalPrice(state) {
+      return state.finalPrice;
     },
-    computePrice: state => {
-      state.prices.for( price => {
-        state.finalprice+=price.amount
-      })
-      state.vat=state.finalPrice*0.1,
-      state.vat=state.vat.toFixed(2),
-      state.finalPrice=state.finalPrice.toFixed(2)
-    }
-  },
-  actions:{
-    getPrices(context){
-      Vue.http.get('https://stagingapi.whynot.earth/api/v0/roomtypes/' + context.state.resort.modules.hotel.roomTypes[0].id + '/prices?startDate=' + context.state.dateOne + '&endDate=' + context.state.dateTwo).then(function(data){
-        context.state.prices=data.body;
-      })
+    dateOne(state) {
+      return state.dateOne;
+    },
+    dateTwo(state) {
+      return state.dateTwo;
     }
   }
-}
+};
