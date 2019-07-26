@@ -20,6 +20,9 @@ export default {
   .container{
     padding: 0;
   }
+  .container{
+    padding:0;
+  }
   @media only screen and (max-width: 600px) {
     .container{
       max-width: 292px;

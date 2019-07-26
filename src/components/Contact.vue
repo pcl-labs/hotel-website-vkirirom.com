@@ -239,11 +239,14 @@ export default {
       -webkit-animation-name: autofill;
       -webkit-animation-fill-mode: both;
   }
+  .container{
+    padding:0;
+  }
   @media only screen and (max-width: 600px) {
     .container{
       max-width: 292px;
     }
-    }
+  }
   @media only screen and (min-width: 768px) {
     .container{
       max-width: 600px;

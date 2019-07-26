@@ -32,7 +32,7 @@ export default {
     scroll-behavior: smooth;
   }
   .v-carousel__controls{
-    background: transparent;
+    background: transparent !important;
     .v-btn__content{
       margin: 0;
       padding: 0;

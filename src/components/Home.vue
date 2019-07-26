@@ -17,7 +17,7 @@
       </div>
     </v-card>
     <v-container grid-list-md>
-      <h2 class="mb-4 listTitle">Accommodation</h2>
+      <h2 class="mb-4 mt-4 listTitle">Accommodation</h2>
       <v-layout row wrap class="cardRow">
         <v-flex xs12 sm6 md4 lg4 v-for="accommodation in accommodations" v-bind:key="accommodation.id">
           <v-card dark height="270px" color="#191C21" class="mb-4 card" :to="'/listing/'+ accommodation.slug" flat>
@@ -201,7 +201,7 @@
       </v-layout>
       <v-layout row wrap justify-space-around justify-center>
         <v-flex xs12 sm4 md4 lg4>
-          <v-btn to="/search/ecotourism/" block large outline dark class="showAllbtn">
+          <v-btn to="/search/ecotourism/" block large outline dark class="showAllbtn mb-4">
             Learn More <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
           </v-btn>
         </v-flex>
@@ -257,10 +257,12 @@ export default {
   background-repeat: no-repeat;
 }
 .cardRow{
-  height: 305px;
+  height: 300px;
   overflow: hidden;
 }
-
+.container{
+  padding:0;
+}
 @media only screen and (max-width: 600px) {
   .container{
     max-width: 292px;
@@ -268,12 +270,12 @@ export default {
 }
 @media only screen and (min-width: 768px) {
   .container{
-    max-width: 650px;
+    max-width: 600px;
   }
 }
 @media only screen and (min-width: 1024px) {
   .container{
-    max-width: 950px;
+    max-width: 900px;
   }
 }
 
