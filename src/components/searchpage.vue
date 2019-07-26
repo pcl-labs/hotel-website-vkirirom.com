@@ -1,13 +1,13 @@
 <template>
   <v-container-fluid>
     <v-container grid-list-md style="min-height:100vh;">
-      <v-flex xs12 style="margin-top:20px; margin-bottom:20px;">
-        <h1 style="color: #FFFFFF;">Results for {{id}}</h1>
+      <v-flex xs12 class="headerText">
+        <h1>Results for {{id}}</h1>
         <v-flex xs12 v-if="id=='food'">
-          <p style="font-size: 16px; line-height: 22px; color: #B9BCC1; margin-top:30px;">
+          <p>
             “Best lunch spot in Kirirom” (Lonely Planet Guidebook).
             <br>vKirirom’s iconic open-air restaurant serves an array of international dishes to complement its core traditional Khmer food. The restaurant strives to create wonderful healthy food that is locally sourced from local farmers or grown in vKirirom’s own organic garden.
-            <p style="font-size: 16px; line-height: 22px; color: #B9BCC1;">Book your stay at vKirirom today and enjoy our array of international food!
+            <p>Book your stay at vKirirom today and enjoy our array of international food!
           </p>
         </v-flex>
       </v-flex>
@@ -79,6 +79,20 @@ export default {
   .card{
     box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;
     height: 270px;
+  }
+  .headerText{
+    margin-top:20px; 
+    margin-bottom:30px;
+    p{
+      font-size: 16px;
+      line-height: 22px;
+      color: #B9BCC1;
+    }
+
+    h1{
+      color: #FFFFFF;
+      margin-bottom: 20px;
+    }
   }
   @media only screen and (max-width: 600px) {
     .container{

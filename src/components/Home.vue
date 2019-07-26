@@ -290,29 +290,50 @@ export default {
 }
 
 .menubtn{
-  box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; text-transform:capitalize;
+  box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+  text-transform:capitalize;
   margin: 0;
 }
 .showAllbtn{
-  border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; max-width:340px; text-transform:capitalize;
+  border: 1px solid #FFFFFF;
+  box-sizing: border-box;
+  box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+  max-width:340px;
+  text-transform:capitalize;
 }
 .headerh1{
-  color: #FFFFFF; bottom:20px; position:absolute; font-family: 'Oswald', sans-serif; font-size: 45px;
+  color: #FFFFFF;
+  bottom:20px;
+  position:absolute;
+  font-family: 'Oswald', sans-serif;
+  font-size: 45px;
 }
 .headerh1mob{
-  color: #FFFFFF; bottom:20px; position:absolute; font-family: 'Oswald', sans-serif; font-size: 35px;
+  color: #FFFFFF;
+  bottom:20px;
+  position:absolute; 
+  font-family: 'Oswald', sans-serif;
+  font-size: 35px;
 }
 .card{
-  box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;
+  box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
 }
 .cardTitle{
-  color: #FFFFFF; font-size: 17px; line-height: 27px;
+  color: #FFFFFF;
+  font-size: 17px;
+  line-height: 27px;
 }
 .cardSubtitle{
-  font-size: 16px; line-height: 22px; color: #B9BCC1;
+  font-size: 16px;
+  line-height: 22px;
+  color: #B9BCC1;
 }
 .listTitle{
-  color: #D8DADE; font-size: 28px;
+  color: #D8DADE;
+  font-size: 28px;
 }
 html {
   scroll-behavior: smooth;
