@@ -104,11 +104,11 @@
           </v-flex>
           <v-flex
             xs12
-            v-if="getResortRoom({roomType: 0}).amenities.length > 0"
+            v-if="((getResortRoom({roomType: 0}) || {}).amenities || []).length > 0"
           >
             <h2 style="font-size: 20px; color: #D8DADE;" class="mb-3 mt-3">Amenities</h2>
             <v-flex style="height:100%;">
-              <span class="normalText">{{getResortRoom({roomType: 0}).amenities[0]}}</span>
+              <span class="normalText">{{(getResortRoom({roomType: 0}).amenities || [])[0]}}</span>
             </v-flex>
           </v-flex>
           <v-flex v-if="getResortHotelRules().length > 0">
@@ -197,15 +197,15 @@ export default {
     },
     getHotelRoomBeds({ roomType }) {
       const resortRoomType = this.getResortRoom({ roomType });
-      return resortRoomType && resortRoomType.beds;
+      return resortRoomType && resortRoomType.beds || [];
     },
     getRoomBed({ roomType, bed }) {
       const beds = this.getHotelRoomBeds({ roomType });
-      return beds && beds[bed];
+      return beds && beds[bed] || {};
     },
     getResortRoom({ roomType }) {
       const hotel = this.getResortHotel();
-      return hotel && hotel.roomTypes && hotel.roomTypes[roomType];
+      return hotel && hotel.roomTypes && hotel.roomTypes[roomType] || {};
     },
     getResortHotelRules() {
       const hotel = this.getResortHotel();
@@ -216,7 +216,7 @@ export default {
       return hotel.spaces || [];
     },
     getResortHotel() {
-      return this.resort && this.resort.modules && this.resort.modules.hotel;
+      return this.resort && this.resort.modules && this.resort.modules.hotel || {};
     }
   },
   computed: {
