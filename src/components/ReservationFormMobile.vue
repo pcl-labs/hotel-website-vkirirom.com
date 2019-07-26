@@ -153,14 +153,14 @@
             v-if="resort.name=='accommodations' || resort.name=='events' || resort.name=='experiences'"
           >
             <v-checkbox
-              v-model="checkbox"
+              v-model="transportation"
               label="Do you need transportation?"
               color="#B9BCC1"
               dark
               style="margin:0; padding:0;"
               height="30px"
             ></v-checkbox>
-            <input hidden name="Transportation needed" :value="checkbox" />
+            <input hidden name="Transportation needed" :value="transportation" />
           </v-flex>
           <v-flex xs12 style="margin-bottom:30px;" v-if="finalPrice > 0">
             <v-layout row wrap v-for="price in prices" v-bind:key="price.id">
@@ -319,6 +319,14 @@ export default {
     vat() {
       return this.$store.getters["reservation/vat"].toFixed(2);
     },
+    transportation: {
+      get() {
+        return this.$store.getters["reservation/transportation"];
+      },
+      set(value) {
+        this.$store.commit("reservation/updateTransportation", value);
+      }
+    }
   },
   methods: {
     formatDates,

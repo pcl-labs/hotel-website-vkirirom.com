@@ -3,6 +3,7 @@ import Vue from "vue";
 export default {
   namespaced: true,
   state: {
+    transportation: false,
     dateOne: "",
     dateTwo: "",
     vat: "",
@@ -24,6 +25,9 @@ export default {
     },
     updatePrices(state, payload) {
       state.prices = payload;
+    },
+    updateTransportation(state, payload) {
+      state.transportation = payload;
     }
   },
   actions: {
@@ -64,6 +68,9 @@ export default {
     },
     prices(state) {
       return state.prices;
-    }
+    },
+    transportation(state) {
+      return state.transportation;
+    },
   }
 };
