@@ -325,16 +325,25 @@ input:-webkit-autofill {
     font-size: 16px;
     padding-right: 10px;
   }
+}
+.container{
+  padding-top: 30px;
+  padding-left: 0px;
+  padding-right: 0px;
+  // doing padding:0px or  0; or padding-bottom:0px or 0; creates an extra overflow scroll which is bad and should be avoided
+}
+@media only screen and (max-width: 600px) {
   .container{
-    padding:0;
-  }
-  @media only screen and (max-width: 600px) {
     max-width: 292px;
   }
-  @media only screen and (min-width: 768px) {
+}
+@media only screen and (min-width: 768px) {
+  .container{
     max-width: 600px;
   }
-  @media only screen and (min-width: 1024px) {
+}
+@media only screen and (min-width: 1024px) {
+  .container{
     max-width: 900px;
   }
 }

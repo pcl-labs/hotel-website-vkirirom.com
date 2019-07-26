@@ -76,6 +76,7 @@ export default {
     padding-top: 30px;
     padding-left: 0px;
     padding-right: 0px;
+    // doing padding:0px or  0; or padding-bottom:0px or 0; creates an extra overflow scroll which is bad and should be avoided
   }
   @media only screen and (max-width: 600px) {
     .container{

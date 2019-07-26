@@ -78,9 +78,9 @@ export default {
       line-height: 22px;
       color: #B9BCC1;
     }
-
     h1{
       color: #FFFFFF;
+      font-size: 28px;
       margin-bottom: 20px;
     }
   }
