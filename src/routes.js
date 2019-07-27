@@ -4,6 +4,8 @@ const Listing = () => import ('./components/Listing.vue')
 const thankYou = () => import ('./components/thankYou.vue')
 const Contact = () => import ('./components/Contact.vue')
 const Reservation = () => import ('./components/Reservation/Reservation.vue')
+const ReviewRules = () => import ('./components/Reservation/ReviewRules.vue')
+const ConfirmAndPay = () => import ('./components/Reservation/ConfirmAndPay.vue')
 
 export default[
   {
@@ -28,7 +30,17 @@ export default[
   },
   {
     path:'/reservation',
-    component: Reservation
+    component: Reservation,
+    children:[
+      {
+        path: 'reviewrules',
+        component: ReviewRules
+      },
+      {
+        path: 'confirmandpay',
+        component: ConfirmAndPay
+      }
+    ]
   },
   {
     path: '/nature-city-investment-cambodia-property',
