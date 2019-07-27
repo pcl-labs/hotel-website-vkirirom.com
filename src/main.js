@@ -14,6 +14,7 @@ import VueHead from 'vue-head'
 import VueMarkdown from 'vue-markdown'
 import {store} from './store/store'
 import './registerServiceWorker'
+import '@/mixins.global.js'
 
 // import './sitemapMiddleware'
 // import VueRouterSitemap from 'vue-router-sitemap'

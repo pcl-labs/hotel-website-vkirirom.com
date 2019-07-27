@@ -1,4 +1,9 @@
+import { BASE_API } from "@/constants/connection";
 import format from "date-fns/format";
+
+export function APIPath(path) {
+  return BASE_API + path
+}
 
 export function formatDates(dateOne, dateTwo) {
   const dateFormat = "ddd, D MMM";
