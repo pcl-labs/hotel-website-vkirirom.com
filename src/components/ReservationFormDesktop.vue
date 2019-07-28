@@ -13,10 +13,10 @@
     <v-layout row wrap>
       <v-flex xs12 v-if="resort.ctaText > 0">
         <p class="subheading text-xs-center pb-2">
-          <span class="normalText">Starting from</span>
+          <span class="normalText">Starting from </span>
           <span
             style="font-weight: bold; font-size: 28px; color: #B9BCC1;"
-          >&dollar;{{ resort.ctaText }}</span>
+          >&dollar;{{ resort.ctaText }} </span>
           <span class="normalText">per night</span>
         </p>
         <!-- <Rating :rating="rating" :counter="counter"/> -->

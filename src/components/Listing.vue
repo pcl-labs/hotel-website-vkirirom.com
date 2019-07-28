@@ -2,44 +2,44 @@
   <div v-if="resort && resort.id">
     <div class="pa-0 ma-0">
       <v-layout row flex class="pa-0 mx-0">
-        <v-flex class="pa-0 overflow-hidden hidden-sm-and-down" style="height:470px;">
-          <v-img class="image ma-0 pa-0" :src="resort.featuredImage"></v-img>
+        <v-flex class="pa-0 overflow-hidden hidden-sm-and-down">
+          <v-img class="image ma-0 pa-0" :src="resort.featuredImage" style="height:470px;"></v-img>
         </v-flex>
         <v-flex
           class="pa-0 ma-0 overflow-hidden hidden-sm-and-down"
           v-if="resort.images && resort.images.length>0"
           style="height:470px;"
         >
-          <v-layout row flex class="pa-0 ma-0 overflow-hidden" style="max-height:235px;">
+          <v-layout row flex class="pa-0 ma-0 overflow-hidden">
             <v-flex class="pa-0 overflow-hidden" v-if="resort.images.length > 0">
-              <v-img class="image ma-0 pa-0" :src="resort.images[0].url"></v-img>
+              <v-img class="image ma-0 pa-0" :src="resort.images[0].url" style="height:235px;"></v-img>
             </v-flex>
             <v-flex class="pa-0 overflow-hidden" v-if="resort.images.length > 2">
-              <v-img class="image" :src="resort.images[2].url"></v-img>
+              <v-img class="image" :src="resort.images[2].url" style="height:235px;"></v-img>
             </v-flex>
           </v-layout>
-          <v-layout row flex class="pa-0 ma-0 overflow-hidden" style="max-height:235px;">
+          <v-layout row flex class="pa-0 ma-0 overflow-hidden">
             <v-flex class="pa-0 overflow-hidden" v-if="resort.images.length > 1">
-              <v-img class="image" :src="resort.images[1].url"></v-img>
+              <v-img class="image" :src="resort.images[1].url" style="height:235px;"></v-img>
             </v-flex>
             <v-flex class="pa-0 overflow-hidden" v-if="resort.images.length > 3">
-              <v-img class="image" :src="resort.images[3].url"></v-img>
+              <v-img class="image" :src="resort.images[3].url" style="height:235px;"></v-img>
             </v-flex>
           </v-layout>
         </v-flex>
-        <v-flex xs12 class="hidden-md-and-up">
-          <v-carousel height="300px" hide-controls dark :cycle="false">
-            <!-- v-if="belltent.images.length > 0" is required to avoid the error "cannot read property 'url' of undefined. 
-            It is needed only when we want to iterate through an array of images, or nested elements.-->
-            <v-carousel-item :src="resort.featuredImage"></v-carousel-item>
-            <v-carousel-item
-              v-for="image in resort.images.slice(0,4)"
-              v-bind:key="image.url"
-              :src="image.url"
-            ></v-carousel-item>
-          </v-carousel>
-        </v-flex>
       </v-layout>
+      <v-flex xs12 class="hidden-md-and-up">
+        <v-carousel height="300px" hide-controls dark :cycle="false">
+          <!-- v-if="belltent.images.length > 0" is required to avoid the error "cannot read property 'url' of undefined. 
+          It is needed only when we want to iterate through an array of images, or nested elements.-->
+          <v-carousel-item :src="resort.featuredImage"></v-carousel-item>
+          <v-carousel-item
+            v-for="image in resort.images.slice(0,4)"
+            v-bind:key="image.url"
+            :src="image.url"
+          ></v-carousel-item>
+        </v-carousel>
+      </v-flex>
     </div>
     <v-container>
       <v-layout row wrap style="min-height: 100vh;">
