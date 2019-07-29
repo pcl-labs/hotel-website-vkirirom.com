@@ -47,7 +47,7 @@ export default {
     },
     ping(context){
       Vue.http.get('https://stagingapi.whynot.earth/api/v0/authentication/ping',{
-        Authorisation: "Bearer" + context.state.token
+        Authorisation: "Bearer" + "context.state.token"
       }).then(function(data){
         context.state.user = data.body;
       })

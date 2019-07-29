@@ -96,9 +96,13 @@ export default {
     }
   },
   methods:{
-    login(){
-      this.$store.dispatch('auth/login')
+    ping(){
+      this.$store.dispatch('auth/ping')
     },
+    login(){
+      this.$store.dispatch('auth/login'),
+      this.ping()
+    }
   },
   computed:{
     email:{

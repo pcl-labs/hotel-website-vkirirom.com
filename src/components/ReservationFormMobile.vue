@@ -162,7 +162,7 @@
             ></v-checkbox>
             <input hidden name="Transportation needed" :value="transportation" />
           </v-flex>
-          <v-flex xs12 style="margin-bottom:30px;" v-if="finalPrice > 0">
+          <v-flex xs12 style="margin-bottom:30px;" v-if="finalPrice > 0 && resort.categories[0].name=='accommodations'">
             <v-layout row wrap v-for="price in prices" v-bind:key="price.id">
               <v-flex xs6 class="normalText">{{formatDates(price.date)}}</v-flex>
               <v-flex xs6 class="text-xs-right normalText">${{price.amount}}</v-flex>
@@ -196,7 +196,23 @@
               no-resize
             ></v-textarea>
           </v-flex>
-          <v-dialog v-model="auth2" fullscreen hide-overlay transition="dialog-bottom-transition">
+          <v-flex xs12 v-if="resort.categories[0].name!='accommodations'">
+            <v-btn
+              block
+              color="#F7B947"
+              dark
+              class="text-capitalize font-weight-bold"
+              :ripple="false"
+              :disabled="!valid"
+              style="height:74px;"
+              type="submit"
+            >
+              Reserve Now
+              <v-spacer></v-spacer>
+              <v-icon>keyboard_arrow_right</v-icon>
+            </v-btn>
+          </v-flex>
+          <v-dialog v-model="auth2" fullscreen hide-overlay v-if="!isAuthenticated && resort.categories[0].name=='accommodations'" transition="dialog-bottom-transition">
             <template v-slot:activator="{ on }">
               <v-btn
                 block
