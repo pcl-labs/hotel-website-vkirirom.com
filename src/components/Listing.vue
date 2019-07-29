@@ -44,7 +44,7 @@
     <v-container>
       <v-layout row wrap style="min-height: 100vh;">
         <v-flex xs12 md6>
-          <h1 style="color: #FFFFFF; margin-top:30px;">{{resort.title}}</h1>
+          <h1 style="color: #D7D9DD; margin-top:30px;">{{resort.title}}</h1>
           <v-flex xs12>
             <v-layout row wrap style="height:100%">
               <v-flex
@@ -115,6 +115,7 @@
             <h2 style="font-size: 20px; color: #D8DADE; height:100%;" class="mb-3 mt-3">Rules</h2>
             <span class="normalText">{{getResortHotelRules()[0]}}</span>
           </v-flex>
+          <v-btn to="/reservation/reviewrules">reserve</v-btn>
           <div style="margin:80px;"></div>
         </v-flex>
         <v-flex md6 class="hidden-sm-and-down">
@@ -221,7 +222,7 @@ export default {
   },
   computed: {
     resort() {
-      return this.$store.getters["resort/getItemBySlug"](this.slug);
+      return this.$store.getters["resort/getResort"];
     }
   },
   mounted() {

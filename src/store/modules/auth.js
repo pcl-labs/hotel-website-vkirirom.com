@@ -5,6 +5,9 @@ export default {
   state:{
     email: '',
     password: '',
+    token: '',
+    status: '',
+    user: {}
   },
   getters:{
     email: state => {
@@ -12,6 +15,9 @@ export default {
     },
     password: state => {
       return state.password
+    },
+    isAuthenticated: state => {
+      return state.user.isAuthenticated
     }
   },
   mutations:{
@@ -28,7 +34,7 @@ export default {
         email: context.state.email,
         password: context.state.password
       }).then(function(data){
-          console.log(data);
+        context.state.token = data.body;
       });
     },
     register(context){
@@ -36,8 +42,15 @@ export default {
         email: context.state.email,
         password: context.state.password
       }).then(function(data){
-          console.log(data);
+          context.state.token = data.body;
       });
+    },
+    ping(context){
+      Vue.http.get('https://stagingapi.whynot.earth/api/v0/authentication/ping',{
+        Authorisation: "Bearer" + context.state.token
+      }).then(function(data){
+        context.state.user = data.body;
+      })
     }
   },
 }

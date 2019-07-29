@@ -8,11 +8,11 @@
     <v-layout row wrap>
       <v-flex xs12 md6>
         <h2>
-          Villa Suite
+          {{resort.title}}
         </h2>
       </v-flex>
       <v-flex xs12 md6>
-        <v-img></v-img>
+        <v-img :src="resort.featuredImage"></v-img>
       </v-flex>
       <v-flex xs12>
         <v-divider></v-divider>
@@ -45,7 +45,11 @@
 
 <script>
 export default {
-
+  computed:{
+    resort() {
+      return this.$store.getters["resort/getResort"];
+    },
+  }
 }
 </script>
 

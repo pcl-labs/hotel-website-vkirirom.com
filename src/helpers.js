@@ -1,5 +1,6 @@
 import { BASE_API } from "@/constants/connection";
 import format from "date-fns/format";
+import { addDays } from "date-fns";
 
 export function APIPath(path) {
   return BASE_API + path
@@ -15,4 +16,21 @@ export function formatDates(dateOne, dateTwo) {
     formattedDates += " - " + format(dateTwo, dateFormat);
   }
   return formattedDates;
+};
+
+export function reviewDateMonth(date) {
+  const dateFormat = "MMM D";
+  let formattedDate = "";
+  if (date) {
+    formattedDate = format(date, dateFormat);
+  }
+  return formattedDate;
+}
+export function reviewDay(date) {
+  const dateFormat = "dddd";
+  let formattedDate = "";
+  if (date) {
+    formattedDate = format(date, dateFormat);
+  }
+  return formattedDate;
 }

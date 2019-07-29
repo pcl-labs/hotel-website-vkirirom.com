@@ -1,4 +1,5 @@
 import Vue from "vue";
+import { addDays } from "date-fns";
 
 export default {
   namespaced: true,
@@ -11,6 +12,7 @@ export default {
     bedType: { count: "", type: "" },
     dateOne: "",
     dateTwo: "",
+    checkOut: "",
     vat: "",
     finalPrice: "",
     prices: []
@@ -21,6 +23,7 @@ export default {
     },
     updateDateTwo(state, payload) {
       state.dateTwo = payload;
+      state.checkOut = addDays(payload, 1)
     },
     updateVat(state, payload) {
       state.vat = payload;
@@ -85,6 +88,9 @@ export default {
     },
     dateTwo(state) {
       return state.dateTwo;
+    },
+    checkOut(state) {
+      return state.checkOut;
     },
     prices(state) {
       return state.prices;

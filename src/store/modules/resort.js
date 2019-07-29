@@ -2,10 +2,12 @@ import Vue from "vue";
 
 export default {
   namespaced: true,
-  state: {},
+  state: {
+    resort:{}
+  },
   mutations: {
     addItem(state, payload) {
-      Vue.set(state, payload.slug, payload);
+      state.resort = payload
     }
   },
   actions: {
@@ -16,8 +18,8 @@ export default {
     }
   },
   getters: {
-    getItemBySlug: state => slug => {
-      return state[slug];
-    }
+    getResort(state){
+      return state.resort;
+    },
   }
 };

@@ -275,7 +275,7 @@ export default {
   },
   computed: {
     resort() {
-      return this.$store.getters["resort/getItemBySlug"](this.resortSlug);
+      return this.$store.getters["resort/getResort"];
     },
     dateOne: {
       get() {

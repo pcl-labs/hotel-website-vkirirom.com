@@ -71,7 +71,7 @@ export default {
     height: 270px;
   }
   .headerText{
-    margin-top:20px; 
+    margin-top:30px; 
     margin-bottom:30px;
     p{
       font-size: 16px;
@@ -79,7 +79,7 @@ export default {
       color: #B9BCC1;
     }
     h1{
-      color: #FFFFFF;
+      color: #D7D9DD;
       font-size: 28px;
       margin-bottom: 20px;
     }

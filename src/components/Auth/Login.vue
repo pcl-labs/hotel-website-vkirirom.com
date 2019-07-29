@@ -98,7 +98,7 @@ export default {
   methods:{
     login(){
       this.$store.dispatch('auth/login')
-    }
+    },
   },
   computed:{
     email:{
@@ -116,6 +116,9 @@ export default {
       set(value){
         this.$store.commit('auth/updatePassword', value);
       }
+    },
+    isAuthenticated(){
+      return this.$store.getters["auth/isAuthenticated"]
     }
   }
 }
