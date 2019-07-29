@@ -105,14 +105,12 @@
             >
               <template slot="selection" slot-scope="data">
                 {{data.item.beds[0].count}} {{data.item.beds[0].type}}
-                <span hidden>{{data.item.id}}</span>
               </template>
               <template slot="item" slot-scope="data">
                 <template>
                   <v-list-tile-content>
                     <v-list-tile-title>
                       {{data.item.beds[0].count}} {{data.item.beds[0].type}}
-                      <span hidden>{{data.item.id}}</span>
                     </v-list-tile-title>
                   </v-list-tile-content>
                 </template>

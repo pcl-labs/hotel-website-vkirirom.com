@@ -7,7 +7,7 @@
             <h1>Review accommodation rules</h1>
           </v-flex>
           <v-flex xs12>
-            <h3> nights in {{resort.title}}</h3>
+            <h3>{{prices.length}} nights in {{resort.title}}</h3>
           </v-flex>
           <v-flex xs12 md6>
             <v-card class="smallCard">
@@ -94,7 +94,10 @@ export default {
     },
     checkOut() {
       return this.$store.getters["reservation/checkOut"];
-    }
+    },
+    prices() {
+      return this.$store.getters["reservation/prices"]
+    },
   },
   methods:{
     reviewDateMonth,

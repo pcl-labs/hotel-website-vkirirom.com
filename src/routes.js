@@ -6,6 +6,7 @@ const Contact = () => import ('./components/Contact.vue')
 const Reservation = () => import ('./components/Reservation/Reservation.vue')
 const ReviewRules = () => import ('./components/Reservation/ReviewRules.vue')
 const ConfirmAndPay = () => import ('./components/Reservation/ConfirmAndPay.vue')
+const Guest = () => import ('./components/Guest.vue')
 
 export default[
   {
@@ -41,6 +42,10 @@ export default[
         component: ConfirmAndPay
       }
     ]
+  },
+  {
+    path: '/guest',
+    component: Guest
   },
   {
     path: '/nature-city-investment-cambodia-property',
