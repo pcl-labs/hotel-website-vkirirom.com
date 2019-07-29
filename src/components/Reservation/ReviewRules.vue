@@ -1,7 +1,7 @@
 <template>
   <v-container grid-list-md>
     <v-layout row wrap>
-      <v-flex xs12 md6 class="text">
+      <v-flex xs12 md7 class="text">
         <v-layout row wrap>
           <v-flex xs12>
             <h1>Review accommodation rules</h1>
@@ -61,7 +61,7 @@
           </v-flex>
         </v-layout>
       </v-flex>
-      <v-flex xs12 md6 class="bookingCard">
+      <v-flex xs12 md5 class="bookingCard">
         <BookingInfoCard></BookingInfoCard>      
       </v-flex>
       <v-btn 
@@ -114,7 +114,7 @@ export default {
     }
     h1{
       color: #D7D9DD;
-      font-size: 28px;
+      font-size: 36px;
       margin-bottom: 30px;
     }
     h3{

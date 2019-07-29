@@ -10,6 +10,7 @@
         <h2>
           {{resort.title}}
         </h2>
+        <p>Entire {{resort.title}}</p>
       </v-flex>
       <v-flex xs12 md6>
         <v-img :src="resort.featuredImage"></v-img>
@@ -61,9 +62,14 @@ export default {
     padding:30px;
     background-color: #191C21;
     h2{
-      color: #E1E7ED;
+      color: #B9BCC1;
       font-size: 20px;
       line-height: 24px;
+    }
+    p{
+      font-size: 14px;
+      line-height: 19px;
+      color: #B9BCC1;
     }
   }
 </style>

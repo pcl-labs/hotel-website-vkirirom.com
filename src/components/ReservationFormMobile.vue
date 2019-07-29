@@ -17,7 +17,7 @@
     <v-card class="bookForm" color="#191C21" style="position:absolute;">
       <v-form
         v-if="resort"
-        :name="resort.name"
+        :name="resort.categories[0].name"
         method="post"
         netlify
         ref="form"
@@ -26,7 +26,7 @@
         action="/thanks"
         data-netlify="true"
       >
-        <input type="hidden" name="form-name" :value="resort.name" />
+        <input type="hidden" name="form-name" :value="resort.categories[0].name" />
         <v-layout row wrap>
           <v-flex xs1>
             <v-btn icon dark @click="closeModal()" style="margin:0; margin-bottom:20px;">
@@ -118,7 +118,7 @@
 
           <v-flex
             xs12
-            v-if="resort.name=='accommodations' || resort.name=='events' || resort.name=='experiences'"
+            v-if="resort.categories[0].name=='accommodations' || resort.categories[0].name=='events' || resort.categories[0].name=='experiences'"
           >
             <v-text-field
               outline
@@ -150,7 +150,7 @@
           </v-flex>
           <v-flex
             xs12
-            v-if="resort.name=='accommodations' || resort.name=='events' || resort.name=='experiences'"
+            v-if="resort.categories[0].name=='accommodations' || resort.categories[0].name=='events' || resort.categories[0].name=='experiences'"
           >
             <v-checkbox
               v-model="transportation"
@@ -231,7 +231,7 @@
             xs12
             text-xs-center
             class="mt-3"
-            v-if="resort.name=='accommodations' || resort.name=='events' || resort.name=='experiences'"
+            v-if="resort.categories[0].name=='accommodations' || resort.categories[0].name=='events' || resort.categories[0].name=='experiences'"
           >
             <p style="font-weight: bold; font-size: 14px; color: #B9BCC1;">You won't be charged yet.</p>
           </v-flex>

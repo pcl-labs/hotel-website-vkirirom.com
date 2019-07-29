@@ -48,7 +48,7 @@
           <v-flex xs12>
             <v-layout row wrap style="height:100%">
               <v-flex
-                v-if="resort.name=='blog'"
+                v-if="resort.categories[0].name=='blog'"
                 style="font-size: 16px; color: #B9BCC1; margin-top:20px; margin-bottom:20px;"
               >Published July 5, 2019</v-flex>
               <v-flex
