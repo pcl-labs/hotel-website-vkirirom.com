@@ -35,6 +35,13 @@ export default {
         password: context.state.password
       }).then(function(data){
         context.state.token = data.body;
+        return context;
+      }).then(function(context) {
+        Vue.http.get('https://stagingapi.whynot.earth/api/v0/authentication/ping',{
+        }).then(function(data){
+          context.state.user = data.body;
+          console.log(context.state.user);
+        })
       });
     },
     register(context){
@@ -45,12 +52,12 @@ export default {
           context.state.token = data.body;
       });
     },
-    ping(context){
-      Vue.http.get('https://stagingapi.whynot.earth/api/v0/authentication/ping',{
-        Authorisation: "Bearer" + "context.state.token"
-      }).then(function(data){
-        context.state.user = data.body;
-      })
-    }
+    // ping(context){
+    //   Vue.http.get('https://stagingapi.whynot.earth/api/v0/authentication/ping',{
+    //     Authorisation: "Bearer" + "context.state.token"
+    //   }).then(function(data){
+    //     context.state.user = data.body;
+    //   })
+    // }
   },
 }

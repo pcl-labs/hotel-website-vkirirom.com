@@ -96,12 +96,12 @@ export default {
     }
   },
   methods:{
-    ping(){
-      this.$store.dispatch('auth/ping')
-    },
+    // ping(){
+    //   this.$store.dispatch('auth/ping')
+    // },
     login(){
-      this.$store.dispatch('auth/login'),
-      this.ping()
+      this.$store.dispatch('auth/login')
+      // this.ping()
     }
   },
   computed:{
