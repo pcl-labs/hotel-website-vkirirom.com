@@ -89,30 +89,35 @@
           </v-flex>
 
           <v-flex
-            v-if="resort.modules.hotel && resort.modules.hotel.roomTypes.length>0 && resort.modules.hotel.roomTypes[0].beds.length>0"
+            v-if="resort.modules.hotel && resort.modules.hotel.roomTypes.length>0"
           >
             <v-select
-              v-model="bedType"
+              v-model="roomType"
               item-text="count"
               item-value="type"
               return-object
-              :items="resort.modules.hotel.roomTypes[0].beds"
+              :items="resort.modules.hotel.roomTypes"
               dark
               outline
               label="Bed Type"
               color="#B9BCC1"
               type="text"
             >
-              <template slot="selection" slot-scope="data">{{data.item.count}} {{data.item.type}}</template>
+              <template slot="selection" slot-scope="data">
+                {{data.item.beds[0].count}} {{data.item.beds[0].type}}
+                <span hidden>{{data.item.id}}</span>
+              </template>
               <template slot="item" slot-scope="data">
                 <template>
                   <v-list-tile-content>
-                    <v-list-tile-title>{{data.item.count}} {{data.item.type}}</v-list-tile-title>
+                    <v-list-tile-title>
+                      {{data.item.beds[0].count}} {{data.item.beds[0].type}}
+                      <span hidden>{{data.item.id}}</span>
+                    </v-list-tile-title>
                   </v-list-tile-content>
                 </template>
               </template>
             </v-select>
-            <input hidden name="Bed count and type" :value=" bedType.count + ',' + bedType.type" />
           </v-flex>
           <!-- resort.name is a temporary fix for category name, ideally category id should be used-->
 
@@ -373,12 +378,12 @@ export default {
         this.$store.commit("reservation/updatePhone", value);
       }, TEXTFIELDS_DEBOUNCE_TIME)
     },
-    bedType: {
+    roomType: {
       get() {
-        return this.$store.getters["reservation/bedType"];
+        return this.$store.getters["reservation/roomType"];
       },
       set(value) {
-        this.$store.commit("reservation/updateBedType", value);
+        this.$store.commit("reservation/updateRoomType", value);
       }
     }
   },

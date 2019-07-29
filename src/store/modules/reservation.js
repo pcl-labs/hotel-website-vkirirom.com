@@ -9,7 +9,16 @@ export default {
     name: "",
     email: "",
     phone: "",
-    bedType: { count: "", type: "" },
+    roomType: { 
+      id: 0,
+      name: "",
+      beds:[
+        {
+          count: "", 
+          type: ""
+        }
+      ]
+    },
     dateOne: "",
     dateTwo: "",
     checkOut: "",
@@ -49,8 +58,8 @@ export default {
     updatePhone(state, payload) {
       state.phone = payload;
     },
-    updateBedType(state, payload) {
-      state.bedType = payload;
+    updateRoomType(state, payload) {
+      state.RoomType = payload;
     },
   },
   actions: {
@@ -110,8 +119,8 @@ export default {
     phone(state) {
       return state.phone;
     },
-    bedType(state) {
-      return state.bedType;
+    roomType(state) {
+      return state.roomType;
     },
   }
 };

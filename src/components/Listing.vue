@@ -59,19 +59,26 @@
                 {{ getResortHotel().capacity }} guests
               </v-flex>
               <v-flex
-                v-if="getHotelRoomBeds({roomType: 0}).length > 0"
+                v-if="resort && resort.modules && resort.modules.hotel && resort.modules.hotel.roomTypes.length>0"
                 style="font-size: 16px; color: #B9BCC1; margin-top:20px; margin-bottom:20px;"
               >
                 <v-icon size="30" color="#B9BCC1" style="margin-bottom:-5px;">hotel</v-icon>
-                <span>
-                  {{ getRoomBed({roomType: 0, bed: 0}).count }}
-                  {{ getRoomBed({roomType: 0, bed: 0}).type }}
+                <span v-for="(roomType, index) in resort.modules.hotel.roomTypes" v-bind:key="index">
+                  {{roomType.beds[0].count}}
+                  {{roomType.beds[0].type}}
+                  <span v-if="index != resort.modules.hotel.roomTypes.length - 1">
+                    /
+                  </span>
+                </span>
+                <!-- <span>
+                  {{ getRoomBed({roomType, bed}).count }}
+                  {{ getRoomBed({roomType, bed}).type }}
                 </span>
                 <span v-if="getHotelRoomBeds({roomType: 0}).length > 1">
                   /
                   {{ getRoomBed({roomType: 0, bed: 1}).count }}
                   {{ getRoomBed({roomType: 0, bed: 1}).type }}
-                </span>
+                </span> -->
                 <span>Bed(s)</span>
               </v-flex>
             </v-layout>
