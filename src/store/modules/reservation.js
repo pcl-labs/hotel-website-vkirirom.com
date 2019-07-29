@@ -59,7 +59,7 @@ export default {
       state.phone = payload;
     },
     updateRoomType(state, payload) {
-      state.RoomType = payload;
+      state.roomType = payload;
     },
   },
   actions: {
