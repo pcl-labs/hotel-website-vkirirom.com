@@ -191,7 +191,6 @@ export default {
   }
   .icon{
     color: #B9BCC1;
-    background-color: #B9BCC1;
   }
   .divider{
     margin-bottom: 30px;
