@@ -18,7 +18,7 @@
               </v-flex>
               <v-flex xs8>
                 <p>
-                  {{reviewDay(dateOne)}} Check out before 12PM
+                  {{reviewDay(dateOne)}} Check in before 2PM
                 </p>
               </v-flex>
             </v-layout>
@@ -138,7 +138,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
   .text{
     margin-top:30px; 
     margin-bottom:30px;
