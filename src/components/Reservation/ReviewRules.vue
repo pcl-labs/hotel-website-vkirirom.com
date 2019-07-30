@@ -138,7 +138,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .text{
     margin-top:30px; 
     margin-bottom:30px;
@@ -191,6 +191,7 @@ export default {
   }
   .icon{
     color: #B9BCC1;
+    background-color: #B9BCC1;
   }
   .divider{
     margin-bottom: 30px;
