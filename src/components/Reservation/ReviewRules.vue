@@ -1,25 +1,29 @@
 <template>
   <v-container grid-list-md>
-    <v-layout row wrap>
+    <v-layout row wrap justify-space-between>
       <v-flex xs12 md7 class="text">
         <v-layout row wrap>
           <v-flex xs12>
             <h1>Review accommodation rules</h1>
           </v-flex>
           <v-flex xs12>
-            <h3>{{prices.length}} nights in {{resort.title}}</h3>
+            <h3>{{prices.length}} night(s) in a {{resort.title}}</h3>
           </v-flex>
-          <v-flex xs12 md6>
+          <v-flex xs4 md2>
             <v-card class="smallCard">
               <v-card-text>{{reviewDateMonth(dateOne)}}</v-card-text>
             </v-card>
-            <p>{{reviewDay(dateOne)}}</p>
           </v-flex>
-          <v-flex xs12 md6>
+          <v-flex xs8 md4>
+            <p class="text-xs-left">{{reviewDay(dateOne)}} check in before 2PM</p>
+          </v-flex>
+          <v-flex xs4 md2>
             <v-card class="smallCard">
               <v-card-text>{{reviewDateMonth(checkOut)}}</v-card-text>
             </v-card>
-            <p>{{reviewDay(checkOut)}}</p>
+          </v-flex>
+          <v-flex xs8 md4>
+            <p class="text-xs-left">{{reviewDay(checkOut)}} check out before 12PM</p>
           </v-flex>
           <v-flex xs12>
             <v-divider class="divider"></v-divider>
@@ -33,7 +37,15 @@
             </v-card>
           </v-flex>
           <v-flex xs6 md8>
-            <p>Suitable for children and infants</p>
+            <p class="text-xs-left">Suitable for children and infants</p>
+          </v-flex>
+          <v-flex xs6 md4>
+            <v-card class="smallCard">
+              <v-card-text><v-icon>pets</v-icon></v-card-text>
+            </v-card>
+          </v-flex>
+          <v-flex xs6 md8>
+            <p class="text-xs-left">Pet allowed</p>
           </v-flex>
           <v-flex xs6 md4>
             <v-card class="smallCard">
@@ -41,7 +53,7 @@
             </v-card>
           </v-flex>
           <v-flex xs6 md8>
-            <p>Suitable for children and infants</p>
+            <p class="text-xs-left">Suitable for children and infants</p>
           </v-flex>
           <v-flex xs6 md4>
             <v-card class="smallCard">
@@ -49,29 +61,21 @@
             </v-card>
           </v-flex>
           <v-flex xs6 md8>
-            <p>Suitable for children and infants</p>
-          </v-flex>
-          <v-flex xs6 md4>
-            <v-card class="smallCard">
-              <v-card-text>JAN 24</v-card-text>
-            </v-card>
-          </v-flex>
-          <v-flex xs6 md8>
-            <p>Suitable for children and infants</p>
+            <p class="text-xs-left">Suitable for children and infants</p>
           </v-flex>
         </v-layout>
       </v-flex>
       <v-flex xs12 md5 class="bookingCard">
         <BookingInfoCard></BookingInfoCard>      
       </v-flex>
-      <v-btn 
-        class="button"
-        color="#F7B947"
-        to="/reservation/confirmandpay"
-      >
-        Agree and continue
-      </v-btn>
     </v-layout>
+    <v-btn 
+      class="button"
+      color="#F7B947"
+      to="/reservation/confirmandpay"
+    >
+      Agree and continue
+    </v-btn>
   </v-container>
 </template>
 
