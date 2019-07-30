@@ -234,7 +234,7 @@
             </template>
             <v-card color="#191C21" dark width="100%" style="position:absolute;">
               <v-flex xs2>
-                <v-btn icon dark @click="auth2 = !auth2" style="margin:0; margin:10px;">
+                <v-btn icon dark @click="auth2 = !auth2" style="margin:10px; margin-bottom:-20px;">
                   <v-icon color="#B9BCC1" size="25">close</v-icon>
                 </v-btn>
               </v-flex>
@@ -403,3 +403,9 @@ export default {
   }
 };
 </script>
+
+<style>
+  .yellowLink{
+    font-size:16px; text-decoration:none; color: #F7B947;
+  }
+</style>

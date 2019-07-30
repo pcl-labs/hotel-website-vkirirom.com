@@ -65,7 +65,7 @@
           </a>
         </v-flex>
         <v-flex xs12>
-          <v-btn block color="#F7B947" style="font-size:16px;" class="formBtn" dark @click="register()" :disabled="!valid">
+          <v-btn block color="#F7B947" style="font-size:16px;" class="formBtn" dark @click="register()" :disabled="!valid" :loading="loading">
             Sign up
           </v-btn>
         </v-flex>
@@ -116,12 +116,18 @@ export default {
       set(value){
         this.$store.commit('auth/updatePassword', value)
       }
+    },
+    isAuthenticated(){
+      return this.$store.getters["auth/isAuthenticated"]
+    },
+    loading(){
+      return this.$store.getters["auth/loading"]
     }
   }
 }
 </script>
 
-<style>
+<style scoped>
   .formBtn{
     height:55px; margin-bottom:10px; border-radius: 3px; text-transform: capitalize;
   }
@@ -129,6 +135,7 @@ export default {
     font-size:20px;
     color: #B9BCC1;
     margin-bottom:5px;
+    margin-top:-10px;
   }
   .btn{
     border: 2px solid #B9BCC1;

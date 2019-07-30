@@ -220,14 +220,14 @@
           style="border: 1px solid #E1E7ED; border-radius: 3px; margin:0;"
         >
           <v-flex xs2>
-            <v-btn icon dark @click="auth1 = !auth1" style="margin:0; margin:10px;">
+            <v-btn icon dark @click="auth1 = !auth1" style="margin:10px; margin-bottom:-20px;">
               <v-icon color="#B9BCC1" size="25">close</v-icon>
             </v-btn>
           </v-flex>
           <Login v-if="register"></Login>
           <SignUp v-if="!register"></SignUp>
           <v-flex xs12 text-xs-center style="margin-bottom:30px;">
-            <span class="normalText">Don't have an account?</span>
+            <span class="normalText">Don't have an account? </span>
             <a @click="register=!register" class="yellowLink">{{register?'Sign up':'Log in'}}</a>
           </v-flex>
         </v-card>
@@ -388,3 +388,10 @@ export default {
   }
 };
 </script>
+
+<style>
+  .yellowLink{
+    font-size:16px; text-decoration:none; color: #F7B947;
+  }
+</style>
+

@@ -127,7 +127,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   .formBtn{
     height:55px; margin-bottom:10px; border-radius: 3px; text-transform: capitalize;
   }

@@ -51,11 +51,20 @@ export default {
       });
     },
     register(context){
+      context.state.loading=true,
       Vue.http.post('https://stagingapi.whynot.earth/api/v0/authentication/register', {
         email: context.state.email,
         password: context.state.password
       }).then(function(data){
           context.state.token = data.body;
+          return context;
+      }).then(function(context) {
+        Vue.http.get('https://stagingapi.whynot.earth/api/v0/authentication/ping',{
+        }).then(function(data){
+          context.state.user = data.body;
+          context.state.loading = false,
+          console.log(context.state.user);
+        })
       });
     },
     // ping(context){
