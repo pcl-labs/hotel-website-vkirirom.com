@@ -9,21 +9,17 @@
           <v-flex xs12>
             <h3>{{prices.length}} night(s) in a {{resort.title}}</h3>
           </v-flex>
-          <v-flex xs4 md2>
+          <v-flex>
             <v-card class="smallCard">
               <v-card-text>{{reviewDateMonth(dateOne)}}</v-card-text>
             </v-card>
+            <p class="text-xs-left">{{reviewDay(dateOne)}} Check in before 2PM</p>
           </v-flex>
-          <v-flex xs8 md4>
-            <p class="text-xs-left">{{reviewDay(dateOne)}} check in before 2PM</p>
-          </v-flex>
-          <v-flex xs4 md2>
+          <v-flex>
             <v-card class="smallCard">
               <v-card-text>{{reviewDateMonth(checkOut)}}</v-card-text>
             </v-card>
-          </v-flex>
-          <v-flex xs8 md4>
-            <p class="text-xs-left">{{reviewDay(checkOut)}} check out before 12PM</p>
+            <p class="text-xs-left">{{reviewDay(checkOut)}} Check out before 12PM</p>
           </v-flex>
           <v-flex xs12>
             <v-divider class="divider"></v-divider>
@@ -31,37 +27,29 @@
           <v-flex xs12>
             <h3>Things to keep in mind</h3>
           </v-flex>
-          <v-flex xs6 md4>
+          <v-flex xs12>
             <v-card class="smallCard">
-              <v-card-text>JAN 24</v-card-text>
+              <v-card-text><v-icon size="30" class="icon">child_care</v-icon></v-card-text>
             </v-card>
-          </v-flex>
-          <v-flex xs6 md8>
             <p class="text-xs-left">Suitable for children and infants</p>
           </v-flex>
-          <v-flex xs6 md4>
+          <v-flex xs12>
             <v-card class="smallCard">
-              <v-card-text><v-icon>pets</v-icon></v-card-text>
+              <v-card-text><v-icon size="30" class="icon">pets</v-icon></v-card-text>
             </v-card>
-          </v-flex>
-          <v-flex xs6 md8>
             <p class="text-xs-left">Pet allowed</p>
           </v-flex>
-          <v-flex xs6 md4>
+          <v-flex xs12>
             <v-card class="smallCard">
-              <v-card-text>JAN 24</v-card-text>
+              <v-card-text><v-icon size="30" class="icon">smoke_free</v-icon></v-card-text>
             </v-card>
+            <p class="text-xs-left">No smoking</p>
           </v-flex>
-          <v-flex xs6 md8>
-            <p class="text-xs-left">Suitable for children and infants</p>
-          </v-flex>
-          <v-flex xs6 md4>
+          <v-flex xs12>
             <v-card class="smallCard">
-              <v-card-text>JAN 24</v-card-text>
+              <v-card-text><v-icon size="30" class="icon">credit_card</v-icon></v-card-text>
             </v-card>
-          </v-flex>
-          <v-flex xs6 md8>
-            <p class="text-xs-left">Suitable for children and infants</p>
+            <p class="text-xs-left">Payment is made upon check out at the resort</p>
           </v-flex>
         </v-layout>
       </v-flex>
@@ -118,6 +106,7 @@ export default {
       font-size: 16px;
       line-height: 22px;
       color: #B9BCC1;
+      float: left;
     }
     h1{
       color: #D7D9DD;
@@ -157,6 +146,10 @@ export default {
     font-weight: bold;
     text-align: center;
     margin-bottom: 30px;
+    float: left;
+  }
+  .icon{
+    color: #B9BCC1;
   }
   .divider{
     margin-bottom: 30px;

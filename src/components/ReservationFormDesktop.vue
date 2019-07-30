@@ -209,7 +209,7 @@
             style="height:74px;"
             v-on="on"
           >
-            Reserve Now
+              Log in to continue
             <v-spacer></v-spacer>
             <v-icon>keyboard_arrow_right</v-icon>
           </v-btn>
@@ -289,7 +289,7 @@ export default {
       ],
       phoneRules: [
         v => !!v || "Phone no. is required",
-        v => (v || "").length <= 10 || "A maximum of 10 characters is allowed",
+        v => (v || "").length <= 12 || "A maximum of 12 characters is allowed",
         v => (v || "").length >= 9 || "A minimum of 9 characters is needed",
         v => (v || "").indexOf(" ") < 0 || "No spaces are allowed"
       ],

@@ -91,7 +91,6 @@ export default {
       ],
       passwordRules: [
         v => !!v || 'Password is required',
-        v => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/.test(v) || 'Password must contain at least 1 lowercase character, 1 uppercase character, 1 special character & 1 number'
       ],
     }
   },

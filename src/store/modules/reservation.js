@@ -12,6 +12,7 @@ export default {
     roomType: { 
       id: 0,
       name: "",
+      capacity: 0,
       beds:[
         {
           count: "", 

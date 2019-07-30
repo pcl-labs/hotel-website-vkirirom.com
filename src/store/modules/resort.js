@@ -12,6 +12,7 @@ export default {
   },
   actions: {
     getItemBySlug(context, slug) {
+      context.state.resort={};
       return Vue.http.get("https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/" + slug).then(data => {
         context.commit("addItem", data.body);
       });

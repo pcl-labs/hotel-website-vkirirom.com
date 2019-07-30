@@ -7,7 +7,11 @@ export default {
     password: '',
     token: '',
     status: '',
-    user: {},
+    user: {
+      id: 0,
+      isAuthenticated: false,
+      userName: ''
+    },
     loading: false,
   },
   getters:{
@@ -42,10 +46,10 @@ export default {
         context.state.token = data.body;
         return context;
       }).then(function(context) {
-        Vue.http.get('https://stagingapi.whynot.earth/api/v0/authentication/ping',{
-        }).then(function(data){
+        Vue.http.get('https://stagingapi.whynot.earth/api/v0/authentication/ping').then(function(data){
           context.state.user = data.body;
-          context.state.loading = false,
+          context.state.loading = false;
+          this.$router.push("/reservation/reviewrules")
           console.log(context.state.user);
         })
       });
@@ -59,14 +63,20 @@ export default {
           context.state.token = data.body;
           return context;
       }).then(function(context) {
-        Vue.http.get('https://stagingapi.whynot.earth/api/v0/authentication/ping',{
-        }).then(function(data){
+        Vue.http.get('https://stagingapi.whynot.earth/api/v0/authentication/ping').then(function(data){
           context.state.user = data.body;
           context.state.loading = false,
           console.log(context.state.user);
         })
       });
     },
+    logout(context){
+      context.state.loading = true,
+      Vue.http.post('https://stagingapi.whynot.earth/api/v0/authentication/logout').then(function(){
+        context.state.loading = false,
+        context.state.user.isAuthenticated = false
+      })
+    }
     // ping(context){
     //   Vue.http.get('https://stagingapi.whynot.earth/api/v0/authentication/ping',{
     //     Authorisation: "Bearer" + "context.state.token"

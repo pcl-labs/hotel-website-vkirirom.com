@@ -227,7 +227,7 @@
                 style="height:74px;"
                 v-on="on"
               >
-                Reserve Now
+                Log in to continue
                 <v-spacer></v-spacer>
                 <v-icon>keyboard_arrow_right</v-icon>
               </v-btn>
@@ -324,6 +324,9 @@ export default {
     }
   },
   computed: {
+    isAuthenticated(){
+      return this.$store.getters["auth/isAuthenticated"];
+    },
     resort() {
       return this.$store.getters["resort/getResort"];
     },

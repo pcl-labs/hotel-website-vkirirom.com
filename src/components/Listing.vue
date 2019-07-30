@@ -1,7 +1,7 @@
 <template>
   <div v-if="resort && resort.id">
     <div class="pa-0 ma-0">
-      <v-layout row flex class="pa-0 mx-0">
+      <v-layout row flex class="pa-0 mx-0 my-0">
         <v-flex class="pa-0 overflow-hidden hidden-sm-and-down">
           <v-img class="image ma-0 pa-0" :src="resort.featuredImage" style="height:470px;"></v-img>
         </v-flex>
