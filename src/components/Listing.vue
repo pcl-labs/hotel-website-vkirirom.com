@@ -122,7 +122,6 @@
             <h2 style="font-size: 20px; color: #D8DADE; height:100%;" class="mb-3 mt-3">Rules</h2>
             <span class="normalText">{{getResortHotelRules()[0]}}</span>
           </v-flex>
-          <v-btn to="/reservation/reviewrules">reserve</v-btn>
           <div style="margin:80px;"></div>
         </v-flex>
         <v-flex md6 class="hidden-sm-and-down">

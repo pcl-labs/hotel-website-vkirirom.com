@@ -246,6 +246,22 @@
               </v-flex>
             </v-card>
           </v-dialog>
+          <v-flex xs12 v-if="isAuthenticated==true && resort.categories[0].name=='accommodations'">
+            <v-btn
+              block
+              color="#F7B947"
+              dark
+              class="text-capitalize font-weight-bold"
+              :ripple="false"
+              :disabled="!valid"
+              style="height:74px;"
+              to="/reservation/reviewrules"
+            >
+              Reserve Now
+              <v-spacer></v-spacer>
+              <v-icon>keyboard_arrow_right</v-icon>
+            </v-btn>
+          </v-flex>
           <v-flex
             xs12
             text-xs-center
