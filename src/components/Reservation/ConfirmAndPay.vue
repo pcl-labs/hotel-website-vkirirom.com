@@ -3,7 +3,9 @@
     <v-layout row wrap>
       <v-flex xs12 md7 class="text">
         <v-layout row wrap>
-          <h1>Confirm and pay</h1>
+          <v-flex xs12>
+            <h1>Confirm and pay</h1>
+          </v-flex>
           <v-flex xs12 style="margin-bottom:10px;">
             <h3>Pay with credit or debit card</h3>
           </v-flex>
@@ -154,7 +156,8 @@ export default {
     color: #B9BCC1;
   }
   .button{
-    width: 270px;
+    max-width: 370px;
+    width: 100%;
     height: 55px;
     margin-bottom: 30px;
     font-weight: bold;

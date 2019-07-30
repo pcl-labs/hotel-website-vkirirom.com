@@ -160,7 +160,8 @@ export default {
     }
   }
   .button{
-    width: 270px;
+    width: 100%;
+    max-width: 370px;
     height: 55px;
     margin-bottom: 30px;
     font-weight: bold;
