@@ -65,7 +65,7 @@
           </a>
         </v-flex>
         <v-flex xs12>
-          <v-btn block color="#F7B947" style="font-size:16px;" class="formBtn" dark @click="login()" :disabled="!valid">
+          <v-btn block color="#F7B947" style="font-size:16px;" class="formBtn" dark @click="login()" :disabled="!valid" :loading="loading">
             Log in
           </v-btn>
         </v-flex>
@@ -96,12 +96,8 @@ export default {
     }
   },
   methods:{
-    // ping(){
-    //   this.$store.dispatch('auth/ping')
-    // },
     login(){
       this.$store.dispatch('auth/login')
-      // this.ping()
     }
   },
   computed:{
@@ -123,6 +119,9 @@ export default {
     },
     isAuthenticated(){
       return this.$store.getters["auth/isAuthenticated"]
+    },
+    loading(){
+      return this.$store.getters["auth/loading"]
     }
   }
 }

@@ -7,7 +7,8 @@ export default {
     password: '',
     token: '',
     status: '',
-    user: {}
+    user: {},
+    loading: false,
   },
   getters:{
     email: state => {
@@ -18,6 +19,9 @@ export default {
     },
     isAuthenticated: state => {
       return state.user.isAuthenticated
+    },
+    loading: state => {
+      return state.loading
     }
   },
   mutations:{
@@ -30,6 +34,7 @@ export default {
   },
   actions:{
     login(context){
+      context.state.loading=true,
       Vue.http.post('https://stagingapi.whynot.earth/api/v0/authentication/login', {
         email: context.state.email,
         password: context.state.password
@@ -40,6 +45,7 @@ export default {
         Vue.http.get('https://stagingapi.whynot.earth/api/v0/authentication/ping',{
         }).then(function(data){
           context.state.user = data.body;
+          context.state.loading = false,
           console.log(context.state.user);
         })
       });
