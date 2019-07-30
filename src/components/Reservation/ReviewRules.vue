@@ -9,17 +9,33 @@
           <v-flex xs12>
             <h3>{{prices.length}} night(s) in a {{resort.title}}</h3>
           </v-flex>
-          <v-flex>
-            <v-card class="smallCard">
-              <v-card-text>{{reviewDateMonth(dateOne)}}</v-card-text>
-            </v-card>
-            <p class="text-xs-left">{{reviewDay(dateOne)}} Check in before 2PM</p>
+          <v-flex xs12 md6>
+            <v-layout>
+              <v-flex xs4>
+                <v-card class="smallCard">
+                  <v-card-text>{{reviewDateMonth(dateOne)}}</v-card-text>
+                </v-card>
+              </v-flex>
+              <v-flex xs8>
+                <p>
+                  {{reviewDay(dateOne)}} Check out before 12PM
+                </p>
+              </v-flex>
+            </v-layout>
           </v-flex>
-          <v-flex>
-            <v-card class="smallCard">
-              <v-card-text>{{reviewDateMonth(checkOut)}}</v-card-text>
-            </v-card>
-            <p class="text-xs-left">{{reviewDay(checkOut)}} Check out before 12PM</p>
+          <v-flex xs12 md6>
+            <v-layout row wrap>
+              <v-flex xs4>
+                <v-card class="smallCard">
+                  <v-card-text>{{reviewDateMonth(checkOut)}}</v-card-text>
+                </v-card>
+              </v-flex>
+              <v-flex xs8>
+                <p>
+                  {{reviewDay(checkOut)}} Check out before 12PM
+                </p>
+              </v-flex>
+            </v-layout>
           </v-flex>
           <v-flex xs12>
             <v-divider class="divider"></v-divider>
@@ -28,28 +44,52 @@
             <h3>Things to keep in mind</h3>
           </v-flex>
           <v-flex xs12>
-            <v-card class="smallCard">
-              <v-card-text><v-icon size="30" class="icon">child_care</v-icon></v-card-text>
-            </v-card>
-            <p class="text-xs-left">Suitable for children and infants</p>
+            <v-layout row wrap>
+              <v-flex xs4 md3>
+                <v-card class="smallCard">
+                  <v-card-text><v-icon size="30" class="icon">child_care</v-icon></v-card-text>
+                </v-card>
+              </v-flex>
+              <v-flex xs8 md9>
+                <p class="text-xs-left">Suitable for children and infants</p>
+              </v-flex>
+            </v-layout>
           </v-flex>
           <v-flex xs12>
-            <v-card class="smallCard">
-              <v-card-text><v-icon size="30" class="icon">pets</v-icon></v-card-text>
-            </v-card>
-            <p class="text-xs-left">Pet allowed</p>
+            <v-layout row wrap>
+              <v-flex xs4 md3>
+                <v-card class="smallCard">
+                  <v-card-text><v-icon size="30" class="icon">pets</v-icon></v-card-text>
+                </v-card>
+              </v-flex>
+              <v-flex xs8 md9>
+                <p class="text-xs-left">Pet allowed</p>
+              </v-flex>
+            </v-layout>
           </v-flex>
           <v-flex xs12>
-            <v-card class="smallCard">
-              <v-card-text><v-icon size="30" class="icon">smoke_free</v-icon></v-card-text>
-            </v-card>
-            <p class="text-xs-left">No smoking</p>
+            <v-layout row wrap>
+              <v-flex xs4 md3>
+                <v-card class="smallCard">
+                  <v-card-text><v-icon size="30" class="icon">smoke_free</v-icon></v-card-text>
+                </v-card>
+              </v-flex>
+              <v-flex xs8 md9>
+                <p class="text-xs-left">No smoking</p>
+              </v-flex>
+            </v-layout>
           </v-flex>
           <v-flex xs12>
-            <v-card class="smallCard">
-              <v-card-text><v-icon size="30" class="icon">credit_card</v-icon></v-card-text>
-            </v-card>
-            <p class="text-xs-left">Payment is made upon check out at the resort</p>
+            <v-layout row wrap>
+              <v-flex xs4 md3>
+                <v-card class="smallCard">
+                  <v-card-text><v-icon size="30" class="icon">credit_card</v-icon></v-card-text>
+                </v-card>
+              </v-flex>
+              <v-flex xs8 md9>
+                <p class="text-xs-left">Payment is made upon check out at the resort</p>
+              </v-flex>
+            </v-layout>
           </v-flex>
         </v-layout>
       </v-flex>
@@ -106,7 +146,7 @@ export default {
       font-size: 16px;
       line-height: 22px;
       color: #B9BCC1;
-      float: left;
+      margin-top: 15px;
     }
     h1{
       color: #D7D9DD;

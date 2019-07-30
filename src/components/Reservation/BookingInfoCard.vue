@@ -22,7 +22,7 @@
         <v-icon class="icon">person</v-icon> {{roomType.capacity}} guests
       </v-flex>
       <v-flex class="normalText">
-        <v-icon class="icon">event</v-icon> {{formatDates(dateOne)}} <v-icon class="icon">arrow_right_alt</v-icon> {{formatDates(checkOut)}}
+        <v-icon class="icon">event</v-icon> {{cardDate(dateOne)}} <v-icon class="icon">arrow_right_alt</v-icon> {{cardDate(checkOut)}}
       </v-flex>
       <v-flex xs12>
         <v-divider class="divider"></v-divider>
@@ -52,6 +52,7 @@
 
 <script>
 import { formatDates } from "@/helpers.js";
+import { cardDate } from "@/helpers.js";
 
 export default {
   computed:{
@@ -78,7 +79,8 @@ export default {
     }
   },
   methods:{
-    formatDates
+    formatDates,
+    cardDate
   }
 }
 </script>

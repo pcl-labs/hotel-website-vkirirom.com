@@ -15,7 +15,16 @@ export function formatDates(dateOne, dateTwo) {
     formattedDates += " - " + format(dateTwo, dateFormat);
   }
   return formattedDates;
-};
+}
+
+export function cardDate(date) {
+  const dateFormat = "MMM D, YYYY";
+  let formattedDate = "";
+  if (date) {
+    formattedDate = format(date, dateFormat);
+  }
+  return formattedDate;
+}
 
 export function reviewDateMonth(date) {
   const dateFormat = "MMM D";
