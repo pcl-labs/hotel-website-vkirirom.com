@@ -18,6 +18,9 @@
         <v-flex xs5 style="margin-bottom:6px;">
           <v-divider style="background-color:#3D424E;"></v-divider>
         </v-flex>
+        <v-flex xs12 v-if="loginError">
+          <p class="normalText">{{loginError}}</p>
+        </v-flex>
         <v-flex xs12>
           <v-text-field
             v-model="email"
@@ -121,6 +124,9 @@ export default {
     },
     loading(){
       return this.$store.getters["auth/loading"]
+    },
+    loginError(){
+      return this.$store.getters["auth/loginError"]
     }
   }
 }

@@ -13,6 +13,8 @@ export default {
       userName: ''
     },
     loading: false,
+    loginError: '',
+    registerError: ''
   },
   getters:{
     email: state => {
@@ -26,6 +28,12 @@ export default {
     },
     loading: state => {
       return state.loading
+    },
+    loginError: state => {
+      return state.loginError
+    },
+    registerError: state => {
+      return state.registerError
     }
   },
   mutations:{
@@ -44,14 +52,16 @@ export default {
         password: context.state.password
       }).then(function(data){
         context.state.token = data.body;
-        return context;
-      }).then(function(context) {
         Vue.http.get('https://stagingapi.whynot.earth/api/v0/authentication/ping').then(function(data){
           context.state.user = data.body;
           context.state.loading = false;
-          this.$router.push("/reservation/reviewrules")
-          console.log(context.state.user);
         })
+        return context;
+      }, response =>{
+          if(response){
+            context.state.loading = false;
+            context.state.loginError = "Username or password is incorrect, please try again.";
+          }
       });
     },
     register(context){
@@ -60,14 +70,17 @@ export default {
         email: context.state.email,
         password: context.state.password
       }).then(function(data){
-          context.state.token = data.body;
-          return context;
-      }).then(function(context) {
+        context.state.token = data.body;
         Vue.http.get('https://stagingapi.whynot.earth/api/v0/authentication/ping').then(function(data){
           context.state.user = data.body;
-          context.state.loading = false,
-          console.log(context.state.user);
+          context.state.loading = false;
         })
+        return context;
+      }, response =>{
+          if(response){
+            context.state.loading = false;
+            context.state.registerError = response.body[0].description;
+          }
       });
     },
     logout(context){
