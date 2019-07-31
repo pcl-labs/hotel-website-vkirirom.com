@@ -201,7 +201,7 @@
                   name="Date"
                   color="#B9BCC1"
                   id="datepicker"
-                  label="Reserve nights"
+                  :label="resort.name=='accommodations'? 'Reserve Nights' : 'Reserve dates'"
                   readonly
                   :rules="dateRules"
                   :value="formatDates(dateOne, dateTwo)"
@@ -405,7 +405,7 @@
                   name="Date"
                   readonly
                   color="#B9BCC1"
-                  label="Reserve Nights"
+                  :label="resort.name=='accommodations'? 'Reserve Nights' : 'Reserve dates'"
                   id="datepicker-trigger"
                   :rules="dateRules"
                   :value="formatDates(dateOne, dateTwo)"
