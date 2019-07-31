@@ -68,7 +68,7 @@ import { debounce } from "lodash-es";
 const TEXTFIELDS_DEBOUNCE_TIME = 200;
 const BookingInfoCard = () => import ('@/components/Reservation/BookingInfoCard.vue')
 
-let stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx'),
+let stripe = Stripe('pk_test_WJLv2re0yYhf6g1oD4fptybK00N7e4Bj7C'),
   elements = stripe.elements(),
   card = undefined;
 
