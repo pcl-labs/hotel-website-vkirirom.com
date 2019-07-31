@@ -174,7 +174,7 @@
                 </v-text-field>
               </v-flex>
               <v-flex v-if="resort.modules.hotel && resort.modules.hotel.beds.length >0">
-                <v-select v-model="bedType" item-text="type" item-value="type" :rules="bedTypeRules" return-object :items="resort.modules.hotel.beds" dark outline label="Bed Type" color="#B9BCC1" type="text">
+                <v-select v-model="bedType" item-text="type" item-value="type" required :rules="bedTypeRules" return-object :items="resort.modules.hotel.beds" dark outline label="Bed Type" color="#B9BCC1" type="select">
                   <template slot="selection" slot-scope="data">
                     {{data.item.count}} {{data.item.type}}
                   </template>
@@ -201,7 +201,7 @@
                   name="Date"
                   color="#B9BCC1"
                   id="datepicker"
-                  label="Reserve Dates"
+                  label="Reserve nights"
                   readonly
                   :rules="dateRules"
                   :value="formatDates(dateOne, dateTwo)"
@@ -379,7 +379,7 @@
               </v-flex>
 
               <v-flex v-if="resort.modules.hotel && resort.modules.hotel.beds.length >0">
-                <v-select v-model="bedType" item-text="count" item-value="type" :rules="bedTypeRules" return-object :items="resort.modules.hotel.beds" dark outline label="Bed Type" color="#B9BCC1" type="text">
+                <v-select v-model="bedType" item-text="count" item-value="type" :rules="bedTypeRules" return-object :items="resort.modules.hotel.beds" dark outline label="Bed Type" color="#B9BCC1" type="select">
                   <template slot="selection" slot-scope="data">
                     {{data.item.count}} {{data.item.type}}
                   </template>
@@ -405,7 +405,7 @@
                   name="Date"
                   readonly
                   color="#B9BCC1"
-                  label="Reserve Dates"
+                  label="Reserve Nights"
                   id="datepicker-trigger"
                   :rules="dateRules"
                   :value="formatDates(dateOne, dateTwo)"
@@ -551,7 +551,7 @@ export default {
         v => !!v || 'Dates are required',
       ],
       bedTypeRules: [
-        v => !!v || 'Bed type is required',
+        (v) => !!this.bedType.count || 'Bed type is required',
       ],
       name: '',
       email: '',
