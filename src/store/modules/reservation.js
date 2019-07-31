@@ -62,8 +62,16 @@ export default {
     updateRoomType(state, payload) {
       state.roomType = payload;
     },
-    resetPrices(state){
-      state.prices = []
+    resetState(state){
+      state.prices= [];
+      state.roomType = {};
+      state.finalPrice = "";
+      state.vat = "";
+      state.dateOne = "";
+      state.dateTwo = "";
+      state.checkOut = "";
+      state.transportation = false;
+      state.message = "";
     }
   },
   actions: {

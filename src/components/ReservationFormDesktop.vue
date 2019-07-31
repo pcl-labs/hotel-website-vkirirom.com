@@ -78,6 +78,7 @@
           :items="resort.modules.hotel.roomTypes"
           dark
           outline
+          :rules="bedTypeRules"
           label="Bed Type"
           color="#B9BCC1"
           type="text"
@@ -293,7 +294,12 @@ export default {
         v => (v || "").length >= 9 || "A minimum of 9 characters is needed",
         v => (v || "").indexOf(" ") < 0 || "No spaces are allowed"
       ],
-      dateRules: [v => !!v || "Dates are required"],
+      dateRules: [
+        v => !!v || "Dates are required"
+      ],
+      bedTypeRules: [
+        (v) => !!this.roomType.beds[0].count || 'Bed type is required',
+      ],
 
       bookDialog: false,
       auth1: false,
@@ -312,6 +318,9 @@ export default {
     '$route' (to, from){
       this.$store.commit("reservation/resetPrices")
     }
+  },
+  mounted(){
+    this.$store.commit("reservation/resetState")
   },
   computed: {
     resort() {
