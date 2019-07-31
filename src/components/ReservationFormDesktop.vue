@@ -308,6 +308,11 @@ export default {
       required: true
     }
   },
+  watch: {
+    '$route' (to, from){
+      this.$store.commit("reservation/resetPrices")
+    }
+  },
   computed: {
     resort() {
       return this.$store.getters["resort/getResort"];

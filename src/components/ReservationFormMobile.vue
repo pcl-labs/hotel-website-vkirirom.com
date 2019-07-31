@@ -323,6 +323,11 @@ export default {
       required: true
     }
   },
+  watch: {
+    '$route' (to, from){
+      this.$store.commit("reservation/resetPrices")
+    }
+  },
   computed: {
     isAuthenticated(){
       return this.$store.getters["auth/isAuthenticated"];

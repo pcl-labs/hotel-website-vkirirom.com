@@ -4,10 +4,10 @@
       <v-layout row wrap class="ml-4 mr-4">
         <v-flex xs12 class="headerText" text-xs-center>Log in with</v-flex>
         <v-flex xs6>
-          <v-btn block flat class="btn">Facebook</v-btn>
+          <v-btn block flat class="btn" @click="oauth('Facebook')">Facebook</v-btn>
         </v-flex>
         <v-flex xs6>
-          <v-btn block flat class="btn">Google</v-btn>
+          <v-btn block flat class="btn" @click="oauth('Google')">Google</v-btn>
         </v-flex>
         <v-flex xs5 style="margin-bottom:6px;">
           <v-divider style="background-color:#3D424E;"></v-divider>
@@ -81,6 +81,7 @@
 </template>
 
 <script>
+import { get } from 'http';
 export default {
   data(){
     return{
@@ -95,11 +96,17 @@ export default {
       passwordRules: [
         v => !!v || 'Password is required',
       ],
+      route: this.$route,
     }
   },
   methods:{
     login(){
       this.$store.dispatch('auth/login')
+    },
+    oauth(provider){
+      this.$store.commit('auth/updateProvider', provider),
+      window.location.assign(this.$store.getters["auth/oauth"]),
+      this.$store.dispatch('auth/ping')
     }
   },
   computed:{
@@ -127,7 +134,7 @@ export default {
     },
     loginError(){
       return this.$store.getters["auth/loginError"]
-    }
+    },
   }
 }
 </script>

@@ -14,7 +14,8 @@ export default {
     },
     loading: false,
     loginError: '',
-    registerError: ''
+    registerError: '',
+    provider: ''
   },
   getters:{
     email: state => {
@@ -34,6 +35,9 @@ export default {
     },
     registerError: state => {
       return state.registerError
+    },
+    oauth(state) {
+      return 'https://stagingapi.whynot.earth/api/v0/authentication/provider/login?provider=' + state.provider + '&returnUrl=https%3A%2F%2Fwww.vkirirom.com' 
     }
   },
   mutations:{
@@ -42,6 +46,9 @@ export default {
     },
     updatePassword (state, password) {
       state.password = password
+    },
+    updateProvider (state, provider) {
+      state.provider = provider
     }
   },
   actions:{
@@ -89,13 +96,12 @@ export default {
         context.state.loading = false,
         context.state.user.isAuthenticated = false
       })
+    },
+    ping(context){
+      Vue.http.get('https://stagingapi.whynot.earth/api/v0/authentication/ping',{
+      }).then(function(data){
+        context.state.user = data.body;
+      })
     }
-    // ping(context){
-    //   Vue.http.get('https://stagingapi.whynot.earth/api/v0/authentication/ping',{
-    //     Authorisation: "Bearer" + "context.state.token"
-    //   }).then(function(data){
-    //     context.state.user = data.body;
-    //   })
-    // }
   },
 }

@@ -14,7 +14,9 @@ export default {
   components: {
     Toolbar,
   },
-
+  created(){
+    this.$store.dispatch('auth/ping')
+  }
 }
 </script>
 

@@ -62,6 +62,9 @@ export default {
     updateRoomType(state, payload) {
       state.roomType = payload;
     },
+    resetPrices(state){
+      state.prices = []
+    }
   },
   actions: {
     getPrices(context, { roomTypeId, dateOne, dateTwo }) {
