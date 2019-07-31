@@ -329,10 +329,13 @@ export default {
       required: true
     }
   },
-  watch: {
-    '$route' (to, from){
-      this.$store.commit("reservation/resetPrices")
-    }
+  // watch: {
+  //   '$route' (to, from){
+  //     this.$store.commit("reservation/resetPrices")
+  //   }
+  // },
+  mounted(){
+    this.$store.commit("reservation/resetState")
   },
   computed: {
     isAuthenticated(){
