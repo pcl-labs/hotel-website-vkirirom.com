@@ -47,7 +47,7 @@
             <v-layout row wrap>
               <v-flex xs4 md3>
                 <v-card class="smallCard">
-                  <v-card-text><v-icon size="30" class="icon">child_care</v-icon></v-card-text>
+                  <v-card-text><v-icon size="30" color="#B9BCC1">child_care</v-icon></v-card-text>
                 </v-card>
               </v-flex>
               <v-flex xs8 md9>
@@ -59,7 +59,7 @@
             <v-layout row wrap>
               <v-flex xs4 md3>
                 <v-card class="smallCard">
-                  <v-card-text><v-icon size="30" class="icon">pets</v-icon></v-card-text>
+                  <v-card-text><v-icon size="30" color="#B9BCC1">pets</v-icon></v-card-text>
                 </v-card>
               </v-flex>
               <v-flex xs8 md9>
@@ -71,7 +71,7 @@
             <v-layout row wrap>
               <v-flex xs4 md3>
                 <v-card class="smallCard">
-                  <v-card-text><v-icon size="30" class="icon">smoke_free</v-icon></v-card-text>
+                  <v-card-text><v-icon size="30" color="#B9BCC1">smoke_free</v-icon></v-card-text>
                 </v-card>
               </v-flex>
               <v-flex xs8 md9>
@@ -83,7 +83,7 @@
             <v-layout row wrap>
               <v-flex xs4 md3>
                 <v-card class="smallCard">
-                  <v-card-text><v-icon size="30" class="icon">credit_card</v-icon></v-card-text>
+                  <v-card-text><v-icon size="30" color="#B9BCC1">credit_card</v-icon></v-card-text>
                 </v-card>
               </v-flex>
               <v-flex xs8 md9>
@@ -188,9 +188,6 @@ export default {
     text-align: center;
     margin-bottom: 30px;
     float: left;
-  }
-  .icon{
-    color: #B9BCC1;
   }
   .divider{
     margin-bottom: 30px;
