@@ -138,7 +138,7 @@ export default {
     reviewDateMonth,
     reviewDay,
     pay(){
-      let stripe = Stripe('pk_live_RZ3e8NjPRiG6H7mchiRmn5xK00sQ4vN73t');
+      let stripe = Stripe('pk_test_WJLv2re0yYhf6g1oD4fptybK00N7e4Bj7C');
       stripe.redirectToCheckout({
         items: [{sku: 'sku_FXdydWSsa1hGV6', quantity: 1}],
 
