@@ -1,4 +1,5 @@
 module.exports = {
+  transpileDependencies: ['vuex-persist'],
   configureWebpack:{
     optimization: {
       splitChunks: {
