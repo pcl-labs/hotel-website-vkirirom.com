@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import { PageService } from "@/connection/resources.js"
 const Footer = () => import ('@/components/Footer.vue')
 
 export default {
@@ -54,8 +55,11 @@ export default {
     }
   },
   created() {
-    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/'+ this.id).then(function(data){
-      this.resorts=data.body;
+    PageService.byCompanyByCategoryName({
+      companySlug: 'vkirirom',
+      categoryName: this.id
+    }).then(data => {
+      this.resorts = data;
     });
   },
 }

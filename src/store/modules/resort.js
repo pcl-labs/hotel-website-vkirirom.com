@@ -1,4 +1,4 @@
-import Vue from "vue";
+import { PageService } from '@/connection/resources.js'
 
 export default {
   namespaced: true,
@@ -13,8 +13,12 @@ export default {
   actions: {
     getItemBySlug(context, slug) {
       context.state.resort={};
-      return Vue.http.get("https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/" + slug).then(data => {
-        context.commit("addItem", data.body);
+      return PageService.get({
+        companySlug: 'vkirirom',
+        pageSlug: slug
+      })
+      .then(res => {
+        context.commit("addItem", res);
       });
     }
   },

@@ -1,5 +1,5 @@
-import Vue from "vue";
 import { addDays } from "date-fns";
+import { RoomTypeService } from '@/connection/resources.js'
 
 const defaultState = {
   transportation: false,
@@ -74,25 +74,21 @@ export default {
   },
   actions: {
     getPrices(context, { roomTypeId, dateOne, dateTwo }) {
-      return Vue.http
-        .get(
-          `https://stagingapi.whynot.earth/api/v0/roomtypes/${roomTypeId}/prices?startDate=${dateOne}&endDate=${dateTwo}`
-        )
-        .then(data => {
-          let totalPrice = 0;
-          const prices = data.body;
-          for (let i = 0; i < prices.length; i++) {
-            totalPrice += prices[i].amount;
-          }
-          const vat = totalPrice * 0.1;
-          totalPrice = totalPrice + vat;
-          // vat = vat.toFixed(2);
-          const finalPrice = totalPrice.toFixed(2);
+      return RoomTypeService.prices({roomTypeId, startDate: dateOne, endDate: dateTwo})
+      .then(prices => {
+        let totalPrice = 0;
+        for (let i = 0; i < prices.length; i++) {
+          totalPrice += prices[i].amount;
+        }
+        const vat = totalPrice * 0.1;
+        totalPrice = totalPrice + vat;
+        // vat = vat.toFixed(2);
+        const finalPrice = totalPrice.toFixed(2);
 
-          context.commit("updatePrices", prices);
-          context.commit("updateVat", vat);
-          context.commit("updateFinalPrice", finalPrice);
-        });
+        context.commit("updatePrices", prices);
+        context.commit("updateVat", vat);
+        context.commit("updateFinalPrice", finalPrice);
+      });
     }
   },
   getters: {

@@ -212,6 +212,7 @@
 </template>
 
 <script>
+import { PageService } from "@/connection/resources.js"
 const Footer = () => import ('@/components/Footer.vue')
 
 export default {
@@ -228,20 +229,35 @@ export default {
     }
   },
   created() {
-    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/accommodations').then(function(data){
-      this.accommodations=data.body.slice(0,3)
+    PageService.byCompanyByCategoryName({
+      companySlug: 'vkirirom',
+      categoryName: 'accommodations'
+    }).then(data => {
+      this.accommodations = data.slice(0,3)
     });
-    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/experiences').then(function(data){
-      this.experiences=data.body.slice(0,3)
+    PageService.byCompanyByCategoryName({
+      companySlug: 'vkirirom',
+      categoryName: 'experiences'
+    }).then(data => {
+      this.experiences = data.slice(0,3)
     });
-    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/events').then(function(data){
-      this.events=data.body.slice(0,3)
+    PageService.byCompanyByCategoryName({
+      companySlug: 'vkirirom',
+      categoryName: 'events'
+    }).then(data => {
+      this.events = data.slice(0,3)
     });
-    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/ecotourism').then(function(data){
-      this.ecotourisms=data.body.slice(0,3)
+    PageService.byCompanyByCategoryName({
+      companySlug: 'vkirirom',
+      categoryName: 'ecotourism'
+    }).then(data => {
+      this.ecotourisms = data.slice(0,3)
     });
-    this.$http.get('https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/lease').then(function(data){
-      this.leases=data.body.slice(0,3)
+    PageService.byCompanyByCategoryName({
+      companySlug: 'vkirirom',
+      categoryName: 'lease'
+    }).then(data => {
+      this.leases = data.slice(0,3)
     });
   },
 }
