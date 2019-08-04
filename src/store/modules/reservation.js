@@ -1,39 +1,41 @@
 import Vue from "vue";
 import { addDays } from "date-fns";
 
+const defaultState = {
+  transportation: false,
+  message: "",
+  name: "",
+  email: "",
+  phone: "",
+  roomType: {
+    id: 0,
+    name: "",
+    capacity: 0,
+    beds: [
+      {
+        count: "",
+        type: ""
+      }
+    ]
+  },
+  dateOne: "",
+  dateTwo: "",
+  checkOut: "",
+  vat: "",
+  finalPrice: "",
+  prices: []
+};
+
 export default {
   namespaced: true,
-  state: {
-    transportation: false,
-    message: "",
-    name: "",
-    email: "",
-    phone: "",
-    roomType: { 
-      id: 0,
-      name: "",
-      capacity: 0,
-      beds:[
-        {
-          count: "", 
-          type: ""
-        }
-      ]
-    },
-    dateOne: "",
-    dateTwo: "",
-    checkOut: "",
-    vat: "",
-    finalPrice: "",
-    prices: []
-  },
+  state: { ...defaultState },
   mutations: {
     updateDateOne(state, payload) {
       state.dateOne = payload;
     },
     updateDateTwo(state, payload) {
       state.dateTwo = payload;
-      state.checkOut = addDays(payload, 1)
+      state.checkOut = addDays(payload, 1);
     },
     updateVat(state, payload) {
       state.vat = payload;
@@ -62,16 +64,12 @@ export default {
     updateRoomType(state, payload) {
       state.roomType = payload;
     },
-    resetState(state){
-      state.prices= [];
-      state.roomType = {};
-      state.finalPrice = "";
-      state.vat = "";
-      state.dateOne = "";
-      state.dateTwo = "";
-      state.checkOut = "";
-      state.transportation = false;
-      state.message = "";
+    resetState(state) {
+      for (const key in defaultState) {
+        if (defaultState.hasOwnProperty(key)) {
+          state[key] = defaultState[key];
+        }
+      }
     }
   },
   actions: {
@@ -133,6 +131,6 @@ export default {
     },
     roomType(state) {
       return state.roomType;
-    },
+    }
   }
 };

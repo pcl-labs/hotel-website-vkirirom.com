@@ -335,7 +335,9 @@ export default {
   //   }
   // },
   mounted(){
-    this.$store.commit("reservation/resetState")
+    if(this.resort.slug !== this.resortSlug) {
+      this.$store.commit("reservation/resetState")
+    }
   },
   computed: {
     isAuthenticated(){
