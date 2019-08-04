@@ -17,8 +17,8 @@
       </div>
     </v-card>
     <v-container grid-list-md>
-      <h2 class="mb-4 listTitle">Accommodation</h2>
-      <v-layout row wrap>
+      <h2 class="mb-4 mt-4 listTitle">Accommodation</h2>
+      <v-layout row wrap class="cardRow">
         <v-flex xs12 sm6 md4 lg4 v-for="accommodation in accommodations" v-bind:key="accommodation.id">
           <v-card dark height="270px" color="#191C21" class="mb-4 card" :to="'/listing/'+ accommodation.slug" flat>
             <router-link :to="'/listing/'+ accommodation.slug">
@@ -67,7 +67,7 @@
       </v-card>
     <v-divider class="hidden-md-and-up mt-3" style="background-color:#3D424E;"></v-divider>
     <h2 class="mt-2 mb-4 listTitle">Experience</h2>
-      <v-layout row wrap>
+      <v-layout row wrap class="cardRow">
         <v-flex xs12 sm6 md4 lg4 v-for="experience in experiences.slice(0,4)" v-bind:key="experience.id">
           <v-card width="100%" height="270px" color="#191C21" class="mb-4 card" dark :to="'/listing/'+ experience.slug" flat style="box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;">
             <router-link :to="'/listing/'+ experience.slug">
@@ -114,7 +114,7 @@
       </v-img>
       </v-card>
       <h2 class="mb-4 listTitle">Events</h2>
-      <v-layout row wrap>
+      <v-layout row wrap class="cardRow">
         <v-flex xs12 sm6 md4 lg4 v-for="event in events.slice(0,4)" v-bind:key="event.id">
           <v-card width="100%" height="270px" color="#191C21" class="mb-4 card" dark :to="'/listing/'+ event.slug" flat style="box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;">
             <router-link :to="'/listing/'+ event.slug">
@@ -149,7 +149,7 @@
         </video>
       </v-flex>
       <h2 class="mt-2 mb-4 listTitle">Lease</h2>
-      <v-layout row wrap>
+      <v-layout row wrap class="cardRow">
         <v-flex xs12 sm6 md4 lg4 v-for="lease in leases.slice(0,4)" v-bind:key="lease.id">
           <v-card width="100%" height="270px" color="#191C21" class="mb-4 card" dark :to="'/listing/'+ lease.slug" flat style="box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;">
             <router-link :to="'/listing/'+ lease.slug">
@@ -178,7 +178,7 @@
         </v-flex>
       </v-layout>
       <h2 class="mb-4 mt-3 listTitle">Ecotourism</h2>
-      <v-layout row wrap>
+      <v-layout row wrap class="cardRow">
         <v-flex xs12 sm6 md4 lg4 v-for="ecotourism in ecotourisms.slice(0,4)" v-bind:key="ecotourism.id">
           <v-card width="100%" height="270px" class="mb-4 card" dark color="#191C21" :to="'/listing/'+ ecotourism.slug" flat style="box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;">
             <router-link :to="'/listing/'+ ecotourism.slug">
@@ -200,8 +200,8 @@
         </v-flex>
       </v-layout>
       <v-layout row wrap justify-space-around justify-center>
-        <v-flex xs12 sm4 md4 lg4 class="mt-3">
-          <v-btn to="/search/ecotourism/" block large outline dark class="showAllbtn">
+        <v-flex xs12 sm4 md4 lg4>
+          <v-btn to="/search/ecotourism/" block large outline dark class="showAllbtn mb-4">
             Learn More <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
           </v-btn>
         </v-flex>
@@ -256,19 +256,13 @@ export default {
   background-size: cover;
   background-repeat: no-repeat;
 }
-.v-carousel__controls{
-  background: transparent;
-  .v-btn__content{
-    margin: 0;
-    padding: 0;
-  }
-  .v-icon{
-    font-size: 7px !important;
-    color: white !important;
-  }
+.cardRow{
+  height: 300px;
+  overflow: hidden;
 }
-
-
+.container{
+  padding:0;
+}
 @media only screen and (max-width: 600px) {
   .container{
     max-width: 292px;
@@ -276,12 +270,12 @@ export default {
 }
 @media only screen and (min-width: 768px) {
   .container{
-    max-width: 650px;
+    max-width: 600px;
   }
 }
 @media only screen and (min-width: 1024px) {
   .container{
-    max-width: 950px;
+    max-width: 900px;
   }
 }
 
@@ -290,29 +284,50 @@ export default {
 }
 
 .menubtn{
-  box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; text-transform:capitalize;
+  box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+  text-transform:capitalize;
   margin: 0;
 }
 .showAllbtn{
-  border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; max-width:340px; text-transform:capitalize;
+  border: 1px solid #FFFFFF;
+  box-sizing: border-box;
+  box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+  max-width:340px;
+  text-transform:capitalize;
 }
 .headerh1{
-  color: #FFFFFF; bottom:20px; position:absolute; font-family: 'Oswald', sans-serif; font-size: 45px;
+  color: #FFFFFF;
+  bottom:20px;
+  position:absolute;
+  font-family: 'Oswald', sans-serif;
+  font-size: 45px;
 }
 .headerh1mob{
-  color: #FFFFFF; bottom:20px; position:absolute; font-family: 'Oswald', sans-serif; font-size: 35px;
+  color: #FFFFFF;
+  bottom:20px;
+  position:absolute; 
+  font-family: 'Oswald', sans-serif;
+  font-size: 35px;
 }
 .card{
-  box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;
+  box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
 }
 .cardTitle{
-  color: #FFFFFF; font-size: 17px; line-height: 27px;
+  color: #FFFFFF;
+  font-size: 17px;
+  line-height: 27px;
 }
 .cardSubtitle{
-  font-size: 16px; line-height: 22px; color: #B9BCC1;
+  font-size: 16px;
+  line-height: 22px;
+  color: #B9BCC1;
 }
 .listTitle{
-  color: #D8DADE; font-size: 28px;
+  color: #D8DADE;
+  font-size: 28px;
 }
 html {
   scroll-behavior: smooth;

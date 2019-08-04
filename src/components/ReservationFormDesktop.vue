@@ -1,7 +1,7 @@
 <template>
   <v-form
     v-if="resort"
-    :name="resort.name"
+    :name="resort.categories[0].name"
     method="post"
     netlify
     ref="form"
@@ -9,14 +9,14 @@
     action="/thanks"
     data-netlify="true"
   >
-    <input type="hidden" name="form-name" :value="resort.name" />
+    <input type="hidden" name="form-name" :value="resort.categories[0].name" />
     <v-layout row wrap>
       <v-flex xs12 v-if="resort.ctaText > 0">
         <p class="subheading text-xs-center pb-2">
-          <span class="normalText">Starting from</span>
+          <span class="normalText">Starting from </span>
           <span
             style="font-weight: bold; font-size: 28px; color: #B9BCC1;"
-          >&dollar;{{ resort.ctaText }}</span>
+          >&dollar;{{ resort.ctaText }} </span>
           <span class="normalText">per night</span>
         </p>
         <!-- <Rating :rating="rating" :counter="counter"/> -->
@@ -68,37 +68,41 @@
         </v-text-field>
       </v-flex>
       <v-flex
-        v-if="resort.modules.hotel && resort.modules.hotel.roomTypes.length>0 && resort.modules.hotel.roomTypes[0].beds.length>0"
+        v-if="resort.modules.hotel && resort.modules.hotel.roomTypes.length>0"
       >
         <v-select
-          v-model="bedType"
+          v-model="roomType"
           item-text="type"
           item-value="type"
           return-object
-          :items="resort.modules.hotel.roomTypes[0].beds"
+          :items="resort.modules.hotel.roomTypes"
           dark
           outline
+          :rules="bedTypeRules"
           label="Bed Type"
           color="#B9BCC1"
           type="text"
         >
-          <template slot="selection" slot-scope="data">{{data.item.count}} {{data.item.type}}</template>
+          <template slot="selection" slot-scope="data">
+            {{data.item.beds[0].count}} {{data.item.beds[0].type}}
+          </template>
           <template slot="item" slot-scope="data">
             <template>
               <v-list-tile-content>
-                <v-list-tile-title>{{data.item.count}} {{data.item.type}}</v-list-tile-title>
+                <v-list-tile-title>
+                  {{data.item.beds[0].count}} {{data.item.beds[0].type}}
+                </v-list-tile-title>
               </v-list-tile-content>
             </template>
           </template>
         </v-select>
-        <input hidden name="Bed count and type" :value=" bedType.count + ',' + bedType.type" />
       </v-flex>
 
       <!-- resort.name is a temporary fix for category name, ideally category id should be used-->
 
       <v-flex
         xs12
-        v-if="resort.name=='accommodations' || resort.name=='events' || resort.name=='experiences'"
+        v-if="resort.categories[0].name=='accommodations' || resort.categories[0].name=='events' || resort.categories[0].name=='experiences'"
       >
         <v-text-field
           outline
@@ -130,7 +134,7 @@
       </v-flex>
       <v-flex
         xs12
-        v-if="resort.name=='accommodations' || resort.name=='events' || resort.name=='experiences'"
+        v-if="resort.categories[0].name=='accommodations' || resort.categories[0].name=='events' || resort.categories[0].name=='experiences'"
       >
         <v-checkbox
           v-model="transportation"
@@ -142,7 +146,7 @@
         ></v-checkbox>
         <input hidden name="Transportation needed" :value="transportation" />
       </v-flex>
-      <v-flex xs12 style="margin-bottom:30px;" v-if="finalPrice > 0">
+      <v-flex xs12 style="margin-bottom:30px;" v-if="finalPrice > 0 && resort.categories[0].name=='accommodations'">
         <v-layout row wrap v-for="price in prices" v-bind:key="price.id">
           <v-flex xs6 class="normalText">{{formatDates(price.date)}}</v-flex>
           <v-flex xs6 class="text-xs-right normalText">${{price.amount}}</v-flex>
@@ -176,8 +180,24 @@
           no-resize
         ></v-textarea>
       </v-flex>
+      <v-flex xs12 v-if="resort.categories[0].name!='accommodations'">
+        <v-btn
+          block
+          color="#F7B947"
+          dark
+          class="text-capitalize font-weight-bold"
+          :ripple="false"
+          :disabled="!valid"
+          style="height:74px;"
+          type="submit"
+        >
+          Reserve Now
+          <v-spacer></v-spacer>
+          <v-icon>keyboard_arrow_right</v-icon>
+        </v-btn>
+      </v-flex>
     </v-layout>
-    <v-layout row wrap justify-center>
+    <v-layout row wrap justify-center v-if="!isAuthenticated && resort.categories[0].name=='accommodations'">
       <v-dialog v-model="auth1" persistent max-width="583px">
         <template v-slot:activator="{ on }">
           <v-btn
@@ -190,7 +210,7 @@
             style="height:74px;"
             v-on="on"
           >
-            Reserve Now
+              Log in to continue
             <v-spacer></v-spacer>
             <v-icon>keyboard_arrow_right</v-icon>
           </v-btn>
@@ -201,24 +221,40 @@
           style="border: 1px solid #E1E7ED; border-radius: 3px; margin:0;"
         >
           <v-flex xs2>
-            <v-btn icon dark @click="auth1 = !auth1" style="margin:0; margin:10px;">
+            <v-btn icon dark @click="auth1 = !auth1" style="margin:10px; margin-bottom:-20px;">
               <v-icon color="#B9BCC1" size="25">close</v-icon>
             </v-btn>
           </v-flex>
           <Login v-if="register"></Login>
           <SignUp v-if="!register"></SignUp>
           <v-flex xs12 text-xs-center style="margin-bottom:30px;">
-            <span class="normalText">Don't have an account?</span>
+            <span class="normalText">Don't have an account? </span>
             <a @click="register=!register" class="yellowLink">{{register?'Sign up':'Log in'}}</a>
           </v-flex>
         </v-card>
       </v-dialog>
     </v-layout>
+    <v-flex xs12 v-if="isAuthenticated==true && resort.categories[0].name=='accommodations'">
+      <v-btn
+        block
+        color="#F7B947"
+        dark
+        class="text-capitalize font-weight-bold"
+        :ripple="false"
+        :disabled="!valid"
+        style="height:74px;"
+        to="/reservation/reviewrules"
+      >
+        Reserve Now
+        <v-spacer></v-spacer>
+        <v-icon>keyboard_arrow_right</v-icon>
+      </v-btn>
+    </v-flex>
     <v-flex
       xs12
       text-xs-center
       class="mt-3"
-      v-if="resort.name=='accommodations' || resort.name=='events' || resort.name=='experiences'"
+      v-if="resort.categories[0].name=='accommodations' || resort.categories[0].name=='events' || resort.categories[0].name=='experiences'"
     >
       <p
         style="font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;"
@@ -254,11 +290,16 @@ export default {
       ],
       phoneRules: [
         v => !!v || "Phone no. is required",
-        v => (v || "").length <= 10 || "A maximum of 10 characters is allowed",
+        v => (v || "").length <= 12 || "A maximum of 12 characters is allowed",
         v => (v || "").length >= 9 || "A minimum of 9 characters is needed",
         v => (v || "").indexOf(" ") < 0 || "No spaces are allowed"
       ],
-      dateRules: [v => !!v || "Dates are required"],
+      dateRules: [
+        v => !!v || "Dates are required"
+      ],
+      bedTypeRules: [
+        (v) => !!this.roomType.beds[0].count || 'Bed type is required',
+      ],
 
       bookDialog: false,
       auth1: false,
@@ -273,9 +314,22 @@ export default {
       required: true
     }
   },
+  // watch: {
+  //   '$route' (to, from){
+  //     this.$store.commit("reservation/resetPrices")
+  //   }
+  // },
+  mounted(){
+    if(this.resort.slug !== this.resortSlug) {
+      this.$store.commit("reservation/resetState")
+    }
+  },
   computed: {
     resort() {
-      return this.$store.getters["resort/getItemBySlug"](this.resortSlug);
+      return this.$store.getters["resort/getResort"];
+    },
+    isAuthenticated(){
+      return this.$store.getters["auth/isAuthenticated"];
     },
     dateOne: {
       get() {
@@ -342,12 +396,12 @@ export default {
         this.$store.commit("reservation/updatePhone", value);
       }, TEXTFIELDS_DEBOUNCE_TIME)
     },
-    bedType: {
+    roomType: {
       get() {
-        return this.$store.getters["reservation/bedType"];
+        return this.$store.getters["reservation/roomType"];
       },
       set(value) {
-        this.$store.commit("reservation/updateBedType", value);
+        this.$store.commit("reservation/updateRoomType", value);
       }
     },
   },
@@ -366,3 +420,10 @@ export default {
   }
 };
 </script>
+
+<style>
+  .yellowLink{
+    font-size:16px; text-decoration:none; color: #F7B947;
+  }
+</style>
+

@@ -14,11 +14,13 @@ export default {
   components: {
     Toolbar,
   },
-
+  created(){
+    this.$store.dispatch('auth/ping')
+  }
 }
 </script>
 
-<style>
+<style lang="scss">
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -31,7 +33,17 @@ export default {
   html {
     scroll-behavior: smooth;
   }
-  
+  .v-carousel__controls{
+    background: transparent !important;
+    .v-btn__content{
+      margin: 0;
+      padding: 0;
+    }
+    .v-icon{
+      font-size: 7px !important;
+      color: white !important;
+    }
+  }
   .fade-enter-active,
   .fade-leave-active {
     transition-duration: 0.3s;

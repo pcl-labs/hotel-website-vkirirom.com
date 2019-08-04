@@ -4,10 +4,10 @@
       <v-layout row wrap class="ml-4 mr-4">
         <v-flex xs12 class="headerText" text-xs-center>Sign up with</v-flex>
         <v-flex xs6>
-          <v-btn block flat class="btn">Facebook</v-btn>
+          <v-btn block flat class="btn" @click="oauth('Facebook')">Facebook</v-btn>
         </v-flex>
         <v-flex xs6>
-          <v-btn block flat class="btn">Google</v-btn>
+          <v-btn block flat class="btn" @click="oauth('Google')">Google</v-btn>
         </v-flex>
         <v-flex xs5 style="margin-bottom:6px;">
           <v-divider style="background-color:#3D424E;"></v-divider>
@@ -17,6 +17,9 @@
         </v-flex>
         <v-flex xs5 style="margin-bottom:6px;">
           <v-divider style="background-color:#3D424E;"></v-divider>
+        </v-flex>
+        <v-flex xs12 v-if="registerError">
+          <p class="normalText">{{registerError}}</p>
         </v-flex>
         <v-flex xs12>
           <v-text-field
@@ -65,7 +68,7 @@
           </a>
         </v-flex>
         <v-flex xs12>
-          <v-btn block color="#F7B947" style="font-size:16px;" class="formBtn" dark @click="register()" :disabled="!valid">
+          <v-btn block color="#F7B947" style="font-size:16px;" class="formBtn" dark @click="register()" :disabled="!valid" :loading="loading">
             Sign up
           </v-btn>
         </v-flex>
@@ -91,13 +94,18 @@ export default {
       ],
       passwordRules: [
         v => !!v || 'Password is required',
-        v => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/.test(v) || 'Password must contain at least 1 lowercase character, 1 uppercase character, 1 special character, 1 number'
+        v => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&](?=.{8,})/.test(v) || 'Password must be atleast 8 characters long, containing at least 1 lowercase character, 1 uppercase character, 1 special character, 1 number'
       ],
     }
   },
   methods:{
     register(){
       this.$store.dispatch('auth/register')
+    },
+    oauth(provider){
+      this.$store.commit('auth/updateProvider', provider),
+      window.location.assign(this.$store.getters["auth/oauth"]),
+      this.$store.dispatch('auth/ping')
     }
   },
   computed:{
@@ -116,12 +124,21 @@ export default {
       set(value){
         this.$store.commit('auth/updatePassword', value)
       }
+    },
+    isAuthenticated(){
+      return this.$store.getters["auth/isAuthenticated"]
+    },
+    loading(){
+      return this.$store.getters["auth/loading"]
+    },
+    registerError(){
+      return this.$store.getters["auth/registerError"]
     }
   }
 }
 </script>
 
-<style>
+<style scoped>
   .formBtn{
     height:55px; margin-bottom:10px; border-radius: 3px; text-transform: capitalize;
   }
@@ -129,6 +146,7 @@ export default {
     font-size:20px;
     color: #B9BCC1;
     margin-bottom:5px;
+    margin-top:-10px;
   }
   .btn{
     border: 2px solid #B9BCC1;

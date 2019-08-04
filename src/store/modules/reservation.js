@@ -1,26 +1,41 @@
 import Vue from "vue";
+import { addDays } from "date-fns";
+
+const defaultState = {
+  transportation: false,
+  message: "",
+  name: "",
+  email: "",
+  phone: "",
+  roomType: {
+    id: 0,
+    name: "",
+    capacity: 0,
+    beds: [
+      {
+        count: "",
+        type: ""
+      }
+    ]
+  },
+  dateOne: "",
+  dateTwo: "",
+  checkOut: "",
+  vat: "",
+  finalPrice: "",
+  prices: []
+};
 
 export default {
   namespaced: true,
-  state: {
-    transportation: false,
-    message: "",
-    name: "",
-    email: "",
-    phone: "",
-    bedType: { count: "", type: "" },
-    dateOne: "",
-    dateTwo: "",
-    vat: "",
-    finalPrice: "",
-    prices: []
-  },
+  state: { ...defaultState },
   mutations: {
     updateDateOne(state, payload) {
       state.dateOne = payload;
     },
     updateDateTwo(state, payload) {
       state.dateTwo = payload;
+      state.checkOut = addDays(payload, 1);
     },
     updateVat(state, payload) {
       state.vat = payload;
@@ -46,9 +61,16 @@ export default {
     updatePhone(state, payload) {
       state.phone = payload;
     },
-    updateBedType(state, payload) {
-      state.bedType = payload;
+    updateRoomType(state, payload) {
+      state.roomType = payload;
     },
+    resetState(state) {
+      for (const key in defaultState) {
+        if (defaultState.hasOwnProperty(key)) {
+          state[key] = defaultState[key];
+        }
+      }
+    }
   },
   actions: {
     getPrices(context, { roomTypeId, dateOne, dateTwo }) {
@@ -86,6 +108,9 @@ export default {
     dateTwo(state) {
       return state.dateTwo;
     },
+    checkOut(state) {
+      return state.checkOut;
+    },
     prices(state) {
       return state.prices;
     },
@@ -104,8 +129,8 @@ export default {
     phone(state) {
       return state.phone;
     },
-    bedType(state) {
-      return state.bedType;
-    },
+    roomType(state) {
+      return state.roomType;
+    }
   }
 };

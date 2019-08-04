@@ -1,54 +1,54 @@
 <template>
   <div v-if="resort && resort.id">
     <div class="pa-0 ma-0">
-      <v-layout row flex class="pa-0 mx-0">
-        <v-flex class="pa-0 overflow-hidden hidden-sm-and-down" style="height:470px;">
-          <v-img class="image ma-0 pa-0" :src="resort.featuredImage"></v-img>
+      <v-layout row flex class="pa-0 mx-0 my-0">
+        <v-flex class="pa-0 overflow-hidden hidden-sm-and-down">
+          <v-img class="image ma-0 pa-0" :src="resort.featuredImage" style="height:470px;"></v-img>
         </v-flex>
         <v-flex
           class="pa-0 ma-0 overflow-hidden hidden-sm-and-down"
           v-if="resort.images && resort.images.length>0"
           style="height:470px;"
         >
-          <v-layout row flex class="pa-0 ma-0 overflow-hidden" style="max-height:235px;">
+          <v-layout row flex class="pa-0 ma-0 overflow-hidden">
             <v-flex class="pa-0 overflow-hidden" v-if="resort.images.length > 0">
-              <v-img class="image ma-0 pa-0" :src="resort.images[0].url"></v-img>
+              <v-img class="image ma-0 pa-0" :src="resort.images[0].url" style="height:235px;"></v-img>
             </v-flex>
             <v-flex class="pa-0 overflow-hidden" v-if="resort.images.length > 2">
-              <v-img class="image" :src="resort.images[2].url"></v-img>
+              <v-img class="image" :src="resort.images[2].url" style="height:235px;"></v-img>
             </v-flex>
           </v-layout>
-          <v-layout row flex class="pa-0 ma-0 overflow-hidden" style="max-height:235px;">
+          <v-layout row flex class="pa-0 ma-0 overflow-hidden">
             <v-flex class="pa-0 overflow-hidden" v-if="resort.images.length > 1">
-              <v-img class="image" :src="resort.images[1].url"></v-img>
+              <v-img class="image" :src="resort.images[1].url" style="height:235px;"></v-img>
             </v-flex>
             <v-flex class="pa-0 overflow-hidden" v-if="resort.images.length > 3">
-              <v-img class="image" :src="resort.images[3].url"></v-img>
+              <v-img class="image" :src="resort.images[3].url" style="height:235px;"></v-img>
             </v-flex>
           </v-layout>
         </v-flex>
-        <v-flex xs12 class="hidden-md-and-up">
-          <v-carousel height="300px" hide-controls dark :cycle="false">
-            <!-- v-if="belltent.images.length > 0" is required to avoid the error "cannot read property 'url' of undefined. 
-            It is needed only when we want to iterate through an array of images, or nested elements.-->
-            <v-carousel-item :src="resort.featuredImage"></v-carousel-item>
-            <v-carousel-item
-              v-for="image in resort.images.slice(0,4)"
-              v-bind:key="image.url"
-              :src="image.url"
-            ></v-carousel-item>
-          </v-carousel>
-        </v-flex>
       </v-layout>
+      <v-flex xs12 class="hidden-md-and-up">
+        <v-carousel height="300px" hide-controls dark :cycle="false">
+          <!-- v-if="belltent.images.length > 0" is required to avoid the error "cannot read property 'url' of undefined. 
+          It is needed only when we want to iterate through an array of images, or nested elements.-->
+          <v-carousel-item :src="resort.featuredImage"></v-carousel-item>
+          <v-carousel-item
+            v-for="image in resort.images.slice(0,4)"
+            v-bind:key="image.url"
+            :src="image.url"
+          ></v-carousel-item>
+        </v-carousel>
+      </v-flex>
     </div>
     <v-container>
       <v-layout row wrap style="min-height: 100vh;">
         <v-flex xs12 md6>
-          <h1 style="color: #FFFFFF; margin-top:30px;">{{resort.title}}</h1>
+          <h1 style="color: #D7D9DD; margin-top:30px;">{{resort.title}}</h1>
           <v-flex xs12>
             <v-layout row wrap style="height:100%">
               <v-flex
-                v-if="resort.name=='blog'"
+                v-if="resort.categories[0].name=='blog'"
                 style="font-size: 16px; color: #B9BCC1; margin-top:20px; margin-bottom:20px;"
               >Published July 5, 2019</v-flex>
               <v-flex
@@ -59,19 +59,26 @@
                 {{ getResortHotel().capacity }} guests
               </v-flex>
               <v-flex
-                v-if="getHotelRoomBeds({roomType: 0}).length > 0"
+                v-if="resort && resort.modules && resort.modules.hotel && resort.modules.hotel.roomTypes.length>0"
                 style="font-size: 16px; color: #B9BCC1; margin-top:20px; margin-bottom:20px;"
               >
                 <v-icon size="30" color="#B9BCC1" style="margin-bottom:-5px;">hotel</v-icon>
-                <span>
-                  {{ getRoomBed({roomType: 0, bed: 0}).count }}
-                  {{ getRoomBed({roomType: 0, bed: 0}).type }}
+                <span v-for="(roomType, index) in resort.modules.hotel.roomTypes" v-bind:key="index">
+                  {{roomType.beds[0].count}}
+                  {{roomType.beds[0].type}}
+                  <span v-if="index != resort.modules.hotel.roomTypes.length - 1">
+                    /
+                  </span>
+                </span>
+                <!-- <span>
+                  {{ getRoomBed({roomType, bed}).count }}
+                  {{ getRoomBed({roomType, bed}).type }}
                 </span>
                 <span v-if="getHotelRoomBeds({roomType: 0}).length > 1">
                   /
                   {{ getRoomBed({roomType: 0, bed: 1}).count }}
                   {{ getRoomBed({roomType: 0, bed: 1}).type }}
-                </span>
+                </span> -->
                 <span>Bed(s)</span>
               </v-flex>
             </v-layout>
@@ -221,12 +228,12 @@ export default {
   },
   computed: {
     resort() {
-      return this.$store.getters["resort/getItemBySlug"](this.slug);
+      return this.$store.getters["resort/getResort"];
     }
   },
   mounted() {
     this.init();
-  }
+  },
 };
 </script>
 
@@ -326,17 +333,25 @@ input:-webkit-autofill {
     padding-right: 10px;
   }
 }
-
-.container {
-  @media only screen and (max-width: 600px) {
+.container{
+  padding-top: 30px;
+  padding-left: 0px;
+  padding-right: 0px;
+  // doing padding:0px or  0; or padding-bottom:0px or 0; creates an extra overflow scroll which is bad and should be avoided
+}
+@media only screen and (max-width: 600px) {
+  .container{
     max-width: 292px;
   }
-  @media only screen and (min-width: 768px) {
+}
+@media only screen and (min-width: 768px) {
+  .container{
     max-width: 600px;
   }
-  @media only screen and (min-width: 1024px) {
+}
+@media only screen and (min-width: 1024px) {
+  .container{
     max-width: 900px;
   }
 }
-</style>
 </style>

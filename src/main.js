@@ -60,6 +60,11 @@ Vue.use(AirbnbStyleDatepicker, {
   },
 });
 
+Vue.http.interceptors.push((request, next) => {
+  request.credentials = true;
+  next();
+});
+
 const router = new VueRouter({
   routes: Routes,
   mode: 'history',

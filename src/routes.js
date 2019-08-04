@@ -3,7 +3,10 @@ const searchpage = () => import ('./components/searchpage.vue')
 const Listing = () => import ('./components/Listing.vue')
 const thankYou = () => import ('./components/thankYou.vue')
 const Contact = () => import ('./components/Contact.vue')
-const Login = () => import ('./components/Auth/Login.vue')
+const Reservation = () => import ('./components/Reservation/Reservation.vue')
+const ReviewRules = () => import ('./components/Reservation/ReviewRules.vue')
+const ConfirmAndPay = () => import ('./components/Reservation/ConfirmAndPay.vue')
+const Guest = () => import ('./components/Guest.vue')
 
 export default[
   {
@@ -27,8 +30,22 @@ export default[
     component: Contact
   },
   {
-    path:'/login',
-    component: Login
+    path:'/reservation',
+    component: Reservation,
+    children:[
+      {
+        path: 'reviewrules',
+        component: ReviewRules
+      },
+      {
+        path: 'confirmandpay',
+        component: ConfirmAndPay
+      }
+    ]
+  },
+  {
+    path: '/guest',
+    component: Guest
   },
   {
     path: '/nature-city-investment-cambodia-property',

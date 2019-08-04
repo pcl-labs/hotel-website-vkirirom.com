@@ -4,10 +4,10 @@
       <v-layout row wrap class="ml-4 mr-4">
         <v-flex xs12 class="headerText" text-xs-center>Log in with</v-flex>
         <v-flex xs6>
-          <v-btn block flat class="btn">Facebook</v-btn>
+          <v-btn block flat class="btn" @click="oauth('Facebook')">Facebook</v-btn>
         </v-flex>
         <v-flex xs6>
-          <v-btn block flat class="btn">Google</v-btn>
+          <v-btn block flat class="btn" @click="oauth('Google')">Google</v-btn>
         </v-flex>
         <v-flex xs5 style="margin-bottom:6px;">
           <v-divider style="background-color:#3D424E;"></v-divider>
@@ -17,6 +17,9 @@
         </v-flex>
         <v-flex xs5 style="margin-bottom:6px;">
           <v-divider style="background-color:#3D424E;"></v-divider>
+        </v-flex>
+        <v-flex xs12 v-if="loginError">
+          <p class="normalText">{{loginError}}</p>
         </v-flex>
         <v-flex xs12>
           <v-text-field
@@ -65,7 +68,7 @@
           </a>
         </v-flex>
         <v-flex xs12>
-          <v-btn block color="#F7B947" style="font-size:16px;" class="formBtn" dark @click="login()" :disabled="!valid">
+          <v-btn block color="#F7B947" style="font-size:16px;" class="formBtn" dark @click="login()" :disabled="!valid" :loading="loading">
             Log in
           </v-btn>
         </v-flex>
@@ -78,6 +81,7 @@
 </template>
 
 <script>
+import { get } from 'http';
 export default {
   data(){
     return{
@@ -91,13 +95,18 @@ export default {
       ],
       passwordRules: [
         v => !!v || 'Password is required',
-        v => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/.test(v) || 'Password must contain at least 1 lowercase character, 1 uppercase character, 1 special character & 1 number'
       ],
+      route: this.$route,
     }
   },
   methods:{
     login(){
       this.$store.dispatch('auth/login')
+    },
+    oauth(provider){
+      this.$store.commit('auth/updateProvider', provider),
+      window.location.assign(this.$store.getters["auth/oauth"]),
+      this.$store.dispatch('auth/ping')
     }
   },
   computed:{
@@ -116,12 +125,21 @@ export default {
       set(value){
         this.$store.commit('auth/updatePassword', value);
       }
-    }
+    },
+    isAuthenticated(){
+      return this.$store.getters["auth/isAuthenticated"]
+    },
+    loading(){
+      return this.$store.getters["auth/loading"]
+    },
+    loginError(){
+      return this.$store.getters["auth/loginError"]
+    },
   }
 }
 </script>
 
-<style>
+<style scoped>
   .formBtn{
     height:55px; margin-bottom:10px; border-radius: 3px; text-transform: capitalize;
   }

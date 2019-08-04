@@ -2,22 +2,25 @@ import Vue from "vue";
 
 export default {
   namespaced: true,
-  state: {},
+  state: {
+    resort:{}
+  },
   mutations: {
     addItem(state, payload) {
-      Vue.set(state, payload.slug, payload);
+      state.resort = payload
     }
   },
   actions: {
     getItemBySlug(context, slug) {
+      context.state.resort={};
       return Vue.http.get("https://stagingapi.whynot.earth/api/v0/pages/slug/vkirirom/" + slug).then(data => {
         context.commit("addItem", data.body);
       });
     }
   },
   getters: {
-    getItemBySlug: state => slug => {
-      return state[slug];
-    }
+    getResort(state){
+      return state.resort;
+    },
   }
 };

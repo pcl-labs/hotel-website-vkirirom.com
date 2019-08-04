@@ -1,5 +1,5 @@
 <template>
-<v-container>
+<v-container grid-list-md style="margin-bottom:0px; padding-bottom:0px;">
   <v-toolbar app dark color="#191C21" dense>
     <router-link to="/">
       <img src="/img/icons/Logo.png" style="height:30px;">
@@ -13,6 +13,7 @@
       <v-btn flat class="button" to="/search/food"><h3 class="desktop">Food</h3></v-btn>
       <v-btn flat class="button" to="/search/blog"><h3 class="desktop">Blog</h3></v-btn>
       <v-btn flat class="button" to="/listing/Pine-View-Kitchen-PVK"><h3 class="desktop">Restaurant</h3></v-btn>
+      <v-btn flat class="button" @click="logout()" v-if="isAuthenticated == true" :loading="loading"><h3 class="desktop">Log out</h3></v-btn>
     </v-toolbar-items>
   </v-toolbar>
   <v-navigation-drawer dark style="box-shadow: 0px 1px 0px #121416; position:fixed; background:#191C21;" class="hidden-md-and-up" temporary v-model="drawer">
@@ -45,6 +46,19 @@ export default {
   data() {
     return {
       drawer: null
+    }
+  },
+  methods:{
+    logout(){
+      this.$store.dispatch('auth/logout')
+    }
+  },
+  computed:{
+    isAuthenticated(){
+      return this.$store.getters["auth/isAuthenticated"]
+    },
+    loading(){
+      return this.$store.getters["auth/loading"]
     }
   }
 }
