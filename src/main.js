@@ -7,9 +7,9 @@ import 'vuetify/src/stylus/app.styl'
 import 'vuetify/dist/vuetify.min.css'
 import VueRouter from 'vue-router'
 import Routes from './routes'
-import VueResource from 'vue-resource'
 import AirbnbStyleDatepicker from 'vue-airbnb-style-datepicker'
 import 'vue-airbnb-style-datepicker/dist/vue-airbnb-style-datepicker.min.css'
+import '@/connection/init.js'
 import VueHead from 'vue-head'
 import VueMarkdown from 'vue-markdown'
 import {store} from './store/store'
@@ -24,7 +24,6 @@ Vue.use(Vuetify,{
 })
 
 Vue.use(VueRouter)
-Vue.use(VueResource)
 Vue.use(VueHead)
 Vue.use(VueMarkdown)
 
@@ -58,11 +57,6 @@ Vue.use(AirbnbStyleDatepicker, {
     hoveredInRange: '#9bdba4',
     keyboardShortcuts: '#4B7F52'
   },
-});
-
-Vue.http.interceptors.push((request, next) => {
-  request.credentials = true;
-  next();
 });
 
 const router = new VueRouter({

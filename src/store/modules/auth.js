@@ -1,107 +1,136 @@
-import Vue from "vue"
+import { AuthenticationService } from "@/connection/resources.js";
+import { APIPath } from "@/helpers.js";
+import { OAUTH_RETURN_URL } from "@/constants/connection.js";
+import Vue from "vue";
+
+const defaultUser = {
+  id: 0,
+  isAuthenticated: false,
+  userName: ""
+};
 
 export default {
   namespaced: true,
-  state:{
-    email: '',
-    password: '',
-    token: '',
-    status: '',
-    user: {
-      id: 0,
-      isAuthenticated: false,
-      userName: ''
-    },
+  state: {
+    email: "",
+    password: "",
+    token: "",
+    status: "",
+    user: defaultUser,
     loading: false,
-    loginError: '',
-    registerError: '',
-    provider: ''
+    loginError: "",
+    registerError: "",
+    provider: ""
   },
-  getters:{
+  getters: {
     email: state => {
-      return state.email
+      return state.email;
     },
     password: state => {
-      return state.password
+      return state.password;
     },
     isAuthenticated: state => {
-      return state.user.isAuthenticated
+      return state.user.isAuthenticated;
     },
     loading: state => {
-      return state.loading
+      return state.loading;
     },
     loginError: state => {
-      return state.loginError
+      return state.loginError;
     },
     registerError: state => {
-      return state.registerError
+      return state.registerError;
     },
     oauth(state) {
-      return 'https://stagingapi.whynot.earth/api/v0/authentication/provider/login?provider=' + state.provider + '&returnUrl=https%3A%2F%2Fwww.vkirirom.com' 
+      const returnUrl = encodeURIComponent(OAUTH_RETURN_URL);
+      return APIPath(
+        `/api/v0/authentication/provider/login?provider=${
+          state.provider
+        }&returnUrl=${returnUrl}`
+      );
     }
   },
-  mutations:{
-    updateEmail (state, email) {
-      state.email = email
+  mutations: {
+    updateEmail(state, email) {
+      state.email = email;
     },
-    updatePassword (state, password) {
-      state.password = password
+    updatePassword(state, password) {
+      state.password = password;
     },
-    updateProvider (state, provider) {
-      state.provider = provider
+    updateProvider(state, provider) {
+      state.provider = provider;
+    },
+    updateLoading(state, payload) {
+      state.loading = payload;
+    },
+    updateUser(state, payload) {
+      Vue.set(state, "user", payload);
     }
   },
-  actions:{
-    login(context){
-      context.state.loading=true,
-      Vue.http.post('https://stagingapi.whynot.earth/api/v0/authentication/login', {
-        email: context.state.email,
-        password: context.state.password
-      }).then(function(data){
-        context.state.token = data.body;
-        Vue.http.get('https://stagingapi.whynot.earth/api/v0/authentication/ping').then(function(data){
-          context.state.user = data.body;
-          context.state.loading = false;
+  actions: {
+    login(context) {
+      context.commit("updateLoading", true);
+      AuthenticationService.login({
+        model: {
+          email: context.state.email,
+          password: context.state.password
+        }
+      })
+        .then(token => {
+          context.state.token = token;
+          this.dispatch("auth/ping");
         })
-        return context;
-      }, response =>{
-          if(response){
-            context.state.loading = false;
-            context.state.loginError = "Username or password is incorrect, please try again.";
+        .catch(error => {
+          const response = error.response && error.response.data;
+          context.commit("updateLoading", false);
+          if (response) {
+            context.state.loginError =
+              "Username or password is incorrect, please try again.";
           }
+        });
+    },
+    register(context) {
+      context.commit("updateLoading", true);
+      AuthenticationService.register({
+        model: {
+          email: context.state.email,
+          password: context.state.password
+        }
+      })
+        .then(token => {
+          context.state.token = token;
+          this.dispatch("auth/ping");
+        })
+        .catch(error => {
+          const response = error.response && error.response.data;
+          context.commit("updateLoading", false);
+          if (response) {
+            context.state.registerError = response[0].description;
+          }
+        });
+    },
+    logout(context) {
+      context.commit("updateLoading", true);
+      AuthenticationService.logout().then(() => {
+        context.commit("updateLoading", false);
+        context.commit("updateUser", defaultUser);
       });
     },
-    register(context){
-      context.state.loading=true,
-      Vue.http.post('https://stagingapi.whynot.earth/api/v0/authentication/register', {
-        email: context.state.email,
-        password: context.state.password
-      }).then(function(data){
-        context.state.token = data.body;
-        Vue.http.get('https://stagingapi.whynot.earth/api/v0/authentication/ping').then(function(data){
-          context.state.user = data.body;
-          context.state.loading = false;
+    ping(context) {
+      AuthenticationService.ping({
+        headers: {
+          Authorization: `Bearer ${context.state.token}`
+        }
+      })
+        .then(user => {
+          context.commit("updateUser", user);
         })
-        return context;
-      }, response =>{
-          if(response){
-            context.state.loading = false;
-            context.state.registerError = response.body[0].description;
-          }
-      });
-    },
-    logout(context){
-      context.state.loading = true,
-      Vue.http.post('https://stagingapi.whynot.earth/api/v0/authentication/logout').then(function(){
-        context.state.loading = false,
-        context.state.user.isAuthenticated = false
-      })
-    },
-    ping(context){
-      Vue.http.get('https://stagingapi.whynot.earth/api/v0/authentication/ping',{
-      }).then(function(data){
-        context.state.user = data.body;
-      })
+        .catch(() => {
+          console.log("Can't authenticate");
+        })
+        .finally(() => {
+          context.commit("updateLoading", false);
+        });
     }
-  },
-}
+  }
+};
