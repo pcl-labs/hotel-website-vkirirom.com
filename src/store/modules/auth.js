@@ -1,6 +1,5 @@
 import { AuthenticationService } from "@/connection/resources.js";
 import { APIPath } from "@/helpers.js";
-import { OAUTH_RETURN_URL } from "@/constants/connection.js";
 import Vue from "vue";
 
 const defaultUser = {
