@@ -1,6 +1,6 @@
 <template>
   <v-container grid-list-md>
-    <v-layout row wrap>
+    <v-layout row wrap style="min-height:100vh;">
       <v-flex xs12 md7 class="text">
         <v-layout row wrap>
           <v-flex xs12>
@@ -9,7 +9,7 @@
           <v-flex xs12 style="margin-bottom:10px;">
             <h3>Pay with credit or debit card</h3>
           </v-flex>
-          <v-flex xs12>
+          <!-- <v-flex xs12>
             <v-text-field
               v-model="name"
               outline
@@ -35,7 +35,7 @@
               :rules="phoneRules"
             >
             </v-text-field>
-          </v-flex>
+          </v-flex> -->
           <v-flex xs12>
             <div ref="card"></div>
           </v-flex>
@@ -45,21 +45,21 @@
               No cancellation fee if cancelling at least 24 hours in advance of check-in date.  50% charge of total stay if cancelling within 24 hours.  Applicable to individual (non-group) customers.
             </p>
           </v-flex>
+          <v-flex xs12>
+            <v-btn
+              class="button"
+              color="#F7B947"
+              v-on:click="purchase"
+            >
+              Pay ${{finalPrice}} & book
+            </v-btn>
+          </v-flex>
         </v-layout>
       </v-flex>
       <v-flex xs12 md5 class="bookingCard">
-        <BookingInfoCard></BookingInfoCard>      
+        <BookingInfoCard></BookingInfoCard>
       </v-flex>
     </v-layout>
-    <v-flex xs12>
-      <v-btn 
-        class="button"
-        color="#F7B947"
-        v-on:click="purchase"
-      >
-        Pay ${{finalPrice}} & book
-      </v-btn>
-    </v-flex>
   </v-container>
 </template>
 
@@ -80,7 +80,7 @@ var style = {
     '::placeholder': {
       color: '#B9BCC1'
     },
-    
+
   },
   invalid: {
     color: '#fa755a',
@@ -140,7 +140,7 @@ export default {
   .v-input__slot{
     margin: 0px;
     height: 55px;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
   }
   .StripeElement {
     height: 55px;
@@ -163,11 +163,11 @@ export default {
     font-weight: bold;
     font-size: 16px;
     color: #FFFFFF;
-    border-radius: 4px; 
-    margin: 4px;
+    border-radius: 4px;
+    margin:0;
   }
   .text{
-    margin-top:30px; 
+    margin-top:30px;
     margin-bottom:30px;
     p{
       font-size: 16px;
@@ -186,10 +186,10 @@ export default {
     }
   }
   .bookingCard{
-    margin-top:30px; 
+    margin-top:30px;
     margin-bottom:30px;
   }
-  
+
   @-webkit-keyframes autofill {
     to {
         color: white;
@@ -206,7 +206,7 @@ export default {
     padding-right: 0px;
     // doing padding:0px or  0; or padding-bottom:0px or 0; creates an extra overflow scroll which is bad and should be avoided
   }
-  
+
   @media only screen and (max-width: 600px) {
     .container{
       max-width: 292px;

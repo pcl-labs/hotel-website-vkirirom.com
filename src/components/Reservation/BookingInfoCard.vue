@@ -26,7 +26,7 @@
       </v-flex>
       <v-flex xs12>
         <v-divider class="divider"></v-divider>
-      </v-flex>        
+      </v-flex>
       <v-flex xs12 style="margin-bottom:30px;">
         <v-layout row wrap v-for="price in prices" v-bind:key="price.id">
           <v-flex xs6 class="normalText">{{formatDates(price.date)}}</v-flex>
@@ -88,7 +88,7 @@ export default {
 <style lang="scss" scoped>
   .card{
     border: 1px solid #E1E7ED;
-    border-radius: 3px; 
+    border-radius: 3px;
     margin-right: 0;
     margin-left:auto;
     padding:30px;
@@ -116,5 +116,9 @@ export default {
     background-color:#3D424E;
     margin-top:10px;
     margin-bottom:10px;
+  }
+  .normalText{
+    font-size: 16px;
+    color: #B9BCC1;
   }
 </style>

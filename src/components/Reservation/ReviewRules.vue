@@ -94,10 +94,10 @@
         </v-layout>
       </v-flex>
       <v-flex xs12 md5 class="bookingCard">
-        <BookingInfoCard></BookingInfoCard>      
+        <BookingInfoCard></BookingInfoCard>
       </v-flex>
     </v-layout>
-    <v-btn 
+    <!-- <v-btn
       class="button"
       color="#F7B947"
       id="checkout-button-sku_FXdydWSsa1hGV6"
@@ -106,7 +106,14 @@
     >
       Agree and pay
     </v-btn>
-    <div id="error-message"></div>
+    <div id="error-message"></div> -->
+    <v-btn
+      class="button"
+      color="#F7B947"
+      to="/reservation/confirmandpay"
+    >
+      Agree and continue
+    </v-btn>
   </v-container>
 </template>
 
@@ -116,7 +123,7 @@ import { reviewDay } from "@/helpers.js"
 import format from "date-fns/format";
 const BookingInfoCard = () => import ('@/components/Reservation/BookingInfoCard.vue')
 
-export default { 
+export default {
   components:{
     BookingInfoCard
   },
@@ -165,7 +172,7 @@ export default {
 
 <style lang="scss" scoped>
   .text{
-    margin-top:30px; 
+    margin-top:30px;
     margin-bottom:30px;
     p{
       font-size: 16px;
@@ -192,11 +199,11 @@ export default {
     font-weight: bold;
     font-size: 16px;
     color: #FFFFFF;
-    border-radius: 4px; 
+    border-radius: 4px;
     margin: 4px;
   }
   .bookingCard{
-    margin-top:30px; 
+    margin-top:30px;
     margin-bottom:30px;
   }
   .smallCard{

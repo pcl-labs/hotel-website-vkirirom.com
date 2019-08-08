@@ -7,7 +7,7 @@ import VuexPersistence from 'vuex-persist'
 
 const vuexLocal = new VuexPersistence({
   storage: window.localStorage,
-  modules: ['reservation'],
+  modules: ['reservation', 'resort'],
   key: 'store'
 })
 

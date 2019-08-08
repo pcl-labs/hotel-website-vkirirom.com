@@ -36,6 +36,9 @@
       <v-flex>
         <v-btn flat block to="/listing/Pine-View-Kitchen-PVK" class="mt-2 button"><h3>Restaurant</h3></v-btn>
       </v-flex>
+      <v-flex>
+        <v-btn flat block class="mt-2 button" @click="logout()" v-if="isAuthenticated == true" :loading="loading"><h3>Log out</h3></v-btn>
+      </v-flex>
     </v-layout>
   </v-navigation-drawer>
 </v-container>
@@ -65,7 +68,7 @@ export default {
 </script>
 
 <style>
-/* button:active { 
+/* button:active {
   background-color: #ffdb3a;
   transition: background 1s ease-out;
   } */

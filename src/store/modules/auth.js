@@ -79,6 +79,7 @@ export default {
         .then(token => {
           context.state.token = token;
           this.dispatch("auth/ping");
+          window.location.assign('http://www.staging.vkirirom.com/reservation/reviewrules')
         })
         .catch(error => {
           const response = error.response && error.response.data;
@@ -100,6 +101,7 @@ export default {
         .then(token => {
           context.state.token = token;
           this.dispatch("auth/ping");
+          window.location.assign('http://www.staging.vkirirom.com/reservation/reviewrules')
         })
         .catch(error => {
           const response = error.response && error.response.data;

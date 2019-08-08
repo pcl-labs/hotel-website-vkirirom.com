@@ -9,5 +9,5 @@ console.log({ base_api });
 
 module.exports = {
   BASE_API: base_api,
-  OAUTH_RETURN_URL: "https://www.vkirirom.com"
+  OAUTH_RETURN_URL: "http://www.staging.vkirirom.com/reservation/reviewrules"
 };
