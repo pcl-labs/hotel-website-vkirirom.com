@@ -30,7 +30,7 @@
       </v-layout>
       <v-flex xs12 class="hidden-md-and-up">
         <v-carousel height="300px" hide-controls dark :cycle="false">
-          <!-- v-if="belltent.images.length > 0" is required to avoid the error "cannot read property 'url' of undefined. 
+          <!-- v-if="belltent.images.length > 0" is required to avoid the error "cannot read property 'url' of undefined.
           It is needed only when we want to iterate through an array of images, or nested elements.-->
           <v-carousel-item :src="resort.featuredImage"></v-carousel-item>
           <v-carousel-item
@@ -202,6 +202,9 @@ export default {
         this.$emit("updateHead");
       });
     },
+    currentURL() {
+      this.$store.commit('auth/updateCurrentURL', window.location.href)
+    },
     getHotelRoomBeds({ roomType }) {
       const resortRoomType = this.getResortRoom({ roomType });
       return resortRoomType && resortRoomType.beds || [];
@@ -233,6 +236,7 @@ export default {
   },
   mounted() {
     this.init();
+    this.currentURL();
   },
 };
 </script>

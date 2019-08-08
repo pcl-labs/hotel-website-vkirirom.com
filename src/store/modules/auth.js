@@ -20,7 +20,8 @@ export default {
     loading: false,
     loginError: "",
     registerError: "",
-    provider: ""
+    provider: "",
+    currentURL: ""
   },
   getters: {
     email: state => {
@@ -46,7 +47,7 @@ export default {
       return APIPath(
         `/api/v0/authentication/provider/login?provider=${
           state.provider
-        }&returnUrl=${returnUrl}`
+        }&returnUrl=${state.currentURL}`
       );
     }
   },
@@ -65,6 +66,9 @@ export default {
     },
     updateUser(state, payload) {
       Vue.set(state, "user", payload);
+    },
+    updateCurrentURL(state, payload) {
+      state.currentURL = payload
     }
   },
   actions: {
@@ -79,7 +83,6 @@ export default {
         .then(token => {
           context.state.token = token;
           this.dispatch("auth/ping");
-          window.location.assign('http://www.staging.vkirirom.com/reservation/reviewrules')
         })
         .catch(error => {
           const response = error.response && error.response.data;
@@ -101,7 +104,6 @@ export default {
         .then(token => {
           context.state.token = token;
           this.dispatch("auth/ping");
-          window.location.assign('http://www.staging.vkirirom.com/reservation/reviewrules')
         })
         .catch(error => {
           const response = error.response && error.response.data;
