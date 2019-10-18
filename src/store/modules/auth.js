@@ -42,7 +42,6 @@ export default {
       return state.registerError;
     },
     oauth(state) {
-      const returnUrl = encodeURIComponent(OAUTH_RETURN_URL);
       return APIPath(
         `/api/v0/authentication/provider/login?provider=${
           state.provider

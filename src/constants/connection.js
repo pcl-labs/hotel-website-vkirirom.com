@@ -5,7 +5,7 @@ if (process.env.API_ENDPOINT === "master") {
   base_api = production_api;
 }
 
-console.log({ base_api });
+// console.log({ base_api });
 
 module.exports = {
   BASE_API: base_api,
