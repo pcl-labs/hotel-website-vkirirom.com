@@ -9,7 +9,12 @@
         color="#F7B947"
         v-on="on"
       >
-        Reserve Now
+        <span v-if="resort.categories[0].name=='accommodations' || resort.categories[0].name=='events' || resort.categories[0].name=='experiences'">
+          Reserve Now
+        </span>
+        <span v-else>
+          Contact Now
+        </span>
         <v-spacer></v-spacer>
         <v-icon>keyboard_arrow_right</v-icon>
       </v-btn>
@@ -211,7 +216,12 @@
               style="height:74px;"
               type="submit"
             >
-              Reserve Now
+              <span v-if="resort.categories[0].name=='events' || resort.categories[0].name=='experiences'">
+                Reserve Now
+              </span>
+              <span v-else>
+                Contact Now
+              </span>
               <v-spacer></v-spacer>
               <v-icon>keyboard_arrow_right</v-icon>
             </v-btn>
