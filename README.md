@@ -1,6 +1,29 @@
 # vkirirom.com_v2
 vkirirom.com is a hotel website in Cambodia. Built in vue.js, and a progressive web app; They support conservation of the national forest their reside in, while also supporting a free software college with 300 Cambodian students. One of our favorite clients, they are always willing to pilot new ideas, and is a good playground for new contributers.
 
+## Preview URL
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/4eda4789-8413-4278-bceb-146da2ff6a22/deploy-status)](https://app.netlify.com/sites/elegant-perlman-ff2d63/deploys)
+
+master branch: https://vkirirom.com/
+staging branch: https://staging.vkirirom.com/
+
+## Design File:
+
+https://www.figma.com/file/ZCcD4RV58FowzVvWdVmY4a/Airbnb-Dark-mode-by-PaulChrisLuke?node-id=0%3A1
+
+## Frontend:
+Vue with typescript and Bootstrap
+Along with Vuex for state management
+
+## Backend:
+Managed by meredith-core api https://github.com/whynotearth/meredith-core
+
+## Tools
+
+[<img src="https://raw.githubusercontent.com/whynotearth/shinta-mani-wild/master/src/assets/img/browserstack-logo.png">](https://browserstack.com)
+
+
 ## Build Setup
 
 ``` bash
