@@ -104,3 +104,5 @@ new Vue({
   store,
   render: (h) => h(App),
 }).$mount('#app');
+
+Vue.prototype.gridBreakpointsArray = [576, 768, 992, 1200, 1920]

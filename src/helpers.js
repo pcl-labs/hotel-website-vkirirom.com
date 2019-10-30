@@ -42,3 +42,47 @@ export function reviewDay(date) {
   }
   return formattedDate;
 }
+
+export function changeUrlExtension(url, newExtension) {
+  const urlParts = url.split('.')
+  const oldExtension = urlParts[urlParts.length - 1]
+  if (oldExtension.length >= 5) {
+    console.log('changeUrlExtension: Probably url has no extension.')
+    return ''
+  }
+  const indexOfExtension = urlParts.length - 1
+  urlParts.splice(indexOfExtension, 1, newExtension)
+  return urlParts.join('.')
+}
+
+export function transformCloudinaryUrl(
+  resourceUrl,
+  transformations
+) {
+  if (
+    !resourceUrl ||
+    !transformations ||
+    resourceUrl.indexOf('cloudinary') < 0
+  ) {
+    return resourceUrl
+  }
+  const urlParts = resourceUrl.split('/')
+
+  const indexOfUpload = urlParts.indexOf('upload')
+  urlParts.splice(indexOfUpload + 1, 0, transformations)
+  return urlParts.join('/')
+}
+
+
+export function getPosterImage(
+  videoUrl,
+  transformations
+) {
+  if (!videoUrl) {
+    return null
+  }
+  return transformCloudinaryUrl(
+    changeUrlExtension(videoUrl, 'jpg'),
+    transformations
+  )
+}

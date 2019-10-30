@@ -1,0 +1,1 @@
+export const heroVideoRatio = 2.134
