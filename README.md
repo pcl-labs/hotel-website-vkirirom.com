@@ -3,9 +3,8 @@ vkirirom.com is a hotel website in Cambodia. Built in vue.js, and a progressive 
 
 ## Preview URL
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/4eda4789-8413-4278-bceb-146da2ff6a22/deploy-status)](https://app.netlify.com/sites/elegant-perlman-ff2d63/deploys)
-
-master branch: https://vkirirom.com/
+![Netlify Status](https://api.netlify.com/api/v1/badges/517904aa-4d58-4733-b22d-8e29166000cb/deploy-status)  
+master branch: https://vkirirom.com/  
 staging branch: https://staging.vkirirom.com/
 
 ## Design File:
