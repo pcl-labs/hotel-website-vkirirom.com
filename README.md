@@ -1,6 +1,5 @@
 # vkirirom.com_v2
-
-> National Park Resort in Kirirom Cambodia
+vkirirom.com is a hotel website in Cambodia. Built in vue.js, and a progressive web app; They support conservation of the national forest their reside in, while also supporting a free software college with 300 Cambodian students. One of our favorite clients, they are always willing to pilot new ideas, and is a good playground for new contributers.
 
 ## Build Setup
 
