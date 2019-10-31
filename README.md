@@ -32,7 +32,7 @@
   <a href="#backend">Backend</a> •
   <a href="#tools">Tools</a> •
   <a href="#build-setup">Build Setup</a> •
-  <a href="#We-d-love-your-help-making-WHY-NOT-EARTH-better">We'd love your help making WHY NOT EARTH better</a> •
+  <a href="#wed-love-your-help-making-WHY-NOT-EARTH-better">We'd love your help making WHY NOT EARTH better</a> •
   <a href="#license">License</a>
 </p>
 
