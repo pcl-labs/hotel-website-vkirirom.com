@@ -16,6 +16,9 @@
   <a href="https://img.shields.io/discord/453020970354081812">
       <img src="https://img.shields.io/discord/453020970354081812.svg">
   </a>
+  <a href="https://img.shields.io/badge/PRs-welcome-brightgreen">
+      <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat">
+  </a>
   <a href="https://www.paypal.me/paulchrisluke">
     <img src="https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&amp;style=flat">
   </a>
@@ -23,21 +26,17 @@
 
 
 <p align="center">
-  <a href="#key-features">Key Features</a> •
-  <a href="#how-to-use">How To Use</a> •
-  <a href="#download">Download</a> •
-  <a href="#credits">Credits</a> •
-  <a href="#related">Related</a> •
+  <a href="#preview">Preview</a> •
+  <a href="#design-file">Design File</a> •
+  <a href="#frontend">Frontend</a> •
+  <a href="#backend">Backend</a> •
+  <a href="#tools">Tools</a> •
+  <a href="#build-setup">Build Setup</a> •
+  <a href="#We-d-love-your-help-making-WHY-NOT-EARTH-better">We'd love your help making WHY NOT EARTH better</a> •
   <a href="#license">License</a>
 </p>
 
-
-# vkirirom.com_v2
-
-
-## Preview URL
-[![GitHub pull requests](https://img.shields.io/github/issues-pr/cdnjs/cdnjs.svg?style=flat)]()
-[![PR's Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com)
+## Preview 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/517904aa-4d58-4733-b22d-8e29166000cb/deploy-status)](https://app.netlify.com/sites/cranky-nightingale-3731fc/deploys)  
 master branch: https://vkirirom.com/  
 staging branch: https://staging.vkirirom.com/
