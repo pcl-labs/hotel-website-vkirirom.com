@@ -13,12 +13,14 @@
     <img src="https://badges.frapsoft.com/os/v1/open-source.svg"
          alt="Open Source">
   </a>
-      <img src="https://img.shields.io/badge/SayThanks.io-%E2%98%BC-1EAEDB.svg">
+  <a href="https://img.shields.io/discord/453020970354081812">
+      <img src="https://img.shields.io/discord/453020970354081812.svg">
   </a>
   <a href="https://www.paypal.me/paulchrisluke">
     <img src="https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&amp;style=flat">
   </a>
 </p> 
+
 
 <p align="center">
   <a href="#key-features">Key Features</a> •
