@@ -1,8 +1,46 @@
+<h1 align="center">
+  <br>
+  <a href="http://www.amitmerchant.com/electron-markdownify"><img src="https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.png" alt="Markdownify" width="200"></a>
+  <br>
+  vKirirom
+  <br>
+</h1>
+
+<h4 align="center">vkirirom.com is a hotel website in Cambodia. Built in vue.js, and a progressive web app; vKirirom Pine Resort support conservation of Kirirom National Forest, where the resort is in, while also supporting a free software college with 300 Cambodian students. One of our favorite clients, vKirirom is always willing to pilot new ideas, and is a good playground for new contributers.</h4>
+
+<p align="center">
+  <a href="https://badge.fury.io/js/electron-markdownify">
+    <img src="https://badge.fury.io/js/electron-markdownify.svg"
+         alt="Gitter">
+  </a>
+  <a href="https://gitter.im/amitmerchant1990/electron-markdownify"><img src="https://badges.gitter.im/amitmerchant1990/electron-markdownify.svg"></a>
+  <a href="https://saythanks.io/to/amitmerchant1990">
+      <img src="https://img.shields.io/badge/SayThanks.io-%E2%98%BC-1EAEDB.svg">
+  </a>
+  <a href="https://www.paypal.me/paulchrisluke">
+    <img src="https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&amp;style=flat">
+  </a>
+</p> 
+
+[![Open Source](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://opensource.org/)
+[![Discord Chat](https://img.shields.io/discord/453020970354081812.svg)](https://discord.gg/)
+
+<p align="center">
+  <a href="#key-features">Key Features</a> •
+  <a href="#how-to-use">How To Use</a> •
+  <a href="#download">Download</a> •
+  <a href="#credits">Credits</a> •
+  <a href="#related">Related</a> •
+  <a href="#license">License</a>
+</p>
+
+
 # vkirirom.com_v2
-vkirirom.com is a hotel website in Cambodia. Built in vue.js, and a progressive web app; vKirirom Pine Resort support conservation of Kirirom National Forest, where the resort is in, while also supporting a free software college with 300 Cambodian students. One of our favorite clients, vKirirom is always willing to pilot new ideas, and is a good playground for new contributers.
+
 
 ## Preview URL
-
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/cdnjs/cdnjs.svg?style=flat)]()
+[![PR's Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/517904aa-4d58-4733-b22d-8e29166000cb/deploy-status)](https://app.netlify.com/sites/cranky-nightingale-3731fc/deploys)  
 master branch: https://vkirirom.com/  
 staging branch: https://staging.vkirirom.com/
