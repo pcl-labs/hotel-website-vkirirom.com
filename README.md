@@ -9,21 +9,16 @@
 <h4 align="center">vkirirom.com is a hotel website in Cambodia. Built in vue.js, and a progressive web app; vKirirom Pine Resort support conservation of Kirirom National Forest, where the resort is in, while also supporting a free software college with 300 Cambodian students. One of our favorite clients, vKirirom is always willing to pilot new ideas, and is a good playground for new contributers.</h4>
 
 <p align="center">
-  <a href="https://badge.fury.io/js/electron-markdownify">
-    <img src="https://badge.fury.io/js/electron-markdownify.svg"
-         alt="Gitter">
+  <a href="https://badges.frapsoft.com/os/v1/open-source">
+    <img src="https://badges.frapsoft.com/os/v1/open-source.svg"
+         alt="Open Source">
   </a>
-  <a href="https://gitter.im/amitmerchant1990/electron-markdownify"><img src="https://badges.gitter.im/amitmerchant1990/electron-markdownify.svg"></a>
-  <a href="https://saythanks.io/to/amitmerchant1990">
       <img src="https://img.shields.io/badge/SayThanks.io-%E2%98%BC-1EAEDB.svg">
   </a>
   <a href="https://www.paypal.me/paulchrisluke">
     <img src="https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&amp;style=flat">
   </a>
 </p> 
-
-[![Open Source](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://opensource.org/)
-[![Discord Chat](https://img.shields.io/discord/453020970354081812.svg)](https://discord.gg/)
 
 <p align="center">
   <a href="#key-features">Key Features</a> •
