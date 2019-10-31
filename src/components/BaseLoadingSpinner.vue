@@ -14,6 +14,7 @@ export default Vue.extend({})
 </script>
 
 <style lang='scss' scoped>
+@import '~sass-rem';
 $spinner-item-color: #000;
 $spinner-item-width: 6px;
 $spinner-item-margin: 3px;

@@ -85,7 +85,8 @@ export default Vue.extend({
       isPaused: false,
       isMute: true,
       shouldShowPoster: false,
-      isErrored: false
+      isErrored: false,
+      heroVideoRatio: 2.134
     }
   },
   mounted() {
@@ -179,6 +180,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+@import '~sass-rem';
 .video-player {
   background-color: #000;
 }
