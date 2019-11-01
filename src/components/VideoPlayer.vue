@@ -180,7 +180,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-@import '~sass-rem';
+@import 'sass-rem';
 .video-player {
   background-color: #000;
 }
