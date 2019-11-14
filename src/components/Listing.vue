@@ -48,11 +48,11 @@
           <v-flex xs12>
             <v-layout row wrap class="mt-2 mb-2">
               <v-flex v-if="resort.categories[0].name=='blog'">Published July 5, 2019</v-flex>
-              <v-flex v-if="getResortHotel().capacity">
+              <v-flex v-if="getResortHotel().capacity" color="#B9BCC1">
                 <v-icon size="30" color="#B9BCC1" style="margin-bottom:-5px; margin-right: 2px;">supervisor_account</v-icon>
                 {{ getResortHotel().capacity }} guests
               </v-flex>
-              <v-flex v-if="resort && resort.modules && resort.modules.hotel && resort.modules.hotel.roomTypes.length>0">
+              <v-flex v-if="resort && resort.modules && resort.modules.hotel && resort.modules.hotel.roomTypes.length>0" color="#B9BCC1">
                 <v-icon size="30" color="#B9BCC1" style="margin-bottom:-5px; margin-right: 2px;">hotel</v-icon>
                 <span v-for="(roomType, index) in resort.modules.hotel.roomTypes" v-bind:key="index">
                   {{roomType.beds[0].count}}
