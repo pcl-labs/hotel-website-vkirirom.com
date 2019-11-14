@@ -71,14 +71,12 @@ export default {
     line-height: 24px;
   }
   .container {
-    padding-left: 8px;
-    padding-right: 8px;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
   }
   @media only screen and (min-width: 576px) {
     .container {
       max-width: 544px;
-      padding-left: 16px !important;
-      padding-right: 16px !important;
     }
   }
   @media only screen and (min-width: 768px) {
