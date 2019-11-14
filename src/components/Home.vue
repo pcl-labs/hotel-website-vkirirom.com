@@ -301,7 +301,7 @@ export default {
   font-family: 'Oswald', sans-serif;
   font-size: 34px;
   line-height: 54px;
-  margin-bottom: -2px;
+  margin-bottom: 14px;
 }
 @media screen and (min-width: 960px) {
   .headerh1{

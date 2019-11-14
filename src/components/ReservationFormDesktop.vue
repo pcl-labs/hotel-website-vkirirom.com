@@ -15,7 +15,7 @@
         <p class="subheading text-xs-center pb-2">
           <span class="normalText">Starting from </span>
           <span
-            style="font-weight: bold; font-size: 28px; color: #B9BCC1;"
+            style="font-weight: bold; font-size: 28px;"
           >&dollar;{{ resort.ctaText }} </span>
           <span class="normalText">per night</span>
         </p>
@@ -28,29 +28,27 @@
           outline
           label="Enter your name"
           name="Name"
-          color="#B9BCC1"
           required
           dark
           :rules="nameRules"
         >
-          <v-icon slot="append" color="#B9BCC1">person</v-icon>
+          <v-icon slot="append">person</v-icon>
         </v-text-field>
       </v-flex>
       <v-flex xs12>
-        <input v-model="slug" hidden name="Property" color="#B9BCC1" dark readonly />
+        <input v-model="slug" hidden name="Property" dark readonly />
       </v-flex>
       <v-flex xs12>
         <v-text-field
           v-model="email"
           outline
-          color="#B9BCC1"
           label="Enter e-mail address"
           name="E-mail"
           required
           dark
           :rules="emailRules"
         >
-          <v-icon slot="append" color="#B9BCC1">email</v-icon>
+          <v-icon slot="append">email</v-icon>
         </v-text-field>
       </v-flex>
       <v-flex xs12>
@@ -59,12 +57,11 @@
           v-model="phone"
           label="Phone"
           name="Phone"
-          color="#B9BCC1"
           required
           dark
           :rules="phoneRules"
         >
-          <v-icon slot="append" color="#B9BCC1">local_phone</v-icon>
+          <v-icon slot="append">local_phone</v-icon>
         </v-text-field>
       </v-flex>
       <v-flex
@@ -80,7 +77,6 @@
           outline
           :rules="bedTypeRules"
           label="Bed Type"
-          color="#B9BCC1"
           type="text"
         >
           <template slot="selection" slot-scope="data">
@@ -109,14 +105,13 @@
           dark
           type="text"
           name="Date"
-          color="#B9BCC1"
           id="datepicker"
           label="Reserve Dates"
           readonly
           :rules="dateRules"
           :value="formatDates(dateOne, dateTwo)"
         >
-          <v-icon slot="append" color="#B9BCC1">event</v-icon>
+          <v-icon slot="append">event</v-icon>
         </v-text-field>
         <AirbnbStyleDatepicker
           :trigger-element-id="'datepicker'"
@@ -139,7 +134,6 @@
         <v-checkbox
           v-model="transportation"
           label="Do you need transportation?"
-          color="#B9BCC1"
           dark
           style="margin:0; padding:0;"
           height="30px"
@@ -172,11 +166,10 @@
           outline
           hide-details
           dark
-          color="#B9BCC1"
           name="Message"
           label="Write message here..."
           class="mb-4"
-          height="122px"
+          height="124px"
           no-resize
         ></v-textarea>
       </v-flex>
@@ -227,7 +220,7 @@
         >
           <v-flex xs2>
             <v-btn icon dark @click="auth1 = !auth1" style="margin:10px; margin-bottom:-20px;">
-              <v-icon color="#B9BCC1" size="25">close</v-icon>
+              <v-icon size="25">close</v-icon>
             </v-btn>
           </v-flex>
           <Login v-if="register"></Login>

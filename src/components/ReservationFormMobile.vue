@@ -35,7 +35,7 @@
         <v-layout row wrap>
           <v-flex xs1>
             <v-btn icon dark @click="closeModal()" style="margin:0; margin-bottom:20px;">
-              <v-icon color="#B9BCC1" size="35">close</v-icon>
+              <v-icon  size="35">close</v-icon>
             </v-btn>
           </v-flex>
           <v-spacer></v-spacer>
@@ -54,7 +54,6 @@
               label="Enter your name"
               name="Name"
               required
-              color="#B9BCC1"
               dark
               :rules="nameRules"
             >
@@ -70,7 +69,6 @@
               outline
               label="Enter e-mail address"
               name="E-mail"
-              color="#B9BCC1"
               required
               dark
               :rules="emailRules"
@@ -84,7 +82,6 @@
               v-model="phone"
               label="Phone"
               name="Phone"
-              color="#B9BCC1"
               required
               dark
               :rules="phoneRules"
@@ -106,7 +103,6 @@
               outline
               label="Bed Type"
               :rules="bedTypeRules"
-              color="#B9BCC1"
               type="text"
             >
               <template slot="selection" slot-scope="data">
@@ -135,7 +131,6 @@
               type="text"
               name="Date"
               readonly
-              color="#B9BCC1"
               label="Reserve Dates"
               id="datepicker-trigger"
               :rules="dateRules"
@@ -164,7 +159,6 @@
             <v-checkbox
               v-model="transportation"
               label="Do you need transportation?"
-              color="#B9BCC1"
               dark
               style="margin:0; padding:0;"
               height="30px"
@@ -198,7 +192,6 @@
               hide-details
               dark
               name="Message"
-              color="#B9BCC1"
               label="Write message here..."
               class="mb-4"
               height="122px"
@@ -246,7 +239,7 @@
             <v-card color="#191C21" dark width="100%" style="position:absolute;">
               <v-flex xs2>
                 <v-btn icon dark @click="auth2 = !auth2" style="margin:10px; margin-bottom:-20px;">
-                  <v-icon color="#B9BCC1" size="25">close</v-icon>
+                  <v-icon  size="25">close</v-icon>
                 </v-btn>
               </v-flex>
               <Login v-if="register"></Login>

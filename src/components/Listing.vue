@@ -42,17 +42,17 @@
       </v-flex>
     </div>
     <v-container>
-      <v-layout row wrap style="min-height: 100vh;">
-        <v-flex xs12 md6 mb-5>
+      <v-layout row wrap justify-space-between style="min-height: 100vh;">
+        <v-flex mb-5 class="content-column">
           <h1>{{resort.title}}</h1>
           <v-flex xs12>
             <v-layout row wrap class="mt-2 mb-2">
-              <v-flex v-if="resort.categories[0].name=='blog'">Published July 5, 2019</v-flex>
-              <v-flex v-if="getResortHotel().capacity" color="#B9BCC1">
+              <v-flex v-if="resort.categories[0].name=='blog'" class="listingInfo">Published July 5, 2019</v-flex>
+              <v-flex v-if="getResortHotel().capacity" class="listingInfo">
                 <v-icon size="30" color="#B9BCC1" style="margin-bottom:-5px; margin-right: 2px;">supervisor_account</v-icon>
                 {{ getResortHotel().capacity }} guests
               </v-flex>
-              <v-flex v-if="resort && resort.modules && resort.modules.hotel && resort.modules.hotel.roomTypes.length>0" color="#B9BCC1">
+              <v-flex v-if="resort && resort.modules && resort.modules.hotel && resort.modules.hotel.roomTypes.length>0" class="listingInfo">
                 <v-icon size="30" color="#B9BCC1" style="margin-bottom:-5px; margin-right: 2px;">hotel</v-icon>
                 <span v-for="(roomType, index) in resort.modules.hotel.roomTypes" v-bind:key="index">
                   {{roomType.beds[0].count}}
@@ -86,7 +86,7 @@
             <v-flex xs12 v-if="getResortHotel().location">
               <h2 class="mb-3 mt-3" >Location</h2>
               <p>
-                <a :href="getResortHotel().location" style="color: #B9BCC1;">Get Directions</a>
+                <a :href="getResortHotel().location">Get Directions</a>
               </p>
             </v-flex>
             <v-flex v-if="getResortHotelSpaces().length > 0">
@@ -106,7 +106,7 @@
             <p>{{getResortHotelRules()[0]}}</p>
           </v-flex>
         </v-flex>
-        <v-flex md6 class="hidden-sm-and-down">
+        <v-flex mb-5 class="hidden-sm-and-down">
           <v-card class="bookForm" color="#191C21">
             <reservation-form-desktop :resort-slug="slug" />
           </v-card>
@@ -114,7 +114,7 @@
       </v-layout>
     </v-container>
     <v-layout row wrap>
-      <v-flex xs12>
+      <v-flex>
         <div id="bookBottom" class="hidden-md-and-up book-bottom">
           <v-flex xs12 v-if="resort.ctaText > 0">
             <p class="mb-0">
@@ -292,6 +292,12 @@ input:-webkit-autofill {
   }
   .theme--dark.v-icon {
     color: #b9bcc1;
+  }
+}
+
+@media only screen and (min-width: 960px) {
+  .content-column {
+    max-width: calc(100% - 364px);
   }
 }
 
