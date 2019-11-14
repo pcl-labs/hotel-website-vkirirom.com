@@ -1,5 +1,10 @@
 # vkirirom.com_v2
 
+## Branches
+`master` is our live branch and is directly deployed to vkirirom.com  
+`staging` is our most active and updated branch.  
+New branches should be based on `staging`.
+
 ## Project setup
 ```
 npm install

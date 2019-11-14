@@ -1,10 +1,11 @@
 module.exports = {
+  lintOnSave: false,
   transpileDependencies: ['vuex-persist'],
-  configureWebpack:{
+  configureWebpack: {
     optimization: {
       splitChunks: {
         minSize: 10000,
-        maxSize: 250000,
+        maxSize: 250000
       }
     }
   }
