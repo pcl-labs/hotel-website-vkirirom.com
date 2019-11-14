@@ -2,16 +2,9 @@
   <div>
     <v-card dark>
       <div id="header">
-        <v-container grid-list-md>
-          <v-layout row wrap align-end justify-start hidden-sm-and-down>
-            <v-flex xs12 sm6 md3 lg3>
-              <h1 class="headerh1">Book your nature retreat at vKirirom Pine Resort</h1>
-            </v-flex>
-          </v-layout>
-          <v-layout row wrap align-end justify-start hidden-md-and-up>
-            <v-flex xs12 sm6 md3 lg3>
-              <h1 class="headerh1mob">Book your nature retreat at vKirirom Pine Resort</h1>
-            </v-flex>
+        <v-container grid-list-md h-100>
+          <v-layout row wrap align-end justify-start hidden-sm-and-down h-100>
+            <h1 class="headerh1">Book your nature retreat at vKirirom Pine Resort</h1>
           </v-layout>
         </v-container>
       </div>
@@ -30,12 +23,10 @@
               </v-carousel>
             </router-link>
             <v-img :src="accommodation.featuredImage" height="150px" class="hidden-sm-and-down" style="border-top-left-radius: 10px; border-top-right-radius: 10px;"></v-img>
-            <v-layout align-start>
-              <v-card-text style="margin:10px; padding: 0;">
-                <span class="cardTitle"><h3>{{accommodation.title}}</h3></span>
-                <span class="cardSubtitle" v-if="accommodation.ctaText>0">Starting from {{accommodation.ctaText}}$ per night</span>
-              </v-card-text>
-            </v-layout>
+            <v-card-text class="cardText">
+              <h3 class="cardTitle">{{accommodation.title}}</h3>
+              <p class="cardSubtitle" v-if="accommodation.ctaText>0">Starting from {{accommodation.ctaText}}$ per night</p>
+            </v-card-text>
           </v-card>
         </v-flex>
       </v-layout>
@@ -79,12 +70,10 @@
               </v-carousel>
             </router-link>
             <v-img :src="experience.featuredImage" height="150px" class="hidden-sm-and-down" style="border-top-left-radius: 10px; border-top-right-radius: 10px;"></v-img>
-            <v-layout align-start>
-              <v-card-text style="margin:10px; padding: 0;">
-                <span class="cardTitle"><h3>{{experience.title}}</h3></span>
-                <span class="cardSubtitle" v-if="experience.ctaText>0">Starting from {{experience.ctaText}}$ per night</span>
-              </v-card-text>
-            </v-layout>
+            <v-card-text class="cardText">
+              <h3 class="cardTitle">{{experience.title}}</h3>
+              <p class="cardSubtitle" v-if="experience.ctaText>0">Starting from {{experience.ctaText}}$ per night</p>
+            </v-card-text>
           </v-card>
         </v-flex>
       </v-layout>
@@ -126,12 +115,10 @@
               </v-carousel>
             </router-link>
             <v-img :src="event.featuredImage" height="150px" class="hidden-sm-and-down" style="border-top-left-radius: 10px; border-top-right-radius: 10px;"></v-img>
-            <v-layout align-start>
-              <v-card-text style="margin:10px; padding: 0;">
-                <span class="cardTitle"><h3>{{event.title}}</h3></span>
-                <span class="cardSubtitle" v-if="event.ctaText>0">Starting from {{event.ctaText}}$ per night</span>
-              </v-card-text>
-            </v-layout>
+            <v-card-text class="cardText">
+              <h3 class="cardTitle">{{event.title}}</h3>
+              <p class="cardSubtitle" v-if="event.ctaText>0">Starting from {{event.ctaText}}$ per night</p>
+            </v-card-text>
           </v-card>
         </v-flex>
       </v-layout>
@@ -161,12 +148,10 @@
               </v-carousel>
             </router-link>
             <v-img :src="lease.featuredImage" height="150px" class="hidden-sm-and-down" style="border-top-left-radius: 10px; border-top-right-radius: 10px;"></v-img>
-            <v-layout align-start>
-              <v-card-text style="margin:10px; padding: 0;">
-                <span class="cardTitle"><h3>{{lease.title}}</h3></span>
-                <span class="cardSubtitle" v-if="lease.ctaText>0">Starting from {{lease.ctaText}}$ per night</span>
-              </v-card-text>
-            </v-layout>
+            <v-card-text class="cardText">
+              <h3 class="cardTitle">{{lease.title}}</h3>
+              <p class="cardSubtitle" v-if="lease.ctaText>0">Starting from {{lease.ctaText}}$ per night</p>
+            </v-card-text>
           </v-card>
         </v-flex>
       </v-layout>
@@ -190,12 +175,10 @@
               </v-carousel>
             </router-link>
             <v-img :src="ecotourism.featuredImage" height="150px" class="hidden-sm-and-down" style="border-top-left-radius: 10px; border-top-right-radius: 10px;"></v-img>
-            <v-layout align-start>
-              <v-card-text style="margin:10px; padding: 0;">
-                <span class="cardTitle"><h3>{{ecotourism.title}}</h3></span>
-                <span class="cardSubtitle" v-if="ecotourism.ctaText>0">Starting from {{ecotourism.ctaText}}$ per night</span>
-              </v-card-text>
-            </v-layout>
+            <v-card-text class="cardText">
+              <h3 class="cardTitle">{{ecotourism.title}}</h3>
+              <p class="cardSubtitle" v-if="ecotourism.ctaText>0">Starting from {{ecotourism.ctaText}}$ per night</p>
+            </v-card-text>
           </v-card>
         </v-flex>
       </v-layout>
@@ -271,6 +254,7 @@ export default {
   // background-position: bottom;
   background-size: cover;
   background-repeat: no-repeat;
+  height: 300px;
 }
 .cardRow{
   height: 300px;
@@ -295,10 +279,6 @@ export default {
   }
 }
 
-#header{
-  height: 300px;
-}
-
 .menubtn{
   box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 4px;
@@ -313,39 +293,34 @@ export default {
   max-width:340px;
   text-transform:capitalize;
 }
+.h-100{
+  height: 100%;
+}
 .headerh1{
   color: #FFFFFF;
-  bottom:20px;
-  position:absolute;
   font-family: 'Oswald', sans-serif;
-  font-size: 45px;
+  font-size: 34px;
+  line-height: 54px;
+  margin-bottom: -2px;
 }
-.headerh1mob{
-  color: #FFFFFF;
-  bottom:20px;
-  position:absolute; 
-  font-family: 'Oswald', sans-serif;
-  font-size: 35px;
+@media screen and (min-width: 960px) {
+  .headerh1{
+    font-size: 44px;
+    line-height: 64px;
+  }
 }
 .card{
   box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
 }
-.cardTitle{
-  color: #FFFFFF;
-  font-size: 17px;
-  line-height: 27px;
+.cardText{
+  padding: 8px 16px;
 }
 .cardSubtitle{
-  font-size: 16px;
-  line-height: 22px;
-  color: #B9BCC1;
+  margin: 0;
 }
 .listTitle{
   color: #D8DADE;
   font-size: 28px;
-}
-html {
-  scroll-behavior: smooth;
 }
 </style>

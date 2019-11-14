@@ -3,7 +3,7 @@
     <div class="pa-0 ma-0">
       <v-layout row flex class="pa-0 mx-0 my-0">
         <v-flex class="pa-0 overflow-hidden hidden-sm-and-down">
-          <v-img class="image ma-0 pa-0" :src="resort.featuredImage" style="height:470px;"></v-img>
+          <v-img class="headerImage ma-0 pa-0" :src="resort.featuredImage" style="height:470px;"></v-img>
         </v-flex>
         <v-flex
           class="pa-0 ma-0 overflow-hidden hidden-sm-and-down"
@@ -12,18 +12,18 @@
         >
           <v-layout row flex class="pa-0 ma-0 overflow-hidden">
             <v-flex class="pa-0 overflow-hidden" v-if="resort.images.length > 0">
-              <v-img class="image ma-0 pa-0" :src="resort.images[0].url" style="height:235px;"></v-img>
+              <v-img class="headerImage ma-0 pa-0" :src="resort.images[0].url" style="height:235px;"></v-img>
             </v-flex>
             <v-flex class="pa-0 overflow-hidden" v-if="resort.images.length > 2">
-              <v-img class="image" :src="resort.images[2].url" style="height:235px;"></v-img>
+              <v-img class="headerImage" :src="resort.images[2].url" style="height:235px;"></v-img>
             </v-flex>
           </v-layout>
           <v-layout row flex class="pa-0 ma-0 overflow-hidden">
             <v-flex class="pa-0 overflow-hidden" v-if="resort.images.length > 1">
-              <v-img class="image" :src="resort.images[1].url" style="height:235px;"></v-img>
+              <v-img class="headerImage" :src="resort.images[1].url" style="height:235px;"></v-img>
             </v-flex>
             <v-flex class="pa-0 overflow-hidden" v-if="resort.images.length > 3">
-              <v-img class="image" :src="resort.images[3].url" style="height:235px;"></v-img>
+              <v-img class="headerImage" :src="resort.images[3].url" style="height:235px;"></v-img>
             </v-flex>
           </v-layout>
         </v-flex>
@@ -43,26 +43,17 @@
     </div>
     <v-container>
       <v-layout row wrap style="min-height: 100vh;">
-        <v-flex xs12 md6>
-          <h1 style="color: #D7D9DD; margin-top:30px;">{{resort.title}}</h1>
+        <v-flex xs12 md6 mb-5>
+          <h1>{{resort.title}}</h1>
           <v-flex xs12>
-            <v-layout row wrap style="height:100%">
-              <v-flex
-                v-if="resort.categories[0].name=='blog'"
-                style="font-size: 16px; color: #B9BCC1; margin-top:20px; margin-bottom:20px;"
-              >Published July 5, 2019</v-flex>
-              <v-flex
-                v-if="getResortHotel().capacity"
-                style="font-size: 16px; color: #B9BCC1; margin-top:20px; margin-bottom:20px;"
-              >
-                <v-icon size="30" color="#B9BCC1" style="margin-bottom:-5px;">supervisor_account</v-icon>
+            <v-layout row wrap class="mt-2 mb-2">
+              <v-flex v-if="resort.categories[0].name=='blog'">Published July 5, 2019</v-flex>
+              <v-flex v-if="getResortHotel().capacity">
+                <v-icon size="30" color="#B9BCC1" style="margin-bottom:-5px; margin-right: 2px;">supervisor_account</v-icon>
                 {{ getResortHotel().capacity }} guests
               </v-flex>
-              <v-flex
-                v-if="resort && resort.modules && resort.modules.hotel && resort.modules.hotel.roomTypes.length>0"
-                style="font-size: 16px; color: #B9BCC1; margin-top:20px; margin-bottom:20px;"
-              >
-                <v-icon size="30" color="#B9BCC1" style="margin-bottom:-5px;">hotel</v-icon>
+              <v-flex v-if="resort && resort.modules && resort.modules.hotel && resort.modules.hotel.roomTypes.length>0">
+                <v-icon size="30" color="#B9BCC1" style="margin-bottom:-5px; margin-right: 2px;">hotel</v-icon>
                 <span v-for="(roomType, index) in resort.modules.hotel.roomTypes" v-bind:key="index">
                   {{roomType.beds[0].count}}
                   {{roomType.beds[0].type}}
@@ -82,55 +73,41 @@
                 <span>Bed(s)</span>
               </v-flex>
             </v-layout>
-            <v-flex v-if="resort.description" style="height:100%" class="mt-3">
+            <v-flex v-if="resort.description" class="mt-2">
               <div class="description">
                 <vue-markdown>{{resort.description}}</vue-markdown>
               </div>
             </v-flex>
-            <v-flex v-if="getResortHotel().gettingAround" style="height:100%;">
+            <v-flex v-if="getResortHotel().gettingAround">
               <div class="description">
                 <vue-markdown>{{getResortHotel().gettingAround}}</vue-markdown>
               </div>
             </v-flex>
-            <v-flex xs12 v-if="getResortHotel().location" style="height:100%;">
-              <h2
-                style="font-size: 20px; line-height: 23px; color: #D8DADE;"
-                class="mb-3 mt-3"
-              >Location</h2>
+            <v-flex xs12 v-if="getResortHotel().location">
+              <h2 class="mb-3 mt-3" >Location</h2>
               <p>
                 <a :href="getResortHotel().location" style="color: #B9BCC1;">Get Directions</a>
               </p>
             </v-flex>
             <v-flex v-if="getResortHotelSpaces().length > 0">
-              <h2
-                style="font-size: 20px; line-height: 23px; color: #D8DADE;"
-                class="mb-3 mt-3"
-              >Spaces</h2>
-              <p class="normalText">{{getResortHotelSpaces()[0]}}</p>
+              <h2 class="mb-3 mt-3" >Spaces</h2>
+              <p>{{getResortHotelSpaces()[0]}}</p>
             </v-flex>
           </v-flex>
           <v-flex
             xs12
             v-if="((getResortRoom({roomType: 0}) || {}).amenities || []).length > 0"
           >
-            <h2 style="font-size: 20px; color: #D8DADE;" class="mb-3 mt-3">Amenities</h2>
-            <v-flex style="height:100%;">
-              <span class="normalText">{{(getResortRoom({roomType: 0}).amenities || [])[0]}}</span>
-            </v-flex>
+            <h2 class="mb-3 mt-3">Amenities</h2>
+            <p>{{(getResortRoom({roomType: 0}).amenities || [])[0]}}</p>
           </v-flex>
           <v-flex v-if="getResortHotelRules().length > 0">
-            <h2 style="font-size: 20px; color: #D8DADE; height:100%;" class="mb-3 mt-3">Rules</h2>
-            <span class="normalText">{{getResortHotelRules()[0]}}</span>
+            <h2 class="mb-3 mt-3">Rules</h2>
+            <p>{{getResortHotelRules()[0]}}</p>
           </v-flex>
-          <div style="margin:80px;"></div>
         </v-flex>
         <v-flex md6 class="hidden-sm-and-down">
-          <v-card
-            class="bookForm"
-            width="300px"
-            color="#191C21"
-            style="border: 1px solid #E1E7ED; border-radius: 3px; margin-top:30px; margin-bottom:30px; margin-left:77px; padding:25px;"
-          >
+          <v-card class="bookForm" color="#191C21">
             <reservation-form-desktop :resort-slug="slug" />
           </v-card>
         </v-flex>
@@ -140,9 +117,9 @@
       <v-flex xs12>
         <div id="bookBottom" class="hidden-md-and-up book-bottom">
           <v-flex xs12 v-if="resort.ctaText > 0">
-            <p>
+            <p class="mb-0">
               <span style="font-size: 28px; color: #D8DADE;">&dollar;{{resort.ctaText}}+</span>
-              <span class="normalText">/night</span>
+              <span>/night</span>
             </p>
           </v-flex>
           <v-flex xs12 class="hidden-md-and-up">
@@ -244,9 +221,9 @@ export default {
 <style lang="scss">
 .v-input__slot {
   margin: 0;
-  height: 55px;
-  /*To make the total margin:30px */
-  margin-bottom: 10px;
+  height: 56px;
+  /*To make the total margin:32px */
+  margin-bottom: 12px;
 }
 html {
   scroll-behavior: smooth;
@@ -269,17 +246,14 @@ html {
   background-image: linear-gradient(0deg, #191c21 0%, rgba(25, 28, 33, 0) 50%);
   box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
-.image {
+.headerImage {
+  min-height: 100%;
   transition: 0.8s ease;
   -webkit-transition: 0.8s ease;
   &:hover {
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
   }
-}
-.normalText {
-  font-size: 16px;
-  color: #b9bcc1;
 }
 @-webkit-keyframes autofill {
   to {
@@ -306,30 +280,34 @@ input:-webkit-autofill {
   border-top: 1px solid rgba(0, 0, 0, 0.12);
 }
 
+.bookForm {
+  width: 300px;
+  border: 1px solid #E1E7ED;
+  border-radius: 3px;
+  padding: 23px;
+  margin-left: 64px;
+  .v-text-field.v-text-field--enclosed .v-text-field__details,
+  .v-text-field.v-text-field--enclosed > .v-input__control > .v-input__slot {
+    padding: 0 16px;
+  }
+  .theme--dark.v-icon {
+    color: #b9bcc1;
+  }
+}
+
+.listingInfo {
+  color: #b9bcc1;
+  font-size: 16px;
+  // To make the total height 32px
+  padding: 1px 0;
+}
+
 .description {
-  a {
-    color: #b9bcc1;
-    text-decoration: none;
-  }
-  p {
-    color: #b9bcc1;
-    font-size: 16px;
-  }
   h2 {
-    color: #d8dade;
-    font-size: 28px;
+    margin: 40px 0 16px;
   }
   h3 {
-    font-size: 20px;
-    color: #d8dade;
-  }
-  h1 {
-    font-size: 36px;
-    color: #ffffff;
-  }
-  li {
-    color: #b9bcc1;
-    font-size: 16px;
+    margin: 24px 0 8px;
   }
   td {
     color: #b9bcc1;

@@ -188,7 +188,7 @@
           class="text-capitalize font-weight-bold"
           :ripple="false"
           :disabled="!valid"
-          style="height:74px;"
+          style="height:72px;"
           type="submit"
         >
           <span v-if="resort.categories[0].name=='events' || resort.categories[0].name=='experiences'">
@@ -212,7 +212,7 @@
             class="text-capitalize font-weight-bold"
             :ripple="false"
             :disabled="!valid"
-            style="height:74px;"
+            style="height:72px;"
             v-on="on"
           >
               Log in to continue
@@ -247,7 +247,7 @@
         class="text-capitalize font-weight-bold"
         :ripple="false"
         :disabled="!valid"
-        style="height:74px;"
+        style="height:72px;"
         to="/reservation/reviewrules"
       >
         Reserve Now
@@ -262,7 +262,7 @@
       v-if="resort.categories[0].name=='accommodations' || resort.categories[0].name=='events' || resort.categories[0].name=='experiences'"
     >
       <p
-        style="font-weight: bold; font-size: 14px; line-height: 17px; color: #B9BCC1;"
+        style="font-weight: bold; font-size: 14px; line-height: 17px; margin: 0;"
       >You won't be charged yet.</p>
     </v-flex>
   </v-form>

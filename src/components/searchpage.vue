@@ -23,15 +23,11 @@
               </v-carousel>
             </router-link>
             <v-img :src="resort.featuredImage" height="150px" class="hidden-sm-and-down" style="border-top-left-radius: 10px; border-top-right-radius: 10px;"></v-img>
-            <v-layout align-start>
-              <v-card-text style="margin:10px; padding: 0;">
-                <p>
-                  <!-- <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire {{resort.title}}</span> -->
-                  <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"><h3>{{resort.title}}</h3></span>
-                  <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;" v-if="resort.ctaText>0">Starting from {{resort.ctaText}}$ per night</span>
-                </p>
-              </v-card-text>
-            </v-layout>
+            <v-card-text style="margin:10px; padding: 0;">
+              <!-- <p style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1; margin: 0;">Entire {{resort.title}}</p> -->
+              <h3 class="cardTitle">{{resort.title}}</h3>
+              <p class="cardSubtitle" v-if="resort.ctaText>0">Starting from {{resort.ctaText}}$ per night</p>
+            </v-card-text>
           </v-card>
         </v-flex>
       </v-layout>
@@ -74,8 +70,14 @@ export default {
     border-radius: 10px;
     height: 270px;
   }
+  .cardText{
+    padding: 8px 16px;
+  }
+  .cardSubtitle{
+    margin: 0;
+  }
   .headerText{
-    margin-top:30px; 
+    margin-top:30px;
     margin-bottom:30px;
     p{
       font-size: 16px;

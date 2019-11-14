@@ -213,7 +213,7 @@
               class="text-capitalize font-weight-bold"
               :ripple="false"
               :disabled="!valid"
-              style="height:74px;"
+              style="height:72px;"
               type="submit"
             >
               <span v-if="resort.categories[0].name=='events' || resort.categories[0].name=='experiences'">
@@ -235,7 +235,7 @@
                 class="text-capitalize font-weight-bold"
                 :ripple="false"
                 :disabled="!valid"
-                style="height:74px;"
+                style="height:72px;"
                 v-on="on"
               >
                 Log in to continue
@@ -265,7 +265,7 @@
               class="text-capitalize font-weight-bold"
               :ripple="false"
               :disabled="!valid"
-              style="height:74px;"
+              style="height:72px;"
               to="/reservation/reviewrules"
             >
               Reserve Now
