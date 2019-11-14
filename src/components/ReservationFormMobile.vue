@@ -210,7 +210,7 @@
               block
               color="#F7B947"
               dark
-              class="text-capitalize font-weight-bold"
+              class="text-capitalize font-weight-bold mb-0 mt-0"
               :ripple="false"
               :disabled="!valid"
               style="height:72px;"
@@ -232,7 +232,7 @@
                 block
                 color="#F7B947"
                 dark
-                class="text-capitalize font-weight-bold"
+                class="text-capitalize font-weight-bold mb-0 mt-0"
                 :ripple="false"
                 :disabled="!valid"
                 style="height:72px;"
@@ -262,7 +262,7 @@
               block
               color="#F7B947"
               dark
-              class="text-capitalize font-weight-bold"
+              class="text-capitalize font-weight-bold mb-0 mt-0"
               :ripple="false"
               :disabled="!valid"
               style="height:72px;"
