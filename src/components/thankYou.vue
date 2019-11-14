@@ -46,19 +46,4 @@ export default {
 </script>
 
 <style>
-@media only screen and (max-width: 600px) {
-  .container{
-    max-width: 292px;
-  }
-}
-@media only screen and (min-width: 768px) {
-  .container{
-    max-width: 600px;
-  }
-}
-@media only screen and (min-width: 1024px) {
-  .container{
-    max-width: 900px;
-  }
-}
 </style>

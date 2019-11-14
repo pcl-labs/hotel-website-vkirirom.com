@@ -70,6 +70,27 @@ export default {
     font-size: 16px;
     line-height: 24px;
   }
+  .container {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  @media only screen and (min-width: 576px) {
+    .container {
+      max-width: 544px;
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+  }
+  @media only screen and (min-width: 768px) {
+    .container {
+      max-width: 720px;
+    }
+  }
+  @media only screen and (min-width: 960px) {
+    .container {
+      max-width: 904px !important;
+    }
+  }
   .v-btn {
     height: 40px;
   }

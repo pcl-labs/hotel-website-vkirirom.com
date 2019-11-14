@@ -67,12 +67,12 @@
             </v-textarea>
           </v-flex>
           <v-flex xs12>
-            <v-btn 
-              dark 
-              block 
-              large 
-              depressed 
-              style="padding:0; margin-top:30px; margin-bottom:25px; background: #F7B947; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; text-transform:capitalize; font-size: 16px; height:74px;" 
+            <v-btn
+              dark
+              block
+              large
+              depressed
+              style="padding:0; margin-top:30px; margin-bottom:25px; background: #F7B947; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; text-transform:capitalize; font-size: 16px; height:74px;"
               color="#4B7F52"
               type="submit"
               :disabled="!valid"
@@ -84,10 +84,10 @@
       </v-flex>
 
       <!-- Don't change the card text's margins, it'll mess everything up. I know it looks weird on localhost, but it aligns properly on deployment. -->
-      
+
       <v-flex xs12 md6>
-        <v-card 
-          width="330px" 
+        <v-card
+          width="330px"
           dark
           class="hidden-sm-and-down card"
           style="margin-left:110px; margin-top:50px;">
@@ -121,7 +121,7 @@
         </v-card>
       </v-flex>
       <v-flex xs12>
-        <v-card 
+        <v-card
           width="100%"
           dark
           class="hidden-md-and-up card"
@@ -200,11 +200,11 @@ export default {
     margin: 0;
     height: 55px;
     /*To make the total margin:30px */
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
   }
   .card{
     border: 1px solid #E1E7ED;
-    border-radius: 3px; 
+    border-radius: 3px;
     margin:0;
     padding:0;
     background-color: #191C21;
@@ -221,7 +221,7 @@ export default {
       color: #B9BCC1;
     }
   }
-  input:focus, textarea:focus { 
+  input:focus, textarea:focus {
     border-color: 1px solid #3D424E !important;
   }
   input:focus, textarea:focus{
@@ -238,23 +238,5 @@ export default {
   input:-webkit-autofill {
       -webkit-animation-name: autofill;
       -webkit-animation-fill-mode: both;
-  }
-  .container{
-    padding:0;
-  }
-  @media only screen and (max-width: 600px) {
-    .container{
-      max-width: 292px;
-    }
-  }
-  @media only screen and (min-width: 768px) {
-    .container{
-      max-width: 600px;
-    }
-  }
-  @media only screen and (min-width: 1024px) {
-    .container{
-      max-width: 900px;
-    }
   }
 </style>
