@@ -288,7 +288,7 @@
 </template>
 
 <script>
-import { formatDates } from "@/helpers.js";
+import { formatDates } from "@/helpers";
 import format from "date-fns/format";
 import { debounce } from "lodash-es";
 const Login = () => import("@/components/Auth/Login.vue");

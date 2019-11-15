@@ -3,6 +3,9 @@ node_modules
 /dist
 /temp
 
+/tests/e2e/videos/
+/tests/e2e/screenshots/
+
 # local env files
 .env.local
 .env.*.local
@@ -14,10 +17,9 @@ yarn-error.log*
 
 # Editor directories and files
 .idea
-.vscode
-*.sublime-project
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+# .vscode

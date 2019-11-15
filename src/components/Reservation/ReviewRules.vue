@@ -118,8 +118,7 @@
 </template>
 
 <script>
-import { reviewDateMonth } from "@/helpers.js"
-import { reviewDay } from "@/helpers.js"
+import { reviewDateMonth, reviewDay } from "@/helpers"
 import format from "date-fns/format";
 const BookingInfoCard = () => import ('@/components/Reservation/BookingInfoCard.vue')
 

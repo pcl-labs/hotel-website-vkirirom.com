@@ -51,8 +51,7 @@
 </template>
 
 <script>
-import { formatDates } from "@/helpers.js";
-import { cardDate } from "@/helpers.js";
+import { formatDates, cardDate } from "@/helpers";
 
 export default {
   computed:{
