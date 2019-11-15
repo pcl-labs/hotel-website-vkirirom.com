@@ -10,7 +10,9 @@
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",
-    "swagger": "node src/connection/swagger-axios-config.js && tsc -p ./temp/resources.ts --moduleResolution classic --target es6 --outDir ./src/connection/"
+    "fix-code": "prettier-eslint --write 'src/**/*.{js,jsx,vue,json}' ",
+    "fix-style": "prettier-stylelint --write 'src/**/*.{css,scss}' ",
+    "swagger": "ts-node src/connection/swagger-axios.ts && tsc -p ./temp/resources.ts --moduleResolution classic --target es6 --outDir ./src/connection/"
   },
   "dependencies": {
     "core-js": "3.3.2",
@@ -54,6 +56,8 @@
     "sass": "1.19.0",
     "sass-loader": "8.0.0",
     "typescript": "3.5.3",
-    "vue-template-compiler": "2.6.10"
+    "vue-template-compiler": "2.6.10",
+    "ts-node": "8.3.0",
+    "esm": "3.2.25"
   }
 }

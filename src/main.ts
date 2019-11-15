@@ -5,13 +5,15 @@ import App from './App.vue'
 import Vuetify from 'vuetify'
 import 'vuetify/src/stylus/app.styl'
 import 'vuetify/dist/vuetify.min.css'
+// @ts-ignore
 import AirbnbStyleDatepicker from 'vue-airbnb-style-datepicker'
 import 'vue-airbnb-style-datepicker/dist/vue-airbnb-style-datepicker.min.css'
-import '@/connection/init.js'
+import '@/connection/init'
 import VueHead from 'vue-head'
+// @ts-ignore
 import VueMarkdown from 'vue-markdown'
 import './registerServiceWorker'
-import '@/mixins.global.js'
+import '@/mixins.global'
 import router from './router'
 import store from './store'
 

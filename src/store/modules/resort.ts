@@ -1,9 +1,10 @@
+// TODO: separate resorts similar to https://github.com/whynotearth/shinta-mani-wild/pull/298
 import { PageService } from '@/connection/resources.js'
 
 export default {
   namespaced: true,
   state: {
-    resort:{}
+    resort: {}
   },
   mutations: {
     addItem(state, payload) {
@@ -12,19 +13,18 @@ export default {
   },
   actions: {
     getItemBySlug(context, slug) {
-      context.state.resort={};
+      context.state.resort = {}
       return PageService.get({
         companySlug: 'vkirirom',
         pageSlug: slug
+      }).then(res => {
+        context.commit('addItem', res)
       })
-      .then(res => {
-        context.commit("addItem", res);
-      });
     }
   },
   getters: {
-    getResort(state){
-      return state.resort;
-    },
+    getResort(state) {
+      return state.resort
+    }
   }
-};
+}
