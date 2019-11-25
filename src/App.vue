@@ -21,8 +21,10 @@ export default {
 </script>
 
 <style lang="scss">
+@import '@/styles/global.scss';
+
   #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    font-family: $font-family-sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
