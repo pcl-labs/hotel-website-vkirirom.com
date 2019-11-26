@@ -2,9 +2,6 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App.vue'
-import Vuetify from 'vuetify'
-import 'vuetify/src/stylus/app.styl'
-import 'vuetify/dist/vuetify.min.css'
 // @ts-ignore
 import AirbnbStyleDatepicker from 'vue-airbnb-style-datepicker'
 import 'vue-airbnb-style-datepicker/dist/vue-airbnb-style-datepicker.min.css'
@@ -16,13 +13,10 @@ import './registerServiceWorker'
 import '@/mixins.global'
 import router from './router'
 import store from './store'
+// import './plugins/vuetify'
 
 // import './sitemapMiddleware'
 // import VueRouterSitemap from 'vue-router-sitemap'
-
-Vue.use(Vuetify, {
-  iconfont: 'md'
-})
 
 Vue.use(VueHead)
 Vue.use(VueMarkdown)
