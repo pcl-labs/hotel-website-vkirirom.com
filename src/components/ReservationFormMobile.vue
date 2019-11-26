@@ -50,7 +50,7 @@
           <v-flex xs12>
             <v-text-field
               v-model="name"
-              outline
+              outlined
               label="Enter your name"
               name="Name"
               required
@@ -67,7 +67,7 @@
           <v-flex xs12>
             <v-text-field
               v-model="email"
-              outline
+              outlined
               label="Enter e-mail address"
               name="E-mail"
               color="#B9BCC1"
@@ -80,7 +80,7 @@
           </v-flex>
           <v-flex xs12>
             <v-text-field
-              outline
+              outlined
               v-model="phone"
               label="Phone"
               name="Phone"
@@ -103,7 +103,7 @@
               return-object
               :items="resort.modules.hotel.roomTypes"
               dark
-              outline
+              outlined
               label="Bed Type"
               :rules="bedTypeRules"
               color="#B9BCC1"
@@ -130,7 +130,7 @@
             v-if="resort.categories[0].name=='accommodations' || resort.categories[0].name=='events' || resort.categories[0].name=='experiences'"
           >
             <v-text-field
-              outline
+              outlined
               dark
               type="text"
               name="Date"
@@ -194,7 +194,7 @@
           <v-flex xs12>
             <v-textarea
               v-model="message"
-              outline
+              outlined
               hide-details
               dark
               name="Message"

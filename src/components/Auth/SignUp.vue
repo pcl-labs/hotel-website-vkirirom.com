@@ -24,7 +24,7 @@
         <v-flex xs12>
           <v-text-field
             v-model="email"
-            outline
+            outlined
             label="E-mail address"
             name="E-mail"
             color="#B9BCC1"
@@ -39,7 +39,7 @@
         <v-flex xs12>
           <v-text-field
             v-model="password"
-            outline
+            outlined
             label="Password"
             name="Password"
             color="#B9BCC1"

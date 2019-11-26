@@ -12,7 +12,7 @@
           <!-- <v-flex xs12>
             <v-text-field
               v-model="name"
-              outline
+              outlined
               label="Full Name"
               name="name"
               color="#B9BCC1"
@@ -24,7 +24,7 @@
           </v-flex>
           <v-flex xs12>
             <v-text-field
-              outline
+              outlined
               v-model="phone"
               label="Phone number"
               name="Phone"

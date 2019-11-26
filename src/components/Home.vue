@@ -22,7 +22,7 @@
         <v-flex xs12 sm6 md4 lg4 v-for="accommodation in accommodations" v-bind:key="accommodation.id">
           <v-card dark height="270px" color="#191C21" class="mb-4 card" :to="'/listing/'+ accommodation.slug" flat>
             <router-link :to="'/listing/'+ accommodation.slug">
-              <v-carousel height="150px" :cycle="false" hide-controls dark width="100%" class="hidden-md-and-up" v-if="accommodation.images && accommodation.images.length > 0" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+              <v-carousel height="150px" :cycle="false" :show-arrows="false" dark width="100%" class="hidden-md-and-up" v-if="accommodation.images && accommodation.images.length > 0" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
                 <v-carousel-item :src="accommodation.featuredImage" style="background-size:contain;">
                 </v-carousel-item>
                 <v-carousel-item v-for="image in accommodation.images.slice(0,4)" v-bind:key="image.url" :src="image.url" style="background-size:contain;">
@@ -41,7 +41,7 @@
       </v-layout>
       <v-layout row wrap justify-space-around justify-center>
         <v-flex xs12 sm4 md4 lg4>
-          <v-btn block large outline dark to="/search/accommodations" class="showAllbtn">
+          <v-btn block large outlined dark to="/search/accommodations" class="showAllbtn">
             Show all <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
           </v-btn>
         </v-flex>
@@ -71,7 +71,7 @@
         <v-flex xs12 sm6 md4 lg4 v-for="experience in experiences.slice(0,4)" v-bind:key="experience.id">
           <v-card width="100%" height="270px" color="#191C21" class="mb-4 card" dark :to="'/listing/'+ experience.slug" flat style="box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;">
             <router-link :to="'/listing/'+ experience.slug">
-              <v-carousel height="150px" :cycle="false" hide-controls dark width="100%" class="hidden-md-and-up" v-if="experience.images && experience.images.length > 0" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+              <v-carousel height="150px" :cycle="false" :show-arrows="false" dark width="100%" class="hidden-md-and-up" v-if="experience.images && experience.images.length > 0" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
                 <v-carousel-item :src="experience.featuredImage" style="background-size:contain;">
                 </v-carousel-item>
                 <v-carousel-item v-for="image in experience.images.slice(0,4)" v-bind:key="image.url" :src="image.url" style="background-size:contain;">
@@ -90,7 +90,7 @@
       </v-layout>
       <v-layout row wrap justify-space-around justify-center>
         <v-flex xs12 sm4 md4 lg4>
-          <v-btn to="/search/experiences/" block large outline dark class="showAllbtn">
+          <v-btn to="/search/experiences/" block large outlined dark class="showAllbtn">
             Show all <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
           </v-btn>
         </v-flex>
@@ -118,7 +118,7 @@
         <v-flex xs12 sm6 md4 lg4 v-for="event in events.slice(0,4)" v-bind:key="event.id">
           <v-card width="100%" height="270px" color="#191C21" class="mb-4 card" dark :to="'/listing/'+ event.slug" flat style="box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;">
             <router-link :to="'/listing/'+ event.slug">
-              <v-carousel height="150px" :cycle="false" hide-controls dark width="100%" class="hidden-md-and-up" v-if="event.images && event.images.length > 0" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+              <v-carousel height="150px" :cycle="false" :show-arrows="false" dark width="100%" class="hidden-md-and-up" v-if="event.images && event.images.length > 0" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
                 <v-carousel-item :src="event.featuredImage" style="background-size:contain;">
                 </v-carousel-item>
                 <v-carousel-item v-for="image in event.images.slice(0,4)" v-bind:key="image.url" :src="image.url" style="background-size:contain;">
@@ -137,7 +137,7 @@
       </v-layout>
       <v-layout row wrap justify-space-around justify-center>
         <v-flex xs12 sm4 md4 lg4>
-          <v-btn to="/search/events" block large outline dark class="showAllbtn">
+          <v-btn to="/search/events" block large outlined dark class="showAllbtn">
             Show all <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
           </v-btn>
         </v-flex>
@@ -153,7 +153,7 @@
         <v-flex xs12 sm6 md4 lg4 v-for="lease in leases.slice(0,4)" v-bind:key="lease.id">
           <v-card width="100%" height="270px" color="#191C21" class="mb-4 card" dark :to="'/listing/'+ lease.slug" flat style="box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;">
             <router-link :to="'/listing/'+ lease.slug">
-              <v-carousel height="150px" :cycle="false" hide-controls dark width="100%" class="hidden-md-and-up" v-if="lease.images && lease.images.length > 0" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+              <v-carousel height="150px" :cycle="false" :show-arrows="false" dark width="100%" class="hidden-md-and-up" v-if="lease.images && lease.images.length > 0" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
                 <v-carousel-item :src="lease.featuredImage" style="background-size:contain;">
                 </v-carousel-item>
                 <v-carousel-item v-for="image in lease.images.slice(0,4)" v-bind:key="image.url" :src="image.url" style="background-size:contain;">
@@ -172,7 +172,7 @@
       </v-layout>
       <v-layout row wrap justify-space-around justify-center>
         <v-flex xs12 sm4 md4 lg4>
-          <v-btn to="/search/lease/" block large outline dark class="showAllbtn">
+          <v-btn to="/search/lease/" block large outlined dark class="showAllbtn">
             Show all <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
           </v-btn>
         </v-flex>
@@ -182,7 +182,7 @@
         <v-flex xs12 sm6 md4 lg4 v-for="ecotourism in ecotourisms.slice(0,4)" v-bind:key="ecotourism.id">
           <v-card width="100%" height="270px" class="mb-4 card" dark color="#191C21" :to="'/listing/'+ ecotourism.slug" flat style="box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;">
             <router-link :to="'/listing/'+ ecotourism.slug">
-              <v-carousel hide-controls :cycle="false" dark width="100%" height="150px" class="hidden-md-and-up" v-if="ecotourism.images && ecotourism.images.length > 0" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+              <v-carousel :show-arrows="false" :cycle="false" dark width="100%" height="150px" class="hidden-md-and-up" v-if="ecotourism.images && ecotourism.images.length > 0" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
                 <v-carousel-item :src="ecotourism.featuredImage" style="background-size:contain;">
                 </v-carousel-item>
                 <v-carousel-item v-for="image in ecotourism.images.slice(0,4)" v-bind:key="image.url" :src="image.url" style="background-size:contain;">
@@ -201,7 +201,7 @@
       </v-layout>
       <v-layout row wrap justify-space-around justify-center>
         <v-flex xs12 sm4 md4 lg4>
-          <v-btn to="/search/ecotourism/" block large outline dark class="showAllbtn mb-4">
+          <v-btn to="/search/ecotourism/" block large outlined dark class="showAllbtn mb-4">
             Learn More <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
           </v-btn>
         </v-flex>

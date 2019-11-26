@@ -42,7 +42,7 @@
             >
               <v-flex>
                 <v-btn
-                  outline
+                  outlined
                   fab
                   small
                   :disabled="item.amount === 0"
@@ -58,7 +58,7 @@
               </v-flex>
               <v-flex>
                 <v-btn
-                  outline
+                  outlined
                   fab
                   small
                   color="teal darken-4"

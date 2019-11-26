@@ -1,5 +1,6 @@
 <template>
-<v-container-fluid>
+<div>
+  <v-content>
   <v-container>
     <v-layout row wrap style="min-height: 100vh;">
       <v-flex xs12 md6>
@@ -13,7 +14,7 @@
           <v-flex xs12>
             <v-text-field
               v-model="name"
-              outline
+              outlined
               label="Full Name"
               name="name"
               color="#B9BCC1"
@@ -27,7 +28,7 @@
           <v-flex xs12>
             <v-text-field
               v-model="email"
-              outline
+              outlined
               color="#B9BCC1"
               label="E-Mail"
               name="email"
@@ -41,7 +42,7 @@
           <v-flex xs12>
             <v-text-field
               v-model="phone"
-              outline
+              outlined
               label="Phone Number"
               name="phone"
               color="#B9BCC1"
@@ -54,7 +55,7 @@
           </v-flex>
           <v-flex xs12 class="mb-4">
             <v-textarea
-              outline
+              outlined
               hide-details
               dark
               v-model="message"
@@ -157,8 +158,9 @@
       </v-flex>
     </v-layout>
   </v-container>
+  </v-content>
   <Footer></Footer>
-</v-container-fluid>
+</div>
 </template>
 
 <script>

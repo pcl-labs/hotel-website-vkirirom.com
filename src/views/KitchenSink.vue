@@ -6,7 +6,7 @@
       <v-layout row wrap>
         <v-flex xs12>
           <v-text-field
-            outline
+            outlined
             dark
             type="text"
             name="Date"
