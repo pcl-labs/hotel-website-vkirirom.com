@@ -32,7 +32,7 @@
         data-netlify="true"
       >
         <input type="hidden" name="form-name" :value="resort.categories[0].name" />
-        <v-layout row wrap>
+        <v-row no-gutters>
           <v-flex xs1>
             <v-btn icon dark @click="closeModal()" style="margin:0; margin-bottom:20px;">
               <v-icon color="#B9BCC1" size="35">close</v-icon>
@@ -172,23 +172,23 @@
             <input hidden name="Transportation needed" :value="transportation" />
           </v-flex>
           <v-flex xs12 style="margin-bottom:30px;" v-if="finalPrice > 0 && resort.categories[0].name=='accommodations'">
-            <v-layout row wrap v-for="price in prices" v-bind:key="price.id">
+            <v-row no-gutters v-for="price in prices" v-bind:key="price.id">
               <v-flex xs6 class="normalText">{{formatDates(price.date)}}</v-flex>
               <v-flex xs6 class="text-right normalText">${{price.amount}}</v-flex>
-            </v-layout>
-            <v-layout row wrap>
+            </v-row>
+            <v-row no-gutters>
               <v-flex XS6 class="normalText">VAT (10%)</v-flex>
               <v-flex XS6 class="text-right normalText">${{vat}}</v-flex>
-            </v-layout>
+            </v-row>
             <v-divider style="background-color:#3D424E; margin-top:20px; margin-bottom:10px;"></v-divider>
-            <v-layout row wrap>
+            <v-row no-gutters>
               <v-flex xs6>
                 <h3 style="font-size: 20px; color: #D8DADE;">Total</h3>
               </v-flex>
               <v-flex xs6 class="text-right">
                 <h3 style="font-size: 20px; color: #D8DADE;">${{finalPrice}}</h3>
               </v-flex>
-            </v-layout>
+            </v-row>
             <input name="Amount (in $)" hidden :value="finalPrice" type="text" readonly />
           </v-flex>
           <v-flex xs12>
@@ -281,7 +281,7 @@
           >
             <p style="font-weight: bold; font-size: 14px; color: #B9BCC1;">You won't be charged yet.</p>
           </v-flex>
-        </v-layout>
+        </v-row>
       </v-form>
     </v-card>
   </v-dialog>

@@ -10,7 +10,7 @@
     data-netlify="true"
   >
     <input type="hidden" name="form-name" :value="resort.categories[0].name" />
-    <v-layout row wrap>
+    <v-row no-gutters>
       <v-flex xs12 v-if="resort.ctaText > 0">
         <p class="subheading text-center pb-2">
           <span class="normalText">Starting from </span>
@@ -103,6 +103,8 @@
       <v-flex
         xs12
         v-if="resort.categories[0].name=='accommodations' || resort.categories[0].name=='events' || resort.categories[0].name=='experiences'"
+
+        class="position-relative"
       >
         <v-text-field
           outlined
@@ -127,7 +129,7 @@
           :date-two="dateTwo"
           @date-one-selected="val => { dateOne = val, dateTwo = val }"
           @date-two-selected="val => { dateTwo = val }"
-          style="left:-70%; top:60%;"
+          style="left:-70%; top: 60px;"
           :show-shortcuts-menu-trigger="false"
           @apply="getPrices(dateOne, dateTwo)"
         />
@@ -147,23 +149,23 @@
         <input hidden name="Transportation needed" :value="transportation" />
       </v-flex>
       <v-flex xs12 style="margin-bottom:30px;" v-if="finalPrice > 0 && resort.categories[0].name=='accommodations'">
-        <v-layout row wrap v-for="price in prices" v-bind:key="price.id">
+        <v-row no-gutters v-for="price in prices" v-bind:key="price.id">
           <v-flex xs6 class="normalText">{{formatDates(price.date)}}</v-flex>
           <v-flex xs6 class="text-right normalText">${{price.amount}}</v-flex>
-        </v-layout>
-        <v-layout row wrap>
+        </v-row>
+        <v-row no-gutters>
           <v-flex XS6 class="normalText">VAT (10%)</v-flex>
           <v-flex XS6 class="text-right normalText">${{vat}}</v-flex>
-        </v-layout>
+        </v-row>
         <v-divider style="background-color:#3D424E; margin-top:20px; margin-bottom:10px;"></v-divider>
-        <v-layout row wrap>
+        <v-row no-gutters>
           <v-flex xs6>
             <h3 style="font-size: 20px; color: #D8DADE;">Total</h3>
           </v-flex>
           <v-flex xs6 class="text-right">
             <h3 style="font-size: 20px; color: #D8DADE;">${{finalPrice}}</h3>
           </v-flex>
-        </v-layout>
+        </v-row>
         <input name="Amount (in $)" hidden :value="finalPrice" type="text" readonly />
       </v-flex>
       <v-flex xs12>
@@ -201,8 +203,8 @@
           <v-icon>keyboard_arrow_right</v-icon>
         </v-btn>
       </v-flex>
-    </v-layout>
-    <v-layout row wrap justify-center v-if="!isAuthenticated && resort.categories[0].name=='accommodations'">
+    </v-row>
+    <v-row no-gutters justify-center v-if="!isAuthenticated && resort.categories[0].name=='accommodations'">
       <v-dialog v-model="auth1" persistent max-width="583px">
         <template v-slot:activator="{ on }">
           <v-btn
@@ -238,7 +240,7 @@
           </v-flex>
         </v-card>
       </v-dialog>
-    </v-layout>
+    </v-row>
     <v-flex xs12 v-if="isAuthenticated==true && resort.categories[0].name=='accommodations'">
       <v-btn
         block

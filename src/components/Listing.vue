@@ -1,64 +1,72 @@
 <template>
   <div v-if="resort && resort.id">
     <div class="pa-0 ma-0">
-      <v-layout row flex class="pa-0 mx-0 my-0">
-        <v-flex class="pa-0 overflow-hidden hidden-sm-and-down">
+
+      <!-- images -->
+      <v-row no-gutters class="pa-0 mx-0 my-0">
+        <v-col class="pa-0 overflow-hidden hidden-sm-and-down">
           <v-img class="image ma-0 pa-0" :src="resort.featuredImage" style="height:470px;"></v-img>
-        </v-flex>
-        <v-flex
+        </v-col>
+        <v-col
           class="pa-0 ma-0 overflow-hidden hidden-sm-and-down"
           v-if="resort.images && resort.images.length>0"
           style="height:470px;"
         >
-          <v-layout row flex class="pa-0 ma-0 overflow-hidden">
-            <v-flex class="pa-0 overflow-hidden" v-if="resort.images.length > 0">
+          <v-row no-gutters class="pa-0 ma-0 overflow-hidden">
+            <v-col class="pa-0 overflow-hidden" v-if="resort.images.length > 0">
               <v-img class="image ma-0 pa-0" :src="resort.images[0].url" style="height:235px;"></v-img>
-            </v-flex>
-            <v-flex class="pa-0 overflow-hidden" v-if="resort.images.length > 2">
+            </v-col>
+            <v-col class="pa-0 overflow-hidden" v-if="resort.images.length > 2">
               <v-img class="image" :src="resort.images[2].url" style="height:235px;"></v-img>
-            </v-flex>
-          </v-layout>
-          <v-layout row flex class="pa-0 ma-0 overflow-hidden">
-            <v-flex class="pa-0 overflow-hidden" v-if="resort.images.length > 1">
+            </v-col>
+          </v-row>
+          <v-row no-gutters class="pa-0 ma-0 overflow-hidden">
+            <v-col class="pa-0 overflow-hidden" v-if="resort.images.length > 1">
               <v-img class="image" :src="resort.images[1].url" style="height:235px;"></v-img>
-            </v-flex>
-            <v-flex class="pa-0 overflow-hidden" v-if="resort.images.length > 3">
+            </v-col>
+            <v-col class="pa-0 overflow-hidden" v-if="resort.images.length > 3">
               <v-img class="image" :src="resort.images[3].url" style="height:235px;"></v-img>
-            </v-flex>
-          </v-layout>
-        </v-flex>
-      </v-layout>
-      <v-flex xs12 class="hidden-md-and-up">
-        <v-carousel height="300px" :show-arrows="false" dark :cycle="false">
-          <!-- v-if="belltent.images.length > 0" is required to avoid the error "cannot read property 'url' of undefined.
-          It is needed only when we want to iterate through an array of images, or nested elements.-->
-          <v-carousel-item :src="resort.featuredImage"></v-carousel-item>
-          <v-carousel-item
-            v-for="image in resort.images.slice(0,4)"
-            v-bind:key="image.url"
-            :src="image.url"
-          ></v-carousel-item>
-        </v-carousel>
-      </v-flex>
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
+
+      <v-row no-gutters>
+        <v-col xs12 class="hidden-md-and-up">
+
+          <v-carousel height="300px" :show-arrows="false" dark :cycle="false">
+            <!-- v-if="belltent.images.length > 0" is required to avoid the error "cannot read property 'url' of undefined.
+            It is needed only when we want to iterate through an array of images, or nested elements.-->
+            <v-carousel-item :src="resort.featuredImage"></v-carousel-item>
+            <v-carousel-item
+              v-for="image in resort.images.slice(0,4)"
+              v-bind:key="image.url"
+              :src="image.url"
+            ></v-carousel-item>
+          </v-carousel>
+        </v-col>
+      </v-row>
     </div>
     <v-container>
-      <v-layout row wrap style="min-height: 100vh;">
-        <v-flex xs12 md6>
-          <h1 style="color: #D7D9DD; margin-top:30px;">{{resort.title}}</h1>
-          <v-flex xs12>
-            <v-layout row wrap style="height:100%">
-              <v-flex
+      <v-row no-gutters style="min-height: 100vh;">
+        <v-col xs12 md6>
+          <v-col xs12>
+            <h1 style="color: #D7D9DD; margin-top:30px;">{{resort.title}}</h1>
+          </v-col>
+          <v-col xs12>
+            <v-row no-gutters style="height:100%">
+              <v-col
                 v-if="resort.categories[0].name=='blog'"
                 style="font-size: 16px; color: #B9BCC1; margin-top:20px; margin-bottom:20px;"
-              >Published July 5, 2019</v-flex>
-              <v-flex
+              >Published July 5, 2019</v-col>
+              <v-col
                 v-if="getResortHotel().capacity"
                 style="font-size: 16px; color: #B9BCC1; margin-top:20px; margin-bottom:20px;"
               >
                 <v-icon size="30" color="#B9BCC1" style="margin-bottom:-5px;">supervisor_account</v-icon>
                 {{ getResortHotel().capacity }} guests
-              </v-flex>
-              <v-flex
+              </v-col>
+              <v-col
                 v-if="resort && resort.modules && resort.modules.hotel && resort.modules.hotel.roomTypes.length>0"
                 style="font-size: 16px; color: #B9BCC1; margin-top:20px; margin-bottom:20px;"
               >
@@ -80,51 +88,53 @@
                   {{ getRoomBed({roomType: 0, bed: 1}).type }}
                 </span> -->
                 <span>Bed(s)</span>
-              </v-flex>
-            </v-layout>
-            <v-flex v-if="resort.description" style="height:100%" class="mt-4">
-              <div class="description">
-                <vue-markdown>{{resort.description}}</vue-markdown>
+              </v-col>
+            </v-row>
+            <div>
+              <div v-if="resort.description" style="height:100%" class="mt-4">
+                <div class="description">
+                  <vue-markdown>{{resort.description}}</vue-markdown>
+                </div>
               </div>
-            </v-flex>
-            <v-flex v-if="getResortHotel().gettingAround" style="height:100%;">
-              <div class="description">
-                <vue-markdown>{{getResortHotel().gettingAround}}</vue-markdown>
+              <div v-if="getResortHotel().gettingAround" class="mt-4" style="height:100%;">
+                <div class="description">
+                  <vue-markdown>{{getResortHotel().gettingAround}}</vue-markdown>
+                </div>
               </div>
-            </v-flex>
-            <v-flex xs12 v-if="getResortHotel().location" style="height:100%;">
-              <h2
-                style="font-size: 20px; line-height: 23px; color: #D8DADE;"
-                class="mb-4 mt-4"
-              >Location</h2>
-              <p>
-                <a :href="getResortHotel().location" style="color: #B9BCC1;">Get Directions</a>
-              </p>
-            </v-flex>
-            <v-flex v-if="getResortHotelSpaces().length > 0">
-              <h2
-                style="font-size: 20px; line-height: 23px; color: #D8DADE;"
-                class="mb-4 mt-4"
-              >Spaces</h2>
-              <p class="normalText">{{getResortHotelSpaces()[0]}}</p>
-            </v-flex>
-          </v-flex>
-          <v-flex
+              <div v-if="getResortHotel().location" style="height:100%;">
+                <h2
+                  style="font-size: 20px; line-height: 23px; color: #D8DADE;"
+                  class="mb-4 mt-4"
+                >Location</h2>
+                <p>
+                  <a :href="getResortHotel().location" style="color: #B9BCC1;">Get Directions</a>
+                </p>
+              </div>
+              <div v-if="getResortHotelSpaces().length > 0">
+                <h2
+                  style="font-size: 20px; line-height: 23px; color: #D8DADE;"
+                  class="mb-4 mt-4"
+                >Spaces</h2>
+                <p class="normalText">{{getResortHotelSpaces()[0]}}</p>
+              </div>
+            </div>
+          </v-col>
+          <v-col
             xs12
             v-if="((getResortRoom({roomType: 0}) || {}).amenities || []).length > 0"
           >
             <h2 style="font-size: 20px; color: #D8DADE;" class="mb-4 mt-4">Amenities</h2>
-            <v-flex style="height:100%;">
+            <v-col style="height:100%;">
               <span class="normalText">{{(getResortRoom({roomType: 0}).amenities || [])[0]}}</span>
-            </v-flex>
-          </v-flex>
-          <v-flex v-if="getResortHotelRules().length > 0">
+            </v-col>
+          </v-col>
+          <v-col v-if="getResortHotelRules().length > 0">
             <h2 style="font-size: 20px; color: #D8DADE; height:100%;" class="mb-4 mt-4">Rules</h2>
             <span class="normalText">{{getResortHotelRules()[0]}}</span>
-          </v-flex>
+          </v-col>
           <div style="margin:80px;"></div>
-        </v-flex>
-        <v-flex md6 class="hidden-sm-and-down">
+        </v-col>
+        <v-col md6 class="hidden-sm-and-down">
           <v-card
             class="bookForm"
             width="300px"
@@ -133,24 +143,24 @@
           >
             <reservation-form-desktop :resort-slug="slug" />
           </v-card>
-        </v-flex>
-      </v-layout>
+        </v-col>
+      </v-row>
     </v-container>
-    <v-layout row wrap>
-      <v-flex xs12>
+    <v-row no-gutters>
+      <v-col xs12>
         <div id="bookBottom" class="hidden-md-and-up book-bottom">
-          <v-flex xs12 v-if="resort.ctaText > 0">
+          <v-col xs12 v-if="resort.ctaText > 0">
             <p>
               <span style="font-size: 28px; color: #D8DADE;">&dollar;{{resort.ctaText}}+</span>
               <span class="normalText">/night</span>
             </p>
-          </v-flex>
-          <v-flex xs12 class="hidden-md-and-up">
+          </v-col>
+          <v-col xs12 class="hidden-md-and-up">
             <reservation-form-mobile :resort-slug="slug" />
-          </v-flex>
+          </v-col>
         </div>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
     <Footer class="hidden-sm-and-down"></Footer>
   </div>
 </template>
