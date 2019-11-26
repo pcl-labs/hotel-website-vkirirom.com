@@ -11,7 +11,7 @@ import './registerServiceWorker'
 import '@/mixins.global'
 import router from './router'
 import store from './store'
-// import './plugins/vuetify'
+import vuetify from './plugins/vuetify'
 
 Vue.use(VueHead)
 Vue.use(VueMarkdown)
@@ -58,6 +58,8 @@ Vue.use(AirbnbStyleDatepicker, {
 Vue.config.productionTip = false
 
 new Vue({
+  // @ts-ignore
+  vuetify,
   router,
   store,
   render: h => h(App)
