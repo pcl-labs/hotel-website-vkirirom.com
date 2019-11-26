@@ -11,8 +11,10 @@ import './registerServiceWorker'
 import '@/mixins.global'
 import router from './router'
 import store from './store'
-import vuetify from './plugins/vuetify'
+// import vuetify from './plugins/vuetify'
+import Vuetify from 'vuetify/lib'
 
+Vue.use(Vuetify)
 Vue.use(VueHead)
 Vue.use(VueMarkdown)
 
@@ -59,7 +61,22 @@ Vue.config.productionTip = false
 
 new Vue({
   // @ts-ignore
-  vuetify,
+  vuetify: new Vuetify({
+    icons: {
+      iconfont: 'md' // 'mdi' || 'mdiSvg' || 'md' || 'fa' || 'fa4'
+    },
+    theme: {
+      dark: false
+    },
+    themes: {
+      light: {
+        primary: '#4682b4',
+        secondary: '#b0bec5',
+        accent: '#8c9eff',
+        error: '#b71c1c'
+      }
+    }
+  }),
   router,
   store,
   render: h => h(App)
