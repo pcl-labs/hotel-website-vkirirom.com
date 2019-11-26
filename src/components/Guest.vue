@@ -53,7 +53,7 @@
                 </v-btn>
               </v-flex>
               <v-flex class="amount">
-                <div class="px-3 font-weight-bold">{{ item.amount }}</div>
+                <div class="px-4 font-weight-bold">{{ item.amount }}</div>
               </v-flex>
               <v-flex>
                 <v-btn

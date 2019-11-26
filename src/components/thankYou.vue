@@ -10,7 +10,7 @@
           <v-card-text class="headline font-weight-bold display-4 text-center">
             <span style="color:#B9BCC1; margin:20px;"> Thank you for booking with us. We look forward to hosting you.</span>
           </v-card-text>
-            <v-btn text to="/" class="mb-3" outlined style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; max-width:340px; text-transform:capitalize">
+            <v-btn text to="/" class="mb-4" outlined style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; max-width:340px; text-transform:capitalize">
               Go Back Home
             </v-btn>
         </v-card>
@@ -23,7 +23,7 @@
           <v-card-text class="headline font-weight-bold display-4 text-center">
             <span style="color:#B9BCC1; margin:20px;"> Thank you for booking with us. We look forward to hosting you.</span>
           </v-card-text>
-            <v-btn text to="/" class="mb-3" outlined style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; max-width:340px; text-transform:capitalize">
+            <v-btn text to="/" class="mb-4" outlined style="border: 1px solid #FFFFFF; box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; max-width:340px; text-transform:capitalize">
               Go Back Home
             </v-btn>
         </v-card>

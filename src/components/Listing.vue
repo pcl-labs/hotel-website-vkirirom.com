@@ -82,7 +82,7 @@
                 <span>Bed(s)</span>
               </v-flex>
             </v-layout>
-            <v-flex v-if="resort.description" style="height:100%" class="mt-3">
+            <v-flex v-if="resort.description" style="height:100%" class="mt-4">
               <div class="description">
                 <vue-markdown>{{resort.description}}</vue-markdown>
               </div>
@@ -95,7 +95,7 @@
             <v-flex xs12 v-if="getResortHotel().location" style="height:100%;">
               <h2
                 style="font-size: 20px; line-height: 23px; color: #D8DADE;"
-                class="mb-3 mt-3"
+                class="mb-4 mt-4"
               >Location</h2>
               <p>
                 <a :href="getResortHotel().location" style="color: #B9BCC1;">Get Directions</a>
@@ -104,7 +104,7 @@
             <v-flex v-if="getResortHotelSpaces().length > 0">
               <h2
                 style="font-size: 20px; line-height: 23px; color: #D8DADE;"
-                class="mb-3 mt-3"
+                class="mb-4 mt-4"
               >Spaces</h2>
               <p class="normalText">{{getResortHotelSpaces()[0]}}</p>
             </v-flex>
@@ -113,13 +113,13 @@
             xs12
             v-if="((getResortRoom({roomType: 0}) || {}).amenities || []).length > 0"
           >
-            <h2 style="font-size: 20px; color: #D8DADE;" class="mb-3 mt-3">Amenities</h2>
+            <h2 style="font-size: 20px; color: #D8DADE;" class="mb-4 mt-4">Amenities</h2>
             <v-flex style="height:100%;">
               <span class="normalText">{{(getResortRoom({roomType: 0}).amenities || [])[0]}}</span>
             </v-flex>
           </v-flex>
           <v-flex v-if="getResortHotelRules().length > 0">
-            <h2 style="font-size: 20px; color: #D8DADE; height:100%;" class="mb-3 mt-3">Rules</h2>
+            <h2 style="font-size: 20px; color: #D8DADE; height:100%;" class="mb-4 mt-4">Rules</h2>
             <span class="normalText">{{getResortHotelRules()[0]}}</span>
           </v-flex>
           <div style="margin:80px;"></div>

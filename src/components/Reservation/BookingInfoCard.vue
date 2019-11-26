@@ -30,18 +30,18 @@
       <v-flex xs12 style="margin-bottom:30px;">
         <v-layout row wrap v-for="price in prices" v-bind:key="price.id">
           <v-flex xs6 class="normalText">{{formatDates(price.date)}}</v-flex>
-          <v-flex xs6 class="text-xs-right normalText">${{price.amount}}</v-flex>
+          <v-flex xs6 class="text-right normalText">${{price.amount}}</v-flex>
         </v-layout>
         <v-layout row wrap>
           <v-flex XS6 class="normalText">VAT (10%)</v-flex>
-          <v-flex XS6 class="text-xs-right normalText">${{vat}}</v-flex>
+          <v-flex XS6 class="text-right normalText">${{vat}}</v-flex>
         </v-layout>
         <v-divider class="divider"></v-divider>
         <v-layout row wrap>
           <v-flex xs6>
             <h3>Total</h3>
           </v-flex>
-          <v-flex xs6 class="text-xs-right">
+          <v-flex xs6 class="text-right">
             <h3>${{finalPrice}}</h3>
           </v-flex>
         </v-layout>

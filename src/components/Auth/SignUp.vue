@@ -1,7 +1,7 @@
 <template>
   <v-form name="Register" v-model="valid">
     <v-container class="signup-container" grid-list-md>      
-      <v-layout row wrap class="ml-4 mr-4">
+      <v-layout row wrap class="ml-6 mr-6">
         <v-flex xs12 class="headerText" text-center>Sign up with</v-flex>
         <v-flex xs6>
           <v-btn block text class="btn" @click="oauth('Facebook')">Facebook</v-btn>
@@ -62,7 +62,7 @@
           >
           </v-checkbox>
         </v-flex>
-        <v-flex xs6 text-xs-right>
+        <v-flex xs6 text-right>
           <a @click="visible=!visible" class="yellowLink">
             {{visible?'Hide':'Show'}} Password
           </a>

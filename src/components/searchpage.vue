@@ -13,7 +13,7 @@
       </v-flex>
       <v-layout row wrap>
         <v-flex xs12 sm6 md4 lg4 v-for="resort in resorts" v-bind:key="resort.id">
-          <v-card color="#191C21" class="mb-4 card" width="100%" dark :to="'/listing/'+ resort.slug" flat>
+          <v-card color="#191C21" class="mb-6 card" width="100%" dark :to="'/listing/'+ resort.slug" flat>
             <router-link :to="'/listing/'+ resort.slug">
               <v-carousel height="150px" :cycle="false" :show-arrows="false" dark width="100%" class="hidden-md-and-up" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
                 <v-carousel-item :src="resort.featuredImage">

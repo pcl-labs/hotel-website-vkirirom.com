@@ -51,7 +51,7 @@
                 </v-card>
               </v-flex>
               <v-flex xs8 md9>
-                <p class="text-xs-left">Suitable for children and infants</p>
+                <p class="text-left">Suitable for children and infants</p>
               </v-flex>
             </v-layout>
           </v-flex>
@@ -63,7 +63,7 @@
                 </v-card>
               </v-flex>
               <v-flex xs8 md9>
-                <p class="text-xs-left">Pet allowed</p>
+                <p class="text-left">Pet allowed</p>
               </v-flex>
             </v-layout>
           </v-flex>
@@ -75,7 +75,7 @@
                 </v-card>
               </v-flex>
               <v-flex xs8 md9>
-                <p class="text-xs-left">No smoking</p>
+                <p class="text-left">No smoking</p>
               </v-flex>
             </v-layout>
           </v-flex>
@@ -87,7 +87,7 @@
                 </v-card>
               </v-flex>
               <v-flex xs8 md9>
-                <p class="text-xs-left">Payment is made upon check out at the resort</p>
+                <p class="text-left">Payment is made upon check out at the resort</p>
               </v-flex>
             </v-layout>
           </v-flex>

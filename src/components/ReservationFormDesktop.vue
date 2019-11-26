@@ -20,7 +20,7 @@
           <span class="normalText">per night</span>
         </p>
         <!-- <Rating :rating="rating" :counter="counter"/> -->
-        <v-divider class="mb-4" style="background-color:#3D424E;"></v-divider>
+        <v-divider class="mb-6" style="background-color:#3D424E;"></v-divider>
       </v-flex>
       <v-flex xs12>
         <v-text-field
@@ -149,18 +149,18 @@
       <v-flex xs12 style="margin-bottom:30px;" v-if="finalPrice > 0 && resort.categories[0].name=='accommodations'">
         <v-layout row wrap v-for="price in prices" v-bind:key="price.id">
           <v-flex xs6 class="normalText">{{formatDates(price.date)}}</v-flex>
-          <v-flex xs6 class="text-xs-right normalText">${{price.amount}}</v-flex>
+          <v-flex xs6 class="text-right normalText">${{price.amount}}</v-flex>
         </v-layout>
         <v-layout row wrap>
           <v-flex XS6 class="normalText">VAT (10%)</v-flex>
-          <v-flex XS6 class="text-xs-right normalText">${{vat}}</v-flex>
+          <v-flex XS6 class="text-right normalText">${{vat}}</v-flex>
         </v-layout>
         <v-divider style="background-color:#3D424E; margin-top:20px; margin-bottom:10px;"></v-divider>
         <v-layout row wrap>
           <v-flex xs6>
             <h3 style="font-size: 20px; color: #D8DADE;">Total</h3>
           </v-flex>
-          <v-flex xs6 class="text-xs-right">
+          <v-flex xs6 class="text-right">
             <h3 style="font-size: 20px; color: #D8DADE;">${{finalPrice}}</h3>
           </v-flex>
         </v-layout>
@@ -175,7 +175,7 @@
           color="#B9BCC1"
           name="Message"
           label="Write message here..."
-          class="mb-4"
+          class="mb-6"
           height="122px"
           no-resize
         ></v-textarea>
@@ -258,7 +258,7 @@
     <v-flex
       xs12
       text-center
-      class="mt-3"
+      class="mt-4"
       v-if="resort.categories[0].name=='accommodations' || resort.categories[0].name=='events' || resort.categories[0].name=='experiences'"
     >
       <p

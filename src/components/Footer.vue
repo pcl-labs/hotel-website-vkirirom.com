@@ -3,7 +3,7 @@
     <div style="background: #191C21; box-shadow: 0px -1px 0px #121416; color: #D8DADE;">
       <v-container grid-list-md align-start id="footer">
         <v-layout row wrap justify-space-between>
-          <v-flex xs6 sm6 md3 lg3 class="mb-3">
+          <v-flex xs6 sm6 md3 lg3 class="mb-4">
             <h3>Engage</h3>
             <br>
             <ul style="list-style:none; padding:0; margin:0;">
@@ -21,7 +21,7 @@
               </li>
             </ul>
           </v-flex>
-          <v-flex xs6 sm6 md3 lg3 class="mb-3">
+          <v-flex xs6 sm6 md3 lg3 class="mb-4">
             <h3>Invest</h3>
             <br>
             <ul style="list-style:none; padding:0; margin:0;">
@@ -38,7 +38,7 @@
               </li>
             </ul>
           </v-flex>
-          <v-flex xs12 sm6 md3 lg3 class="mb-3">
+          <v-flex xs12 sm6 md3 lg3 class="mb-4">
             <h3>Learn</h3>
             <br>
             <ul style="list-style:none; padding:0; margin:0;">

@@ -17,7 +17,7 @@
     </v-toolbar-items>
   </v-app-bar>
   <v-navigation-drawer dark style="box-shadow: 0px 1px 0px #121416; position:fixed; background:#191C21;" class="hidden-md-and-up" temporary v-model="drawer">
-    <v-layout text-xs-left column wrap class="mt-5">
+    <v-layout text-left column wrap class="mt-12">
       <v-flex xs12>
         <v-btn text block to="/search/accommodations" class="mt-2 button"><h3 class="mb-0">Accommodation</h3></v-btn>
       </v-flex>

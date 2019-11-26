@@ -1,8 +1,8 @@
 <template>
 <div>
   <v-content>
-  <v-container>
-    <v-layout row wrap style="min-height: 100vh;">
+  <v-container dense>
+    <v-row style="min-height: 100vh;">
       <v-flex xs12 md6>
         <v-flex xs12>
           <h1 style="font-size: 36px; color: #FFFFFF; margin-bottom:43px; margin-top:50px;">
@@ -53,7 +53,7 @@
               <v-icon slot="append" color="#B9BCC1">local_phone</v-icon>
             </v-text-field>
           </v-flex>
-          <v-flex xs12 class="mb-4">
+          <v-flex xs12 class="mb-6">
             <v-textarea
               outlined
               hide-details
@@ -156,7 +156,7 @@
           </v-card-text>
         </v-card>
       </v-flex>
-    </v-layout>
+    </v-row>
   </v-container>
   </v-content>
   <Footer></Footer>
