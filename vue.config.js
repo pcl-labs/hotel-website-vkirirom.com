@@ -1,5 +1,5 @@
 const webpack = require('webpack')
-// const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
+const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 
 module.exports = {
   lintOnSave: false,
@@ -13,18 +13,18 @@ module.exports = {
   },
   configureWebpack: {
     plugins: [
-      // new VuetifyLoaderPlugin({
-      //   match(originalTag, { kebabTag, camelTag, path, component }) {
-      //     if (kebabTag.startsWith('core-')) {
-      //       return [
-      //         camelTag,
-      //         `import ${camelTag} from '@/components/core/${camelTag.substring(
-      //           4
-      //         )}.vue'`
-      //       ]
-      //     }
-      //   }
-      // }),
+      new VuetifyLoaderPlugin({
+        match(originalTag, { kebabTag, camelTag, path, component }) {
+          if (kebabTag.startsWith('core-')) {
+            return [
+              camelTag,
+              `import ${camelTag} from '@/components/core/${camelTag.substring(
+                4
+              )}.vue'`
+            ]
+          }
+        }
+      }),
       new webpack.DefinePlugin({
         'process.env': {
           APP_VERSION:

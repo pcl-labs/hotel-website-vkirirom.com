@@ -1,9 +1,5 @@
 <template>
-  
-    <Toolbar></Toolbar>
-      <!-- TODO: remove :key similar to https://github.com/whynotearth/shinta-mani-wild/pull/298 -->
-      
-  
+  <router-view :key="$route.name + ($route.params.id || '')"/> 
 </template>
 
 <script>

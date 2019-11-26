@@ -58,7 +58,6 @@
     "swagger-axios-codegen": "git+https://github.com/farakavco/swagger-axios-codegen.git",
     "ts-node": "8.3.0",
     "typescript": "3.5.3",
-    "vue-cli-plugin-vuetify": "2.0.2",
     "vue-template-compiler": "2.6.10",
     "vuetify-loader": "1.4.2"
   }
