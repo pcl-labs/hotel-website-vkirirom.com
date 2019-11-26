@@ -40,7 +40,7 @@
           </v-flex>
           <v-spacer></v-spacer>
           <v-flex xs11 v-if="resort.ctaText > 0">
-            <p class="text-xs-center" style="margin:0; margin-bottom:20px;">
+            <p class="text-center" style="margin:0; margin-bottom:20px;">
               <span
                 style="font-weight: bold; font-size: 28px; color: #B9BCC1;"
               >&dollar;{{ resort.ctaText }}+</span>
@@ -114,11 +114,11 @@
               </template>
               <template slot="item" slot-scope="data">
                 <template>
-                  <v-list-tile-content>
-                    <v-list-tile-title>
+                  <v-list-item-content>
+                    <v-list-item-title>
                       {{data.item.beds[0].count}} {{data.item.beds[0].type}}
-                    </v-list-tile-title>
-                  </v-list-tile-content>
+                    </v-list-item-title>
+                  </v-list-item-content>
                 </template>
               </template>
             </v-select>
@@ -251,7 +251,7 @@
               </v-flex>
               <Login v-if="register"></Login>
               <SignUp v-if="!register"></SignUp>
-              <v-flex xs12 text-xs-center style="margin-bottom:30px;">
+              <v-flex xs12 text-center style="margin-bottom:30px;">
                 <span class="normalText">Don't have an account?</span>
                 <a @click="register=!register" class="yellowLink">{{register?'Sign up':'Log in'}}</a>
               </v-flex>
@@ -275,7 +275,7 @@
           </v-flex>
           <v-flex
             xs12
-            text-xs-center
+            text-center
             class="mt-3"
             v-if="resort.categories[0].name=='accommodations' || resort.categories[0].name=='events' || resort.categories[0].name=='experiences'"
           >

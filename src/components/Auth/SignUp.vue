@@ -2,17 +2,17 @@
   <v-form name="Register" v-model="valid">
     <v-container class="signup-container" grid-list-md>      
       <v-layout row wrap class="ml-4 mr-4">
-        <v-flex xs12 class="headerText" text-xs-center>Sign up with</v-flex>
+        <v-flex xs12 class="headerText" text-center>Sign up with</v-flex>
         <v-flex xs6>
-          <v-btn block flat class="btn" @click="oauth('Facebook')">Facebook</v-btn>
+          <v-btn block text class="btn" @click="oauth('Facebook')">Facebook</v-btn>
         </v-flex>
         <v-flex xs6>
-          <v-btn block flat class="btn" @click="oauth('Google')">Google</v-btn>
+          <v-btn block text class="btn" @click="oauth('Google')">Google</v-btn>
         </v-flex>
         <v-flex xs5 style="margin-bottom:6px;">
           <v-divider style="background-color:#3D424E;"></v-divider>
         </v-flex>
-        <v-flex xs2 text-xs-center style="margin-top:-6px; margin-bottom:6px; padding:0;">
+        <v-flex xs2 text-center style="margin-top:-6px; margin-bottom:6px; padding:0;">
           <span class="normalText">or</span>
         </v-flex>
         <v-flex xs5 style="margin-bottom:6px;">

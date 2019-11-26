@@ -12,7 +12,7 @@
     <input type="hidden" name="form-name" :value="resort.categories[0].name" />
     <v-layout row wrap>
       <v-flex xs12 v-if="resort.ctaText > 0">
-        <p class="subheading text-xs-center pb-2">
+        <p class="subheading text-center pb-2">
           <span class="normalText">Starting from </span>
           <span
             style="font-weight: bold; font-size: 28px; color: #B9BCC1;"
@@ -88,11 +88,11 @@
           </template>
           <template slot="item" slot-scope="data">
             <template>
-              <v-list-tile-content>
-                <v-list-tile-title>
+              <v-list-item-content>
+                <v-list-item-title>
                   {{data.item.beds[0].count}} {{data.item.beds[0].type}}
-                </v-list-tile-title>
-              </v-list-tile-content>
+                </v-list-item-title>
+              </v-list-item-content>
             </template>
           </template>
         </v-select>
@@ -232,7 +232,7 @@
           </v-flex>
           <Login v-if="register"></Login>
           <SignUp v-if="!register"></SignUp>
-          <v-flex xs12 text-xs-center style="margin-bottom:30px;">
+          <v-flex xs12 text-center style="margin-bottom:30px;">
             <span class="normalText">Don't have an account? </span>
             <a @click="register=!register" class="yellowLink">{{register?'Sign up':'Log in'}}</a>
           </v-flex>
@@ -257,7 +257,7 @@
     </v-flex>
     <v-flex
       xs12
-      text-xs-center
+      text-center
       class="mt-3"
       v-if="resort.categories[0].name=='accommodations' || resort.categories[0].name=='events' || resort.categories[0].name=='experiences'"
     >

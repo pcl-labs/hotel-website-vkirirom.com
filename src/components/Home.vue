@@ -49,7 +49,7 @@
       <v-divider class="hidden-md-and-up mt-3" style="background-color:#3D424E;"></v-divider>
       <v-card hover dark color="#191C21" style="border-radius: 3px;" width="100%" to="/listing/Large-Company-Retreats-in-Nature-and-Team-Building">
         <v-img height="300px" position="center" class="mt-4 pa-1 mb-4" width="100%" src="https://res.cloudinary.com/die9ji2vn/image/upload/dpr_auto/w_auto/q_auto:low/f_auto/v1562223032/group/group-retreat_s3ksth.jpg">
-          <v-layout row wrap justify-center text-xs-center>
+          <v-layout row wrap justify-center text-center>
             <v-flex xs12 align-center >
               <h2 style="color: #FFFFFF; font-family: 'Oswald', sans-serif; font-size: 36px; text-align: center; margin-top:30px;">
                 Your next corporate retreat.

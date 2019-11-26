@@ -6,7 +6,6 @@
       :close-on-content-click="false"
       transition="slide-y-transition"
       bottom
-      full-width
       offset-y
       dark
       style="background:#191C21"
@@ -24,17 +23,17 @@
       />
 
       <v-list>
-        <v-list-tile
+        <v-list-item
           v-for="(item, i) in guest_categories"
           :key="i"
           class="my-2"
         >
-          <v-list-tile-content>
-            <v-list-tile-title v-html="item.title" class="font-weight-bold" />
-            <v-list-tile-sub-title v-html="item.subtitle" />
-          </v-list-tile-content>
+          <v-list-item-content>
+            <v-list-item-title v-html="item.title" class="font-weight-bold" />
+            <v-list-item-subtitle v-html="item.subtitle" />
+          </v-list-item-content>
           <v-spacer/>
-          <v-list-tile-action>
+          <v-list-item-action>
             <v-layout
               row
               align-center
@@ -68,20 +67,20 @@
                 </v-btn>
               </v-flex>
             </v-layout>
-          </v-list-tile-action>
-        </v-list-tile>
-        <v-list-tile>
+          </v-list-item-action>
+        </v-list-item>
+        <v-list-item>
           <v-spacer/>
-          <v-list-tile-action>
+          <v-list-item-action>
             <v-btn
-              flat
+              text
               color="teal darken-4"
               :ripple="false"
               class="text-capitalize font-weight-bold subheading"
               @click="renderGuestNumber"
             >Apply</v-btn>
-          </v-list-tile-action>
-        </v-list-tile>
+          </v-list-item-action>
+        </v-list-item>
       </v-list>
     </v-menu>
   </v-flex>
