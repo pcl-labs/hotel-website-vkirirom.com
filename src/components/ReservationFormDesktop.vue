@@ -73,15 +73,14 @@
         <v-select
           v-model="roomType"
           item-text="type"
-          item-value="type"
-          return-object
+          item-value="id"
           :items="resort.modules.hotel.roomTypes"
           dark
           outlined
           :rules="bedTypeRules"
           label="Bed Type"
           color="#B9BCC1"
-          type="text"
+          item-color="#B9BCC1"
         >
           <template slot="selection" slot-scope="data">
             {{data.item.beds[0].count}} {{data.item.beds[0].type}}
@@ -305,7 +304,7 @@ export default {
         v => !!v || "Dates are required"
       ],
       bedTypeRules: [
-        (v) => !!this.roomType.beds[0].count || 'Bed type is required',
+        (v) => !!this.roomType || 'Bed type is required',
       ],
 
       bookDialog: false,
@@ -410,7 +409,7 @@ export default {
       set(value) {
         this.$store.commit("reservation/updateRoomType", value);
       }
-    },
+    }
   },
   methods: {
     formatDates,
