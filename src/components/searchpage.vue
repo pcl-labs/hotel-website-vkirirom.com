@@ -11,7 +11,7 @@
           </p>
         </v-flex>
       </v-flex>
-      <v-layout row wrap>
+      <v-row no-gutters>
         <v-flex xs12 sm6 md4 lg4 v-for="resort in resorts" v-bind:key="resort.id">
           <v-card color="#191C21" class="mb-6 card" width="100%" dark :to="'/listing/'+ resort.slug" flat>
             <router-link :to="'/listing/'+ resort.slug">
@@ -23,7 +23,7 @@
               </v-carousel>
             </router-link>
             <v-img :src="resort.featuredImage" height="150px" class="hidden-sm-and-down" style="border-top-left-radius: 10px; border-top-right-radius: 10px;"></v-img>
-            <v-layout align-start>
+            <v-row no-gutters align-start>
               <v-card-text style="margin:10px; padding: 0;">
                 <p>
                   <!-- <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire {{resort.title}}</span> -->
@@ -31,10 +31,10 @@
                   <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;" v-if="resort.ctaText>0">Starting from {{resort.ctaText}}$ per night</span>
                 </p>
               </v-card-text>
-            </v-layout>
+            </v-row>
           </v-card>
         </v-flex>
-      </v-layout>
+      </v-row>
     </v-container>
     <Footer></Footer>
   </div>

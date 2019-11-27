@@ -1,7 +1,7 @@
 <template>
   <v-form name="Login" v-model="valid">
     <v-container class="login-container" grid-list-md>      
-      <v-layout row wrap class="ml-6 mr-6">
+      <v-row no-gutters class="ml-6 mr-6">
         <v-flex xs12 class="headerText" text-center>Log in with</v-flex>
         <v-flex xs6>
           <v-btn block text class="btn" @click="oauth('Facebook')">Facebook</v-btn>
@@ -75,7 +75,7 @@
         <v-flex xs12>
           <v-divider style="background-color:#3D424E; margin-top:10px; margin-bottom:5px"></v-divider>
         </v-flex>
-      </v-layout>
+      </v-row>
     </v-container>
   </v-form>      
 </template>

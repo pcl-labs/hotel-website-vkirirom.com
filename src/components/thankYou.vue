@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container grid-list-md>
-      <v-layout column wrap justify-center class="text-center" style="min-height: 100vh;">
+      <v-row no-gutters column justify-center class="text-center" style="min-height: 100vh;">
       <v-flex xs12 md6 sm6 lg6 class="hidden-sm-and-down">
         <v-card dark color="#191C21" style="color:#B9BCC1;" height="100%">
           <v-card-text class="headline font-weight-bold display-4 text-center">
@@ -28,7 +28,7 @@
             </v-btn>
         </v-card>
       </v-flex>
-      </v-layout>
+      </v-row>
     </v-container>
     <Footer></Footer>
   </div>

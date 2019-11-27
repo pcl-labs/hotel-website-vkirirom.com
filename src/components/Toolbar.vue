@@ -17,7 +17,7 @@
     </v-toolbar-items>
   </v-app-bar>
   <v-navigation-drawer dark style="box-shadow: 0px 1px 0px #121416; position:fixed; background:#191C21;" class="hidden-md-and-up" temporary v-model="drawer">
-    <v-layout text-left column wrap class="mt-12">
+    <v-row no-gutters text-left column class="mt-12">
       <v-flex xs12>
         <v-btn text block to="/search/accommodations" class="mt-2 button"><h3 class="mb-0">Accommodation</h3></v-btn>
       </v-flex>
@@ -39,7 +39,7 @@
       <v-flex>
         <v-btn text block class="mt-2 button" @click="logout()" v-if="isAuthenticated == true" :loading="loading"><h3 class="mb-0">Log out</h3></v-btn>
       </v-flex>
-    </v-layout>
+    </v-row>
   </v-navigation-drawer>
 </div>
 </template>

@@ -1,8 +1,8 @@
 <template>
   <v-container grid-list-md>
-    <v-layout row wrap style="min-height:100vh;">
+    <v-row no-gutters style="min-height:100vh;">
       <v-flex xs12 md7 class="text">
-        <v-layout row wrap>
+        <v-row no-gutters>
           <v-flex xs12>
             <h1>Confirm and pay</h1>
           </v-flex>
@@ -54,12 +54,12 @@
               Pay ${{finalPrice}} & book
             </v-btn>
           </v-flex>
-        </v-layout>
+        </v-row>
       </v-flex>
       <v-flex xs12 md5 class="bookingCard">
         <BookingInfoCard></BookingInfoCard>
       </v-flex>
-    </v-layout>
+    </v-row>
   </v-container>
 </template>
 

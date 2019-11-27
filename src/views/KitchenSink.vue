@@ -3,7 +3,7 @@
     This is kitchen sink. <br />
 
     <v-container>
-      <v-layout row wrap>
+      <v-row no-gutters>
         <v-flex xs12>
           <v-text-field
             outlined
@@ -40,7 +40,7 @@
             @apply="getPrices(dateOne, dateTwo)"
           />
         </v-flex>
-      </v-layout>
+      </v-row>
     </v-container>
   </div>
 </template>

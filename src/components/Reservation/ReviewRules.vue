@@ -1,8 +1,8 @@
 <template>
   <v-container grid-list-md>
-    <v-layout row wrap justify-space-between>
+    <v-row no-gutters justify-space-between>
       <v-flex xs12 md7 class="text">
-        <v-layout row wrap>
+        <v-row no-gutters>
           <v-flex xs12>
             <h1>Review accommodation rules</h1>
           </v-flex>
@@ -10,7 +10,7 @@
             <h3>{{prices.length}} night(s) in a {{resort.title}}</h3>
           </v-flex>
           <v-flex xs12 md6>
-            <v-layout>
+            <v-row>
               <v-flex xs4>
                 <v-card class="smallCard">
                   <v-card-text>{{reviewDateMonth(dateOne)}}</v-card-text>
@@ -21,10 +21,10 @@
                   {{reviewDay(dateOne)}} Check in before 2PM
                 </p>
               </v-flex>
-            </v-layout>
+            </v-row>
           </v-flex>
           <v-flex xs12 md6>
-            <v-layout row wrap>
+            <v-row no-gutters>
               <v-flex xs4>
                 <v-card class="smallCard">
                   <v-card-text>{{reviewDateMonth(checkOut)}}</v-card-text>
@@ -35,7 +35,7 @@
                   {{reviewDay(checkOut)}} Check out before 12PM
                 </p>
               </v-flex>
-            </v-layout>
+            </v-row>
           </v-flex>
           <v-flex xs12>
             <v-divider class="divider"></v-divider>
@@ -44,7 +44,7 @@
             <h3>Things to keep in mind</h3>
           </v-flex>
           <v-flex xs12>
-            <v-layout row wrap>
+            <v-row no-gutters>
               <v-flex xs4 md3>
                 <v-card class="smallCard">
                   <v-card-text><v-icon size="30" color="#B9BCC1">child_care</v-icon></v-card-text>
@@ -53,10 +53,10 @@
               <v-flex xs8 md9>
                 <p class="text-left">Suitable for children and infants</p>
               </v-flex>
-            </v-layout>
+            </v-row>
           </v-flex>
           <v-flex xs12>
-            <v-layout row wrap>
+            <v-row no-gutters>
               <v-flex xs4 md3>
                 <v-card class="smallCard">
                   <v-card-text><v-icon size="30" color="#B9BCC1">pets</v-icon></v-card-text>
@@ -65,10 +65,10 @@
               <v-flex xs8 md9>
                 <p class="text-left">Pet allowed</p>
               </v-flex>
-            </v-layout>
+            </v-row>
           </v-flex>
           <v-flex xs12>
-            <v-layout row wrap>
+            <v-row no-gutters>
               <v-flex xs4 md3>
                 <v-card class="smallCard">
                   <v-card-text><v-icon size="30" color="#B9BCC1">smoke_free</v-icon></v-card-text>
@@ -77,10 +77,10 @@
               <v-flex xs8 md9>
                 <p class="text-left">No smoking</p>
               </v-flex>
-            </v-layout>
+            </v-row>
           </v-flex>
           <v-flex xs12>
-            <v-layout row wrap>
+            <v-row no-gutters>
               <v-flex xs4 md3>
                 <v-card class="smallCard">
                   <v-card-text><v-icon size="30" color="#B9BCC1">credit_card</v-icon></v-card-text>
@@ -89,14 +89,14 @@
               <v-flex xs8 md9>
                 <p class="text-left">Payment is made upon check out at the resort</p>
               </v-flex>
-            </v-layout>
+            </v-row>
           </v-flex>
-        </v-layout>
+        </v-row>
       </v-flex>
       <v-flex xs12 md5 class="bookingCard">
         <BookingInfoCard></BookingInfoCard>
       </v-flex>
-    </v-layout>
+    </v-row>
     <!-- <v-btn
       class="button"
       color="#F7B947"

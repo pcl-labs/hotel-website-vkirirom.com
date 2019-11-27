@@ -2,7 +2,7 @@
   <footer>
     <div style="background: #191C21; box-shadow: 0px -1px 0px #121416; color: #D8DADE;">
       <v-container grid-list-md align-start id="footer">
-        <v-layout row wrap justify-space-between>
+        <v-row no-gutters justify-space-between>
           <v-flex xs6 sm6 md3 lg3 class="mb-4">
             <h3>Engage</h3>
             <br>
@@ -55,7 +55,7 @@
               </li>
             </ul>
           </v-flex>
-        </v-layout>
+        </v-row>
       </v-container>
     </div>
   </footer>
