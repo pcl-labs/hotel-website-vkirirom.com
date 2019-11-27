@@ -11,9 +11,9 @@
           </p>
         </v-flex>
       </v-flex>
-      <v-row no-gutters>
-        <v-flex xs12 sm6 md4 lg4 v-for="resort in resorts" v-bind:key="resort.id">
-          <v-card color="#191C21" class="mb-6 card" width="100%" dark :to="'/listing/'+ resort.slug" flat>
+      <v-row dense>
+        <v-col cols="12" sm="6" md="4" v-for="resort in resorts" v-bind:key="resort.id">
+          <v-card :ripple="false" color="#191C21" class="mb-6 card" width="100%" dark :to="'/listing/'+ resort.slug" flat>
             <router-link :to="'/listing/'+ resort.slug">
               <v-carousel height="150px" :cycle="false" :show-arrows="false" dark width="100%" class="hidden-md-and-up" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
                 <v-carousel-item :src="resort.featuredImage">
@@ -33,7 +33,7 @@
               </v-card-text>
             </v-row>
           </v-card>
-        </v-flex>
+        </v-col>
       </v-row>
     </v-container>
     <Footer></Footer>
