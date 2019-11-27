@@ -15,14 +15,14 @@
         <v-col cols="12" sm="6" md="4" v-for="resort in resorts" v-bind:key="resort.id">
           <v-card :ripple="false" color="#191C21" class="mb-6 card" width="100%" dark :to="'/listing/'+ resort.slug" flat>
             <router-link :to="'/listing/'+ resort.slug">
-              <v-carousel height="150px" :cycle="false" :show-arrows="false" dark width="100%" class="hidden-md-and-up" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+              <v-carousel height="150px" :cycle="false" :show-arrows="false" dark width="100%" class="d-md-none" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
                 <v-carousel-item :src="resort.featuredImage">
                 </v-carousel-item>
                 <v-carousel-item v-for="image in resort.images.slice(0,4)" v-bind:key="image.url" :src="image.url" style="background-size:contain;">
                 </v-carousel-item>
               </v-carousel>
             </router-link>
-            <v-img :src="resort.featuredImage" height="150px" class="hidden-sm-and-down" style="border-top-left-radius: 10px; border-top-right-radius: 10px;"></v-img>
+            <v-img :src="resort.featuredImage" height="150px" class="d-none d-md-block" style="border-top-left-radius: 10px; border-top-right-radius: 10px;"></v-img>
             <v-row no-gutters align-start>
               <v-card-text style="margin:10px; padding: 0;">
                 <p>

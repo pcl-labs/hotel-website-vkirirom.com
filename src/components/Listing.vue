@@ -117,6 +117,11 @@
                 >Spaces</h2>
                 <p class="normalText">{{getResortHotelSpaces()[0]}}</p>
               </div>
+
+              <div v-if="getResortHotelRules().length > 0">
+                <h2 style="font-size: 20px; color: #D8DADE; height:100%;" class="mb-4">Rules</h2>
+                <span class="normalText">{{getResortHotelRules()[0]}}</span>
+              </div>
             </div>
           </v-col>
           <v-col
@@ -127,10 +132,6 @@
             <v-col style="height:100%;">
               <span class="normalText">{{(getResortRoom({roomType: 0}).amenities || [])[0]}}</span>
             </v-col>
-          </v-col>
-          <v-col v-if="getResortHotelRules().length > 0">
-            <h2 style="font-size: 20px; color: #D8DADE; height:100%;" class="mb-4 mt-4">Rules</h2>
-            <span class="normalText">{{getResortHotelRules()[0]}}</span>
           </v-col>
           <div style="margin:80px;"></div>
         </v-col>

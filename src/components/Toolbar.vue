@@ -21,22 +21,22 @@
       <v-flex xs12>
         <v-btn text block to="/search/accommodations" class="mt-2 button"><h3 class="mb-0">Accommodation</h3></v-btn>
       </v-flex>
-      <v-flex>
+      <v-flex xs12>
         <v-btn text block to="/search/events" class="mt-2 button"><h3 class="mb-0">Events</h3></v-btn>
       </v-flex>
-      <v-flex>
+      <v-flex xs12>
         <v-btn text block to="/search/experiences" class="mt-2 button"><h3 class="mb-0">Experience</h3></v-btn>
       </v-flex>
-      <v-flex>
+      <v-flex xs12>
         <v-btn text block to="/search/food" class="mt-2 button"><h3 class="mb-0">Food</h3></v-btn>
       </v-flex>
-      <v-flex>
+      <v-flex xs12>
         <v-btn text block to="/search/blog" class="mt-2 button"><h3 class="mb-0">Blog</h3></v-btn>
       </v-flex>
-      <v-flex>
+      <v-flex xs12>
         <v-btn text block to="/listing/Pine-View-Kitchen-PVK" class="mt-2 button"><h3 class="mb-0">Restaurant</h3></v-btn>
       </v-flex>
-      <v-flex>
+      <v-flex xs12>
         <v-btn text block class="mt-2 button" @click="logout()" v-if="isAuthenticated == true" :loading="loading"><h3 class="mb-0">Log out</h3></v-btn>
       </v-flex>
     </v-row>

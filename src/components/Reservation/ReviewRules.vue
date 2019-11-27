@@ -2,7 +2,7 @@
   <v-container grid-list-md>
     <v-row no-gutters justify-space-between>
       <v-flex xs12 md7 class="text">
-        <v-row no-gutters>
+        <v-row>
           <v-flex xs12>
             <h1>Review accommodation rules</h1>
           </v-flex>
