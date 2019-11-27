@@ -47,7 +47,7 @@
         </v-col>
       </v-row>
     </div>
-    <v-container>
+    <v-container class="is-limited">
       <v-row no-gutters style="min-height: 100vh;">
         <v-col xs12 md6>
           <v-col xs12>
@@ -252,58 +252,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.v-input__slot {
-  margin: 0;
-  height: 55px;
-  /*To make the total margin:30px */
-  margin-bottom: 10px;
-}
-html {
-  scroll-behavior: smooth;
-}
-.v-carousel__controls {
-  background: linear-gradient(0deg, #191c21 0%, rgba(25, 28, 33, 0) 50%);
-  .v-icon {
-    font-size: 7px !important;
-    padding: 0px;
-  }
-}
-.header {
-  background-position: bottom;
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 464px;
-  object-fit: cover;
-}
-.gradient {
-  background-image: linear-gradient(0deg, #191c21 0%, rgba(25, 28, 33, 0) 50%);
-  box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-.image {
-  transition: 0.8s ease;
-  -webkit-transition: 0.8s ease;
-  &:hover {
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
-  }
-}
-.normalText {
-  font-size: 16px;
-  color: #b9bcc1;
-}
-@-webkit-keyframes autofill {
-  to {
-    color: white;
-    background: transparent;
-  }
-}
-
-input:-webkit-autofill {
-  -webkit-animation-name: autofill;
-  -webkit-animation-fill-mode: both;
-}
-
+<style lang="scss" scoped>
 #bookBottom {
   height: 80px;
   width: 100vw;
@@ -318,13 +267,13 @@ input:-webkit-autofill {
 }
 
 .description {
+  color: #b9bcc1;
   a {
     color: #b9bcc1;
     text-decoration: none;
   }
   p {
-    color: #b9bcc1;
-    font-size: 16px;
+    font-size: rem(16px);
   }
   h2 {
     color: #d8dade;
@@ -346,27 +295,6 @@ input:-webkit-autofill {
     color: #b9bcc1;
     font-size: 16px;
     padding-right: 10px;
-  }
-}
-.container{
-  padding-top: 30px;
-  padding-left: 0px;
-  padding-right: 0px;
-  // doing padding:0px or  0; or padding-bottom:0px or 0; creates an extra overflow scroll which is bad and should be avoided
-}
-@media only screen and (max-width: 600px) {
-  .container{
-    max-width: 292px;
-  }
-}
-@media only screen and (min-width: 768px) {
-  .container{
-    max-width: 600px;
-  }
-}
-@media only screen and (min-width: 1024px) {
-  .container{
-    max-width: 900px;
   }
 }
 </style>

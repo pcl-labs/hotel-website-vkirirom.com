@@ -15,7 +15,8 @@
         <p class="subheading text-center pb-2">
           <span class="normalText">Starting from </span>
           <span
-            style="font-weight: bold; font-size: 28px; color: #B9BCC1;"
+            class="normalText"
+            style="font-weight: bold; font-size: 28px;"
           >&dollar;{{ resort.ctaText }} </span>
           <span class="normalText">per night</span>
         </p>

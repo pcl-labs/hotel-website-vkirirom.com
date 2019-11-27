@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-container grid-list-md style="min-height:100vh;">
+    <v-container class="is-limited" grid-list-md style="min-height:100vh;">
       <v-flex xs12 class="headerText">
         <h1>Results for {{id}}</h1>
         <v-flex xs12 v-if="id=='food'">
@@ -14,15 +14,7 @@
       <v-row dense>
         <v-col cols="12" sm="6" md="4" v-for="resort in resorts" v-bind:key="resort.id">
           <v-card :ripple="false" color="#191C21" class="mb-6 card" width="100%" dark :to="'/listing/'+ resort.slug" flat>
-            <router-link :to="'/listing/'+ resort.slug">
-              <v-carousel height="150px" :cycle="false" :show-arrows="false" dark width="100%" class="d-md-none" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
-                <v-carousel-item :src="resort.featuredImage">
-                </v-carousel-item>
-                <v-carousel-item v-for="image in resort.images.slice(0,4)" v-bind:key="image.url" :src="image.url" style="background-size:contain;">
-                </v-carousel-item>
-              </v-carousel>
-            </router-link>
-            <v-img :src="resort.featuredImage" height="150px" class="d-none d-md-block" style="border-top-left-radius: 10px; border-top-right-radius: 10px;"></v-img>
+            <v-img :src="resort.featuredImage" height="150px" style="border-top-left-radius: 10px; border-top-right-radius: 10px;"></v-img>
             <v-row no-gutters align-start>
               <v-card-text style="margin:10px; padding: 0;">
                 <p>
@@ -66,13 +58,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  html {
-    scroll-behavior: smooth;
-  }
   .card{
     box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
     height: 270px;
+  }
+  .v-card--link:before {
+    border-radius: inherit;
   }
   .headerText{
     margin-top:30px; 
@@ -86,24 +78,6 @@ export default {
       color: #D7D9DD;
       font-size: 28px;
       margin-bottom: 20px;
-    }
-  }
-  .container{
-    padding:0;
-  }
-  @media only screen and (max-width: 600px) {
-    .container{
-      max-width: 292px;
-    }
-  }
-  @media only screen and (min-width: 768px) {
-    .container{
-      max-width: 600px;
-    }
-  }
-  @media only screen and (min-width: 1024px) {
-    .container{
-      max-width: 900px;
     }
   }
 </style>

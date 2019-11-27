@@ -1,7 +1,7 @@
 <template>
   <v-form name="Login" v-model="valid">
-    <v-container class="login-container" grid-list-md>      
-      <v-row no-gutters class="ml-6 mr-6">
+    <v-container class="login-container">      
+      <v-row class="ml-6 mr-6">
         <v-flex xs12 class="headerText" text-center>Log in with</v-flex>
         <v-flex xs6>
           <v-btn block text class="btn" @click="oauth('Facebook')">Facebook</v-btn>

@@ -2,17 +2,15 @@
   <div>
     <v-card dark>
       <div id="header">
-        <v-container>
-          <v-row no-gutters align-end justify-start>
-            <v-flex xs12 sm6 md3 lg3>
-              <h1 class="headerh1 d-none d-md-flex">Book your nature retreat at vKirirom Pine Resort</h1>
-              <h1 class="headerh1mob d-md-none">Book your nature retreat at vKirirom Pine Resort</h1>
-            </v-flex>
-          </v-row>
+        <v-container class="is-limited fill-height align-end justify-start">
+          <v-flex xs12>
+            <h1 class="headerh1 d-none d-md-flex">Book your nature retreat at vKirirom Pine Resort</h1>
+            <h1 class="headerh1mob d-md-none">Book your nature retreat at vKirirom Pine Resort</h1>
+          </v-flex>
         </v-container>
       </div>
     </v-card>
-    <v-container>
+    <v-container class="is-limited">
       <h2 class="mb-6 mt-6 listTitle">Accommodation</h2>
       <v-row class="cardRow" dense>
         <v-col cols="12" sm="6" md="4" v-bind:key="accommodation.id" v-for="accommodation in accommodations">
@@ -265,32 +263,11 @@ export default {
   // background-position: bottom;
   background-size: cover;
   background-repeat: no-repeat;
+  height: 300px;
 }
 .cardRow{
   height: 300px;
   overflow: hidden;
-}
-.container{
-  padding:0;
-}
-@media only screen and (max-width: 600px) {
-  .container{
-    max-width: 292px;
-  }
-}
-@media only screen and (min-width: 768px) {
-  .container{
-    max-width: 600px;
-  }
-}
-@media only screen and (min-width: 1024px) {
-  .container{
-    max-width: 900px;
-  }
-}
-
-#header{
-  height: 300px;
 }
 
 .menubtn{
@@ -309,15 +286,11 @@ export default {
 }
 .headerh1{
   color: #FFFFFF;
-  bottom:20px;
-  position:absolute;
   font-family: 'Oswald', sans-serif;
   font-size: 45px;
 }
 .headerh1mob{
   color: #FFFFFF;
-  bottom:20px;
-  position:absolute; 
   font-family: 'Oswald', sans-serif;
   font-size: 35px;
 }
@@ -338,8 +311,5 @@ export default {
 .listTitle{
   color: #D8DADE;
   font-size: 28px;
-}
-html {
-  scroll-behavior: smooth;
 }
 </style>
