@@ -1,16 +1,20 @@
 <template>
-  <v-container grid-list-md>
-    <v-row no-gutters justify-space-between>
-      <v-flex xs12 md7 class="text">
-        <v-row>
-          <v-flex xs12>
+  <v-container class="is-limited">
+    <v-row no-gutters="">
+
+      <!-- page-text -->
+      <v-col cols="12" md="7" class="page-text normalText my-8">
+
+        <v-row no-gutters="">
+          <v-col cols="12">
             <h1>Review accommodation rules</h1>
-          </v-flex>
-          <v-flex xs12>
             <h3>{{prices.length}} night(s) in a {{resort.title}}</h3>
-          </v-flex>
-          <v-flex xs12 md6>
-            <v-row>
+          </v-col>
+        </v-row>
+
+        <v-row no-gutters="">
+          <v-col xs12 md6>
+            <v-row no-gutters>
               <v-flex xs4>
                 <v-card class="smallCard">
                   <v-card-text>{{reviewDateMonth(dateOne)}}</v-card-text>
@@ -22,8 +26,8 @@
                 </p>
               </v-flex>
             </v-row>
-          </v-flex>
-          <v-flex xs12 md6>
+          </v-col>
+          <v-col xs12 md6>
             <v-row no-gutters>
               <v-flex xs4>
                 <v-card class="smallCard">
@@ -36,7 +40,7 @@
                 </p>
               </v-flex>
             </v-row>
-          </v-flex>
+          </v-col>
           <v-flex xs12>
             <v-divider class="divider"></v-divider>
           </v-flex>
@@ -92,10 +96,10 @@
             </v-row>
           </v-flex>
         </v-row>
-      </v-flex>
-      <v-flex xs12 md5 class="bookingCard">
+      </v-col>
+      <v-col cols="12" md="5" class="bookingCard">
         <BookingInfoCard></BookingInfoCard>
-      </v-flex>
+      </v-col>
     </v-row>
     <!-- <v-btn
       class="button"
@@ -108,7 +112,8 @@
     </v-btn>
     <div id="error-message"></div> -->
     <v-btn
-      class="button"
+      x-large
+      class="button text-capitalize"
       color="#F7B947"
       to="/reservation/confirmandpay"
     >
@@ -170,9 +175,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .text{
-    margin-top:30px;
-    margin-bottom:30px;
+  .page-text{
     p{
       font-size: 16px;
       line-height: 22px;
@@ -224,25 +227,8 @@ export default {
     margin-bottom: 30px;
     background-color: #B9BCC1;
   }
-  .container{
-    padding-top: 30px;
-    padding-left: 0px;
-    padding-right: 0px;
-    // doing padding:0px or  0; or padding-bottom:0px or 0; creates an extra overflow scroll which is bad and should be avoided
-  }
-  @media only screen and (max-width: 600px) {
-    .container{
-      max-width: 292px;
-    }
-  }
-  @media only screen and (min-width: 768px) {
-    .container{
-      max-width: 600px;
-    }
-  }
-  @media only screen and (min-width: 1024px) {
-    .container{
-      max-width: 900px;
-    }
+  .v-card__text {
+    color: #b9bcc1 !important;
+    line-height: 16px;
   }
 </style>

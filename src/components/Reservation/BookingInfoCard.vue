@@ -1,6 +1,6 @@
 <template>
   <v-card
-    class="card"
+    class="card booking-info"
     dark
     width="100%"
     max-width="330px"
@@ -119,5 +119,11 @@ export default {
   .normalText{
     font-size: 16px;
     color: #B9BCC1;
+  }
+  .booking-info {
+    .flex {
+      padding-top: 4px;
+      padding-bottom: 4px;
+    }
   }
 </style>

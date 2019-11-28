@@ -408,7 +408,8 @@ export default {
         return this.$store.getters["reservation/roomType"];
       },
       set(value) {
-        this.$store.commit("reservation/updateRoomType", value);
+        const roomTypeObject = this.resort.modules.hotel.roomTypes.find(item => item.id === value)
+        this.$store.commit("reservation/updateRoomType", roomTypeObject);
       }
     }
   },
