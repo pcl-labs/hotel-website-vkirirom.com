@@ -10,6 +10,7 @@ import VueMarkdown from 'vue-markdown'
 import './registerServiceWorker'
 import '@/mixins.global'
 import router from './router'
+import { light } from './constants/themes'
 import store from './store'
 import Vuetify from 'vuetify/lib'
 
@@ -67,12 +68,7 @@ new Vue({
     theme: {
       dark: false,
       themes: {
-        light: {
-          primary: '#F7B947',
-          secondary: '#4B7F52',
-          warning: '#F7B947',
-          error: '#EB5757'
-        }
+        light
       }
     },
   }),

@@ -49,7 +49,7 @@
                 Your next corporate retreat.
               </h2>
             </v-flex>
-            <v-btn to="/listing/Large-Company-Retreats-in-Nature-and-Team-Building" dark large depressed class="menubtn mx-auto" color="#F7B947">
+            <v-btn to="/listing/Large-Company-Retreats-in-Nature-and-Team-Building" dark large depressed class="menubtn mx-auto" color="yellow">
               Book Now <v-icon>keyboard_arrow_right</v-icon>
             </v-btn>
           </v-row>
