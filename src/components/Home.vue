@@ -43,15 +43,13 @@
       <v-divider class="d-md-none mt-4" style="background-color:#3D424E;"></v-divider>
       <v-card :ripple="false" hover dark color="#191C21" style="border-radius: 3px;" to="/listing/Large-Company-Retreats-in-Nature-and-Team-Building">
         <v-img height="300px" position="center" class="mt-6 pa-1 mb-6" src="https://res.cloudinary.com/die9ji2vn/image/upload/dpr_auto/w_auto/q_auto:low/f_auto/v1562223032/group/group-retreat_s3ksth.jpg">
-          <v-row no-gutters>
-            <v-flex xs12>
-              <h2 style="color: #FFFFFF; font-family: 'Oswald', sans-serif; font-size: 36px; text-align: center; margin-top:30px;">
+          <v-row no-gutters class="align-md-center fill-height">
+            <v-flex xs12 class="ma-auto">
+              <h2 class="mt-4 mt-md-0" style="color: #FFFFFF; font-family: 'Oswald', sans-serif; font-size: 36px; text-align: center;">
                 Your next corporate retreat.
               </h2>
             </v-flex>
-          </v-row>
-          <v-row class="flex-column align-center justify-center fill-height">
-            <v-btn to="/listing/Large-Company-Retreats-in-Nature-and-Team-Building" dark large depressed class="menubtn" color="#F7B947">
+            <v-btn to="/listing/Large-Company-Retreats-in-Nature-and-Team-Building" dark large depressed class="menubtn mx-auto" color="#F7B947">
               Book Now <v-icon>keyboard_arrow_right</v-icon>
             </v-btn>
           </v-row>

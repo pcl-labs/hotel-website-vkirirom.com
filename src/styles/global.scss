@@ -60,12 +60,12 @@ input:-webkit-autofill {
 .is-limited {
   @media only screen and (max-width: 600px) {
     &.container{
-      max-width: 292px;
+      max-width: 316px;
     }
   }
   @media only screen and (min-width: 768px) {
     &.container{
-      max-width: 600px;
+      max-width: 624px;
     }
   }
   @media only screen and (min-width: 1024px) {
