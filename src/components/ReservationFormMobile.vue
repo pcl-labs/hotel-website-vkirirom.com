@@ -5,7 +5,8 @@
         :ripple="false"
         dark
         depressed
-        style="box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; text-transform:capitalize"
+        class="text-capitalize"
+        style="box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px;"
         color="#F7B947"
         v-on="on"
       >
@@ -258,6 +259,7 @@
           </v-dialog>
           <v-flex xs12 v-if="isAuthenticated==true && resort.categories[0].name=='accommodations'">
             <v-btn
+              x-large
               block
               color="#F7B947"
               dark

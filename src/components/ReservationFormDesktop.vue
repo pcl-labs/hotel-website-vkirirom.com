@@ -243,6 +243,7 @@
     </v-row>
     <v-flex xs12 v-if="isAuthenticated==true && resort.categories[0].name=='accommodations'">
       <v-btn
+        x-large
         block
         color="#F7B947"
         dark
