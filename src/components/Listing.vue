@@ -4,11 +4,11 @@
 
       <!-- images -->
       <v-row no-gutters class="pa-0 mx-0 my-0">
-        <v-col class="pa-0 overflow-hidden hidden-sm-and-down">
+        <v-col class="pa-0 overflow-hidden d-none d-md-block">
           <v-img class="image ma-0 pa-0" :src="resort.featuredImage" style="height:470px;"></v-img>
         </v-col>
         <v-col
-          class="pa-0 ma-0 overflow-hidden hidden-sm-and-down"
+          class="pa-0 ma-0 overflow-hidden d-none d-md-block"
           v-if="resort.images && resort.images.length>0"
           style="height:470px;"
         >
@@ -32,7 +32,7 @@
       </v-row>
 
       <v-row no-gutters>
-        <v-col xs12 class="hidden-md-and-up">
+        <v-col xs12 class="d-md-none">
 
           <v-carousel height="300px" :show-arrows="false" dark :cycle="false">
             <!-- v-if="belltent.images.length > 0" is required to avoid the error "cannot read property 'url' of undefined.
@@ -135,7 +135,7 @@
           </v-col>
           <div style="margin:80px;"></div>
         </v-col>
-        <v-col md6 class="hidden-sm-and-down">
+        <v-col md6 class="d-none d-md-block">
           <v-card
             class="bookForm"
             width="300px"
@@ -149,20 +149,20 @@
     </v-container>
     <v-row no-gutters>
       <v-col xs12>
-        <div id="bookBottom" class="hidden-md-and-up book-bottom">
+        <div id="bookBottom" class="d-md-none book-bottom">
           <v-col xs12 v-if="resort.ctaText > 0">
             <p>
               <span style="font-size: 28px; color: #D8DADE;">&dollar;{{resort.ctaText}}+</span>
               <span class="normalText">/night</span>
             </p>
           </v-col>
-          <v-col xs12 class="hidden-md-and-up">
+          <v-col xs12 class="d-md-none">
             <reservation-form-mobile :resort-slug="slug" />
           </v-col>
         </div>
       </v-col>
     </v-row>
-    <Footer class="hidden-sm-and-down"></Footer>
+    <Footer class="d-none d-md-block"></Footer>
   </div>
 </template>
 

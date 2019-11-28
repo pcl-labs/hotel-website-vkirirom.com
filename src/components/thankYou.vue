@@ -1,9 +1,9 @@
 <template>
   <div>
-    <v-container grid-list-md>
-      <v-row no-gutters column justify-center class="text-center" style="min-height: 100vh;">
-      <v-flex xs12 md6 sm6 lg6 class="hidden-sm-and-down">
-        <v-card dark color="#191C21" style="color:#B9BCC1;" height="100%">
+    <v-container>
+      <v-row class="justify-center text-center" style="min-height: 100vh;">
+      <v-flex xs12 class="d-none d-md-flex justify-center">
+        <v-card class="pa-4" dark color="#191C21" style="color:#B9BCC1; margin:auto;">
           <v-card-text class="headline font-weight-bold display-4 text-center">
             <span style="color:#B9BCC1; margin:20px;">Congratulations, your booking has been successfully made.</span>
           </v-card-text>
@@ -15,8 +15,8 @@
             </v-btn>
         </v-card>
       </v-flex>
-      <v-flex xs12 md6 sm6 lg6 class="hidden-md-and-up">
-        <v-card dark color="#191C21" style="color:#B9BCC1; margin-bottom:10px; margin-top:20px;" height="100%">
+      <v-flex xs12 class="d-md-none">
+        <v-card class="pt-4" dark color="#191C21" style="color:#B9BCC1; min-height: 90%;">
           <v-card-text class="headline font-weight-bold display-4 text-center">
             <span style="color:#B9BCC1; margin:20px;">Congratulations, your booking has been successfully made.</span>
           </v-card-text>

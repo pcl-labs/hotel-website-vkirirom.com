@@ -90,7 +90,7 @@
         <v-card 
           width="330px" 
           dark
-          class="hidden-sm-and-down card"
+          class="d-none d-md-block card"
           style="margin-left:110px; margin-top:50px;">
           <v-card-text style="padding:30px;">
             <v-flex xs12>
@@ -125,7 +125,7 @@
         <v-card 
           width="100%"
           dark
-          class="hidden-md-and-up card"
+          class="d-md-none card mb-5"
         >
           <v-card-text style="padding:30px;">
             <v-flex xs12>
