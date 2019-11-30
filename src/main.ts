@@ -1,10 +1,5 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App.vue'
-import Vuetify from 'vuetify'
-import 'vuetify/src/stylus/app.styl'
-import 'vuetify/dist/vuetify.min.css'
 // @ts-ignore
 import AirbnbStyleDatepicker from 'vue-airbnb-style-datepicker'
 import 'vue-airbnb-style-datepicker/dist/vue-airbnb-style-datepicker.min.css'
@@ -15,19 +10,14 @@ import VueMarkdown from 'vue-markdown'
 import './registerServiceWorker'
 import '@/mixins.global'
 import router from './router'
+import { light } from './constants/themes'
 import store from './store'
+import Vuetify from 'vuetify/lib'
 
-// import './sitemapMiddleware'
-// import VueRouterSitemap from 'vue-router-sitemap'
-
-Vue.use(Vuetify, {
-  iconfont: 'md'
-})
-
+Vue.use(Vuetify)
 Vue.use(VueHead)
 Vue.use(VueMarkdown)
 
-// Vue.use(VueRouterSitemap)
 Vue.use(AirbnbStyleDatepicker, {
   sundayFirst: true,
   dateLabelFormat: 'dddd, MMMM D, YYYY',
@@ -70,6 +60,18 @@ Vue.use(AirbnbStyleDatepicker, {
 Vue.config.productionTip = false
 
 new Vue({
+  // @ts-ignore
+  vuetify: new Vuetify({
+    icons: {
+      iconfont: 'md' // 'mdi' || 'mdiSvg' || 'md' || 'fa' || 'fa4'
+    },
+    theme: {
+      dark: false,
+      themes: {
+        light
+      }
+    },
+  }),
   router,
   store,
   render: h => h(App)

@@ -1,8 +1,8 @@
 <template>
-  <v-container grid-list-md>
-    <v-layout row wrap style="min-height:100vh;">
+  <v-container class="is-limited">
+    <v-row no-gutters style="min-height:100vh;">
       <v-flex xs12 md7 class="text">
-        <v-layout row wrap>
+        <v-row no-gutters>
           <v-flex xs12>
             <h1>Confirm and pay</h1>
           </v-flex>
@@ -12,7 +12,7 @@
           <!-- <v-flex xs12>
             <v-text-field
               v-model="name"
-              outline
+              outlined
               label="Full Name"
               name="name"
               color="#B9BCC1"
@@ -24,7 +24,7 @@
           </v-flex>
           <v-flex xs12>
             <v-text-field
-              outline
+              outlined
               v-model="phone"
               label="Phone number"
               name="Phone"
@@ -47,19 +47,20 @@
           </v-flex>
           <v-flex xs12>
             <v-btn
-              class="button"
+              x-large
+              class="button text-capitalize"
               color="#F7B947"
               v-on:click="purchase"
             >
               Pay ${{finalPrice}} & book
             </v-btn>
           </v-flex>
-        </v-layout>
+        </v-row>
       </v-flex>
       <v-flex xs12 md5 class="bookingCard">
         <BookingInfoCard></BookingInfoCard>
       </v-flex>
-    </v-layout>
+    </v-row>
   </v-container>
 </template>
 
@@ -188,38 +189,5 @@ export default {
   .bookingCard{
     margin-top:30px;
     margin-bottom:30px;
-  }
-
-  @-webkit-keyframes autofill {
-    to {
-        color: white;
-        background: transparent;
-    }
-  }
-  input:-webkit-autofill {
-      -webkit-animation-name: autofill;
-      -webkit-animation-fill-mode: both;
-  }
-  .container{
-    padding-top: 30px;
-    padding-left: 0px;
-    padding-right: 0px;
-    // doing padding:0px or  0; or padding-bottom:0px or 0; creates an extra overflow scroll which is bad and should be avoided
-  }
-
-  @media only screen and (max-width: 600px) {
-    .container{
-      max-width: 292px;
-    }
-  }
-  @media only screen and (min-width: 768px) {
-    .container{
-      max-width: 600px;
-    }
-  }
-  @media only screen and (min-width: 1024px) {
-    .container{
-      max-width: 900px;
-    }
   }
 </style>

@@ -10,22 +10,23 @@
     data-netlify="true"
   >
     <input type="hidden" name="form-name" :value="resort.categories[0].name" />
-    <v-layout row wrap>
+    <v-row no-gutters>
       <v-flex xs12 v-if="resort.ctaText > 0">
-        <p class="subheading text-xs-center pb-2">
+        <p class="subheading text-center pb-2">
           <span class="normalText">Starting from </span>
           <span
-            style="font-weight: bold; font-size: 28px; color: #B9BCC1;"
+            class="normalText"
+            style="font-weight: bold; font-size: 28px;"
           >&dollar;{{ resort.ctaText }} </span>
           <span class="normalText">per night</span>
         </p>
         <!-- <Rating :rating="rating" :counter="counter"/> -->
-        <v-divider class="mb-4" style="background-color:#3D424E;"></v-divider>
+        <v-divider class="mb-6" style="background-color:#3D424E;"></v-divider>
       </v-flex>
       <v-flex xs12>
         <v-text-field
           v-model="name"
-          outline
+          outlined
           label="Enter your name"
           name="Name"
           color="#B9BCC1"
@@ -42,7 +43,7 @@
       <v-flex xs12>
         <v-text-field
           v-model="email"
-          outline
+          outlined
           color="#B9BCC1"
           label="Enter e-mail address"
           name="E-mail"
@@ -55,7 +56,7 @@
       </v-flex>
       <v-flex xs12>
         <v-text-field
-          outline
+          outlined
           v-model="phone"
           label="Phone"
           name="Phone"
@@ -73,26 +74,25 @@
         <v-select
           v-model="roomType"
           item-text="type"
-          item-value="type"
-          return-object
+          item-value="id"
           :items="resort.modules.hotel.roomTypes"
           dark
-          outline
+          outlined
           :rules="bedTypeRules"
           label="Bed Type"
           color="#B9BCC1"
-          type="text"
+          item-color="#B9BCC1"
         >
           <template slot="selection" slot-scope="data">
             {{data.item.beds[0].count}} {{data.item.beds[0].type}}
           </template>
           <template slot="item" slot-scope="data">
             <template>
-              <v-list-tile-content>
-                <v-list-tile-title>
+              <v-list-item-content>
+                <v-list-item-title>
                   {{data.item.beds[0].count}} {{data.item.beds[0].type}}
-                </v-list-tile-title>
-              </v-list-tile-content>
+                </v-list-item-title>
+              </v-list-item-content>
             </template>
           </template>
         </v-select>
@@ -103,9 +103,11 @@
       <v-flex
         xs12
         v-if="resort.categories[0].name=='accommodations' || resort.categories[0].name=='events' || resort.categories[0].name=='experiences'"
+
+        class="position-relative"
       >
         <v-text-field
-          outline
+          outlined
           dark
           type="text"
           name="Date"
@@ -127,7 +129,7 @@
           :date-two="dateTwo"
           @date-one-selected="val => { dateOne = val, dateTwo = val }"
           @date-two-selected="val => { dateTwo = val }"
-          style="left:-70%; top:60%;"
+          style="left:-70%; top: 60px;"
           :show-shortcuts-menu-trigger="false"
           @apply="getPrices(dateOne, dateTwo)"
         />
@@ -147,35 +149,35 @@
         <input hidden name="Transportation needed" :value="transportation" />
       </v-flex>
       <v-flex xs12 style="margin-bottom:30px;" v-if="finalPrice > 0 && resort.categories[0].name=='accommodations'">
-        <v-layout row wrap v-for="price in prices" v-bind:key="price.id">
+        <v-row no-gutters v-for="price in prices" v-bind:key="price.id">
           <v-flex xs6 class="normalText">{{formatDates(price.date)}}</v-flex>
-          <v-flex xs6 class="text-xs-right normalText">${{price.amount}}</v-flex>
-        </v-layout>
-        <v-layout row wrap>
+          <v-flex xs6 class="text-right normalText">${{price.amount}}</v-flex>
+        </v-row>
+        <v-row no-gutters>
           <v-flex XS6 class="normalText">VAT (10%)</v-flex>
-          <v-flex XS6 class="text-xs-right normalText">${{vat}}</v-flex>
-        </v-layout>
+          <v-flex XS6 class="text-right normalText">${{vat}}</v-flex>
+        </v-row>
         <v-divider style="background-color:#3D424E; margin-top:20px; margin-bottom:10px;"></v-divider>
-        <v-layout row wrap>
+        <v-row no-gutters>
           <v-flex xs6>
             <h3 style="font-size: 20px; color: #D8DADE;">Total</h3>
           </v-flex>
-          <v-flex xs6 class="text-xs-right">
+          <v-flex xs6 class="text-right">
             <h3 style="font-size: 20px; color: #D8DADE;">${{finalPrice}}</h3>
           </v-flex>
-        </v-layout>
+        </v-row>
         <input name="Amount (in $)" hidden :value="finalPrice" type="text" readonly />
       </v-flex>
       <v-flex xs12>
         <v-textarea
           v-model="message"
-          outline
+          outlined
           hide-details
           dark
           color="#B9BCC1"
           name="Message"
           label="Write message here..."
-          class="mb-4"
+          class="mb-6"
           height="122px"
           no-resize
         ></v-textarea>
@@ -201,8 +203,8 @@
           <v-icon>keyboard_arrow_right</v-icon>
         </v-btn>
       </v-flex>
-    </v-layout>
-    <v-layout row wrap justify-center v-if="!isAuthenticated && resort.categories[0].name=='accommodations'">
+    </v-row>
+    <v-row no-gutters justify-center v-if="!isAuthenticated && resort.categories[0].name=='accommodations'">
       <v-dialog v-model="auth1" persistent max-width="583px">
         <template v-slot:activator="{ on }">
           <v-btn
@@ -232,15 +234,16 @@
           </v-flex>
           <Login v-if="register"></Login>
           <SignUp v-if="!register"></SignUp>
-          <v-flex xs12 text-xs-center style="margin-bottom:30px;">
+          <v-flex xs12 text-center style="margin-bottom:30px;">
             <span class="normalText">Don't have an account? </span>
             <a @click="register=!register" class="yellowLink">{{register?'Sign up':'Log in'}}</a>
           </v-flex>
         </v-card>
       </v-dialog>
-    </v-layout>
+    </v-row>
     <v-flex xs12 v-if="isAuthenticated==true && resort.categories[0].name=='accommodations'">
       <v-btn
+        x-large
         block
         color="#F7B947"
         dark
@@ -257,8 +260,8 @@
     </v-flex>
     <v-flex
       xs12
-      text-xs-center
-      class="mt-3"
+      text-center
+      class="mt-4"
       v-if="resort.categories[0].name=='accommodations' || resort.categories[0].name=='events' || resort.categories[0].name=='experiences'"
     >
       <p
@@ -303,7 +306,7 @@ export default {
         v => !!v || "Dates are required"
       ],
       bedTypeRules: [
-        (v) => !!this.roomType.beds[0].count || 'Bed type is required',
+        (v) => !!this.roomType || 'Bed type is required',
       ],
 
       bookDialog: false,
@@ -406,9 +409,10 @@ export default {
         return this.$store.getters["reservation/roomType"];
       },
       set(value) {
-        this.$store.commit("reservation/updateRoomType", value);
+        const roomTypeObject = this.resort.modules.hotel.roomTypes.find(item => item.id === value)
+        this.$store.commit("reservation/updateRoomType", roomTypeObject);
       }
-    },
+    }
   },
   methods: {
     formatDates,

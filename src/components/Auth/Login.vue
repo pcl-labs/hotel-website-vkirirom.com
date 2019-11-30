@@ -1,30 +1,38 @@
 <template>
   <v-form name="Login" v-model="valid">
-    <v-container class="login-container" grid-list-md>      
-      <v-layout row wrap class="ml-4 mr-4">
-        <v-flex xs12 class="headerText" text-xs-center>Log in with</v-flex>
-        <v-flex xs6>
-          <v-btn block flat class="btn" @click="oauth('Facebook')">Facebook</v-btn>
-        </v-flex>
-        <v-flex xs6>
-          <v-btn block flat class="btn" @click="oauth('Google')">Google</v-btn>
-        </v-flex>
-        <v-flex xs5 style="margin-bottom:6px;">
+    <v-container fluid>
+      <v-row no-gutters class="ml-8 mr-8">
+        <v-col cols="12">
+          <h3 class="w-100 headerText text-center mb-4" text-center>Log in with</h3>
+        </v-col>
+        <v-col cols="12" class="mb-2">
+          <v-row>
+            <v-col xs6>
+              <v-btn x-large block text class="btn" @click="oauth('Facebook')">Facebook</v-btn>
+            </v-col>
+            <v-col xs6>
+              <v-btn x-large block text class="btn" @click="oauth('Google')">Google</v-btn>
+            </v-col>
+          </v-row>
+        </v-col>
+        <v-flex xs5>
           <v-divider style="background-color:#3D424E;"></v-divider>
         </v-flex>
-        <v-flex xs2 text-xs-center style="margin-top:-6px; margin-bottom:6px; padding:0;">
+        <v-flex xs2 class="text-center" style="padding:0; margin-top:-12px;">
           <span class="normalText">or</span>
         </v-flex>
-        <v-flex xs5 style="margin-bottom:6px;">
+        <v-flex xs5>
           <v-divider style="background-color:#3D424E;"></v-divider>
         </v-flex>
+        <div class="mt-8"></div>
+
         <v-flex xs12 v-if="loginError">
           <p class="normalText">{{loginError}}</p>
         </v-flex>
         <v-flex xs12>
           <v-text-field
             v-model="email"
-            outline
+            outlined
             label="E-mail address"
             name="E-mail"
             color="#B9BCC1"
@@ -39,7 +47,7 @@
         <v-flex xs12>
           <v-text-field
             v-model="password"
-            outline
+            outlined
             label="Password"
             name="Password"
             color="#B9BCC1"
@@ -62,20 +70,20 @@
           >
           </v-checkbox>
         </v-flex>
-        <v-flex xs6 text-xs-right>
-          <a @click="visible=!visible" class="yellowLink">
+        <v-flex xs6 text-right>
+          <a @click="visible=!visible" class="yellowLink normalText">
             {{visible?'Hide':'Show'}} Password
           </a>
         </v-flex>
         <v-flex xs12>
-          <v-btn block color="#F7B947" style="font-size:16px;" class="formBtn" dark @click="login()" :disabled="!valid" :loading="loading">
+          <v-btn x-large block color="#F7B947" style="font-size:16px;" class="formBtn" dark @click="login()" :disabled="!valid" :loading="loading">
             Log in
           </v-btn>
         </v-flex>
         <v-flex xs12>
-          <v-divider style="background-color:#3D424E; margin-top:10px; margin-bottom:5px"></v-divider>
+          <v-divider style="background-color:#3D424E; margin-top:8px; margin-bottom:5px"></v-divider>
         </v-flex>
-      </v-layout>
+      </v-row>
     </v-container>
   </v-form>      
 </template>
@@ -141,7 +149,7 @@ export default {
 
 <style scoped>
   .formBtn{
-    height:55px; margin-bottom:10px; border-radius: 3px; text-transform: capitalize;
+    height:55px; margin-bottom:16px; border-radius: 3px; text-transform: capitalize;
   }
   .headerText{
     font-size:20px;
@@ -184,7 +192,4 @@ export default {
       -webkit-animation-fill-mode: both;
   }
 
-  .login-container {
-    max-width: none;
-  }
 </style>
