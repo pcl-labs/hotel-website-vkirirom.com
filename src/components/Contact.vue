@@ -1,7 +1,8 @@
 <template>
-<v-container-fluid>
+<div>
+  <v-content>
   <v-container>
-    <v-layout row wrap style="min-height: 100vh;">
+    <v-row no-gutters style="min-height: 100vh;">
       <v-flex xs12 md6>
         <v-flex xs12>
           <h1 style="font-size: 36px; color: #FFFFFF; margin-bottom:43px; margin-top:50px;">
@@ -13,7 +14,7 @@
           <v-flex xs12>
             <v-text-field
               v-model="name"
-              outline
+              outlined
               label="Full Name"
               name="name"
               color="#B9BCC1"
@@ -27,7 +28,7 @@
           <v-flex xs12>
             <v-text-field
               v-model="email"
-              outline
+              outlined
               color="#B9BCC1"
               label="E-Mail"
               name="email"
@@ -41,7 +42,7 @@
           <v-flex xs12>
             <v-text-field
               v-model="phone"
-              outline
+              outlined
               label="Phone Number"
               name="phone"
               color="#B9BCC1"
@@ -52,9 +53,9 @@
               <v-icon slot="append" color="#B9BCC1">local_phone</v-icon>
             </v-text-field>
           </v-flex>
-          <v-flex xs12 class="mb-4">
+          <v-flex xs12 class="mb-6">
             <v-textarea
-              outline
+              outlined
               hide-details
               dark
               v-model="message"
@@ -89,7 +90,7 @@
         <v-card 
           width="330px" 
           dark
-          class="hidden-sm-and-down card"
+          class="d-none d-md-block card"
           style="margin-left:110px; margin-top:50px;">
           <v-card-text style="padding:30px;">
             <v-flex xs12>
@@ -124,7 +125,7 @@
         <v-card 
           width="100%"
           dark
-          class="hidden-md-and-up card"
+          class="d-md-none card mb-5"
         >
           <v-card-text style="padding:30px;">
             <v-flex xs12>
@@ -155,10 +156,11 @@
           </v-card-text>
         </v-card>
       </v-flex>
-    </v-layout>
+    </v-row>
   </v-container>
+  </v-content>
   <Footer></Footer>
-</v-container-fluid>
+</div>
 </template>
 
 <script>

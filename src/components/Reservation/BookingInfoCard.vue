@@ -1,11 +1,11 @@
 <template>
   <v-card
-    class="card"
+    class="card booking-info"
     dark
     width="100%"
     max-width="330px"
   >
-    <v-layout row wrap>
+    <v-row no-gutters>
       <v-flex xs12 md6>
         <h2>
           {{resort.title}}
@@ -28,25 +28,25 @@
         <v-divider class="divider"></v-divider>
       </v-flex>
       <v-flex xs12 style="margin-bottom:30px;">
-        <v-layout row wrap v-for="price in prices" v-bind:key="price.id">
+        <v-row no-gutters v-for="price in prices" v-bind:key="price.id">
           <v-flex xs6 class="normalText">{{formatDates(price.date)}}</v-flex>
-          <v-flex xs6 class="text-xs-right normalText">${{price.amount}}</v-flex>
-        </v-layout>
-        <v-layout row wrap>
+          <v-flex xs6 class="text-right normalText">${{price.amount}}</v-flex>
+        </v-row>
+        <v-row no-gutters>
           <v-flex XS6 class="normalText">VAT (10%)</v-flex>
-          <v-flex XS6 class="text-xs-right normalText">${{vat}}</v-flex>
-        </v-layout>
+          <v-flex XS6 class="text-right normalText">${{vat}}</v-flex>
+        </v-row>
         <v-divider class="divider"></v-divider>
-        <v-layout row wrap>
+        <v-row no-gutters>
           <v-flex xs6>
             <h3>Total</h3>
           </v-flex>
-          <v-flex xs6 class="text-xs-right">
+          <v-flex xs6 class="text-right">
             <h3>${{finalPrice}}</h3>
           </v-flex>
-        </v-layout>
+        </v-row>
       </v-flex>
-    </v-layout>
+    </v-row>
   </v-card>
 </template>
 
@@ -119,5 +119,11 @@ export default {
   .normalText{
     font-size: 16px;
     color: #B9BCC1;
+  }
+  .booking-info {
+    .flex {
+      padding-top: 4px;
+      padding-bottom: 4px;
+    }
   }
 </style>

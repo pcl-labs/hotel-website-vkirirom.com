@@ -10,7 +10,6 @@ const Reservation = () => import('../components/Reservation/Reservation.vue')
 const ReviewRules = () => import('../components/Reservation/ReviewRules.vue')
 const ConfirmAndPay = () =>
   import('../components/Reservation/ConfirmAndPay.vue')
-const Guest = () => import('../components/Guest.vue')
 const KitchenSink = () => import('../views/KitchenSink.vue')
 
 import store from '@/store'
@@ -53,10 +52,6 @@ const routes = [
         component: ConfirmAndPay
       }
     ]
-  },
-  {
-    path: '/guest',
-    component: Guest
   },
   {
     path: '/nature-city-investment-cambodia-property',
