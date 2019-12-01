@@ -4,5 +4,6 @@
   "editor.tabSize": 2,
   "workbench.colorCustomizations": {
     "titleBar.activeBackground": "#00435e"
-  }
+  },
+  "prettier.printWidth": 120
 }
