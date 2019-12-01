@@ -1,6 +1,6 @@
 <template>
 <div>
-  <v-app-bar dark color="#191C21" dense>
+  <v-app-bar app dark color="#191C21" dense>
     <router-link to="/">
       <img class="toolbar--logo" src="/img/icons/Logo.png">
     </router-link>
@@ -16,7 +16,7 @@
       <v-btn text class="button" @click="logout()" v-if="isAuthenticated == true" :loading="loading"><h3 class="desktop mb-0">Log out</h3></v-btn>
     </v-toolbar-items>
   </v-app-bar>
-  <v-navigation-drawer dark style="box-shadow: 0px 1px 0px #121416; position:fixed; background:#191C21;" class="d-md-none" temporary v-model="drawer">
+  <v-navigation-drawer app dark style="box-shadow: 0px 1px 0px #121416; position:fixed; background:#191C21;" class="d-md-none" temporary v-model="drawer">
     <v-row no-gutters text-left column class="mt-12">
       <v-flex xs12>
         <v-btn text block to="/search/accommodations" class="my-2 button"><h3 class="mb-0">Accommodation</h3></v-btn>
