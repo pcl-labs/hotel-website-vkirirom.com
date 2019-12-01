@@ -147,7 +147,10 @@
         </v-col>
       </v-row>
     </v-container>
-    <v-row no-gutters>
+
+    <booking-bar :title="resort.h2" :price="Number(resort.ctaText)"></booking-bar>
+
+    <!-- <v-row no-gutters>
       <v-col xs12>
         <div id="bookBottom" class="d-md-none book-bottom">
           <v-col xs12 v-if="resort.ctaText > 0">
@@ -161,8 +164,9 @@
           </v-col>
         </div>
       </v-col>
-    </v-row>
-    <Footer class="d-none d-md-block"></Footer>
+    </v-row> -->
+
+    <Footer></Footer>
   </div>
 </template>
 
@@ -173,6 +177,8 @@ const ReservationFormDesktop = () =>
   import("@/components/ReservationFormDesktop.vue");
 const ReservationFormMobile = () =>
   import("@/components/ReservationFormMobile.vue");
+import BookingBar from '@/components/BookingBar.vue'
+
 
 const defaultResort = {
   title: "...",
@@ -181,6 +187,7 @@ const defaultResort = {
 
 export default {
   components: {
+    BookingBar,
     Footer,
     VueMarkdown,
     ReservationFormDesktop,
