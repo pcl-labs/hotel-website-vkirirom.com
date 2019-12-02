@@ -25,6 +25,7 @@
     "sass-rem": "2.0.1",
     "vue": "2.6.10",
     "vue-airbnb-style-datepicker": "2.7.1",
+    "vue-fragment": "^1.5.1",
     "vue-head": "2.1.1",
     "vue-markdown": "2.2.4",
     "vue-router": "3.1.3",

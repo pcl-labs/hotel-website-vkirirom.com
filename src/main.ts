@@ -13,7 +13,9 @@ import router from './router'
 import { light } from './constants/themes'
 import store from './store'
 import Vuetify from 'vuetify/lib'
+import Fragment from 'vue-fragment'
 
+Vue.use(Fragment.Plugin)
 Vue.use(Vuetify)
 Vue.use(VueHead)
 Vue.use(VueMarkdown)
