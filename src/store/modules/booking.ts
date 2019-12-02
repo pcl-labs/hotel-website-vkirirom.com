@@ -80,8 +80,6 @@ export default {
   },
   actions: {
     startBooking(context) {
-      console.log('start booking...')
-
       context.commit('updateCurrentStep', 1)
     },
     updateCurrentStep(context, payload) {

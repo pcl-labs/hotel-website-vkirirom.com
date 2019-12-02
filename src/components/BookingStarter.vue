@@ -1,9 +1,13 @@
 <template>
   <fragment>
     <slot name="default" />
-    
 
-    <booking-confirm-dates v-if="currentStep === 1"></booking-confirm-dates>
+    <v-dialog @click:outside="onClose" v-model="isModalOpen" width="500">
+      <v-card>
+        <booking-confirm-dates v-if="currentStep === 1"></booking-confirm-dates>
+      </v-card>
+    </v-dialog>
+
     <!-- <auth-login></auth-login>
     <auto-register></auto-register>
     <booking-confirm-guests></booking-confirm-guests>
@@ -18,12 +22,29 @@
 <script lang="ts">
 import Vue from 'vue'
 import store from '@/store'
+import BookingConfirmDates from '@/components/BookingConfirmDates.vue'
 
 export default Vue.extend({
   name: 'booking-starter',
+  components: { BookingConfirmDates },
+  data() {
+    return {
+      isModalOpen: false
+    }
+  },
+  watch: {
+    currentStep(newVal) {
+      this.isModalOpen = newVal > 0
+    }
+  },
   computed: {
     currentStep() {
       return store.getters['booking/currentStep']
+    }
+  },
+  methods: {
+    onClose() {
+      store.dispatch('booking/updateCurrentStep', 0)
     }
   }
 })
