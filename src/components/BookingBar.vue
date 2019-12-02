@@ -1,6 +1,5 @@
 <template>
   <v-container
-    v-resize="setThreshold"
     fluid
     class="booking-bar pa-0"
     :class="{ 'is-fixed': shouldBeFixed }"
@@ -49,10 +48,10 @@
             </div>
             <div class="d-flex align-center">
               <v-container class="d-flex pa-0">
-                <booking-starter ref="bookingStarter">
+                <booking-starter>
                   <!-- mobile -->
                   <v-btn
-                    @click="startBookingFlow()"
+                    @click="startBooking()"
                     block
                     medium
                     color="primary"
@@ -66,7 +65,7 @@
                   </v-btn>
                   <!-- desktop -->
                   <v-btn
-                    @click="startBookingFlow()"
+                    @click="startBooking()"
                     block
                     x-large
                     color="primary"
@@ -90,6 +89,7 @@
 
 <script>
 import BookingStarter from '@/components/BookingStarter.vue'
+import store from '@/store'
 import { getPassiveEventConfig } from '@/helpers'
 export default {
   name: 'booking-bar',
@@ -100,13 +100,10 @@ export default {
   components: { BookingStarter },
   data() {
     return {
-      thresholdDistance: 0,
       bottomDistance: 0
     }
   },
   mounted() {
-    this.footerElement = document.querySelector('.page-footer')
-    this.setThreshold()
     this.setInitialDistance()
     this.positionListener()
   },
@@ -114,14 +111,14 @@ export default {
     document.removeEventListener('scroll', this.onScrollPage)
   },
   computed: {
+    footerHeight() {
+      return store.getters['layout/getSizing'].footerHeight
+    },
     shouldBeFixed() {
-      return this.bottomDistance > this.thresholdDistance
+      return this.bottomDistance > this.footerHeight
     }
   },
   methods: {
-    setThreshold() {
-      this.thresholdDistance = (this.footerElement || {}).clientHeight
-    },
     setInitialDistance() {
       this.onScrollPage()
     },
@@ -142,9 +139,8 @@ export default {
         0
       )
     },
-    startBookingFlow() {
-      const bookingStarter = this.$refs.bookingStarter
-      bookingStarter.start()
+    startBooking() {
+      store.dispatch('booking/startBooking')
     }
   }
 }
