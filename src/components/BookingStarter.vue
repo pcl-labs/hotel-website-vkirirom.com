@@ -2,10 +2,17 @@
   <fragment>
     <slot name="default" />
 
-    <v-dialog @click:outside="onClose" v-model="isModalOpen" width="500">
-      <v-card>
-        <booking-confirm-dates v-if="currentStep === 1"></booking-confirm-dates>
+    <v-dialog persistent v-model="isModalOpen" width="332">
+      <v-card tile>
+        <v-toolbar flat dark color="dark">
+          <v-btn icon dark depressed @click="onClose">
+            <v-icon color="gray-82">close</v-icon>
+          </v-btn>
+          <v-spacer></v-spacer>
+        </v-toolbar>
       </v-card>
+
+      <booking-confirm-dates v-if="currentStep === 1"></booking-confirm-dates>
     </v-dialog>
 
     <!-- <auth-login></auth-login>
@@ -22,7 +29,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import store from '@/store'
-import BookingConfirmDates from '@/components/BookingConfirmDates.vue'
+const BookingConfirmDates = () => import('@/components/BookingConfirmDates.vue')
 
 export default Vue.extend({
   name: 'booking-starter',
@@ -51,5 +58,17 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-//
+::v-deep .v-dialog {
+  border-radius: 0;
+}
+</style>
+
+<style lang="scss">
+// global
+.v-overlay--active ~ .v-application--wrap {
+  filter: blur(8px);
+}
+.v-overlay__scrim {
+  background-color: rgba(black, 0.4) !important;
+}
 </style>
