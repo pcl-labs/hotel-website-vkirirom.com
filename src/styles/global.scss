@@ -1,4 +1,5 @@
 @import './bootstrap.scss';
+@import './datepicker-dark-theme.scss';
 
 #app {
   font-family: $font-family-sans-serif;
@@ -124,34 +125,4 @@ h6 {
 .fade-enter,
 .fade-leave-active {
   opacity: 0;
-}
-
-.datepicker--dark.datepicker--dark {
-  border: none;
-  background: $dark;
-  color: $light;
-  .asd__change-month-button {
-    background: none;
-    > button {
-      border: 1px solid $light;
-      background: $dark;
-      svg {
-        vertical-align: middle;
-      }
-    }
-  }
-  .asd__day-title {
-    color: $light;
-  }
-  // cells
-  .asd__month-table {
-    background: $dark;
-  }
-  .asd__day-button:hover {
-    background: rgba($light, 0.2)
-  }
-  .asd__day--enabled {
-    background: $dark;
-    border-color: rgba($light, 0.2);
-  }
 }

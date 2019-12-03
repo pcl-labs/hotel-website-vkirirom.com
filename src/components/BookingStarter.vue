@@ -2,13 +2,13 @@
   <fragment>
     <slot name="default" />
 
-    <v-dialog persistent v-model="isModalOpen" width="332">
-      <v-card tile>
-        <v-toolbar flat dark color="dark">
-          <v-btn icon dark depressed @click="onClose">
+    <v-dialog persistent v-model="isModalOpen" width="316">
+      <v-card tile :elevation="0">
+        <v-toolbar dense flat dark color="dark">
+          <v-btn class="ma-0" small icon dark depressed @click="onClose">
             <v-icon color="gray-82">close</v-icon>
           </v-btn>
-          <v-spacer></v-spacer>
+          <v-toolbar-title class="light--text pl-0 ml-n4">Choose Dates</v-toolbar-title>
         </v-toolbar>
       </v-card>
 
@@ -58,8 +58,13 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-::v-deep .v-dialog {
-  border-radius: 0;
+::v-deep {
+  .v-dialog {
+    border-radius: 0;
+  }
+  .v-toolbar__title {
+    width: calc(100% - #{rem(28px)});
+  }
 }
 </style>
 

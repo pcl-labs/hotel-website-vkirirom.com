@@ -1,6 +1,6 @@
 <template>
   <div class="light--text">
-    <v-card color="dark px-4 pb-4" tile :ripple="false">
+    <v-card color="dark px-2 pb-4" tile :ripple="false">
       <input
         id="datepicker-inline-trigger"
         :rules="dateRules"
