@@ -1,5 +1,5 @@
 <template>
-  <div class="light--text">
+  <div class="light--text mx-auto">
     <v-card color="dark px-2 pb-4" tile :ripple="false">
       <input
         id="datepicker-inline-trigger"
@@ -24,15 +24,45 @@
           val => {
             dateOne = val
             dateTwo = val
+            getPrices(dateOne, dateTwo)
           }
         "
         @date-two-selected="
           val => {
             dateTwo = val
+            getPrices(dateOne, dateTwo)
           }
         "
-        @apply="getPrices(dateOne, dateTwo)"
       ></airbnb-style-datepicker>
+
+      <div class="confirm-dates--prices-list px-4">
+        <v-row no-gutters v-for="price in prices" v-bind:key="price.id">
+          <v-flex xs6 class="normalText">{{ formatDates(price.date) }}</v-flex>
+          <v-flex xs6 class="text-right normalText">${{ price.amount }}</v-flex>
+        </v-row>
+        <v-row no-gutters>
+          <v-flex XS6 class="normalText">VAT (10%)</v-flex>
+          <v-flex XS6 class="text-right normalText">${{ vat }}</v-flex>
+        </v-row>
+        <v-divider
+          style="background-color:#3D424E; margin-top:20px; margin-bottom:10px;"
+        ></v-divider>
+        <v-row no-gutters>
+          <v-flex xs6>
+            <h3 style="font-size: 20px; color: #D8DADE;">Total</h3>
+          </v-flex>
+          <v-flex xs6 class="text-right">
+            <h3 style="font-size: 20px; color: #D8DADE;">${{ finalPrice }}</h3>
+          </v-flex>
+        </v-row>
+        <input
+          name="Amount (in $)"
+          hidden
+          :value="finalPrice"
+          type="text"
+          readonly
+        />
+      </div>
     </v-card>
   </div>
 </template>
@@ -68,6 +98,15 @@ export default Vue.extend({
       set(value) {
         store.dispatch('booking/updateDateTwo', value)
       }
+    },
+    prices() {
+      return this.$store.getters['reservation/prices']
+    },
+    finalPrice() {
+      return this.$store.getters['reservation/finalPrice']
+    },
+    vat() {
+      return this.$store.getters['reservation/vat'].toFixed(2)
     }
   },
   methods: {

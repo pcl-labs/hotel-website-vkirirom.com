@@ -2,17 +2,23 @@
   <fragment>
     <slot name="default" />
 
-    <v-dialog persistent v-model="isModalOpen" width="316">
-      <v-card tile :elevation="0">
+    <v-dialog persistent v-model="isDialogOpen" width="332">
+      <v-card tile :elevation="0" class="dark">
         <v-toolbar dense flat dark color="dark">
           <v-btn class="ma-0" small icon dark depressed @click="onClose">
             <v-icon color="gray-82">close</v-icon>
           </v-btn>
-          <v-toolbar-title class="light--text pl-0 ml-n4">Choose Dates</v-toolbar-title>
+          <v-toolbar-title class="light--text pl-0 ml-n4 text-center"
+            >Choose Dates</v-toolbar-title
+          >
         </v-toolbar>
-      </v-card>
 
-      <booking-confirm-dates v-if="currentStep === 1"></booking-confirm-dates>
+        <div class="d-flex flex-column">
+          <booking-confirm-dates
+            v-if="currentStep === 1"
+          ></booking-confirm-dates>
+        </div>
+      </v-card>
     </v-dialog>
 
     <!-- <auth-login></auth-login>
@@ -36,12 +42,12 @@ export default Vue.extend({
   components: { BookingConfirmDates },
   data() {
     return {
-      isModalOpen: false
+      isDialogOpen: false
     }
   },
   watch: {
-    currentStep(newVal) {
-      this.isModalOpen = newVal > 0
+    currentStep(newVal, oldValue) {
+      this.isDialogOpen = newVal > 0
     }
   },
   computed: {
