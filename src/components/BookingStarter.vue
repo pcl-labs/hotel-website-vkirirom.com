@@ -41,20 +41,13 @@ export default Vue.extend({
       isDialogOpen: false
     }
   },
+  mounted() {
+    this.resetComponentState()
+  },
   watch: {
     currentStep(newVal, oldValue) {
       this.isDialogOpen = newVal > 0
-      if (this.isDialogOpen) {
-        document.documentElement.classList.add(
-          'overflow-y-hidden',
-          'dialog--is-open'
-        )
-      } else {
-        document.documentElement.classList.remove(
-          'overflow-y-hidden',
-          'dialog--is-open'
-        )
-      }
+      this.setDocumentClasses()
     }
   },
   computed: {
@@ -68,6 +61,25 @@ export default Vue.extend({
   methods: {
     onClose() {
       store.dispatch('booking/updateCurrentStep', 0)
+    },
+    setDocumentClasses() {
+      if (this.isDialogOpen) {
+        document.documentElement.classList.add(
+          'overflow-y-hidden',
+          'dialog--is-open'
+        )
+      } else {
+        document.documentElement.classList.remove(
+          'overflow-y-hidden',
+          'dialog--is-open'
+        )
+      }
+    },
+    // this is for development purposes only, related to HMR
+    resetComponentState() {
+      this.isDialogOpen = false
+      store.dispatch('booking/updateCurrentStep', 0)
+      this.setDocumentClasses()
     }
   }
 })
