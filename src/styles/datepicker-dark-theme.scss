@@ -46,7 +46,7 @@
   .asd__days-legend {
     margin-top: rem(8px);
     .asd__day-title {
-      color: $gray-4f;
+      color: $gray-82;
     }
   }
   // cells
@@ -59,13 +59,31 @@
   .asd__day--enabled {
     background: $dark;
     border-color: $gray-4f;
+    &:hover {
+      color: $brand-4 !important;
+    }
   }
   .asd__day--disabled {
     background: $gray-4f !important;
     color: $brand-3 !important;
+    &:hover {
+      color: $brand-3 !important;
+    }
+  }
+  .asd__day--hovered {
+    background: $dark !important;
+    border-color: $gray-4f !important;
+    color: $brand-4 !important;
+  }
+  .asd__day--in-range {
+    &:hover {
+      color: $white !important;
+    }
   }
   .asd__day--selected {
-    // border: none !important;
+    &:hover {
+      color: $white !important;
+    }
   }
   .asd__selected-date-one {
     border-top-left-radius: rem(8px);

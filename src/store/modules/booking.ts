@@ -91,6 +91,9 @@ export default {
     updateDateTwo(context, payload) {
       context.commit('updateDateTwo', payload)
     },
+    clearDateTwo(context) {
+      context.commit('updateDateTwo', defaultState.bookingInfo.dateTwo)
+    },
     updateVat(context, payload) {
       context.commit('updateVat', payload)
     },
@@ -117,6 +120,11 @@ export default {
     },
     updateRoomType(context, payload) {
       context.commit('updateRoomType', payload)
+    },
+    clearPrices(context) {
+      context.commit('updatePrices', defaultState.bookingInfo.prices)
+      context.commit('updateVat', defaultState.bookingInfo.vat)
+      context.commit('updateFinalPrice', defaultState.bookingInfo.finalPrice)
     },
     getPrices(context, { roomTypeId, dateOne, dateTwo }) {
       return RoomTypeService.prices({

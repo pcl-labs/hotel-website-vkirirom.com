@@ -49,12 +49,10 @@ Vue.use(AirbnbStyleDatepicker, {
   ],
   colors: {
     selected: '#4B7F52',
-    inRange: '#9bdba4',
     selectedText: '#fff',
-    text: '#565a5c',
-    inRangeBorder: '#4B7F52',
-    disabled: '#fff',
-    hoveredInRange: '#9bdba4',
+    text: '#828282',
+    inRange: '#77C381',
+    inRangeBorder: '#4f4f4f',
     keyboardShortcuts: '#4B7F52'
   }
 })

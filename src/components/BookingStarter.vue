@@ -4,7 +4,7 @@
 
     <v-dialog persistent v-model="isDialogOpen" width="332">
       <v-card tile :elevation="0" class="dark">
-        <v-toolbar dense flat dark color="dark">
+        <v-toolbar class="px-2" dense flat dark color="dark">
           <v-btn class="ma-0" small icon dark depressed @click="onClose">
             <v-icon color="gray-82">close</v-icon>
           </v-btn>
