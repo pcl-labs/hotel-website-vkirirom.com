@@ -99,10 +99,17 @@
                 />
               </div>
             </div>
-            <!-- <div class="light--text" v-else>
-          <p>Select start date</p>
-          <p>Select end date</p>
-        </div> -->
+            <!-- loading -->
+            <div class="text-center mb-4" v-else-if="isFormValid && isLoading">
+              <v-progress-circular
+                indeterminate
+                color="green"
+              ></v-progress-circular>
+            </div>
+            <!-- not available -->
+            <div class="px-4 light--text" v-else-if="isFormValid">
+              <p>Sorry, selected dates are not available</p>
+            </div>
 
             <div class="px-4">
               <v-btn
@@ -140,7 +147,7 @@ export default Vue.extend({
       dateOneRules: [v => !!v || 'Dates are required'],
       dateTwoRules: [v => !!v || 'Dates are required'],
       isFormValid: false,
-      stepTitle: 'Choose Dates'
+      isLoading: false
     }
   },
   computed: {
@@ -169,7 +176,7 @@ export default Vue.extend({
       return this.prices.length > 0
     },
     isFormReady(): boolean {
-      return this.isFormValid && this.isPricesReady
+      return !this.isLoading && this.isFormValid && this.isPricesReady
     }
   },
   methods: {
@@ -195,14 +202,19 @@ export default Vue.extend({
       store.dispatch('booking/clearDateTwo')
     },
     getPrices() {
+      this.isLoading = true
       const dateOne = this.dateOne
       const dateTwo = this.dateTwo
       const roomTypeId = this.roomTypeId
-      this.$store.dispatch('booking/getPrices', {
-        roomTypeId,
-        dateOne,
-        dateTwo
-      })
+      this.$store
+        .dispatch('booking/getPrices', {
+          roomTypeId,
+          dateOne,
+          dateTwo
+        })
+        .then(() => {
+          this.isLoading = false
+        })
     },
     clearPrices() {
       this.$store.dispatch('booking/clearPrices')
