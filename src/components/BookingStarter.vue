@@ -2,7 +2,14 @@
   <fragment>
     <slot name="default" />
 
-    <v-dialog persistent v-model="isDialogOpen" width="332">
+    <v-dialog
+      persistent
+      v-model="isDialogOpen"
+      width="332"
+      :fullscreen="$vuetify.breakpoint.xsOnly"
+      :hide-overlay="$vuetify.breakpoint.xsOnly"
+      transition="dialog-bottom-transition"
+    >
       <booking-confirm-dates
         @booking-close="onClose"
         v-if="currentStep === 1"
@@ -36,6 +43,11 @@ export default Vue.extend({
   watch: {
     currentStep(newVal, oldValue) {
       this.isDialogOpen = newVal > 0
+      if (this.isDialogOpen) {
+        document.documentElement.classList.add('overflow-y-hidden', 'dialog--is-open')
+      } else {
+        document.documentElement.classList.remove('overflow-y-hidden', 'dialog--is-open')
+      }
     }
   },
   computed: {
@@ -64,10 +76,12 @@ export default Vue.extend({
 
 <style lang="scss">
 // global
-.v-overlay--active ~ .v-application--wrap {
-  filter: blur(8px);
-}
-.v-overlay__scrim {
-  background-color: rgba(black, 0.4) !important;
+.dialog--is-open {
+  .v-overlay--active ~ .v-application--wrap {
+    filter: blur(8px);
+  }
+  .v-overlay__scrim {
+    background-color: rgba(black, 0.4) !important;
+  }
 }
 </style>
