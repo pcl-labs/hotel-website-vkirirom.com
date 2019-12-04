@@ -3,22 +3,10 @@
     <slot name="default" />
 
     <v-dialog persistent v-model="isDialogOpen" width="332">
-      <v-card tile :elevation="0" class="dark">
-        <v-toolbar class="px-2" dense flat dark color="dark">
-          <v-btn class="ma-0" small icon dark depressed @click="onClose">
-            <v-icon color="gray-82">close</v-icon>
-          </v-btn>
-          <v-toolbar-title class="light--text pl-0 ml-n4 text-center"
-            >Choose Dates</v-toolbar-title
-          >
-        </v-toolbar>
-
-        <div class="d-flex flex-column">
-          <booking-confirm-dates
-            v-if="currentStep === 1"
-          ></booking-confirm-dates>
-        </div>
-      </v-card>
+      <booking-confirm-dates
+        @booking-close="onClose"
+        v-if="currentStep === 1"
+      ></booking-confirm-dates>
     </v-dialog>
 
     <!-- <auth-login></auth-login>
