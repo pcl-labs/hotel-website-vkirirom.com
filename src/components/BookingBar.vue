@@ -2,7 +2,7 @@
   <v-container
     fluid
     class="booking-bar pa-0"
-    :class="{ 'is-fixed': shouldBeFixed }"
+    :class="{ 'is-fixed': shouldStick }"
   >
     <div class="booking-bar--sticker w-100">
       <section class="wrapper">
@@ -114,7 +114,7 @@ export default {
     footerHeight() {
       return store.getters['layout/getSizing'].footerHeight
     },
-    shouldBeFixed() {
+    shouldStick() {
       return this.bottomDistance > this.footerHeight
     }
   },

@@ -13,11 +13,12 @@
       <booking-confirm-dates
         @booking-close="onClose"
         v-if="currentStep === 1"
+        :next-step="isAuthenticated ? 3 : 2"
       ></booking-confirm-dates>
     </v-dialog>
 
     <!-- <auth-login></auth-login>
-    <auto-register></auto-register>
+    <auth-register></auth-register>
     <booking-confirm-guests></booking-confirm-guests>
     <booking-confirm-booking></booking-confirm-booking>
     <booking-review-policies></booking-review-policies>
@@ -44,15 +45,24 @@ export default Vue.extend({
     currentStep(newVal, oldValue) {
       this.isDialogOpen = newVal > 0
       if (this.isDialogOpen) {
-        document.documentElement.classList.add('overflow-y-hidden', 'dialog--is-open')
+        document.documentElement.classList.add(
+          'overflow-y-hidden',
+          'dialog--is-open'
+        )
       } else {
-        document.documentElement.classList.remove('overflow-y-hidden', 'dialog--is-open')
+        document.documentElement.classList.remove(
+          'overflow-y-hidden',
+          'dialog--is-open'
+        )
       }
     }
   },
   computed: {
-    currentStep() {
+    currentStep(): number {
       return store.getters['booking/currentStep']
+    },
+    isAuthenticated(): boolean {
+      return this.$store.getters['auth/isAuthenticated']
     }
   },
   methods: {

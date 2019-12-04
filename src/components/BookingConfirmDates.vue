@@ -142,6 +142,12 @@ import { formatDates } from '@/helpers'
 
 export default Vue.extend({
   name: 'booking-confirm-dates',
+  props: {
+    nextStep: {
+      type: Number,
+      required: true
+    }
+  },
   data() {
     return {
       dateOneRules: [v => !!v || 'Dates are required'],
@@ -220,7 +226,7 @@ export default Vue.extend({
       this.$store.dispatch('booking/clearPrices')
     },
     submit() {
-      store.dispatch('booking/updateCurrentStep', 2)
+      store.dispatch('booking/updateCurrentStep', this.nextStep)
     }
   }
 })

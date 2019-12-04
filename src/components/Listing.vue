@@ -181,6 +181,7 @@
     </v-container>
 
     <booking-bar
+      v-if="shouldShowBookingBar"
       :title="resort.h2"
       :price="Number(resort.ctaText)"
     ></booking-bar>
@@ -264,6 +265,11 @@ export default {
   computed: {
     resort() {
       return this.$store.getters['resort/getResort']
+    },
+    shouldShowBookingBar() {
+      const listingType = this.$store.getters['resort/getResort'].categories[0]
+        .name
+      return ['accommodations', 'events', 'experiences'].includes(listingType)
     }
   },
   mounted() {
