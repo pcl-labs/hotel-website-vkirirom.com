@@ -96,13 +96,13 @@ export default Vue.extend({
     },
     // this is for development purposes only, related to HMR
     resetComponentState() {
-      this.isDialogOpen = true
-      store.dispatch('booking/updateCurrentStep', 2)
-      this.setDocumentClasses()
-      // FIXME:
-      // this.isDialogOpen = false
-      // store.dispatch('booking/updateCurrentStep', 0)
+      // this.isDialogOpen = true
+      // store.dispatch('booking/updateCurrentStep', 2)
       // this.setDocumentClasses()
+      // FIXME:
+      this.isDialogOpen = false
+      store.dispatch('booking/updateCurrentStep', 0)
+      this.setDocumentClasses()
     }
   }
 })
