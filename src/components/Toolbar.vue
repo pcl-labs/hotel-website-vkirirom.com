@@ -10,9 +10,30 @@
       <v-btn text class="button" to="/search/accommodations"><h3 class="desktop mb-0">Accommodation</h3></v-btn>
       <v-btn text class="button" to="/search/events"><h3 class="desktop mb-0">Events</h3></v-btn>
       <v-btn text class="button" to="/search/experiences"><h3 class="desktop mb-0">Experience</h3></v-btn>
-      <v-btn text class="button" to="/search/food"><h3 class="desktop mb-0">Food</h3></v-btn>
+
+      <v-menu offset-y="">
+         <template v-slot:activator="{ on }">
+        <v-btn
+          v-on="on"
+          text class="button" to="/search/food"
+        >
+        <h3 class="desktop mb-0">Food 
+        </h3>
+        </v-btn>
+      </template>
+      <v-list dark  color="#191C21">
+        <v-list-item>
+             <v-btn text class="button" to="/listing/Pine-View-Kitchen-PVK"><h3 class="desktop mb-0">Restaurant</h3></v-btn>
+        </v-list-item>
+      </v-list>
+      
+      </v-menu>        
+
+
+
+
       <v-btn text class="button" to="/search/blog"><h3 class="desktop mb-0">Blog</h3></v-btn>
-      <v-btn text class="button" to="/listing/Pine-View-Kitchen-PVK"><h3 class="desktop mb-0">Restaurant</h3></v-btn>
+   
       <v-btn text class="button" @click="logout()" v-if="isAuthenticated == true" :loading="loading"><h3 class="desktop mb-0">Log out</h3></v-btn>
     </v-toolbar-items>
   </v-app-bar>
