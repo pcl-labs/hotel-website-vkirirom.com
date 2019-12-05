@@ -5,20 +5,20 @@
     <v-dialog
       persistent
       v-model="isDialogOpen"
-      width="332"
+      :width="currentStep.width"
       :fullscreen="$vuetify.breakpoint.xsOnly"
       :hide-overlay="$vuetify.breakpoint.xsOnly"
       transition="dialog-bottom-transition"
     >
       <booking-confirm-dates
         @booking-close="onClose"
-        v-if="currentStep === steps.confirmDates"
+        v-if="currentStep.id === steps.confirmDates.id"
         :next-step="isAuthenticated ? steps.confirmGuests : steps.auth"
       ></booking-confirm-dates>
 
       <booking-auth
         @booking-close="onClose"
-        v-if="currentStep === steps.auth"
+        v-if="currentStep.id === steps.auth.id"
         :next-step="steps.confirmGuests"
       ></booking-auth>
     </v-dialog>
@@ -39,25 +39,12 @@ import store from '@/store'
 const BookingConfirmDates = () => import('@/components/BookingConfirmDates.vue')
 const BookingAuth = () => import('@/components/BookingAuth.vue')
 
-const steps = {
-  notStarted: 0,
-  confirmDates: 1,
-  auth: 2,
-  confirmGuests: 3,
-  confirmBooking: 4,
-  reviewPolicies: 5,
-  customerInfo: 6,
-  paymentInfo: 7,
-  thanksYou: 8
-}
-
 export default Vue.extend({
   name: 'booking-starter',
   components: { BookingConfirmDates, BookingAuth },
   data() {
     return {
-      isDialogOpen: false,
-      steps
+      isDialogOpen: false
     }
   },
   mounted() {
@@ -65,7 +52,7 @@ export default Vue.extend({
   },
   watch: {
     currentStep(newVal, oldValue) {
-      this.isDialogOpen = newVal > 0
+      this.isDialogOpen = newVal.id > 0
       this.setDocumentClasses()
     }
   },
@@ -74,12 +61,15 @@ export default Vue.extend({
       return store.getters['booking/currentStep']
     },
     isAuthenticated(): boolean {
-      return this.$store.getters['auth/isAuthenticated']
+      return store.getters['auth/isAuthenticated']
+    },
+    steps() {
+      return store.getters['booking/steps']
     }
   },
   methods: {
     onClose() {
-      store.dispatch('booking/updateCurrentStep', 0)
+      store.dispatch('booking/updateCurrentStep', this.steps.notStarted)
     },
     setDocumentClasses() {
       if (this.isDialogOpen) {
@@ -96,13 +86,13 @@ export default Vue.extend({
     },
     // this is for development purposes only, related to HMR
     resetComponentState() {
-      // this.isDialogOpen = true
-      // store.dispatch('booking/updateCurrentStep', 2)
-      // this.setDocumentClasses()
-      // FIXME:
-      this.isDialogOpen = false
-      store.dispatch('booking/updateCurrentStep', 0)
+      this.isDialogOpen = true
+      store.dispatch('booking/updateCurrentStep', this.steps.auth)
       this.setDocumentClasses()
+      // FIXME:
+      // this.isDialogOpen = false
+      // store.dispatch('booking/updateCurrentStep', steps.notStarted)
+      // this.setDocumentClasses()
     }
   }
 })

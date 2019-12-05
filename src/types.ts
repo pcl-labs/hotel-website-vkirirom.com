@@ -66,3 +66,8 @@ export interface Category {
   // custom
   // categories
 }
+
+export interface bookingStep {
+  id: number,
+  width: number
+}

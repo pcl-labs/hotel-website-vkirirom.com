@@ -1,6 +1,6 @@
 <template>
   <v-card tile :elevation="0" class="dark">
-    <v-toolbar class="px-2" dense flat dark color="dark">
+    <v-toolbar class="px-2" flat dark color="dark">
       <v-btn
         class="ma-0"
         small
@@ -11,8 +11,8 @@
       >
         <v-icon color="gray-82">close</v-icon>
       </v-btn>
-      <v-toolbar-title class="light--text pl-0 ml-n4 text-center"
-        >Login</v-toolbar-title
+      <v-toolbar-title class="light--text pl-0 ml-n4 text-center display-1"
+        >Log in</v-toolbar-title
       >
     </v-toolbar>
 
@@ -37,7 +37,7 @@ export default Vue.extend({
   components: { AuthLogin },
   props: {
     nextStep: {
-      type: Number,
+      type: Object,
       required: true
     }
   },

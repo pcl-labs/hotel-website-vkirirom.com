@@ -13,6 +13,10 @@ import router from './router'
 import { light } from './constants/themes'
 import store from './store'
 import Vuetify from 'vuetify/lib'
+import IconFacebook from './components/IconFacebook.vue'
+import IconGoogle from './components/IconGoogle.vue'
+import IconMessage from './components/IconMessage.vue'
+import IconLock from './components/IconLock.vue'
 import Fragment from 'vue-fragment'
 
 Vue.use(Fragment.Plugin)
@@ -63,14 +67,29 @@ new Vue({
   // @ts-ignore
   vuetify: new Vuetify({
     icons: {
-      iconfont: 'md' // 'mdi' || 'mdiSvg' || 'md' || 'fa' || 'fa4'
+      iconfont: 'md', // 'mdi' || 'mdiSvg' || 'md' || 'fa' || 'fa4'
+      values: {
+        facebook: {
+          component: IconFacebook,
+          props: {}
+        },
+        google: {
+          component: IconGoogle
+        },
+        message: {
+          component: IconMessage
+        },
+        lock: {
+          component: IconLock
+        },
+      }
     },
     theme: {
       dark: false,
       themes: {
         light
       }
-    },
+    }
   }),
   router,
   store,

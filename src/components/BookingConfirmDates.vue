@@ -144,7 +144,7 @@ export default Vue.extend({
   name: 'booking-confirm-dates',
   props: {
     nextStep: {
-      type: Number,
+      type: Object,
       required: true
     }
   },
