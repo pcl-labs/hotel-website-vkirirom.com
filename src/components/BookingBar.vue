@@ -1,10 +1,8 @@
 <template>
   <v-container
-    v-resize="setThreshold"
     fluid
-    ref="wrapperGhost"
     class="booking-bar pa-0"
-    :class="{ 'is-fixed': shouldBeFixed }"
+    :class="{ 'is-fixed': shouldStick }"
   >
     <div class="booking-bar--sticker w-100">
       <section class="wrapper">
@@ -50,32 +48,36 @@
             </div>
             <div class="d-flex align-center">
               <v-container class="d-flex pa-0">
-                <!-- mobile -->
-                <v-btn
-                  block
-                  medium
-                  color="primary"
-                  dark
-                  class="d-sm-none text-capitalize font-weight-bold dark--text"
-                >
-                  Book Now
-                  <v-icon class="d-none d-sm-inline"
-                    >keyboard_arrow_right</v-icon
+                <booking-starter>
+                  <!-- mobile -->
+                  <v-btn
+                    @click="startBooking()"
+                    block
+                    medium
+                    color="primary"
+                    dark
+                    class="d-sm-none text-capitalize font-weight-bold dark--text"
                   >
-                </v-btn>
-                <!-- desktop -->
-                <v-btn
-                  block
-                  x-large
-                  color="primary"
-                  dark
-                  class="hidden-xs-only text-capitalize font-weight-black dark--text title"
-                >
-                  Book Now
-                  <v-icon class="d-none d-sm-inline"
-                    >keyboard_arrow_right</v-icon
+                    Book Now
+                    <v-icon class="d-none d-sm-inline"
+                      >keyboard_arrow_right</v-icon
+                    >
+                  </v-btn>
+                  <!-- desktop -->
+                  <v-btn
+                    @click="startBooking()"
+                    block
+                    x-large
+                    color="primary"
+                    dark
+                    class="hidden-xs-only text-capitalize font-weight-black dark--text title"
                   >
-                </v-btn>
+                    Book Now
+                    <v-icon class="d-none d-sm-inline"
+                      >keyboard_arrow_right</v-icon
+                    >
+                  </v-btn>
+                </booking-starter>
               </v-container>
             </div>
           </div>
@@ -86,6 +88,8 @@
 </template>
 
 <script>
+import BookingStarter from '@/components/BookingStarter.vue'
+import store from '@/store'
 import { getPassiveEventConfig } from '@/helpers'
 export default {
   name: 'booking-bar',
@@ -93,15 +97,13 @@ export default {
     title: String,
     price: Number
   },
+  components: { BookingStarter },
   data() {
     return {
-      thresholdDistance: 0,
       bottomDistance: 0
     }
   },
   mounted() {
-    this.footerElement = document.querySelector('.page-footer')
-    this.setThreshold()
     this.setInitialDistance()
     this.positionListener()
   },
@@ -109,14 +111,14 @@ export default {
     document.removeEventListener('scroll', this.onScrollPage)
   },
   computed: {
-    shouldBeFixed() {
-      return this.bottomDistance > this.thresholdDistance
+    footerHeight() {
+      return store.getters['layout/getSizing'].footerHeight
+    },
+    shouldStick() {
+      return this.bottomDistance > this.footerHeight
     }
   },
   methods: {
-    setThreshold() {
-      this.thresholdDistance = (this.footerElement || {}).clientHeight
-    },
     setInitialDistance() {
       this.onScrollPage()
     },
@@ -136,6 +138,9 @@ export default {
         bodyHeight - (scrollPosition + windowSize),
         0
       )
+    },
+    startBooking() {
+      store.dispatch('booking/startBooking')
     }
   }
 }

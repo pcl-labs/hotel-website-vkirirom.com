@@ -76,6 +76,7 @@
         </v-col>
         <v-col xs12>
           <v-row no-gutters class="mb-4">
+            <!-- TODO: real date? -->
             <v-col v-if="resort.categories[0].name == 'blog'"
               >Published July 5, 2019</v-col
             >
@@ -175,40 +176,15 @@
             }}</span>
           </v-col>
         </v-col>
-        <!-- <v-col md6 class="d-none d-md-block">
-          <v-card
-            class="bookForm"
-            width="300px"
-            color="#191C21"
-            style="border: 1px solid #E1E7ED; border-radius: 3px; margin-top:30px; margin-bottom:30px; margin-left:77px; padding:25px;"
-          >
-            <reservation-form-desktop :resort-slug="slug" />
-          </v-card>
-        </v-col>
-        -->
+        <!-- <reservation-form-desktop :resort-slug="slug" /> -->
       </v-row>
     </v-container>
 
     <booking-bar
+      v-if="shouldShowBookingBar"
       :title="resort.h2"
       :price="Number(resort.ctaText)"
     ></booking-bar>
-
-    <!-- <v-row no-gutters>
-      <v-col xs12>
-        <div id="bookBottom" class="d-md-none book-bottom">
-          <v-col xs12 v-if="resort.ctaText > 0">
-            <p>
-              <span style="font-size: 28px;">&dollar;{{resort.ctaText}}+</span>
-              <span class="normalText">/night</span>
-            </p>
-          </v-col>
-          <v-col xs12 class="d-md-none">
-            <reservation-form-mobile :resort-slug="slug" />
-          </v-col>
-        </div>
-      </v-col>
-    </v-row> -->
 
     <Footer></Footer>
   </div>
@@ -217,10 +193,6 @@
 <script>
 import VueMarkdown from 'vue-markdown'
 const Footer = () => import('@/components/Footer.vue')
-// const ReservationFormDesktop = () =>
-//   import("@/components/ReservationFormDesktop.vue");
-// const ReservationFormMobile = () =>
-//   import("@/components/ReservationFormMobile.vue");
 import BookingBar from '@/components/BookingBar.vue'
 
 const defaultResort = {
@@ -233,8 +205,6 @@ export default {
     BookingBar,
     Footer,
     VueMarkdown
-    // ReservationFormDesktop,
-    // ReservationFormMobile
   },
   head: {
     title: function() {
@@ -295,6 +265,11 @@ export default {
   computed: {
     resort() {
       return this.$store.getters['resort/getResort']
+    },
+    shouldShowBookingBar() {
+      const listingType = this.$store.getters['resort/getResort'].categories[0]
+        .name
+      return ['accommodations', 'events', 'experiences'].includes(listingType)
     }
   },
   mounted() {
