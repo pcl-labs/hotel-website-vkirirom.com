@@ -2,6 +2,7 @@
 import { AuthenticationService } from '@/connection/resources.js'
 import { APIPath } from '@/helpers'
 import Vue from 'vue'
+import store from '@/store'
 
 const defaultUser = {
   id: 0,
@@ -58,7 +59,6 @@ export default {
     updateProvider(state, provider) {
       state.provider = provider
     },
-    // TODO: use loading module in store
     updateLoading(state, payload) {
       state.loading = payload
     },
@@ -80,9 +80,7 @@ export default {
       })
         .then(token => {
           context.state.token = token
-          // FIXME: use store.dispatch
-          // @ts-ignore
-          this.dispatch('auth/ping')
+          store.dispatch('auth/ping')
         })
         .catch(error => {
           const response = error.response && error.response.data
@@ -103,9 +101,7 @@ export default {
       })
         .then(token => {
           context.state.token = token
-          // FIXME: use store.dispatch
-          // @ts-ignore
-          this.dispatch('auth/ping')
+          store.dispatch('auth/ping')
         })
         .catch(error => {
           const response = error.response && error.response.data

@@ -85,6 +85,7 @@ import store from '@/store'
 
 export default {
   name: 'auth-signup',
+  components: { SeparatorOr },
   data() {
     return {
       valid: false,
@@ -118,7 +119,7 @@ export default {
   computed: {
     email: {
       get() {
-        return store.state['auth/email']
+        return store.getters['auth/email']
       },
       set(value) {
         store.commit('auth/updateEmail', value)
@@ -126,7 +127,7 @@ export default {
     },
     password: {
       get() {
-        return store.state['auth/password']
+        return store.getters['auth/password']
       },
       set(value) {
         store.commit('auth/updatePassword', value)

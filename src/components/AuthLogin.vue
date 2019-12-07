@@ -33,16 +33,7 @@
           </v-row>
         </v-col>
 
-        <v-flex xs5>
-          <v-divider class="light-border"></v-divider>
-        </v-flex>
-        <v-flex xs2 class="text-center" style="padding:0; margin-top:-12px;">
-          <span class="light--text">or</span>
-        </v-flex>
-        <v-flex xs5>
-          <v-divider class="light-border"></v-divider>
-        </v-flex>
-        <div class="mt-8"></div>
+        <separator-or></separator-or>
 
         <v-flex xs12 v-if="loginError">
           <p class="light--text">{{ loginError }}</p>
@@ -113,8 +104,13 @@
   </v-form>
 </template>
 
-<script>
+<script lang="ts">
+import SeparatorOr from '@/components/SeparatorOr.vue'
+import store from '@/store'
+
 export default {
+  name: 'auth-login',
+  components: { SeparatorOr },
   data() {
     return {
       valid: false,
@@ -124,42 +120,41 @@ export default {
         v => (v || '').indexOf(' ') < 0 || 'No spaces are allowed',
         v => /^\S+@\S+$/.test(v) || 'E-mail must be valid'
       ],
-      passwordRules: [v => !!v || 'Password is required'],
-      route: this.$route
+      passwordRules: [v => !!v || 'Password is required']
     }
   },
   methods: {
     login() {
-      this.$store.dispatch('auth/login')
+      store.dispatch('auth/login')
     },
     oauth(provider) {
-      this.$store.commit('auth/updateProvider', provider),
-        window.location.assign(this.$store.getters['auth/oauth']),
-        this.$store.dispatch('auth/ping')
+      store.commit('auth/updateProvider', provider),
+        window.location.assign(store.getters['auth/oauth']),
+        store.dispatch('auth/ping')
     }
   },
   computed: {
     email: {
       get() {
-        return this.$store.getters['auth/email']
+        return store.getters['auth/email']
       },
       set(value) {
-        this.$store.commit('auth/updateEmail', value)
+        store.commit('auth/updateEmail', value)
       }
     },
     password: {
       get() {
-        return this.$store.getters['auth/password']
+        return store.getters['auth/password']
       },
       set(value) {
-        this.$store.commit('auth/updatePassword', value)
+        store.commit('auth/updatePassword', value)
       }
     },
     loading() {
-      return this.$store.getters['auth/loading']
+      return store.getters['auth/loading']
     },
     loginError() {
-      return this.$store.getters['auth/loginError']
+      return store.getters['auth/loginError']
     }
   }
 }
