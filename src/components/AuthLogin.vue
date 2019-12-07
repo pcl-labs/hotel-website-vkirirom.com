@@ -1,8 +1,4 @@
 <template>
-  <!-- https://res.cloudinary.com/die9ji2vn/image/upload/v1575488759/website-static/icon/facebook-logo_xqpxva.svg -->
-  <!-- https://res.cloudinary.com/die9ji2vn/image/upload/v1575488759/website-static/icon/search_dzt53z.svg -->
-  <!-- https://res.cloudinary.com/die9ji2vn/image/upload/v1575488759/website-static/icon/message_exocww.svg -->
-  <!-- https://res.cloudinary.com/die9ji2vn/image/upload/v1575488759/website-static/icon/locked_iub8pj.svg -->
   <v-form name="Login" v-model="valid">
     <v-container fluid>
       <v-row no-gutters>
@@ -36,14 +32,15 @@
             </v-col>
           </v-row>
         </v-col>
+
         <v-flex xs5>
-          <v-divider class="light-divider"></v-divider>
+          <v-divider class="light-border"></v-divider>
         </v-flex>
         <v-flex xs2 class="text-center" style="padding:0; margin-top:-12px;">
           <span class="light--text">or</span>
         </v-flex>
         <v-flex xs5>
-          <v-divider class="light-divider"></v-divider>
+          <v-divider class="light-border"></v-divider>
         </v-flex>
         <div class="mt-8"></div>
 
@@ -57,40 +54,40 @@
             outlined
             label="E-mail address"
             name="E-mail"
-            color="#B9BCC1"
             type="email"
+            color="light"
             required
             dark
             :rules="emailRules"
           >
-            <v-icon slot="append" color="#B9BCC1"
+            <v-icon slot="append"
               >$vuetify.icons.message</v-icon
             >
           </v-text-field>
         </v-flex>
         <v-flex xs12>
           <v-text-field
+            dark
             class="mb-1"
             v-model="password"
             outlined
             label="Password"
             name="Password"
-            color="#B9BCC1"
+            color="light"
             required
-            :type="visible ? 'text' : 'password'"
-            dark
+            :type="isPasswordVisible ? 'text' : 'password'"
             :rules="passwordRules"
           >
-            <v-icon slot="append" color="#B9BCC1">$vuetify.icons.lock</v-icon>
+            <v-icon slot="append">$vuetify.icons.lock</v-icon>
           </v-text-field>
         </v-flex>
         <v-flex xs12>
           <v-btn
             x-large
             block
-            color="#F7B947"
+            color="primary"
             style="font-size:16px;"
-            class="py-3 text-capitalize mb-4"
+            class="py-3 text-capitalize mb-4 dark--text"
             dark
             @click="login()"
             :disabled="!valid"
@@ -103,13 +100,13 @@
           </v-btn>
         </v-flex>
         <v-flex xs12 class="text-center mb-4 body-2">
-          <p class="mb-0"><a>Forgot password?</a></p>
+          <p class="mb-0"><a @click="$emit('auth-forgot-password')">Forgot password?</a></p>
         </v-flex>
         <v-flex xs12>
-          <v-divider class="light-divider"></v-divider>
+          <v-divider class="light-border"></v-divider>
         </v-flex>
         <v-flex xs12 class="text-center light--text mt-4 body-2">
-          <p class="mb-0">Don't have any account? <a>Sign up</a></p>
+          <p class="mb-0">Don't have any account? <a @click="$emit('auth-signup')">Sign up</a></p>
         </v-flex>
       </v-row>
     </v-container>
@@ -117,12 +114,11 @@
 </template>
 
 <script>
-import { get } from 'http'
 export default {
   data() {
     return {
       valid: false,
-      visible: false,
+      isPasswordVisible: false,
       emailRules: [
         v => !!v || 'E-mail is required',
         v => (v || '').indexOf(' ') < 0 || 'No spaces are allowed',
@@ -159,9 +155,6 @@ export default {
         this.$store.commit('auth/updatePassword', value)
       }
     },
-    isAuthenticated() {
-      return this.$store.getters['auth/isAuthenticated']
-    },
     loading() {
       return this.$store.getters['auth/loading']
     },
@@ -173,25 +166,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.v-input__slot {
-  margin: 0;
-  height: 55px;
-  /*To make the total margin:30px */
-  margin-bottom: 5px;
-}
-@-webkit-keyframes autofill {
-  to {
-    color: white;
-    background: transparent;
-  }
-}
-
-input:-webkit-autofill {
-  -webkit-animation-name: autofill;
-  -webkit-animation-fill-mode: both;
-}
-
-.light-divider {
-  border-color: $light;
-}
+@import '@/styles/utility.scss';
 </style>

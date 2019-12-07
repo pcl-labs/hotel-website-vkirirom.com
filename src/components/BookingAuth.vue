@@ -11,15 +11,25 @@
       >
         <v-icon color="gray-82">close</v-icon>
       </v-btn>
-      <v-toolbar-title class="light--text pl-0 ml-n4 text-center display-1"
-        >Log in</v-toolbar-title
-      >
+      <v-toolbar-title class="light--text pl-0 ml-n4 text-center display-1">{{
+        title
+      }}</v-toolbar-title>
     </v-toolbar>
 
     <div class="d-flex flex-column">
       <div class="light--text mx-auto">
         <v-card color="dark px-2 pb-4" tile :ripple="false">
-          <AuthLogin></AuthLogin>
+          <auth-login
+            v-if="authState === 'login'"
+            @auth-forgot-password="
+              changeAuthState('forgot-password', { title: 'Reset Password' })
+            "
+            @auth-signup="changeAuthState('signup', { title: 'Sign Up' })"
+          ></auth-login>
+          <auth-signup
+            v-if="authState === 'signup'"
+            @auth-login="changeAuthState('login', { title: 'Log In' })"
+          ></auth-signup>
         </v-card>
       </div>
     </div>
@@ -30,11 +40,11 @@
 import Vue from 'vue'
 import store from '@/store'
 import AuthLogin from '@/components/AuthLogin.vue'
-import AuthSignUp from '@/components/AuthSignUp.vue'
+import AuthSignup from '@/components/AuthSignup.vue'
 
 export default Vue.extend({
   name: 'booking-auth',
-  components: { AuthLogin },
+  components: { AuthLogin, AuthSignup },
   props: {
     nextStep: {
       type: Object,
@@ -43,6 +53,8 @@ export default Vue.extend({
   },
   data() {
     return {
+      authState: 'login',
+      title: 'Log In'
       // isLoading: false
     }
   },
@@ -51,7 +63,17 @@ export default Vue.extend({
       return store.getters['auth/isAuthenticated']
     }
   },
+  watch: {
+    isAuthenticated(newVal) {
+      console.log('isAuthenticated newVal', newVal);
+      
+    }
+  },
   methods: {
+    changeAuthState(newState, { title }) {
+      this.authState = newState
+      this.title = title
+    },
     submit() {
       store.dispatch('booking/updateCurrentStep', this.nextStep)
     }

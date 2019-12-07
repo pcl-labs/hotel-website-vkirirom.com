@@ -16,6 +16,7 @@ import Vuetify from 'vuetify/lib'
 import IconFacebook from './components/IconFacebook.vue'
 import IconGoogle from './components/IconGoogle.vue'
 import IconMessage from './components/IconMessage.vue'
+import IconMessageDark from './components/IconMessageDark.vue'
 import IconLock from './components/IconLock.vue'
 import Fragment from 'vue-fragment'
 
@@ -78,6 +79,9 @@ new Vue({
         },
         message: {
           component: IconMessage
+        },
+        messageDark: {
+          component: IconMessageDark
         },
         lock: {
           component: IconLock
