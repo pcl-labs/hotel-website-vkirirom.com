@@ -12,7 +12,7 @@
       <template v-slot:activator="{ on }">
         <v-btn
         v-on="on"
-        text class="button" to="/search/food"
+        text class="button" 
         ><h3 class="desktop mb-0">Activities<v-icon>{{ icons.mdiChevronDown }}</v-icon>
         </h3>
         </v-btn>
@@ -30,7 +30,7 @@
       <template v-slot:activator="{ on }">
       <v-btn
        v-on="on"
-       text class="button" to="/search/food"
+       text class="button" 
       ><h3 class="desktop mb-0">Food<v-icon>{{ icons.mdiChevronDown }}</v-icon>
       </h3>
       </v-btn>
