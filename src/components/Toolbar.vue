@@ -17,7 +17,7 @@
         </h3>
         </v-btn>
       </template> 
-      <v-list dense class="dropdown-list">
+      <v-list dense color="#191C21" >
         <v-list-item class="pa-0">
         <v-btn text tile block class="button" to="/search/events"><h3>Events</h3></v-btn>
         </v-list-item>
@@ -35,7 +35,7 @@
       </h3>
       </v-btn>
       </template>
-      <v-list dense class="dropdown-list">
+      <v-list dense color="#191C21" class="dropdown-list">
         <v-list-item class="pa-0">
        <v-btn text tile block class="button" to="/search/food"><h3>Menu</h3></v-btn>
       </v-list-item>
@@ -117,9 +117,6 @@ export default {
   }
   .v-btn {
     letter-spacing: 0; 
-  }
-  .dropdown-list {
-    background-color: #191C21
   }
   .down-icon {
     transform: rotate(90deg);}
