@@ -8,32 +8,40 @@
     <v-app-bar-nav-icon class="d-md-none" @click.stop="drawer = !drawer" style="color:#D8DADE;"></v-app-bar-nav-icon>
     <v-toolbar-items class="d-none d-md-flex">
       <v-btn text class="button" to="/search/accommodations"><h3 class="desktop mb-0">Accommodation</h3></v-btn>
-      <v-btn text class="button" to="/search/events"><h3 class="desktop mb-0">Events</h3></v-btn>
-      <v-btn text class="button" to="/search/experiences"><h3 class="desktop mb-0">Experience</h3></v-btn>
-
-      <v-menu offset-y="">
-         <template v-slot:activator="{ on }">
+     <v-menu offset-y>
+      <template v-slot:activator="{ on }">
         <v-btn
-          v-on="on"
-          text class="button" to="/search/food"
-        >
-        <h3 class="desktop mb-0">Food 
+        v-on="on"
+        text class="button" to="/search/food"
+        ><h3 class="desktop mb-0">Activities<v-icon>{{ icons.mdiChevronDown }}</v-icon>
         </h3>
         </v-btn>
-      </template>
+      </template> 
       <v-list dark  color="#191C21">
         <v-list-item>
-             <v-btn text class="button" to="/listing/Pine-View-Kitchen-PVK"><h3 class="desktop mb-0">Restaurant</h3></v-btn>
+        <v-btn text class="button"  to="/search/events"><h3 class="desktop mb-0">Events</h3></v-btn>
+        </v-list-item>
+        <v-list-item>
+        <v-btn text class="button"  to="/search/experiences"><h3 class="desktop mb-0">Experience</h3></v-btn>
         </v-list-item>
       </v-list>
-      
+    </v-menu>        
+    <v-menu offset-y>
+      <template v-slot:activator="{ on }">
+      <v-btn
+       v-on="on"
+       text class="button" to="/search/food"
+      ><h3 class="desktop mb-0">Food<v-icon>{{ icons.mdiChevronDown }}</v-icon>
+      </h3>
+      </v-btn>
+      </template>
+      <v-list dark  color="#191C21">
+       <v-list-item>
+      <v-btn text class="button" to="/listing/Pine-View-Kitchen-PVK"><h3 class="desktop mb-0">Restaurant</h3></v-btn>
+      </v-list-item>
+      </v-list>
       </v-menu>        
-
-
-
-
       <v-btn text class="button" to="/search/blog"><h3 class="desktop mb-0">Blog</h3></v-btn>
-   
       <v-btn text class="button" @click="logout()" v-if="isAuthenticated == true" :loading="loading"><h3 class="desktop mb-0">Log out</h3></v-btn>
     </v-toolbar-items>
   </v-app-bar>
@@ -66,10 +74,14 @@
 </template>
 
 <script>
+
+import { mdiChevronDown } from '@mdi/js';
+
 export default {
   data() {
     return {
-      drawer: null
+      drawer: null, 
+      icons: {mdiChevronDown}
     }
   },
   methods:{
@@ -104,6 +116,7 @@ export default {
     vertical-align: middle;
   }
   .v-btn {
-    letter-spacing: 0;
+    letter-spacing: 0; 
   }
+ .theme--dark.v-btn--active::before {opacity: 0;}
 </style>

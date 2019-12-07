@@ -15,6 +15,7 @@
     "swagger": "ts-node src/connection/swagger-axios.ts && tsc -p ./temp/resources.ts --moduleResolution classic --target es6 --outDir ./src/connection/"
   },
   "dependencies": {
+    "@mdi/js": "^4.6.95",
     "axios": "0.19.0",
     "bootstrap": "4.3.1",
     "core-js": "3.3.2",
