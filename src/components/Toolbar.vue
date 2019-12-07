@@ -13,16 +13,16 @@
         <v-btn
         v-on="on"
         text class="button" 
-        ><h3 class="desktop mb-0">Activities<v-icon>{{ icons.mdiChevronDown }}</v-icon>
+        ><h3 class="desktop mb-0">Activities<v-icon class="down-icon">chevron_right</v-icon>
         </h3>
         </v-btn>
       </template> 
-      <v-list dark  color="#191C21">
-        <v-list-item>
-        <v-btn text class="button"  to="/search/events"><h3 class="desktop mb-0">Events</h3></v-btn>
+      <v-list dense class="dropdown-list">
+        <v-list-item class="pa-0">
+        <v-btn text tile block class="button" to="/search/events"><h3>Events</h3></v-btn>
         </v-list-item>
-        <v-list-item>
-        <v-btn text class="button"  to="/search/experiences"><h3 class="desktop mb-0">Experience</h3></v-btn>
+        <v-list-item class="pa-0">
+        <v-btn text tile block class="button" to="/search/experiences"><h3>Experience</h3></v-btn>
         </v-list-item>
       </v-list>
     </v-menu>        
@@ -31,14 +31,16 @@
       <v-btn
        v-on="on"
        text class="button" 
-      ><h3 class="desktop mb-0">Food<v-icon>{{ icons.mdiChevronDown }}</v-icon>
+      ><h3 class="desktop mb-0">Food<v-icon class="down-icon">chevron_right</v-icon>
       </h3>
       </v-btn>
       </template>
-      <v-list dark  color="#191C21">
-       <v-list-item>
-      <v-btn text class="button" to="/listing/Pine-View-Kitchen-PVK"><h3 class="desktop mb-0">Restaurant</h3></v-btn>
+      <v-list dense class="dropdown-list">
+        <v-list-item class="pa-0">
+       <v-btn text tile block class="button" to="/search/food"><h3>Menu</h3></v-btn>
       </v-list-item>
+       <v-list-item class="pa-0">
+      <v-btn text tile block class="button" to="/listing/Pine-View-Kitchen-PVK"><h3 >Restaurant</h3></v-btn></v-list-item>
       </v-list>
       </v-menu>        
       <v-btn text class="button" to="/search/blog"><h3 class="desktop mb-0">Blog</h3></v-btn>
@@ -75,13 +77,11 @@
 
 <script>
 
-import { mdiChevronDown } from '@mdi/js';
 
 export default {
   data() {
     return {
-      drawer: null, 
-      icons: {mdiChevronDown}
+      drawer: null
     }
   },
   methods:{
@@ -118,5 +118,10 @@ export default {
   .v-btn {
     letter-spacing: 0; 
   }
- .theme--dark.v-btn--active::before {opacity: 0;}
+  .dropdown-list {
+    background-color: #191C21
+  }
+  .down-icon {
+    transform: rotate(90deg);}
+
 </style>
