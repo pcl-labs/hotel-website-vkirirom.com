@@ -124,8 +124,6 @@ export default {
   },
   actions: {
     startBooking(context) {
-      console.log('context.state.steps', context.state.steps)
-
       context.commit('updateCurrentStep', context.state.steps.confirmDates)
     },
     updateCurrentStep(context, payload) {

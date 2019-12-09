@@ -48,7 +48,7 @@
             </div>
             <div class="d-flex align-center">
               <v-container class="d-flex pa-0">
-                <booking-starter>
+                <booking-dialog>
                   <!-- mobile -->
                   <v-btn
                     @click="startBooking()"
@@ -77,7 +77,7 @@
                       >keyboard_arrow_right</v-icon
                     >
                   </v-btn>
-                </booking-starter>
+                </booking-dialog>
               </v-container>
             </div>
           </div>
@@ -88,7 +88,7 @@
 </template>
 
 <script>
-import BookingStarter from '@/components/BookingStarter.vue'
+import BookingDialog from '@/components/BookingDialog.vue'
 import store from '@/store'
 import { getPassiveEventConfig } from '@/helpers'
 export default {
@@ -97,7 +97,7 @@ export default {
     title: String,
     price: Number
   },
-  components: { BookingStarter },
+  components: { BookingDialog },
   data() {
     return {
       bottomDistance: 0

@@ -21,25 +21,7 @@
     <div class="d-flex flex-column">
       <div class="light--text mx-auto">
         <v-card color="dark px-2 pb-4" tile :ripple="false">
-          <auth-login
-            v-if="authState === 'login'"
-            @auth-forgot-password="
-              changeAuthState('forgot-password', { title: 'Reset Password' })
-            "
-            @auth-signup="changeAuthState('signup', { title: 'Sign Up' })"
-          ></auth-login>
-          <auth-login-existing-account
-            v-if="authState === 'login-existing-account'"
-            @auth-forgot-password="
-              changeAuthState('forgot-password', { title: 'Reset Password' })
-            "
-            @auth-login="changeAuthState('login', { title: 'Log In' })"
-          ></auth-login-existing-account>
-          <auth-signup
-            v-if="authState === 'signup'"
-            @auth-login="changeAuthState('login', { title: 'Log In' })"
-            @auth-login-existing-account="changeAuthState('login-existing-account', { title: '' })"
-          ></auth-signup>
+          <auth-core @change-auth-state="changeAuthState" />
         </v-card>
       </div>
     </div>
@@ -52,10 +34,11 @@ import store from '@/store'
 import AuthLogin from '@/components/AuthLogin.vue'
 import AuthLoginExistingAccount from '@/components/AuthLoginExistingAccount.vue'
 import AuthSignup from '@/components/AuthSignup.vue'
+import AuthCore from '@/components/AuthCore.vue'
 
 export default Vue.extend({
   name: 'booking-auth',
-  components: { AuthLogin, AuthSignup, AuthLoginExistingAccount },
+  components: { AuthLogin, AuthSignup, AuthLoginExistingAccount, AuthCore },
   props: {
     nextStep: {
       type: Object,
@@ -64,7 +47,6 @@ export default Vue.extend({
   },
   data() {
     return {
-      authState: 'login',
       title: 'Log In'
     }
   },
@@ -79,12 +61,8 @@ export default Vue.extend({
     }
   },
   methods: {
-    changeAuthState(newState, { title }) {
-      this.authState = newState
+    changeAuthState({ title }) {
       this.title = title
-    },
-    submit() {
-      store.dispatch('booking/updateCurrentStep', this.nextStep)
     }
   }
 })

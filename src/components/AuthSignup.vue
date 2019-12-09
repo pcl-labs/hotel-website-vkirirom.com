@@ -187,6 +187,8 @@ export default {
   components: { SeparatorOr },
   data() {
     return {
+      firstName: '',
+      lastName: '',
       formMode: 'by-oauth',
       valid: false,
       passwordIsVisible: false,
