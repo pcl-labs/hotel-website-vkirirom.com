@@ -48,6 +48,7 @@ export default Vue.extend({
     isAuthenticated(newVal) {
       if (newVal === true) {
         this.$emit('authenticate')
+        this.$emit('message', { title: 'Welcome!' })
       }
       console.log('isAuthenticated newVal:', newVal)
     }

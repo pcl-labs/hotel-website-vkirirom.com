@@ -14,7 +14,10 @@
                 @click="oauth('Facebook')"
                 ><v-spacer></v-spacer
                 ><v-icon class="mr-4">$vuetify.icons.facebook</v-icon
-                ><span><span class="hidden-xs-only">Continue with </span><span>Facebook</span></span><v-spacer></v-spacer>
+                ><span
+                  ><span class="hidden-xs-only">Continue with </span
+                  ><span>Facebook</span></span
+                ><v-spacer></v-spacer>
                 <v-icon>keyboard_arrow_right</v-icon>
               </v-btn>
             </v-col>
@@ -27,7 +30,10 @@
                 class="mb-8 text-capitalize light--text py-3"
                 @click="oauth('Google')"
                 ><v-icon class="mr-4">$vuetify.icons.google</v-icon
-                ><span><span class="hidden-xs-only">Continue with </span><span>Google</span></span></v-btn
+                ><span
+                  ><span class="hidden-xs-only">Continue with </span
+                  ><span>Google</span></span
+                ></v-btn
               >
             </v-col>
           </v-row>
@@ -47,8 +53,9 @@
             name="E-mail"
             type="email"
             color="light"
-            required
             dark
+            required
+            validate-on-blur
             :rules="rules.email"
           >
             <v-icon slot="append">$vuetify.icons.message</v-icon>
@@ -123,9 +130,7 @@ export default {
           v => /.+@.+/.test(v) || 'E-mail must be valid',
           v => (v || '').indexOf(' ') < 0 || 'No spaces are allowed'
         ],
-        password: [
-          v => !!v || 'Password is required'
-        ]
+        password: [v => !!v || 'Password is required']
       }
     }
   },

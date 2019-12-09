@@ -1,34 +1,61 @@
 <template>
   <fragment>
-    <!-- we load the activator (e.g. "book now" button) here -->
-    <slot name="default" />
-
     <v-dialog
       dark
       persistent
       v-model="isDialogOpen"
-      :width="currentStep.width"
+      :width="376"
       :fullscreen="$vuetify.breakpoint.smAndDown"
       :hide-overlay="$vuetify.breakpoint.smAndDown"
       transition="dialog-bottom-transition"
     >
-      <auth-core />
+      <v-card tile :elevation="0" class="dark">
+        <v-toolbar class="px-2" flat dark color="dark">
+          <v-btn class="ma-0" small icon dark depressed @click="closeDialog()">
+            <v-icon color="gray-82">close</v-icon>
+          </v-btn>
+          <v-toolbar-title
+            v-if="title"
+            class="light--text pl-0 ml-n4 text-center display-1"
+            >{{ title }}</v-toolbar-title
+          >
+        </v-toolbar>
+
+        <div class="d-flex flex-column">
+          <div class="light--text mx-auto">
+            <v-card color="dark px-2 pb-4" tile :ripple="false">
+              <auth-core
+                @message="onMessage"
+                @change-auth-state="changeAuthState"
+              />
+            </v-card>
+          </div>
+        </div>
+      </v-card>
     </v-dialog>
+
+    <v-snackbar color="success" top v-model="snackbar" :timeout="2000">
+      {{ snackbarTitle }}
+      <v-btn color="white" text @click="snackbar = false">
+        <v-icon>close</v-icon>
+      </v-btn>
+    </v-snackbar>
   </fragment>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import store from '@/store'
-import BookingConfirmDates from '@/components/BookingConfirmDates.vue'
-import BookingAuth from '@/components/BookingAuth.vue'
 import AuthCore from '@/components/AuthCore.vue'
 
 export default Vue.extend({
   name: 'booking-dialog',
-  components: { BookingConfirmDates, BookingAuth, AuthCore },
+  components: { AuthCore },
   data() {
     return {
+      snackbar: false,
+      snackbarTitle: '',
+      title: 'Log In',
       isDialogOpen: false
     }
   },
@@ -36,9 +63,14 @@ export default Vue.extend({
     this.resetComponentState()
   },
   watch: {
-    currentStep(newVal, oldValue) {
-      this.isDialogOpen = newVal.id > 0
+    isDialogOpen() {
       this.setDocumentClasses()
+    },
+    isAuthenticated(newVal) {
+      if (newVal) {
+        this.snackbar = true
+        this.closeDialog()
+      }
     }
   },
   computed: {
@@ -47,6 +79,22 @@ export default Vue.extend({
     }
   },
   methods: {
+    onMessage({ title }) {
+      this.snackbarTitle = title
+      this.snackbar = true
+    },
+    openDialog() {
+      this.isDialogOpen = true
+    },
+    closeDialog() {
+      this.isDialogOpen = false
+    },
+    changeAuthState({ title }) {
+      this.title = title
+    },
+    onClose() {
+      this.closeDialog()
+    },
     setDocumentClasses() {
       if (this.isDialogOpen) {
         document.documentElement.classList.add(

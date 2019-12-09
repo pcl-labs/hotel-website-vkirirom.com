@@ -57,7 +57,7 @@ export default Vue.extend({
   },
   watch: {
     isAuthenticated(newVal) {
-      console.log('isAuthenticated newVal', newVal)
+      store.dispatch('booking/updateCurrentStep', this.nextStep)
     }
   },
   methods: {
