@@ -180,6 +180,8 @@
 import SeparatorOr from '@/components/SeparatorOr.vue'
 import store from '@/store'
 
+// TODO: if register error happened and account exists, then $emit 'auth-login-existing-account'
+
 export default {
   name: 'auth-signup',
   components: { SeparatorOr },

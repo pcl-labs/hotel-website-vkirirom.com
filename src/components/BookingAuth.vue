@@ -38,6 +38,7 @@
           <auth-signup
             v-if="authState === 'signup'"
             @auth-login="changeAuthState('login', { title: 'Log In' })"
+            @auth-login-existing-account="changeAuthState('login-existing-account', { title: '' })"
           ></auth-signup>
         </v-card>
       </div>
@@ -63,10 +64,8 @@ export default Vue.extend({
   },
   data() {
     return {
-      authState: 'login-existing-account',
-      title: ''
-      // authState: 'login',
-      // title: 'Log In'
+      authState: 'login',
+      title: 'Log In'
     }
   },
   computed: {

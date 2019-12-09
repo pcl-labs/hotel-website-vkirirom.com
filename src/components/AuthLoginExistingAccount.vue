@@ -9,7 +9,7 @@
           <v-divider class="is-small light-border mx-auto"></v-divider>
         </v-flex>
         <div class="d-flex justify-center align-center pa-6 w-100">
-          <v-avatar color="green">
+          <v-avatar color="green user-select-none">
             <span class="white--text headline">BG</span>
           </v-avatar>
         </div>
