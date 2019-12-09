@@ -4,7 +4,7 @@
       <v-row no-gutters>
         <v-col cols="12" class="mb-2">
           <!-- by oauth providers -->
-          <v-row no-gutters v-if="formMode === 'by-oauth-providers'">
+          <v-row no-gutters v-if="formMode === 'by-oauth'">
             <v-col cols="12">
               <v-btn
                 x-large
@@ -51,7 +51,7 @@
         </v-flex>
 
         <!-- by oauth providers -->
-        <v-flex xs12 v-if="formMode === 'by-oauth-providers'">
+        <v-flex xs12 v-if="formMode === 'by-oauth'">
           <v-btn
             x-large
             block
@@ -185,7 +185,7 @@ export default {
   components: { SeparatorOr },
   data() {
     return {
-      formMode: 'by-email',
+      formMode: 'by-oauth',
       valid: false,
       passwordIsVisible: false,
       rules: {

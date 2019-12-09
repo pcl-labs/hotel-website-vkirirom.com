@@ -11,9 +11,11 @@
       >
         <v-icon color="gray-82">close</v-icon>
       </v-btn>
-      <v-toolbar-title class="light--text pl-0 ml-n4 text-center display-1">{{
-        title
-      }}</v-toolbar-title>
+      <v-toolbar-title
+        v-if="title"
+        class="light--text pl-0 ml-n4 text-center display-1"
+        >{{ title }}</v-toolbar-title
+      >
     </v-toolbar>
 
     <div class="d-flex flex-column">
@@ -26,6 +28,13 @@
             "
             @auth-signup="changeAuthState('signup', { title: 'Sign Up' })"
           ></auth-login>
+          <auth-login-existing-account
+            v-if="authState === 'login-existing-account'"
+            @auth-forgot-password="
+              changeAuthState('forgot-password', { title: 'Reset Password' })
+            "
+            @auth-login="changeAuthState('login', { title: 'Log In' })"
+          ></auth-login-existing-account>
           <auth-signup
             v-if="authState === 'signup'"
             @auth-login="changeAuthState('login', { title: 'Log In' })"
@@ -40,11 +49,12 @@
 import Vue from 'vue'
 import store from '@/store'
 import AuthLogin from '@/components/AuthLogin.vue'
+import AuthLoginExistingAccount from '@/components/AuthLoginExistingAccount.vue'
 import AuthSignup from '@/components/AuthSignup.vue'
 
 export default Vue.extend({
   name: 'booking-auth',
-  components: { AuthLogin, AuthSignup },
+  components: { AuthLogin, AuthSignup, AuthLoginExistingAccount },
   props: {
     nextStep: {
       type: Object,
@@ -53,10 +63,10 @@ export default Vue.extend({
   },
   data() {
     return {
-      // FIXME: set login
-      authState: 'signup',
-      // FIXME: set Log In
-      title: 'Sign Up'
+      authState: 'login-existing-account',
+      title: ''
+      // authState: 'login',
+      // title: 'Log In'
     }
   },
   computed: {
@@ -66,8 +76,7 @@ export default Vue.extend({
   },
   watch: {
     isAuthenticated(newVal) {
-      console.log('isAuthenticated newVal', newVal);
-      
+      console.log('isAuthenticated newVal', newVal)
     }
   },
   methods: {

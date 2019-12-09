@@ -10,3 +10,8 @@
 .light-border {
   border-color: $light;
 }
+.v-divider {
+  &.is-small {
+    width: rem(64px);
+  }
+}

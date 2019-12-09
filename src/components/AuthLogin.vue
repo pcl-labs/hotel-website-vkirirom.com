@@ -14,7 +14,7 @@
                 @click="oauth('Facebook')"
                 ><v-spacer></v-spacer
                 ><v-icon class="mr-4">$vuetify.icons.facebook</v-icon
-                ><span>Continue with Facebook</span><v-spacer></v-spacer>
+                ><span><span class="hidden-xs-only">Continue with </span><span>Facebook</span></span><v-spacer></v-spacer>
                 <v-icon>keyboard_arrow_right</v-icon>
               </v-btn>
             </v-col>
@@ -27,7 +27,7 @@
                 class="mb-8 text-capitalize light--text py-3"
                 @click="oauth('Google')"
                 ><v-icon class="mr-4">$vuetify.icons.google</v-icon
-                ><span>Continue with Google</span></v-btn
+                ><span><span class="hidden-xs-only">Continue with </span><span>Google</span></span></v-btn
               >
             </v-col>
           </v-row>

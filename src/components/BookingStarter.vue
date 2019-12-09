@@ -4,11 +4,12 @@
     <slot name="default" />
 
     <v-dialog
+      dark
       persistent
       v-model="isDialogOpen"
       :width="currentStep.width"
-      :fullscreen="$vuetify.breakpoint.xsOnly"
-      :hide-overlay="$vuetify.breakpoint.xsOnly"
+      :fullscreen="$vuetify.breakpoint.smAndDown"
+      :hide-overlay="$vuetify.breakpoint.smAndDown"
       transition="dialog-bottom-transition"
     >
       <booking-confirm-dates
