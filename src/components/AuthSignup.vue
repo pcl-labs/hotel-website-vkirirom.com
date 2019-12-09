@@ -3,7 +3,8 @@
     <v-container fluid>
       <v-row no-gutters>
         <v-col cols="12" class="mb-2">
-          <v-row no-gutters>
+          <!-- by oauth providers -->
+          <v-row no-gutters v-if="formMode === 'by-oauth-providers'">
             <v-col cols="12">
               <v-btn
                 x-large
@@ -33,6 +34,14 @@
               >
             </v-col>
           </v-row>
+
+          <!-- by email -->
+          <div v-if="formMode === 'by-email'">
+            <p class="text-center light--text mb-4 body-2">
+              Sign up with <a @click="oauth('Facebook')">Facebook</a> or
+              <a @click="oauth('Google')">Google</a>
+            </p>
+          </div>
         </v-col>
 
         <separator-or></separator-or>
@@ -41,15 +50,15 @@
           <p class="light--text">{{ registerError }}</p>
         </v-flex>
 
-        <v-flex xs12>
+        <!-- by oauth providers -->
+        <v-flex xs12 v-if="formMode === 'by-oauth-providers'">
           <v-btn
             x-large
             block
             color="primary"
-            style="font-size:16px;"
             class="py-3 text-transform-none mb-4 dark--text"
             dark
-            @click="signupWithEmail = true"
+            @click="formMode = 'by-email'"
             :disabled="!valid"
             :loading="loading"
           >
@@ -60,6 +69,94 @@
             <v-icon>keyboard_arrow_right</v-icon>
           </v-btn>
         </v-flex>
+
+        <!-- by email -->
+        <fragment v-if="formMode === 'by-email'">
+          <v-flex xs12>
+            <v-text-field
+              v-model="firstName"
+              outlined
+              label="First name"
+              name="E-mail"
+              color="light"
+              type="text"
+              required
+              :rules="rules.firstName"
+              dark
+            >
+              <v-icon slot="append" color="light">account</v-icon>
+            </v-text-field>
+          </v-flex>
+
+          <v-flex xs12>
+            <v-text-field
+              v-model="lastName"
+              outlined
+              label="Last name"
+              name="lastName"
+              color="light"
+              type="text"
+              dark
+              required
+              :rules="rules.lastName"
+            >
+              <v-icon slot="append" color="light">user</v-icon>
+            </v-text-field>
+          </v-flex>
+
+          <v-flex xs12>
+            <v-text-field
+              class="mb-1 mt-2"
+              v-model="email"
+              outlined
+              label="E-mail address"
+              name="E-mail"
+              type="email"
+              color="light"
+              dark
+              required
+              validate-on-blur
+              :rules="rules.email"
+            >
+              <v-icon slot="append">$vuetify.icons.message</v-icon>
+            </v-text-field>
+          </v-flex>
+
+          <v-flex xs12>
+            <v-text-field
+              v-model="password"
+              outlined
+              label="Password"
+              name="Password"
+              color="light"
+              :type="passwordIsVisible ? 'text' : 'password'"
+              dark
+              required
+              :rules="rules.password"
+            >
+              <v-icon slot="append" color="light">lock</v-icon>
+            </v-text-field>
+          </v-flex>
+
+          <v-flex xs12>
+            <v-btn
+              x-large
+              block
+              color="primary"
+              class="py-3 text-transform-none mb-4 dark--text"
+              dark
+              @click="register"
+              :disabled="!valid"
+              :loading="loading"
+            >
+              <v-spacer></v-spacer>
+              <span>Sign Up Now</span>
+              <v-spacer></v-spacer>
+              <v-icon>keyboard_arrow_right</v-icon>
+            </v-btn>
+          </v-flex>
+        </fragment>
+
         <v-flex xs12 class="text-center mb-4 body-2">
           <p class="mb-0">
             <a @click="$emit('auth-forgot-password')">Forgot password?</a>
@@ -88,22 +185,26 @@ export default {
   components: { SeparatorOr },
   data() {
     return {
+      formMode: 'by-email',
       valid: false,
-      visible: false,
-      signupWithEmail: false,
-      emailRules: [
-        v => !!v || 'E-mail is required',
-        v => /.+@.+/.test(v) || 'E-mail must be valid',
-        v => (v || '').indexOf(' ') < 0 || 'No spaces are allowed'
-      ],
-      passwordRules: [
-        v => !!v || 'Password is required',
-        v =>
-          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&](?=.{8,})/.test(
-            v
-          ) ||
-          'Password must be atleast 8 characters long, containing at least 1 lowercase character, 1 uppercase character, 1 special character, 1 number'
-      ]
+      passwordIsVisible: false,
+      rules: {
+        firstName: [v => !!v || 'First name is required'],
+        lastName: [v => !!v || 'Last name is required'],
+        email: [
+          v => !!v || 'E-mail is required',
+          v => /.+@.+/.test(v) || 'E-mail must be valid',
+          v => (v || '').indexOf(' ') < 0 || 'No spaces are allowed'
+        ],
+        password: [
+          v => !!v || 'Password is required',
+          v => v.length >= 8 || 'Must be atleast 8 characters long',
+          v => /(?=.*[a-z])/.test(v) || 'Must have lowercase character(s)',
+          v => /(?=.*[A-Z])/.test(v) || 'Must have uppercase character(s)',
+          v => /(?=.*\d)/.test(v) || 'Must have number(s)',
+          v => /(?=.*[^A-Za-z0-9])/.test(v) || 'Must have special character(s)',
+        ]
+      }
     }
   },
   methods: {

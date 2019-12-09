@@ -55,7 +55,8 @@ export default Vue.extend({
     return {
       // FIXME: set login
       authState: 'signup',
-      title: 'Log In'
+      // FIXME: set Log In
+      title: 'Sign Up'
     }
   },
   computed: {

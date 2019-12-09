@@ -13,6 +13,13 @@
   </fragment>
 </template>
 
+<script lang="ts">
+import Vue from 'vue'
+export default Vue.extend({
+  name: 'separator-line'
+})
+</script>
+
 <style lang="scss" scoped>
 @import '@/styles/utility.scss';
 .light-border {

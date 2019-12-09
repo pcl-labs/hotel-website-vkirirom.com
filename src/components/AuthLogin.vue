@@ -49,11 +49,9 @@
             color="light"
             required
             dark
-            :rules="emailRules"
+            :rules="rules.email"
           >
-            <v-icon slot="append"
-              >$vuetify.icons.message</v-icon
-            >
+            <v-icon slot="append">$vuetify.icons.message</v-icon>
           </v-text-field>
         </v-flex>
         <v-flex xs12>
@@ -67,7 +65,7 @@
             color="light"
             required
             :type="isPasswordVisible ? 'text' : 'password'"
-            :rules="passwordRules"
+            :rules="rules.password"
           >
             <v-icon slot="append">$vuetify.icons.lock</v-icon>
           </v-text-field>
@@ -91,13 +89,17 @@
           </v-btn>
         </v-flex>
         <v-flex xs12 class="text-center mb-4 body-2">
-          <p class="mb-0"><a @click="$emit('auth-forgot-password')">Forgot password?</a></p>
+          <p class="mb-0">
+            <a @click="$emit('auth-forgot-password')">Forgot password?</a>
+          </p>
         </v-flex>
         <v-flex xs12>
           <v-divider class="light-border"></v-divider>
         </v-flex>
         <v-flex xs12 class="text-center light--text mt-4 body-2">
-          <p class="mb-0">Don't have any account? <a @click="$emit('auth-signup')">Sign up</a></p>
+          <p class="mb-0">
+            Don't have any account? <a @click="$emit('auth-signup')">Sign up</a>
+          </p>
         </v-flex>
       </v-row>
     </v-container>
@@ -115,12 +117,16 @@ export default {
     return {
       valid: false,
       isPasswordVisible: false,
-      emailRules: [
-        v => !!v || 'E-mail is required',
-        v => (v || '').indexOf(' ') < 0 || 'No spaces are allowed',
-        v => /^\S+@\S+$/.test(v) || 'E-mail must be valid'
-      ],
-      passwordRules: [v => !!v || 'Password is required']
+      rules: {
+        email: [
+          v => !!v || 'E-mail is required',
+          v => /.+@.+/.test(v) || 'E-mail must be valid',
+          v => (v || '').indexOf(' ') < 0 || 'No spaces are allowed'
+        ],
+        password: [
+          v => !!v || 'Password is required'
+        ]
+      }
     }
   },
   methods: {
