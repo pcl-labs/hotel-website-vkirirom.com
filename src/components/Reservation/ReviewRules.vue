@@ -1,4 +1,5 @@
 <template>
+<!-- TODO: move to views/ -->
   <v-container class="is-limited">
     <v-row no-gutters="">
 

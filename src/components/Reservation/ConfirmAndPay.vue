@@ -1,4 +1,5 @@
 <template>
+<!-- TODO: move to views/ -->
   <v-container class="is-limited">
     <v-row no-gutters style="min-height:100vh;">
       <v-flex xs12 md7 class="text">
