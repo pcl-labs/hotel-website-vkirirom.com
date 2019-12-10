@@ -112,6 +112,13 @@ export default {
     },
     updateSnackbar(state, payload) {
       state.snackbar = payload
+    },
+    resetState(state) {
+      for (const key in defaultState) {
+        if (defaultState.hasOwnProperty(key)) {
+          state[key] = defaultState[key]
+        }
+      }
     }
   },
   actions: {
@@ -192,7 +199,7 @@ export default {
       context.commit('updateLoading', true)
       AuthenticationService.logout().then(() => {
         context.commit('updateLoading', false)
-        context.commit('updateUser', defaultUser)
+        context.commit('resetState')
       })
     },
     ping(context) {
