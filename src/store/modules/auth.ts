@@ -29,7 +29,7 @@ const defaultState = {
   registerError: '',
   provider: '',
   currentURL: '',
-  activeState: 'login',
+  activeState: 'auth-login',
   dialog: {
     title: 'Log In',
     isOpen: false

@@ -48,7 +48,7 @@
             </div>
             <div class="d-flex align-center">
               <v-container class="d-flex pa-0">
-                <booking-dialog>
+                <booking-dialog ref="bookingDialog">
                   <!-- mobile -->
                   <v-btn
                     @click="startBooking()"
@@ -108,7 +108,7 @@ export default {
     this.positionListener()
   },
   destroyed() {
-    document.removeEventListener('scroll', this.onScrollPage)
+    document.removeEventListener('scroll', event => this.onScrollPage(event))
   },
   computed: {
     footerHeight() {
@@ -120,16 +120,16 @@ export default {
   },
   methods: {
     setInitialDistance() {
-      this.onScrollPage()
+      this.onScrollPage(null)
     },
     positionListener() {
       document.addEventListener(
         'scroll',
-        this.onScrollPage,
+        event => this.onScrollPage(event),
         getPassiveEventConfig()
       )
     },
-    onScrollPage(event = null) {
+    onScrollPage(event) {
       var scrollPosition = window.pageYOffset
       var windowSize = window.innerHeight
       var bodyHeight = document.body.offsetHeight
@@ -140,7 +140,7 @@ export default {
       )
     },
     startBooking() {
-      store.dispatch('booking/startBooking')
+      this.$refs.bookingDialog.openDialog()
     }
   }
 }

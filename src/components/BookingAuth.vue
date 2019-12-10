@@ -12,16 +12,16 @@
         <v-icon color="gray-82">close</v-icon>
       </v-btn>
       <v-toolbar-title
-        v-if="title"
+        v-if="dialog.title"
         class="light--text pl-0 ml-n4 text-center display-1"
-        >{{ title }}</v-toolbar-title
+        >{{ dialog.title }}</v-toolbar-title
       >
     </v-toolbar>
 
     <div class="d-flex flex-column">
       <div class="light--text mx-auto">
         <v-card color="dark px-2 pb-4" tile :ripple="false">
-          <auth-core @change-auth-state="changeAuthState" />
+          <auth-core />
         </v-card>
       </div>
     </div>
@@ -42,29 +42,23 @@ export default Vue.extend({
       required: true
     }
   },
-  data() {
-    return {
-      title: 'Log In'
-    }
+  mounted() {
+    store.dispatch('auth/updateActiveState', 'auth-login')
   },
   computed: {
+    dialog() {
+      return store.getters['auth/dialog']
+    },
     isAuthenticated(): boolean {
       return store.getters['auth/isAuthenticated']
     }
   },
   watch: {
     isAuthenticated(newVal) {
-      store.dispatch('booking/updateCurrentStep', this.nextStep)
-    }
-  },
-  methods: {
-    changeAuthState({ title }) {
-      this.title = title
+      if (newVal) {
+        store.dispatch('booking/updateCurrentStep', this.nextStep)
+      }
     }
   }
 })
 </script>
-
-<style lang="scss" scoped>
-//
-</style>

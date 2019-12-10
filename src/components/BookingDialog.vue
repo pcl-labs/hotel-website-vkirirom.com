@@ -51,14 +51,6 @@ import BookingConfirmGuests from '@/components/BookingConfirmGuests.vue'
 export default Vue.extend({
   name: 'booking-dialog',
   components: { BookingConfirmDates, BookingAuth, BookingConfirmGuests },
-  data() {
-    return {
-      isDialogOpen: false
-    }
-  },
-  mounted() {
-    this.resetComponentState()
-  },
   watch: {
     currentStep(newVal, oldValue) {
       this.isDialogOpen = newVal.id > 0
@@ -66,6 +58,19 @@ export default Vue.extend({
     }
   },
   computed: {
+    dialog() {
+      return store.getters['booking/dialog']
+    },
+    isDialogOpen: {
+      get() {
+        return store.getters['booking/dialog'].isOpen
+      },
+      set(value: boolean) {
+        store.dispatch('booking/updateDialog', {
+          isOpen: value
+        })
+      }
+    },
     currentStep(): number {
       return store.getters['booking/currentStep']
     },
@@ -77,6 +82,19 @@ export default Vue.extend({
     }
   },
   methods: {
+    // NOTE: can be used outside of component by ref
+    openDialog() {
+
+      store.dispatch('booking/updateCurrentStep', this.steps.confirmDates)
+      store.dispatch('booking/updateDialog', {
+        isOpen: true
+      })
+    },
+    closeDialog() {
+      store.dispatch('booking/updateDialog', {
+        isOpen: false
+      })
+    },
     onClose() {
       store.dispatch('booking/updateCurrentStep', this.steps.notStarted)
     },
@@ -92,16 +110,6 @@ export default Vue.extend({
           'dialog--is-open'
         )
       }
-    },
-    // this is for development purposes only, related to HMR
-    resetComponentState() {
-      // this.isDialogOpen = true
-      // store.dispatch('booking/updateCurrentStep', this.steps.auth)
-      // this.setDocumentClasses()
-      // FIXME: enable
-      this.isDialogOpen = false
-      store.dispatch('booking/updateCurrentStep', this.steps.notStarted)
-      this.setDocumentClasses()
     }
   }
 })
