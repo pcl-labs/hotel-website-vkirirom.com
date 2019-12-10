@@ -15,31 +15,21 @@
             <v-icon color="gray-82">close</v-icon>
           </v-btn>
           <v-toolbar-title
-            v-if="title"
+            v-if="dialog.title"
             class="light--text pl-0 ml-n4 text-center display-1"
-            >{{ title }}</v-toolbar-title
+            >{{ dialog.title }}</v-toolbar-title
           >
         </v-toolbar>
 
         <div class="d-flex flex-column">
           <div class="light--text mx-auto">
             <v-card color="dark px-2 pb-4" tile :ripple="false">
-              <auth-core
-                @message="onMessage"
-                @change-auth-state="changeAuthState"
-              />
+              <auth-core />
             </v-card>
           </div>
         </div>
       </v-card>
     </v-dialog>
-
-    <v-snackbar color="success" top v-model="snackbar" :timeout="2000">
-      {{ snackbarTitle }}
-      <v-btn color="white" text @click="snackbar = false">
-        <v-icon>close</v-icon>
-      </v-btn>
-    </v-snackbar>
   </fragment>
 </template>
 
@@ -51,68 +41,46 @@ import AuthCore from '@/components/AuthCore.vue'
 export default Vue.extend({
   name: 'booking-dialog',
   components: { AuthCore },
-  data() {
-    return {
-      snackbar: false,
-      snackbarTitle: '',
-      title: 'Log In',
-      isDialogOpen: false
-    }
-  },
-  mounted() {
-    this.resetComponentState()
-  },
-  watch: {
-    isDialogOpen() {
-      this.setDocumentClasses()
-    },
-    isAuthenticated(newVal) {
-      if (newVal) {
-        this.snackbar = true
-        this.closeDialog()
-      }
-    }
-  },
   computed: {
+    dialog() {
+      return store.getters['auth/dialog']
+    },
+    isDialogOpen: {
+      get() {
+        return store.getters['auth/dialog'].isOpen
+      },
+      set(value: boolean) {
+        store.dispatch('auth/updateDialog', {
+          isOpen: value
+        })
+      }
+    },
     isAuthenticated(): boolean {
       return store.getters['auth/isAuthenticated']
     }
   },
+  watch: {
+    isAuthenticated(newVal) {
+      if (newVal) {
+        this.closeDialog()
+      }
+    }
+  },
   methods: {
-    onMessage({ title }) {
-      this.snackbarTitle = title
-      this.snackbar = true
-    },
-    openDialog() {
-      this.isDialogOpen = true
-    },
-    closeDialog() {
-      this.isDialogOpen = false
-    },
-    changeAuthState({ title }) {
-      this.title = title
-    },
     onClose() {
       this.closeDialog()
     },
-    setDocumentClasses() {
-      if (this.isDialogOpen) {
-        document.documentElement.classList.add(
-          'overflow-y-hidden',
-          'dialog--is-open'
-        )
-      } else {
-        document.documentElement.classList.remove(
-          'overflow-y-hidden',
-          'dialog--is-open'
-        )
-      }
+    // NOTE: can be used outside of component by ref
+    openDialog() {
+      store.dispatch('auth/updateActiveState', 'auth-login')
+      store.dispatch('auth/updateDialog', {
+        isOpen: true
+      })
     },
-    // this is for development purposes only, related to HMR
-    resetComponentState() {
-      // FIXME: enable
-      this.isDialogOpen = false
-      this.setDocumentClasses()
+    closeDialog() {
+      store.dispatch('auth/updateDialog', {
+        isOpen: false
+      })
     }
   }
 })

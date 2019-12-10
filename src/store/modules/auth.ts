@@ -3,6 +3,7 @@ import { AuthenticationService } from '@/connection/resources.js'
 import { APIPath } from '@/helpers'
 import Vue from 'vue'
 import store from '@/store'
+import { setDocumentClassesOnToggleDialog } from '@/helpers'
 
 const defaultUser = {
   id: 0,
@@ -10,21 +11,50 @@ const defaultUser = {
   userName: ''
 }
 
+const authStates = {
+  'auth-login': { title: 'Log In' },
+  'auth-forgot-password': { title: 'Reset Password' },
+  'auth-signup': { title: 'Sign Up' },
+  'auth-login-existing-account': { title: '' }
+}
+
+const defaultState = {
+  email: '',
+  password: '',
+  token: '',
+  status: '',
+  user: defaultUser,
+  loading: false,
+  loginError: '',
+  registerError: '',
+  provider: '',
+  currentURL: '',
+  activeState: 'login',
+  dialog: {
+    title: 'Log In',
+    isOpen: false
+  },
+  snackbar: {
+    timeout: 3000,
+    type: 'success',
+    isOpen: false,
+    message: ''
+  }
+}
+
 export default {
   namespaced: true,
-  state: {
-    email: '',
-    password: '',
-    token: '',
-    status: '',
-    user: defaultUser,
-    loading: false,
-    loginError: '',
-    registerError: '',
-    provider: '',
-    currentURL: ''
-  },
+  state: defaultState,
   getters: {
+    dialog: state => {
+      return state.dialog
+    },
+    snackbar: state => {
+      return state.snackbar
+    },
+    activeState: state => {
+      return state.activeState
+    },
     email: state => {
       return state.email
     },
@@ -50,14 +80,17 @@ export default {
     }
   },
   mutations: {
-    updateEmail(state, email) {
-      state.email = email
+    updateDialog(state, payload) {
+      state.dialog = payload
     },
-    updatePassword(state, password) {
-      state.password = password
+    updateEmail(state, payload) {
+      state.email = payload
     },
-    updateProvider(state, provider) {
-      state.provider = provider
+    updatePassword(state, payload) {
+      state.password = payload
+    },
+    updateProvider(state, payload) {
+      state.provider = payload
     },
     updateLoading(state, payload) {
       state.loading = payload
@@ -67,9 +100,39 @@ export default {
     },
     updateCurrentURL(state, payload) {
       state.currentURL = payload
+    },
+    updateActiveState(state, payload) {
+      state.activeState = payload
+    },
+    updateSnackbar(state, payload) {
+      state.snackbar = payload
     }
   },
   actions: {
+    updateDialog(context, payload) {
+      const dialog = {
+        ...context.state.dialog,
+        ...payload
+      }
+
+      setDocumentClassesOnToggleDialog(dialog.isOpen)
+      context.commit('updateDialog', dialog)
+    },
+    updateSnackbar(context, payload) {
+      const snackbar = {
+        ...context.state.snackbar,
+        ...payload
+      }
+      context.commit('updateSnackbar', snackbar)
+    },
+    updateActiveState(context, payload) {
+      context.commit('updateActiveState', payload)
+
+      context.commit('updateDialog', {
+        ...context.state.dialog,
+        title: authStates[payload].title
+      })
+    },
     login(context) {
       context.commit('updateLoading', true)
       AuthenticationService.login({
@@ -79,7 +142,14 @@ export default {
         }
       })
         .then(token => {
+          // TODO: update token by commit
           context.state.token = token
+          store.dispatch('auth/updateSnackbar', {
+            isOpen: true,
+            type: 'success',
+            timeout: 5000,
+            message: 'Welcome!'
+          })
           store.dispatch('auth/ping')
         })
         .catch(error => {

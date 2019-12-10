@@ -1,26 +1,10 @@
 <template>
   <fragment>
-    <auth-login
-      v-if="authState === 'login'"
-      @auth-forgot-password="
-        changeAuthState('forgot-password', { title: 'Reset Password' })
-      "
-      @auth-signup="changeAuthState('signup', { title: 'Sign Up' })"
-    ></auth-login>
+    <auth-login v-if="activeState === 'auth-login'"></auth-login>
     <auth-login-existing-account
-      v-if="authState === 'login-existing-account'"
-      @auth-forgot-password="
-        changeAuthState('forgot-password', { title: 'Reset Password' })
-      "
-      @auth-login="changeAuthState('login', { title: 'Log In' })"
+      v-if="activeState === 'auth-login-existing-account'"
     ></auth-login-existing-account>
-    <auth-signup
-      v-if="authState === 'signup'"
-      @auth-login="changeAuthState('login', { title: 'Log In' })"
-      @auth-login-existing-account="
-        changeAuthState('login-existing-account', { title: '' })
-      "
-    ></auth-signup>
+    <auth-signup v-if="activeState === 'auth-signup'"></auth-signup>
   </fragment>
 </template>
 
@@ -34,29 +18,20 @@ import AuthSignup from '@/components/AuthSignup.vue'
 export default Vue.extend({
   name: 'auth-core',
   components: { AuthLogin, AuthSignup, AuthLoginExistingAccount },
-  data() {
-    return {
-      authState: 'login'
-    }
+  mounted() {
+    this.setCurrentUrl()
   },
   computed: {
+    activeState() {
+      return store.getters['auth/activeState']
+    },
     isAuthenticated(): boolean {
       return store.getters['auth/isAuthenticated']
     }
   },
-  watch: {
-    isAuthenticated(newVal) {
-      if (newVal === true) {
-        this.$emit('authenticate')
-        this.$emit('message', { title: 'Welcome!' })
-      }
-      console.log('isAuthenticated newVal:', newVal)
-    }
-  },
   methods: {
-    changeAuthState(newState, data) {
-      this.authState = newState
-      this.$emit('change-auth-state', data)
+    setCurrentUrl() {
+      this.$store.commit('auth/updateCurrentURL', window.location.href)
     }
   }
 })

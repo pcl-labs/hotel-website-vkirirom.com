@@ -159,7 +159,7 @@
 
         <v-flex xs12 class="text-center mb-4 body-2">
           <p class="mb-0">
-            <a @click="$emit('auth-forgot-password')">Forgot password?</a>
+            <a @click="updateActiveState('auth-forgot-password')">Forgot password?</a>
           </p>
         </v-flex>
         <v-flex xs12>
@@ -168,7 +168,7 @@
         <v-flex xs12 class="text-center light--text mt-4 body-2">
           <p class="mb-0">
             Already have an account?
-            <a @click="$emit('auth-login')">Log in</a>
+            <a @click="updateActiveState('auth-login')">Log in</a>
           </p>
         </v-flex>
       </v-row>
@@ -212,6 +212,9 @@ export default {
     }
   },
   methods: {
+    updateActiveState(value) {
+      store.dispatch('auth/updateActiveState', value)
+    },
     register() {
       store.dispatch('auth/register')
     },
