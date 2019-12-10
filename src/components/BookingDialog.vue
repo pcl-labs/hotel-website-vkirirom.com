@@ -13,16 +13,22 @@
       transition="dialog-bottom-transition"
     >
       <booking-confirm-dates
-        @booking-close="onClose"
         v-if="currentStep.id === steps.confirmDates.id"
+        @booking-close="onClose"
         :next-step="isAuthenticated ? steps.confirmGuests : steps.auth"
       ></booking-confirm-dates>
 
       <booking-auth
-        @booking-close="onClose"
         v-if="currentStep.id === steps.auth.id"
+        @booking-close="onClose"
         :next-step="steps.confirmGuests"
       ></booking-auth>
+
+      <booking-confirm-guests
+        v-if="currentStep.id === steps.confirmGuests.id"
+        @booking-close="onClose"
+        :next-step="steps.confirmBooking"
+      ></booking-confirm-guests>
     </v-dialog>
 
     <!-- 
@@ -38,12 +44,13 @@
 <script lang="ts">
 import Vue from 'vue'
 import store from '@/store'
-const BookingConfirmDates = () => import('@/components/BookingConfirmDates.vue')
-const BookingAuth = () => import('@/components/BookingAuth.vue')
+import BookingConfirmDates from '@/components/BookingConfirmDates.vue'
+import BookingAuth from '@/components/BookingAuth.vue'
+import BookingConfirmGuests from '@/components/BookingConfirmGuests.vue'
 
 export default Vue.extend({
   name: 'booking-dialog',
-  components: { BookingConfirmDates, BookingAuth },
+  components: { BookingConfirmDates, BookingAuth, BookingConfirmGuests },
   data() {
     return {
       isDialogOpen: false

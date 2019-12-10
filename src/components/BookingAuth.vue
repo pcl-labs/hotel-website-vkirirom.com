@@ -31,14 +31,11 @@
 <script lang="ts">
 import Vue from 'vue'
 import store from '@/store'
-import AuthLogin from '@/components/AuthLogin.vue'
-import AuthLoginExistingAccount from '@/components/AuthLoginExistingAccount.vue'
-import AuthSignup from '@/components/AuthSignup.vue'
 import AuthCore from '@/components/AuthCore.vue'
 
 export default Vue.extend({
   name: 'booking-auth',
-  components: { AuthLogin, AuthSignup, AuthLoginExistingAccount, AuthCore },
+  components: { AuthCore },
   props: {
     nextStep: {
       type: Object,

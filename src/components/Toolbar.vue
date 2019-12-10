@@ -49,7 +49,7 @@
 </div>
 </template>
 
-<script lang="ts">
+<script>
 import AuthDialog from "@/components/AuthDialog.vue";
 import store from '@/store';
 export default {
@@ -57,7 +57,7 @@ export default {
   components: { AuthDialog },
   data() {
     return {
-      drawer: null
+      drawer: false
     }
   },
   methods:{
@@ -65,8 +65,10 @@ export default {
       store.dispatch('auth/logout')
     },
     openLogin() {
-      // @ts-ignore
-      this.$refs.authDialogRef.openDialog()
+      this.drawer = false
+      this.$nextTick(() => {
+        this.$refs.authDialogRef.openDialog()
+      })
     }
   },
   computed:{
