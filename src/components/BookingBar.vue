@@ -6,7 +6,7 @@
   >
     <div class="booking-bar--sticker w-100">
       <section class="wrapper">
-        <v-container class="xs-no-limit is-limited py-0 px-4 px-sm-2">
+        <v-container class="xs-no-limit is-limited py-0 px-3 px-sm-2">
           <div class="d-flex wrapper-2">
             <!-- mobile content -->
             <div class="d-sm-none flex-grow-1">
