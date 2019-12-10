@@ -47,7 +47,7 @@
         <separator-or></separator-or>
 
         <v-flex xs12 v-if="registerError">
-          <p class="light--text">{{ registerError }}</p>
+          <p class="error--text">{{ registerError }}</p>
         </v-flex>
 
         <!-- by oauth providers -->
@@ -240,9 +240,6 @@ export default {
       set(value) {
         store.commit('auth/updatePassword', value)
       }
-    },
-    isAuthenticated() {
-      return store.getters['auth/isAuthenticated']
     },
     loading() {
       return store.getters['auth/loading']

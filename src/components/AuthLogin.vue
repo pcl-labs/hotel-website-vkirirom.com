@@ -42,7 +42,7 @@
         <separator-or></separator-or>
 
         <v-flex xs12 v-if="loginError">
-          <p class="light--text">{{ loginError }}</p>
+          <p class="error--text">{{ loginError }}</p>
         </v-flex>
         <v-flex xs12>
           <v-text-field

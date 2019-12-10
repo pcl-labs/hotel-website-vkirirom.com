@@ -24,9 +24,6 @@ export default Vue.extend({
   computed: {
     activeState() {
       return store.getters['auth/activeState']
-    },
-    isAuthenticated(): boolean {
-      return store.getters['auth/isAuthenticated']
     }
   },
   methods: {

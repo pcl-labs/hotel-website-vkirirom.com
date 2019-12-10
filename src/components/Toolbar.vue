@@ -42,7 +42,7 @@
         <v-btn text block class="my-2 button" @click="openLogin()" v-if="!isAuthenticated"><h3 class="mb-0">Log in</h3></v-btn>
       </v-flex>
       <v-flex xs12>
-        <v-btn text block class="my-2 button" @click="logout()" v-if="isAuthenticated == true" :loading="loading"><h3 class="mb-0">Log out</h3></v-btn>
+        <v-btn text block class="my-2 button" @click="logout()" v-if="isAuthenticated" :loading="loading"><h3 class="mb-0">Log out</h3></v-btn>
       </v-flex>
     </v-row>
   </v-navigation-drawer>

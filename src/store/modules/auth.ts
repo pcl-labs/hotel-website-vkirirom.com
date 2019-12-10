@@ -83,6 +83,12 @@ export default {
     updateDialog(state, payload) {
       state.dialog = payload
     },
+    updateLoginError(state, payload) {
+      state.loginError = payload
+    },
+    updateRegisterError(state, payload) {
+      state.registerError = payload
+    },
     updateEmail(state, payload) {
       state.email = payload
     },
@@ -127,7 +133,8 @@ export default {
     },
     updateActiveState(context, payload) {
       context.commit('updateActiveState', payload)
-
+      context.commit('updateLoginError', '')
+      context.commit('updateRegisterError', '')
       context.commit('updateDialog', {
         ...context.state.dialog,
         title: authStates[payload].title
