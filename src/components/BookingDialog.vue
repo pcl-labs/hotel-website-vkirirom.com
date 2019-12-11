@@ -51,12 +51,6 @@ import BookingConfirmGuests from '@/components/BookingConfirmGuests.vue'
 export default Vue.extend({
   name: 'booking-dialog',
   components: { BookingConfirmDates, BookingAuth, BookingConfirmGuests },
-  watch: {
-    currentStep(newVal, oldValue) {
-      this.isDialogOpen = newVal.id > 0
-      this.setDocumentClasses()
-    }
-  },
   computed: {
     dialog() {
       return store.getters['booking/dialog']
@@ -84,7 +78,6 @@ export default Vue.extend({
   methods: {
     // NOTE: can be used outside of component by ref
     openDialog() {
-
       store.dispatch('booking/updateCurrentStep', this.steps.confirmDates)
       store.dispatch('booking/updateDialog', {
         isOpen: true
@@ -97,19 +90,6 @@ export default Vue.extend({
     },
     onClose() {
       store.dispatch('booking/updateCurrentStep', this.steps.notStarted)
-    },
-    setDocumentClasses() {
-      if (this.isDialogOpen) {
-        document.documentElement.classList.add(
-          'overflow-y-hidden',
-          'dialog--is-open'
-        )
-      } else {
-        document.documentElement.classList.remove(
-          'overflow-y-hidden',
-          'dialog--is-open'
-        )
-      }
     }
   }
 })
