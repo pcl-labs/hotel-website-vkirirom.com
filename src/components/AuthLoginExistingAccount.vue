@@ -1,5 +1,5 @@
 <template>
-  <v-form name="Login" v-model="valid">
+  <v-form name="Login" v-model="valid" @submit.prevent="">
     <v-container fluid>
       <v-row no-gutters>
         <v-flex xs12 class="text-center">
@@ -42,6 +42,7 @@
             class="py-3 text-capitalize mb-3 dark--text"
             dark
             @click="login()"
+            type="submit"
             :disabled="!valid"
             :loading="loading"
           >

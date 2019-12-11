@@ -126,3 +126,8 @@ h6 {
 .fade-leave-active {
   opacity: 0;
 }
+
+// fix vuetify labels when browser autofills data
+.v-label.theme--dark {
+  background-color: $dark;
+}

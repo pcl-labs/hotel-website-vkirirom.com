@@ -1,5 +1,5 @@
 <template>
-  <v-form name="ForgotPassword" v-model="valid">
+  <v-form name="ForgotPassword" v-model="valid" @submit.prevent="">
     <v-container fluid>
       <v-row no-gutters>
         <v-flex xs12>
@@ -24,7 +24,6 @@
             color="light"
             dark
             required
-            validate-on-blur
             :rules="rules.email"
           >
             <v-icon slot="append">$vuetify.icons.message</v-icon>
@@ -39,6 +38,7 @@
             class="py-3 text-transform-none mb-8 dark--text"
             dark
             @click="sendResetPasswordLink"
+            type="submit"
             :disabled="!valid"
             :loading="loading"
           >

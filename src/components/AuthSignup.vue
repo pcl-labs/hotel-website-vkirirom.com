@@ -1,5 +1,5 @@
 <template>
-  <v-form name="Register" v-model="valid">
+  <v-form name="Register" v-model="valid" @submit.prevent="">
     <v-container fluid>
       <v-row no-gutters>
         <v-col cols="12" class="mb-2">
@@ -115,7 +115,6 @@
               color="light"
               dark
               required
-              validate-on-blur
               :rules="rules.email"
             >
               <v-icon slot="append">$vuetify.icons.message</v-icon>
@@ -146,6 +145,7 @@
               class="py-3 text-transform-none mb-4 dark--text"
               dark
               @click="register"
+              type="submit"
               :disabled="!valid"
               :loading="loading"
             >
