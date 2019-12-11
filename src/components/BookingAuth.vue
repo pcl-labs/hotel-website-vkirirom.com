@@ -44,6 +44,9 @@ export default Vue.extend({
   },
   mounted() {
     store.dispatch('auth/updateActiveState', 'auth-login')
+    if (this.isAuthenticated) {
+      this.goNextStep()
+    }
   },
   computed: {
     dialog() {
@@ -56,8 +59,13 @@ export default Vue.extend({
   watch: {
     isAuthenticated(newVal) {
       if (newVal) {
-        store.dispatch('booking/updateCurrentStep', this.nextStep)
+        this.goNextStep()
       }
+    }
+  },
+  methods: {
+    goNextStep() {
+      store.dispatch('booking/updateCurrentStep', this.nextStep)
     }
   }
 })

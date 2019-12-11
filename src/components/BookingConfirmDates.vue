@@ -226,6 +226,9 @@ export default Vue.extend({
       this.$store.dispatch('booking/clearPrices')
     },
     submit() {
+      this.goNextStep()
+    },
+    goNextStep() {
       store.dispatch('booking/updateCurrentStep', this.nextStep)
     }
   }

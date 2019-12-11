@@ -42,7 +42,11 @@ export default Vue.extend({
     return {}
   },
   computed: {},
-  methods: {}
+  methods: {
+    goNextStep() {
+      store.dispatch('booking/updateCurrentStep', this.nextStep)
+    }
+  }
 })
 </script>
 
