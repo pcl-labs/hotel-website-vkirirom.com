@@ -6,6 +6,7 @@
     <v-dialog
       dark
       persistent
+      v-if="tempFix"
       v-model="isDialogOpen"
       :width="currentStep.width"
       :fullscreen="$vuetify.breakpoint.smAndDown"
@@ -14,19 +15,19 @@
     >
       <booking-confirm-dates
         v-if="currentStep.id === steps.confirmDates.id"
-        @booking-close="onClose"
+        @booking-close="closeDialog"
         :next-step="isAuthenticated ? steps.confirmGuests : steps.auth"
       ></booking-confirm-dates>
 
       <booking-auth
         v-if="currentStep.id === steps.auth.id"
-        @booking-close="onClose"
+        @booking-close="closeDialog"
         :next-step="steps.confirmGuests"
       ></booking-auth>
 
       <booking-confirm-guests
         v-if="currentStep.id === steps.confirmGuests.id"
-        @booking-close="onClose"
+        @booking-close="closeDialog"
         :next-step="steps.confirmBooking"
       ></booking-confirm-guests>
     </v-dialog>
@@ -51,13 +52,22 @@ import BookingConfirmGuests from '@/components/BookingConfirmGuests.vue'
 export default Vue.extend({
   name: 'booking-dialog',
   components: { BookingConfirmDates, BookingAuth, BookingConfirmGuests },
+  data() {
+    return {
+      tempFix: false
+    }
+  },
+  mounted() {
+    this.patchFocusError()
+  },
   computed: {
     dialog() {
       return store.getters['booking/dialog']
     },
     isDialogOpen: {
       get() {
-        return store.getters['booking/dialog'].isOpen
+        const isOpen = store.getters['booking/dialog'].isOpen
+        return isOpen
       },
       set(value: boolean) {
         store.dispatch('booking/updateDialog', {
@@ -76,6 +86,11 @@ export default Vue.extend({
     }
   },
   methods: {
+    patchFocusError() {
+      this.$nextTick(() => {
+        this.tempFix = true
+      })
+    },
     // NOTE: can be used outside of component by ref
     openDialog() {
       store.dispatch('booking/updateCurrentStep', this.steps.confirmDates)
@@ -87,8 +102,6 @@ export default Vue.extend({
       store.dispatch('booking/updateDialog', {
         isOpen: false
       })
-    },
-    onClose() {
       store.dispatch('booking/updateCurrentStep', this.steps.notStarted)
     }
   }
