@@ -1,6 +1,6 @@
 <template>
   <v-card tile :elevation="0" class="dark">
-    <v-toolbar class="px-2" dense flat dark color="dark">
+    <v-toolbar class="px-0" dense flat dark color="dark">
       <v-btn
         class="ma-0"
         small

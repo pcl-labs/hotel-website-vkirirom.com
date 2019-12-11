@@ -18,7 +18,7 @@
 
     <div class="d-flex flex-column">
       <v-card color="dark px-2 pb-4 light--text" tile :ripple="false">
-        <v-form v-model="isFormValid">
+        <v-form v-model="isFormValid" @submit.prevent="">
           <v-text-field
             class="d-none"
             :value="guestsTotal"
@@ -43,21 +43,14 @@
                     x-small
                     fab
                     icon
-                    outlined
-                    ><v-icon>remove</v-icon></v-btn
+                    ><v-icon>remove_circle_outline</v-icon></v-btn
                   >
                   <span
                     class="mx-4 text--light guests-count user-select-none text-center"
                     >{{ guestsAdults }}</span
                   >
-                  <v-btn
-                    @click="guestsAdults++"
-                    color="light"
-                    x-small
-                    fab
-                    icon
-                    outlined
-                    ><v-icon>add</v-icon></v-btn
+                  <v-btn @click="guestsAdults++" color="light" x-small fab icon
+                    ><v-icon>add_circle_outline</v-icon></v-btn
                   >
                 </div>
               </v-list-item-icon>
@@ -80,8 +73,7 @@
                     x-small
                     fab
                     icon
-                    outlined
-                    ><v-icon>remove</v-icon></v-btn
+                    ><v-icon>remove_circle_outline</v-icon></v-btn
                   >
                   <span
                     class="mx-4 text--light guests-count user-select-none text-center"
@@ -93,8 +85,7 @@
                     x-small
                     fab
                     icon
-                    outlined
-                    ><v-icon>add</v-icon></v-btn
+                    ><v-icon>add_circle_outline</v-icon></v-btn
                   >
                 </div>
               </v-list-item-icon>
@@ -117,21 +108,14 @@
                     x-small
                     fab
                     icon
-                    outlined
-                    ><v-icon>remove</v-icon></v-btn
+                    ><v-icon>remove_circle_outline</v-icon></v-btn
                   >
                   <span
                     class="mx-4 text--light guests-count user-select-none text-center"
                     >{{ guestsInfants }}</span
                   >
-                  <v-btn
-                    @click="guestsInfants++"
-                    color="light"
-                    x-small
-                    fab
-                    icon
-                    outlined
-                    ><v-icon>add</v-icon></v-btn
+                  <v-btn @click="guestsInfants++" color="light" x-small fab icon
+                    ><v-icon>add_circle_outline</v-icon></v-btn
                   >
                 </div>
               </v-list-item-icon>
@@ -220,5 +204,12 @@ export default Vue.extend({
 }
 .guests-count {
   min-width: rem(24px);
+}
+.v-btn--fab {
+  .v-icon {
+    width: rem(32px) !important;
+    height: rem(32px) !important;
+    font-size: rem(32px);
+  }
 }
 </style>
