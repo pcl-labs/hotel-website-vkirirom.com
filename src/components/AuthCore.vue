@@ -5,6 +5,7 @@
       v-if="activeState === 'auth-login-existing-account'"
     ></auth-login-existing-account>
     <auth-signup v-if="activeState === 'auth-signup'"></auth-signup>
+    <auth-forgot-password v-if="activeState === 'auth-forgot-password'"></auth-forgot-password>
   </fragment>
 </template>
 
@@ -14,10 +15,11 @@ import store from '@/store'
 import AuthLogin from '@/components/AuthLogin.vue'
 import AuthLoginExistingAccount from '@/components/AuthLoginExistingAccount.vue'
 import AuthSignup from '@/components/AuthSignup.vue'
+import AuthForgotPassword from '@/components/AuthForgotPassword.vue'
 
 export default Vue.extend({
   name: 'auth-core',
-  components: { AuthLogin, AuthSignup, AuthLoginExistingAccount },
+  components: { AuthLogin, AuthSignup, AuthLoginExistingAccount, AuthForgotPassword },
   mounted() {
     this.setCurrentUrl()
   },

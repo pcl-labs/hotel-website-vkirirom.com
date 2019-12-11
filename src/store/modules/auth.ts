@@ -27,6 +27,7 @@ const defaultState = {
   loading: false,
   loginError: '',
   registerError: '',
+  forgotPasswordError: '',
   provider: '',
   currentURL: '',
   activeState: 'auth-login',
@@ -73,6 +74,9 @@ export default {
     registerError: state => {
       return state.registerError
     },
+    forgotPasswordError: state => {
+      return state.forgotPasswordError
+    },
     oauth(state) {
       return APIPath(
         `/api/v0/authentication/provider/login?provider=${state.provider}&returnUrl=${state.currentURL}`
@@ -88,6 +92,9 @@ export default {
     },
     updateRegisterError(state, payload) {
       state.registerError = payload
+    },
+    updateForgotPasswordError(state, payload) {
+      state.forgotPasswordError = payload
     },
     updateEmail(state, payload) {
       state.email = payload
@@ -142,6 +149,7 @@ export default {
       context.commit('updateActiveState', payload)
       context.commit('updateLoginError', '')
       context.commit('updateRegisterError', '')
+      context.commit('updateForgotPasswordError', '')
       context.commit('updateDialog', {
         ...context.state.dialog,
         title: authStates[payload].title
@@ -194,6 +202,11 @@ export default {
             context.state.registerError = response[0].description
           }
         })
+    },
+    sendResetPasswordLink(context) {
+      // context.commit('updateLoading', true)
+      // AuthenticationService.sendResetPasswordLink
+      console.log('TODO: send reset password link')
     },
     logout(context) {
       context.commit('updateLoading', true)
