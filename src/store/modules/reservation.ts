@@ -1,5 +1,6 @@
 import { addDays } from 'date-fns'
 import { RoomTypeService } from '@/connection/resources.js'
+import { CompanyService } from '@/connection/resources.js'
 
 const defaultState = {
   transportation: false,
@@ -23,7 +24,8 @@ const defaultState = {
   checkOut: '',
   vat: '',
   finalPrice: '',
-  prices: []
+  prices: [],
+  stripeKey: ''
 }
 
 export default {
@@ -64,6 +66,9 @@ export default {
     updateRoomType(state, payload) {
       state.roomType = payload
     },
+    updateStripeKey(state, payload) {
+      state.stripeKey = payload
+    },
     resetState(state) {
       for (const key in defaultState) {
         if (defaultState.hasOwnProperty(key)) {
@@ -91,6 +96,11 @@ export default {
         context.commit('updatePrices', prices)
         context.commit('updateVat', vat)
         context.commit('updateFinalPrice', finalPrice)
+      })
+    },
+    getStripeKey(context) {
+      return CompanyService.stripePublishableKey().then(stripePublishableKey => {
+        context.commit('updateStripeKey', stripePublishableKey)
       })
     }
   },
@@ -130,6 +140,9 @@ export default {
     },
     roomType(state) {
       return state.roomType
+    },
+    stripeKey(state) {
+      return state.stripeKey
     }
   }
 }
