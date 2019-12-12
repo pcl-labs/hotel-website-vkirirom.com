@@ -74,10 +74,10 @@
                     <v-col xs6>{{ formatDates(price.date) }}</v-col>
                     <v-col xs6 class="text-right ">${{ price.amount }}</v-col>
                   </v-row>
-                  <v-row class="confirm-dates--price-row" no-gutters>
+                  <!-- <v-row class="confirm-dates--price-row" no-gutters>
                     <v-col xs6>VAT (10%)</v-col>
                     <v-col xs6 class="text-right ">${{ vat }}</v-col>
-                  </v-row>
+                  </v-row> -->
                 </div>
 
                 <!-- total -->
@@ -86,14 +86,14 @@
                     <h3 class="title">Total</h3>
                   </v-col>
                   <v-col xs6 class="text-right">
-                    <h3 class="title">${{ finalPrice }}</h3>
+                    <h3 class="title">${{ totalPrice }}</h3>
                   </v-col>
                 </v-row>
 
                 <input
                   name="Amount (in $)"
                   hidden
-                  :value="finalPrice"
+                  :value="totalPrice"
                   type="text"
                   readonly
                 />
@@ -169,11 +169,11 @@ export default Vue.extend({
     prices() {
       return this.$store.getters['booking/bookingInfo'].prices
     },
-    finalPrice() {
-      return this.$store.getters['booking/bookingInfo'].finalPrice
+    totalPrice() {
+      return this.$store.getters['booking/totalPrice']
     },
     vat() {
-      return this.$store.getters['booking/bookingInfo'].vat.toFixed(2)
+      return this.$store.getters['booking/vat'].toFixed(2)
     },
     roomTypeId(): number {
       return this.resort.modules.hotel.roomTypes[0].id

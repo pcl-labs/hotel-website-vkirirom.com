@@ -71,8 +71,8 @@ const defaultState = {
     dateOne: '',
     dateTwo: '',
     checkOut: '',
-    vat: '',
-    finalPrice: '',
+    vat: 0,
+    finalPrice: 0,
     prices: []
   }
 }
@@ -93,12 +93,6 @@ export default {
     updateDateTwo(state, payload) {
       state.bookingInfo.dateTwo = payload
       state.bookingInfo.checkOut = addDays(payload, 1)
-    },
-    updateVat(state, payload) {
-      state.bookingInfo.vat = payload
-    },
-    updateFinalPrice(state, payload) {
-      state.bookingInfo.finalPrice = payload
     },
     updatePrices(state, payload) {
       state.bookingInfo.prices = payload
@@ -183,8 +177,6 @@ export default {
     },
     clearPrices(context) {
       context.commit('updatePrices', defaultState.bookingInfo.prices)
-      context.commit('updateVat', defaultState.bookingInfo.vat)
-      context.commit('updateFinalPrice', defaultState.bookingInfo.finalPrice)
     },
     getPrices(context, { roomTypeId, dateOne, dateTwo }) {
       return RoomTypeService.prices({
@@ -192,18 +184,7 @@ export default {
         startDate: dateOne,
         endDate: dateTwo
       }).then(prices => {
-        let totalPrice = 0
-        for (let i = 0; i < prices.length; i++) {
-          totalPrice += prices[i].amount
-        }
-        const vat = totalPrice * 0.1
-        totalPrice = totalPrice + vat
-        // vat = vat.toFixed(2);
-        const finalPrice = totalPrice.toFixed(2)
-
         context.commit('updatePrices', prices)
-        context.commit('updateVat', vat)
-        context.commit('updateFinalPrice', finalPrice)
       })
     }
   },
@@ -213,6 +194,20 @@ export default {
     },
     bookingInfo(state) {
       return state.bookingInfo
+    },
+    totalPrice(state) {
+      const prices = state.bookingInfo.prices
+      let totalPrice = 0
+      for (let i = 0; i < prices.length; i++) {
+        totalPrice += prices[i].amount
+      }
+      return totalPrice
+    },
+    vat(state, getters) {
+      return getters.totalPrice * 0.1
+    },
+    finalPrice(state, getters) {
+      return getters.totalPrice + getters.vat
     },
     currentStep(state) {
       return state.currentStep
