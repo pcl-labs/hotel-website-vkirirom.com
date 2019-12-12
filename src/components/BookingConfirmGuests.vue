@@ -11,7 +11,7 @@
       >
         <v-icon color="gray-82">close</v-icon>
       </v-btn>
-      <v-toolbar-title class="light--text pl-0 ml-n4 text-center"
+      <v-toolbar-title class="light--text pl-0 ml-n4 text-center display-1"
         >Guests</v-toolbar-title
       >
     </v-toolbar>
