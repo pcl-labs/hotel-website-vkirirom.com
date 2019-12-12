@@ -72,7 +72,7 @@ const TEXTFIELDS_DEBOUNCE_TIME = 200
 const BookingInfoCard = () =>
   import('@/components/Reservation/BookingInfoCard.vue')
 
-let stripe = Stripe(this.stripeKey),
+let stripe = Stripe(stripeKey),
   elements = stripe.elements(),
   card = undefined
 
