@@ -70,7 +70,7 @@ new Vue({
       themes: {
         light
       }
-    },
+    }
   }),
   router,
   store,

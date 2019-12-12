@@ -1,5 +1,11 @@
 <template>
-  <v-footer v-resize="storeFooterHeight" dark padless class="page-footer" ref="pageFooter">
+  <v-footer
+    v-resize="storeFooterHeight"
+    dark
+    padless
+    class="page-footer"
+    ref="pageFooter"
+  >
     <v-container
       fluid
       style="box-shadow: 0px -1px 0px #121416; color: #D8DADE;"

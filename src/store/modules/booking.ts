@@ -26,7 +26,7 @@ const defaultState = {
     vat: '',
     finalPrice: '',
     prices: []
-  } 
+  }
 }
 
 export default {
