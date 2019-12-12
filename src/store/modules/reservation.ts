@@ -116,7 +116,7 @@ export default {
     getStripeKey(context) {
       return CompanyService.stripePublishableKey().then(
         stripePublishableKey => {
-          context.commit('fetchStripeKey', stripePublishableKey)
+          context.commit('fetchStripeKey', stripePublishableKey.key)
         }
       )
     },

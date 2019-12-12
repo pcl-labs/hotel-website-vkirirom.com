@@ -72,7 +72,7 @@ const TEXTFIELDS_DEBOUNCE_TIME = 200
 const BookingInfoCard = () =>
   import('@/components/Reservation/BookingInfoCard.vue')
 
-let stripe = Stripe('pk_test_WJLv2re0yYhf6g1oD4fptybK00N7e4Bj7C'),
+let stripe = Stripe(this.stripeKey),
   elements = stripe.elements(),
   card = undefined
 
@@ -111,12 +111,32 @@ export default {
   },
   methods: {
     purchase() {
-      stripe.createToken(card).then(function(result) {
-        console.log(result.token)
-      })
+      stripe.confirmCardPayment(this.clientSecret, {
+        payment_method: {card: card}
+      }).then(function(result) {
+        if (result.error) {
+          // Show error to your customer (e.g., insufficient funds)
+          console.log(result.error.message);
+        } else {
+          // The payment has been processed!
+          if (result.paymentIntent.status === 'succeeded') {
+            // Show a success message to your customer
+            // There's a risk of the customer closing the window before callback
+            // execution. Set up a webhook or plugin to listen for the
+            // payment_intent.succeeded event that handles any business critical
+            // post-payment actions.
+          }
+        }
+      });
     }
   },
   computed: {
+    stripeKey() {
+      return this.$store.getters['reservation/stripeKey']
+    },
+    clientSecret() {
+      return this.$store.getters['reservation/clientSecret']
+    },
     finalPrice() {
       return this.$store.getters['reservation/finalPrice']
     },
