@@ -55,7 +55,7 @@ Along with Vuex for state management
 Managed by meredith-core api https://github.com/whynotearth/meredith-core
 
 ## Contribution
-Our active branch is `develop`, all new branches should be based on it. There is a new contributor guide to Git in our wiki (here)[https://github.com/whynotearth/shinta-mani-wild/wiki/New-Contributor-Guide-to-Git].  
+Our active branch is `develop`, all new branches should be based on it. There is a new contributor guide to Git in our wiki [here](https://github.com/whynotearth/shinta-mani-wild/wiki/New-Contributor-Guide-to-Git). If there is any question, feel free to ask in our [Discord channel](https://discord.gg/NEuaH7).  
 
 ## Tools
 
