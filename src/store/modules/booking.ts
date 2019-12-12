@@ -168,11 +168,9 @@ export default {
     getStripeKey(context) {
       return CompanyService.stripePublishableKey({
         companyId: 1
-      }).then(
-        stripePublishableKey => {
-          context.commit('fetchStripeKey', stripePublishableKey.key)
-        }
-      )
+      }).then(stripePublishableKey => {
+        context.commit('fetchStripeKey', stripePublishableKey.key)
+      })
     },
     reserveRoom(context, bookingInfo) {
       return ReservationService.reserveByRoomType({
@@ -187,33 +185,27 @@ export default {
         },
         email: bookingInfo.email,
         phone: bookingInfo.phone
-      }).then(
-        reserveByRoomType => {
-          context.commit('fetchReservationId', reserveByRoomType.reservationId)
-        }
-      )
+      }).then(reserveByRoomType => {
+        context.commit('fetchReservationId', reserveByRoomType.reservationId)
+      })
     },
     getClientSecret(context, reservationId, bookingInfo) {
       return ReservationService.payReservation({
         reservationId: reservationId,
         amount: bookingInfo.finalPrice
-      }).then(
-        payReservation => {
-          context.commit('fetchClientSecret', payReservation.clientSecret)
-        }
-      )
+      }).then(payReservation => {
+        context.commit('fetchClientSecret', payReservation.clientSecret)
+      })
     },
-    getReservationDetails(context, {reservationId}) {
+    getReservationDetails(context, { reservationId }) {
       return ReservationService.get({
         reservationId: reservationId
-      }).then(
-        get => {
-          context.commit('fetchReservationDetails', get)
-        }
-      )
+      }).then(get => {
+        context.commit('fetchReservationDetails', get)
+      })
     }
   },
-  getters: { 
+  getters: {
     finalPrice(state) {
       return state.bookingInfo.finalPrice
     },

@@ -160,7 +160,7 @@ export default {
   },
   methods: {
     reviewDateMonth,
-    reviewDay,
+    reviewDay
     // pay() {
     //   let stripe = Stripe('pk_live_RZ3e8NjPRiG6H7mchiRmn5xK00sQ4vN73t')
     //   stripe

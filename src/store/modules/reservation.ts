@@ -1,7 +1,6 @@
 import { addDays } from 'date-fns'
 import { RoomTypeService } from '@/connection/resources.js'
 
-
 const defaultState = {
   transportation: false,
   message: '',
