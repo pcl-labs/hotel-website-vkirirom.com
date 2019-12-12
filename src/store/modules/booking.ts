@@ -1,5 +1,7 @@
 import { addDays } from 'date-fns'
 import { RoomTypeService } from '@/connection/resources.js'
+import { CompanyService } from '@/connection/resources.js'
+import { ReservationService } from '@/connection/resources.js'
 
 const defaultState = {
   currentStep: 0,
@@ -25,8 +27,13 @@ const defaultState = {
     checkOut: '',
     vat: '',
     finalPrice: '',
-    prices: []
-  }
+    prices: [],
+    guests: 0
+  },
+  stripeKey: '',
+  reservationId: 0,
+  clientSecret: '',
+  reservationDetails: {}
 }
 
 export default {
@@ -69,6 +76,18 @@ export default {
     },
     updateRoomType(state, payload) {
       state.bookingInfo.roomType = payload
+    },
+    fetchStripeKey(state, payload) {
+      state.stripeKey = payload
+    },
+    fetchReservationId(state, payload) {
+      state.reservationId = payload
+    },
+    fetchClientSecret(state, payload) {
+      state.clientSecret = payload
+    },
+    fetchReservationDetails(state, payload) {
+      state.reservationDetails = payload
     },
     resetState(state) {
       for (const key in defaultState) {
@@ -145,14 +164,76 @@ export default {
         context.commit('updateVat', vat)
         context.commit('updateFinalPrice', finalPrice)
       })
+    },
+    getStripeKey(context) {
+      return CompanyService.stripePublishableKey({
+        companyId: 1
+      }).then(
+        stripePublishableKey => {
+          context.commit('fetchStripeKey', stripePublishableKey.key)
+        }
+      )
+    },
+    reserveRoom(context, bookingInfo) {
+      return ReservationService.reserveByRoomType({
+        roomTypeId: bookingInfo.roomType.id,
+        name: bookingInfo.name,
+        message: bookingInfo.message,
+        numberOfGuests: bookingInfo.guests,
+        start: bookingInfo.dateOne,
+        end: bookingInfo.checkOut,
+        payment: {
+          amount: bookingInfo.finalPrice
+        },
+        email: bookingInfo.email,
+        phone: bookingInfo.phone
+      }).then(
+        reserveByRoomType => {
+          context.commit('fetchReservationId', reserveByRoomType.reservationId)
+        }
+      )
+    },
+    getClientSecret(context, reservationId, bookingInfo) {
+      return ReservationService.payReservation({
+        reservationId: reservationId,
+        amount: bookingInfo.finalPrice
+      }).then(
+        payReservation => {
+          context.commit('fetchClientSecret', payReservation.clientSecret)
+        }
+      )
+    },
+    getReservationDetails(context, {reservationId}) {
+      return ReservationService.get({
+        reservationId: reservationId
+      }).then(
+        get => {
+          context.commit('fetchReservationDetails', get)
+        }
+      )
     }
   },
-  getters: {
+  getters: { 
+    finalPrice(state) {
+      return state.bookingInfo.finalPrice
+    },
     bookingInfo(state) {
       return state.bookingInfo
     },
     currentStep(state) {
       return state.currentStep
+    },
+    stripeKey(state) {
+      return state.stripeKey
+    },
+    reservationId(state) {
+      return state.reservationId
+    },
+    clientSecret(state) {
+      return state.clientSecret
+    },
+    reservationDetails(state) {
+      return state.reservationDetails
     }
   }
 }

@@ -72,24 +72,6 @@ const TEXTFIELDS_DEBOUNCE_TIME = 200
 const BookingInfoCard = () =>
   import('@/components/Reservation/BookingInfoCard.vue')
 
-let stripe = Stripe(stripeKey),
-  elements = stripe.elements(),
-  card = undefined
-
-var style = {
-  base: {
-    color: '#B9BCC1',
-    fontSmoothing: 'antialiased',
-    fontSize: '16px',
-    '::placeholder': {
-      color: '#B9BCC1'
-    }
-  },
-  invalid: {
-    color: '#fa755a',
-    iconColor: '#fa755a'
-  }
-}
 export default {
   components: {
     BookingInfoCard
@@ -105,11 +87,37 @@ export default {
       ]
     }
   },
+  created() {
+    this.getStripeKey(),
+    this.getClientSecret()
+  },
   mounted() {
-    card = elements.create('card', { style: style })
-    card.mount(this.$refs.card)
+    this.createStripeComponent(this.stripeKey)
   },
   methods: {
+    async createStripeComponent(stripeKey) {
+      let stripe = Stripe(await stripeKey),
+      elements = stripe.elements(),
+      card = undefined
+
+      var style = {
+        base: {
+          color: '#B9BCC1',
+          fontSmoothing: 'antialiased',
+          fontSize: '16px',
+          '::placeholder': {
+            color: '#B9BCC1'
+          }
+        },
+        invalid: {
+          color: '#fa755a',
+          iconColor: '#fa755a'
+        }
+      }
+
+      card = elements.create('card', { style: style })
+      card.mount(this.$refs.card)
+    },
     purchase() {
       stripe.confirmCardPayment(this.clientSecret, {
         payment_method: {card: card}
@@ -128,17 +136,23 @@ export default {
           }
         }
       });
+    },
+    getStripeKey() {
+      return this.$store.dispatch('booking/getStripeKey')
+    },
+    getClientSecret() {
+      return this.$store.dispatch('booking/getClientSecret')
     }
   },
   computed: {
     stripeKey() {
-      return this.$store.getters['reservation/stripeKey']
+      return this.$store.getters['booking/stripeKey']
     },
     clientSecret() {
-      return this.$store.getters['reservation/clientSecret']
+      return this.$store.getters['booking/clientSecret']
     },
     finalPrice() {
-      return this.$store.getters['reservation/finalPrice']
+      return this.$store.getters['booking/finalPrice']
     },
     phone: {
       get() {
