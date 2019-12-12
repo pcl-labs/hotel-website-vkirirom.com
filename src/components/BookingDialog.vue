@@ -30,11 +30,15 @@
         @booking-close="closeDialog"
         :next-step="steps.confirmBooking"
       ></booking-confirm-guests>
+
+      <booking-confirm-booking
+        v-if="currentStep.id === steps.confirmBooking.id"
+        @booking-close="closeDialog"
+      ></booking-confirm-booking>
     </v-dialog>
 
     <!-- 
-    <booking-confirm-guests></booking-confirm-guests>
-    <booking-confirm-booking></booking-confirm-booking>
+    
     <booking-review-policies></booking-review-policies>
     <booking-customer-info></booking-customer-info>
     <booking-payment-info></booking-payment-info>
@@ -48,10 +52,16 @@ import store from '@/store'
 import BookingConfirmDates from '@/components/BookingConfirmDates.vue'
 import BookingAuth from '@/components/BookingAuth.vue'
 import BookingConfirmGuests from '@/components/BookingConfirmGuests.vue'
+import BookingConfirmBooking from '@/components/BookingConfirmBooking.vue'
 
 export default Vue.extend({
   name: 'booking-dialog',
-  components: { BookingConfirmDates, BookingAuth, BookingConfirmGuests },
+  components: {
+    BookingConfirmDates,
+    BookingAuth,
+    BookingConfirmGuests,
+    BookingConfirmBooking
+  },
   data() {
     return {
       tempFix: false
