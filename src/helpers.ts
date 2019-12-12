@@ -126,3 +126,17 @@ export function reviewDay(date?: string | number | Date) {
   }
   return formattedDate
 }
+
+export function setDocumentClassesOnToggleDialog(isOpen: boolean) {
+  if (isOpen) {
+    document.documentElement.classList.add(
+      'overflow-y-hidden',
+      'dialog--is-open'
+    )
+  } else {
+    document.documentElement.classList.remove(
+      'overflow-y-hidden',
+      'dialog--is-open'
+    )
+  }
+}

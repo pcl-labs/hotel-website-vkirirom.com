@@ -2,9 +2,10 @@
   <v-footer v-resize="storeFooterHeight" dark padless class="page-footer" ref="pageFooter">
     <v-container
       fluid
+      class="px-0"
       style="box-shadow: 0px -1px 0px #121416; color: #D8DADE;"
     >
-      <v-container class="is-limited" grid-list-md align-start id="footer">
+      <v-container class="is-limited align-start" id="footer">
         <v-row no-gutters justify-space-between>
           <v-col cols="6" sm="4" class="mb-4 mb-sm-0">
             <h3>Engage</h3>

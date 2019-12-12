@@ -6,7 +6,7 @@
   >
     <div class="booking-bar--sticker w-100">
       <section class="wrapper">
-        <v-container class="xs-no-limit is-limited py-0 px-4 px-sm-2">
+        <v-container class="xs-no-limit is-limited py-0 px-3 px-sm-2">
           <div class="d-flex wrapper-2">
             <!-- mobile content -->
             <div class="d-sm-none flex-grow-1">
@@ -48,7 +48,7 @@
             </div>
             <div class="d-flex align-center">
               <v-container class="d-flex pa-0">
-                <booking-starter>
+                <booking-dialog ref="bookingDialog">
                   <!-- mobile -->
                   <v-btn
                     @click="startBooking()"
@@ -77,7 +77,7 @@
                       >keyboard_arrow_right</v-icon
                     >
                   </v-btn>
-                </booking-starter>
+                </booking-dialog>
               </v-container>
             </div>
           </div>
@@ -88,7 +88,7 @@
 </template>
 
 <script>
-import BookingStarter from '@/components/BookingStarter.vue'
+import BookingDialog from '@/components/BookingDialog.vue'
 import store from '@/store'
 import { getPassiveEventConfig } from '@/helpers'
 export default {
@@ -97,7 +97,7 @@ export default {
     title: String,
     price: Number
   },
-  components: { BookingStarter },
+  components: { BookingDialog },
   data() {
     return {
       bottomDistance: 0
@@ -108,7 +108,7 @@ export default {
     this.positionListener()
   },
   destroyed() {
-    document.removeEventListener('scroll', this.onScrollPage)
+    document.removeEventListener('scroll', event => this.onScrollPage(event))
   },
   computed: {
     footerHeight() {
@@ -120,16 +120,16 @@ export default {
   },
   methods: {
     setInitialDistance() {
-      this.onScrollPage()
+      this.onScrollPage(null)
     },
     positionListener() {
       document.addEventListener(
         'scroll',
-        this.onScrollPage,
+        event => this.onScrollPage(event),
         getPassiveEventConfig()
       )
     },
-    onScrollPage(event = null) {
+    onScrollPage(event) {
       var scrollPosition = window.pageYOffset
       var windowSize = window.innerHeight
       var bodyHeight = document.body.offsetHeight
@@ -140,7 +140,7 @@ export default {
       )
     },
     startBooking() {
-      store.dispatch('booking/startBooking')
+      this.$refs.bookingDialog.openDialog()
     }
   }
 }

@@ -1,4 +1,5 @@
 <template>
+<!-- TODO: remove -->
   <v-dialog v-model="bookDialog" fullscreen hide-overlay transition="dialog-bottom-transition">
     <template v-slot:activator="{ on }">
       <v-btn

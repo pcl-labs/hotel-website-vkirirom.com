@@ -1,8 +1,56 @@
 import { addDays } from 'date-fns'
 import { RoomTypeService } from '@/connection/resources.js'
+import { bookingStep } from '@/types'
+import { setDocumentClassesOnToggleDialog } from '@/helpers'
+
+const steps: { [name: string]: bookingStep } = {
+  notStarted: {
+    id: 0,
+    width: 332
+  },
+  confirmDates: {
+    id: 1,
+    width: 332
+  },
+  auth: {
+    id: 2,
+    width: 376
+  },
+  confirmGuests: {
+    id: 3,
+    width: 332
+  },
+  confirmBooking: {
+    id: 4,
+    width: 332
+  },
+  reviewPolicies: {
+    id: 5,
+    width: 332
+  },
+  customerInfo: {
+    id: 6,
+    width: 332
+  },
+  paymentInfo: {
+    id: 7,
+    width: 332
+  },
+  thanksYou: {
+    id: 8,
+    width: 332
+  }
+}
 
 const defaultState = {
-  currentStep: 0,
+  currentStep: {
+    id: 0,
+    width: 332
+  },
+  steps,
+  dialog: {
+    isOpen: false
+  },
   bookingInfo: {
     transportation: false,
     message: '',
@@ -33,6 +81,9 @@ export default {
   namespaced: true,
   state: { ...defaultState },
   mutations: {
+    updateDialog(state, payload) {
+      state.dialog = payload
+    },
     updateCurrentStep(state, payload) {
       state.currentStep = payload
     },
@@ -79,8 +130,17 @@ export default {
     }
   },
   actions: {
+    updateDialog(context, payload) {
+      const dialog = {
+        ...context.state.dialog,
+        ...payload
+      }
+
+      setDocumentClassesOnToggleDialog(dialog.isOpen)
+      context.commit('updateDialog', dialog)
+    },
     startBooking(context) {
-      context.commit('updateCurrentStep', 1)
+      context.commit('updateCurrentStep', context.state.steps.confirmDates)
     },
     updateCurrentStep(context, payload) {
       context.commit('updateCurrentStep', payload)
@@ -148,11 +208,17 @@ export default {
     }
   },
   getters: {
+    dialog: state => {
+      return state.dialog
+    },
     bookingInfo(state) {
       return state.bookingInfo
     },
     currentStep(state) {
       return state.currentStep
+    },
+    steps(state) {
+      return state.steps
     }
   }
 }

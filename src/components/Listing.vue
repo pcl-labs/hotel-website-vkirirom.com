@@ -1,4 +1,5 @@
 <template>
+<!-- TODO: move to views/ -->
   <div v-if="resort && resort.id">
     <div class="pa-0 ma-0">
       <!-- images -->

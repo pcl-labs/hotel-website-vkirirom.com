@@ -144,7 +144,7 @@ export default Vue.extend({
   name: 'booking-confirm-dates',
   props: {
     nextStep: {
-      type: Number,
+      type: Object,
       required: true
     }
   },
@@ -226,6 +226,9 @@ export default Vue.extend({
       this.$store.dispatch('booking/clearPrices')
     },
     submit() {
+      this.goNextStep()
+    },
+    goNextStep() {
       store.dispatch('booking/updateCurrentStep', this.nextStep)
     }
   }
