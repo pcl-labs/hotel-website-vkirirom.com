@@ -1,7 +1,5 @@
 <template>
   <fragment>
-    <!-- we load the activator (e.g. "book now" button) here -->
-    <slot name="default" />
 
     <v-dialog
       dark
