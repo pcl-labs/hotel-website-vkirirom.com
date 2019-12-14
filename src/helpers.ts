@@ -1,5 +1,5 @@
 import { BASE_API } from '@/constants/connection'
-import format from 'date-fns/format'
+import { isDate, format } from 'date-fns'
 
 // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Safely_detecting_option_support
 export function getPassiveEventConfig() {
@@ -86,19 +86,8 @@ export function APIPath(path: string) {
   return BASE_API + path
 }
 
-export function formatDates(
-  dateOne?: string | number | Date,
-  dateTwo?: string
-) {
-  const dateFormat = 'ddd, D MMM'
-  let formattedDates = ''
-  if (dateOne) {
-    formattedDates = format(dateOne, dateFormat)
-  }
-  if (dateTwo && dateTwo != dateOne) {
-    formattedDates += ' - ' + format(dateTwo, dateFormat)
-  }
-  return formattedDates
+export function formatDate(inputDate: Date | string | number, dateFormat = 'ddd, D MMM'): string {
+  return format(inputDate, dateFormat)
 }
 
 export function cardDate(date?: string | number | Date) {

@@ -6,10 +6,8 @@ const searchpage = () => import('../components/searchpage.vue')
 const Listing = () => import('../components/Listing.vue')
 const thankYou = () => import('../components/thankYou.vue')
 const Contact = () => import('../components/Contact.vue')
-const Reservation = () => import('../components/Reservation/Reservation.vue')
-const ReviewRules = () => import('../components/Reservation/ReviewRules.vue')
-const ConfirmAndPay = () =>
-  import('../components/Reservation/ConfirmAndPay.vue')
+const BookingReviewPolicies = () => import('@/views/BookingReviewPolicies.vue')
+const BookingConfirmAndPay = () => import('@/views/BookingConfirmAndPay.vue')
 const KitchenSink = () => import('../views/KitchenSink.vue')
 
 import store from '@/store'
@@ -40,34 +38,22 @@ const routes = [
     component: Contact
   },
   {
-    path: '/reservation',
-    component: Reservation,
-    children: [
-      {
-        path: 'reviewrules',
-        component: ReviewRules
-      },
-      {
-        path: 'confirmandpay',
-        component: ConfirmAndPay
-      }
-    ]
+    name: 'booking-review-policies',
+    path: '/booking/review-policies',
+    component: BookingReviewPolicies
+  },
+  {
+    name: 'booking-confirm-and-pay',
+    path: '/booking/confirm-and-pay',
+    component: BookingConfirmAndPay
   },
   {
     path: '/nature-city-investment-cambodia-property',
     redirect: '/listing/nature-city-investment-cambodia-property'
   },
-  // {
-  //   path: '/jp',
-  //   beforeEnter(to, from, next) {
-  //       // Put the full page url including the protocol http(s) below
-  //       window.location = "http://jp.vkirirom.com"
-  //   }
-  // },
   {
     path: '/kh',
     beforeEnter() {
-      // Put the full page url including the protocol http(s) below
       window.location.href = 'http://kh.vkirirom.com'
     }
   },

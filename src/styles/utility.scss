@@ -1,4 +1,5 @@
 // general
+// --------------------------------------------
 .text-transform-none {
   text-transform: none;
 }
@@ -6,7 +7,18 @@
   user-select: none;
 }
 
+.position-relative {
+  position: relative;
+}
+.position-absolute {
+  position: absolute;
+}
+.position-fixed {
+  position: fixed;
+}
+
 // vkirirom specific
+// --------------------------------------------
 .light-border {
   border-color: $light;
 }

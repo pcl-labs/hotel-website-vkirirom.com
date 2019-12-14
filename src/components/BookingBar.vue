@@ -48,36 +48,35 @@
             </div>
             <div class="d-flex align-center">
               <v-container class="d-flex pa-0">
-                <booking-dialog ref="bookingDialog">
-                  <!-- mobile -->
-                  <v-btn
-                    @click="startBooking()"
-                    block
-                    medium
-                    color="primary"
-                    dark
-                    class="d-sm-none text-capitalize font-weight-bold dark--text"
+                <booking-dialog ref="bookingDialog"></booking-dialog>
+                <!-- mobile -->
+                <v-btn
+                  @click="startBooking()"
+                  block
+                  medium
+                  color="primary"
+                  dark
+                  class="d-sm-none text-capitalize font-weight-bold dark--text"
+                >
+                  Book Now
+                  <v-icon class="d-none d-sm-inline"
+                    >keyboard_arrow_right</v-icon
                   >
-                    Book Now
-                    <v-icon class="d-none d-sm-inline"
-                      >keyboard_arrow_right</v-icon
-                    >
-                  </v-btn>
-                  <!-- desktop -->
-                  <v-btn
-                    @click="startBooking()"
-                    block
-                    x-large
-                    color="primary"
-                    dark
-                    class="hidden-xs-only text-capitalize font-weight-black dark--text title"
+                </v-btn>
+                <!-- desktop -->
+                <v-btn
+                  @click="startBooking()"
+                  block
+                  x-large
+                  color="primary"
+                  dark
+                  class="hidden-xs-only text-capitalize font-weight-black dark--text title"
+                >
+                  Book Now
+                  <v-icon class="d-none d-sm-inline"
+                    >keyboard_arrow_right</v-icon
                   >
-                    Book Now
-                    <v-icon class="d-none d-sm-inline"
-                      >keyboard_arrow_right</v-icon
-                    >
-                  </v-btn>
-                </booking-dialog>
+                </v-btn>
               </v-container>
             </div>
           </div>
