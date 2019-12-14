@@ -56,6 +56,12 @@ const defaultState = {
     isOpen: false
   },
   bookingInfo: {
+    guests: {
+      adults: 0,
+      children: 0,
+      infants: 0,
+      total: 0
+    },
     transportation: false,
     message: '',
     name: '',
@@ -75,10 +81,10 @@ const defaultState = {
     dateOne: '',
     dateTwo: '',
     checkOut: '',
-    vat: 0,
-    finalPrice: 0,
     prices: []
   },
+  vat: 0,
+  finalPrice: 0,
   stripeKey: '',
   reservationId: 0,
   clientSecret: '',
@@ -94,6 +100,9 @@ export default {
     },
     updateCurrentStep(state, payload) {
       state.currentStep = payload
+    },
+    updateGuests(state, payload) {
+      state.bookingInfo.guests = payload
     },
     updateDateOne(state, payload) {
       state.bookingInfo.dateOne = payload
@@ -158,6 +167,9 @@ export default {
     },
     updateCurrentStep(context, payload) {
       context.commit('updateCurrentStep', payload)
+    },
+    updateGuests(context, payload) {
+      context.commit('updateGuests', payload)
     },
     updateDateOne(context, payload) {
       context.commit('updateDateOne', payload)
@@ -254,7 +266,7 @@ export default {
     bookingInfo(state) {
       return state.bookingInfo
     },
-    totalPrice(state) {
+    computedTotalPrice(state) {
       const prices = state.bookingInfo.prices
       let totalPrice = 0
       for (let i = 0; i < prices.length; i++) {
@@ -262,11 +274,11 @@ export default {
       }
       return totalPrice
     },
-    vat(state, getters) {
-      return getters.totalPrice * 0.1
+    computedVat(state, getters) {
+      return getters.computedTotalPrice * 0.1
     },
-    finalPrice(state, getters) {
-      return getters.totalPrice + getters.vat
+    computedFinalPrice(state, getters) {
+      return getters.computedTotalPrice + getters.computedVat
     },
     currentStep(state) {
       return state.currentStep

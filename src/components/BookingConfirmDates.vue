@@ -71,7 +71,7 @@
                     v-for="price in prices"
                     v-bind:key="price.id"
                   >
-                    <v-col xs6>{{ formatDates(price.date) }}</v-col>
+                    <v-col xs6>{{ formatDate(price.date, 'ddd, D MMM') }}</v-col>
                     <v-col xs6 class="text-right ">${{ price.amount }}</v-col>
                   </v-row>
                   <!-- <v-row class="confirm-dates--price-row" no-gutters>
@@ -138,7 +138,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import store from '@/store'
-import { formatDates } from '@/helpers'
+import { formatDate } from '@/helpers'
 
 export default Vue.extend({
   name: 'booking-confirm-dates',
@@ -170,10 +170,10 @@ export default Vue.extend({
       return this.$store.getters['booking/bookingInfo'].prices
     },
     totalPrice() {
-      return this.$store.getters['booking/totalPrice']
+      return this.$store.getters['booking/computedTotalPrice']
     },
     vat() {
-      return this.$store.getters['booking/vat'].toFixed(2)
+      return this.$store.getters['booking/computedVat'].toFixed(2)
     },
     roomTypeId(): number {
       return this.resort.modules.hotel.roomTypes[0].id
@@ -186,7 +186,7 @@ export default Vue.extend({
     }
   },
   methods: {
-    formatDates,
+    formatDate,
     onSelectDateOne(val) {
       this.updateDateOne(val)
       this.clearDateTwo()

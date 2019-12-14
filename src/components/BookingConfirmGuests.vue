@@ -181,13 +181,23 @@ export default Vue.extend({
     }
   },
   computed: {
+    resort() {
+      return store.getters['resort/getResort']
+    },
     guestsTotal(): number {
       return this.guestsAdults + this.guestsChildren + this.guestsInfants
     }
   },
   methods: {
     submit() {
-      this.goNextStep()
+      store
+        .dispatch('booking/updateGuests', {
+          adults: this.guestsAdults,
+          children: this.guestsChildren,
+          infants: this.guestsInfants,
+          total: this.guestsTotal
+        })
+        .then(this.goNextStep)
     },
     goNextStep() {
       store.dispatch('booking/updateCurrentStep', this.nextStep)
