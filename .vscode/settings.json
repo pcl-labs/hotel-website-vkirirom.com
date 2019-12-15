@@ -5,5 +5,6 @@
   "workbench.colorCustomizations": {
     "titleBar.activeBackground": "#00435e"
   },
-  "prettier.printWidth": 120
+  "prettier.printWidth": 120,
+  "vetur.format.defaultFormatter.html": "prettier"
 }
