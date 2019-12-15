@@ -1,4 +1,5 @@
 <template>
+<!-- TODO: remove -->
   <v-form
     v-if="resort"
     :name="resort.categories[0].name"

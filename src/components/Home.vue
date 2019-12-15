@@ -1,4 +1,5 @@
 <template>
+<!-- TODO: move to views/ -->
   <div>
     <v-card dark>
       <div id="header">

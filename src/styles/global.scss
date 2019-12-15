@@ -16,12 +16,6 @@ html {
   scroll-behavior: smooth;
 }
 
-.position-relative {
-  position: relative;
-}
-.position-fixed {
-  position: fixed;
-}
 .w-100 {
   width: 100%;
 }
@@ -175,4 +169,9 @@ h3 {
 .fade-enter,
 .fade-leave-active {
   opacity: 0;
+}
+
+// fix vuetify labels when browser autofills data
+.v-label.theme--dark {
+  background-color: $dark;
 }
