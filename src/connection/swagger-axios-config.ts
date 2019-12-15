@@ -1,3 +1,4 @@
+// swagger API docs: https://stagingapi.whynot.earth/index.html
 const { codegen } = require('swagger-axios-codegen')
 const { BASE_API } = require('../constants/connection')
 console.log('BASE_API', BASE_API)

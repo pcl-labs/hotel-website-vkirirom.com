@@ -11,7 +11,7 @@
       >
         <v-icon color="gray-82">close</v-icon>
       </v-btn>
-      <v-toolbar-title class="light--text pl-0 ml-n4 text-center"
+      <v-toolbar-title class="light--text pl-0 ml-sm-n4 ml-md-0 text-center display-1"
         >Choose Dates</v-toolbar-title
       >
     </v-toolbar>
@@ -71,13 +71,13 @@
                     v-for="price in prices"
                     v-bind:key="price.id"
                   >
-                    <v-col xs6>{{ formatDates(price.date) }}</v-col>
+                    <v-col xs6>{{ formatDate(price.date, 'ddd, D MMM') }}</v-col>
                     <v-col xs6 class="text-right ">${{ price.amount }}</v-col>
                   </v-row>
-                  <v-row class="confirm-dates--price-row" no-gutters>
+                  <!-- <v-row class="confirm-dates--price-row" no-gutters>
                     <v-col xs6>VAT (10%)</v-col>
                     <v-col xs6 class="text-right ">${{ vat }}</v-col>
-                  </v-row>
+                  </v-row> -->
                 </div>
 
                 <!-- total -->
@@ -86,14 +86,14 @@
                     <h3 class="title">Total</h3>
                   </v-col>
                   <v-col xs6 class="text-right">
-                    <h3 class="title">${{ finalPrice }}</h3>
+                    <h3 class="title">${{ totalPrice }}</h3>
                   </v-col>
                 </v-row>
 
                 <input
                   name="Amount (in $)"
                   hidden
-                  :value="finalPrice"
+                  :value="totalPrice"
                   type="text"
                   readonly
                 />
@@ -138,13 +138,13 @@
 <script lang="ts">
 import Vue from 'vue'
 import store from '@/store'
-import { formatDates } from '@/helpers'
+import { formatDate } from '@/helpers'
 
 export default Vue.extend({
   name: 'booking-confirm-dates',
   props: {
     nextStep: {
-      type: Number,
+      type: Object,
       required: true
     }
   },
@@ -169,11 +169,11 @@ export default Vue.extend({
     prices() {
       return this.$store.getters['booking/bookingInfo'].prices
     },
-    finalPrice() {
-      return this.$store.getters['booking/bookingInfo'].finalPrice
+    totalPrice() {
+      return this.$store.getters['booking/computedTotalPrice']
     },
     vat() {
-      return this.$store.getters['booking/bookingInfo'].vat.toFixed(2)
+      return this.$store.getters['booking/computedVat'].toFixed(2)
     },
     roomTypeId(): number {
       return this.resort.modules.hotel.roomTypes[0].id
@@ -186,7 +186,7 @@ export default Vue.extend({
     }
   },
   methods: {
-    formatDates,
+    formatDate,
     onSelectDateOne(val) {
       this.updateDateOne(val)
       this.clearDateTwo()
@@ -226,6 +226,9 @@ export default Vue.extend({
       this.$store.dispatch('booking/clearPrices')
     },
     submit() {
+      this.goNextStep()
+    },
+    goNextStep() {
       store.dispatch('booking/updateCurrentStep', this.nextStep)
     }
   }

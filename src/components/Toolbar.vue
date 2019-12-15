@@ -1,5 +1,6 @@
 <template>
 <div>
+  <auth-dialog ref="authDialogRef"></auth-dialog>
   <v-app-bar dark color="#191C21" dense>
     <router-link to="/">
       <img class="toolbar--logo" src="/img/icons/Logo.png">
@@ -56,11 +57,11 @@
       </template>
       <v-list dense color="#191C21" class="dropdown-list">
         <v-list-item class="pa-0">
-       <v-btn text tile block class="button"  @click="logout()" ><h3>Log Out</h3></v-btn>
+       <v-btn text tile block class="button"  @click="logout()" v-if="isAuthenticated" :loading="loading"><h3>Log Out</h3></v-btn>
       </v-list-item>
       </v-list>
       </v-menu>
-   <v-btn text class="button"  v-if="isAuthenticated == false"><h3 class="desktop mb-0">Log In</h3></v-btn>
+   <v-btn text class="button"  @click="openLogin()" v-if="!isAuthenticated"><h3 class="desktop mb-0">Log In</h3></v-btn>
     </v-toolbar-items>
   </v-app-bar>
   <v-navigation-drawer dark style="box-shadow: 0px 1px 0px #121416; position:fixed; background:#191C21;" class="d-md-none" temporary v-model="drawer">
@@ -84,8 +85,10 @@
         <v-btn text block to="/listing/Pine-View-Kitchen-PVK" class="my-2 button"><h3 class="mb-0">Restaurant</h3></v-btn>
       </v-flex>
       <v-flex xs12>
-
-        <v-btn text block class="my-2 button" @click="logout()" v-if="isAuthenticated == true" :loading="loading"><h3 class="mb-0">Log out</h3></v-btn>
+        <v-btn text block class="my-2 button" @click="openLogin()" v-if="!isAuthenticated"><h3 class="mb-0">Log in</h3></v-btn>
+      </v-flex>
+      <v-flex xs12>
+        <v-btn text block class="my-2 button" @click="logout()" v-if="isAuthenticated" :loading="loading"><h3 class="mb-0">Log out</h3></v-btn>
       </v-flex>
     </v-row>
   </v-navigation-drawer>
@@ -93,25 +96,33 @@
 </template>
 
 <script>
-
-
+import AuthDialog from "@/components/AuthDialog.vue";
+import store from '@/store';
 export default {
+  name: 'app-toolbar',
+  components: { AuthDialog },
   data() {
     return {
-      drawer: null
+      drawer: false
     }
   },
   methods:{
     logout(){
-      this.$store.dispatch('auth/logout')
+      store.dispatch('auth/logout')
+    },
+    openLogin() {
+      this.drawer = false
+      this.$nextTick(() => {
+        this.$refs.authDialogRef.openDialog()
+      })
     }
   },
   computed:{
     isAuthenticated(){
-      return this.$store.getters["auth/isAuthenticated"]
+      return store.getters["auth/isAuthenticated"]
     },
     loading(){
-      return this.$store.getters["auth/loading"]
+      return store.getters["auth/loading"]
     }
   }
 }
