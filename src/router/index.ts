@@ -26,6 +26,7 @@ const routes = [
     component: KitchenSink
   },
   {
+    name: 'listing',
     path: '/listing/:id',
     component: Listing
   },

@@ -1,9 +1,5 @@
 import { addDays } from 'date-fns'
-import {
-  RoomTypeService,
-  CompanyService,
-  ReservationService
-} from '@/connection/resources.js'
+import { RoomTypeService, CompanyService, ReservationService } from '@/connection/resources.js'
 import { bookingStep } from '@/types'
 import { setDocumentClassesOnToggleDialog } from '@/helpers'
 
@@ -56,6 +52,10 @@ const defaultState = {
     isOpen: false
   },
   bookingInfo: {
+    resort: {
+      slug: '',
+      route: 'listing'
+    },
     guests: {
       adults: 0,
       children: 0,
@@ -132,6 +132,13 @@ export default {
     updateRoomType(state, payload) {
       state.bookingInfo.roomType = payload
     },
+    updateResort(state, payload) {
+      const resort = {
+        ...defaultState.bookingInfo.resort,
+        ...payload
+      }
+      state.bookingInfo.resort = resort
+    },
     fetchStripeKey(state, payload) {
       state.stripeKey = payload
     },
@@ -162,7 +169,13 @@ export default {
       setDocumentClassesOnToggleDialog(dialog.isOpen)
       context.commit('updateDialog', dialog)
     },
-    startBooking(context) {
+    cancelBooking(context) {
+      context.commit('resetState')
+    },
+    startBooking(context, { resort }) {
+      context.commit('updateResort', {
+        slug: resort.slug
+      })
       context.commit('updateCurrentStep', context.state.steps.confirmDates)
     },
     updateCurrentStep(context, payload) {

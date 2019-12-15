@@ -1,6 +1,5 @@
 <template>
   <fragment>
-
     <v-dialog
       dark
       persistent
@@ -31,6 +30,7 @@
 
       <booking-confirm-booking
         v-if="currentStep.id === steps.confirmBooking.id"
+        :has-confirm-button="true"
         @booking-close="closeDialog"
       ></booking-confirm-booking>
     </v-dialog>
@@ -69,6 +69,9 @@ export default Vue.extend({
     this.patchFocusError()
   },
   computed: {
+    resort() {
+      return store.getters['resort/getResort']
+    },
     dialog() {
       return store.getters['booking/dialog']
     },
@@ -101,7 +104,7 @@ export default Vue.extend({
     },
     // NOTE: can be used outside of component by ref
     openDialog() {
-      store.dispatch('booking/updateCurrentStep', this.steps.confirmDates)
+      store.dispatch('booking/startBooking', { resort: this.resort })
       store.dispatch('booking/updateDialog', {
         isOpen: true
       })
