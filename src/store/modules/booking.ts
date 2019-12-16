@@ -52,10 +52,8 @@ const defaultState = {
     isOpen: false
   },
   bookingInfo: {
-    resort: {
-      slug: '',
-      route: 'listing'
-    },
+    returnUrl: '/',
+    resort: {},
     guests: {
       adults: 0,
       children: 0,
@@ -132,12 +130,11 @@ export default {
     updateRoomType(state, payload) {
       state.bookingInfo.roomType = payload
     },
+    updateReturnUrl(state, payload) {
+      state.bookingInfo.returnUrl = payload
+    },
     updateResort(state, payload) {
-      const resort = {
-        ...defaultState.bookingInfo.resort,
-        ...payload
-      }
-      state.bookingInfo.resort = resort
+      state.bookingInfo.resort = payload
     },
     fetchStripeKey(state, payload) {
       state.stripeKey = payload
@@ -172,10 +169,9 @@ export default {
     cancelBooking(context) {
       context.commit('resetState')
     },
-    startBooking(context, { resort }) {
-      context.commit('updateResort', {
-        slug: resort.slug
-      })
+    startBooking(context, {resort, returnUrl}) {
+      context.commit('updateResort', resort)
+      context.commit('updateReturnUrl', returnUrl)
       context.commit('updateCurrentStep', context.state.steps.confirmDates)
     },
     updateCurrentStep(context, payload) {

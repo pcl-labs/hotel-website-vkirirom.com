@@ -41,7 +41,26 @@ export interface Resort {
   h2: string
   id: number
   images: ResortImage[]
-  modules: any
+  modules: {
+    hotel?: {
+      amenities: string[]
+      gettingAround: string
+      id: number
+      location: string
+      roomTypes: {
+        beds: {
+          count: number
+          id: number
+          type: string
+        }
+        capacity: number
+        id: number
+        name: string
+      }
+      rules: string[]
+      spaces: string[]
+    }
+  }
   name: string
   slug: string
   stories: Story[]
@@ -68,6 +87,6 @@ export interface Category {
 }
 
 export interface bookingStep {
-  id: number,
+  id: number
   width: number
 }

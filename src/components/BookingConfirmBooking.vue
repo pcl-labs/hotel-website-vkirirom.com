@@ -4,7 +4,7 @@
       <div class="position-relative confirm-booking--hero">
         <v-img :aspect-ratio="376 / 192" :max-height="192" :max-width="'100%'" :src="resort.featuredImage"></v-img>
         <div class="position-absolute mx-4 mt-4 confirm-booking--toolbar">
-          <v-btn class="ma-0" x-small fab color="rgba(0,0,0,0.4)" depressed @click="$emit('booking-close')">
+          <v-btn class="ma-0" x-small fab color="rgba(0,0,0,0.4)" depressed @click="$emit('booking-cancel')">
             <v-icon color="white">close</v-icon>
           </v-btn>
         </div>
@@ -75,7 +75,7 @@
 
           <v-btn
             v-if="hasConfirmButton"
-            :to="{ name: 'booking-review-policies' }"
+            @click="submit"
             x-large
             block
             color="primary"
@@ -136,7 +136,11 @@ export default Vue.extend({
     }
   },
   methods: {
-    formatDate
+    formatDate,
+    submit() {
+      this.$emit('booking-close')
+      this.$router.push({ name: 'booking-review-rules' })
+    }
   }
 })
 </script>

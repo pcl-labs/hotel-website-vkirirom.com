@@ -13,18 +13,21 @@
       <booking-confirm-dates
         v-if="currentStep.id === steps.confirmDates.id"
         @booking-close="closeDialog"
+        @booking-cancel="cancelBooking"
         :next-step="isAuthenticated ? steps.confirmGuests : steps.auth"
       ></booking-confirm-dates>
 
       <booking-auth
         v-if="currentStep.id === steps.auth.id"
         @booking-close="closeDialog"
+        @booking-cancel="cancelBooking"
         :next-step="steps.confirmGuests"
       ></booking-auth>
 
       <booking-confirm-guests
         v-if="currentStep.id === steps.confirmGuests.id"
         @booking-close="closeDialog"
+        @booking-cancel="cancelBooking"
         :next-step="steps.confirmBooking"
       ></booking-confirm-guests>
 
@@ -32,12 +35,13 @@
         v-if="currentStep.id === steps.confirmBooking.id"
         :has-confirm-button="true"
         @booking-close="closeDialog"
+        @booking-cancel="cancelBooking"
       ></booking-confirm-booking>
     </v-dialog>
 
     <!-- 
     
-    <booking-review-policies></booking-review-policies>
+    <booking-review-rules></booking-review-rules>
     <booking-customer-info></booking-customer-info>
     <booking-payment-info></booking-payment-info>
     <booking-thank-you></booking-thank-you> -->
@@ -104,7 +108,7 @@ export default Vue.extend({
     },
     // NOTE: can be used outside of component by ref
     openDialog() {
-      store.dispatch('booking/startBooking', { resort: this.resort })
+      store.dispatch('booking/startBooking', {resort: this.resort, returnUrl: `/listing/${this.$route.params.id}`})
       store.dispatch('booking/updateDialog', {
         isOpen: true
       })
@@ -113,7 +117,10 @@ export default Vue.extend({
       store.dispatch('booking/updateDialog', {
         isOpen: false
       })
-      store.dispatch('booking/updateCurrentStep', this.steps.notStarted)
+    },
+    cancelBooking() {
+      this.closeDialog()
+      store.dispatch('booking/cancelBooking')
     }
   }
 })

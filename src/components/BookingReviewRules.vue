@@ -3,10 +3,10 @@
     <v-row no-gutters class="mb-8">
       <v-col>
         <h1 class="display-2 my-6 font-weight-bold">Review Rules</h1>
-        <h3 class="mb-4 title font-weight-bold">{{ prices.length }} night(s) in a {{ resort.title }}</h3>
+        <h3 class="mb-0 title font-weight-bold">{{ prices.length }} night(s) in a {{ resort.title }}</h3>
       </v-col>
     </v-row>
-    <v-row no-gutters>
+    <v-row no-gutters class="mb-8">
       <v-col cols="12" md="6">
         <div class="d-flex align-center">
           <div class="font-weight-light box-bordered d-inline-flex justify-center align-center mr-3 text-center">
@@ -24,15 +24,23 @@
         </div>
       </v-col>
     </v-row>
+
+    <v-row no-gutters>
+      <v-col cols="12">
+        <resort-rules></resort-rules>
+      </v-col>
+    </v-row>
   </fragment>
 </template>
 
 <script lang="ts">
 import { formatDate } from '@/helpers'
+import ResortRules from '@/components/ResortRules.vue'
 import Vue from 'vue'
 import store from '@/store'
 export default Vue.extend({
   name: 'review-policies',
+  components: { ResortRules },
   methods: {
     formatDate
   },
