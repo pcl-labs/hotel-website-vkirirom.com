@@ -1,28 +1,35 @@
 <template>
-  <v-container class="is-limited light--text">
-    <v-row>
-      <v-col cols="12" md="8">
-        <booking-review-rules></booking-review-rules>
-      </v-col>
-      <v-col cols="12" md="4">
-        <booking-confirm-booking @booking-cancel="cancelBooking"></booking-confirm-booking>
-      </v-col>
-    </v-row>
-    <v-overlay :opacity="0.96" :value="overlay">Caneling...</v-overlay>
-  </v-container>
+  <fragment>
+    <v-container class="is-limited light--text px-2 px-md-0 py-8">
+      <v-row no-gutters>
+        <v-col class="px-md-3 order-2 order-md-1" cols="12" md="8">
+          <div class="mx-6 mx-md-0">
+            <booking-review-rules></booking-review-rules>
+          </div>
+        </v-col>
+        <v-col class="pb-0 order-1 order-md-2" cols="12" md="4">
+          <booking-confirm-booking @booking-cancel="cancelBooking"></booking-confirm-booking>
+        </v-col>
+      </v-row>
+      <v-overlay :opacity="0.96" :value="overlay">Caneling...</v-overlay>
+    </v-container>
+
+    <Footer></Footer>
+  </fragment>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import BookingReviewRules from '@/components/BookingReviewRules.vue'
 import BookingConfirmBooking from '@/components/BookingConfirmBooking.vue'
+import Footer from '@/components/Footer.vue'
 import store from '@/store'
 
 const SHOW_OVERLAY_DURATION = 1000
 
 export default Vue.extend({
   name: 'booking-review-rules-page',
-  components: { BookingReviewRules, BookingConfirmBooking },
+  components: { BookingReviewRules, BookingConfirmBooking, Footer },
   data() {
     return {
       overlay: false

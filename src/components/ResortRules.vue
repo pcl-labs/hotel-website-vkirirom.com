@@ -2,7 +2,7 @@
   <!-- v-if="hotel.id" -->
   <div class="resort-rules light--text">
     <!-- <div v-if="resortHotel.location">
-      <h2 class="mb-2">
+      <h2 class="mb-2 display-1 font-weight-bold">
         Location
       </h2>
       <p>
@@ -10,21 +10,21 @@
       </p>
     </div> -->
     <div v-if="resortHotel.spaces.length > 0">
-      <h2 class="mb-2">
+      <h2 class="mb-2 display-1 font-weight-bold">
         Spaces
       </h2>
       <p v-for="(space, index) in resortHotel.spaces" :key="index">{{ space }}</p>
     </div>
 
     <div v-if="resortHotel.amenities.length > 0">
-      <h2 class="mb-2">
+      <h2 class="mb-2 display-1 font-weight-bold">
         Amenities
       </h2>
       <p v-for="(amenity, index) in resortHotel.amenities" :key="index">{{ amenity }}</p>
     </div>
 
     <div v-if="resortHotel.rules.length > 0">
-      <h2 class="mb-2">
+      <h2 class="mb-2 display-1 font-weight-bold">
         Rules
       </h2>
       <p v-for="(rule, index) in resortHotel.rules" :key="index">{{ rule }}</p>
@@ -73,3 +73,7 @@ export default Vue.extend({
   }
 })
 </script>
+
+<style lang="scss">
+
+</style>

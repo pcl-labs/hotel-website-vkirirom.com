@@ -8,8 +8,8 @@
       <v-container class="is-limited align-start" id="footer">
         <v-row no-gutters justify-space-between>
           <v-col cols="6" sm="4" class="mb-4 mb-sm-0">
-            <h3>Engage</h3>
-            <br />
+            <h3 class="h3 mb-8">Engage</h3>
+            
             <ul style="list-style:none; padding:0; margin:0;">
               <li class="mb-2">
                 <router-link to="/Contact" class="link">
@@ -30,8 +30,8 @@
             </ul>
           </v-col>
           <v-col cols="6" sm="4" class="mb-4 mb-sm-0">
-            <h3>Invest</h3>
-            <br />
+            <h3 class="h3 mb-8">Invest</h3>
+            
             <ul style="list-style:none; padding:0; margin:0;">
               <li class="mb-2">
                 <router-link
@@ -50,8 +50,8 @@
             </ul>
           </v-col>
           <v-col cols="12" sm="4" class="mb-4 mb-sm-0">
-            <h3>Learn</h3>
-            <br />
+            <h3 class="h3 mb-8">Learn</h3>
+            
             <ul style="list-style:none; padding:0; margin:0;">
               <!-- <li class="mb-2">Community Outreach</li> -->
               <li class="mb-2">

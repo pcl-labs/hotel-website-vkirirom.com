@@ -32,9 +32,9 @@
                 <div class="d-flex">
                   <v-icon color="light" class="icon mr-4">event</v-icon>
                   <div class="d-flex align-center flex-grow-1">
-                    <div>{{ formatDate(dateOne, 'ddd, D MMM') }}</div>
+                    <div class="confirm-booking--date">{{ formatDate(dateOne, 'ddd, D MMM') }}</div>
                     <v-icon color="light" class="icon mx-3">arrow_right_alt</v-icon>
-                    <div>{{ formatDate(checkOut, 'ddd, D MMM') }}</div>
+                    <div class="confirm-booking--date">{{ formatDate(checkOut, 'ddd, D MMM') }}</div>
                   </div>
                 </div>
               </v-col>
