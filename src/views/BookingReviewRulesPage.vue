@@ -11,7 +11,6 @@
           <booking-confirm-booking @booking-cancel="cancelBooking"></booking-confirm-booking>
         </v-col>
       </v-row>
-      <v-overlay :opacity="0.96" :value="overlay">Caneling...</v-overlay>
     </v-container>
 
     <Footer></Footer>
@@ -24,8 +23,6 @@ import BookingReviewRules from '@/components/BookingReviewRules.vue'
 import BookingConfirmBooking from '@/components/BookingConfirmBooking.vue'
 import Footer from '@/components/Footer.vue'
 import store from '@/store'
-
-const SHOW_OVERLAY_DURATION = 1000
 
 export default Vue.extend({
   name: 'booking-review-rules-page',
@@ -46,16 +43,9 @@ export default Vue.extend({
   methods: {
     cancelBooking() {
       this.overlay = true
-      const returnUrl = this.returnUrl
-      setTimeout(() => {
-        store.dispatch('booking/cancelBooking')
-        this.$router.push(returnUrl)
-      }, SHOW_OVERLAY_DURATION)
+      this.$router.push(this.returnUrl)
+      store.dispatch('booking/cancelBooking')
     }
   }
 })
 </script>
-
-<style lang="scss" scoped>
-//
-</style>

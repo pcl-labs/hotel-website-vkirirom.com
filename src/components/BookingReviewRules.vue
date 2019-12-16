@@ -38,17 +38,17 @@
     <v-row no-gutters>
       <v-col cols="12">
         <v-btn
-            @click="submit"
-            x-large
-            color="primary"
-            dark
-            class="text-transform-none font-weight-bold dark--text mt-8"
-          >
-            <v-spacer></v-spacer>
-            <span class="mr-3">Agree and Continue</span>
-            <v-spacer></v-spacer>
-            <v-icon>keyboard_arrow_right</v-icon>
-          </v-btn>
+          @click="submit"
+          x-large
+          color="primary"
+          dark
+          class="text-transform-none font-weight-bold dark--text mt-8"
+        >
+          <v-spacer></v-spacer>
+          <span class="mr-3">Agree and Continue</span>
+          <v-spacer></v-spacer>
+          <v-icon>keyboard_arrow_right</v-icon>
+        </v-btn>
       </v-col>
     </v-row>
   </fragment>
@@ -62,9 +62,6 @@ import store from '@/store'
 export default Vue.extend({
   name: 'review-policies',
   components: { ResortRules },
-  methods: {
-    formatDate
-  },
   computed: {
     resort() {
       return store.getters['resort/getResort']
@@ -77,6 +74,16 @@ export default Vue.extend({
     },
     prices() {
       return store.getters['booking/bookingInfo'].prices
+    },
+    steps() {
+      return store.getters['booking/steps']
+    }
+  },
+  methods: {
+    formatDate,
+    submit() {
+      this.$router.push({ name: 'booking-customer-info' })
+      store.dispatch('booking/updateCurrentStep', this.steps.customerInfo)
     }
   }
 })

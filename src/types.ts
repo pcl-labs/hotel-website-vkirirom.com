@@ -88,5 +88,5 @@ export interface Category {
 
 export interface bookingStep {
   id: number
-  width: number
+  width?: number
 }

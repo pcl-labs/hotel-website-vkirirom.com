@@ -25,20 +25,16 @@ const steps: { [name: string]: bookingStep } = {
     width: 332
   },
   reviewPolicies: {
-    id: 5,
-    width: 332
+    id: 5
   },
   customerInfo: {
-    id: 6,
-    width: 332
+    id: 6
   },
   paymentInfo: {
-    id: 7,
-    width: 332
+    id: 7
   },
   thanksYou: {
-    id: 8,
-    width: 332
+    id: 8
   }
 }
 
@@ -169,7 +165,7 @@ export default {
     cancelBooking(context) {
       context.commit('resetState')
     },
-    startBooking(context, {resort, returnUrl}) {
+    startBooking(context, { resort, returnUrl }) {
       context.commit('updateResort', resort)
       context.commit('updateReturnUrl', returnUrl)
       context.commit('updateCurrentStep', context.state.steps.confirmDates)

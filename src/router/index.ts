@@ -7,6 +7,7 @@ const Listing = () => import('../components/Listing.vue')
 const thankYou = () => import('../components/thankYou.vue')
 const Contact = () => import('../components/Contact.vue')
 const BookingReviewRulesPage = () => import('@/views/BookingReviewRulesPage.vue')
+const BookingCustomerInfoPage = () => import('@/views/BookingCustomerInfoPage.vue')
 const BookingConfirmAndPayPage = () => import('@/views/BookingConfirmAndPayPage.vue')
 const KitchenSink = () => import('../views/KitchenSink.vue')
 
@@ -42,6 +43,11 @@ const routes = [
     name: 'booking-review-rules',
     path: '/booking/review-rules',
     component: BookingReviewRulesPage
+  },
+  {
+    name: 'booking-customer-info',
+    path: '/booking/customer-info',
+    component: BookingCustomerInfoPage
   },
   {
     name: 'booking-confirm-and-pay',
