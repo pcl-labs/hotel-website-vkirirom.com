@@ -119,7 +119,6 @@ export default Vue.extend({
       })
     },
     cancelBooking() {
-      this.closeDialog()
       store.dispatch('booking/cancelBooking')
     }
   }

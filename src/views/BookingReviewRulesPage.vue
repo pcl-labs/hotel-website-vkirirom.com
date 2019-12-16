@@ -27,11 +27,6 @@ import store from '@/store'
 export default Vue.extend({
   name: 'booking-review-rules-page',
   components: { BookingReviewRules, BookingConfirmBooking, Footer },
-  data() {
-    return {
-      overlay: false
-    }
-  },
   computed: {
     bookingResort() {
       return store.getters['booking/bookingInfo'].resort
@@ -42,7 +37,6 @@ export default Vue.extend({
   },
   methods: {
     cancelBooking() {
-      this.overlay = true
       this.$router.push(this.returnUrl)
       store.dispatch('booking/cancelBooking')
     }
