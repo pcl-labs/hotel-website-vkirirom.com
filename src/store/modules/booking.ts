@@ -51,27 +51,17 @@ const defaultState = {
     returnUrl: '/',
     resort: {},
     guests: {
-      adults: 0,
+      adults: 1,
       children: 0,
       infants: 0,
-      total: 0
+      total: 1
     },
     transportation: false,
     message: '',
     name: '',
     email: '',
     phone: '',
-    roomType: {
-      id: 0,
-      name: '',
-      capacity: 0,
-      beds: [
-        {
-          count: '',
-          type: ''
-        }
-      ]
-    },
+    roomType: {},
     dateOne: '',
     dateTwo: '',
     checkOut: '',
