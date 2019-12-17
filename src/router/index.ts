@@ -6,8 +6,9 @@ const searchpage = () => import('../components/searchpage.vue')
 const Listing = () => import('../components/Listing.vue')
 const thankYou = () => import('../components/thankYou.vue')
 const Contact = () => import('../components/Contact.vue')
-const BookingReviewPolicies = () => import('@/views/BookingReviewPolicies.vue')
-const BookingConfirmAndPay = () => import('@/views/BookingConfirmAndPay.vue')
+const BookingReviewRulesPage = () => import('@/views/BookingReviewRulesPage.vue')
+const BookingCustomerInfoPage = () => import('@/views/BookingCustomerInfoPage.vue')
+const BookingConfirmAndPayPage = () => import('@/views/BookingConfirmAndPayPage.vue')
 const KitchenSink = () => import('../views/KitchenSink.vue')
 
 import store from '@/store'
@@ -26,6 +27,7 @@ const routes = [
     component: KitchenSink
   },
   {
+    name: 'listing',
     path: '/listing/:id',
     component: Listing
   },
@@ -38,14 +40,19 @@ const routes = [
     component: Contact
   },
   {
-    name: 'booking-review-policies',
-    path: '/booking/review-policies',
-    component: BookingReviewPolicies
+    name: 'booking-review-rules',
+    path: '/booking/review-rules',
+    component: BookingReviewRulesPage
+  },
+  {
+    name: 'booking-customer-info',
+    path: '/booking/customer-info',
+    component: BookingCustomerInfoPage
   },
   {
     name: 'booking-confirm-and-pay',
     path: '/booking/confirm-and-pay',
-    component: BookingConfirmAndPay
+    component: BookingConfirmAndPayPage
   },
   {
     path: '/nature-city-investment-cambodia-property',

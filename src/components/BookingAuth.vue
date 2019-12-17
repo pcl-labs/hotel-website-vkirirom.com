@@ -7,7 +7,7 @@
         icon
         dark
         depressed
-        @click="$emit('booking-close')"
+        @click="$emit('booking-cancel')"
       >
         <v-icon color="gray-82">close</v-icon>
       </v-btn>

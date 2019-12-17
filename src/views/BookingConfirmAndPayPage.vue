@@ -6,6 +6,7 @@
 import Vue from 'vue'
 import BookingConfirmAndPay from '@/components/BookingConfirmAndPay.vue'
 export default Vue.extend({
+  name: 'booking-confirm-and-page-page',
   components: { BookingConfirmAndPay }
 })
 </script>
