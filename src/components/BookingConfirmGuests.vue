@@ -105,7 +105,12 @@
           </v-list>
 
           <div class="mx-4">
-            <p class="error--text body-2" v-if="!($refs.capacityValidator && $refs.capacityValidator.valid)">
+
+            <!-- error -->
+            <p
+              class="error--text body-2"
+              v-if="selectedRoomType.id && !($refs.capacityValidator && $refs.capacityValidator.valid)"
+            >
               Capacity is not enough
             </p>
 
