@@ -1,0 +1,46 @@
+// stylelint-disable
+
+// paths
+$font-path: '~@/assets/font';
+
+// colors
+// $blue:    #007bff;
+// $indigo:  #6610f2;
+// $purple:  #6f42c1;
+// $pink:    #e83e8c;
+$red:     #EB5757;
+// $orange:  #fd7e14;
+$yellow:  #F7B947;
+$green:   #4B7F52;
+// $teal:    #20c997;
+// $cyan:    #17a2b8;
+
+$primary: #F7B947;
+$secondary: #4B7F52;
+
+$bright: #fff;
+$light: #B9BCC1;
+$dark: #191C21;
+$gray-4f: #4f4f4f; // TODO: Calendar Date Disabled
+$gray-82: #828282; // TODO: Inactive Text Gray (in input)
+
+$brand-1: #191C21;
+$brand-2: #E1E7ED;
+$brand-3: #B9BCC1;
+$brand-4: #77C381;
+
+// typography
+$font-family-sans-serif: Helvetica, 'Segoe UI', sans-serif;
+$font-family-base: $font-family-sans-serif;
+$font-family-serif: serif;
+
+// z-index
+// $header-zindex: 5;
+// $loading-zindex: 4;
+// $footer-zindex: 3;
+// $booking-bar-zindex: 2;
+// $page-content-zindex: 1;
+
+$linear-gradient: linear-gradient(166deg, #00243E 9%, #003E3A 95%);
+
+// @import '~bootstrap/scss/variables';

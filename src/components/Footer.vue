@@ -2,8 +2,8 @@
   <footer>
     <div style="background: #191C21; box-shadow: 0px -1px 0px #121416; color: #D8DADE;">
       <v-container grid-list-md align-start id="footer">
-        <v-layout row wrap justify-space-between>
-          <v-flex xs6 sm6 md3 lg3 class="mb-3">
+        <v-row no-gutters justify-space-between>
+          <v-flex xs6 sm6 md4 class="mb-4">
             <h3>Engage</h3>
             <br>
             <ul style="list-style:none; padding:0; margin:0;">
@@ -21,7 +21,7 @@
               </li>
             </ul>
           </v-flex>
-          <v-flex xs6 sm6 md3 lg3 class="mb-3">
+          <v-flex xs6 sm6 md4 class="mb-4">
             <h3>Invest</h3>
             <br>
             <ul style="list-style:none; padding:0; margin:0;">
@@ -38,7 +38,7 @@
               </li>
             </ul>
           </v-flex>
-          <v-flex xs12 sm6 md3 lg3 class="mb-3">
+          <v-flex xs12 sm6 md4 class="mb-4">
             <h3>Learn</h3>
             <br>
             <ul style="list-style:none; padding:0; margin:0;">
@@ -55,7 +55,7 @@
               </li>
             </ul>
           </v-flex>
-        </v-layout>
+        </v-row>
       </v-container>
     </div>
   </footer>
@@ -67,9 +67,30 @@ export default {
 }
 </script>
 
-<style>
-.link{
-  text-decoration:none; 
-  color:#D8DADE;
-}
+<style lang="scss" scoped>
+  .link{
+    text-decoration:none; 
+    color:#D8DADE;
+  }
+  .container{
+    padding-top: 30px;
+    padding-left: 0px;
+    padding-right: 0px;
+    // doing padding:0px or  0; or padding-bottom:0px or 0; creates an extra overflow scroll which is bad and should be avoided
+  }
+  @media only screen and (max-width: 600px) {
+    .container{
+      max-width: 292px;
+    }
+  }
+  @media only screen and (min-width: 768px) {
+    .container{
+      max-width: 600px;
+    }
+  }
+  @media only screen and (min-width: 1024px) {
+    .container{
+      max-width: 900px;
+    }
+  }
 </style>

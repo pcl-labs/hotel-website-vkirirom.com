@@ -1,29 +1,44 @@
 <template>
+<<<<<<< HEAD
   <v-container-fluid>
     <v-container grid-list-md style="min-height:100vh;">
       <v-flex xs12 style="margin-top:20px; margin-bottom:20px;">
         <h1 style="color: #FFFFFF;">Results for {{id}}</h1>
+=======
+  <div>
+    <v-container class="is-limited" grid-list-md style="min-height:100vh;">
+      <v-flex xs12 class="headerText">
+        <h1>Results for {{id}}</h1>
+>>>>>>> staging
         <v-flex xs12 v-if="id=='food'">
-          <p style="font-size: 16px; line-height: 22px; color: #B9BCC1; margin-top:30px;">
+          <p>
             “Best lunch spot in Kirirom” (Lonely Planet Guidebook).
             <br>vKirirom’s iconic open-air restaurant serves an array of international dishes to complement its core traditional Khmer food. The restaurant strives to create wonderful healthy food that is locally sourced from local farmers or grown in vKirirom’s own organic garden.
-            <p style="font-size: 16px; line-height: 22px; color: #B9BCC1;">Book your stay at vKirirom today and enjoy our array of international food!
+            <p>Book your stay at vKirirom today and enjoy our array of international food!
           </p>
         </v-flex>
       </v-flex>
+<<<<<<< HEAD
       <v-layout row wrap>
         <v-flex xs12 sm6 md4 lg4 v-for="resort in resorts" v-bind:key="resort.id">
           <v-card color="#191C21" class="mb-4 card" width="100%" dark :to="'/listing/'+ resort.slug" flat>
             <router-link :to="'/listing/'+ resort.slug">
               <v-carousel height="150px" :cycle="false" hide-controls dark width="100%" class="hidden-md-and-up" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+=======
+      <v-row dense>
+        <v-col cols="12" sm="6" md="4" v-for="resort in resorts" v-bind:key="resort.id">
+          <v-card :ripple="false" color="#191C21" class="mb-6 card" width="100%" dark :to="'/listing/'+ resort.slug" flat>
+          <router-link :to="'/listing/'+ resort.slug">
+            <v-carousel height="150px" :cycle="false" :show-arrows="false" dark width="100%" class="d-md-none" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+>>>>>>> staging
                 <v-carousel-item :src="resort.featuredImage">
                 </v-carousel-item>
                 <v-carousel-item v-for="image in resort.images.slice(0,4)" v-bind:key="image.url" :src="image.url" style="background-size:contain;">
                 </v-carousel-item>
               </v-carousel>
             </router-link>
-            <v-img :src="resort.featuredImage" height="150px" class="hidden-sm-and-down" style="border-top-left-radius: 10px; border-top-right-radius: 10px;"></v-img>
-            <v-layout align-start>
+            <v-img class="d-none d-md-block" :src="resort.featuredImage" height="150px" style="border-top-left-radius: 10px; border-top-right-radius: 10px;"></v-img>
+            <v-row no-gutters align-start>
               <v-card-text style="margin:10px; padding: 0;">
                 <p>
                   <!-- <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire {{resort.title}}</span> -->
@@ -31,16 +46,17 @@
                   <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;" v-if="resort.ctaText>0">Starting from {{resort.ctaText}}$ per night</span>
                 </p>
               </v-card-text>
-            </v-layout>
+            </v-row>
           </v-card>
-        </v-flex>
-      </v-layout>
+        </v-col>
+      </v-row>
     </v-container>
     <Footer></Footer>
-  </v-container-fluid>
+  </div>
 </template>
 
 <script>
+import { PageService } from "@/connection/resources.js"
 const Footer = () => import ('@/components/Footer.vue')
 
 export default {
@@ -54,45 +70,37 @@ export default {
     }
   },
   created() {
-    this.$http.get('https://api.whynot.earth/api/v0/pages/slug/vkirirom/categories/by-name/'+ this.id).then(function(data){
-      this.resorts=data.body;
+    PageService.byCompanyByCategoryName({
+      companySlug: 'vkirirom',
+      categoryName: this.id
+    }).then(data => {
+      this.resorts = data;
     });
   },
 }
 </script>
 
-<style lang="scss">
-  html {
-    scroll-behavior: smooth;
-  }
-  .v-carousel__controls{
-  background: linear-gradient(0deg, #191C21 0%, rgba(25, 28, 33, 0) 50%);
-    .v-btn__content{
-      margin: 0;
-      padding: 0;
-    }
-    .v-icon{
-      font-size: 7px !important;
-      color: white !important;
-    }
-  }
+<style lang="scss" scoped>
   .card{
-    box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;
+    box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
     height: 270px;
   }
-  @media only screen and (max-width: 600px) {
-    .container{
-      max-width: 292px;
-    }
+  .v-card--link:before {
+    border-radius: inherit;
   }
-  @media only screen and (min-width: 768px) {
-    .container{
-      max-width: 600px;
+  .headerText{
+    margin-top:30px; 
+    margin-bottom:30px;
+    p{
+      font-size: 16px;
+      line-height: 22px;
+      color: #B9BCC1;
     }
-  }
-  @media only screen and (min-width: 1024px) {
-    .container{
-      max-width: 900px;
+    h1{
+      color: #D7D9DD;
+      font-size: 28px;
+      margin-bottom: 20px;
     }
   }
 </style>

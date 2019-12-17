@@ -1,8 +1,8 @@
 <template>
   <v-app style="background: linear-gradient(115.51deg, #00243E 0%, #003E3A 100%);" id="app">
-    <Toolbar></Toolbar>
+      <Toolbar></Toolbar>
+      <!-- TODO: remove :key similar to https://github.com/whynotearth/shinta-mani-wild/pull/298 -->
       <router-view :key="$route.name + ($route.params.id || '')"/> 
-      <!-- for reloading created while trying to navigate to different ids in the dynamic route -->
   </v-app>
 </template>
 
@@ -14,13 +14,17 @@ export default {
   components: {
     Toolbar,
   },
-
+  created(){
+    this.$store.dispatch('auth/ping')
+  }
 }
 </script>
 
-<style>
+<style lang="scss">
+@import '@/styles/global.scss';
+
   #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    font-family: $font-family-sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
@@ -31,7 +35,17 @@ export default {
   html {
     scroll-behavior: smooth;
   }
-  
+  .v-carousel__controls{
+    background: transparent !important;
+    .v-btn__content{
+      margin: 0;
+      padding: 0;
+    }
+    .v-icon{
+      font-size: 7px !important;
+      color: white !important;
+    }
+  }
   .fade-enter-active,
   .fade-leave-active {
     transition-duration: 0.3s;

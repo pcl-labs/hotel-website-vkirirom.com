@@ -1,0 +1,9 @@
+{
+  "eslint.autoFixOnSave": false,
+  "editor.formatOnSave": false,
+  "editor.tabSize": 2,
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#00435e"
+  },
+  "prettier.printWidth": 120
+}
