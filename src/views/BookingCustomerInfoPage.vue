@@ -3,7 +3,7 @@
     <v-container class="is-limited light--text px-2 px-md-0 py-8">
       <v-row no-gutters>
         <v-col class="px-md-3 order-2 order-md-1" cols="12" md="8">
-          <div class="mx-6 mx-md-0">
+          <div class="mx-6">
             <booking-customer-info></booking-customer-info>
           </div>
         </v-col>
