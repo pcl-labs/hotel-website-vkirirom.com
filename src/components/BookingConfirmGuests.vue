@@ -285,11 +285,11 @@ export default Vue.extend({
   height: auto;
   &.v-btn.v-btn {
     border-width: rem(2px);
-    border-color: $light;
-    color: $light;
+    border-color: $gray-82;
+    color: $gray-82;
     &.is-selected {
-      border-color: $brand-4;
-      color: $brand-4;
+      border-color: $white;
+      color: $white;
     }
   }
 }
