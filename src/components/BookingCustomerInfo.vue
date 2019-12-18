@@ -13,17 +13,18 @@
           <v-row dense no-gutters class="phone-input align-center">
             <v-col cols="5">
               <v-combobox
-                v-model="phoneCountry"
                 class="phone-input--code"
-                item-color="dark"
-                color="light"
                 dark
+                color="light"
+                outlined
+                label="Country code"
+                v-model="phoneCountry"
+                item-color="dark"
                 :items="CountriesList"
                 item-text="name"
-                auto-select-first
-                label="Country code"
                 :suffix="(phoneCountry && `+${phoneCountry.callingCodes[0]}`) || ''"
-                outlined
+                auto-select-first
+                :rules="rules.phoneCountry"
               >
                 <template v-if="phoneCountry" slot="prepend-inner"
                   ><span class="d-flex"
@@ -38,12 +39,12 @@
             <v-col cols="7">
               <v-text-field
                 class="phone-input--number"
-                v-model="phone"
-                v-mask="'+###-####-####'"
                 type="text"
                 dark
                 outlined
                 label="Phone Number"
+                v-model="phoneNumber"
+                :rules="rules.phoneNumber"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -60,7 +61,11 @@
               <v-card-title class="justify-space-between">
                 <v-radio color="green" label="Shuttle Bus ($10/Pax)" :value="2" class="ma-0"></v-radio>
                 <!-- TODO: modal -->
-                <a @click.stop="" target="_blank" href="https://vkirirom.com/listing/Shuttle-Bus/" class="body-1 text-decoration-none"
+                <a
+                  @click.stop=""
+                  target="_blank"
+                  href="https://vkirirom.com/listing/Shuttle-Bus/"
+                  class="body-1 text-decoration-none"
                   >More Info</a
                 >
               </v-card-title>
@@ -93,21 +98,27 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { mask } from 'vue-the-mask'
 import CountriesList from '@/constants/countries-list'
+import { isNumber } from 'lodash-es'
 
 export default Vue.extend({
   name: 'booking-customer-info',
-  directives: {
-    mask
-  },
   data() {
     return {
       phoneCountry: undefined,
+      phoneNumber: undefined,
       isFormValid: false,
       phone: '',
       transportation: 1,
-      CountriesList
+      CountriesList,
+      rules: {
+        phoneCountry: [v => !!v || 'This field is required'],
+        phoneNumber: [
+          v => !!v || 'This field is required',
+          v => String(v).length <= 16 || 'Phone should be valid',
+          v => !/\D/.test(v) || 'Phone should be number'
+        ]
+      }
     }
   },
   methods: {
