@@ -25,6 +25,7 @@
                 :suffix="(phoneCountry && `+${phoneCountry.callingCodes[0]}`) || ''"
                 auto-select-first
                 :rules="rules.phoneCountry"
+                @change="focusPhone"
               >
                 <template v-if="phoneCountry" slot="prepend-inner"
                   ><span class="d-flex"
@@ -38,6 +39,7 @@
             </v-col>
             <v-col cols="7">
               <v-text-field
+                ref="phoneNumber"
                 class="phone-input--number"
                 type="text"
                 dark
@@ -60,12 +62,7 @@
             <v-card outlined color="transparent" class="mb-2" @click="transportation = 2">
               <v-card-title class="justify-space-between">
                 <v-radio color="green" label="Shuttle Bus ($10/Pax)" :value="2" class="ma-0"></v-radio>
-                <!-- TODO: modal -->
-                <a
-                  @click.stop=""
-                  target="_blank"
-                  href="https://vkirirom.com/listing/Shuttle-Bus/"
-                  class="body-1 text-decoration-none"
+                <a @click.prevent.stop="$emit('open-shuttle-bus-info')" class="body-1 text-decoration-none"
                   >More Info</a
                 >
               </v-card-title>
@@ -122,6 +119,10 @@ export default Vue.extend({
     }
   },
   methods: {
+    focusPhone() {
+      // @ts-ignore
+      this.$refs.phoneNumber.focus()
+    },
     submit() {
       console.log('submit...')
     }

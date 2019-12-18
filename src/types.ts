@@ -43,10 +43,10 @@ export interface Resort {
   images: ResortImage[]
   modules: {
     hotel?: {
-      amenities: string[]
+      amenities?: string[]
       gettingAround: string
       id: number
-      location: string
+      location?: string
       roomTypes: {
         beds: {
           count: number
@@ -58,7 +58,7 @@ export interface Resort {
         name: string
       }
       rules: string[]
-      spaces: string[]
+      spaces?: string[]
     }
   }
   name: string
