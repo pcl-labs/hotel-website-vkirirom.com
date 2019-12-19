@@ -1,4 +1,9 @@
 [[redirects]]
+  from = "/.well-known/1.txt"
+  to = "/static/1.txt"
+  status = 200
+
   from = "/*"
   to = "/"
   status = 200
+
