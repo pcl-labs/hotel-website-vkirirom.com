@@ -3,6 +3,7 @@
   to = "/static/1.txt"
   status = 200
 
+[[redirects]]
   from = "/*"
   to = "/"
   status = 200
