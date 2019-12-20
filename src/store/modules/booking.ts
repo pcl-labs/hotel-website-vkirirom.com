@@ -2,6 +2,7 @@ import { addDays } from 'date-fns'
 import { RoomTypeService, CompanyService, ReservationService } from '@/connection/resources.js'
 import { bookingStep } from '@/types'
 import { setDocumentClassesOnToggleDialog } from '@/helpers'
+import { cloneDeep } from 'lodash-es'
 
 const steps: { [name: string]: bookingStep } = {
   notStarted: {
@@ -51,27 +52,17 @@ const defaultState = {
     returnUrl: '/',
     resort: {},
     guests: {
-      adults: 0,
+      adults: 1,
       children: 0,
       infants: 0,
-      total: 0
+      total: 1
     },
     transportation: false,
     message: '',
     name: '',
     email: '',
     phone: '',
-    roomType: {
-      id: 0,
-      name: '',
-      capacity: 0,
-      beds: [
-        {
-          count: '',
-          type: ''
-        }
-      ]
-    },
+    roomType: {},
     dateOne: '',
     dateTwo: '',
     checkOut: '',
@@ -147,7 +138,7 @@ export default {
     resetState(state) {
       for (const key in defaultState) {
         if (defaultState.hasOwnProperty(key)) {
-          state[key] = defaultState[key]
+          state[key] = cloneDeep(defaultState[key])
         }
       }
     }
