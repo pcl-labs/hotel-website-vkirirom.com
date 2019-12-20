@@ -47,16 +47,7 @@ export interface Resort {
       gettingAround: string
       id: number
       location?: string
-      roomTypes: {
-        beds: {
-          count: number
-          id: number
-          type: string
-        }
-        capacity: number
-        id: number
-        name: string
-      }
+      roomTypes: RoomType[]
       rules: string[]
       spaces?: string[]
     }
@@ -89,4 +80,15 @@ export interface Category {
 export interface bookingStep {
   id: number
   width?: number
+}
+
+export interface RoomType {
+  beds: {
+    count: number
+    id: number
+    type: string
+  }
+  capacity: number
+  id: number
+  name: string
 }

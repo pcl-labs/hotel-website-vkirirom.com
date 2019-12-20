@@ -64,8 +64,6 @@ export default Vue.extend({
   },
   computed: {
     resortHotel(): Resort['modules']['hotel'] {
-      console.log(this.resort);
-      
       return get(this.resort, 'modules.hotel', {})
     }
   },

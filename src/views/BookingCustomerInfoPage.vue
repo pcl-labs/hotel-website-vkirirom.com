@@ -37,7 +37,6 @@ export default Vue.extend({
   },
   methods: {
     openShuttleBusInfo() {
-      console.log('open now');
       // @ts-ignore
       this.$refs.resortDescriptionRef.openDialog()
     },
