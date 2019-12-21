@@ -22,7 +22,6 @@
             :rules="rules.fullName"
             dark
           >
-            <v-icon slot="append" color="light">account</v-icon>
           </v-text-field>
 
           <h4 class="mb-2 title font-weight-bold">Pay with</h4>
@@ -31,11 +30,13 @@
             <v-card outlined color="transparent" class="mb-2" @click="payWith = 'cash'">
               <v-card-title>
                 <v-radio color="green" label="Pay with cash" :value="'cash'" class="ma-0"></v-radio>
+                <v-icon class="position-absolute payment--icon">$vuetify.icons.cash</v-icon>
               </v-card-title>
             </v-card>
             <v-card outlined color="transparent" class="mb-2" @click="payWith = 'card'">
-              <v-card-title class="justify-space-between">
+              <v-card-title>
                 <v-radio color="green" label="Pay with card" :value="'card'" class="ma-0"></v-radio>
+                <v-icon class="position-absolute payment--icon">$vuetify.icons.creditCard</v-icon>
               </v-card-title>
             </v-card>
           </v-radio-group>
@@ -70,6 +71,7 @@
                 color="light"
                 type="text"
                 required
+                hint="e.g. 2020 / 20"
                 v-mask="'#### / ##'"
                 :rules="rules.expiration"
                 dark
@@ -135,7 +137,7 @@ export default Vue.extend({
     return {
       isFormValid: false,
       rules: {
-        firstName: [v => !!v || 'First name is required'],
+        fullName: [v => !!v || 'Full name is required'],
         // validatin of credit card https://www.creditcardrush.com/credit-card-validator/
         cardNumber: [v => !!v || 'Card number is required', v => isCreditCard(v) || 'Card number should be valid'],
         expiration: [
@@ -194,9 +196,7 @@ export default Vue.extend({
       this.$refs.phoneNumber.focus()
     },
     submit() {
-      console.log('go to next...')
-
-      // this.$router.push({ name: 'booking-thanks' })
+      this.$router.push({ name: 'booking-thanks' })
     }
   }
 })
@@ -212,9 +212,6 @@ export default Vue.extend({
     color: $light;
   }
   .confirm-payment--card-number {
-    .v-input__slot {
-      // margin-bottom: 0;
-    }
     &:not(.error--text) {
       .v-text-field__details {
         display: none;
@@ -223,6 +220,11 @@ export default Vue.extend({
   }
   .confirm-payment--row2 {
     margin-top: rem(8px);
+  }
+  .payment--icon {
+    width: rem(32px);
+    height: rem(32px);
+    right: rem(16px);
   }
 }
 </style>
