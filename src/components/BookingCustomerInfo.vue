@@ -10,7 +10,7 @@
             Customer Info
           </h1>
           <h4 class="mb-2 title font-weight-bold">Guest Info</h4>
-          <v-row dense no-gutters class="phone-input align-center">
+          <v-row no-gutters class="phone-input align-center">
             <v-col cols="5">
               <v-combobox
                 class="phone-input--code"
@@ -155,7 +155,7 @@ export default Vue.extend({
       this.$refs.phoneNumber.focus()
     },
     submit() {
-      this.$router.push({ name: 'booking-confirm-and-pay' })
+      this.$router.push({ name: 'booking-payment' })
     }
   }
 })
