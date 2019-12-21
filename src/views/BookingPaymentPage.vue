@@ -12,8 +12,6 @@
         </v-col>
       </v-row>
     </v-container>
-
-    <Footer></Footer>
   </fragment>
 </template>
 
@@ -21,12 +19,11 @@
 import Vue from 'vue'
 import BookingPayment from '@/components/BookingPayment.vue'
 import BookingConfirmBooking from '@/components/BookingConfirmBooking.vue'
-import Footer from '@/components/Footer.vue'
 import store from '@/store'
 
 export default Vue.extend({
   name: 'booking-payment-page',
-  components: { BookingPayment, BookingConfirmBooking, Footer },
+  components: { BookingPayment, BookingConfirmBooking },
   computed: {
     returnUrl() {
       return store.getters['booking/bookingInfo'].returnUrl

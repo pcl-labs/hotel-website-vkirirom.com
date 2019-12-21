@@ -118,8 +118,6 @@ export default Vue.extend({
   computed: {
     phoneNumber: {
       get() {
-        console.log();
-        
         return store.getters['booking/bookingInfo'].phoneNumber
       },
       set(value: string) {

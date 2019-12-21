@@ -41,59 +41,63 @@
             </v-card>
           </v-radio-group>
 
-          <h4 class="mb-2 title font-weight-bold">Card info</h4>
-          <v-row>
-            <v-col cols="12" class="pb-0">
-              <v-text-field
-                class="confirm-payment--card-number"
-                v-model="cardNumber"
-                outlined
-                label="Card number"
-                name="cardNumber"
-                color="light"
-                type="text"
-                required
-                v-mask="'#### #### #### #######'"
-                masked
-                :rules="rules.cardNumber"
-                dark
-              >
-              </v-text-field>
-            </v-col>
-          </v-row>
-          <v-row dense class="confirm-payment--row2">
-            <v-col cols="6" class="pt-0">
-              <v-text-field
-                v-model="expiration"
-                outlined
-                label="Expiration"
-                name="expiration"
-                color="light"
-                type="text"
-                required
-                hint="e.g. 2020 / 20"
-                v-mask="'#### / ##'"
-                :rules="rules.expiration"
-                dark
-              >
-              </v-text-field>
-            </v-col>
-            <v-col cols="6" class="pt-0">
-              <v-text-field
-                v-model="CVV"
-                outlined
-                label="CVV"
-                name="CVV"
-                color="light"
-                type="text"
-                required
-                v-mask="'####'"
-                :rules="rules.CVV"
-                dark
-              >
-              </v-text-field>
-            </v-col>
-          </v-row>
+          <v-expand-transition>
+            <div class="transition-fast-in-fast-out" v-if="payWith === 'card'">
+              <h4 class="mb-2 title font-weight-bold">Card info</h4>
+              <v-row>
+                <v-col cols="12" class="pb-0">
+                  <v-text-field
+                    class="confirm-payment--card-number"
+                    v-model="cardNumber"
+                    outlined
+                    label="Card number"
+                    name="cardNumber"
+                    color="light"
+                    type="text"
+                    required
+                    v-mask="'#### #### #### #######'"
+                    masked
+                    :rules="rules.cardNumber"
+                    dark
+                  >
+                  </v-text-field>
+                </v-col>
+              </v-row>
+              <v-row dense class="confirm-payment--row2">
+                <v-col cols="6" class="pt-0">
+                  <v-text-field
+                    v-model="expiration"
+                    outlined
+                    label="Expiration"
+                    name="expiration"
+                    color="light"
+                    type="text"
+                    required
+                    hint="e.g. 2020 / 20"
+                    v-mask="'#### / ##'"
+                    :rules="rules.expiration"
+                    dark
+                  >
+                  </v-text-field>
+                </v-col>
+                <v-col cols="6" class="pt-0">
+                  <v-text-field
+                    v-model="CVV"
+                    outlined
+                    label="CVV"
+                    name="CVV"
+                    color="light"
+                    type="text"
+                    required
+                    v-mask="'####'"
+                    :rules="rules.CVV"
+                    dark
+                  >
+                  </v-text-field>
+                </v-col>
+              </v-row>
+            </div>
+          </v-expand-transition>
 
           <h4 class="mb-2 title font-weight-bold">Cancelation Policy</h4>
           <v-row no-gutters class="mb-6">
