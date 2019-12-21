@@ -54,14 +54,14 @@
           <h4 class="mb-2 title font-weight-bold">Transportation</h4>
 
           <v-radio-group dark v-model="transportation" class="ma-0 d-block">
-            <v-card outlined color="transparent" class="mb-2" @click="transportation = 1">
+            <v-card outlined color="transparent" class="mb-2" @click="transportation = false">
               <v-card-title>
-                <v-radio color="green" label="No transportation" :value="1" class="ma-0"></v-radio>
+                <v-radio color="green" label="No transportation" :value="false" class="ma-0"></v-radio>
               </v-card-title>
             </v-card>
-            <v-card outlined color="transparent" class="mb-2" @click="transportation = 2">
+            <v-card outlined color="transparent" class="mb-2" @click="transportation = true">
               <v-card-title class="justify-space-between">
-                <v-radio color="green" label="Shuttle Bus ($10/Pax)" :value="2" class="ma-0"></v-radio>
+                <v-radio color="green" label="Shuttle Bus ($10/Pax)" :value="true" class="ma-0"></v-radio>
                 <a @click.prevent.stop="$emit('open-shuttle-bus-info')" class="body-1 text-decoration-none"
                   >More Info</a
                 >
@@ -71,7 +71,7 @@
 
           <h4 class="mb-2 title font-weight-bold">Message</h4>
 
-          <v-textarea class="mb-6" dark outlined name="message" :rows="5" auto-grow></v-textarea>
+          <v-textarea v-model="message" class="mb-6" dark outlined name="message" :rows="5" auto-grow></v-textarea>
 
           <v-btn
             @click="submit"
@@ -97,16 +97,13 @@
 import Vue from 'vue'
 import CountriesList from '@/constants/countries-list'
 import { isNumber } from 'lodash-es'
+import store from '../store'
 
 export default Vue.extend({
   name: 'booking-customer-info',
   data() {
     return {
-      phoneCountry: undefined,
-      phoneNumber: undefined,
       isFormValid: false,
-      phone: '',
-      transportation: 1,
       CountriesList,
       rules: {
         phoneCountry: [v => !!v || 'This field is required'],
@@ -118,13 +115,47 @@ export default Vue.extend({
       }
     }
   },
+  computed: {
+    phoneNumber: {
+      get() {
+        return store.getters['booking/bookingInfo'].phone
+      },
+      set(value: string) {
+        store.dispatch('booking/updatePhoneNumber', value)
+      }
+    },
+    phoneCountry: {
+      get() {
+        return store.getters['booking/bookingInfo'].phoneCountry
+      },
+      set(value: string) {
+        store.dispatch('booking/updatePhoneCountry', value)
+      }
+    },
+    message: {
+      get() {
+        return store.getters['booking/bookingInfo'].message
+      },
+      set(value: string) {
+        store.dispatch('booking/updateMessage', value)
+      }
+    },
+    transportation: {
+      get() {
+        return store.getters['booking/bookingInfo'].transportation
+      },
+      set(value: number) {
+        store.dispatch('booking/updateTransportation', value)
+      }
+    }
+  },
   methods: {
     focusPhone() {
       // @ts-ignore
       this.$refs.phoneNumber.focus()
     },
     submit() {
-      console.log('submit...')
+      this.$router.push({ name: 'booking-confirm-and-pay' })
     }
   }
 })

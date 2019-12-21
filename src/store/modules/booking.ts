@@ -61,7 +61,8 @@ const defaultState = {
     message: '',
     name: '',
     email: '',
-    phone: '',
+    phoneNumber: '',
+    phoneCountry: undefined,
     roomType: {},
     dateOne: '',
     dateTwo: '',
@@ -111,8 +112,11 @@ export default {
     updateEmail(state, payload) {
       state.bookingInfo.email = payload
     },
-    updatePhone(state, payload) {
-      state.bookingInfo.phone = payload
+    updatePhoneNumber(state, payload) {
+      state.bookingInfo.phoneNumber = payload
+    },
+    updatePhoneCountry(state, payload) {
+      state.bookingInfo.phoneCountry = payload
     },
     updateRoomType(state, payload) {
       state.bookingInfo.roomType = payload
@@ -197,8 +201,11 @@ export default {
     updateEmail(context, payload) {
       context.commit('updateEmail', payload)
     },
-    updatePhone(context, payload) {
-      context.commit('updatePhone', payload)
+    updatePhoneNumber(context, payload) {
+      context.commit('updatePhoneNumber', payload)
+    },
+    updatePhoneCountry(context, payload) {
+      context.commit('updatePhoneCountry', payload)
     },
     updateRoomType(context, payload) {
       context.commit('updateRoomType', payload)
