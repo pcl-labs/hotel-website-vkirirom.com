@@ -118,7 +118,9 @@ export default Vue.extend({
   computed: {
     phoneNumber: {
       get() {
-        return store.getters['booking/bookingInfo'].phone
+        console.log();
+        
+        return store.getters['booking/bookingInfo'].phoneNumber
       },
       set(value: string) {
         store.dispatch('booking/updatePhoneNumber', value)
