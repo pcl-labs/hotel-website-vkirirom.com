@@ -14,8 +14,6 @@
     </v-container>
 
     <resort-description-dialog ref="resortDescriptionRef" slug="Shuttle-Bus"></resort-description-dialog>
-
-    <Footer></Footer>
   </fragment>
 </template>
 
@@ -24,12 +22,11 @@ import Vue from 'vue'
 import BookingCustomerInfo from '@/components/BookingCustomerInfo.vue'
 import BookingConfirmBooking from '@/components/BookingConfirmBooking.vue'
 import ResortDescriptionDialog from '@/components/ResortDescriptionDialog.vue'
-import Footer from '@/components/Footer.vue'
 import store from '@/store'
 
 export default Vue.extend({
   name: 'booking-customer-info-page',
-  components: { BookingCustomerInfo, BookingConfirmBooking, ResortDescriptionDialog, Footer },
+  components: { BookingCustomerInfo, BookingConfirmBooking, ResortDescriptionDialog },
   computed: {
     returnUrl() {
       return store.getters['booking/bookingInfo'].returnUrl
