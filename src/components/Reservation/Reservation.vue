@@ -3,15 +3,13 @@
 </template>
 
 <script>
-const ReviewRules = () => import ('@/components/Reservation/ReviewRules.vue')
+const ReviewRules = () => import('@/components/Reservation/ReviewRules.vue')
 
 export default {
-  components:{
+  components: {
     ReviewRules
   }
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

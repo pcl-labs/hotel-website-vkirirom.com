@@ -272,15 +272,15 @@
 </template>
 
 <script>
-import { formatDates } from "@/helpers";
-import format from "date-fns/format";
-import { debounce } from "lodash-es";
-const Login = () => import("@/components/Auth/Login.vue");
-const SignUp = () => import("@/components/Auth/SignUp.vue");
+import { formatDates } from '@/helpers';
+import format from 'date-fns/format';
+import { debounce } from 'lodash-es';
+const Login = () => import('@/components/Auth/Login.vue');
+const SignUp = () => import('@/components/Auth/SignUp.vue');
 const TEXTFIELDS_DEBOUNCE_TIME = 200;
 
 export default {
-  name: "reservation-form-desktop",
+  name: 'reservation-form-desktop',
   components: {
     Login,
     SignUp
@@ -290,20 +290,20 @@ export default {
       toggle0: 0,
       valid: false,
       register: true,
-      nameRules: [v => !!v || "Name is required"],
+      nameRules: [v => !!v || 'Name is required'],
       emailRules: [
-        v => !!v || "E-mail is required",
-        v => /.+@.+/.test(v) || "E-mail must be valid",
-        v => (v || "").indexOf(" ") < 0 || "No spaces are allowed"
+        v => !!v || 'E-mail is required',
+        v => /.+@.+/.test(v) || 'E-mail must be valid',
+        v => (v || '').indexOf(' ') < 0 || 'No spaces are allowed'
       ],
       phoneRules: [
-        v => !!v || "Phone no. is required",
-        v => (v || "").length <= 12 || "A maximum of 12 characters is allowed",
-        v => (v || "").length >= 9 || "A minimum of 9 characters is needed",
-        v => (v || "").indexOf(" ") < 0 || "No spaces are allowed"
+        v => !!v || 'Phone no. is required',
+        v => (v || '').length <= 12 || 'A maximum of 12 characters is allowed',
+        v => (v || '').length >= 9 || 'A minimum of 9 characters is needed',
+        v => (v || '').indexOf(' ') < 0 || 'No spaces are allowed'
       ],
       dateRules: [
-        v => !!v || "Dates are required"
+        v => !!v || 'Dates are required'
       ],
       bedTypeRules: [
         (v) => !!this.roomType || 'Bed type is required',
@@ -329,88 +329,88 @@ export default {
   // },
   mounted(){
     if(this.resort.slug !== this.resortSlug) {
-      this.$store.commit("reservation/resetState")
+      this.$store.commit('reservation/resetState')
     }
   },
   computed: {
     resort() {
-      return this.$store.getters["resort/getResort"];
+      return this.$store.getters['resort/getResort'];
     },
     isAuthenticated(){
-      return this.$store.getters["auth/isAuthenticated"];
+      return this.$store.getters['auth/isAuthenticated'];
     },
     dateOne: {
       get() {
-        return this.$store.getters["reservation/dateOne"];
+        return this.$store.getters['reservation/dateOne'];
       },
       set(value) {
-        this.$store.commit("reservation/updateDateOne", value);
+        this.$store.commit('reservation/updateDateOne', value);
       }
     },
     dateTwo: {
       get() {
-        return this.$store.getters["reservation/dateTwo"];
+        return this.$store.getters['reservation/dateTwo'];
       },
       set(value) {
-        this.$store.commit("reservation/updateDateTwo", value);
+        this.$store.commit('reservation/updateDateTwo', value);
       }
     },
     prices() {
-      return this.$store.getters["reservation/prices"];
+      return this.$store.getters['reservation/prices'];
     },
     finalPrice() {
-      return this.$store.getters["reservation/finalPrice"];
+      return this.$store.getters['reservation/finalPrice'];
     },
     vat() {
-      return this.$store.getters["reservation/vat"].toFixed(2);
+      return this.$store.getters['reservation/vat'].toFixed(2);
     },
     transportation: {
       get() {
-        return this.$store.getters["reservation/transportation"];
+        return this.$store.getters['reservation/transportation'];
       },
       set(value) {
-        this.$store.commit("reservation/updateTransportation", value);
+        this.$store.commit('reservation/updateTransportation', value);
       }
     },
     message: {
       get() {
-        return this.$store.getters["reservation/message"];
+        return this.$store.getters['reservation/message'];
       },
       set: debounce(function(value) {
-        this.$store.commit("reservation/updateMessage", value);
+        this.$store.commit('reservation/updateMessage', value);
       }, TEXTFIELDS_DEBOUNCE_TIME)
     },
     name: {
       get() {
-        return this.$store.getters["reservation/name"];
+        return this.$store.getters['reservation/name'];
       },
       set: debounce(function(value) {
-        this.$store.commit("reservation/updateName", value);
+        this.$store.commit('reservation/updateName', value);
       }, TEXTFIELDS_DEBOUNCE_TIME)
     },
     email: {
       get() {
-        return this.$store.getters["reservation/email"];
+        return this.$store.getters['reservation/email'];
       },
       set: debounce(function(value) {
-        this.$store.commit("reservation/updateEmail", value);
+        this.$store.commit('reservation/updateEmail', value);
       }, TEXTFIELDS_DEBOUNCE_TIME)
     },
     phone: {
       get() {
-        return this.$store.getters["reservation/phone"];
+        return this.$store.getters['reservation/phone'];
       },
       set: debounce(function(value) {
-        this.$store.commit("reservation/updatePhone", value);
+        this.$store.commit('reservation/updatePhone', value);
       }, TEXTFIELDS_DEBOUNCE_TIME)
     },
     roomType: {
       get() {
-        return this.$store.getters["reservation/roomType"];
+        return this.$store.getters['reservation/roomType'];
       },
       set(value) {
         const roomTypeObject = this.resort.modules.hotel.roomTypes.find(item => item.id === value)
-        this.$store.commit("reservation/updateRoomType", roomTypeObject);
+        this.$store.commit('reservation/updateRoomType', roomTypeObject);
       }
     }
   },
@@ -420,7 +420,7 @@ export default {
       const dateOne = this.dateOne;
       const dateTwo = this.dateTwo;
       const roomTypeId = this.resort.modules.hotel.roomTypes[0].id;
-      this.$store.dispatch("reservation/getPrices", {
+      this.$store.dispatch('reservation/getPrices', {
         roomTypeId,
         dateOne,
         dateTwo

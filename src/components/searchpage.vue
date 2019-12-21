@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import { PageService } from "@/connection/resources.js"
+import { PageService } from '@/connection/resources.js'
 const Footer = () => import ('@/components/Footer.vue')
 
 export default {
