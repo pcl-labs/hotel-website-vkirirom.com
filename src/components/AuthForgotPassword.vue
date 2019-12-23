@@ -1,6 +1,6 @@
 <template>
   <v-form name="ForgotPassword" v-model="valid" @submit.prevent="">
-    <v-container fluid>
+    <v-container fluid class="pa-0">
       <v-row no-gutters>
         <v-flex xs12>
           <p class="light--text">
@@ -63,12 +63,10 @@
 </template>
 
 <script lang="ts">
-import SeparatorOr from '@/components/SeparatorOr.vue'
 import store from '@/store'
 
 export default {
   name: 'auth-signup',
-  components: { SeparatorOr },
   data() {
     return {
       valid: false,

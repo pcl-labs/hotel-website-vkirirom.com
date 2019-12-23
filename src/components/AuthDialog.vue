@@ -9,21 +9,21 @@
       :hide-overlay="$vuetify.breakpoint.smAndDown"
       transition="dialog-bottom-transition"
     >
-      <v-card tile :elevation="0" class="dark">
-        <v-toolbar class="px-2" flat dark color="dark">
+      <v-card tile :elevation="0" class="dark px-4 pt-6 pb-8">
+        <div class="d-flex mb-2 align-center mb-8 mx-auto">
           <v-btn class="ma-0" small icon dark depressed @click="closeDialog()">
             <v-icon color="gray-82">close</v-icon>
           </v-btn>
-          <v-toolbar-title
-            v-if="dialog.title"
-            class="light--text pl-0 ml-n4 text-center display-1"
-            >{{ dialog.title }}</v-toolbar-title
-          >
-        </v-toolbar>
+          <v-spacer></v-spacer>
+          <div v-if="dialog.title" class="light--text pl-0 ml-sm-n4 ml-md-0 text-center display-1">
+            {{ dialog.title }}
+          </div>
+          <v-spacer></v-spacer>
+        </div>
 
         <div class="d-flex flex-column">
           <div class="light--text mx-auto">
-            <v-card color="dark px-2 pb-4" tile :ripple="false">
+            <v-card color="dark" tile :ripple="false" :elevation="0">
               <auth-core />
             </v-card>
           </div>
