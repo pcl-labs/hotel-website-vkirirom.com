@@ -1,14 +1,16 @@
 <template>
-  <v-card tile :elevation="0" class="dark">
-    <v-toolbar class="px-2" dense flat dark color="dark">
+  <v-card tile :elevation="0" class="dark px-4 pt-6 pb-9">
+    <div class="d-flex mb-2 align-center mb-8 mx-auto">
       <v-btn class="ma-0" small icon dark depressed @click="$emit('booking-cancel')">
         <v-icon color="gray-82">close</v-icon>
       </v-btn>
-      <v-toolbar-title class="light--text pl-0 ml-n4 text-center display-1">Guests</v-toolbar-title>
-    </v-toolbar>
+      <v-spacer></v-spacer>
+      <div class="light--text pl-0 ml-sm-n4 ml-md-0 text-center display-1">Guests</div>
+      <v-spacer></v-spacer>
+    </div>
 
     <div class="d-flex flex-column">
-      <v-card color="dark px-2 pb-4 light--text" tile :ripple="false">
+      <v-card color="dark px-2 pb-4 light--text" tile :ripple="false" :elevation="0">
         <v-form v-model="isFormValid" @submit.prevent="">
           <v-text-field class="d-none" :value="selectedRoomType" type="text" readonly :rules="rules.bedType" />
           <v-text-field class="d-none" :value="computedTotal" type="text" readonly :rules="rules.computedTotal" />
@@ -21,16 +23,28 @@
             :rules="rules.remainedCapacity"
           />
 
-          <v-row class="py-0 mx-0 mb-8">
-            <v-col cols="12" class="pb-0">
+          <v-row class="py-0 mx-0" no-gutters="">
+            <v-col cols="12" class="pa-0 mb-6">
               <h3 class="body-1 mb-0 font-weight-bold">Bed Type</h3>
             </v-col>
-            <v-col v-for="roomType in roomTypes" :key="roomType.id" :cols="12 / roomTypes.length">
+          </v-row>
+          <v-row no-gutters="" class="mb-8">
+            <v-col
+              v-for="(roomType, index) in roomTypes"
+              :key="roomType.id"
+              :cols="12 / roomTypes.length"
+              :class="{
+                'pr-4': index === 0,
+                'pl-4': index === 1
+              }"
+            >
               <v-btn
                 x-large
                 @click="selectedRoomType = roomType"
-                :class="{ 'is-selected': selectedRoomType.id === roomType.id }"
-                class="confirm-guests--bed-type py-2 text-transform-none"
+                :class="{
+                  'is-selected': selectedRoomType.id === roomType.id
+                }"
+                class="confirm-guests--bed-type text-transform-none"
                 block
                 outlined
                 icon
@@ -44,31 +58,37 @@
             </v-col>
           </v-row>
 
-          <v-divider class="light-border mx-4 my-4"></v-divider>
+          <v-divider class="light-border my-4"></v-divider>
 
-          <v-list dark>
-            <v-list-item>
+          <v-list dark class="py-0">
+            <v-list-item class="px-0">
               <v-list-item-content class="light--text">
                 <v-list-item-title class="font-weight-bold body-1 light--text">Adult</v-list-item-title>
               </v-list-item-content>
 
               <v-list-item-icon class="user-select-none">
                 <div class="d-flex light--text align-center">
-                  <v-btn :disabled="guestsAdults <= 0" @click="guestsAdults--" color="light" x-small fab icon
+                  <v-btn :disabled="guestsAdults <= 1" @click="guestsAdults--" color="light" x-small fab icon
                     ><v-icon>remove_circle_outline</v-icon></v-btn
                   >
                   <span class="mx-4 text--light guests-count user-select-none text-center">{{ guestsAdults }}</span>
-                  <v-btn @click="guestsAdults++" color="light" x-small fab icon
+                  <v-btn
+                    :disabled="!selectedRoomType.id || computedTotal >= selectedRoomType.capacity"
+                    @click="guestsAdults++"
+                    color="light"
+                    x-small
+                    fab
+                    icon
                     ><v-icon>add_circle_outline</v-icon></v-btn
                   >
                 </div>
               </v-list-item-icon>
             </v-list-item>
 
-            <v-list-item>
+            <v-list-item class="px-0 mb-4">
               <v-list-item-content class="light--text">
                 <v-list-item-title class="font-weight-bold body-1">Children</v-list-item-title>
-                <v-list-item-subtitle>Age 2 - 12</v-list-item-subtitle>
+                <v-list-item-subtitle class="light--text">Under 5</v-list-item-subtitle>
               </v-list-item-content>
 
               <v-list-item-icon class="user-select-none">
@@ -77,26 +97,13 @@
                     ><v-icon>remove_circle_outline</v-icon></v-btn
                   >
                   <span class="mx-4 text--light guests-count user-select-none text-center">{{ guestsChildren }}</span>
-                  <v-btn @click="guestsChildren++" color="light" x-small fab icon
-                    ><v-icon>add_circle_outline</v-icon></v-btn
-                  >
-                </div>
-              </v-list-item-icon>
-            </v-list-item>
-
-            <v-list-item>
-              <v-list-item-content class="light--text">
-                <v-list-item-title class="font-weight-bold body-1">Infant</v-list-item-title>
-                <v-list-item-subtitle>Under 2</v-list-item-subtitle>
-              </v-list-item-content>
-
-              <v-list-item-icon class="user-select-none">
-                <div class="d-flex light--text align-center">
-                  <v-btn :disabled="guestsInfants <= 0" @click="guestsInfants--" color="light" x-small fab icon
-                    ><v-icon>remove_circle_outline</v-icon></v-btn
-                  >
-                  <span class="mx-4 text--light guests-count user-select-none text-center">{{ guestsInfants }}</span>
-                  <v-btn @click="guestsInfants++" color="light" x-small fab icon
+                  <v-btn
+                    :disabled="!selectedRoomType.id || computedTotal >= selectedRoomType.capacity"
+                    @click="guestsChildren++"
+                    color="light"
+                    x-small
+                    fab
+                    icon
                     ><v-icon>add_circle_outline</v-icon></v-btn
                   >
                 </div>
@@ -104,44 +111,37 @@
             </v-list-item>
           </v-list>
 
-          <div class="mx-4">
+          <p class="light--text body-2 mb-4">
+            {{ selectedRoomType.capacity }} guests maximum. Infants don't count toward the number of guests.
+          </p>
 
-            <!-- error -->
-            <p
-              class="error--text body-2"
-              v-if="selectedRoomType.id && !($refs.capacityValidator && $refs.capacityValidator.valid)"
-            >
-              Capacity is not enough
-            </p>
+          <v-divider class="light-border mt-4 mb-8"></v-divider>
 
-            <v-divider class="light-border mt-4 mb-8"></v-divider>
+          <!-- total -->
+          <v-row no-gutters class="mb-4">
+            <v-col xs6>
+              <h3 class="title">Total</h3>
+            </v-col>
+            <v-col xs6 class="text-right">
+              <h3 class="title">{{ guestsTotal }} Guests</h3>
+            </v-col>
+          </v-row>
 
-            <!-- total -->
-            <v-row no-gutters class="mb-4">
-              <v-col xs6>
-                <h3 class="title">Total</h3>
-              </v-col>
-              <v-col xs6 class="text-right">
-                <h3 class="title">{{ guestsTotal }} Guests</h3>
-              </v-col>
-            </v-row>
-
-            <v-btn
-              @click="submit"
-              x-large
-              block
-              color="primary"
-              dark
-              class="text-transform-none font-weight-bold dark--text"
-              :disabled="!isFormValid"
-              type="submit"
-            >
-              <v-spacer></v-spacer>
-              <span>Confirm Guests</span>
-              <v-spacer></v-spacer>
-              <v-icon>keyboard_arrow_right</v-icon>
-            </v-btn>
-          </div>
+          <v-btn
+            @click="submit"
+            x-large
+            block
+            color="primary"
+            dark
+            class="text-transform-none font-weight-bold dark--text"
+            :disabled="!isFormValid"
+            type="submit"
+          >
+            <v-spacer></v-spacer>
+            <span>Confirm Guests</span>
+            <v-spacer></v-spacer>
+            <v-icon>keyboard_arrow_right</v-icon>
+          </v-btn>
         </v-form>
       </v-card>
     </div>
@@ -208,23 +208,11 @@ export default Vue.extend({
         store.dispatch('booking/updateGuests', guests)
       }
     },
-    guestsInfants: {
-      get(): number {
-        return store.getters['booking/bookingInfo'].guests.infants
-      },
-      set(value: number) {
-        const guests = {
-          ...this.guests,
-          infants: value
-        }
-        store.dispatch('booking/updateGuests', guests)
-      }
-    },
     guestsTotal() {
       return store.getters['booking/bookingInfo'].guests.total
     },
     computedTotal(): number {
-      return this.guestsAdults + this.guestsChildren + this.guestsInfants
+      return this.guestsAdults + this.guestsChildren
     },
     resort(): Resort {
       return store.getters['booking/bookingInfo'].resort
@@ -235,9 +223,21 @@ export default Vue.extend({
         return []
       }
       return modules.hotel.roomTypes
+    },
+    currentStep(): number {
+      return store.getters['booking/currentStep']
     }
   },
   watch: {
+    roomTypes: {
+      handler(newVal) {
+        if (newVal.length === 1) {
+          this.selectedRoomType = newVal[0]
+        }
+      },
+      immediate: true,
+      deep: true
+    },
     computedTotal(newVal) {
       const guests = {
         ...this.guests,
@@ -252,7 +252,6 @@ export default Vue.extend({
         .dispatch('booking/updateGuests', {
           adults: this.guestsAdults,
           children: this.guestsChildren,
-          infants: this.guestsInfants,
           total: this.guestsTotal
         })
         .then(this.goNextStep)
@@ -282,7 +281,7 @@ export default Vue.extend({
 }
 .confirm-guests--bed-type {
   border-radius: rem(3px);
-  height: auto;
+  height: rem(96px);
   &.v-btn.v-btn {
     border-width: rem(2px);
     border-color: $gray-82;

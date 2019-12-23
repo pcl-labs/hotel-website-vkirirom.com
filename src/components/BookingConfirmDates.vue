@@ -1,6 +1,6 @@
 <template>
   <v-card tile :elevation="0" class="dark px-4 pt-6 pb-9">
-    <div class="d-flex mb-2 align-center mb-8 mx-auto" :style="{ 'max-width': `${currentStep.width}px` }">
+    <div class="d-flex mb-2 align-center mb-8 mx-auto">
       <v-btn class="ma-0" small icon dark depressed @click="$emit('booking-cancel')">
         <v-icon color="gray-82">close</v-icon>
       </v-btn>
@@ -8,7 +8,7 @@
       <div class="light--text pl-0 ml-sm-n4 ml-md-0 text-center display-1">Choose Dates</div>
       <v-spacer></v-spacer>
     </div>
-    <div class="mx-auto" :style="{ 'max-width': `${currentStep.width}px` }">
+    <div class="mx-auto">
       <div class="d-flex flex-column">
         <div class="light--text mx-auto w-100">
           <v-card color="dark" tile :ripple="false" :elevation="0">

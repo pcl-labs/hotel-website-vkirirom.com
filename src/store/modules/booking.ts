@@ -18,7 +18,7 @@ const steps: { [name: string]: bookingStep } = {
   },
   confirmGuests: {
     id: 3,
-    width: 348
+    width: 376
   },
   confirmBooking: {
     id: 4,
