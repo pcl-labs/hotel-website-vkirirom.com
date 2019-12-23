@@ -6,12 +6,11 @@ import { cloneDeep } from 'lodash-es'
 
 const steps: { [name: string]: bookingStep } = {
   notStarted: {
-    id: 0,
-    width: 332
+    id: 0
   },
   confirmDates: {
     id: 1,
-    width: 332
+    width: 340
   },
   auth: {
     id: 2,
@@ -19,11 +18,11 @@ const steps: { [name: string]: bookingStep } = {
   },
   confirmGuests: {
     id: 3,
-    width: 332
+    width: 340
   },
   confirmBooking: {
     id: 4,
-    width: 332
+    width: 340
   },
   reviewPolicies: {
     id: 5
@@ -41,8 +40,7 @@ const steps: { [name: string]: bookingStep } = {
 
 const defaultState = {
   currentStep: {
-    id: 0,
-    width: 332
+    id: 0
   },
   steps,
   dialog: {
