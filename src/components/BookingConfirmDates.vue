@@ -1,5 +1,5 @@
 <template>
-  <v-card tile :elevation="0" class="dark pa-3">
+  <v-card tile :elevation="0" class="dark px-4 pt-6 pb-9">
     <div class="d-flex mb-2 align-center mb-8 mx-auto" :style="{ 'max-width': `${currentStep.width}px` }">
       <v-btn class="ma-0" small icon dark depressed @click="$emit('booking-cancel')">
         <v-icon color="gray-82">close</v-icon>

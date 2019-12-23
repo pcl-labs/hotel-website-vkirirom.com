@@ -10,7 +10,7 @@ const steps: { [name: string]: bookingStep } = {
   },
   confirmDates: {
     id: 1,
-    width: 340
+    width: 348
   },
   auth: {
     id: 2,
@@ -18,11 +18,11 @@ const steps: { [name: string]: bookingStep } = {
   },
   confirmGuests: {
     id: 3,
-    width: 340
+    width: 348
   },
   confirmBooking: {
     id: 4,
-    width: 340
+    width: 348
   },
   reviewPolicies: {
     id: 5
