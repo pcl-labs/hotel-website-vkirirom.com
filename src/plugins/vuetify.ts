@@ -5,6 +5,8 @@ import IconGoogle from '@/components/IconGoogle.vue'
 import IconMessage from '@/components/IconMessage.vue'
 import IconMessageDark from '@/components/IconMessageDark.vue'
 import IconLock from '@/components/IconLock.vue'
+import IconCash from '@/components/IconCash.vue'
+import IconCreditCard from '@/components/IconCreditCard.vue'
 import Vuetify from 'vuetify/lib'
 
 Vue.use(Vuetify)
@@ -28,6 +30,12 @@ export default new Vuetify({
       },
       lock: {
         component: IconLock
+      },
+      creditCard: {
+        component: IconCreditCard
+      },
+      cash: {
+        component: IconCash
       },
     }
   },

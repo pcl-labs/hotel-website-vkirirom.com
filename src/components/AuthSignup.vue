@@ -73,6 +73,7 @@
         <!-- by email -->
         <fragment v-if="formMode === 'by-email'">
           <v-flex xs12>
+              <!-- TODO: change e-mail to first name -->
             <v-text-field
               v-model="firstName"
               outlined

@@ -8,7 +8,8 @@ const thankYou = () => import('../components/thankYou.vue')
 const Contact = () => import('../components/Contact.vue')
 const BookingReviewRulesPage = () => import('@/views/BookingReviewRulesPage.vue')
 const BookingCustomerInfoPage = () => import('@/views/BookingCustomerInfoPage.vue')
-const BookingConfirmAndPayPage = () => import('@/views/BookingConfirmAndPayPage.vue')
+const BookingPaymentPage = () => import('@/views/BookingPaymentPage.vue')
+const BookingThanksPage = () => import('@/views/BookingThanksPage.vue')
 const KitchenSink = () => import('../views/KitchenSink.vue')
 
 import store from '@/store'
@@ -31,6 +32,7 @@ const routes = [
     path: '/listing/:id',
     component: Listing
   },
+  // TODO: remove
   {
     path: '/thanks',
     component: thankYou
@@ -50,9 +52,14 @@ const routes = [
     component: BookingCustomerInfoPage
   },
   {
-    name: 'booking-confirm-and-pay',
-    path: '/booking/confirm-and-pay',
-    component: BookingConfirmAndPayPage
+    name: 'booking-payment',
+    path: '/booking/payment',
+    component: BookingPaymentPage
+  },
+  {
+    name: 'booking-thanks',
+    path: '/booking/thanks',
+    component: BookingThanksPage
   },
   {
     path: '/nature-city-investment-cambodia-property',

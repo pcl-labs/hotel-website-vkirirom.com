@@ -63,11 +63,13 @@ const defaultState = {
     email: '',
     phoneNumber: '',
     phoneCountry: undefined,
+    payWith: 'cash',
     roomType: {},
     dateOne: '',
     dateTwo: '',
     checkOut: '',
-    prices: []
+    prices: [],
+    fullName: ''
   },
   vat: 0,
   finalPrice: 0,
@@ -117,6 +119,21 @@ export default {
     },
     updatePhoneCountry(state, payload) {
       state.bookingInfo.phoneCountry = payload
+    },
+    updatePayWith(state, payload) {
+      state.bookingInfo.payWith = payload
+    },
+    updateFullName(state, payload) {
+      state.bookingInfo.fullName = payload
+    },
+    updateCardNumber(state, payload) {
+      state.bookingInfo.cardNumber = payload
+    },
+    updateExpiration(state, payload) {
+      state.bookingInfo.expiration = payload
+    },
+    updateCVV(state, payload) {
+      state.bookingInfo.CVV = payload
     },
     updateRoomType(state, payload) {
       state.bookingInfo.roomType = payload
@@ -206,6 +223,21 @@ export default {
     },
     updatePhoneCountry(context, payload) {
       context.commit('updatePhoneCountry', payload)
+    },
+    updatePayWith(context, payload) {
+      context.commit('updatePayWith', payload)
+    },
+    updateFullName(context, payload) {
+      context.commit('updateFullName', payload)
+    },
+    updateCardNumber(context, payload) {
+      context.commit('updateCardNumber', payload)
+    },
+    updateExpiration(context, payload) {
+      context.commit('updateExpiration', payload)
+    },
+    updateCVV(context, payload) {
+      context.commit('updateCVV', payload)
     },
     updateRoomType(context, payload) {
       context.commit('updateRoomType', payload)
