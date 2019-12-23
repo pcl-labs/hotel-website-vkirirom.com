@@ -15,79 +15,77 @@
         </div>
       </div>
 
-      <v-card color="dark px-2 pb-4 light--text" tile :ripple="false">
-        <div class="mx-4">
-          <div class="mb-4 body-2 font-weight-light">
-            <v-row no-gutters class="mt-6">
-              <v-col>
-                <div class="d-flex align-center">
-                  <v-icon color="light" class="icon mr-4">person</v-icon>
-                  <span class="mr-2">{{ guests }}</span
-                  ><span>Guests</span>
-                </div>
-              </v-col>
-            </v-row>
-            <v-row no-gutters class="mt-3 mb-6">
-              <v-col>
-                <div class="d-flex">
-                  <v-icon color="light" class="icon mr-4">event</v-icon>
-                  <div class="d-flex align-center flex-grow-1">
-                    <div class="confirm-booking--date">{{ formatDate(dateOne, 'ddd, D MMM') }}</div>
-                    <v-icon color="light" class="icon mx-3">arrow_right_alt</v-icon>
-                    <div class="confirm-booking--date">{{ formatDate(checkOut, 'ddd, D MMM') }}</div>
-                  </div>
-                </div>
-              </v-col>
-            </v-row>
-
-            <v-divider class="light-border"></v-divider>
-
-            <v-row class="mt-3">
-              <v-col
-                ><p class="mb-0">{{ prices.length }} nights total</p></v-col
-              >
-            </v-row>
-
-            <!-- price list -->
-            <div class="mb-3">
-              <v-row class="confirm-dates--price-row" no-gutters v-for="price in prices" v-bind:key="price.id">
-                <v-col xs6>{{ formatDate(price.date, 'ddd, D MMM') }}</v-col>
-                <v-col xs6 class="text-right ">${{ price.amount }}</v-col>
-              </v-row>
-            </div>
-            <v-row class="confirm-dates--price-row" no-gutters>
-              <v-col xs6>VAT (10%)</v-col>
-              <v-col xs6 class="text-right ">${{ vat }}</v-col>
-            </v-row>
-          </div>
-
-          <v-divider class="light-border"></v-divider>
-
-          <!-- total -->
-          <v-row no-gutters class="mt-4">
-            <v-col xs6>
-              <h3 class="title mb-0">Total</h3>
+      <v-card color="dark pt-6 px-4 pb-9 light--text" tile :ripple="false">
+        <div class="mb-4 body-2 font-weight-light">
+          <v-row no-gutters>
+            <v-col>
+              <div class="d-flex align-center">
+                <v-icon color="light" class="icon mr-4">person</v-icon>
+                <span class="mr-2">{{ guests }}</span
+                ><span>Guests</span>
+              </div>
             </v-col>
-            <v-col xs6 class="text-right">
-              <h3 class="title mb-0">${{ finalPrice }}</h3>
+          </v-row>
+          <v-row no-gutters class="mt-3 mb-6">
+            <v-col>
+              <div class="d-flex">
+                <v-icon color="light" class="icon mr-4">event</v-icon>
+                <div class="d-flex align-center flex-grow-1">
+                  <div class="confirm-booking--date">{{ formatDate(dateOne, 'ddd, D MMM') }}</div>
+                  <v-icon color="light" class="icon mx-3">arrow_right_alt</v-icon>
+                  <div class="confirm-booking--date">{{ formatDate(checkOut, 'ddd, D MMM') }}</div>
+                </div>
+              </div>
             </v-col>
           </v-row>
 
-          <v-btn
-            v-if="hasConfirmButton"
-            @click="submit"
-            x-large
-            block
-            color="primary"
-            dark
-            class="text-transform-none font-weight-bold dark--text mt-8"
-          >
-            <v-spacer></v-spacer>
-            <span>Confirm Booking</span>
-            <v-spacer></v-spacer>
-            <v-icon>keyboard_arrow_right</v-icon>
-          </v-btn>
+          <v-divider class="light-border"></v-divider>
+
+          <v-row class="mt-3">
+            <v-col
+              ><p class="mb-0">{{ prices.length }} nights total</p></v-col
+            >
+          </v-row>
+
+          <!-- price list -->
+          <div class="mb-3">
+            <v-row class="confirm-dates--price-row" no-gutters v-for="price in prices" v-bind:key="price.id">
+              <v-col xs6>{{ formatDate(price.date, 'ddd, D MMM') }}</v-col>
+              <v-col xs6 class="text-right ">${{ price.amount }}</v-col>
+            </v-row>
+          </div>
+          <v-row class="confirm-dates--price-row" no-gutters>
+            <v-col xs6>VAT (10%)</v-col>
+            <v-col xs6 class="text-right ">${{ vat }}</v-col>
+          </v-row>
         </div>
+
+        <v-divider class="light-border"></v-divider>
+
+        <!-- total -->
+        <v-row no-gutters class="mt-4">
+          <v-col xs6>
+            <h3 class="title mb-0">Total</h3>
+          </v-col>
+          <v-col xs6 class="text-right">
+            <h3 class="title mb-0">${{ finalPrice }}</h3>
+          </v-col>
+        </v-row>
+
+        <v-btn
+          v-if="hasConfirmButton"
+          @click="submit"
+          x-large
+          block
+          color="primary"
+          dark
+          class="text-transform-none font-weight-bold dark--text mt-8"
+        >
+          <v-spacer></v-spacer>
+          <span>Confirm Booking</span>
+          <v-spacer></v-spacer>
+          <v-icon>keyboard_arrow_right</v-icon>
+        </v-btn>
       </v-card>
     </div>
   </v-card>

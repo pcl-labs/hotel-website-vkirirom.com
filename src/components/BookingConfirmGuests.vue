@@ -10,7 +10,7 @@
     </div>
 
     <div class="d-flex flex-column">
-      <v-card color="dark px-2 pb-4 light--text" tile :ripple="false" :elevation="0">
+      <v-card color="dark pb-4 light--text" tile :ripple="false" :elevation="0">
         <v-form v-model="isFormValid" @submit.prevent="">
           <v-text-field class="d-none" :value="selectedRoomType" type="text" readonly :rules="rules.bedType" />
           <v-text-field class="d-none" :value="computedTotal" type="text" readonly :rules="rules.computedTotal" />
