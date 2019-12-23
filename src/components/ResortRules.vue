@@ -2,31 +2,31 @@
   <!-- v-if="hotel.id" -->
   <div class="resort-rules light--text">
     <!-- <div v-if="resortHotel.location">
-      <h2 class="mb-2 display-1 font-weight-bold">
+      <h3 class="mb-2 title font-weight-bold">
         Location
-      </h2>
+      </h3>
       <p>
         <a :href="resortHotel.location">Get Directions</a>
       </p>
     </div> -->
     <div v-if="get(resortHotel, 'spaces', []).length > 0">
-      <h2 class="mb-2 display-1 font-weight-bold">
+      <h3 class="mb-2 title font-weight-bold">
         Spaces
-      </h2>
+      </h3>
       <p v-for="(space, index) in resortHotel.spaces" :key="index">{{ space }}</p>
     </div>
 
     <div v-if="get(resortHotel, 'amenities', []).length > 0">
-      <h2 class="mb-2 display-1 font-weight-bold">
+      <h3 class="mb-2 title font-weight-bold">
         Amenities
-      </h2>
+      </h3>
       <p v-for="(amenity, index) in resortHotel.amenities" :key="index">{{ amenity }}</p>
     </div>
 
     <div v-if="get(resortHotel, 'rules', []).length > 0">
-      <h2 class="mb-2 display-1 font-weight-bold">
+      <h3 class="mb-2 title font-weight-bold">
         Rules
-      </h2>
+      </h3>
       <p v-for="(rule, index) in resortHotel.rules" :key="index">{{ rule }}</p>
     </div>
     <div v-if="get(resortHotel, 'gettingAround', '')">
