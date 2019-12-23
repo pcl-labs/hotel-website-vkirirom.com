@@ -34,8 +34,8 @@
               :key="roomType.id"
               :cols="12 / roomTypes.length"
               :class="{
-                'pr-4': index === 0,
-                'pl-4': index === 1
+                'pr-4': roomTypes.length > 1 && index === 0,
+                'pl-4': roomTypes.length > 1 && index === 1
               }"
             >
               <v-btn
