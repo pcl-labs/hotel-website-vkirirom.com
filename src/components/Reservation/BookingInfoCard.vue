@@ -33,6 +33,7 @@
           <v-flex xs6 class="text-right normalText">${{price.amount}}</v-flex>
         </v-row>
         <v-row no-gutters>
+          <!-- TODO: fix uppercase XS -->
           <v-flex XS6 class="normalText">VAT (10%)</v-flex>
           <v-flex XS6 class="text-right normalText">${{vat}}</v-flex>
         </v-row>

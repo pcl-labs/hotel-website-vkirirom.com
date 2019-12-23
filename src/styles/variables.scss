@@ -38,9 +38,21 @@ $font-family-serif: serif;
 // $header-zindex: 5;
 // $loading-zindex: 4;
 // $footer-zindex: 3;
-// $booking-bar-zindex: 2;
+$booking-bar-zindex: 2;
 // $page-content-zindex: 1;
 
 $linear-gradient: linear-gradient(166deg, #00243E 9%, #003E3A 95%);
 
-// @import '~bootstrap/scss/variables';
+// loading
+$loading-transition-time: 500ms;
+
+// grid https://vuetifyjs.com/en/customization/breakpoints
+$grid-breakpoints: (
+  xs: 0,
+  sm: 600px,
+  md: 960px,
+  lg: 1264px,
+  xl: 1904px
+);
+
+@import '~bootstrap/scss/variables';

@@ -1,4 +1,5 @@
 <template>
+<!-- TODO: remove -->
   <v-form
     v-if="resort"
     :name="resort.categories[0].name"
@@ -68,6 +69,8 @@
           <v-icon slot="append" color="#B9BCC1">local_phone</v-icon>
         </v-text-field>
       </v-flex>
+
+      <!-- bed type -->
       <v-flex
         v-if="resort.modules.hotel && resort.modules.hotel.roomTypes.length>0"
       >
@@ -100,6 +103,7 @@
 
       <!-- resort.name is a temporary fix for category name, ideally category id should be used-->
 
+      <!-- datepicker: acco, events, exp -->
       <v-flex
         xs12
         v-if="resort.categories[0].name=='accommodations' || resort.categories[0].name=='events' || resort.categories[0].name=='experiences'"
@@ -134,6 +138,8 @@
           @apply="getPrices(dateOne, dateTwo)"
         />
       </v-flex>
+
+      <!-- transpo: acco, events, exp -->
       <v-flex
         xs12
         v-if="resort.categories[0].name=='accommodations' || resort.categories[0].name=='events' || resort.categories[0].name=='experiences'"
@@ -148,6 +154,8 @@
         ></v-checkbox>
         <input hidden name="Transportation needed" :value="transportation" />
       </v-flex>
+
+      <!-- prices: acco -->
       <v-flex xs12 style="margin-bottom:30px;" v-if="finalPrice > 0 && resort.categories[0].name=='accommodations'">
         <v-row no-gutters v-for="price in prices" v-bind:key="price.id">
           <v-flex xs6 class="normalText">{{formatDates(price.date)}}</v-flex>
@@ -168,6 +176,8 @@
         </v-row>
         <input name="Amount (in $)" hidden :value="finalPrice" type="text" readonly />
       </v-flex>
+
+      <!-- message -->
       <v-flex xs12>
         <v-textarea
           v-model="message"
@@ -182,6 +192,8 @@
           no-resize
         ></v-textarea>
       </v-flex>
+
+      <!-- submit: !acco -->
       <v-flex xs12 v-if="resort.categories[0].name!='accommodations'">
         <v-btn
           block
@@ -204,6 +216,8 @@
         </v-btn>
       </v-flex>
     </v-row>
+
+    <!-- submit: !authenticated -->
     <v-row no-gutters justify-center v-if="!isAuthenticated && resort.categories[0].name=='accommodations'">
       <v-dialog v-model="auth1" persistent max-width="583px">
         <template v-slot:activator="{ on }">
@@ -241,6 +255,8 @@
         </v-card>
       </v-dialog>
     </v-row>
+
+    <!-- submit: authenticated -->
     <v-flex xs12 v-if="isAuthenticated==true && resort.categories[0].name=='accommodations'">
       <v-btn
         x-large

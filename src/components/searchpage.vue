@@ -1,4 +1,5 @@
 <template>
+<!-- TODO: move to views/ -->
   <div>
     <v-container class="is-limited" grid-list-md style="min-height:100vh;">
       <v-flex xs12 class="headerText">

@@ -6,10 +6,10 @@ const searchpage = () => import('../components/searchpage.vue')
 const Listing = () => import('../components/Listing.vue')
 const thankYou = () => import('../components/thankYou.vue')
 const Contact = () => import('../components/Contact.vue')
-const Reservation = () => import('../components/Reservation/Reservation.vue')
-const ReviewRules = () => import('../components/Reservation/ReviewRules.vue')
-const ConfirmAndPay = () =>
-  import('../components/Reservation/ConfirmAndPay.vue')
+const BookingReviewRulesPage = () => import('@/views/BookingReviewRulesPage.vue')
+const BookingCustomerInfoPage = () => import('@/views/BookingCustomerInfoPage.vue')
+const BookingPaymentPage = () => import('@/views/BookingPaymentPage.vue')
+const BookingThanksPage = () => import('@/views/BookingThanksPage.vue')
 const KitchenSink = () => import('../views/KitchenSink.vue')
 
 import store from '@/store'
@@ -28,9 +28,11 @@ const routes = [
     component: KitchenSink
   },
   {
+    name: 'listing',
     path: '/listing/:id',
     component: Listing
   },
+  // TODO: remove
   {
     path: '/thanks',
     component: thankYou
@@ -40,34 +42,32 @@ const routes = [
     component: Contact
   },
   {
-    path: '/reservation',
-    component: Reservation,
-    children: [
-      {
-        path: 'reviewrules',
-        component: ReviewRules
-      },
-      {
-        path: 'confirmandpay',
-        component: ConfirmAndPay
-      }
-    ]
+    name: 'booking-review-rules',
+    path: '/booking/review-rules',
+    component: BookingReviewRulesPage
+  },
+  {
+    name: 'booking-customer-info',
+    path: '/booking/customer-info',
+    component: BookingCustomerInfoPage
+  },
+  {
+    name: 'booking-payment',
+    path: '/booking/payment',
+    component: BookingPaymentPage
+  },
+  {
+    name: 'booking-thanks',
+    path: '/booking/thanks',
+    component: BookingThanksPage
   },
   {
     path: '/nature-city-investment-cambodia-property',
     redirect: '/listing/nature-city-investment-cambodia-property'
   },
-  // {
-  //   path: '/jp',
-  //   beforeEnter(to, from, next) {
-  //       // Put the full page url including the protocol http(s) below
-  //       window.location = "http://jp.vkirirom.com"
-  //   }
-  // },
   {
     path: '/kh',
     beforeEnter() {
-      // Put the full page url including the protocol http(s) below
       window.location.href = 'http://kh.vkirirom.com'
     }
   },
