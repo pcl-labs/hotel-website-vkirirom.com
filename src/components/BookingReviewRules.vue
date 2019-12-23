@@ -32,7 +32,7 @@
 
     <v-row no-gutters>
       <v-col cols="12">
-        <resort-rules></resort-rules>
+        <resort-rules :resort="resort"></resort-rules>
       </v-col>
     </v-row>
     <v-row no-gutters>

@@ -9,29 +9,28 @@
         <a :href="resortHotel.location">Get Directions</a>
       </p>
     </div> -->
-    <div v-if="resortHotel.spaces.length > 0">
+    <div v-if="get(resortHotel, 'spaces', []).length > 0">
       <h2 class="mb-2 display-1 font-weight-bold">
         Spaces
       </h2>
       <p v-for="(space, index) in resortHotel.spaces" :key="index">{{ space }}</p>
     </div>
 
-    <div v-if="resortHotel.amenities.length > 0">
+    <div v-if="get(resortHotel, 'amenities', []).length > 0">
       <h2 class="mb-2 display-1 font-weight-bold">
         Amenities
       </h2>
       <p v-for="(amenity, index) in resortHotel.amenities" :key="index">{{ amenity }}</p>
     </div>
 
-    <div v-if="resortHotel.rules.length > 0">
+    <div v-if="get(resortHotel, 'rules', []).length > 0">
       <h2 class="mb-2 display-1 font-weight-bold">
         Rules
       </h2>
       <p v-for="(rule, index) in resortHotel.rules" :key="index">{{ rule }}</p>
     </div>
-
-    <div v-if="resortHotel.gettingAround">
-      <div v-html="gettingAround"></div>
+    <div v-if="get(resortHotel, 'gettingAround', '')">
+      <div v-html="marked(resortHotel.gettingAround)"></div>
     </div>
   </div>
 </template>
@@ -41,11 +40,11 @@ import Vue from 'vue'
 import store from '@/store'
 import { Resort } from '@/types'
 import marked from 'marked'
+import { get } from 'lodash-es'
+
+// https://marked.js.org/
 marked.setOptions({
   renderer: new marked.Renderer(),
-  // highlight: function(code) {
-  //   return require('highlight.js').highlightAuto(code).value
-  // },
   pedantic: false,
   gfm: true,
   breaks: false,
@@ -57,18 +56,24 @@ marked.setOptions({
 
 export default Vue.extend({
   name: 'resort-rules',
+  props: {
+    resort: {
+      type: Object as () => Resort,
+      required: true
+    }
+  },
   computed: {
-    resort(): Resort {
-      return store.getters['resort/getResort']
-    },
     resortHotel(): Resort['modules']['hotel'] {
-      return this.resort && this.resort.modules && this.resort.modules.hotel
-    },
-    gettingAround(): string {
-      if (!this.resortHotel) {
+      return get(this.resort, 'modules.hotel', {})
+    }
+  },
+  methods: {
+    get,
+    marked(content) {
+      if (!content) {
         return ''
       }
-      return marked(this.resortHotel.gettingAround)
+      return marked(content)
     }
   }
 })

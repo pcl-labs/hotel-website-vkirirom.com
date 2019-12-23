@@ -3,8 +3,8 @@
     <v-container class="is-limited light--text px-2 px-md-0 py-8">
       <v-row no-gutters>
         <v-col class="px-md-3 order-2 order-md-1" cols="12" md="8">
-          <div class="mx-6 mx-md-0">
-            <booking-customer-info></booking-customer-info>
+          <div class="mx-6">
+            <booking-customer-info @open-shuttle-bus-info="openShuttleBusInfo"></booking-customer-info>
           </div>
         </v-col>
         <v-col class="pb-0 order-1 order-md-2" cols="12" md="4">
@@ -13,7 +13,7 @@
       </v-row>
     </v-container>
 
-    <Footer></Footer>
+    <resort-description-dialog ref="resortDescriptionRef" slug="Shuttle-Bus"></resort-description-dialog>
   </fragment>
 </template>
 
@@ -21,18 +21,22 @@
 import Vue from 'vue'
 import BookingCustomerInfo from '@/components/BookingCustomerInfo.vue'
 import BookingConfirmBooking from '@/components/BookingConfirmBooking.vue'
-import Footer from '@/components/Footer.vue'
+import ResortDescriptionDialog from '@/components/ResortDescriptionDialog.vue'
 import store from '@/store'
 
 export default Vue.extend({
   name: 'booking-customer-info-page',
-  components: { BookingCustomerInfo, BookingConfirmBooking, Footer },
+  components: { BookingCustomerInfo, BookingConfirmBooking, ResortDescriptionDialog },
   computed: {
     returnUrl() {
       return store.getters['booking/bookingInfo'].returnUrl
     }
   },
   methods: {
+    openShuttleBusInfo() {
+      // @ts-ignore
+      this.$refs.resortDescriptionRef.openDialog()
+    },
     cancelBooking() {
       this.$router.push(this.returnUrl)
       store.dispatch('booking/cancelBooking')

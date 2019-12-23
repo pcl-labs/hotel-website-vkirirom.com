@@ -15,7 +15,9 @@ body {
 html {
   scroll-behavior: smooth;
 }
-
+a {
+  text-decoration: none;
+}
 .w-100 {
   width: 100%;
 }
@@ -25,12 +27,6 @@ html {
 .normalText {
   font-size: rem(16px);
   color: #b9bcc1;
-}
-.v-input__slot {
-  margin: 0;
-  height: 55px;
-  /*To make the total margin:30px */
-  margin-bottom: 10px;
 }
 .v-carousel__controls {
   background: linear-gradient(0deg, #191c21 0%, rgba(25, 28, 33, 0) 50%);
@@ -112,7 +108,7 @@ input:-webkit-autofill {
 }
 
 // fix vuetify labels when browser autofills data
-.v-label.theme--dark {
+.dark .v-label--active.theme--dark {
   background-color: $dark;
 }
 

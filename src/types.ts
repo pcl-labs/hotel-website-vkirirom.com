@@ -43,13 +43,13 @@ export interface Resort {
   images: ResortImage[]
   modules: {
     hotel?: {
-      amenities: string[]
+      amenities?: string[]
       gettingAround: string
       id: number
-      location: string
+      location?: string
       roomTypes: RoomType[]
       rules: string[]
-      spaces: string[]
+      spaces?: string[]
     }
   }
   name: string
