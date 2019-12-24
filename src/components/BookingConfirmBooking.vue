@@ -54,13 +54,13 @@
               <v-col xs6 class="text-right ">${{ price.amount }}</v-col>
             </v-row>
           </div>
-          <v-row v-if="transportation" class="confirm-dates--price-row" no-gutters>
+          <v-row v-if="hasTransportation" class="confirm-dates--price-row" no-gutters>
             <v-col xs6>Transportation</v-col>
             <v-col xs6 class="text-right ">${{ computedTransportationPrice }}</v-col>
           </v-row>
           <v-row class="confirm-dates--price-row" no-gutters>
             <v-col xs6>VAT (10%)</v-col>
-            <v-col xs6 class="text-right ">${{ vat }}</v-col>
+            <v-col xs6 class="text-right ">${{ computedVAT }}</v-col>
           </v-row>
         </div>
 
@@ -72,7 +72,9 @@
             <h3 class="title mb-0">Total</h3>
           </v-col>
           <v-col xs6 class="text-right">
-            <h3 class="title mb-0">${{ finalPrice }}</h3>
+            <h3 class="title mb-0">
+              <span>${{ computedTotalPrice }}</span>
+            </h3>
           </v-col>
         </v-row>
 
@@ -110,6 +112,10 @@ export default Vue.extend({
     hasCancelButton: {
       type: Boolean,
       default: true
+    },
+    hasTransportation: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -132,13 +138,18 @@ export default Vue.extend({
       return store.getters['booking/bookingInfo'].transportation
     },
     totalPrice() {
-      return store.getters['booking/computedTotalPrice']
+      return store.getters['booking/computedTotalPrice']()
     },
-    vat() {
-      return store.getters['booking/computedVat'].toFixed(2)
+    computedVAT() {
+      const options = { hasTransportation: this.hasTransportation }
+      return store.getters['booking/computedVAT'](options).toFixed(2)
     },
-    finalPrice() {
-      return store.getters['booking/computedFinalPrice'].toFixed(2)
+    computedTotalPrice() {
+      const options = {
+        hasVAT: true,
+        hasTransportation: this.hasTransportation
+      }
+      return store.getters['booking/computedTotalPrice'](options).toFixed(2)
     },
     computedTransportationPrice() {
       return store.getters['booking/computedTransportationPrice'].toFixed(2)

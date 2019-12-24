@@ -300,16 +300,21 @@ export default {
     bookingInfo(state) {
       return state.bookingInfo
     },
-    computedTotalPrice(state) {
+    computedRoomPrice(state) {
       const prices = state.bookingInfo.prices
-      let totalPrice = 0
+      let roomPrice = 0
       for (let i = 0; i < prices.length; i++) {
-        totalPrice += prices[i].amount
+        roomPrice += prices[i].amount
       }
-      return totalPrice
+      return roomPrice
     },
-    computedVat(state, getters) {
-      return (getters.computedTotalPrice + getters.computedTransportationPrice) * 0.1
+    computedVAT: (state, getters) => ({ hasTransportation = false }) => {
+      let prices = getters.computedRoomPrice
+      if (hasTransportation) {
+        prices += getters.computedTransportationPrice
+      }
+      const VAT_RATE = 0.1
+      return prices * VAT_RATE
     },
     computedTransportationPrice(state, getters) {
       const transportation = state.bookingInfo.transportation
@@ -321,8 +326,15 @@ export default {
       }
       return transportationPrice
     },
-    computedFinalPrice(state, getters) {
-      return getters.computedTotalPrice + getters.computedVat + getters.computedTransportationPrice
+    computedTotalPrice: (state, getters) => ({ hasVAT = false, hasTransportation = false } = {}) => {
+      let totalPrice = getters.computedRoomPrice
+      if (hasVAT) {
+        totalPrice += getters.computedVAT({ hasTransportation })
+      }
+      if (hasTransportation) {
+        totalPrice += getters.computedTransportationPrice
+      }
+      return totalPrice
     },
     currentStep(state) {
       return state.currentStep

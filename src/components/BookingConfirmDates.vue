@@ -53,11 +53,11 @@
                       <h3 class="title">Total</h3>
                     </v-col>
                     <v-col xs6 class="text-right">
-                      <h3 class="title">${{ totalPrice }}</h3>
+                      <h3 class="title">${{ computedTotalPrice }}</h3>
                     </v-col>
                   </v-row>
 
-                  <input name="Amount (in $)" hidden :value="totalPrice" type="text" readonly />
+                  <input name="Amount (in $)" hidden :value="computedTotalPrice" type="text" readonly />
                 </div>
               </div>
               <!-- loading -->
@@ -128,11 +128,8 @@ export default Vue.extend({
     prices() {
       return this.$store.getters['booking/bookingInfo'].prices
     },
-    totalPrice() {
-      return this.$store.getters['booking/computedTotalPrice']
-    },
-    vat() {
-      return this.$store.getters['booking/computedVat'].toFixed(2)
+    computedTotalPrice() {
+      return this.$store.getters['booking/computedTotalPrice']()
     },
     roomTypeId(): number {
       return this.resort.modules.hotel.roomTypes[0].id

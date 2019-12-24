@@ -40,7 +40,6 @@
     </v-dialog>
 
     <!-- 
-    
     <booking-review-rules></booking-review-rules>
     <booking-customer-info></booking-customer-info>
     <booking-payment-info></booking-payment-info>
