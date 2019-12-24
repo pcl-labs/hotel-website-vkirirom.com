@@ -54,6 +54,10 @@
               <v-col xs6 class="text-right ">${{ price.amount }}</v-col>
             </v-row>
           </div>
+          <v-row v-if="transportation" class="confirm-dates--price-row" no-gutters>
+            <v-col xs6>Transportation</v-col>
+            <v-col xs6 class="text-right ">${{ computedTransportationPrice }}</v-col>
+          </v-row>
           <v-row class="confirm-dates--price-row" no-gutters>
             <v-col xs6>VAT (10%)</v-col>
             <v-col xs6 class="text-right ">${{ vat }}</v-col>
@@ -124,6 +128,9 @@ export default Vue.extend({
     prices() {
       return store.getters['booking/bookingInfo'].prices
     },
+    transportation() {
+      return store.getters['booking/bookingInfo'].transportation
+    },
     totalPrice() {
       return store.getters['booking/computedTotalPrice']
     },
@@ -132,6 +139,9 @@ export default Vue.extend({
     },
     finalPrice() {
       return store.getters['booking/computedFinalPrice'].toFixed(2)
+    },
+    computedTransportationPrice() {
+      return store.getters['booking/computedTransportationPrice'].toFixed(2)
     },
     guests() {
       return store.getters['booking/bookingInfo'].guests.total

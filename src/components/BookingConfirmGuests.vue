@@ -111,9 +111,7 @@
             </v-list-item>
           </v-list>
 
-          <p class="light--text body-2 mb-4">
-            {{ selectedRoomType.capacity }} guests maximum. Infants don't count toward the number of guests.
-          </p>
+          <p class="light--text body-2 mb-4">{{ selectedRoomType.capacity }} guests maximum.</p>
 
           <v-divider class="light-border mt-4 mb-8"></v-divider>
 

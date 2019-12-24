@@ -3,6 +3,7 @@ import { RoomTypeService, CompanyService, ReservationService } from '@/connectio
 import { bookingStep } from '@/types'
 import { setDocumentClassesOnToggleDialog } from '@/helpers'
 import { cloneDeep } from 'lodash-es'
+import countriesList from '@/constants/countries-list'
 
 const steps: { [name: string]: bookingStep } = {
   notStarted: {
@@ -55,12 +56,12 @@ const defaultState = {
       infants: 0,
       total: 1
     },
-    transportation: false,
+    transportation: true,
     message: '',
     name: '',
     email: '',
     phoneNumber: '',
-    phoneCountry: undefined,
+    phoneCountry: countriesList.find(item => item.name === 'Cambodia'),
     payWith: 'cash',
     roomType: {},
     dateOne: '',
@@ -308,10 +309,20 @@ export default {
       return totalPrice
     },
     computedVat(state, getters) {
-      return getters.computedTotalPrice * 0.1
+      return (getters.computedTotalPrice + getters.computedTransportationPrice) * 0.1
+    },
+    computedTransportationPrice(state, getters) {
+      const transportation = state.bookingInfo.transportation
+      let transportationPrice = 0
+      if (transportation === true) {
+        const TRANSPORTATION_PER_PAX = 10
+        const adults = getters.bookingInfo.guests.adults
+        transportationPrice = adults * TRANSPORTATION_PER_PAX
+      }
+      return transportationPrice
     },
     computedFinalPrice(state, getters) {
-      return getters.computedTotalPrice + getters.computedVat
+      return getters.computedTotalPrice + getters.computedVat + getters.computedTransportationPrice
     },
     currentStep(state) {
       return state.currentStep
