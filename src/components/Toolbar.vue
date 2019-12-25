@@ -1,74 +1,102 @@
 <template>
-  <div>
+  <div class="page-header">
     <auth-dialog ref="authDialogRef"></auth-dialog>
-    <v-app-bar dark color="#191C21" dense>
+    <v-app-bar dark color="dark" height="56">
+      <!-- logo -->
       <router-link to="/">
         <img class="toolbar--logo" src="/img/icons/Logo.png" />
       </router-link>
       <v-spacer></v-spacer>
-      <v-app-bar-nav-icon class="d-md-none" @click.stop="drawer = !drawer" style="color:#D8DADE;"></v-app-bar-nav-icon>
+      <!-- hamburger -->
+      <v-app-bar-nav-icon class="d-md-none" @click.stop="drawer = !drawer" color="light"></v-app-bar-nav-icon>
+      <!-- desktop menu -->
       <v-toolbar-items class="d-none d-md-flex">
-        <v-btn text class="button" to="/search/accommodations"><h3 class="desktop mb-0">Accommodation</h3></v-btn>
-        <v-menu transition="slide-y-transition" offset-y>
+        <v-btn text class="button text-transform-none" to="/search/accommodations"
+          ><h3 class="mb-0">Accommodation</h3></v-btn
+        >
+        <v-menu eager min-width="216" transition="slide-y-transition" offset-y>
           <template v-slot:activator="{ on }">
-            <v-btn v-on="on" text class="button"
-              ><h3 class="desktop mb-0">Activities<v-icon class="down-icon">chevron_right</v-icon></h3>
+            <v-btn v-on="on" text class="button text-transform-none"
+              ><h3 class="mb-0">Activities<v-icon class="down-icon">chevron_right</v-icon></h3>
             </v-btn>
           </template>
-          <v-list dense color="#191C21">
+          <v-list tile dense color="dark">
             <v-list-item class="pa-0">
-              <v-btn text tile block class="button" to="/search/events"><h3>Events</h3></v-btn>
+              <v-btn text tile block class="button text-transform-none" to="/search/events"
+                ><h3 class="mb-0 title text-left w-100">Events</h3></v-btn
+              >
             </v-list-item>
             <v-list-item class="pa-0">
-              <v-btn text tile block class="button" to="/search/experiences"><h3>Experience</h3></v-btn>
-            </v-list-item>
-          </v-list>
-        </v-menu>
-        <v-menu transition="slide-y-transition" offset-y>
-          <template v-slot:activator="{ on }">
-            <v-btn v-on="on" text class="button"
-              ><h3 class="desktop mb-0">Food<v-icon class="down-icon">chevron_right</v-icon></h3>
-            </v-btn>
-          </template>
-          <v-list dense color="#191C21" class="dropdown-list">
-            <v-list-item class="pa-0">
-              <v-btn text tile block class="button" to="/search/food"><h3>Menu</h3></v-btn>
-            </v-list-item>
-            <v-list-item class="pa-0">
-              <v-btn text tile block class="button" to="/listing/Pine-View-Kitchen-PVK"
-                ><h3>Restaurant</h3></v-btn
-              ></v-list-item
-            >
-          </v-list>
-        </v-menu>
-        <v-btn text class="button" to="/search/blog"><h3 class="desktop mb-0">Blog</h3></v-btn>
-
-        <v-menu transition="slide-y-transition" offset-y v-if="isAuthenticated == true" :loading="loading">
-          <template v-slot:activator="{ on }">
-            <v-btn v-on="on" text class="button"
-              ><h3 class="desktop mb-0">Profile<v-icon class="down-icon">chevron_right</v-icon></h3>
-            </v-btn>
-          </template>
-          <v-list dense color="#191C21" class="dropdown-list">
-            <v-list-item class="pa-0">
-              <v-btn text tile block class="button" @click="logout()" v-if="isAuthenticated" :loading="loading"
-                ><h3>Log Out</h3></v-btn
+              <v-btn text tile block class="button text-transform-none" to="/search/experiences"
+                ><h3 class="mb-0 title text-left w-100">Experiences</h3></v-btn
               >
             </v-list-item>
           </v-list>
         </v-menu>
-        <v-btn text class="button" @click="openLogin()" v-if="!isAuthenticated"
-          ><h3 class="desktop mb-0">Log In</h3></v-btn
+        <v-menu eager min-width="216" transition="slide-y-transition" offset-y>
+          <template v-slot:activator="{ on }">
+            <v-btn v-on="on" text class="button text-transform-none"
+              ><h3 class="mb-0">Food<v-icon class="down-icon">chevron_right</v-icon></h3>
+            </v-btn>
+          </template>
+          <v-list tile dense color="dark" class="dropdown-list">
+            <v-list-item class="pa-0">
+              <v-btn text tile block class="button text-transform-none" to="/listing/Pine-View-Kitchen-PVK"
+                ><h3 class="mb-0 title text-left w-100">Restaurant</h3></v-btn
+              ></v-list-item
+            >
+            <v-list-item class="pa-0">
+              <v-btn text tile block class="button text-transform-none" to="/search/food"
+                ><h3 class="mb-0 title text-left w-100">Menu</h3></v-btn
+              >
+            </v-list-item>
+          </v-list>
+        </v-menu>
+        <v-btn text class="button text-transform-none" to="/search/blog"><h3 class="mb-0">Blog</h3></v-btn>
+
+        <v-menu
+          eager
+          min-width="216"
+          transition="slide-y-transition"
+          offset-y
+          v-if="isAuthenticated"
+          :loading="loading"
         >
+          <template v-slot:activator="{ on }">
+            <v-btn v-on="on" text class="button text-transform-none"
+              ><h3 class="mb-0">Profile<v-icon class="down-icon">chevron_right</v-icon></h3>
+            </v-btn>
+          </template>
+          <v-list tile dense color="dark" class="dropdown-list">
+            <v-list-item class="pa-0">
+              <v-btn text tile block class="button text-transform-none"
+                ><h3 class="mb-0 title text-left w-100">Trips</h3></v-btn
+              >
+            </v-list-item>
+            <v-list-item class="pa-0">
+              <v-btn text tile block class="button text-transform-none"
+                ><h3 class="mb-0 title text-left w-100">My Account</h3></v-btn
+              >
+            </v-list-item>
+            <v-list-item class="pa-0">
+              <v-btn
+                text
+                tile
+                block
+                class="button text-transform-none"
+                @click="logout()"
+                v-if="isAuthenticated"
+                :loading="loading"
+                ><h3 class="mb-0 title text-left w-100">Log Out</h3></v-btn
+              >
+            </v-list-item>
+          </v-list>
+        </v-menu>
+        <v-btn v-else text class="button text-transform-none" @click="openLogin()"><h3 class="mb-0">Log In</h3></v-btn>
       </v-toolbar-items>
     </v-app-bar>
-    <v-navigation-drawer
-      dark
-      style="box-shadow: 0px 1px 0px #121416; position:fixed; background:#191C21;"
-      class="d-md-none"
-      temporary
-      v-model="drawer"
-    >
+    <!-- mobile menu -->
+    <v-navigation-drawer color="dark" fixed class="d-md-none page-header--drawer" temporary v-model="drawer">
       <v-row no-gutters text-left column class="mt-12">
         <v-flex xs12>
           <v-btn text block to="/search/accommodations" class="my-2 button"><h3 class="mb-0">Accommodation</h3></v-btn>
@@ -139,17 +167,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/* button:active {
-  background-color: #ffdb3a;
-  transition: background 1s ease-out;
-  } */
-.desktop {
-  font-size: 16px;
-  line-height: 22px;
-  color: #d8dade;
+.v-list-item .v-btn {
+  height: rem(44px) !important;
 }
 .button {
-  color: #d8dade;
+  color: $light;
   text-transform: capitalize;
 }
 .toolbar--logo {
@@ -161,5 +183,8 @@ export default {
 }
 .down-icon {
   transform: rotate(90deg);
+}
+.page-header--drawer {
+  box-shadow: 0px 1px 0px $dark;
 }
 </style>
