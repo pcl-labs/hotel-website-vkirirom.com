@@ -3,15 +3,15 @@ import { RoomTypeService, CompanyService, ReservationService } from '@/connectio
 import { bookingStep } from '@/types'
 import { setDocumentClassesOnToggleDialog } from '@/helpers'
 import { cloneDeep } from 'lodash-es'
+import countriesList from '@/constants/countries-list'
 
 const steps: { [name: string]: bookingStep } = {
   notStarted: {
-    id: 0,
-    width: 332
+    id: 0
   },
   confirmDates: {
     id: 1,
-    width: 332
+    width: 348
   },
   auth: {
     id: 2,
@@ -19,11 +19,11 @@ const steps: { [name: string]: bookingStep } = {
   },
   confirmGuests: {
     id: 3,
-    width: 332
+    width: 376
   },
   confirmBooking: {
     id: 4,
-    width: 332
+    width: 348
   },
   reviewPolicies: {
     id: 5
@@ -41,8 +41,7 @@ const steps: { [name: string]: bookingStep } = {
 
 const defaultState = {
   currentStep: {
-    id: 0,
-    width: 332
+    id: 0
   },
   steps,
   dialog: {
@@ -57,12 +56,12 @@ const defaultState = {
       infants: 0,
       total: 1
     },
-    transportation: false,
+    transportation: true,
     message: '',
     name: '',
     email: '',
     phoneNumber: '',
-    phoneCountry: undefined,
+    phoneCountry: countriesList.find(item => item.name === 'Cambodia'),
     payWith: 'cash',
     roomType: {},
     dateOne: '',
@@ -301,19 +300,41 @@ export default {
     bookingInfo(state) {
       return state.bookingInfo
     },
-    computedTotalPrice(state) {
+    computedRoomPrice(state) {
       const prices = state.bookingInfo.prices
-      let totalPrice = 0
+      let roomPrice = 0
       for (let i = 0; i < prices.length; i++) {
-        totalPrice += prices[i].amount
+        roomPrice += prices[i].amount
+      }
+      return roomPrice
+    },
+    computedVAT: (state, getters) => ({ hasTransportation = false }) => {
+      let prices = getters.computedRoomPrice
+      if (hasTransportation) {
+        prices += getters.computedTransportationPrice
+      }
+      const VAT_RATE = 0.1
+      return prices * VAT_RATE
+    },
+    computedTransportationPrice(state, getters) {
+      const transportation = state.bookingInfo.transportation
+      let transportationPrice = 0
+      if (transportation === true) {
+        const TRANSPORTATION_PER_PAX = 10
+        const adults = getters.bookingInfo.guests.adults
+        transportationPrice = adults * TRANSPORTATION_PER_PAX
+      }
+      return transportationPrice
+    },
+    computedTotalPrice: (state, getters) => ({ hasVAT = false, hasTransportation = false } = {}) => {
+      let totalPrice = getters.computedRoomPrice
+      if (hasVAT) {
+        totalPrice += getters.computedVAT({ hasTransportation })
+      }
+      if (hasTransportation) {
+        totalPrice += getters.computedTransportationPrice
       }
       return totalPrice
-    },
-    computedVat(state, getters) {
-      return getters.computedTotalPrice * 0.1
-    },
-    computedFinalPrice(state, getters) {
-      return getters.computedTotalPrice + getters.computedVat
     },
     currentStep(state) {
       return state.currentStep

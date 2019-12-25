@@ -1,6 +1,6 @@
 <template>
   <v-form name="Login" v-model="valid" @submit.prevent="">
-    <v-container fluid>
+    <v-container fluid class="pa-0">
       <v-row no-gutters>
         <v-flex xs12 class="text-center">
           <p class="light--text body-2">

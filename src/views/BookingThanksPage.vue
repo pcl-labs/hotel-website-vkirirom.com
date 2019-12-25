@@ -8,7 +8,7 @@
           </div>
         </v-col>
         <v-col class="pb-0 order-1 order-md-2" cols="12" md="4">
-          <booking-confirm-booking @booking-cancel="cancelBooking"></booking-confirm-booking>
+          <booking-confirm-booking :has-transportation="true" :has-cancel-button="false"></booking-confirm-booking>
         </v-col>
       </v-row>
     </v-container>
@@ -30,12 +30,6 @@ export default Vue.extend({
   computed: {
     returnUrl() {
       return store.getters['booking/bookingInfo'].returnUrl
-    }
-  },
-  methods: {
-    cancelBooking() {
-      this.$router.push(this.returnUrl)
-      store.dispatch('booking/cancelBooking')
     }
   }
 })
