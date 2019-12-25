@@ -268,19 +268,19 @@ export default {
     },
     getClientSecret(context) {
       const reservationId = context.getters.reservationId
-      console.log('reservationId', reservationId)
-
       const totalPrice = context.getters.computedTotalPrice({ all: true })
       return ReservationService.payReservation({
         reservationId: reservationId,
-        amount: totalPrice
+        model: {
+          amount: totalPrice
+        }
       }).then(payReservation => {
-        context.commit('updateClientSecret', payReservation.clientSecret)
+        return context.commit('updateClientSecret', payReservation.clientSecret)
       })
     },
-    getReservationDetails(context, { reservationId }) {
+    getReservationDetails(context, reservationId) {
       return ReservationService.get({
-        reservationId: reservationId
+        reservationId
       }).then(get => {
         context.commit('updateReservationDetails', get)
       })
@@ -361,6 +361,9 @@ export default {
     },
     reservationId(state) {
       return state.reservationId
+    },
+    clientSecret(state) {
+      return state.clientSecret
     }
   }
 }

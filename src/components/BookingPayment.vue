@@ -43,7 +43,11 @@
 
           <v-expand-transition>
             <div class="transition-fast-in-fast-out mb-6" v-show="payWith === 'card'">
-              <booking-payment-by-stripe></booking-payment-by-stripe>
+              <booking-payment-by-stripe
+                @success="onPaymentSuccess"
+                @error="onPaymentError"
+                ref="paymentByStripe"
+              ></booking-payment-by-stripe>
             </div>
           </v-expand-transition>
 
@@ -148,7 +152,15 @@ export default Vue.extend({
       this.$refs.phoneNumber.focus()
     },
     submit() {
+      // @ts-ignore
+      this.$refs.paymentByStripe.submit()
+    },
+    onPaymentSuccess(result) {
       this.$router.push({ name: 'booking-thanks' })
+    },
+    onPaymentError(result) {
+      alert('Error:' + result.error.message)
+      console.log('got error, TODO: handle error')
     }
   }
 })

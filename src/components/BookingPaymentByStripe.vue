@@ -8,8 +8,6 @@ import store from '../store'
 import { formatDate } from '../helpers'
 // stripe setup example: https://github.com/stripe-samples/accept-a-card-payment/blob/master/without-webhooks/client/web/script.js
 
-// console.log(formatDate("2019-12-28T20:30:00.000Z", 'YYYY-MM-DD'))
-
 export default Vue.extend({
   name: 'booking-payment-by-stripe',
   data() {
@@ -24,9 +22,13 @@ export default Vue.extend({
   methods: {
     async init() {
       await this.getStripeKey()
-      await this.reserveRoom()
       await this.createStripeComponent(this.stripeKey)
-      this.getClientSecret()
+    },
+    async submit() {
+      await this.reserveRoom()
+      await this.getClientSecret()
+      await this.getReservationDetails()
+      await this.purchase()
     },
     reserveRoom() {
       return store.dispatch('booking/reserveRoom', this.customBookingInfo)
@@ -52,9 +54,11 @@ export default Vue.extend({
         }
       }
       const elements = this.stripe.elements()
-      this.card = elements.create('card', { style }).mount(this.$refs.card)
+      this.card = elements.create('card', { style })
+      this.card.mount(this.$refs.card)
     },
     purchase() {
+      const that = this
       this.stripe
         .confirmCardPayment(this.clientSecret, {
           payment_method: { card: this.card }
@@ -63,9 +67,13 @@ export default Vue.extend({
           if (result.error) {
             // Show error to your customer (e.g., insufficient funds)
             console.log(result.error.message)
+            that.$emit('error', result)
           } else {
             // The payment has been processed!
             if (result.paymentIntent.status === 'succeeded') {
+              console.log('succeeded')
+              that.$emit('success', result)
+
               // Show a success message to your customer
               // There's a risk of the customer closing the window before callback
               // execution. Set up a webhook or plugin to listen for the
@@ -80,6 +88,9 @@ export default Vue.extend({
     },
     getClientSecret() {
       return store.dispatch('booking/getClientSecret')
+    },
+    getReservationDetails() {
+      return store.dispatch('booking/getReservationDetails', this.reservationId)
     }
   },
   computed: {
@@ -94,6 +105,9 @@ export default Vue.extend({
     },
     computedTotalPrice() {
       return store.getters['booking/computedTotalPrice']()
+    },
+    reservationId() {
+      return store.getters['booking/reservationId']
     }
   }
 })
