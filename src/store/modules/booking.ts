@@ -1,9 +1,10 @@
 import { addDays } from 'date-fns'
 import { RoomTypeService, CompanyService, ReservationService } from '@/connection/resources.js'
 import { bookingStep } from '@/types'
-import { setDocumentClassesOnToggleDialog } from '@/helpers'
+import { setDocumentClassesOnToggleDialog, formatDate } from '@/helpers'
 import { cloneDeep } from 'lodash-es'
 import countriesList from '@/constants/countries-list'
+import store from '..'
 
 const steps: { [name: string]: bookingStep } = {
   notStarted: {
@@ -53,7 +54,6 @@ const defaultState = {
     guests: {
       adults: 1,
       children: 0,
-      infants: 0,
       total: 1
     },
     transportation: true,
@@ -95,8 +95,8 @@ export default {
       state.bookingInfo.dateOne = payload
     },
     updateDateTwo(state, payload) {
-      state.bookingInfo.dateTwo = payload
-      state.bookingInfo.checkOut = addDays(payload, 1)
+      state.bookingInfo.dateTwo = formatDate(payload, 'YYYY-MM-DD')
+      state.bookingInfo.checkOut = formatDate(new Date(addDays(payload, 1)), 'YYYY-MM-DD')
     },
     updatePrices(state, payload) {
       state.bookingInfo.prices = payload
@@ -260,17 +260,20 @@ export default {
         return context.commit('updateStripeKey', res.key)
       })
     },
-    reserveRoom(context, bookingInfo) {
-      return ReservationService.reserveByRoomType(context.getters.computedBookingInfo).then(reserveByRoomType => {
-        console.log('reserveByRoomType', reserveByRoomType)
-
-        context.commit('updateReservationId', reserveByRoomType.reservationId)
+    reserveRoom(context, payload) {
+      const customBookingInfo = cloneDeep(payload)
+      return ReservationService.reserveByRoomType(customBookingInfo).then(reserveByRoomType => {
+        return context.commit('updateReservationId', reserveByRoomType.reservationId)
       })
     },
-    getClientSecret(context, { reservationId, bookingInfo }) {
+    getClientSecret(context) {
+      const reservationId = context.getters.reservationId
+      console.log('reservationId', reservationId)
+
+      const totalPrice = context.getters.computedTotalPrice({ all: true })
       return ReservationService.payReservation({
         reservationId: reservationId,
-        amount: bookingInfo.finalPrice
+        amount: totalPrice
       }).then(payReservation => {
         context.commit('updateClientSecret', payReservation.clientSecret)
       })
@@ -290,20 +293,25 @@ export default {
     bookingInfo(state) {
       return state.bookingInfo
     },
-    computedBookingInfo(state, getters) {
-      const bookingInfo = getters.bookingInfo
-      const result = {
+    customBookingInfo(state, getters) {
+      const bookingInfo = state.bookingInfo
+
+      return {
         roomTypeId: bookingInfo.roomType.id,
-        name: bookingInfo.name,
-        message: bookingInfo.message,
-        numberOfGuests: bookingInfo.guests,
-        start: bookingInfo.dateOne,
-        end: bookingInfo.checkOut,
-        payment: {
-          amount: getters.computedTotalPrice({ all: true })
-        },
-        email: bookingInfo.email,
-        phone: bookingInfo.phone
+        model: {
+          name: bookingInfo.fullName,
+          message: bookingInfo.message,
+          numberOfGuests: bookingInfo.guests.total,
+          start: bookingInfo.dateOne,
+          end: bookingInfo.checkOut,
+          payment: {
+            amount: getters.computedTotalPrice({ all: true })
+          },
+          // TODO: should I use auth email?
+          // email: bookingInfo.email,
+          email: store.getters['auth/user'].userName,
+          phone: `+${bookingInfo.phoneCountry.callingCodes[0]}` + bookingInfo.phoneNumber
+        }
       }
     },
     computedRoomPrice(state) {
@@ -350,6 +358,9 @@ export default {
     },
     stripeKey(state) {
       return state.stripeKey
+    },
+    reservationId(state) {
+      return state.reservationId
     }
   }
 }

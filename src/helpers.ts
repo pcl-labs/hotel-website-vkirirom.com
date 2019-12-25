@@ -1,5 +1,5 @@
 import { BASE_API } from '@/constants/connection'
-import { isDate, format } from 'date-fns'
+import { format } from 'date-fns'
 
 // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Safely_detecting_option_support
 export function getPassiveEventConfig() {

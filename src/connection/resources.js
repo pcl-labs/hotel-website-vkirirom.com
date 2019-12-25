@@ -4,9 +4,7 @@ import axiosStatic from 'axios'
 export const serviceOptions = {}
 // Instance selector
 function axios(configs) {
-  return serviceOptions.axios
-    ? serviceOptions.axios.request(configs)
-    : axiosStatic(configs)
+  return serviceOptions.axios ? serviceOptions.axios.request(configs) : axiosStatic(configs)
 }
 export class AuthenticationService {
   /**
@@ -15,9 +13,7 @@ export class AuthenticationService {
   static login(params = {}, options = {}) {
     return new Promise((resolve, reject) => {
       const configs = Object.assign({}, options, { method: 'post' })
-      configs.headers = Object.assign({}, options.headers, {
-        'Content-Type': 'application/json'
-      })
+      configs.headers = Object.assign({}, options.headers, { 'Content-Type': 'application/json' })
       let url = '/api/v0/authentication/login'
       configs.url = url
       let data = Object.assign({}, params['model'])
@@ -37,9 +33,7 @@ export class AuthenticationService {
   static logout(options = {}) {
     return new Promise((resolve, reject) => {
       const configs = Object.assign({}, options, { method: 'post' })
-      configs.headers = Object.assign({}, options.headers, {
-        'Content-Type': 'application/json'
-      })
+      configs.headers = Object.assign({}, options.headers, { 'Content-Type': 'application/json' })
       let url = '/api/v0/authentication/logout'
       configs.url = url
       let data = null
@@ -59,9 +53,7 @@ export class AuthenticationService {
   static providerLogin(params = {}, options = {}) {
     return new Promise((resolve, reject) => {
       const configs = Object.assign({}, options, { method: 'get' })
-      configs.headers = Object.assign({}, options.headers, {
-        'Content-Type': 'application/json'
-      })
+      configs.headers = Object.assign({}, options.headers, { 'Content-Type': 'application/json' })
       let url = '/api/v0/authentication/provider/login'
       configs.url = url
       configs.params = params
@@ -82,9 +74,7 @@ export class AuthenticationService {
   static register(params = {}, options = {}) {
     return new Promise((resolve, reject) => {
       const configs = Object.assign({}, options, { method: 'post' })
-      configs.headers = Object.assign({}, options.headers, {
-        'Content-Type': 'application/json'
-      })
+      configs.headers = Object.assign({}, options.headers, { 'Content-Type': 'application/json' })
       let url = '/api/v0/authentication/register'
       configs.url = url
       let data = Object.assign({}, params['model'])
@@ -104,9 +94,7 @@ export class AuthenticationService {
   static ping(options = {}) {
     return new Promise((resolve, reject) => {
       const configs = Object.assign({}, options, { method: 'get' })
-      configs.headers = Object.assign({}, options.headers, {
-        'Content-Type': 'application/json'
-      })
+      configs.headers = Object.assign({}, options.headers, { 'Content-Type': 'application/json' })
       let url = '/api/v0/authentication/ping'
       configs.url = url
       let data = null
@@ -128,9 +116,7 @@ export class CardService {
   static related(params = {}, options = {}) {
     return new Promise((resolve, reject) => {
       const configs = Object.assign({}, options, { method: 'get' })
-      configs.headers = Object.assign({}, options.headers, {
-        'Content-Type': 'application/json'
-      })
+      configs.headers = Object.assign({}, options.headers, { 'Content-Type': 'application/json' })
       let url = '/api/v0/cards/{id}/related'
       url = url.replace('{id}', params['id'] + '')
       configs.url = url
@@ -156,9 +142,7 @@ export class CategoryService {
   static get(options = {}) {
     return new Promise((resolve, reject) => {
       const configs = Object.assign({}, options, { method: 'get' })
-      configs.headers = Object.assign({}, options.headers, {
-        'Content-Type': 'application/json'
-      })
+      configs.headers = Object.assign({}, options.headers, { 'Content-Type': 'application/json' })
       let url = '/api/v0/categories'
       configs.url = url
       let data = null
@@ -180,9 +164,7 @@ export class CompanyService {
   static create(params = {}, options = {}) {
     return new Promise((resolve, reject) => {
       const configs = Object.assign({}, options, { method: 'post' })
-      configs.headers = Object.assign({}, options.headers, {
-        'Content-Type': 'application/json'
-      })
+      configs.headers = Object.assign({}, options.headers, { 'Content-Type': 'application/json' })
       let url = '/api/v0/companies'
       configs.url = url
       configs.params = params
@@ -203,9 +185,7 @@ export class CompanyService {
   static stripePublishableKey(params = {}, options = {}) {
     return new Promise((resolve, reject) => {
       const configs = Object.assign({}, options, { method: 'get' })
-      configs.headers = Object.assign({}, options.headers, {
-        'Content-Type': 'application/json'
-      })
+      configs.headers = Object.assign({}, options.headers, { 'Content-Type': 'application/json' })
       let url = '/api/v0/companies/{companyId}/stripe/keys/publishable'
       url = url.replace('{companyId}', params['companyId'] + '')
       configs.url = url
@@ -231,9 +211,7 @@ export class PageService {
   static get(params = {}, options = {}) {
     return new Promise((resolve, reject) => {
       const configs = Object.assign({}, options, { method: 'get' })
-      configs.headers = Object.assign({}, options.headers, {
-        'Content-Type': 'application/json'
-      })
+      configs.headers = Object.assign({}, options.headers, { 'Content-Type': 'application/json' })
       let url = '/api/v0/pages/slug/{companySlug}/{pageSlug}'
       url = url.replace('{companySlug}', params['companySlug'] + '')
       url = url.replace('{pageSlug}', params['pageSlug'] + '')
@@ -258,9 +236,7 @@ export class PageService {
   static getPages(params = {}, options = {}) {
     return new Promise((resolve, reject) => {
       const configs = Object.assign({}, options, { method: 'get' })
-      configs.headers = Object.assign({}, options.headers, {
-        'Content-Type': 'application/json'
-      })
+      configs.headers = Object.assign({}, options.headers, { 'Content-Type': 'application/json' })
       let url = '/api/v0/pages/slug/{companySlug}'
       url = url.replace('{companySlug}', params['companySlug'] + '')
       configs.url = url
@@ -284,11 +260,8 @@ export class PageService {
   static byCompanyByCategoryName(params = {}, options = {}) {
     return new Promise((resolve, reject) => {
       const configs = Object.assign({}, options, { method: 'get' })
-      configs.headers = Object.assign({}, options.headers, {
-        'Content-Type': 'application/json'
-      })
-      let url =
-        '/api/v0/pages/slug/{companySlug}/categories/by-name/{categoryName}'
+      configs.headers = Object.assign({}, options.headers, { 'Content-Type': 'application/json' })
+      let url = '/api/v0/pages/slug/{companySlug}/categories/by-name/{categoryName}'
       url = url.replace('{companySlug}', params['companySlug'] + '')
       url = url.replace('{categoryName}', params['categoryName'] + '')
       configs.url = url
@@ -314,9 +287,7 @@ export class PlanetCollageService {
   static get(params = {}, options = {}) {
     return new Promise((resolve, reject) => {
       const configs = Object.assign({}, options, { method: 'get' })
-      configs.headers = Object.assign({}, options.headers, {
-        'Content-Type': 'application/json'
-      })
+      configs.headers = Object.assign({}, options.headers, { 'Content-Type': 'application/json' })
       let url = '/api/v0/planetcollage/by-tag/{tag}'
       url = url.replace('{tag}', params['tag'] + '')
       configs.url = url
@@ -340,9 +311,7 @@ export class PlanetCollageService {
   static fullResolution(params = {}, options = {}) {
     return new Promise((resolve, reject) => {
       const configs = Object.assign({}, options, { method: 'post' })
-      configs.headers = Object.assign({}, options.headers, {
-        'Content-Type': 'application/json'
-      })
+      configs.headers = Object.assign({}, options.headers, { 'Content-Type': 'application/json' })
       let url = '/api/v0/planetcollage/full'
       configs.url = url
       let data = Object.assign({}, params['model'])
@@ -364,9 +333,7 @@ export class PriceService {
   static create(params = {}, options = {}) {
     return new Promise((resolve, reject) => {
       const configs = Object.assign({}, options, { method: 'post' })
-      configs.headers = Object.assign({}, options.headers, {
-        'Content-Type': 'application/json'
-      })
+      configs.headers = Object.assign({}, options.headers, { 'Content-Type': 'application/json' })
       let url = '/api/v0/prices'
       configs.url = url
       configs.params = params
@@ -389,9 +356,7 @@ export class ReservationService {
   static get(params = {}, options = {}) {
     return new Promise((resolve, reject) => {
       const configs = Object.assign({}, options, { method: 'get' })
-      configs.headers = Object.assign({}, options.headers, {
-        'Content-Type': 'application/json'
-      })
+      configs.headers = Object.assign({}, options.headers, { 'Content-Type': 'application/json' })
       let url = '/api/v0/reservations/{reservationId}'
       url = url.replace('{reservationId}', params['reservationId'] + '')
       configs.url = url
@@ -415,9 +380,7 @@ export class ReservationService {
   static payReservation(params = {}, options = {}) {
     return new Promise((resolve, reject) => {
       const configs = Object.assign({}, options, { method: 'post' })
-      configs.headers = Object.assign({}, options.headers, {
-        'Content-Type': 'application/json'
-      })
+      configs.headers = Object.assign({}, options.headers, { 'Content-Type': 'application/json' })
       let url = '/api/v0/reservations/{reservationId}/pay'
       url = url.replace('{reservationId}', params['reservationId'] + '')
       configs.url = url
@@ -441,9 +404,7 @@ export class ReservationService {
   static reserveByRoomType(params = {}, options = {}) {
     return new Promise((resolve, reject) => {
       const configs = Object.assign({}, options, { method: 'post' })
-      configs.headers = Object.assign({}, options.headers, {
-        'Content-Type': 'application/json'
-      })
+      configs.headers = Object.assign({}, options.headers, { 'Content-Type': 'application/json' })
       let url = '/api/v0/reservations/roomtype/{roomTypeId}/reserve'
       url = url.replace('{roomTypeId}', params['roomTypeId'] + '')
       configs.url = url
@@ -469,9 +430,7 @@ export class RoomTypeService {
   static prices(params = {}, options = {}) {
     return new Promise((resolve, reject) => {
       const configs = Object.assign({}, options, { method: 'get' })
-      configs.headers = Object.assign({}, options.headers, {
-        'Content-Type': 'application/json'
-      })
+      configs.headers = Object.assign({}, options.headers, { 'Content-Type': 'application/json' })
       let url = '/api/v0/roomtypes/{roomTypeId}/prices'
       url = url.replace('{roomTypeId}', params['roomTypeId'] + '')
       configs.url = url
@@ -498,9 +457,7 @@ export class StripeService {
   static create(params = {}, options = {}) {
     return new Promise((resolve, reject) => {
       const configs = Object.assign({}, options, { method: 'post' })
-      configs.headers = Object.assign({}, options.headers, {
-        'Content-Type': 'application/json'
-      })
+      configs.headers = Object.assign({}, options.headers, { 'Content-Type': 'application/json' })
       let url = '/api/v0/stripe/charge/create'
       configs.url = url
       let data = Object.assign({}, params['model'])

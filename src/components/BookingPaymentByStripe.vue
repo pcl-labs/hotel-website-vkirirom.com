@@ -4,28 +4,38 @@
 
 <script lang="ts">
 import Vue from 'vue'
-const Stripe = (window as any).Stripe
+import store from '../store'
+import { formatDate } from '../helpers'
+// stripe setup example: https://github.com/stripe-samples/accept-a-card-payment/blob/master/without-webhooks/client/web/script.js
+
+// console.log(formatDate("2019-12-28T20:30:00.000Z", 'YYYY-MM-DD'))
 
 export default Vue.extend({
   name: 'booking-payment-by-stripe',
   data() {
     return {
-      stripe: {},
-      card: {}
+      stripe: {} as any,
+      card: {} as any
     }
   },
-  created() {
+  mounted() {
     this.init()
   },
   methods: {
     async init() {
       await this.getStripeKey()
+      await this.reserveRoom()
       await this.createStripeComponent(this.stripeKey)
       this.getClientSecret()
     },
+    reserveRoom() {
+      return store.dispatch('booking/reserveRoom', this.customBookingInfo)
+    },
     async createStripeComponent(stripeKey) {
-      this.stripe = Stripe(await stripeKey)
-      const themes = (this as any).$vuetify.theme.themes
+      // @ts-ignore
+      this.stripe = window.Stripe(await stripeKey)
+      // @ts-ignore
+      const themes = this.$vuetify.theme.themes
 
       var style = {
         base: {
@@ -41,12 +51,11 @@ export default Vue.extend({
           iconColor: themes.light.error
         }
       }
-      const elements = (this.stripe as any).elements()
-      this.card = elements.create('card', { style })
-      ;(this.card as any).mount(this.$refs.card)
+      const elements = this.stripe.elements()
+      this.card = elements.create('card', { style }).mount(this.$refs.card)
     },
     purchase() {
-      ;(this.stripe as any)
+      this.stripe
         .confirmCardPayment(this.clientSecret, {
           payment_method: { card: this.card }
         })
@@ -67,21 +76,24 @@ export default Vue.extend({
         })
     },
     getStripeKey() {
-      return this.$store.dispatch('booking/getStripeKey')
+      return store.dispatch('booking/getStripeKey')
     },
     getClientSecret() {
-      return this.$store.dispatch('booking/getClientSecret')
+      return store.dispatch('booking/getClientSecret')
     }
   },
   computed: {
     stripeKey() {
-      return this.$store.getters['booking/stripeKey']
+      return store.getters['booking/stripeKey']
+    },
+    customBookingInfo() {
+      return store.getters['booking/customBookingInfo']
     },
     clientSecret() {
-      return this.$store.getters['booking/clientSecret']
+      return store.getters['booking/clientSecret']
     },
     computedTotalPrice() {
-      return this.$store.getters['booking/computedTotalPrice']()
+      return store.getters['booking/computedTotalPrice']()
     }
   }
 })

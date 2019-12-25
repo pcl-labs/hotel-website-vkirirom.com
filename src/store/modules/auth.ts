@@ -62,6 +62,9 @@ export default {
     password: state => {
       return state.password
     },
+    user: state => {
+      return state.user
+    },
     isAuthenticated: state => {
       return state.user.isAuthenticated
     },
