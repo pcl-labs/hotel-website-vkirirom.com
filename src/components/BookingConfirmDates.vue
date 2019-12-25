@@ -16,6 +16,7 @@
               <v-text-field class="d-none" :value="dateOne" type="text" readonly :rules="dateOneRules" />
               <v-text-field :value="dateTwo" class="d-none" type="text" readonly :rules="dateTwoRules" />
               <v-text-field id="datepicker-inline-trigger" class="d-none" type="text" readonly />
+              <!-- TODO: check min-date, it's tomorrow! probably should be today -->
               <airbnb-style-datepicker
                 class="datepicker--dark"
                 :mode="'range'"

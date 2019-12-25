@@ -143,16 +143,16 @@ export default {
     updateResort(state, payload) {
       state.bookingInfo.resort = payload
     },
-    fetchStripeKey(state, payload) {
+    updateStripeKey(state, payload) {
       state.stripeKey = payload
     },
-    fetchReservationId(state, payload) {
+    updateReservationId(state, payload) {
       state.reservationId = payload
     },
-    fetchClientSecret(state, payload) {
+    updateClientSecret(state, payload) {
       state.clientSecret = payload
     },
-    fetchReservationDetails(state, payload) {
+    updateReservationDetails(state, payload) {
       state.reservationDetails = payload
     },
     resetState(state) {
@@ -256,25 +256,15 @@ export default {
     getStripeKey(context) {
       return CompanyService.stripePublishableKey({
         companyId: 1
-      }).then(stripePublishableKey => {
-        context.commit('fetchStripeKey', stripePublishableKey.key)
+      }).then(res => {
+        return context.commit('updateStripeKey', res.key)
       })
     },
     reserveRoom(context, bookingInfo) {
-      return ReservationService.reserveByRoomType({
-        roomTypeId: bookingInfo.roomType.id,
-        name: bookingInfo.name,
-        message: bookingInfo.message,
-        numberOfGuests: bookingInfo.guests,
-        start: bookingInfo.dateOne,
-        end: bookingInfo.checkOut,
-        payment: {
-          amount: bookingInfo.finalPrice
-        },
-        email: bookingInfo.email,
-        phone: bookingInfo.phone
-      }).then(reserveByRoomType => {
-        context.commit('fetchReservationId', reserveByRoomType.reservationId)
+      return ReservationService.reserveByRoomType(context.getters.computedBookingInfo).then(reserveByRoomType => {
+        console.log('reserveByRoomType', reserveByRoomType)
+
+        context.commit('updateReservationId', reserveByRoomType.reservationId)
       })
     },
     getClientSecret(context, { reservationId, bookingInfo }) {
@@ -282,14 +272,14 @@ export default {
         reservationId: reservationId,
         amount: bookingInfo.finalPrice
       }).then(payReservation => {
-        context.commit('fetchClientSecret', payReservation.clientSecret)
+        context.commit('updateClientSecret', payReservation.clientSecret)
       })
     },
     getReservationDetails(context, { reservationId }) {
       return ReservationService.get({
         reservationId: reservationId
       }).then(get => {
-        context.commit('fetchReservationDetails', get)
+        context.commit('updateReservationDetails', get)
       })
     }
   },
@@ -299,6 +289,22 @@ export default {
     },
     bookingInfo(state) {
       return state.bookingInfo
+    },
+    computedBookingInfo(state, getters) {
+      const bookingInfo = getters.bookingInfo
+      const result = {
+        roomTypeId: bookingInfo.roomType.id,
+        name: bookingInfo.name,
+        message: bookingInfo.message,
+        numberOfGuests: bookingInfo.guests,
+        start: bookingInfo.dateOne,
+        end: bookingInfo.checkOut,
+        payment: {
+          amount: getters.computedTotalPrice({ all: true })
+        },
+        email: bookingInfo.email,
+        phone: bookingInfo.phone
+      }
     },
     computedRoomPrice(state) {
       const prices = state.bookingInfo.prices
@@ -326,12 +332,12 @@ export default {
       }
       return transportationPrice
     },
-    computedTotalPrice: (state, getters) => ({ hasVAT = false, hasTransportation = false } = {}) => {
+    computedTotalPrice: (state, getters) => ({ all = false, hasVAT = false, hasTransportation = false } = {}) => {
       let totalPrice = getters.computedRoomPrice
-      if (hasVAT) {
+      if (all || hasVAT) {
         totalPrice += getters.computedVAT({ hasTransportation })
       }
-      if (hasTransportation) {
+      if (all || hasTransportation) {
         totalPrice += getters.computedTransportationPrice
       }
       return totalPrice
@@ -341,6 +347,9 @@ export default {
     },
     steps(state) {
       return state.steps
+    },
+    stripeKey(state) {
+      return state.stripeKey
     }
   }
 }
