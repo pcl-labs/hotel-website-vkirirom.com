@@ -42,60 +42,15 @@
           </v-radio-group>
 
           <v-expand-transition>
-            <div class="transition-fast-in-fast-out" v-if="payWith === 'card'">
-              <h4 class="mb-2 title font-weight-bold">Card info</h4>
-              <v-row>
-                <v-col cols="12" class="pb-0">
-                  <v-text-field
-                    class="confirm-payment--card-number"
-                    v-model="cardNumber"
-                    outlined
-                    label="Card number"
-                    name="cardNumber"
-                    color="light"
-                    type="text"
-                    required
-                    v-mask="'#### #### #### #######'"
-                    masked
-                    :rules="rules.cardNumber"
-                    dark
-                  >
-                  </v-text-field>
-                </v-col>
-              </v-row>
-              <v-row dense class="confirm-payment--row2">
-                <v-col cols="6" class="pt-0">
-                  <v-text-field
-                    v-model="expiration"
-                    outlined
-                    label="Expiration"
-                    name="expiration"
-                    color="light"
-                    type="text"
-                    required
-                    hint="e.g. 2020 / 20"
-                    v-mask="'#### / ##'"
-                    :rules="rules.expiration"
-                    dark
-                  >
-                  </v-text-field>
-                </v-col>
-                <v-col cols="6" class="pt-0">
-                  <v-text-field
-                    v-model="CVV"
-                    outlined
-                    label="CVV"
-                    name="CVV"
-                    color="light"
-                    type="text"
-                    required
-                    v-mask="'####'"
-                    :rules="rules.CVV"
-                    dark
-                  >
-                  </v-text-field>
-                </v-col>
-              </v-row>
+            <div class="transition-fast-in-fast-out mb-6" v-show="payWith === 'card'">
+              <booking-payment-by-stripe
+                @success="onPaymentSuccess"
+                @error="onPaymentError"
+                ref="paymentByStripe"
+                :billingDetails="{
+                  name: fullName
+                }"
+              ></booking-payment-by-stripe>
             </div>
           </v-expand-transition>
 
@@ -107,6 +62,12 @@
             </v-col>
           </v-row>
 
+          <v-row no-gutters="">
+            <v-col>
+              <p v-if="paymentError" class="error--text">{{ paymentError }}</p>
+            </v-col>
+          </v-row>
+
           <v-btn
             @click="submit"
             x-large
@@ -114,6 +75,7 @@
             dark
             class="text-transform-none font-weight-bold dark--text"
             :disabled="!isFormValid"
+            :loading="isPaymentLoading"
             type="submit"
           >
             <v-spacer></v-spacer>
@@ -129,17 +91,18 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { mask } from 'vue-the-mask'
 import { isNumber } from 'lodash-es'
 import store from '../store'
 import { isCreditCard } from 'validator'
+import BookingPaymentByStripe from '@/components/BookingPaymentByStripe.vue'
 
 export default Vue.extend({
   name: 'booking-payment',
-  directives: { mask },
+  components: { BookingPaymentByStripe },
   data() {
     return {
       isFormValid: false,
+      errorMessage: '',
       rules: {
         fullName: [v => !!v || 'Full name is required'],
         // validatin of credit card https://www.creditcardrush.com/credit-card-validator/
@@ -192,6 +155,12 @@ export default Vue.extend({
       set(value: string) {
         store.dispatch('booking/updateCVV', value)
       }
+    },
+    paymentError() {
+      return store.getters['booking/paymentError']
+    },
+    isPaymentLoading() {
+      return store.getters['booking/isPaymentLoading']
     }
   },
   methods: {
@@ -200,8 +169,13 @@ export default Vue.extend({
       this.$refs.phoneNumber.focus()
     },
     submit() {
+      // @ts-ignore
+      this.$refs.paymentByStripe.submit()
+    },
+    onPaymentSuccess(result) {
       this.$router.push({ name: 'booking-thanks' })
-    }
+    },
+    onPaymentError(result) {}
   }
 })
 </script>
