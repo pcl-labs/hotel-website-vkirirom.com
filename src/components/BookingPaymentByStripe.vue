@@ -31,6 +31,7 @@ export default Vue.extend({
       await this.createStripeComponent(this.stripeKey)
     },
     async submit() {
+      store.dispatch('booking/updateIsPaymentLoading', true)
       try {
         await this.reserveRoom()
         await this.getClientSecret()
@@ -38,7 +39,7 @@ export default Vue.extend({
         await this.purchase()
       } catch (error) {
         store.dispatch('booking/updateIsPaymentLoading', false)
-        console.log(error)
+        console.log({ ...error })
       }
     },
     reserveRoom() {

@@ -158,7 +158,7 @@ export default {
       state.reservationDetails = payload
     },
     updateIsPaymentLoading(state, payload) {
-      state.IsPaymentLoading = payload
+      state.isPaymentLoading = payload
     },
     updatePaymentError(state, payload) {
       state.paymentError = payload
@@ -276,9 +276,13 @@ export default {
     },
     reserveRoom(context, payload) {
       const customBookingInfo = cloneDeep(payload)
-      return ReservationService.reserveByRoomType(customBookingInfo).then(reserveByRoomType => {
-        return context.commit('updateReservationId', reserveByRoomType.reservationId)
-      })
+      return ReservationService.reserveByRoomType(customBookingInfo)
+        .then(reserveByRoomType => {
+          return context.commit('updateReservationId', reserveByRoomType.reservationId)
+        })
+        .catch(error => {
+          store.dispatch('booking/updatePaymentError', 'Error in reserve room.')
+        })
     },
     getClientSecret(context) {
       const reservationId = context.getters.reservationId
@@ -299,7 +303,7 @@ export default {
         context.commit('updateReservationDetails', get)
       })
     },
-    purchase(context, {stripe, clientSecret, billingDetails, card}) {
+    purchase(context, { stripe, clientSecret, billingDetails, card }) {
       stripe
         .confirmCardPayment(clientSecret, {
           payment_method: {
