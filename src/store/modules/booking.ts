@@ -97,7 +97,7 @@ export default {
       state.bookingInfo.dateOne = payload
     },
     updateDateTwo(state, payload) {
-      state.bookingInfo.dateTwo = formatDate(payload, 'YYYY-MM-DD')
+      state.bookingInfo.dateTwo = payload
       state.bookingInfo.checkOut = formatDate(new Date(addDays(payload, 1)), 'YYYY-MM-DD')
     },
     updatePrices(state, payload) {
