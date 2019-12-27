@@ -1,6 +1,6 @@
 <template>
   <v-form name="Register" v-model="valid" @submit.prevent="">
-    <v-container fluid>
+    <v-container fluid class="pa-0">
       <v-row no-gutters>
         <v-col cols="12" class="mb-2">
           <!-- by oauth providers -->
