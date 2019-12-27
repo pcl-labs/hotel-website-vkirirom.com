@@ -47,6 +47,9 @@
                 @success="onPaymentSuccess"
                 @error="onPaymentError"
                 ref="paymentByStripe"
+                :billingDetails="{
+                  name: fullName
+                }"
               ></booking-payment-by-stripe>
             </div>
           </v-expand-transition>
@@ -59,6 +62,12 @@
             </v-col>
           </v-row>
 
+          <v-row no-gutters="">
+            <v-col>
+              <p v-if="paymentError" class="error--text">{{ paymentError }}</p>
+            </v-col>
+          </v-row>
+
           <v-btn
             @click="submit"
             x-large
@@ -66,6 +75,7 @@
             dark
             class="text-transform-none font-weight-bold dark--text"
             :disabled="!isFormValid"
+            :loading="isPaymentLoading"
             type="submit"
           >
             <v-spacer></v-spacer>
@@ -92,6 +102,7 @@ export default Vue.extend({
   data() {
     return {
       isFormValid: false,
+      errorMessage: '',
       rules: {
         fullName: [v => !!v || 'Full name is required'],
         // validatin of credit card https://www.creditcardrush.com/credit-card-validator/
@@ -144,6 +155,12 @@ export default Vue.extend({
       set(value: string) {
         store.dispatch('booking/updateCVV', value)
       }
+    },
+    paymentError() {
+      return store.getters['booking/paymentError']
+    },
+    isPaymentLoading() {
+      return store.getters['booking/isPaymentLoading']
     }
   },
   methods: {
@@ -158,10 +175,7 @@ export default Vue.extend({
     onPaymentSuccess(result) {
       this.$router.push({ name: 'booking-thanks' })
     },
-    onPaymentError(result) {
-      alert('Error:' + result.error.message)
-      console.log('got error, TODO: handle error')
-    }
+    onPaymentError(result) {}
   }
 })
 </script>

@@ -75,7 +75,9 @@ const defaultState = {
   stripeKey: '',
   reservationId: 0,
   clientSecret: '',
-  reservationDetails: {}
+  reservationDetails: {},
+  isPaymentLoading: false,
+  paymentError: ''
 }
 
 export default {
@@ -154,6 +156,12 @@ export default {
     },
     updateReservationDetails(state, payload) {
       state.reservationDetails = payload
+    },
+    updateIsPaymentLoading(state, payload) {
+      state.IsPaymentLoading = payload
+    },
+    updatePaymentError(state, payload) {
+      state.paymentError = payload
     },
     resetState(state) {
       for (const key in defaultState) {
@@ -241,6 +249,12 @@ export default {
     updateRoomType(context, payload) {
       context.commit('updateRoomType', payload)
     },
+    updateIsPaymentLoading(context, payload) {
+      context.commit('updateIsPaymentLoading', payload)
+    },
+    updatePaymentError(context, payload) {
+      context.commit('updatePaymentError', payload)
+    },
     clearPrices(context) {
       context.commit('updatePrices', defaultState.bookingInfo.prices)
     },
@@ -284,6 +298,34 @@ export default {
       }).then(get => {
         context.commit('updateReservationDetails', get)
       })
+    },
+    purchase(context, {stripe, clientSecret, billingDetails, card}) {
+      stripe
+        .confirmCardPayment(clientSecret, {
+          payment_method: {
+            card: card,
+            billing_details: billingDetails
+          }
+        })
+        .then(function(result) {
+          if (result.error) {
+            console.log(result.error.message)
+            store.dispatch('booking/updatePaymentError', result.error.message)
+          } else {
+            if (result.paymentIntent.status === 'succeeded') {
+              console.log('succeeded')
+              // Show a success message to your customer
+              // There's a risk of the customer closing the window before callback
+              // execution. Set up a webhook or plugin to listen for the
+              // payment_intent.succeeded event that handles any business critical
+              // post-payment actions.
+            }
+          }
+        })
+        .finally(res => {
+          console.log('finally')
+          store.dispatch('booking/updateIsLoading', false)
+        })
     }
   },
   getters: {
@@ -364,6 +406,12 @@ export default {
     },
     clientSecret(state) {
       return state.clientSecret
+    },
+    paymentError(state) {
+      return state.paymentError
+    },
+    isPaymentLoading(state) {
+      return state.isPaymentLoading
     }
   }
 }

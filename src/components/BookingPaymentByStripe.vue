@@ -16,6 +16,12 @@ export default Vue.extend({
       card: {} as any
     }
   },
+  props: {
+    billingDetails: {
+      type: Object,
+      default: () => {}
+    }
+  },
   mounted() {
     this.init()
   },
@@ -25,10 +31,15 @@ export default Vue.extend({
       await this.createStripeComponent(this.stripeKey)
     },
     async submit() {
-      await this.reserveRoom()
-      await this.getClientSecret()
-      await this.getReservationDetails()
-      await this.purchase()
+      try {
+        await this.reserveRoom()
+        await this.getClientSecret()
+        await this.getReservationDetails()
+        await this.purchase()
+      } catch (error) {
+        store.dispatch('booking/updateIsPaymentLoading', false)
+        console.log(error)
+      }
     },
     reserveRoom() {
       return store.dispatch('booking/reserveRoom', this.customBookingInfo)
@@ -59,29 +70,13 @@ export default Vue.extend({
     },
     purchase() {
       const that = this
-      this.stripe
-        .confirmCardPayment(this.clientSecret, {
-          payment_method: { card: this.card }
-        })
-        .then(function(result) {
-          if (result.error) {
-            // Show error to your customer (e.g., insufficient funds)
-            console.log(result.error.message)
-            that.$emit('error', result)
-          } else {
-            // The payment has been processed!
-            if (result.paymentIntent.status === 'succeeded') {
-              console.log('succeeded')
-              that.$emit('success', result)
-
-              // Show a success message to your customer
-              // There's a risk of the customer closing the window before callback
-              // execution. Set up a webhook or plugin to listen for the
-              // payment_intent.succeeded event that handles any business critical
-              // post-payment actions.
-            }
-          }
-        })
+      console.log('clientSecret:', this.clientSecret)
+      store.dispatch('booking/purchase', {
+        stripe: this.stripe,
+        clientSecret: this.clientSecret,
+        card: this.card,
+        billingDetails: this.billingDetails
+      })
     },
     getStripeKey() {
       return store.dispatch('booking/getStripeKey')
