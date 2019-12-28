@@ -1,14 +1,14 @@
 <template>
   <v-card tile :elevation="0" class="dark">
     <div class="d-flex flex-column">
-      <div class="position-relative confirm-booking--hero">
+      <div class="position-relative booking-dialog--hero">
         <v-img :aspect-ratio="376 / 192" :max-height="192" :max-width="'100%'" :src="resort.featuredImage"></v-img>
-        <div v-if="hasCancelButton" class="position-absolute mx-4 mt-4 confirm-booking--toolbar">
+        <div v-if="hasCancelButton" class="position-absolute mx-4 mt-4 booking-dialog--toolbar">
           <v-btn class="ma-0" x-small fab color="rgba(0,0,0,0.4)" depressed @click="$emit('booking-cancel')">
             <v-icon color="white">close</v-icon>
           </v-btn>
         </div>
-        <div class="position-absolute confirm-booking--resort-title text-center brand-2--text w-100">
+        <div class="position-absolute booking-dialog--title text-center brand-2--text w-100">
           <h2 class="display-1 mb-0 font-weight-bold">
             {{ resort.title }}
           </h2>
@@ -170,16 +170,5 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 @import '@/styles/utility.scss';
-.confirm-booking--toolbar {
-  top: 0;
-}
-.confirm-booking--hero .v-image::after {
-  background: linear-gradient(360deg, rgba(25, 28, 33, 0.8) 0%, rgba(25, 28, 33, 0) 30%);
-  position: absolute;
-  @include stick-around;
-  content: '';
-}
-.confirm-booking--resort-title {
-  bottom: rem(16px);
-}
+@import '@/styles/booking-dialog.scss';
 </style>

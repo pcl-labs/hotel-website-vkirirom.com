@@ -1,97 +1,122 @@
 <template>
-  <v-card tile :elevation="0" class="dark px-4 pt-6 pb-9">
-    <div class="d-flex mb-2 align-center mb-8 mx-auto">
-      <v-btn class="ma-0" small icon dark depressed @click="$emit('booking-cancel')">
-        <v-icon color="gray-82">close</v-icon>
-      </v-btn>
-      <v-spacer></v-spacer>
-      <div class="light--text pl-0 ml-sm-n4 ml-md-0 text-center display-1">Choose Dates</div>
-      <v-spacer></v-spacer>
+  <v-card class="d-flex flex-column">
+    <div class="position-relative booking-dialog--hero">
+      <v-img :aspect-ratio="376 / 192" :max-height="192" :max-width="'100%'" :src="resort.featuredImage"></v-img>
+      <div class="position-absolute mx-4 mt-6 booking-dialog--toolbar">
+        <v-btn class="ma-0" x-small fab color="rgba(0,0,0,0.4)" depressed @click="$emit('booking-cancel')">
+          <v-icon color="white">close</v-icon>
+        </v-btn>
+      </div>
+      <div class="position-absolute booking-dialog--title text-center brand-2--text w-100">
+        <h2 class="display-1 mb-0 font-weight-bold">
+          Choose Dates
+        </h2>
+      </div>
     </div>
-    <div class="mx-auto">
-      <div class="d-flex flex-column">
-        <div class="light--text mx-auto w-100">
-          <v-card color="dark" tile :ripple="false" :elevation="0">
-            <v-form v-model="isFormValid">
-              <v-text-field class="d-none" :value="dateOne" type="text" readonly :rules="dateOneRules" />
-              <v-text-field :value="dateTwo" class="d-none" type="text" readonly :rules="dateTwoRules" />
-              <v-text-field id="datepicker-inline-trigger" class="d-none" type="text" readonly />
-              <!-- TODO: check min-date, it's tomorrow! probably should be today -->
-              <airbnb-style-datepicker
-                class="datepicker--dark"
-                :mode="'range'"
-                :trigger-element-id="'datepicker-inline-trigger'"
-                :inline="true"
-                :fullscreen-mobile="false"
-                :months-to-show="1"
-                :disabled-dates="[]"
-                :min-date="new Date()"
-                :date-one="dateOne"
-                :show-shortcuts-menu-trigger="false"
-                :date-two="dateTwo"
-                @date-one-selected="onSelectDateOne"
-                @date-two-selected="onSelectDateTwo"
-              ></airbnb-style-datepicker>
 
-              <div class="light--text" v-if="isPricesReady">
-                <!-- nights -->
-                <v-row no-gutters class="mb-2 title">
-                  <v-col xs6>{{ prices.length }} nights total</v-col>
-                </v-row>
+    <v-card tile :elevation="0" class="dark px-4 pt-6 pb-9 flex-grow-1 d-flex">
+      <div class="mx-auto flex-grow-1 d-flex">
+        <div class="d-flex flex-column flex-grow-1">
+          <div class="d-flex flex-column flex-grow-1 light--text mx-auto w-100">
+            <v-form class="d-flex flex-column flex-grow-1" v-model="isFormValid">
+              <v-card
+                class="d-flex flex-column flex-grow-1 justify-space-between"
+                color="dark"
+                tile
+                :ripple="false"
+                :elevation="0"
+              >
+                <div>
+                  <v-text-field class="d-none" :value="dateOne" type="text" readonly :rules="dateOneRules" />
+                  <v-text-field :value="dateTwo" class="d-none" type="text" readonly :rules="dateTwoRules" />
+                  <v-text-field id="datepicker-inline-trigger" class="d-none" type="text" readonly />
+                  <!-- TODO: check min-date, it's tomorrow! probably should be today -->
+                  <airbnb-style-datepicker
+                    class="datepicker--dark"
+                    :mode="'range'"
+                    :trigger-element-id="'datepicker-inline-trigger'"
+                    :inline="true"
+                    :fullscreen-mobile="false"
+                    :months-to-show="1"
+                    :disabled-dates="[]"
+                    :min-date="new Date()"
+                    :date-one="dateOne"
+                    :show-shortcuts-menu-trigger="false"
+                    :date-two="dateTwo"
+                    @date-one-selected="onSelectDateOne"
+                    @date-two-selected="onSelectDateTwo"
+                  ></airbnb-style-datepicker>
 
-                <div class="confirm-dates--prices-list">
-                  <!-- price list -->
-                  <div class="mb-4 body-2 font-weight-light">
-                    <v-row class="confirm-dates--price-row" no-gutters v-for="price in prices" v-bind:key="price.id">
-                      <v-col xs6>{{ formatDate(price.date, 'ddd, D MMM') }}</v-col>
-                      <v-col xs6 class="text-right ">${{ price.amount }}</v-col>
+                  <div class="light--text" v-if="isPricesReady">
+                    <!-- nights -->
+                    <v-row no-gutters class="mb-2 title">
+                      <v-col xs6>{{ prices.length }} nights total</v-col>
                     </v-row>
+
+                    <div class="confirm-dates--prices-list">
+                      <!-- price list -->
+                      <div class="mb-4 body-2 font-weight-light">
+                        <v-row
+                          class="confirm-dates--price-row"
+                          no-gutters
+                          v-for="price in prices"
+                          v-bind:key="price.id"
+                        >
+                          <v-col xs6>{{ formatDate(price.date, 'ddd, D MMM') }}</v-col>
+                          <v-col xs6 class="text-right ">${{ price.amount }}</v-col>
+                        </v-row>
+                      </div>
+                    </div>
                   </div>
+                </div>
+
+                <div>
+                  <input name="Amount (in $)" hidden :value="computedTotalPrice" type="text" readonly />
 
                   <!-- total -->
-                  <v-row no-gutters class="mb-4">
+                  <v-row v-if="isPricesReady" no-gutters class="mb-8">
                     <v-col xs6>
-                      <h3 class="title">Total</h3>
+                      <h3 class="title mb-0">Total</h3>
                     </v-col>
                     <v-col xs6 class="text-right">
-                      <h3 class="title">${{ computedTotalPrice }}</h3>
+                      <h3 class="title mb-0">${{ computedTotalPrice }}</h3>
                     </v-col>
                   </v-row>
 
-                  <input name="Amount (in $)" hidden :value="computedTotalPrice" type="text" readonly />
-                </div>
-              </div>
-              <!-- loading -->
-              <div class="text-center mb-4" v-else-if="isFormValid && isLoading">
-                <v-progress-circular indeterminate color="green"></v-progress-circular>
-              </div>
-              <!-- not available -->
-              <div class="light--text" v-else-if="isFormValid">
-                <p>Sorry, selected dates are not available</p>
-              </div>
+                  <!-- loading -->
+                  <div v-else-if="isFormValid && isLoading" class="text-center mb-4">
+                    <v-progress-circular indeterminate color="green"></v-progress-circular>
+                  </div>
 
-              <div class="">
-                <v-btn
-                  @click="submit"
-                  x-large
-                  block
-                  color="primary"
-                  dark
-                  class="text-capitalize font-weight-bold dark--text"
-                  :disabled="!isFormReady"
-                  type="submit"
-                >
-                  <v-spacer></v-spacer>
-                  <span>Confirm Dates</span>
-                  <v-spacer></v-spacer>
-                  <v-icon>keyboard_arrow_right</v-icon>
-                </v-btn>
-              </div>
+                  <!-- not available -->
+                  <div class="light--text" v-else-if="isFormValid">
+                    <p>Sorry, selected dates are not available</p>
+                  </div>
+
+                  <div class="">
+                    <v-btn
+                      @click="submit"
+                      x-large
+                      block
+                      color="primary"
+                      dark
+                      class="text-capitalize font-weight-bold dark--text"
+                      :disabled="!isFormReady"
+                      type="submit"
+                    >
+                      <v-spacer></v-spacer>
+                      <span>Confirm Dates</span>
+                      <v-spacer></v-spacer>
+                      <v-icon>keyboard_arrow_right</v-icon>
+                    </v-btn>
+                  </div>
+                </div>
+              </v-card>
             </v-form>
-          </v-card>
+          </div>
         </div>
       </div>
-    </div>
+    </v-card>
   </v-card>
 </template>
 
@@ -194,3 +219,8 @@ export default Vue.extend({
   }
 })
 </script>
+
+<style lang="scss" scoped>
+@import '@/styles/utility.scss';
+@import '@/styles/booking-dialog.scss';
+</style>

@@ -1,0 +1,12 @@
+.booking-dialog--toolbar {
+  top: 0;
+}
+.booking-dialog--hero .v-image::after {
+  background: linear-gradient(360deg, rgba(25, 28, 33, 0.8) 0%, rgba(25, 28, 33, 0) 30%);
+  position: absolute;
+  @include stick-around;
+  content: '';
+}
+.booking-dialog--title {
+  bottom: rem(16px);
+}

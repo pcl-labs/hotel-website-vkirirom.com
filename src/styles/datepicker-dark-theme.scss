@@ -16,12 +16,12 @@
   .asd__month-name {
     margin-bottom: rem(40px);
     display: inline-flex;
-    background-color: $secondary;
+    background-color: none;
     color: $white;
     padding: rem(6px 8px);
     border-radius: rem(4px);
-    font-size: rem(18px);
-    font-weight: normal;
+    font-size: rem(20px);
+    font-weight: bold;
     span:nth-child(2) {
       margin-left: rem(4px);
     }
