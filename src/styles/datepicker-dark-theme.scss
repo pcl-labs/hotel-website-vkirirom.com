@@ -84,7 +84,7 @@
       color: $brand-3 !important;
     }
   }
-  .asd__day--hovered {
+  .asd__day--hovered:not(.asd__day--disabled) {
     background: $dark !important;
     border-color: $gray-4f !important;
     color: $brand-4 !important;
