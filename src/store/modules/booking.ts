@@ -11,20 +11,16 @@ const steps: { [name: string]: bookingStep } = {
     id: 0
   },
   confirmDates: {
-    id: 1,
-    width: 348
+    id: 1
   },
   auth: {
-    id: 2,
-    width: 376
+    id: 2
   },
   confirmGuests: {
-    id: 3,
-    width: 376
+    id: 3
   },
   confirmBooking: {
-    id: 4,
-    width: 348
+    id: 4
   },
   reviewPolicies: {
     id: 5
@@ -281,7 +277,7 @@ export default {
           return context.commit('updateReservationId', reserveByRoomType.reservationId)
         })
         .catch(error => {
-          store.dispatch('booking/updatePaymentError', 'Error in reserve room.')
+          throw new Error('Error in reserve room.')
         })
     },
     getClientSecret(context) {
@@ -313,7 +309,6 @@ export default {
         })
         .then(function(result) {
           if (result.error) {
-            console.log(result.error.message)
             store.dispatch('booking/updatePaymentError', result.error.message)
           } else {
             if (result.paymentIntent.status === 'succeeded') {
@@ -327,7 +322,6 @@ export default {
           }
         })
         .finally(res => {
-          console.log('finally')
           store.dispatch('booking/updateIsPaymentLoading', false)
         })
     }

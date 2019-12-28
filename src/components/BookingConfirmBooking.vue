@@ -54,8 +54,7 @@
               <v-col xs6 class="text-right ">${{ price.amount }}</v-col>
             </v-row>
           </div>
-          <!-- TODO: add 'transportation &&'  -->
-          <v-row v-if="hasTransportation" class="confirm-dates--price-row" no-gutters>
+          <v-row v-if="transportation && hasTransportation" class="confirm-dates--price-row" no-gutters>
             <v-col xs6>Transportation</v-col>
             <v-col xs6 class="text-right ">${{ computedTransportationPrice }}</v-col>
           </v-row>

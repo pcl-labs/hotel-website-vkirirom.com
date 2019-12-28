@@ -23,14 +23,20 @@ export default Vue.extend({
     }
   },
   mounted() {
+    this.cleanup()
     this.init()
   },
   methods: {
+    cleanup() {
+      store.dispatch('booking/updateIsPaymentLoading', false)
+      store.dispatch('booking/updatePaymentError', '')
+    },
     async init() {
       await this.getStripeKey()
       await this.createStripeComponent(this.stripeKey)
     },
     async submit() {
+      store.dispatch('booking/updatePaymentError', '')
       store.dispatch('booking/updateIsPaymentLoading', true)
       try {
         await this.reserveRoom()
@@ -38,8 +44,8 @@ export default Vue.extend({
         await this.getReservationDetails()
         await this.purchase()
       } catch (error) {
+        store.dispatch('booking/updatePaymentError', error.message)
         store.dispatch('booking/updateIsPaymentLoading', false)
-        console.log({ ...error })
       }
     },
     reserveRoom() {
@@ -71,7 +77,6 @@ export default Vue.extend({
     },
     purchase() {
       const that = this
-      console.log('clientSecret:', this.clientSecret)
       store.dispatch('booking/purchase', {
         stripe: this.stripe,
         clientSecret: this.clientSecret,
