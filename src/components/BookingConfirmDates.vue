@@ -134,7 +134,8 @@ export default Vue.extend({
       return this.$store.getters['booking/computedTotalPrice']()
     },
     roomTypeId(): number {
-      return this.resort.modules.hotel.roomTypes[0].id
+      const firstRoomType = this.resort.modules.hotel.roomTypes[0]
+      return firstRoomType && firstRoomType.id
     },
     isPricesReady(): boolean {
       return this.prices.length > 0
