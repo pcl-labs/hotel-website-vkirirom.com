@@ -1,10 +1,10 @@
 import { addDays } from 'date-fns'
-import { RoomTypeService, CompanyService, ReservationService } from '@/connection/resources.js'
+import { RoomTypeService, ReservationService } from '@/connection/resources.js'
 import { bookingStep } from '@/types'
 import { setDocumentClassesOnToggleDialog, formatDate } from '@/helpers'
 import { cloneDeep } from 'lodash-es'
 import countriesList from '@/constants/countries-list'
-import store from '..'
+import store from '@/store'
 
 const steps: { [name: string]: bookingStep } = {
   notStarted: {
@@ -78,7 +78,7 @@ const defaultState = {
 
 export default {
   namespaced: true,
-  state: { ...defaultState },
+  state: cloneDeep(defaultState),
   mutations: {
     updateDialog(state, payload) {
       state.dialog = payload
@@ -123,15 +123,6 @@ export default {
     updateFullName(state, payload) {
       state.bookingInfo.fullName = payload
     },
-    updateCardNumber(state, payload) {
-      state.bookingInfo.cardNumber = payload
-    },
-    updateExpiration(state, payload) {
-      state.bookingInfo.expiration = payload
-    },
-    updateCVV(state, payload) {
-      state.bookingInfo.CVV = payload
-    },
     updateRoomType(state, payload) {
       state.bookingInfo.roomType = payload
     },
@@ -141,23 +132,11 @@ export default {
     updateResort(state, payload) {
       state.bookingInfo.resort = payload
     },
-    updateStripeKey(state, payload) {
-      state.stripeKey = payload
-    },
     updateReservationId(state, payload) {
       state.reservationId = payload
     },
-    updateClientSecret(state, payload) {
-      state.clientSecret = payload
-    },
     updateReservationDetails(state, payload) {
       state.reservationDetails = payload
-    },
-    updateIsPaymentLoading(state, payload) {
-      state.isPaymentLoading = payload
-    },
-    updatePaymentError(state, payload) {
-      state.paymentError = payload
     },
     resetState(state) {
       for (const key in defaultState) {
@@ -233,23 +212,8 @@ export default {
     updateFullName(context, payload) {
       context.commit('updateFullName', payload)
     },
-    updateCardNumber(context, payload) {
-      context.commit('updateCardNumber', payload)
-    },
-    updateExpiration(context, payload) {
-      context.commit('updateExpiration', payload)
-    },
-    updateCVV(context, payload) {
-      context.commit('updateCVV', payload)
-    },
     updateRoomType(context, payload) {
       context.commit('updateRoomType', payload)
-    },
-    updateIsPaymentLoading(context, payload) {
-      context.commit('updateIsPaymentLoading', payload)
-    },
-    updatePaymentError(context, payload) {
-      context.commit('updatePaymentError', payload)
     },
     clearPrices(context) {
       context.commit('updatePrices', defaultState.bookingInfo.prices)
@@ -263,13 +227,6 @@ export default {
         context.commit('updatePrices', prices)
       })
     },
-    getStripeKey(context) {
-      return CompanyService.stripePublishableKey({
-        companyId: 1
-      }).then(res => {
-        return context.commit('updateStripeKey', res.key)
-      })
-    },
     reserveRoom(context, payload) {
       const customBookingInfo = cloneDeep(payload)
       return ReservationService.reserveByRoomType(customBookingInfo)
@@ -280,50 +237,12 @@ export default {
           throw new Error('Error in reserve room.')
         })
     },
-    getClientSecret(context) {
-      const reservationId = context.getters.reservationId
-      const totalPrice = context.getters.computedTotalPrice({ all: true })
-      return ReservationService.payReservation({
-        reservationId: reservationId,
-        model: {
-          amount: totalPrice
-        }
-      }).then(payReservation => {
-        return context.commit('updateClientSecret', payReservation.clientSecret)
-      })
-    },
     getReservationDetails(context, reservationId) {
       return ReservationService.get({
         reservationId
-      }).then(get => {
-        context.commit('updateReservationDetails', get)
+      }).then(res => {
+        context.commit('updateReservationDetails', res)
       })
-    },
-    purchase(context, { stripe, clientSecret, billingDetails, card }) {
-      stripe
-        .confirmCardPayment(clientSecret, {
-          payment_method: {
-            card: card,
-            billing_details: billingDetails
-          }
-        })
-        .then(function(result) {
-          if (result.error) {
-            store.dispatch('booking/updatePaymentError', result.error.message)
-          } else {
-            if (result.paymentIntent.status === 'succeeded') {
-              console.log('succeeded')
-              // Show a success message to your customer
-              // There's a risk of the customer closing the window before callback
-              // execution. Set up a webhook or plugin to listen for the
-              // payment_intent.succeeded event that handles any business critical
-              // post-payment actions.
-            }
-          }
-        })
-        .finally(res => {
-          store.dispatch('booking/updateIsPaymentLoading', false)
-        })
     }
   },
   getters: {
@@ -396,20 +315,8 @@ export default {
     steps(state) {
       return state.steps
     },
-    stripeKey(state) {
-      return state.stripeKey
-    },
     reservationId(state) {
       return state.reservationId
-    },
-    clientSecret(state) {
-      return state.clientSecret
-    },
-    paymentError(state) {
-      return state.paymentError
-    },
-    isPaymentLoading(state) {
-      return state.isPaymentLoading
     }
   }
 }

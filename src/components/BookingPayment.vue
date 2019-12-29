@@ -132,35 +132,11 @@ export default Vue.extend({
         store.dispatch('booking/updateFullName', value)
       }
     },
-    cardNumber: {
-      get() {
-        return store.getters['booking/bookingInfo'].cardNumber
-      },
-      set(value: string) {
-        store.dispatch('booking/updateCardNumber', value)
-      }
-    },
-    expiration: {
-      get() {
-        return store.getters['booking/bookingInfo'].expiration
-      },
-      set(value: string) {
-        store.dispatch('booking/updateExpiration', value)
-      }
-    },
-    CVV: {
-      get() {
-        return store.getters['booking/bookingInfo'].CVV
-      },
-      set(value: string) {
-        store.dispatch('booking/updateCVV', value)
-      }
-    },
     paymentError() {
-      return store.getters['booking/paymentError']
+      return store.getters['payment/paymentError']
     },
     isPaymentLoading() {
-      return store.getters['booking/isPaymentLoading']
+      return store.getters['payment/isPaymentLoading']
     }
   },
   methods: {

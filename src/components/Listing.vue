@@ -270,7 +270,8 @@ export default {
     shouldShowBookingBar() {
       const listingType = this.$store.getters['resort/getResort'].categories[0]
         .name
-      return ['accommodations', 'events', 'experiences'].includes(listingType)
+        // 'accommodations', 'events', 'experiences'
+      return ['accommodations'].includes(listingType)
     }
   },
   mounted() {
