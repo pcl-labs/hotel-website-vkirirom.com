@@ -38,22 +38,34 @@ const routes = [
   {
     name: 'booking-review-rules',
     path: '/booking/review-rules',
-    component: BookingReviewRulesPage
+    component: BookingReviewRulesPage,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     name: 'booking-customer-info',
     path: '/booking/customer-info',
-    component: BookingCustomerInfoPage
+    component: BookingCustomerInfoPage,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     name: 'booking-payment',
     path: '/booking/payment',
-    component: BookingPaymentPage
+    component: BookingPaymentPage,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     name: 'booking-thanks',
     path: '/booking/thanks',
-    component: BookingThanksPage
+    component: BookingThanksPage,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/nature-city-investment-cambodia-property',
@@ -96,6 +108,22 @@ const router = new VueRouter({
   }
 })
 
+// Auth guard
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    const isAuthenticated = store.getters['auth/isAuthenticated']
+    if (isAuthenticated) {
+      next()
+    } else {
+      // if we have /login later, route to login page
+      next('/')
+    }
+  } else {
+    next()
+  }
+})
+
+// set/unset loading
 router.beforeResolve((to, from, next) => {
   store.commit('loading/loading', true)
   next()
