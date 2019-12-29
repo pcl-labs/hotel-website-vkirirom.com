@@ -31,15 +31,14 @@ export default Vue.extend({
       await this.createStripeComponent(this.stripeKey)
     },
     async submit() {
-      store.dispatch('booking/updateIsPaymentLoading', true)
+      store.dispatch('payment/updateIsPaymentLoading', true)
       try {
         await this.reserveRoom()
         await this.getClientSecret()
         await this.getReservationDetails()
         await this.purchase()
       } catch (error) {
-        store.dispatch('booking/updateIsPaymentLoading', false)
-        console.log({ ...error })
+        store.dispatch('payment/updateIsPaymentLoading', false)
       }
     },
     reserveRoom() {
@@ -72,7 +71,7 @@ export default Vue.extend({
     purchase() {
       const that = this
       console.log('clientSecret:', this.clientSecret)
-      store.dispatch('booking/purchase', {
+      store.dispatch('payment/purchase', {
         stripe: this.stripe,
         clientSecret: this.clientSecret,
         card: this.card,
@@ -80,10 +79,10 @@ export default Vue.extend({
       })
     },
     getStripeKey() {
-      return store.dispatch('booking/getStripeKey')
+      return store.dispatch('payment/getStripeKey')
     },
     getClientSecret() {
-      return store.dispatch('booking/getClientSecret')
+      return store.dispatch('payment/getClientSecret')
     },
     getReservationDetails() {
       return store.dispatch('booking/getReservationDetails', this.reservationId)
@@ -91,13 +90,13 @@ export default Vue.extend({
   },
   computed: {
     stripeKey() {
-      return store.getters['booking/stripeKey']
+      return store.getters['payment/stripeKey']
     },
     customBookingInfo() {
       return store.getters['booking/customBookingInfo']
     },
     clientSecret() {
-      return store.getters['booking/clientSecret']
+      return store.getters['payment/clientSecret']
     },
     computedTotalPrice() {
       return store.getters['booking/computedTotalPrice']()
