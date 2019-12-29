@@ -1,7 +1,17 @@
 <template>
   <v-card class="d-flex flex-column">
     <div class="position-relative booking-dialog--hero">
-      <v-img :aspect-ratio="376 / 192" :max-height="192" :max-width="'100%'" :src="resort.featuredImage"></v-img>
+      <v-img
+        :aspect-ratio="376 / 192"
+        :max-height="192"
+        :max-width="'100%'"
+        :src="
+          transformCloudinaryUrl(
+            'https://res.cloudinary.com/die9ji2vn/image/upload/v1577609316/Booking%20Flow/ChooseDate_bomyw8.png',
+            'f_auto'
+          )
+        "
+      ></v-img>
       <div class="position-absolute mx-4 mt-6 booking-dialog--toolbar">
         <v-btn class="ma-0" x-small fab color="rgba(0,0,0,0.4)" depressed @click="$emit('booking-cancel')">
           <v-icon color="white">close</v-icon>

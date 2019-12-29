@@ -2,9 +2,13 @@
   top: 0;
 }
 .booking-dialog--hero .v-image::after {
-  background: linear-gradient(360deg, rgba(25, 28, 33, 0.8) 0%, rgba(25, 28, 33, 0) 30%);
+  // is using postcss-easing-gradients
+  background: linear-gradient(to top, rgba(25, 28, 33, 0.8), ease-in-out, transparent);
   position: absolute;
-  @include stick-around;
+  height: rem(96px);
+  bottom: 0;
+  right: 0;
+  left: 0;
   content: '';
 }
 .booking-dialog--title {

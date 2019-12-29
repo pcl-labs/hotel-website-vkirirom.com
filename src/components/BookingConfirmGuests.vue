@@ -1,4 +1,5 @@
 <template>
+  <!-- TODO: guests https://res.cloudinary.com/die9ji2vn/image/upload/v1577609316/Booking%20Flow/ChooseGuest_c9pgd1.png -->
   <v-card tile :elevation="0" class="dark px-4 pt-6 pb-9 d-flex flex-column">
     <div class="d-flex mb-2 align-center mb-8 mx-auto w-100">
       <v-btn class="ma-0" small icon dark depressed @click="$emit('booking-cancel')">
