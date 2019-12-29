@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import auth from './modules/auth'
-import reservation from './modules/reservation'
 import booking from './modules/booking'
+import payment from './modules/payment'
 import layout from './modules/layout'
 import resort from './modules/resort'
 import loading from './modules/loading'
@@ -22,9 +22,8 @@ export default new Vuex.Store({
     loading,
     auth,
     resort,
-    // TODO: remove
-    reservation,
     booking,
+    payment,
     layout
   }
 })

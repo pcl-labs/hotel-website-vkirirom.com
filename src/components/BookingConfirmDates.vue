@@ -65,6 +65,7 @@
               <div class="text-center mb-4" v-else-if="isFormValid && isLoading">
                 <v-progress-circular indeterminate color="green"></v-progress-circular>
               </div>
+              <!-- TODO: use slide transition  -->
               <!-- not available -->
               <div class="light--text" v-else-if="isFormValid">
                 <p>Sorry, selected dates are not available</p>

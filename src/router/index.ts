@@ -4,7 +4,6 @@ import VueRouter from 'vue-router'
 const Home = () => import('../components/Home.vue')
 const searchpage = () => import('../components/searchpage.vue')
 const Listing = () => import('../components/Listing.vue')
-const thankYou = () => import('../components/thankYou.vue')
 const Contact = () => import('../components/Contact.vue')
 const BookingReviewRulesPage = () => import('@/views/BookingReviewRulesPage.vue')
 const BookingCustomerInfoPage = () => import('@/views/BookingCustomerInfoPage.vue')
@@ -31,11 +30,6 @@ const routes = [
     name: 'listing',
     path: '/listing/:id',
     component: Listing
-  },
-  // TODO: remove
-  {
-    path: '/thanks',
-    component: thankYou
   },
   {
     path: '/contact',
