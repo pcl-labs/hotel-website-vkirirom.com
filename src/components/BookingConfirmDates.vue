@@ -1,5 +1,5 @@
 <template>
-  <v-card class="d-flex flex-column">
+  <v-card class="d-flex flex-column dark" tile :elevation="0">
     <div class="position-relative hero-dialog--hero">
       <v-img
         :aspect-ratio="376 / 192"
@@ -24,7 +24,7 @@
       </div>
     </div>
 
-    <v-card tile :elevation="0" class="dark px-4 pt-6 pb-9 flex-grow-1 d-flex">
+    <v-card tile :elevation="0" color="dark" class="px-4 pt-6 pb-9 flex-grow-1 d-flex">
       <div class="mx-auto flex-grow-1 d-flex">
         <div class="d-flex flex-column flex-grow-1">
           <div class="d-flex flex-column flex-grow-1 light--text mx-auto w-100">
@@ -40,7 +40,6 @@
                   <v-text-field class="d-none" :value="dateOne" type="text" readonly :rules="dateOneRules" />
                   <v-text-field :value="dateTwo" class="d-none" type="text" readonly :rules="dateTwoRules" />
                   <v-text-field id="datepicker-inline-trigger" class="d-none" type="text" readonly />
-                  <!-- TODO: check min-date, it's tomorrow! probably should be today -->
                   <airbnb-style-datepicker
                     class="datepicker--dark"
                     :mode="'range'"
@@ -83,25 +82,32 @@
                 <div>
                   <input name="Amount (in $)" hidden :value="computedTotalPrice" type="text" readonly />
 
-                  <!-- total -->
-                  <v-row v-if="isPricesReady" no-gutters class="mb-8">
-                    <v-col xs6>
-                      <h3 class="title mb-0">Total</h3>
-                    </v-col>
-                    <v-col xs6 class="text-right">
-                      <h3 class="title mb-0">${{ computedTotalPrice }}</h3>
-                    </v-col>
-                  </v-row>
+                  <div class="confirm-dates--results-row mb-4">
+                    <!-- total -->
+                    <v-expand-transition>
+                      <v-row v-if="shouldShowTotal" no-gutters class="transition-fast-in-fast-out mb-8">
+                        <v-col xs6>
+                          <h3 class="title mb-0">Total</h3>
+                        </v-col>
+                        <v-col xs6 class="text-right">
+                          <h3 class="title mb-0">${{ computedTotalPrice }}</h3>
+                        </v-col>
+                      </v-row>
+                    </v-expand-transition>
 
-                  <!-- loading -->
-                  <div v-else-if="isFormValid && isLoading" class="text-center mb-4">
-                    <v-progress-circular indeterminate color="green"></v-progress-circular>
-                  </div>
+                    <!-- loading -->
+                    <v-expand-transition>
+                      <div v-if="shouldShowLoading" class="transition-fast-in-fast-out text-center mb-0">
+                        <v-progress-circular :size="24" indeterminate color="green"></v-progress-circular>
+                      </div>
+                    </v-expand-transition>
 
-                  <!-- TODO: use slide transition  -->
-                  <!-- not available -->
-                  <div class="light--text" v-else-if="isFormValid">
-                    <p>Sorry, selected dates are not available</p>
+                    <!-- error -->
+                    <v-expand-transition>
+                      <p v-if="shouldShowError" class="transition-fast-in-fast-out error--text body-2 mb-0">
+                        Sorry, selected dates are not available
+                      </p>
+                    </v-expand-transition>
                   </div>
 
                   <div class="">
@@ -180,6 +186,15 @@ export default Vue.extend({
     },
     currentStep(): number {
       return store.getters['booking/currentStep']
+    },
+    shouldShowTotal(): boolean {
+      return this.isPricesReady
+    },
+    shouldShowLoading(): boolean {
+      return !this.shouldShowTotal && (this.isFormValid && this.isLoading)
+    },
+    shouldShowError(): boolean {
+      return !(this.shouldShowTotal || this.shouldShowLoading) && this.isFormValid
     }
   },
   methods: {
@@ -235,4 +250,7 @@ export default Vue.extend({
 <style lang="scss" scoped>
 @import '@/styles/utility.scss';
 @import '@/styles/dialog-with-hero.scss';
+.confirm-dates--results-row {
+  min-height: rem(24px);
+}
 </style>

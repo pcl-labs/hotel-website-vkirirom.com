@@ -149,3 +149,8 @@ h4,
     font-size: rem(16px);
   }
 }
+
+// vuetify card dark
+.theme--dark.v-card.v-card {
+  color: $light;
+}

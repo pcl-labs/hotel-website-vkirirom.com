@@ -1,5 +1,5 @@
 <template>
-  <v-card tile :elevation="0" class="dark d-flex flex-column">
+  <v-card tile :elevation="0" color="dark" class="d-flex flex-column">
     <div class="d-flex flex-column flex-grow-1">
       <div class="position-relative hero-dialog--hero">
         <v-img

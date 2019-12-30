@@ -9,7 +9,7 @@
       :hide-overlay="$vuetify.breakpoint.smAndDown"
       transition="dialog-bottom-transition"
     >
-      <v-card tile :elevation="0" class="dark d-flex flex-column">
+      <v-card tile :elevation="0" color="dark" class="d-flex flex-column">
         <div class="d-flex flex-column flex-grow-1">
           <div class="position-relative hero-dialog--hero">
             <v-img
@@ -44,27 +44,6 @@
           </v-card>
         </div>
       </v-card>
-
-      <!-- <v-card tile :elevation="0" class="dark px-4 pt-6 pb-8">
-        <div class="d-flex mb-2 align-center mb-8 mx-auto">
-          <v-btn class="ma-0" small icon dark depressed @click="closeDialog()">
-            <v-icon color="gray-82">close</v-icon>
-          </v-btn>
-          <v-spacer></v-spacer>
-          <div v-if="dialog.title" class="light--text pl-0 ml-sm-n4 ml-md-0 text-center display-1">
-            {{ dialog.title }}
-          </div>
-          <v-spacer></v-spacer>
-        </div>
-
-        <div class="d-flex flex-column">
-          <div class="light--text mx-auto">
-            <v-card color="dark" tile :ripple="false" :elevation="0">
-              <auth-core />
-            </v-card>
-          </div>
-        </div>
-      </v-card> -->
     </v-dialog>
   </fragment>
 </template>

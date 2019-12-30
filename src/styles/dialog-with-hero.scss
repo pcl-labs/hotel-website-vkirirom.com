@@ -1,16 +1,18 @@
 .hero-dialog--toolbar {
   top: 0;
 }
-.hero-dialog--hero .v-image::after {
-  // is using postcss-easing-gradients
-  background: linear-gradient(to top, rgba(25, 28, 33, 0.8), ease-in-out, transparent);
-  position: absolute;
-  height: rem(96px);
-  bottom: 0;
-  right: 0;
-  left: 0;
-  content: '';
+::v-deep .hero-dialog--hero .v-image__image {
+  filter: blur(2px);
+  left: rem(-4px);
+  right: rem(-4px);
+  top: rem(-4px);
+  bottom: rem(-4px);
+  height: auto;
+  width: auto;
 }
 .hero-dialog--title {
-  bottom: rem(16px);
+  padding: rem(32px) 0 rem(16px);
+  bottom: 0;
+  // is using postcss-easing-gradients
+  background: linear-gradient(to top, rgba(25, 28, 33, 0.8), ease-in-out, transparent);
 }
