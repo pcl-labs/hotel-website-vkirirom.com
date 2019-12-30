@@ -1,14 +1,14 @@
 <template>
   <v-card tile :elevation="0" class="dark">
     <div class="d-flex flex-column">
-      <div class="position-relative booking-dialog--hero">
+      <div class="position-relative hero-dialog--hero">
         <v-img :aspect-ratio="376 / 192" :max-height="192" :max-width="'100%'" :src="resort.featuredImage"></v-img>
-        <div v-if="hasCancelButton" class="position-absolute mx-4 mt-4 booking-dialog--toolbar">
+        <div v-if="hasCancelButton" class="position-absolute mx-4 mt-4 hero-dialog--toolbar">
           <v-btn class="ma-0" x-small fab color="rgba(0,0,0,0.4)" depressed @click="$emit('booking-cancel')">
             <v-icon color="white">close</v-icon>
           </v-btn>
         </div>
-        <div class="position-absolute booking-dialog--title text-center brand-2--text w-100">
+        <div class="position-absolute hero-dialog--title text-center brand-2--text w-100">
           <h2 class="display-1 mb-0 font-weight-bold">
             {{ resort.title }}
           </h2>
@@ -170,5 +170,5 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 @import '@/styles/utility.scss';
-@import '@/styles/booking-dialog.scss';
+@import '@/styles/dialog-with-hero.scss';
 </style>

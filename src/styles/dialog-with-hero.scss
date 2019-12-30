@@ -1,7 +1,7 @@
-.booking-dialog--toolbar {
+.hero-dialog--toolbar {
   top: 0;
 }
-.booking-dialog--hero .v-image::after {
+.hero-dialog--hero .v-image::after {
   // is using postcss-easing-gradients
   background: linear-gradient(to top, rgba(25, 28, 33, 0.8), ease-in-out, transparent);
   position: absolute;
@@ -11,6 +11,6 @@
   left: 0;
   content: '';
 }
-.booking-dialog--title {
+.hero-dialog--title {
   bottom: rem(16px);
 }
