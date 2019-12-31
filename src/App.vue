@@ -1,21 +1,29 @@
 <template>
   <v-app style="background: linear-gradient(115.51deg, #00243E 0%, #003E3A 100%);" id="app">
-      <Toolbar></Toolbar>
-      <!-- TODO: remove :key similar to https://github.com/whynotearth/shinta-mani-wild/pull/298 -->
-      <router-view :key="$route.name + ($route.params.id || '')"/> 
+    <Toolbar></Toolbar>
+    <!-- TODO: remove :key similar to https://github.com/whynotearth/shinta-mani-wild/pull/298 -->
+    <router-view :key="$route.name + ($route.params.id || '')" />
   </v-app>
 </template>
 
 <script>
-const Toolbar = () => import ('@/components/Toolbar.vue')
+import store from '@/store'
+const Toolbar = () => import('@/components/Toolbar.vue')
 
 export default {
-  name: "app",
+  name: 'app',
   components: {
-    Toolbar,
+    Toolbar
   },
-  created(){
-    this.$store.dispatch('auth/ping')
+  created() {
+    this.getUser()
+  },
+  methods: {
+    getUser() {
+      store.dispatch('auth/ping').catch(error => {
+        console.log('User is not authenticated')
+      })
+    }
   }
 }
 </script>

@@ -11,20 +11,16 @@ const steps: { [name: string]: bookingStep } = {
     id: 0
   },
   confirmDates: {
-    id: 1,
-    width: 348
+    id: 1
   },
   auth: {
-    id: 2,
-    width: 376
+    id: 2
   },
   confirmGuests: {
-    id: 3,
-    width: 376
+    id: 3
   },
   confirmBooking: {
-    id: 4,
-    width: 348
+    id: 4
   },
   reviewPolicies: {
     id: 5
@@ -238,7 +234,7 @@ export default {
           return context.commit('updateReservationId', reserveByRoomType.reservationId)
         })
         .catch(error => {
-          store.dispatch('payment/updatePaymentError', 'Error in reserve room.')
+          throw new Error('Error in reserve room.')
         })
     },
     getReservationDetails(context, reservationId) {

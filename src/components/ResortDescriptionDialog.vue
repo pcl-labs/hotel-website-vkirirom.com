@@ -7,7 +7,7 @@
     :hide-overlay="$vuetify.breakpoint.smAndDown"
     transition="dialog-bottom-transition"
   >
-    <v-card tile :elevation="0" class="dark" v-if="resort.id">
+    <v-card tile :elevation="0" color="dark" v-if="resort.id">
       <v-toolbar class="px-2" flat dark color="dark">
         <v-btn class="ma-0" small icon dark depressed @click="closeDialog()">
           <v-icon color="gray-82">close</v-icon>

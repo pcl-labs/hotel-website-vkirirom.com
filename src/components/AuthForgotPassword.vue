@@ -1,19 +1,22 @@
 <template>
-  <v-form name="ForgotPassword" v-model="valid" @submit.prevent="">
-    <v-container fluid class="pa-0">
-      <v-row no-gutters>
-        <v-flex xs12>
+  <v-form
+    name="ForgotPassword"
+    v-model="isFormValid"
+    @submit.prevent=""
+    class="d-flex flex-column flex-grow-1 justify-space-between"
+  >
+    <v-container fluid class="pa-0 d-flex flex-column flex-grow-1 justify-space-between">
+      <v-row no-gutters class="flex-grow-0">
+        <v-col cols="12">
           <p class="light--text">
-            Enter the email address associated with your account, and we'll
-            email you a link to reset your password.
+            Enter the email address associated with your account, and we'll email you a link to reset your password.
           </p>
-        </v-flex>
+          <!-- remove -->
+          <p class="error--text">Comming soon</p>
+        </v-col>
 
-        <v-flex xs12 v-if="forgotPasswordError">
-          <p class="error--text">{{ forgotPasswordError }}</p>
-        </v-flex>
-
-        <v-flex xs12>
+        <v-col cols="12">
+          <!-- enable -->
           <v-text-field
             class="mb-1 mt-2"
             v-model="email"
@@ -24,22 +27,28 @@
             color="light"
             dark
             required
+            disabled
             :rules="rules.email"
           >
             <v-icon slot="append">$vuetify.icons.message</v-icon>
           </v-text-field>
-        </v-flex>
-
-        <v-flex xs12>
+        </v-col>
+      </v-row>
+      <v-row no-gutters class="flex-grow-0">
+        <v-col cols="12" v-if="forgotPasswordError">
+          <p class="error--text">{{ forgotPasswordError }}</p>
+        </v-col>
+        <v-col cols="12">
+          <!-- enable -->
           <v-btn
             x-large
             block
             color="primary"
             class="py-3 text-transform-none mb-8 dark--text"
             dark
-            @click="sendResetPasswordLink"
+            @click="submit"
             type="submit"
-            :disabled="!valid"
+            :disabled="true || !isFormValid"
             :loading="loading"
           >
             <v-spacer></v-spacer>
@@ -47,16 +56,16 @@
             <v-spacer></v-spacer>
             <v-icon>keyboard_arrow_right</v-icon>
           </v-btn>
-        </v-flex>
+        </v-col>
 
-        <v-flex xs12>
+        <v-col cols="12">
           <v-divider class="light-border"></v-divider>
-        </v-flex>
-        <v-flex xs12 class="text-center light--text mt-4 body-2">
+        </v-col>
+        <v-col cols="12" class="text-center light--text mt-4 body-2">
           <p class="mb-0">
             <a @click="updateActiveState('auth-login')">Back to Login</a>
           </p>
-        </v-flex>
+        </v-col>
       </v-row>
     </v-container>
   </v-form>
@@ -69,7 +78,7 @@ export default {
   name: 'auth-signup',
   data() {
     return {
-      valid: false,
+      isFormValid: false,
       rules: {
         email: [
           v => !!v || 'E-mail is required',
@@ -83,7 +92,7 @@ export default {
     updateActiveState(value) {
       store.dispatch('auth/updateActiveState', value)
     },
-    sendResetPasswordLink() {
+    submit() {
       store.dispatch('auth/sendResetPasswordLink')
     }
   },
