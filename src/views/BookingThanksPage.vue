@@ -8,7 +8,7 @@
           </div>
         </v-col>
         <v-col class="pb-0 order-1 order-md-2" cols="12" md="4">
-          <booking-confirm-booking :has-transportation="true" :has-cancel-button="false"></booking-confirm-booking>
+          <booking-confirm-booking :has-cancel-button="false"></booking-confirm-booking>
         </v-col>
       </v-row>
     </v-container>

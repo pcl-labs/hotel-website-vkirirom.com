@@ -42,9 +42,8 @@ export default {
         return context.commit('updateStripeKey', res.key)
       })
     },
-    getClientSecret(context) {
+    getClientSecret(context, { totalPrice }) {
       const reservationId = context.getters.reservationId
-      const totalPrice = context.getters.computedTotalPrice({ all: true })
       return ReservationService.payReservation({
         reservationId,
         model: {

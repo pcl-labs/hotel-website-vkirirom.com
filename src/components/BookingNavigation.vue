@@ -6,7 +6,7 @@
     >
     <v-icon color="light">keyboard_arrow_right</v-icon>
     <v-btn active-class="is-active" to="/booking/customer-info" class="text-transform-none light--text py-4" text
-      >Customer Info</v-btn
+      >Contact Info</v-btn
     >
     <v-icon color="light">keyboard_arrow_right</v-icon>
     <v-btn active-class="is-active" to="/booking/payment" class="text-transform-none light--text py-4" text
