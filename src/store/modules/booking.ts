@@ -1,29 +1,26 @@
 import { addDays } from 'date-fns'
-import { RoomTypeService, CompanyService, ReservationService } from '@/connection/resources.js'
+import { RoomTypeService, ReservationService } from '@/connection/resources.js'
 import { bookingStep } from '@/types'
-import { setDocumentClassesOnToggleDialog } from '@/helpers'
+import { setDocumentClassesOnToggleDialog, formatDate } from '@/helpers'
 import { cloneDeep } from 'lodash-es'
+import countriesList from '@/constants/countries-list'
+import store from '@/store'
 
 const steps: { [name: string]: bookingStep } = {
   notStarted: {
-    id: 0,
-    width: 332
+    id: 0
   },
   confirmDates: {
-    id: 1,
-    width: 332
+    id: 1
   },
   auth: {
-    id: 2,
-    width: 376
+    id: 2
   },
   confirmGuests: {
-    id: 3,
-    width: 332
+    id: 3
   },
   confirmBooking: {
-    id: 4,
-    width: 332
+    id: 4
   },
   reviewPolicies: {
     id: 5
@@ -41,8 +38,7 @@ const steps: { [name: string]: bookingStep } = {
 
 const defaultState = {
   currentStep: {
-    id: 0,
-    width: 332
+    id: 0
   },
   steps,
   dialog: {
@@ -54,16 +50,15 @@ const defaultState = {
     guests: {
       adults: 1,
       children: 0,
-      infants: 0,
       total: 1
     },
-    transportation: false,
+    transportation: true,
     message: '',
     name: '',
     email: '',
     phoneNumber: '',
-    phoneCountry: undefined,
-    payWith: 'cash',
+    phoneCountry: countriesList.find(item => item.name === 'Cambodia'),
+    payWith: 'card',
     roomType: {},
     dateOne: '',
     dateTwo: '',
@@ -76,12 +71,14 @@ const defaultState = {
   stripeKey: '',
   reservationId: 0,
   clientSecret: '',
-  reservationDetails: {}
+  reservationDetails: {},
+  isPaymentLoading: false,
+  paymentError: ''
 }
 
 export default {
   namespaced: true,
-  state: { ...defaultState },
+  state: cloneDeep(defaultState),
   mutations: {
     updateDialog(state, payload) {
       state.dialog = payload
@@ -97,7 +94,7 @@ export default {
     },
     updateDateTwo(state, payload) {
       state.bookingInfo.dateTwo = payload
-      state.bookingInfo.checkOut = addDays(payload, 1)
+      state.bookingInfo.checkOut = formatDate(new Date(addDays(payload, 1)), 'YYYY-MM-DD')
     },
     updatePrices(state, payload) {
       state.bookingInfo.prices = payload
@@ -126,15 +123,6 @@ export default {
     updateFullName(state, payload) {
       state.bookingInfo.fullName = payload
     },
-    updateCardNumber(state, payload) {
-      state.bookingInfo.cardNumber = payload
-    },
-    updateExpiration(state, payload) {
-      state.bookingInfo.expiration = payload
-    },
-    updateCVV(state, payload) {
-      state.bookingInfo.CVV = payload
-    },
     updateRoomType(state, payload) {
       state.bookingInfo.roomType = payload
     },
@@ -144,16 +132,10 @@ export default {
     updateResort(state, payload) {
       state.bookingInfo.resort = payload
     },
-    fetchStripeKey(state, payload) {
-      state.stripeKey = payload
-    },
-    fetchReservationId(state, payload) {
+    updateReservationId(state, payload) {
       state.reservationId = payload
     },
-    fetchClientSecret(state, payload) {
-      state.clientSecret = payload
-    },
-    fetchReservationDetails(state, payload) {
+    updateReservationDetails(state, payload) {
       state.reservationDetails = payload
     },
     resetState(state) {
@@ -230,15 +212,6 @@ export default {
     updateFullName(context, payload) {
       context.commit('updateFullName', payload)
     },
-    updateCardNumber(context, payload) {
-      context.commit('updateCardNumber', payload)
-    },
-    updateExpiration(context, payload) {
-      context.commit('updateExpiration', payload)
-    },
-    updateCVV(context, payload) {
-      context.commit('updateCVV', payload)
-    },
     updateRoomType(context, payload) {
       context.commit('updateRoomType', payload)
     },
@@ -254,43 +227,21 @@ export default {
         context.commit('updatePrices', prices)
       })
     },
-    getStripeKey(context) {
-      return CompanyService.stripePublishableKey({
-        companyId: 1
-      }).then(stripePublishableKey => {
-        context.commit('fetchStripeKey', stripePublishableKey.key)
-      })
+    reserveRoom(context, payload) {
+      const customBookingInfo = cloneDeep(payload)
+      return ReservationService.reserveByRoomType(customBookingInfo)
+        .then(reserveByRoomType => {
+          return context.commit('updateReservationId', reserveByRoomType.reservationId)
+        })
+        .catch(error => {
+          throw new Error('Error in reserve room.')
+        })
     },
-    reserveRoom(context, bookingInfo) {
-      return ReservationService.reserveByRoomType({
-        roomTypeId: bookingInfo.roomType.id,
-        name: bookingInfo.name,
-        message: bookingInfo.message,
-        numberOfGuests: bookingInfo.guests,
-        start: bookingInfo.dateOne,
-        end: bookingInfo.checkOut,
-        payment: {
-          amount: bookingInfo.finalPrice
-        },
-        email: bookingInfo.email,
-        phone: bookingInfo.phone
-      }).then(reserveByRoomType => {
-        context.commit('fetchReservationId', reserveByRoomType.reservationId)
-      })
-    },
-    getClientSecret(context, { reservationId, bookingInfo }) {
-      return ReservationService.payReservation({
-        reservationId: reservationId,
-        amount: bookingInfo.finalPrice
-      }).then(payReservation => {
-        context.commit('fetchClientSecret', payReservation.clientSecret)
-      })
-    },
-    getReservationDetails(context, { reservationId }) {
+    getReservationDetails(context, reservationId) {
       return ReservationService.get({
-        reservationId: reservationId
-      }).then(get => {
-        context.commit('fetchReservationDetails', get)
+        reservationId
+      }).then(res => {
+        context.commit('updateReservationDetails', res)
       })
     }
   },
@@ -301,25 +252,71 @@ export default {
     bookingInfo(state) {
       return state.bookingInfo
     },
-    computedTotalPrice(state) {
+    customBookingInfo(state, getters) {
+      const bookingInfo = state.bookingInfo
+
+      return {
+        roomTypeId: bookingInfo.roomType.id,
+        model: {
+          name: bookingInfo.fullName,
+          message: bookingInfo.message,
+          numberOfGuests: bookingInfo.guests.total,
+          start: bookingInfo.dateOne,
+          end: bookingInfo.checkOut,
+          payment: {
+            amount: getters.computedTotalPrice({ all: true })
+          },
+          // TODO: should I use auth email?
+          // email: bookingInfo.email,
+          email: store.getters['auth/user'].userName,
+          phone: `+${bookingInfo.phoneCountry.callingCodes[0]}` + bookingInfo.phoneNumber
+        }
+      }
+    },
+    computedRoomPrice(state) {
       const prices = state.bookingInfo.prices
-      let totalPrice = 0
+      let roomPrice = 0
       for (let i = 0; i < prices.length; i++) {
-        totalPrice += prices[i].amount
+        roomPrice += prices[i].amount
+      }
+      return roomPrice
+    },
+    computedVAT: (state, getters) => ({ hasTransportation = false }) => {
+      let prices = getters.computedRoomPrice
+      if (hasTransportation) {
+        prices += getters.computedTransportationPrice
+      }
+      const VAT_RATE = 0.1
+      return prices * VAT_RATE
+    },
+    computedTransportationPrice(state, getters) {
+      const transportation = state.bookingInfo.transportation
+      let transportationPrice = 0
+      if (transportation === true) {
+        const TRANSPORTATION_PER_PAX = 10
+        const adults = getters.bookingInfo.guests.adults
+        transportationPrice = adults * TRANSPORTATION_PER_PAX
+      }
+      return transportationPrice
+    },
+    computedTotalPrice: (state, getters) => ({ all = false, hasVAT = false, hasTransportation = false } = {}) => {
+      let totalPrice = getters.computedRoomPrice
+      if (all || hasVAT) {
+        totalPrice += getters.computedVAT({ hasTransportation })
+      }
+      if (all || hasTransportation) {
+        totalPrice += getters.computedTransportationPrice
       }
       return totalPrice
-    },
-    computedVat(state, getters) {
-      return getters.computedTotalPrice * 0.1
-    },
-    computedFinalPrice(state, getters) {
-      return getters.computedTotalPrice + getters.computedVat
     },
     currentStep(state) {
       return state.currentStep
     },
     steps(state) {
       return state.steps
+    },
+    reservationId(state) {
+      return state.reservationId
     }
   }
 }

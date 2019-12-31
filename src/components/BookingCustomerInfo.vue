@@ -54,17 +54,17 @@
           <h4 class="mb-2 title font-weight-bold">Transportation</h4>
 
           <v-radio-group dark v-model="transportation" class="ma-0 d-block">
-            <v-card outlined color="transparent" class="mb-2" @click="transportation = false">
-              <v-card-title>
-                <v-radio color="green" label="No transportation" :value="false" class="ma-0"></v-radio>
-              </v-card-title>
-            </v-card>
             <v-card outlined color="transparent" class="mb-2" @click="transportation = true">
               <v-card-title class="justify-space-between">
                 <v-radio color="green" label="Shuttle Bus ($10/Pax)" :value="true" class="ma-0"></v-radio>
                 <a @click.prevent.stop="$emit('open-shuttle-bus-info')" class="body-1 text-decoration-none"
                   >More Info</a
                 >
+              </v-card-title>
+            </v-card>
+            <v-card outlined color="transparent" class="mb-2" @click="transportation = false">
+              <v-card-title>
+                <v-radio color="green" label="No transportation" :value="false" class="ma-0"></v-radio>
               </v-card-title>
             </v-card>
           </v-radio-group>
@@ -83,7 +83,7 @@
             type="submit"
           >
             <v-spacer></v-spacer>
-            <span class="mr-3">Agree and Continue</span>
+            <span class="mr-3">Continue</span>
             <v-spacer></v-spacer>
             <v-icon class="dark--text">keyboard_arrow_right</v-icon>
           </v-btn>

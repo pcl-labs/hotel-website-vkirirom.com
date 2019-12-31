@@ -1,14 +1,14 @@
 <template>
   <fragment>
-    <v-flex xs5>
+    <v-col cols="5">
       <v-divider class="light-border"></v-divider>
-    </v-flex>
-    <v-flex xs2 class="text-center" style="padding:0; margin-top:-12px;">
+    </v-col>
+    <v-col cols="2" class="text-center" style="padding:0; margin-top:-12px;">
       <span class="light--text user-select-none">or</span>
-    </v-flex>
-    <v-flex xs5>
+    </v-col>
+    <v-col cols="5">
       <v-divider class="light-border"></v-divider>
-    </v-flex>
+    </v-col>
     <div class="mt-8"></div>
   </fragment>
 </template>
