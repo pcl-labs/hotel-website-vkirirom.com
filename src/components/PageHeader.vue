@@ -1,11 +1,11 @@
 <template>
-  <div class="page-header" v-show="shouldShowBookingNavigation && $vuetify.breakpoint.mdAndUp">
+  <div class="page-header" v-show="shouldShowPageHeader">
     <auth-dialog ref="authDialogRef"></auth-dialog>
     <v-app-bar dark color="dark" height="56">
       <!-- logo -->
-      <router-link exact class="toolbar--logo" to="/">
+      <router-link exact class="page-header--logo" to="/">
         <img
-          class="toolbar--logo-image"
+          class="page-header--logo-image"
           :src="
             transformCloudinaryUrl(
               'https://res.cloudinary.com/die9ji2vn/image/upload/v1577807075/website-static/vkirirom-logo-light_p9uw0g.png',
@@ -108,10 +108,10 @@
         <v-btn v-else text class="button text-transform-none" @click="openLogin()"><h3 class="mb-0">Log In</h3></v-btn>
       </v-toolbar-items>
 
-      <v-container class="is-limited pa-0">
+      <v-container class="is-limited pa-0" v-if="shouldShowBookingNavigation">
         <v-row no-gutters>
           <v-col cols="12">
-            <booking-navigation v-if="shouldShowBookingNavigation"></booking-navigation>
+            <booking-navigation></booking-navigation>
           </v-col>
         </v-row>
       </v-container>
@@ -160,11 +160,10 @@ import AuthDialog from '@/components/AuthDialog.vue'
 import BookingNavigation from '@/components/BookingNavigation.vue'
 
 export default {
-  name: 'app-toolbar',
+  name: 'page-header',
   components: { AuthDialog, BookingNavigation },
   data() {
     return {
-      shouldShowBookingNavigation: true,
       drawer: false
     }
   },
@@ -180,6 +179,15 @@ export default {
     }
   },
   computed: {
+    shouldShowPageHeader() {
+      if (this.shouldShowBookingNavigation) {
+        return this.$vuetify.breakpoint.mdAndUp
+      }
+      return true
+    },
+    shouldShowBookingNavigation() {
+      return this.$route.meta.hasBookingNavigation
+    },
     isAuthenticated() {
       return store.getters['auth/isAuthenticated']
     },
@@ -200,12 +208,12 @@ export default {
   color: $light;
   text-transform: capitalize;
 }
-.toolbar--logo {
+.page-header--logo {
   @media (min-width: map-get($map: $grid-breakpoints, $key: md) + 120px) {
     position: absolute;
   }
 }
-.toolbar--logo-image {
+.page-header--logo-image {
   height: rem(32px);
   vertical-align: middle;
 }
