@@ -13,7 +13,7 @@
       </v-row>
     </v-container>
 
-    <Footer></Footer>
+    <page-footer></page-footer>
   </fragment>
 </template>
 
@@ -21,12 +21,12 @@
 import Vue from 'vue'
 import BookingThanks from '@/components/BookingThanks.vue'
 import BookingConfirmBooking from '@/components/BookingConfirmBooking.vue'
-import Footer from '@/components/Footer.vue'
+import PageFooter from '@/components/PageFooter.vue'
 import store from '@/store'
 
 export default Vue.extend({
   name: 'booking-thanks-page',
-  components: { BookingThanks, BookingConfirmBooking, Footer },
+  components: { BookingThanks, BookingConfirmBooking, PageFooter },
   computed: {
     returnUrl() {
       return store.getters['booking/bookingInfo'].returnUrl

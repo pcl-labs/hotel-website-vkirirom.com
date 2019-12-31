@@ -13,7 +13,7 @@
       </v-row>
     </v-container>
 
-    <Footer></Footer>
+    <page-footer></page-footer>
   </fragment>
 </template>
 
@@ -21,12 +21,12 @@
 import Vue from 'vue'
 import BookingReviewRules from '@/components/BookingReviewRules.vue'
 import BookingConfirmBooking from '@/components/BookingConfirmBooking.vue'
-import Footer from '@/components/Footer.vue'
+import PageFooter from '@/components/PageFooter.vue'
 import store from '@/store'
 
 export default Vue.extend({
   name: 'booking-review-rules-page',
-  components: { BookingReviewRules, BookingConfirmBooking, Footer },
+  components: { BookingReviewRules, BookingConfirmBooking, PageFooter },
   computed: {
     bookingResort() {
       return store.getters['booking/bookingInfo'].resort
