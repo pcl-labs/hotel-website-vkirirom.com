@@ -1,16 +1,29 @@
 <template>
-  <div class="page-header">
+  <div class="page-header" v-show="shouldShowBookingNavigation && $vuetify.breakpoint.mdAndUp">
     <auth-dialog ref="authDialogRef"></auth-dialog>
     <v-app-bar dark color="dark" height="56">
       <!-- logo -->
-      <router-link to="/">
-        <img class="toolbar--logo" src="/img/icons/Logo.png" />
+      <router-link exact class="toolbar--logo" to="/">
+        <img
+          class="toolbar--logo-image"
+          :src="
+            transformCloudinaryUrl(
+              'https://res.cloudinary.com/die9ji2vn/image/upload/v1577807075/website-static/vkirirom-logo-light_p9uw0g.png',
+              'h_64,f_auto'
+            )
+          "
+        />
       </router-link>
-      <v-spacer></v-spacer>
+      <v-spacer v-if="!shouldShowBookingNavigation"></v-spacer>
       <!-- hamburger -->
-      <v-app-bar-nav-icon class="d-md-none" @click.stop="drawer = !drawer" color="light"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon
+        v-if="!shouldShowBookingNavigation"
+        class="d-md-none"
+        @click.stop="drawer = !drawer"
+        color="light"
+      ></v-app-bar-nav-icon>
       <!-- desktop menu -->
-      <v-toolbar-items class="d-none d-md-flex">
+      <v-toolbar-items v-if="!shouldShowBookingNavigation" class="d-none d-md-flex">
         <v-btn text class="button text-transform-none" to="/search/accommodations"
           ><h3 class="mb-0">Accommodation</h3></v-btn
         >
@@ -94,6 +107,14 @@
         </v-menu>
         <v-btn v-else text class="button text-transform-none" @click="openLogin()"><h3 class="mb-0">Log In</h3></v-btn>
       </v-toolbar-items>
+
+      <v-container class="is-limited pa-0">
+        <v-row no-gutters>
+          <v-col cols="12">
+            <booking-navigation v-if="shouldShowBookingNavigation"></booking-navigation>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-app-bar>
     <!-- mobile menu -->
     <v-navigation-drawer color="dark" fixed class="d-md-none page-header--drawer" temporary v-model="drawer">
@@ -134,13 +155,16 @@
 </template>
 
 <script>
-import AuthDialog from '@/components/AuthDialog.vue'
 import store from '@/store'
+import AuthDialog from '@/components/AuthDialog.vue'
+import BookingNavigation from '@/components/BookingNavigation.vue'
+
 export default {
   name: 'app-toolbar',
-  components: { AuthDialog },
+  components: { AuthDialog, BookingNavigation },
   data() {
     return {
+      shouldShowBookingNavigation: true,
       drawer: false
     }
   },
@@ -167,6 +191,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/styles/utility.scss';
+
 .v-list-item .v-btn {
   height: rem(44px) !important;
 }
@@ -175,7 +201,12 @@ export default {
   text-transform: capitalize;
 }
 .toolbar--logo {
-  height: 30px;
+  @media (min-width: map-get($map: $grid-breakpoints, $key: md) + 120px) {
+    position: absolute;
+  }
+}
+.toolbar--logo-image {
+  height: rem(32px);
   vertical-align: middle;
 }
 .v-btn {
