@@ -31,7 +31,7 @@ const steps: { [name: string]: bookingStep } = {
   paymentInfo: {
     id: 7
   },
-  thanksYou: {
+  thankYou: {
     id: 8
   }
 }

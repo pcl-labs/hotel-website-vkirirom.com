@@ -40,7 +40,8 @@ const routes = [
     path: '/booking/review-rules',
     component: BookingReviewRulesPage,
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      hasBookingNavigation: true
     }
   },
   {
@@ -48,7 +49,8 @@ const routes = [
     path: '/booking/customer-info',
     component: BookingCustomerInfoPage,
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      hasBookingNavigation: true
     }
   },
   {
@@ -56,7 +58,8 @@ const routes = [
     path: '/booking/payment',
     component: BookingPaymentPage,
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      hasBookingNavigation: true
     }
   },
   {
