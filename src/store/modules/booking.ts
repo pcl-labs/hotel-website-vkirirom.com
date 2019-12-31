@@ -52,7 +52,6 @@ const defaultState = {
       children: 0,
       total: 1
     },
-    transportation: true,
     message: '',
     name: '',
     email: '',
@@ -98,9 +97,6 @@ export default {
     },
     updatePrices(state, payload) {
       state.bookingInfo.prices = payload
-    },
-    updateTransportation(state, payload) {
-      state.bookingInfo.transportation = payload
     },
     updateMessage(state, payload) {
       state.bookingInfo.message = payload
@@ -188,9 +184,6 @@ export default {
     updatePrices(context, payload) {
       context.commit('updatePrices', payload)
     },
-    updateTransportation(context, payload) {
-      context.commit('updateTransportation', payload)
-    },
     updateMessage(context, payload) {
       context.commit('updateMessage', payload)
     },
@@ -254,6 +247,7 @@ export default {
     },
     customBookingInfo(state, getters) {
       const bookingInfo = state.bookingInfo
+      const amount = getters.computedTotalPrice({ all: true })
 
       return {
         roomTypeId: bookingInfo.roomType.id,
@@ -264,10 +258,8 @@ export default {
           start: bookingInfo.dateOne,
           end: bookingInfo.checkOut,
           payment: {
-            amount: getters.computedTotalPrice({ all: true })
+            amount
           },
-          // TODO: should I use auth email?
-          // email: bookingInfo.email,
           email: store.getters['auth/user'].userName,
           phone: `+${bookingInfo.phoneCountry.callingCodes[0]}` + bookingInfo.phoneNumber
         }
@@ -281,31 +273,15 @@ export default {
       }
       return roomPrice
     },
-    computedVAT: (state, getters) => ({ hasTransportation = false }) => {
+    computedVAT: (state, getters) => () => {
       let prices = getters.computedRoomPrice
-      if (hasTransportation) {
-        prices += getters.computedTransportationPrice
-      }
       const VAT_RATE = 0.1
       return prices * VAT_RATE
     },
-    computedTransportationPrice(state, getters) {
-      const transportation = state.bookingInfo.transportation
-      let transportationPrice = 0
-      if (transportation === true) {
-        const TRANSPORTATION_PER_PAX = 10
-        const adults = getters.bookingInfo.guests.adults
-        transportationPrice = adults * TRANSPORTATION_PER_PAX
-      }
-      return transportationPrice
-    },
-    computedTotalPrice: (state, getters) => ({ all = false, hasVAT = false, hasTransportation = false } = {}) => {
+    computedTotalPrice: (state, getters) => ({ all = false, hasVAT = false } = {}) => {
       let totalPrice = getters.computedRoomPrice
       if (all || hasVAT) {
-        totalPrice += getters.computedVAT({ hasTransportation })
-      }
-      if (all || hasTransportation) {
-        totalPrice += getters.computedTransportationPrice
+        totalPrice += getters.computedVAT()
       }
       return totalPrice
     },

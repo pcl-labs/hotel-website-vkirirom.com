@@ -88,7 +88,7 @@ export default Vue.extend({
       return store.dispatch('payment/getStripeKey')
     },
     getClientSecret() {
-      return store.dispatch('payment/getClientSecret')
+      return store.dispatch('payment/getClientSecret', { totalPrice: this.computedTotalPrice })
     },
     getReservationDetails() {
       return store.dispatch('booking/getReservationDetails', this.reservationId)
@@ -104,11 +104,11 @@ export default Vue.extend({
     clientSecret() {
       return store.getters['payment/clientSecret']
     },
-    computedTotalPrice() {
-      return store.getters['booking/computedTotalPrice']()
-    },
     reservationId() {
       return store.getters['booking/reservationId']
+    },
+    computedTotalPrice() {
+      return store.getters['booking/computedTotalPrice']({ all: true })
     }
   }
 })

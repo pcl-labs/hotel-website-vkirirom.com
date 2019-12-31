@@ -7,7 +7,7 @@
             class="my-6 font-weight-bold"
             :class="{ 'display-1': $vuetify.breakpoint.smAndDown, 'display-2': $vuetify.breakpoint.mdAndUp }"
           >
-            Customer Info
+            Contact Info
           </h1>
           <h4 class="mb-2 title font-weight-bold">Guest Info</h4>
           <v-row no-gutters class="phone-input align-center">
@@ -51,27 +51,17 @@
             </v-col>
           </v-row>
 
-          <h4 class="mb-2 title font-weight-bold">Transportation</h4>
-
-          <v-radio-group dark v-model="transportation" class="ma-0 d-block">
-            <v-card outlined color="transparent" class="mb-2" @click="transportation = true">
-              <v-card-title class="justify-space-between">
-                <v-radio color="green" label="Shuttle Bus ($10/Pax)" :value="true" class="ma-0"></v-radio>
-                <a @click.prevent.stop="$emit('open-shuttle-bus-info')" class="body-1 text-decoration-none"
-                  >More Info</a
-                >
-              </v-card-title>
-            </v-card>
-            <v-card outlined color="transparent" class="mb-2" @click="transportation = false">
-              <v-card-title>
-                <v-radio color="green" label="No transportation" :value="false" class="ma-0"></v-radio>
-              </v-card-title>
-            </v-card>
-          </v-radio-group>
-
-          <h4 class="mb-2 title font-weight-bold">Message</h4>
-
-          <v-textarea v-model="message" class="mb-6" dark outlined name="message" :rows="5" auto-grow></v-textarea>
+          <h4 class="mb-2 title font-weight-bold">Special Requests?</h4>
+          <v-textarea
+            placeholder="Write Here..."
+            v-model="message"
+            class="mb-6"
+            dark
+            outlined
+            name="message"
+            :rows="5"
+            auto-grow
+          ></v-textarea>
 
           <v-btn
             @click="submit"
@@ -138,14 +128,6 @@ export default Vue.extend({
       },
       set(value: string) {
         store.dispatch('booking/updateMessage', value)
-      }
-    },
-    transportation: {
-      get() {
-        return store.getters['booking/bookingInfo'].transportation
-      },
-      set(value: number) {
-        store.dispatch('booking/updateTransportation', value)
       }
     }
   },

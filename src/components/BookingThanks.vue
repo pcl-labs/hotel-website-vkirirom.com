@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="booking-thanks">
     <v-row no-gutters class="mb-8">
       <v-col>
         <h1
@@ -37,7 +37,27 @@
           >
         </v-row>
 
-        <h3 class="mb-2 title font-weight-bold">Room Description</h3>
+        <v-row no-gutters="" class="mb-8">
+          <v-col>
+            <h3 class="mb-4 title font-weight-bold">Need Transportation?</h3>
+            <p class="mb-8">
+              vKirirom Pine Resort offers a easy shuttle service for visitors between Kirirom and Phnom Penh. Click to
+              reserve your shuttle now.
+            </p>
+            <v-btn
+              href="http://shuttlebus.vkirirom.com/login"
+              large
+              color="primary"
+              dark
+              class="text-transform-none font-weight-bold dark--text"
+            >
+              <span class="px-4">Sing Up Now</span>
+              <v-icon>keyboard_arrow_right</v-icon>
+            </v-btn>
+          </v-col>
+        </v-row>
+
+        <h3 class="mb-4 title font-weight-bold">Room Description</h3>
         <resort-description :resort="resort"></resort-description>
 
         <v-btn class="mt-6" outlined="" dark large to="/"
@@ -46,7 +66,7 @@
 
         <!-- <div v-html="marked(resort.description)"></div> -->
 
-        <!-- <h3 class="mb-2 title font-weight-bold">Cancelation Policy</h3>
+        <!-- <h3 class="mb-4 title font-weight-bold">Cancelation Policy</h3>
         <v-row no-gutters class="mb-6">
           <v-col cols="12">
             No cancellation fee if cancelling at least 24 hours in advance of check-in date. 50% charge of total stay if
@@ -102,5 +122,8 @@ export default Vue.extend({
 @import '@/styles/utility.scss';
 .v-application .theme--light.v-icon {
   color: $light;
+}
+.booking-thanks::v-deep h3 {
+  margin-bottom: rem(16px);
 }
 </style>
