@@ -50,9 +50,9 @@
     <!-- resort text content -->
     <v-container class="is-limited py-0 pt-6 pb-8">
       <!-- header -->
-      <v-row no-gutters class="flex-column light--text mb-8">
+      <v-row no-gutters class="flex-column light--text mb-6">
         <v-col cols="12">
-          <h1 class="page--title mb-0">{{ resort.title }}</h1>
+          <h1 :class="h1TitleClass" class="mb-0">{{ resort.title }}</h1>
         </v-col>
       </v-row>
       <v-row
@@ -90,18 +90,20 @@
   </div>
 </template>
 
-<script>
-import VueMarkdown from 'vue-markdown'
+<script lang="ts">
+import Vue from 'vue'
 import ResortDescription from '@/components/ResortDescription.vue'
 import BookingBar from '@/components/BookingBar.vue'
 import PageFooter from '@/components/PageFooter.vue'
+import store from '@/store'
+import { Resort } from '@/types'
 
 const defaultResort = {
   title: '...',
   description: ''
 }
 
-export default {
+export default Vue.extend({
   components: {
     ResortDescription,
     BookingBar,
@@ -110,6 +112,7 @@ export default {
   head: {
     title: function() {
       return {
+        // @ts-ignore
         inner: (this.resort || defaultResort).title
       }
     },
@@ -117,6 +120,7 @@ export default {
       return [
         {
           name: 'description',
+          // @ts-ignore
           content: (this.resort || defaultResort).description,
           id: 'desc'
         }
@@ -125,53 +129,28 @@ export default {
   },
   methods: {
     init() {
-      this.$store.dispatch('resort/getItemBySlug', this.$route.params.id).then(() => {
+      store.dispatch('resort/getItemBySlug', this.$route.params.id).then(() => {
         this.$emit('updateHead')
       })
     }
   },
+  mounted() {
+    // @ts-ignore
+    this.init()
+  },
   computed: {
-    resort() {
-      return this.$store.getters['resort/getResort']
+    h1TitleClass(): string {
+      // @ts-ignore
+      return this.$vuetify.breakpoint.mdAndUp ? 'display-2' : 'display-1'
     },
-    shouldShowBookingBar() {
-      const listingType = this.$store.getters['resort/getResort'].categories[0].name
+    resort(): Resort {
+      return store.getters['resort/getResort']
+    },
+    shouldShowBookingBar(): boolean {
+      const listingType = store.getters['resort/getResort'].categories[0].name
       // 'accommodations', 'events', 'experiences'
       return ['accommodations'].includes(listingType)
     }
-  },
-  mounted() {
-    this.init()
   }
-}
+})
 </script>
-
-<style lang="scss" scoped>
-.page--title {
-  font-size: rem(48px);
-}
-// .description::v-deep {
-//   a {
-//     text-decoration: none;
-//   }
-//   p {
-//     margin-bottom: rem(16px);
-//   }
-//   h2 {
-//     font-size: rem(36px);
-//   }
-//   h3 {
-//     font-size: rem(36px);
-//   }
-//   h1 {
-//     font-size: rem(36px);
-//   }
-//   li {
-//     font-size: 16px;
-//   }
-//   td {
-//     font-size: 16px;
-//     padding-right: 10px;
-//   }
-// }
-</style>
