@@ -63,18 +63,6 @@
         <v-btn class="mt-6" outlined="" dark large to="/"
           ><span class="mx-4">Return to Home</span><v-spacer></v-spacer><v-icon>keyboard_arrow_right</v-icon></v-btn
         >
-
-        <!-- <div v-html="marked(resort.description)"></div> -->
-
-        <!-- <h3 class="mb-4 title font-weight-bold">Cancelation Policy</h3>
-        <v-row no-gutters class="mb-6">
-          <v-col cols="12">
-            No cancellation fee if cancelling at least 24 hours in advance of check-in date. 50% charge of total stay if
-            cancelling within 24 hours. Applicable to individual (non-group) customers.
-          </v-col>
-        </v-row> -->
-
-        <!-- <resort-rules :resort="resort"></resort-rules> -->
       </v-col>
     </v-row>
   </div>

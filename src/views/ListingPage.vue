@@ -48,35 +48,36 @@
     </div>
 
     <!-- resort text content -->
-    <v-container class="is-limited py-0 mb-12">
-
+    <v-container class="is-limited py-0 pt-6 pb-8">
       <!-- header -->
-      <v-row no-gutters class="flex-column mt-8 light--text">
+      <v-row no-gutters class="flex-column light--text mb-8">
         <v-col cols="12">
-          <h1 class="page--title ma-0 mb-3">{{ resort.title }}</h1>
+          <h1 class="page--title mb-0">{{ resort.title }}</h1>
         </v-col>
+      </v-row>
+      <v-row
+        no-gutters
+        class="flex-column light--text mb-4"
+        v-if="resort && resort.modules && resort.modules.hotel && resort.modules.hotel.roomTypes.length > 0"
+      >
         <v-col cols="12">
-          <v-row no-gutters class="mb-4">
-            <!-- <v-col v-if="getResortHotel().capacity">
+          <!-- <v-col v-if="getResortHotel().capacity">
               <v-icon size="30" color="light">supervisor_account</v-icon>
               {{ getResortHotel().capacity }} guests
             </v-col> -->
-            <v-col v-if="resort && resort.modules && resort.modules.hotel && resort.modules.hotel.roomTypes.length > 0">
-              <div class="d-flex align-center">
-                <v-icon size="30" color="light" class="mr-2">hotel</v-icon>
-                <span class="mr-1" v-for="(roomType, index) in resort.modules.hotel.roomTypes" v-bind:key="index">
-                  <span class="mr-1">
-                    {{ roomType.beds[0].count }}
-                    {{ roomType.beds[0].type }}
-                  </span>
-                  <span class="mr-1" v-if="index != resort.modules.hotel.roomTypes.length - 1">
-                    /
-                  </span>
-                </span>
-                <span>bed(s)</span>
-              </div>
-            </v-col>
-          </v-row>
+          <div class="d-flex align-center">
+            <v-icon size="30" color="light" class="mr-2">hotel</v-icon>
+            <span class="mr-1" v-for="(roomType, index) in resort.modules.hotel.roomTypes" v-bind:key="index">
+              <span class="mr-1">
+                {{ roomType.beds[0].count }}
+                {{ roomType.beds[0].type }}
+              </span>
+              <span class="mr-1" v-if="index != resort.modules.hotel.roomTypes.length - 1">
+                /
+              </span>
+            </span>
+            <span>bed(s)</span>
+          </div>
         </v-col>
       </v-row>
 

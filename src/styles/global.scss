@@ -124,6 +124,7 @@ h6 {
 h1,
 .h1 {
   font-size: rem(46px);
+  line-height: 1.22;
   @include media-breakpoint-up(md) {
     font-size: rem(34px);
   }
