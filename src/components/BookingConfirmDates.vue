@@ -1,5 +1,5 @@
 <template>
-  <v-card class="d-flex flex-column dark pb-9" tile :elevation="0">
+  <v-card class="d-flex flex-column dark" tile :elevation="0">
     <div class="position-relative hero-dialog--hero">
       <v-img
         :aspect-ratio="376 / 192"
@@ -79,10 +79,10 @@
                   </div>
                 </div>
 
-                <!-- non-sticky bar -->
-                <div class="section-2 submit-bar--non-sticky">
-                  <input name="Amount (in $)" hidden :value="computedTotalPrice" type="text" readonly />
+                <input name="Amount (in $)" hidden :value="computedTotalPrice" type="text" readonly />
 
+                <!-- non-sticky bar -->
+                <div class="section-2 submit-bar--non-sticky pb-9">
                   <div class="confirm-dates--results-row mb-4">
                     <!-- total -->
                     <v-expand-transition>
@@ -134,57 +134,55 @@
           </div>
         </div>
       </div>
-
-      <div class="submit-bar--sticky d-none px-4 pt-6">
-        <input name="Amount (in $)" hidden :value="computedTotalPrice" type="text" readonly />
-
-        <div class="confirm-dates--results-row mb-4">
-          <!-- total -->
-          <v-expand-transition>
-            <v-row v-if="shouldShowTotal" no-gutters class="transition-fast-in-fast-out mb-8">
-              <v-col xs6>
-                <h3 class="title mb-0">Total</h3>
-              </v-col>
-              <v-col xs6 class="text-right">
-                <h3 class="title mb-0">${{ computedTotalPrice }}</h3>
-              </v-col>
-            </v-row>
-          </v-expand-transition>
-
-          <!-- loading -->
-          <v-expand-transition>
-            <div v-if="shouldShowLoading" class="transition-fast-in-fast-out text-center mb-0">
-              <v-progress-circular :size="24" indeterminate color="green"></v-progress-circular>
-            </div>
-          </v-expand-transition>
-
-          <!-- error -->
-          <v-expand-transition>
-            <p v-if="shouldShowError" class="transition-fast-in-fast-out error--text body-2 mb-0">
-              Sorry, selected dates are not available
-            </p>
-          </v-expand-transition>
-        </div>
-
-        <div class="">
-          <v-btn
-            @click="submit"
-            x-large
-            block
-            color="primary"
-            dark
-            class="text-capitalize font-weight-bold dark--text"
-            :disabled="!isFormReady"
-            type="submit"
-          >
-            <v-spacer></v-spacer>
-            <span>Confirm Dates</span>
-            <v-spacer></v-spacer>
-            <v-icon>keyboard_arrow_right</v-icon>
-          </v-btn>
-        </div>
-      </div>
     </v-card>
+
+    <div class="submit-bar--sticky d-none pt-6">
+      <div class="confirm-dates--results-row mb-4 px-8">
+        <!-- total -->
+        <v-expand-transition>
+          <v-row v-if="shouldShowTotal" no-gutters class="transition-fast-in-fast-out mb-6">
+            <v-col xs6>
+              <h3 class="title mb-0">Total</h3>
+            </v-col>
+            <v-col xs6 class="text-right">
+              <h3 class="title mb-0">${{ computedTotalPrice }}</h3>
+            </v-col>
+          </v-row>
+        </v-expand-transition>
+
+        <!-- loading -->
+        <v-expand-transition>
+          <div v-if="shouldShowLoading" class="transition-fast-in-fast-out text-center mb-0">
+            <v-progress-circular :size="24" indeterminate color="green"></v-progress-circular>
+          </div>
+        </v-expand-transition>
+
+        <!-- error -->
+        <v-expand-transition>
+          <p v-if="shouldShowError" class="transition-fast-in-fast-out error--text body-2 mb-0">
+            Sorry, selected dates are not available
+          </p>
+        </v-expand-transition>
+      </div>
+
+      <div class="">
+        <v-btn
+          @click="submit"
+          x-large
+          block
+          color="primary"
+          dark
+          class="text-capitalize font-weight-bold dark--text"
+          :disabled="!isFormReady"
+          type="submit"
+        >
+          <v-spacer></v-spacer>
+          <span>Confirm Dates</span>
+          <v-spacer></v-spacer>
+          <v-icon>keyboard_arrow_right</v-icon>
+        </v-btn>
+      </div>
+    </div>
   </v-card>
 </template>
 
@@ -308,7 +306,6 @@ export default Vue.extend({
   position: sticky;
   bottom: 0;
   z-index: 1;
-  background: $dark;
 }
 @supports (position: sticky) {
   .submit-bar--non-sticky {
@@ -316,6 +313,11 @@ export default Vue.extend({
   }
   .submit-bar--sticky {
     display: block !important;
+    background-color: $dark;
+    // background-color: $gray-4f;
+    .v-btn {
+      border-radius: rem(0 0 4px 4px);
+    }
   }
 }
 </style>
