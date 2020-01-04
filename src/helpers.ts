@@ -1,5 +1,6 @@
 import { BASE_API } from '@/constants/connection'
 import { format } from 'date-fns'
+import marked from '@/plugins/marked'
 
 // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Safely_detecting_option_support
 export function getPassiveEventConfig() {
@@ -36,15 +37,8 @@ export function changeUrlExtension(url: string, newExtension: string): string {
   return urlParts.join('.')
 }
 
-export function transformCloudinaryUrl(
-  resourceUrl: string,
-  transformations: string
-): string {
-  if (
-    !resourceUrl ||
-    !transformations ||
-    resourceUrl.indexOf('cloudinary') < 0
-  ) {
+export function transformCloudinaryUrl(resourceUrl: string, transformations: string): string {
+  if (!resourceUrl || !transformations || resourceUrl.indexOf('cloudinary') < 0) {
     return resourceUrl
   }
   const urlParts = resourceUrl.split('/')
@@ -54,17 +48,11 @@ export function transformCloudinaryUrl(
   return urlParts.join('/')
 }
 
-export function getPosterImage(
-  videoUrl: string,
-  transformations: string
-): string | null {
+export function getPosterImage(videoUrl: string, transformations: string): string | null {
   if (!videoUrl) {
     return null
   }
-  return transformCloudinaryUrl(
-    changeUrlExtension(videoUrl, 'jpg'),
-    transformations
-  )
+  return transformCloudinaryUrl(changeUrlExtension(videoUrl, 'jpg'), transformations)
 }
 
 export function hasAudio(video: any) {
@@ -118,14 +106,15 @@ export function reviewDay(date?: string | number | Date) {
 
 export function setDocumentClassesOnToggleDialog(isOpen: boolean) {
   if (isOpen) {
-    document.documentElement.classList.add(
-      'overflow-y-hidden',
-      'dialog--is-open'
-    )
+    document.documentElement.classList.add('overflow-y-hidden', 'dialog--is-open')
   } else {
-    document.documentElement.classList.remove(
-      'overflow-y-hidden',
-      'dialog--is-open'
-    )
+    document.documentElement.classList.remove('overflow-y-hidden', 'dialog--is-open')
   }
+}
+
+export function markdown(content) {
+  if (!content) {
+    return ''
+  }
+  return marked(content)
 }

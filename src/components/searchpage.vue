@@ -37,17 +37,17 @@
         </v-col>
       </v-row>
     </v-container>
-    <Footer></Footer>
+    <page-footer></page-footer>
   </div>
 </template>
 
 <script>
 import { PageService } from "@/connection/resources.js"
-const Footer = () => import ('@/components/Footer.vue')
+const PageFooter = () => import ('@/components/PageFooter.vue')
 
 export default {
   components: {
-    Footer
+    PageFooter
   },
   data(){
     return{

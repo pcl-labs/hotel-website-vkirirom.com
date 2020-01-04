@@ -1,6 +1,6 @@
 <template>
   <div v-if="resort" class="resort-description light--text">
-    <div v-html="marked(resort.description)"></div>
+    <div class="mb-12" v-html="marked(resort.description)"></div>
     <resort-rules :resort="resort"></resort-rules>
   </div>
 </template>

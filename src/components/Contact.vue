@@ -160,16 +160,16 @@
     </v-row>
   </v-container>
   </v-content>
-  <Footer></Footer>
+  <page-footer></page-footer>
 </div>
 </template>
 
 <script>
-const Footer = () => import ('@/components/Footer.vue')
+const PageFooter = () => import ('@/components/PageFooter.vue')
 
 export default {
   components:{
-    Footer
+    PageFooter
   },
 
   data(){
