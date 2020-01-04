@@ -52,7 +52,7 @@
       <!-- header -->
       <v-row no-gutters class="flex-column light--text mb-6">
         <v-col cols="12">
-          <h1 :class="h1TitleClass" class="mb-0">{{ resort.title }}</h1>
+          <h1 class="mb-0 font-weight-normal">{{ resort.title }}</h1>
         </v-col>
       </v-row>
       <v-row
@@ -139,10 +139,6 @@ export default Vue.extend({
     this.init()
   },
   computed: {
-    h1TitleClass(): string {
-      // @ts-ignore
-      return this.$vuetify.breakpoint.mdAndUp ? 'display-2' : 'display-1'
-    },
     resort(): Resort {
       return store.getters['resort/getResort']
     },
@@ -154,3 +150,7 @@ export default Vue.extend({
   }
 })
 </script>
+
+<style lang="scss" scoped>
+@import '@/styles/utility.scss';
+</style>
