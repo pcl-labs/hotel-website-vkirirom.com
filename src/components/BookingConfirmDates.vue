@@ -1,5 +1,5 @@
 <template>
-  <v-card class="d-flex flex-column dark" tile :elevation="0">
+  <v-card class="d-flex flex-column dark pb-9" tile :elevation="0">
     <div class="position-relative hero-dialog--hero">
       <v-img
         :aspect-ratio="376 / 192"
@@ -24,19 +24,19 @@
       </div>
     </div>
 
-    <v-card tile :elevation="0" color="dark" class="px-4 pt-6 pb-9 flex-grow-1 d-flex">
+    <v-card tile :elevation="0" color="dark" class="px-4 pt-6 flex-grow-1 d-flex flex-column">
       <div class="mx-auto flex-grow-1 d-flex">
         <div class="d-flex flex-column flex-grow-1">
           <div class="d-flex flex-column flex-grow-1 light--text mx-auto w-100">
             <v-form class="d-flex flex-column flex-grow-1" v-model="isFormValid">
               <v-card
-                class="d-flex flex-column flex-grow-1 justify-space-between"
+                class="d-flex flex-column flex-grow-1 justify-content-between"
                 color="dark"
                 tile
                 :ripple="false"
                 :elevation="0"
               >
-                <div>
+                <div class="section-1">
                   <v-text-field class="d-none" :value="dateOne" type="text" readonly :rules="dateOneRules" />
                   <v-text-field :value="dateTwo" class="d-none" type="text" readonly :rules="dateTwoRules" />
                   <v-text-field id="datepicker-inline-trigger" class="d-none" type="text" readonly />
@@ -79,7 +79,8 @@
                   </div>
                 </div>
 
-                <div>
+                <!-- non-sticky bar -->
+                <div class="section-2 submit-bar--non-sticky">
                   <input name="Amount (in $)" hidden :value="computedTotalPrice" type="text" readonly />
 
                   <div class="confirm-dates--results-row mb-4">
@@ -131,6 +132,56 @@
               </v-card>
             </v-form>
           </div>
+        </div>
+      </div>
+
+      <div class="submit-bar--sticky d-none px-4 pt-6">
+        <input name="Amount (in $)" hidden :value="computedTotalPrice" type="text" readonly />
+
+        <div class="confirm-dates--results-row mb-4">
+          <!-- total -->
+          <v-expand-transition>
+            <v-row v-if="shouldShowTotal" no-gutters class="transition-fast-in-fast-out mb-8">
+              <v-col xs6>
+                <h3 class="title mb-0">Total</h3>
+              </v-col>
+              <v-col xs6 class="text-right">
+                <h3 class="title mb-0">${{ computedTotalPrice }}</h3>
+              </v-col>
+            </v-row>
+          </v-expand-transition>
+
+          <!-- loading -->
+          <v-expand-transition>
+            <div v-if="shouldShowLoading" class="transition-fast-in-fast-out text-center mb-0">
+              <v-progress-circular :size="24" indeterminate color="green"></v-progress-circular>
+            </div>
+          </v-expand-transition>
+
+          <!-- error -->
+          <v-expand-transition>
+            <p v-if="shouldShowError" class="transition-fast-in-fast-out error--text body-2 mb-0">
+              Sorry, selected dates are not available
+            </p>
+          </v-expand-transition>
+        </div>
+
+        <div class="">
+          <v-btn
+            @click="submit"
+            x-large
+            block
+            color="primary"
+            dark
+            class="text-capitalize font-weight-bold dark--text"
+            :disabled="!isFormReady"
+            type="submit"
+          >
+            <v-spacer></v-spacer>
+            <span>Confirm Dates</span>
+            <v-spacer></v-spacer>
+            <v-icon>keyboard_arrow_right</v-icon>
+          </v-btn>
         </div>
       </div>
     </v-card>
@@ -252,5 +303,19 @@ export default Vue.extend({
 @import '@/styles/dialog-with-hero.scss';
 .confirm-dates--results-row {
   min-height: rem(24px);
+}
+.v-card > .submit-bar--sticky {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  background: $dark;
+}
+@supports (position: sticky) {
+  .submit-bar--non-sticky {
+    display: none !important;
+  }
+  .submit-bar--sticky {
+    display: block !important;
+  }
 }
 </style>
