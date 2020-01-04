@@ -51,7 +51,7 @@
               dark
               class="text-transform-none font-weight-bold dark--text"
             >
-              <span class="px-4">Sing Up Now</span>
+              <span class="px-4">Sign Up Now</span>
               <v-icon>keyboard_arrow_right</v-icon>
             </v-btn>
           </v-col>
