@@ -1,106 +1,143 @@
 <template>
-  <div class="wrapper h-100">
-    <!-- 1140x1192 -->
-    <!-- <v-responsive :aspect-ratio="1440 / 1192"> -->
-    <!-- :class="`position-absolute`" -->
-    <div
-      :key="index"
-      v-for="(image, index) in images"
-      :style="{ top: image.position.top, bottom: image.position.bottom }"
-    >
-      <!-- <div :style="{'background-image': `url(${})`}"></div> -->
-      <img
-        :aspect-ratio="image.ratio"
-        @load="setItemParallax($event)"
-        :data-rellax-speed="image.speed"
-        :src="image.url"
-        alt=""
-      />
+  <div class="wrapper">
+    <div id="parallax-container">
+      <div
+        class="layer layer-1"
+        style="background: url(https://res.cloudinary.com/die9ji2vn/image/upload/v1578237751/website-static/page-home/1_rsfcu3.png);"
+      ></div>
+      <!-- <div
+        id="meredith"
+        style="background: url(https://res.cloudinary.com/whynotearth/image/upload/c_scale,q_auto:low,f_auto/v1562682607/meredith_fkpe6f.png); background-repeat: no-repeat; top:90px;"
+      >
+        <v-layout justify-center>
+          <v-flex xs12 sm6 md6 text-xs-center class="headerText">
+            <h1>Meet Meredith...</h1>
+            <h2>I love cuddles lick the plastic bag, paw your face to wake you up in the morning.</h2>
+          </v-flex>
+        </v-layout>
+      </div> -->
+
+      <div
+        class="layer layer-2"
+        style="background: url(https://res.cloudinary.com/die9ji2vn/image/upload/v1578237752/website-static/page-home/2_h2p1ef.png);"
+      ></div>
+      <div
+        class="layer layer-3"
+        style="background: url(https://res.cloudinary.com/die9ji2vn/image/upload/v1578237729/website-static/page-home/3_hsdxat.png);"
+      ></div>
+      <div
+        class="layer layer-4"
+        style="background: url(https://res.cloudinary.com/die9ji2vn/image/upload/v1578237689/website-static/page-home/4_hjrg9j.png);"
+      ></div>
+      <div
+        class="layer layer-5"
+        style="background: url(https://res.cloudinary.com/die9ji2vn/image/upload/v1578237745/website-static/page-home/5_znwlz3.png);"
+      ></div>
+      <div
+        class="layer layer-6"
+        style="background: url(https://res.cloudinary.com/die9ji2vn/image/upload/v1578237682/website-static/page-home/6_oxiucy.png);"
+      ></div>
     </div>
-    <!-- </v-responsive> -->
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import Rellax from 'rellax'
-const images = [
-  {
-    url: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578237751/website-static/page-home/1_rsfcu3.png',
-    ratio: 1920 / 805,
-    speed: 0,
-    position: { top: 0 }
-  },
-  {
-    url: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578237752/website-static/page-home/2_h2p1ef.png',
-    ratio: 1920 / 805,
-    speed: -0.2,
-    position: { top: 0 }
-  },
-  {
-    url: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578237729/website-static/page-home/3_hsdxat.png',
-    ratio: 1920 / 669,
-    speed: -0.6,
-    position: { top: '100px' }
-  },
-  {
-    url: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578237689/website-static/page-home/4_hjrg9j.png',
-    ratio: 1920 / 496,
-    speed: -1.5,
-    position: { top: '400px' }
-  },
-  {
-    url: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578237745/website-static/page-home/5_znwlz3.png',
-    ratio: 1920 / 964,
-    speed: -2.5,
-    position: { top: 'auto', bottom: 0 }
-  },
-  {
-    url: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578237682/website-static/page-home/6_oxiucy.png',
-    ratio: 1920 / 582,
-    speed: -4,
-    position: { top: 'auto', bottom: 0 }
-  }
-]
 
 export default Vue.extend({
   name: 'page-home-parrallax-hero',
   data() {
-    return {
-      images
-    }
+    return {}
+  },
+  mounted() {
+    this.init()
   },
   methods: {
-    setItemParallax(event) {
-      // documentation: https://github.com/dixonandmoe/rellax
-      // new Rellax(event.target.parentElement, {
-      //   vertical: true,
-      //   horizontal: false
-      // })
+    init() {
+      // Parallax
+      window.addEventListener(
+        'scroll',
+        () => {
+          let parent = document.getElementById('parallax-container')
+          let children = document.getElementsByClassName('layer')
+          // let meredith = document.getElementById('meredith') as HTMLElement
+          // console.log('meredith', meredith);
+
+          // meredith.style.transform = 'translateY(-' + window.pageYOffset * 0.3 + 'px)'
+          for (let i = 0; i < children.length; i++) {
+            // @ts-ignore
+            children[i].style.transform = 'translateY(-' + (window.pageYOffset * i) / children.length + 'px)'
+          }
+        },
+        false
+      )
     }
+    // setItemParallax(event) {
+    //   // documentation: https://github.com/dixonandmoe/rellax
+    //   // new Rellax(event.target.parentElement, {
+    //   //   vertical: true,
+    //   //   horizontal: false
+    //   // })
+    // }
   }
 })
 </script>
 
 <style lang="scss" scoped>
 @import '@/styles/utility.scss';
+$header-width: 56px;
+.wrapper {
+  margin-top: rem($header-width);
+}
+#parallax-container {
+  height: rem(1392px);
+  display: block;
+}
+#parallax-container > .layer {
+  position: fixed;
+  transform: translateY(0px);
+  height: rem(1392px);
+  width: 100%;
+  background-repeat: no-repeat !important;
+  background-position-x: center;
+}
+.layer-1 {
+  background-position-y: top !important;
+  top: rem($header-width);
+}
+.layer-2 {
+  background-position-y: top !important;
+  top: rem($header-width);
+}
+.layer-3 {
+  background-position-y: top !important;
+  top: rem($header-width + 80px);
+}
+.layer-4 {
+  background-position-y: bottom !important;
+  top: rem($header-width - 280px);
+}
+.layer-5 {
+  background-position-y: bottom !important;
+  top: rem($header-width + 10px);
+}
+.layer-6 {
+  background-position-y: bottom !important;
+  top: rem($header-width + 10px);
+}
+.headerText {
+  top: 137px;
+  padding: 30px;
+  width: 100%;
+  height: 100%;
+}
 
-.image-1 {
-  top: rem(0px);
+.headerText h1 {
+  font-size: 48px;
+  color: #ffffff;
 }
-.image-2 {
-  top: rem(0px);
-}
-.image-3 {
-  top: rem(128px);
-}
-.image-4 {
-  top: rem(600px);
-}
-.image-5 {
-  top: rem(700px);
-}
-.image-6 {
-  bottom: 0;
+.headerText h2 {
+  color: #ffffff;
+  font-size: 32px;
 }
 </style>
