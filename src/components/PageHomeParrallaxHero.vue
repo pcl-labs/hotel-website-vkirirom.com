@@ -1,21 +1,19 @@
 <template>
-  <div class="wrapper">
-    <div class="parallax-container" ref="parallaxContainer">
+  <div class="parallax-hero">
+    <div class="parallax-hero--container" ref="parallaxContainer">
       <div
         class="layer layer-1"
         style="background-image: url(https://res.cloudinary.com/die9ji2vn/image/upload/v1578237751/website-static/page-home/1_rsfcu3.png);"
       ></div>
-      <!-- <div
-        id="meredith"
-        style="background-image: url(https://res.cloudinary.com/whynotearth/image/upload/c_scale,q_auto:low,f_auto/v1562682607/meredith_fkpe6f.png); background-repeat: no-repeat; top:90px;"
-      >
-        <v-layout justify-center>
-          <v-flex xs12 sm6 md6 text-xs-center class="headerText">
-            <h1>Meet Meredith...</h1>
-            <h2>I love cuddles lick the plastic bag, paw your face to wake you up in the morning.</h2>
-          </v-flex>
-        </v-layout>
-      </div> -->
+      <div class="parallax-hero--logo d-flex justify-center align-center">
+        <div>
+          <v-img
+            width="64"
+            height="64"
+            src="https://res.cloudinary.com/die9ji2vn/image/upload/v1560304571/vKirirom_logo_qm390e.jpg"
+          ></v-img>
+        </div>
+      </div>
 
       <div
         class="layer layer-2"
@@ -77,20 +75,25 @@ export default Vue.extend({
 <style lang="scss" scoped>
 @import '@/styles/utility.scss';
 $header-width: 56px;
-.wrapper {
+.parallax-hero {
   margin-top: rem($header-width);
 }
-.parallax-container {
+.parallax-hero--container {
   height: rem(1600px);
   display: block;
 }
-.parallax-container > .layer {
+.parallax-hero--container > .layer {
   position: fixed;
   transform: translateY(0px);
   height: rem(1600px);
   width: 100%;
   background-repeat: no-repeat;
   background-position-x: center;
+}
+.parallax-hero--logo {
+  position: fixed;
+  top: rem(200px);
+  width: 100%;
 }
 .layer-1 {
   background-position-y: top;
@@ -115,20 +118,5 @@ $header-width: 56px;
 .layer-6 {
   background-position-y: top;
   top: rem($header-width + 960px);
-}
-.headerText {
-  top: 137px;
-  padding: 30px;
-  width: 100%;
-  height: 100%;
-}
-
-.headerText h1 {
-  font-size: 48px;
-  color: #ffffff;
-}
-.headerText h2 {
-  color: #ffffff;
-  font-size: 32px;
 }
 </style>
