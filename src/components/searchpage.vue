@@ -1,6 +1,6 @@
 <template>
 <!-- TODO: move to views/ -->
-  <div>
+  <div class="page-search">
     <v-container class="is-limited" grid-list-md style="min-height:100vh;">
       <v-flex xs12 class="headerText">
         <h1>Results for {{id}}</h1>
@@ -67,6 +67,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$header-height: 56px;
+.page-search {
+  margin-top: rem($header-height);
+}
   .card{
     box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
