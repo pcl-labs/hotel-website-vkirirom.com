@@ -1,41 +1,44 @@
 <template>
-  <div class="parallax-hero">
+  <div class="parallax-hero position-relative">
     <div class="parallax-hero--container" ref="parallaxContainer">
       <div
-        class="layer layer-1"
-        style="background-image: url(https://res.cloudinary.com/die9ji2vn/image/upload/v1578237751/website-static/page-home/1_rsfcu3.png);"
+        class="layer layer-1 layer--parallax"
+        style="background-image: url(https://res.cloudinary.com/die9ji2vn/image/upload/v1578304830/Home%20Page/1_edlfha.png);"
       ></div>
       <div class="parallax-hero--logo d-flex justify-center align-center">
         <div>
           <v-img
-            width="64"
-            height="64"
-            src="https://res.cloudinary.com/die9ji2vn/image/upload/v1560304571/vKirirom_logo_qm390e.jpg"
+            width="396"
+            height="151"
+            max-width="50vw"
+            contain
+            class="mx-auto"
+            src="https://res.cloudinary.com/die9ji2vn/image/upload/v1578304830/Home%20Page/logo2_qoiy2d.png"
           ></v-img>
         </div>
       </div>
 
       <div
-        class="layer layer-2"
-        style="background-image: url(https://res.cloudinary.com/die9ji2vn/image/upload/v1578237752/website-static/page-home/2_h2p1ef.png);"
+        class="layer layer-2 layer--parallax"
+        style="background-image: url(https://res.cloudinary.com/die9ji2vn/image/upload/v1578304830/Home%20Page/2_sswfon.png);"
       ></div>
       <div
-        class="layer layer-3"
-        style="background-image: url(https://res.cloudinary.com/die9ji2vn/image/upload/v1578237729/website-static/page-home/3_hsdxat.png);"
+        class="layer layer-3 layer--parallax"
+        style="background-image: url(https://res.cloudinary.com/die9ji2vn/image/upload/v1578304829/Home%20Page/3_dzzzbi.png);"
       ></div>
       <div
-        class="layer layer-4"
-        style="background-image: url(https://res.cloudinary.com/die9ji2vn/image/upload/v1578237689/website-static/page-home/4_hjrg9j.png);"
+        class="layer layer-4 layer--parallax"
+        style="background-image: url(https://res.cloudinary.com/die9ji2vn/image/upload/v1578304829/Home%20Page/4_y2kccp.png);"
       ></div>
       <div
-        class="layer layer-5"
-        style="background-image: url(https://res.cloudinary.com/die9ji2vn/image/upload/v1578237745/website-static/page-home/5_znwlz3.png);"
-      ></div>
-      <div
-        class="layer layer-6"
-        style="background-image: url(https://res.cloudinary.com/die9ji2vn/image/upload/v1578237682/website-static/page-home/6_oxiucy.png);"
+        class="layer layer-5 layer--parallax"
+        style="background-image: url(https://res.cloudinary.com/die9ji2vn/image/upload/v1578304830/Home%20Page/5_hqueja.png);"
       ></div>
     </div>
+    <div
+      class="layer layer-6 layer--static position-absolute"
+      style="background-image: url(https://res.cloudinary.com/die9ji2vn/image/upload/v1578304829/Home%20Page/6-_Black_nt3cjt.png);"
+    ></div>
   </div>
 </template>
 
@@ -46,20 +49,16 @@ import { getPassiveEventConfig } from '@/helpers'
 export default Vue.extend({
   name: 'page-home-parrallax-hero',
   mounted() {
-    this.init()
+    this.parallax()
   },
   methods: {
-    init() {
+    parallax() {
       // Parallax
       window.addEventListener(
         'scroll',
         () => {
           let parent = this.$refs.parallaxContainer as HTMLElement
-          let children = parent.getElementsByClassName('layer') as HTMLCollectionOf<HTMLElement>
-          // let meredith = document.getElementById('meredith') as HTMLElement
-          // console.log('meredith', meredith);
-
-          // meredith.style.transform = 'translateY(-' + window.pageYOffset * 0.3 + 'px)'
+          let children = parent.getElementsByClassName('layer--parallax') as HTMLCollectionOf<HTMLElement>
           for (let i = 0; i < children.length; i++) {
             const translateAmount = (window.pageYOffset * i) / children.length
             children[i].style.transform = `translateY(-${translateAmount}px)`
@@ -82,13 +81,15 @@ $header-width: 56px;
   height: rem(1600px);
   display: block;
 }
-.parallax-hero--container > .layer {
+.layer {
+  background-repeat: no-repeat;
+  background-position-x: center;
+}
+.layer--parallax {
   position: fixed;
   transform: translateY(0px);
   height: rem(1600px);
   width: 100%;
-  background-repeat: no-repeat;
-  background-position-x: center;
 }
 .parallax-hero--logo {
   position: fixed;
@@ -116,7 +117,10 @@ $header-width: 56px;
   top: rem($header-width + 550px);
 }
 .layer-6 {
-  background-position-y: top;
-  top: rem($header-width + 960px);
+  height: rem(582px);
+  background-position-y: bottom;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
 </style>
