@@ -9,24 +9,39 @@
       :hide-overlay="$vuetify.breakpoint.smAndDown"
       transition="dialog-bottom-transition"
     >
-      <v-card tile :elevation="0" class="dark">
-        <v-toolbar class="px-2" flat dark color="dark">
-          <v-btn class="ma-0" small icon dark depressed @click="closeDialog()">
-            <v-icon color="gray-82">close</v-icon>
-          </v-btn>
-          <v-toolbar-title
-            v-if="dialog.title"
-            class="light--text pl-0 ml-n4 text-center display-1"
-            >{{ dialog.title }}</v-toolbar-title
-          >
-        </v-toolbar>
-
-        <div class="d-flex flex-column">
-          <div class="light--text mx-auto">
-            <v-card color="dark px-2 pb-4" tile :ripple="false">
-              <auth-core />
-            </v-card>
+      <v-card tile :elevation="0" color="dark" class="d-flex flex-column">
+        <div class="d-flex flex-column flex-grow-1">
+          <div class="position-relative hero-dialog--hero">
+            <v-img
+              :aspect-ratio="376 / 192"
+              :max-height="192"
+              :max-width="'100%'"
+              :src="
+                transformCloudinaryUrl(
+                  'https://res.cloudinary.com/die9ji2vn/image/upload/v1577609316/Booking%20Flow/LogIn_bl4sz3.png',
+                  'f_auto'
+                )
+              "
+            ></v-img>
+            <div class="position-absolute mx-4 mt-4 hero-dialog--toolbar">
+              <v-btn class="ma-0" x-small fab color="rgba(0,0,0,0.4)" depressed @click="closeDialog()">
+                <v-icon color="white">close</v-icon>
+              </v-btn>
+            </div>
+            <div class="position-absolute hero-dialog--title text-center brand-2--text w-100">
+              <h2 class="display-1 mb-0 font-weight-bold">
+                {{ dialog.title }}
+              </h2>
+            </div>
           </div>
+
+          <v-card color="dark pt-6 px-4 pb-9 light--text d-flex flex-column flex-grow-1" tile :ripple="false">
+            <div class="d-flex flex-column flex-grow-1">
+              <div class="light--text mx-auto d-flex flex-column flex-grow-1">
+                <auth-core />
+              </div>
+            </div>
+          </v-card>
         </div>
       </v-card>
     </v-dialog>
@@ -87,6 +102,9 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+@import '@/styles/utility.scss';
+@import '@/styles/dialog-with-hero.scss';
+
 ::v-deep {
   .v-dialog {
     border-radius: 0;
@@ -99,6 +117,7 @@ export default Vue.extend({
 
 <style lang="scss">
 // global
+// FIXME: use isolated classname
 .dialog--is-open {
   .v-overlay--active ~ .v-application--wrap {
     filter: blur(8px);

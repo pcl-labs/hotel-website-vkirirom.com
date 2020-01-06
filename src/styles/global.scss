@@ -1,5 +1,6 @@
 @import './bootstrap.scss';
 @import './datepicker-dark-theme.scss';
+@import './global-typography.scss';
 
 #app {
   font-family: $font-family-sans-serif;
@@ -15,22 +16,11 @@ body {
 html {
   scroll-behavior: smooth;
 }
-
 .w-100 {
   width: 100%;
 }
 .overflow-y-hidden {
   overflow-y: hidden;
-}
-.normalText {
-  font-size: rem(16px);
-  color: #b9bcc1;
-}
-.v-input__slot {
-  margin: 0;
-  height: 55px;
-  /*To make the total margin:30px */
-  margin-bottom: 10px;
 }
 .v-carousel__controls {
   background: linear-gradient(0deg, #191c21 0%, rgba(25, 28, 33, 0) 50%);
@@ -39,6 +29,7 @@ html {
     padding: 0px;
   }
 }
+// deprecated
 .header {
   background-position: bottom;
   background-size: cover;
@@ -46,10 +37,12 @@ html {
   height: 464px;
   object-fit: cover;
 }
+// deprecated
 .gradient {
   background-image: linear-gradient(0deg, #191c21 0%, rgba(25, 28, 33, 0) 50%);
   box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
+// deprecated
 .image {
   transition: 0.8s ease;
   -webkit-transition: 0.8s ease;
@@ -58,13 +51,13 @@ html {
     transform: scale(1.1);
   }
 }
+
 @-webkit-keyframes autofill {
   to {
     color: white;
     background: transparent;
   }
 }
-
 input:-webkit-autofill {
   -webkit-animation-name: autofill;
   -webkit-animation-fill-mode: both;
@@ -86,66 +79,6 @@ input:-webkit-autofill {
     }
   }
 }
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-}
-
-h1 {
-  font-style: normal;
-  font-weight: bold;
-  font-size: 46px;
-  line-height: 56px;
-}
-
-h2 {
-  font-style: normal;
-  font-weight: normal;
-  font-size: 36px;
-  line-height: 44px;
-}
-
-h3 {
-  font-style: normal;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 24px;
-}
-
-.small {
-  font-style: normal;
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 17px;
-}
-
-.normal {
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 20px;
-}
-
-.larger-title {
-  font-style: normal;
-  font-weight: bold;
-  font-size: 20px;
-  line-height: 24px;
-}
-
-.smaller-title {
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 17px;
-}
-
 
 .v-carousel__controls {
   background: transparent !important;
@@ -172,6 +105,11 @@ h3 {
 }
 
 // fix vuetify labels when browser autofills data
-.v-label.theme--dark {
+.dark .v-label--active.theme--dark {
   background-color: $dark;
+}
+
+// vuetify card dark
+.theme--dark.v-card.v-card {
+  color: $light;
 }

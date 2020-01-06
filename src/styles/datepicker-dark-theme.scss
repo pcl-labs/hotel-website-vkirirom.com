@@ -2,26 +2,33 @@
   border: none;
   background: $dark;
   color: $light;
+  margin-left: auto;
+  margin-right: auto;
+  .asd__inner-wrapper {
+    width: 300% !important;
+  }
   .asd__month {
-    padding-top: rem(10px);
+    width: 33.3334% !important;
+    padding: rem(8px 0);
     // fix moving between months different height
     min-height: rem(338px);
   }
   .asd__month-name {
     margin-bottom: rem(40px);
     display: inline-flex;
-    background-color: $secondary;
+    background-color: none;
     color: $white;
     padding: rem(6px 8px);
     border-radius: rem(4px);
-    font-size: rem(18px);
-    font-weight: normal;
+    font-size: rem(20px);
+    font-weight: bold;
     span:nth-child(2) {
       margin-left: rem(4px);
     }
   }
   .asd__change-month-button {
     background: none;
+    top: rem(10px);
     > button {
       border: 1px solid $light;
       background: $dark;
@@ -33,18 +40,25 @@
       }
     }
   }
-  .asd__change-month-button--previous button {
-    background: url(https://res.cloudinary.com/die9ji2vn/image/upload/v1575367644/website-static/icon/arrow-left_jkne8n.svg)
-      no-repeat center $dark;
-    background-size: rem(16px);
+  .asd__change-month-button--previous {
+    padding-left: 0;
+    button {
+      background: url(https://res.cloudinary.com/die9ji2vn/image/upload/v1575367644/website-static/icon/arrow-left_jkne8n.svg)
+        no-repeat center $dark;
+      background-size: rem(16px);
+    }
   }
-  .asd__change-month-button--next button {
-    background: url(https://res.cloudinary.com/die9ji2vn/image/upload/v1575367644/website-static/icon/arrow-right_lr2qqp.svg)
-      no-repeat center $dark;
-    background-size: rem(16px);
+  .asd__change-month-button--next {
+    padding-right: 0;
+    button {
+      background: url(https://res.cloudinary.com/die9ji2vn/image/upload/v1575367644/website-static/icon/arrow-right_lr2qqp.svg)
+        no-repeat center $dark;
+      background-size: rem(16px);
+    }
   }
   .asd__days-legend {
     margin-top: rem(8px);
+    padding: 0;
     .asd__day-title {
       color: $gray-82;
     }
@@ -70,7 +84,7 @@
       color: $brand-3 !important;
     }
   }
-  .asd__day--hovered {
+  .asd__day--hovered:not(.asd__day--disabled) {
     background: $dark !important;
     border-color: $gray-4f !important;
     color: $brand-4 !important;
@@ -85,14 +99,14 @@
       color: $white !important;
     }
   }
-  .asd__selected-date-one {
-    border-top-left-radius: rem(8px);
-    border-bottom-left-radius: rem(8px);
-  }
-  .asd__selected-date-two {
-    border-top-right-radius: rem(8px);
-    border-bottom-right-radius: rem(8px);
-  }
+  // .asd__selected-date-one {
+  //   border-top-left-radius: rem(8px);
+  //   border-bottom-left-radius: rem(8px);
+  // }
+  // .asd__selected-date-two {
+  //   border-top-right-radius: rem(8px);
+  //   border-bottom-right-radius: rem(8px);
+  // }
   .asd__day--empty:focus {
     outline: none;
   }

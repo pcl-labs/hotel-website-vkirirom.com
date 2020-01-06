@@ -1,99 +1,83 @@
 import { addDays } from 'date-fns'
-import {
-  RoomTypeService,
-  CompanyService,
-  ReservationService
-} from '@/connection/resources.js'
+import { RoomTypeService, ReservationService } from '@/connection/resources.js'
 import { bookingStep } from '@/types'
-import { setDocumentClassesOnToggleDialog } from '@/helpers'
+import { setDocumentClassesOnToggleDialog, formatDate } from '@/helpers'
+import { cloneDeep } from 'lodash-es'
+import countriesList from '@/constants/countries-list'
+import store from '@/store'
 
 const steps: { [name: string]: bookingStep } = {
   notStarted: {
-    id: 0,
-    width: 332
+    id: 0
   },
   confirmDates: {
-    id: 1,
-    width: 332
+    id: 1
   },
   auth: {
-    id: 2,
-    width: 376
+    id: 2
   },
   confirmGuests: {
-    id: 3,
-    width: 332
+    id: 3
   },
   confirmBooking: {
-    id: 4,
-    width: 332
+    id: 4
   },
   reviewPolicies: {
-    id: 5,
-    width: 332
+    id: 5
   },
   customerInfo: {
-    id: 6,
-    width: 332
+    id: 6
   },
   paymentInfo: {
-    id: 7,
-    width: 332
+    id: 7
   },
-  thanksYou: {
-    id: 8,
-    width: 332
+  thankYou: {
+    id: 8
   }
 }
 
 const defaultState = {
   currentStep: {
-    id: 0,
-    width: 332
+    id: 0
   },
   steps,
   dialog: {
     isOpen: false
   },
   bookingInfo: {
+    returnUrl: '/',
+    resort: {},
     guests: {
-      adults: 0,
+      adults: 1,
       children: 0,
-      infants: 0,
-      total: 0
+      total: 1
     },
-    transportation: false,
     message: '',
     name: '',
     email: '',
-    phone: '',
-    roomType: {
-      id: 0,
-      name: '',
-      capacity: 0,
-      beds: [
-        {
-          count: '',
-          type: ''
-        }
-      ]
-    },
+    phoneNumber: '',
+    phoneCountry: countriesList.find(item => item.name === 'Cambodia'),
+    payWith: 'card',
+    roomType: {},
     dateOne: '',
     dateTwo: '',
     checkOut: '',
-    prices: []
+    prices: [],
+    fullName: ''
   },
   vat: 0,
   finalPrice: 0,
   stripeKey: '',
   reservationId: 0,
   clientSecret: '',
-  reservationDetails: {}
+  reservationDetails: {},
+  isPaymentLoading: false,
+  paymentError: ''
 }
 
 export default {
   namespaced: true,
-  state: { ...defaultState },
+  state: cloneDeep(defaultState),
   mutations: {
     updateDialog(state, payload) {
       state.dialog = payload
@@ -109,13 +93,10 @@ export default {
     },
     updateDateTwo(state, payload) {
       state.bookingInfo.dateTwo = payload
-      state.bookingInfo.checkOut = addDays(payload, 1)
+      state.bookingInfo.checkOut = formatDate(new Date(addDays(payload, 1)), 'YYYY-MM-DD')
     },
     updatePrices(state, payload) {
       state.bookingInfo.prices = payload
-    },
-    updateTransportation(state, payload) {
-      state.bookingInfo.transportation = payload
     },
     updateMessage(state, payload) {
       state.bookingInfo.message = payload
@@ -126,28 +107,37 @@ export default {
     updateEmail(state, payload) {
       state.bookingInfo.email = payload
     },
-    updatePhone(state, payload) {
-      state.bookingInfo.phone = payload
+    updatePhoneNumber(state, payload) {
+      state.bookingInfo.phoneNumber = payload
+    },
+    updatePhoneCountry(state, payload) {
+      state.bookingInfo.phoneCountry = payload
+    },
+    updatePayWith(state, payload) {
+      state.bookingInfo.payWith = payload
+    },
+    updateFullName(state, payload) {
+      state.bookingInfo.fullName = payload
     },
     updateRoomType(state, payload) {
       state.bookingInfo.roomType = payload
     },
-    fetchStripeKey(state, payload) {
-      state.stripeKey = payload
+    updateReturnUrl(state, payload) {
+      state.bookingInfo.returnUrl = payload
     },
-    fetchReservationId(state, payload) {
+    updateResort(state, payload) {
+      state.bookingInfo.resort = payload
+    },
+    updateReservationId(state, payload) {
       state.reservationId = payload
     },
-    fetchClientSecret(state, payload) {
-      state.clientSecret = payload
-    },
-    fetchReservationDetails(state, payload) {
+    updateReservationDetails(state, payload) {
       state.reservationDetails = payload
     },
     resetState(state) {
       for (const key in defaultState) {
         if (defaultState.hasOwnProperty(key)) {
-          state[key] = defaultState[key]
+          state[key] = cloneDeep(defaultState[key])
         }
       }
     }
@@ -162,7 +152,12 @@ export default {
       setDocumentClassesOnToggleDialog(dialog.isOpen)
       context.commit('updateDialog', dialog)
     },
-    startBooking(context) {
+    cancelBooking(context) {
+      context.commit('resetState')
+    },
+    startBooking(context, { resort, returnUrl }) {
+      context.commit('updateResort', resort)
+      context.commit('updateReturnUrl', returnUrl)
       context.commit('updateCurrentStep', context.state.steps.confirmDates)
     },
     updateCurrentStep(context, payload) {
@@ -189,9 +184,6 @@ export default {
     updatePrices(context, payload) {
       context.commit('updatePrices', payload)
     },
-    updateTransportation(context, payload) {
-      context.commit('updateTransportation', payload)
-    },
     updateMessage(context, payload) {
       context.commit('updateMessage', payload)
     },
@@ -201,8 +193,17 @@ export default {
     updateEmail(context, payload) {
       context.commit('updateEmail', payload)
     },
-    updatePhone(context, payload) {
-      context.commit('updatePhone', payload)
+    updatePhoneNumber(context, payload) {
+      context.commit('updatePhoneNumber', payload)
+    },
+    updatePhoneCountry(context, payload) {
+      context.commit('updatePhoneCountry', payload)
+    },
+    updatePayWith(context, payload) {
+      context.commit('updatePayWith', payload)
+    },
+    updateFullName(context, payload) {
+      context.commit('updateFullName', payload)
     },
     updateRoomType(context, payload) {
       context.commit('updateRoomType', payload)
@@ -219,43 +220,21 @@ export default {
         context.commit('updatePrices', prices)
       })
     },
-    getStripeKey(context) {
-      return CompanyService.stripePublishableKey({
-        companyId: 1
-      }).then(stripePublishableKey => {
-        context.commit('fetchStripeKey', stripePublishableKey.key)
-      })
+    reserveRoom(context, payload) {
+      const customBookingInfo = cloneDeep(payload)
+      return ReservationService.reserveByRoomType(customBookingInfo)
+        .then(reserveByRoomType => {
+          return context.commit('updateReservationId', reserveByRoomType.reservationId)
+        })
+        .catch(error => {
+          throw new Error('Error in reserve room.')
+        })
     },
-    reserveRoom(context, bookingInfo) {
-      return ReservationService.reserveByRoomType({
-        roomTypeId: bookingInfo.roomType.id,
-        name: bookingInfo.name,
-        message: bookingInfo.message,
-        numberOfGuests: bookingInfo.guests,
-        start: bookingInfo.dateOne,
-        end: bookingInfo.checkOut,
-        payment: {
-          amount: bookingInfo.finalPrice
-        },
-        email: bookingInfo.email,
-        phone: bookingInfo.phone
-      }).then(reserveByRoomType => {
-        context.commit('fetchReservationId', reserveByRoomType.reservationId)
-      })
-    },
-    getClientSecret(context, { reservationId, bookingInfo }) {
-      return ReservationService.payReservation({
-        reservationId: reservationId,
-        amount: bookingInfo.finalPrice
-      }).then(payReservation => {
-        context.commit('fetchClientSecret', payReservation.clientSecret)
-      })
-    },
-    getReservationDetails(context, { reservationId }) {
+    getReservationDetails(context, reservationId) {
       return ReservationService.get({
-        reservationId: reservationId
-      }).then(get => {
-        context.commit('fetchReservationDetails', get)
+        reservationId
+      }).then(res => {
+        context.commit('updateReservationDetails', res)
       })
     }
   },
@@ -266,25 +245,54 @@ export default {
     bookingInfo(state) {
       return state.bookingInfo
     },
-    computedTotalPrice(state) {
+    customBookingInfo(state, getters) {
+      const bookingInfo = state.bookingInfo
+      const amount = getters.computedTotalPrice({ all: true })
+
+      return {
+        roomTypeId: bookingInfo.roomType.id,
+        model: {
+          name: bookingInfo.fullName,
+          message: bookingInfo.message,
+          numberOfGuests: bookingInfo.guests.total,
+          start: bookingInfo.dateOne,
+          end: bookingInfo.checkOut,
+          payment: {
+            amount
+          },
+          email: store.getters['auth/user'].userName,
+          phone: `+${bookingInfo.phoneCountry.callingCodes[0]}` + bookingInfo.phoneNumber
+        }
+      }
+    },
+    computedRoomPrice(state) {
       const prices = state.bookingInfo.prices
-      let totalPrice = 0
+      let roomPrice = 0
       for (let i = 0; i < prices.length; i++) {
-        totalPrice += prices[i].amount
+        roomPrice += prices[i].amount
+      }
+      return roomPrice
+    },
+    computedVAT: (state, getters) => () => {
+      let prices = getters.computedRoomPrice
+      const VAT_RATE = 0.1
+      return prices * VAT_RATE
+    },
+    computedTotalPrice: (state, getters) => ({ all = false, hasVAT = false } = {}) => {
+      let totalPrice = getters.computedRoomPrice
+      if (all || hasVAT) {
+        totalPrice += getters.computedVAT()
       }
       return totalPrice
-    },
-    computedVat(state, getters) {
-      return getters.computedTotalPrice * 0.1
-    },
-    computedFinalPrice(state, getters) {
-      return getters.computedTotalPrice + getters.computedVat
     },
     currentStep(state) {
       return state.currentStep
     },
     steps(state) {
       return state.steps
+    },
+    reservationId(state) {
+      return state.reservationId
     }
   }
 }

@@ -1,0 +1,15 @@
+.markdown-content ::v-deep {
+  h1 {
+    font-weight: normal;
+  }
+  h2 {
+    font-weight: normal;
+    margin-top: rem(48px);
+    margin-bottom: rem(16px);
+  }
+  h3 {
+    font-weight: normal;
+    margin-top: rem(48px);
+    margin-bottom: rem(16px);
+  }
+}

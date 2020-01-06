@@ -1,7 +1,7 @@
 <template>
-  <v-form name="Login" v-model="valid" @submit.prevent="">
-    <v-container fluid>
-      <v-row no-gutters>
+  <v-form name="Login" v-model="valid" @submit.prevent="" class="d-flex flex-column flex-grow-1">
+    <v-container fluid class="pa-0 d-flex flex-column flex-grow-1 justify-space-between">
+      <v-row no-gutters class="flex-grow-0">
         <v-col cols="12" class="mb-2">
           <v-row no-gutters>
             <v-col cols="12">
@@ -12,28 +12,16 @@
                 dark
                 class="mb-8 text-capitalize light--text py-3"
                 @click="oauth('Facebook')"
-                ><v-spacer></v-spacer
-                ><v-icon class="mr-4">$vuetify.icons.facebook</v-icon
-                ><span
-                  ><span class="hidden-xs-only">Continue with </span
-                  ><span>Facebook</span></span
+                ><v-spacer></v-spacer><v-icon class="mr-4">$vuetify.icons.facebook</v-icon
+                ><span><span class="hidden-xs-only">Continue with </span><span>Facebook</span></span
                 ><v-spacer></v-spacer>
                 <v-icon>keyboard_arrow_right</v-icon>
               </v-btn>
             </v-col>
             <v-col cols="12">
-              <v-btn
-                x-large
-                block
-                outlined
-                dark
-                class="mb-8 text-capitalize light--text py-3"
-                @click="oauth('Google')"
+              <v-btn x-large block outlined dark class="mb-8 text-capitalize light--text py-3" @click="oauth('Google')"
                 ><v-icon class="mr-4">$vuetify.icons.google</v-icon
-                ><span
-                  ><span class="hidden-xs-only">Continue with </span
-                  ><span>Google</span></span
-                ></v-btn
+                ><span><span class="hidden-xs-only">Continue with </span><span>Google</span></span></v-btn
               >
             </v-col>
           </v-row>
@@ -41,10 +29,7 @@
 
         <separator-or></separator-or>
 
-        <v-flex xs12 v-if="loginError">
-          <p class="error--text">{{ loginError }}</p>
-        </v-flex>
-        <v-flex xs12>
+        <v-col cols="12">
           <v-text-field
             class="mb-1 mt-2"
             v-model="email"
@@ -59,8 +44,8 @@
           >
             <v-icon slot="append">$vuetify.icons.message</v-icon>
           </v-text-field>
-        </v-flex>
-        <v-flex xs12>
+        </v-col>
+        <v-col cols="12">
           <v-text-field
             dark
             class="mb-1"
@@ -75,8 +60,15 @@
           >
             <v-icon slot="append">$vuetify.icons.lock</v-icon>
           </v-text-field>
-        </v-flex>
-        <v-flex xs12>
+        </v-col>
+      </v-row>
+
+      <v-row no-gutters class="flex-grow-0">
+        <v-col cols="12" v-if="loginError">
+          <p class="error--text">{{ loginError }}</p>
+        </v-col>
+
+        <v-col cols="12">
           <v-btn
             x-large
             block
@@ -94,20 +86,18 @@
             <v-spacer></v-spacer>
             <v-icon>keyboard_arrow_right</v-icon>
           </v-btn>
-        </v-flex>
-        <v-flex xs12 class="text-center mb-4 body-2">
+        </v-col>
+        <v-col cols="12" class="text-center mb-4 body-2">
           <p class="mb-0">
             <a @click="updateActiveState('auth-forgot-password')">Forgot password?</a>
           </p>
-        </v-flex>
-        <v-flex xs12>
+        </v-col>
+        <v-col cols="12">
           <v-divider class="light-border"></v-divider>
-        </v-flex>
-        <v-flex xs12 class="text-center light--text mt-4 body-2">
-          <p class="mb-0">
-            Don't have any account? <a @click="updateActiveState('auth-signup')">Sign up</a>
-          </p>
-        </v-flex>
+        </v-col>
+        <v-col cols="12" class="text-center light--text mt-4 body-2">
+          <p class="mb-0">Don't have any account? <a @click="updateActiveState('auth-signup')">Sign up</a></p>
+        </v-col>
       </v-row>
     </v-container>
   </v-form>
@@ -139,12 +129,14 @@ export default {
       store.dispatch('auth/updateActiveState', value)
     },
     login() {
-      store.dispatch('auth/login')
+      store.dispatch('auth/login').catch(error => {
+        console.log('wrong credentials')
+      })
     },
     oauth(provider) {
-      store.commit('auth/updateProvider', provider),
-        window.location.assign(store.getters['auth/oauth']),
-        store.dispatch('auth/ping')
+      store.commit('auth/updateProvider', provider)
+      window.location.assign(store.getters['auth/oauth'])
+      store.dispatch('auth/ping')
     }
   },
   computed: {
