@@ -113,3 +113,8 @@ input:-webkit-autofill {
 .theme--dark.v-card.v-card {
   color: $light;
 }
+
+// vuetify buttons
+.v-application .v-btn.v-btn {
+  font-weight: 600;
+}

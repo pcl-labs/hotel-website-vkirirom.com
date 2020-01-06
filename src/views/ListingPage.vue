@@ -52,7 +52,7 @@
       <!-- header -->
       <v-row no-gutters class="flex-column light--text mb-6">
         <v-col cols="12">
-          <h1 class="mb-0 font-weight-normal">{{ resort.title }}</h1>
+          <h1 class="mb-0 font-weight-bold white--text">{{ resort.title }}</h1>
         </v-col>
       </v-row>
       <v-row
