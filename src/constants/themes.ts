@@ -1,13 +1,14 @@
 // import colors from 'vuetify/lib/util/colors'
 
 export const light = {
-  primary: '#F7B947',
+  primary: '#E5B5CE',
   secondary: '#4B7F52',
   success: '#4B7F52',
   green: '#4B7F52',
-  anchor: '#F7B947',
+  anchor: '#E5B5CE',
   error: '#EB5757',
   red: '#EB5757',
+  pink: '#E5B5CE',
   warning: '#F7B947',
   yellow: '#F7B947',
 
