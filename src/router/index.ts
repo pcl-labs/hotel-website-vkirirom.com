@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-const Home = () => import('../components/Home.vue')
+const HomePage = () => import('@/views/HomePage.vue')
 const searchpage = () => import('../components/searchpage.vue')
 const Contact = () => import('../components/Contact.vue')
 const ListingPage = () => import('@/views/ListingPage.vue')
@@ -16,7 +16,7 @@ import store from '@/store'
 const routes = [
   {
     path: '/',
-    component: Home
+    component: HomePage
   },
   {
     path: '/search/:id',
