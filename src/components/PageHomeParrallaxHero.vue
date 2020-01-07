@@ -3,7 +3,7 @@
     <div class="parallax-hero--container" ref="parallaxContainer">
       <div
         class="layer layer-1 layer--parallax"
-        style="background-image: url(https://res.cloudinary.com/die9ji2vn/image/upload/v1578304830/Home%20Page/1_edlfha.png);"
+        style="background-image: url(https://res.cloudinary.com/die9ji2vn/image/upload/v1578391761/Home%20Page/1_xblbcz.png);"
       ></div>
       <div class="parallax-hero--logo d-flex justify-center align-center">
         <div>
@@ -24,7 +24,7 @@
       ></div>
       <div
         class="layer layer-3 layer--parallax"
-        style="background-image: url(https://res.cloudinary.com/die9ji2vn/image/upload/v1578304829/Home%20Page/3_dzzzbi.png);"
+        style="background-image: url(https://res.cloudinary.com/die9ji2vn/image/upload/v1578391697/Home%20Page/3_s78ihj.png);"
       ></div>
       <div
         class="layer layer-4 layer--parallax"
