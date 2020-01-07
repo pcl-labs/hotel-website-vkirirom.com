@@ -70,13 +70,14 @@
           </v-flex>
           <v-flex xs12>
             <v-btn 
+              color="primary"
               dark 
               block 
               large 
               depressed 
-              style="padding:0; margin-top:30px; margin-bottom:25px; background: #F7B947; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; text-transform:capitalize; font-size: 16px; height:74px;" 
-              color="#4B7F52"
+              style="padding:0; margin-top:30px; margin-bottom:25px; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 4px; text-transform:capitalize; font-size: 16px; height:74px;" 
               type="submit"
+              class="dark--text"
               :disabled="!valid"
             >
               Send<v-icon>keyboard_arrow_right</v-icon>
@@ -160,16 +161,16 @@
     </v-row>
   </v-container>
   </v-content>
-  <Footer></Footer>
+  <page-footer></page-footer>
 </div>
 </template>
 
 <script>
-const Footer = () => import ('@/components/Footer.vue')
+const PageFooter = () => import ('@/components/PageFooter.vue')
 
 export default {
   components:{
-    Footer
+    PageFooter
   },
 
   data(){

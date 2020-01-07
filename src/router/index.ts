@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-const Home = () => import('../components/Home.vue')
+const HomePage = () => import('@/views/HomePage.vue')
 const searchpage = () => import('../components/searchpage.vue')
-const Listing = () => import('../components/Listing.vue')
 const Contact = () => import('../components/Contact.vue')
+const ListingPage = () => import('@/views/ListingPage.vue')
 const BookingReviewRulesPage = () => import('@/views/BookingReviewRulesPage.vue')
 const BookingCustomerInfoPage = () => import('@/views/BookingCustomerInfoPage.vue')
 const BookingPaymentPage = () => import('@/views/BookingPaymentPage.vue')
@@ -16,7 +16,7 @@ import store from '@/store'
 const routes = [
   {
     path: '/',
-    component: Home
+    component: HomePage
   },
   {
     path: '/search/:id',
@@ -29,7 +29,7 @@ const routes = [
   {
     name: 'listing',
     path: '/listing/:id',
-    component: Listing
+    component: ListingPage
   },
   {
     path: '/contact',

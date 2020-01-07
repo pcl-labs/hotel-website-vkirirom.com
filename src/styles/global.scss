@@ -1,5 +1,6 @@
 @import './bootstrap.scss';
 @import './datepicker-dark-theme.scss';
+@import './global-typography.scss';
 
 #app {
   font-family: $font-family-sans-serif;
@@ -15,18 +16,11 @@ body {
 html {
   scroll-behavior: smooth;
 }
-a {
-  text-decoration: none;
-}
 .w-100 {
   width: 100%;
 }
 .overflow-y-hidden {
   overflow-y: hidden;
-}
-.normalText {
-  font-size: rem(16px);
-  color: #b9bcc1;
 }
 .v-carousel__controls {
   background: linear-gradient(0deg, #191c21 0%, rgba(25, 28, 33, 0) 50%);
@@ -35,6 +29,7 @@ a {
     padding: 0px;
   }
 }
+// deprecated
 .header {
   background-position: bottom;
   background-size: cover;
@@ -42,10 +37,12 @@ a {
   height: 464px;
   object-fit: cover;
 }
+// deprecated
 .gradient {
   background-image: linear-gradient(0deg, #191c21 0%, rgba(25, 28, 33, 0) 50%);
   box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
+// deprecated
 .image {
   transition: 0.8s ease;
   -webkit-transition: 0.8s ease;
@@ -54,13 +51,13 @@ a {
     transform: scale(1.1);
   }
 }
+
 @-webkit-keyframes autofill {
   to {
     color: white;
     background: transparent;
   }
 }
-
 input:-webkit-autofill {
   -webkit-animation-name: autofill;
   -webkit-animation-fill-mode: both;
@@ -112,45 +109,12 @@ input:-webkit-autofill {
   background-color: $dark;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-}
-h1,
-.h1 {
-  font-size: rem(46px);
-  @include media-breakpoint-up(md) {
-    font-size: rem(34px);
-  }
-}
-h2,
-.h2 {
-  font-size: rem(34px);
-  @include media-breakpoint-up(md) {
-    font-size: rem(20px);
-  }
-}
-h3,
-.h3 {
-  font-size: rem(20px);
-  @include media-breakpoint-up(md) {
-    font-size: rem(20px);
-  }
-}
-h4,
-.h4 {
-  font-size: rem(20px);
-  @include media-breakpoint-up(md) {
-    font-size: rem(16px);
-  }
-}
-
 // vuetify card dark
 .theme--dark.v-card.v-card {
   color: $light;
+}
+
+// vuetify buttons
+.v-application .v-btn.v-btn {
+  font-weight: 600;
 }
