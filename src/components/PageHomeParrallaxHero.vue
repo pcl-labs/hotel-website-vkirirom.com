@@ -59,24 +59,29 @@ const images = {
 export default Vue.extend({
   name: 'page-home-parrallax-hero',
   mounted() {
-    this.parallax()
+    this.addScrollListener()
   },
   methods: {
-    parallax() {
-      // Parallax
-      window.addEventListener(
-        'scroll',
-        () => {
-          let parent = this.$refs.parallaxContainer as HTMLElement
-          // FIXME: check existense of parent
-          let children = parent.getElementsByClassName('layer--parallax') as HTMLCollectionOf<HTMLElement>
-          for (let i = 0; i < children.length; i++) {
-            const translateAmount = (window.pageYOffset * i) / children.length
-            children[i].style.transform = `translateY(-${translateAmount}px)`
-          }
-        },
-        getPassiveEventConfig()
-      )
+    addScrollListener() {
+      const listener = (event: any) => {
+        this.applyParallaxStyle()
+      }
+      window.addEventListener('scroll', listener, getPassiveEventConfig())
+
+      this.$once('hook:destroyed', () => {
+        document.removeEventListener('scroll', listener)
+      })
+    },
+    applyParallaxStyle() {
+      let parent = this.$refs.parallaxContainer as HTMLElement
+      if (!parent) {
+        return
+      }
+      let children = parent.getElementsByClassName('layer--parallax') as HTMLCollectionOf<HTMLElement>
+      for (let i = 0; i < children.length; i++) {
+        const translateAmount = (window.pageYOffset * i) / children.length
+        children[i].style.transform = `translateY(-${translateAmount}px)`
+      }
     },
     getImage(number, breakpointName) {
       const image = images['image' + number]
