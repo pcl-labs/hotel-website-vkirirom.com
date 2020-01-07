@@ -40,7 +40,7 @@
                 v-text="title"
               ></h2>
               <v-spacer></v-spacer>
-              <div class="pricing light--text title mr-5 font-weight-black">
+              <div class="pricing light--text title mr-5 font-weight-semibold">
                 <span class="currency">$</span>
                 <span class="price" v-text="price"></span>
                 <span class="postfix">/night</span>
@@ -56,7 +56,7 @@
                   medium
                   color="primary"
                   dark
-                  class="d-sm-none text-capitalize font-weight-bold dark--text"
+                  class="d-sm-none text-capitalize dark--text"
                 >
                   Book Now
                   <v-icon class="d-none d-sm-inline"
@@ -70,7 +70,7 @@
                   x-large
                   color="primary"
                   dark
-                  class="hidden-xs-only text-capitalize font-weight-black dark--text title"
+                  class="hidden-xs-only text-capitalize dark--text title"
                 >
                   Book Now
                   <v-icon class="d-none d-sm-inline"
