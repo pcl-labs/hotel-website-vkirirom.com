@@ -25,7 +25,7 @@
     </div>
 
     <v-card tile :elevation="0" color="dark" class="px-4 pt-6 flex-grow-1 d-flex flex-column">
-      <div class="mx-auto flex-grow-1 d-flex">
+      <div class="mx-auto flex-grow-1 d-flex w-100">
         <div class="d-flex flex-column flex-grow-1">
           <div class="d-flex flex-column flex-grow-1 light--text mx-auto w-100">
             <v-form class="d-flex flex-column flex-grow-1" v-model="isFormValid">
@@ -41,7 +41,7 @@
                   <v-text-field :value="dateTwo" class="d-none" type="text" readonly :rules="dateTwoRules" />
                   <v-text-field id="datepicker-inline-trigger" class="d-none" type="text" readonly />
                   <airbnb-style-datepicker
-                    class="datepicker--dark"
+                    class="datepicker--dark mb-4"
                     :mode="'range'"
                     :trigger-element-id="'datepicker-inline-trigger'"
                     :inline="true"
@@ -56,7 +56,9 @@
                     @date-two-selected="onSelectDateTwo"
                   ></airbnb-style-datepicker>
 
-                  <div class="light--text" v-if="isPricesReady">
+                  <v-divider v-if="shouldShowTotal" class="light-border mb-6"></v-divider>
+
+                  <div class="light--text mb-6" v-if="isPricesReady">
                     <!-- nights -->
                     <v-row no-gutters class="mb-2 title">
                       <v-col xs6>{{ prices.length }} nights total</v-col>
@@ -83,10 +85,12 @@
 
                 <!-- non-sticky bar -->
                 <div class="section-2 submit-bar--non-sticky pb-9">
-                  <div class="confirm-dates--results-row mb-4">
+                  <v-divider v-if="shouldShowTotal" class="light-border"></v-divider>
+
+                  <div class="confirm-dates--results-row my-6">
                     <!-- total -->
                     <v-expand-transition>
-                      <v-row v-if="shouldShowTotal" no-gutters class="transition-fast-in-fast-out mb-8">
+                      <v-row v-if="shouldShowTotal" no-gutters class="transition-fast-in-fast-out">
                         <v-col xs6>
                           <h3 class="title mb-0">Total</h3>
                         </v-col>
@@ -104,11 +108,9 @@
                     </v-expand-transition>
 
                     <!-- error -->
-                    <v-expand-transition>
-                      <p v-if="shouldShowError" class="transition-fast-in-fast-out error--text body-2 mb-0">
-                        Sorry, selected dates are not available
-                      </p>
-                    </v-expand-transition>
+                    <p v-if="shouldShowError" class="transition-fast-in-fast-out error--text body-2 mb-0">
+                      Sorry, selected dates are not available
+                    </p>
                   </div>
 
                   <div class="">
@@ -136,33 +138,34 @@
       </div>
     </v-card>
 
-    <div class="submit-bar--sticky d-none pt-6">
-      <div class="confirm-dates--results-row mb-4 px-8">
-        <!-- total -->
-        <v-expand-transition>
-          <v-row v-if="shouldShowTotal" no-gutters class="transition-fast-in-fast-out mb-6">
-            <v-col xs6>
-              <h3 class="title mb-0">Total</h3>
-            </v-col>
-            <v-col xs6 class="text-right">
-              <h3 class="title mb-0">${{ computedTotalPrice }}</h3>
-            </v-col>
-          </v-row>
-        </v-expand-transition>
+    <div class="submit-bar--sticky d-none">
+      <div class="px-4">
+        <v-divider v-if="shouldShowTotal" class="light-border mb-6"></v-divider>
+        <div class="confirm-dates--results-row my-6">
+          <!-- total -->
+          <v-expand-transition>
+            <v-row v-if="shouldShowTotal" no-gutters class="transition-fast-in-fast-out">
+              <v-col xs6>
+                <h3 class="title mb-0">Total</h3>
+              </v-col>
+              <v-col xs6 class="text-right">
+                <h3 class="title mb-0">${{ computedTotalPrice }}</h3>
+              </v-col>
+            </v-row>
+          </v-expand-transition>
 
-        <!-- loading -->
-        <v-expand-transition>
-          <div v-if="shouldShowLoading" class="transition-fast-in-fast-out text-center mb-0">
-            <v-progress-circular :size="24" indeterminate color="green"></v-progress-circular>
-          </div>
-        </v-expand-transition>
+          <!-- loading -->
+          <v-expand-transition>
+            <div v-if="shouldShowLoading" class="transition-fast-in-fast-out text-center mb-0">
+              <v-progress-circular :size="24" indeterminate color="green"></v-progress-circular>
+            </div>
+          </v-expand-transition>
 
-        <!-- error -->
-        <v-expand-transition>
+          <!-- error -->
           <p v-if="shouldShowError" class="transition-fast-in-fast-out error--text body-2 mb-0">
             Sorry, selected dates are not available
           </p>
-        </v-expand-transition>
+        </div>
       </div>
 
       <div class="">
@@ -299,9 +302,7 @@ export default Vue.extend({
 <style lang="scss" scoped>
 @import '@/styles/utility.scss';
 @import '@/styles/dialog-with-hero.scss';
-.confirm-dates--results-row {
-  min-height: rem(24px);
-}
+
 .v-card > .submit-bar--sticky {
   position: sticky;
   bottom: 0;
@@ -316,7 +317,7 @@ export default Vue.extend({
     background-color: $dark;
     // background-color: $gray-4f;
     .v-btn {
-      border-radius: rem(0 0 4px 4px);
+      border-radius: 0;
     }
   }
 }
