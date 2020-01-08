@@ -221,10 +221,13 @@ export default Vue.extend({
       return store.getters['booking/bookingInfo'].dateTwo
     },
     prices() {
-      return this.$store.getters['booking/bookingInfo'].prices
+      return this.$store.getters['booking/prices']({ rounded: true })
     },
     computedTotalPrice() {
-      return this.$store.getters['booking/computedTotalPrice']()
+      const options = {
+        hasVAT: false
+      }
+      return this.$store.getters['booking/computedTotalPrice'](options).toFixed(0)
     },
     roomTypeId(): number {
       const firstRoomType = this.resort.modules.hotel.roomTypes[0]
