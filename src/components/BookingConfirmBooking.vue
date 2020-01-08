@@ -136,16 +136,16 @@ export default Vue.extend({
       return store.getters['booking/bookingInfo'].checkOut
     },
     prices() {
-      return store.getters['booking/bookingInfo'].prices
+      return this.$store.getters['booking/prices']({ rounded: true })
     },
     computedVAT() {
-      return store.getters['booking/computedVAT']().toFixed(2)
+      return store.getters['booking/computedVAT']().toFixed(0)
     },
     computedTotalPrice() {
       const options = {
         hasVAT: true
       }
-      return store.getters['booking/computedTotalPrice'](options).toFixed(2)
+      return store.getters['booking/computedTotalPrice'](options).toFixed(0)
     },
     guests() {
       return store.getters['booking/bookingInfo'].guests.total
