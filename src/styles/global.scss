@@ -22,6 +22,9 @@ html {
 .overflow-y-hidden {
   overflow-y: hidden;
 }
+.page {
+  margin-top: rem($header-height);
+}
 .v-carousel__controls {
   background: linear-gradient(0deg, #191c21 0%, rgba(25, 28, 33, 0) 50%);
   .v-icon {
@@ -112,4 +115,9 @@ input:-webkit-autofill {
 // vuetify card dark
 .theme--dark.v-card.v-card {
   color: $light;
+}
+
+// vuetify buttons
+.v-application .v-btn.v-btn {
+  font-weight: 600;
 }

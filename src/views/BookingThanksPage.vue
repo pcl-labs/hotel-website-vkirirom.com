@@ -1,5 +1,5 @@
 <template>
-  <fragment>
+  <div class="page">
     <v-container class="is-limited light--text px-2 px-md-0 py-8">
       <v-row no-gutters>
         <v-col class="px-md-3 order-2 order-md-1" cols="12" md="8">
@@ -14,7 +14,7 @@
     </v-container>
 
     <page-footer></page-footer>
-  </fragment>
+  </div>
 </template>
 
 <script lang="ts">

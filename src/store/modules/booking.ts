@@ -265,6 +265,19 @@ export default {
         }
       }
     },
+    prices: state => ({ rounded = false }) => {
+      let prices = state.bookingInfo.prices
+      if (rounded) {
+        prices = prices.map(price => {
+          const amount = price.amount.toFixed(0)
+          return {
+            ...price,
+            amount
+          }
+        })
+      }
+      return prices
+    },
     computedRoomPrice(state) {
       const prices = state.bookingInfo.prices
       let roomPrice = 0

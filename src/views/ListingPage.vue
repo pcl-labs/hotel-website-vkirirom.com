@@ -1,5 +1,5 @@
 <template>
-  <div v-if="resort && resort.id">
+  <div class="page" v-if="resort && resort.id">
     <div class="pa-0 ma-0">
       <!-- featured images -->
       <v-row no-gutters class="pa-0 mx-0 my-0">
@@ -52,7 +52,7 @@
       <!-- header -->
       <v-row no-gutters class="flex-column light--text mb-6">
         <v-col cols="12">
-          <h1 class="mb-0 font-weight-normal">{{ resort.title }}</h1>
+          <h1 class="mb-0 font-weight-bold white--text">{{ resort.title }}</h1>
         </v-col>
       </v-row>
       <v-row

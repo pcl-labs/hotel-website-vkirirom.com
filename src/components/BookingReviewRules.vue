@@ -73,7 +73,7 @@ export default Vue.extend({
       return store.getters['booking/bookingInfo'].checkOut
     },
     prices() {
-      return store.getters['booking/bookingInfo'].prices
+      return this.$store.getters['booking/prices']({ rounded: false })
     },
     steps() {
       return store.getters['booking/steps']

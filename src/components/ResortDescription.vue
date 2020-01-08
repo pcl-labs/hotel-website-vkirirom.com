@@ -1,5 +1,5 @@
 <template>
-  <div v-if="resort" class="resort-description light--text">
+  <div v-if="resort" class="resort-description light--text markdown-content">
     <div class="mb-12" v-html="marked(resort.description)"></div>
     <resort-rules :resort="resort"></resort-rules>
   </div>
@@ -44,5 +44,5 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-//
+@import '@/styles/markdown-content.scss';
 </style>
