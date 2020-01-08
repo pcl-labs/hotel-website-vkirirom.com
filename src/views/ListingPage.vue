@@ -1,5 +1,5 @@
 <template>
-  <div v-if="resort && resort.id">
+  <div class="page" v-if="resort && resort.id">
     <div class="pa-0 ma-0">
       <!-- featured images -->
       <v-row no-gutters class="pa-0 mx-0 my-0">

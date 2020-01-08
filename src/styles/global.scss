@@ -22,6 +22,9 @@ html {
 .overflow-y-hidden {
   overflow-y: hidden;
 }
+.page {
+  margin-top: rem($header-height);
+}
 .v-carousel__controls {
   background: linear-gradient(0deg, #191c21 0%, rgba(25, 28, 33, 0) 50%);
   .v-icon {
