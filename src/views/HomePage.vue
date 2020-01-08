@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page">
     <page-home-parrallax-hero></page-home-parrallax-hero>
 
     <div class="page-home--content">
