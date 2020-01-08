@@ -138,6 +138,7 @@
       </div>
     </v-card>
 
+    <!-- sticky bar -->
     <div class="submit-bar--sticky d-none">
       <div class="px-4">
         <v-divider v-if="shouldShowTotal" class="light-border mb-6"></v-divider>
@@ -305,23 +306,5 @@ export default Vue.extend({
 <style lang="scss" scoped>
 @import '@/styles/utility.scss';
 @import '@/styles/dialog-with-hero.scss';
-
-.v-card > .submit-bar--sticky {
-  position: sticky;
-  bottom: 0;
-  z-index: 1;
-}
-@supports (position: sticky) {
-  .submit-bar--non-sticky {
-    display: none !important;
-  }
-  .submit-bar--sticky {
-    display: block !important;
-    background-color: $dark;
-    // background-color: $gray-4f;
-    .v-btn {
-      border-radius: 0;
-    }
-  }
-}
+@import '@/styles/sticky-submit-bar.scss';
 </style>

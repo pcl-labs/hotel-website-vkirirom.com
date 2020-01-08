@@ -1,0 +1,18 @@
+.v-card > .submit-bar--sticky {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+}
+@supports (position: sticky) {
+  .submit-bar--non-sticky {
+    display: none !important;
+  }
+  .submit-bar--sticky {
+    display: block !important;
+    background-color: $dark;
+    // background-color: $gray-4f;
+    .v-btn {
+      border-radius: 0;
+    }
+  }
+}

@@ -1,5 +1,5 @@
 <template>
-  <v-card class="d-flex flex-column dark" tile :elevation="0">
+  <v-card class="d-flex flex-column dark light--text" tile :elevation="0">
     <div class="d-flex flex-column flex-grow-1">
       <div class="position-relative hero-dialog--hero">
         <v-img
@@ -20,7 +20,7 @@
         </div>
       </div>
 
-      <v-card dark color="dark" tile :elevation="0" class="px-4 pt-6 pb-9 flex-grow-1 d-flex">
+      <v-card dark color="dark" tile :elevation="0" class="px-4 pt-6 flex-grow-1 d-flex">
         <div class="d-flex flex-column flex-grow-1 justify-space-between body-2 font-weight-light">
           <div>
             <v-row no-gutters class="mb-6">
@@ -67,11 +67,11 @@
                 <v-col xs6 class="text-right ">${{ computedVAT }}</v-col>
               </v-row>
             </div>
-
-            <v-divider class="light-border"></v-divider>
           </div>
 
-          <div>
+          <!-- non-sticky bar -->
+          <div class="section-2 submit-bar--non-sticky pb-9">
+            <v-divider class="light-border mb-6"></v-divider>
             <!-- total -->
             <v-row no-gutters class="mt-6">
               <v-col xs6>
@@ -101,6 +101,39 @@
           </div>
         </div>
       </v-card>
+    </div>
+
+    <!-- sticky bar -->
+    <div class="submit-bar--sticky d-none" :class="{ 'pb-9': !hasConfirmButton }">
+      <div class="px-4">
+        <v-divider class="light-border mb-6"></v-divider>
+        <!-- total -->
+        <v-row no-gutters>
+          <v-col xs6>
+            <h3 class="title mb-0">Total</h3>
+          </v-col>
+          <v-col xs6 class="text-right">
+            <h3 class="title mb-0">
+              <span>${{ computedTotalPrice }}</span>
+            </h3>
+          </v-col>
+        </v-row>
+      </div>
+
+      <v-btn
+        v-if="hasConfirmButton"
+        @click="submit"
+        x-large
+        block
+        color="primary"
+        dark
+        class="text-transform-none font-weight-bold dark--text mt-6"
+      >
+        <v-spacer></v-spacer>
+        <span>Confirm Booking</span>
+        <v-spacer></v-spacer>
+        <v-icon>keyboard_arrow_right</v-icon>
+      </v-btn>
     </div>
   </v-card>
 </template>
@@ -164,4 +197,5 @@ export default Vue.extend({
 <style lang="scss" scoped>
 @import '@/styles/utility.scss';
 @import '@/styles/dialog-with-hero.scss';
+@import '@/styles/sticky-submit-bar.scss';
 </style>
