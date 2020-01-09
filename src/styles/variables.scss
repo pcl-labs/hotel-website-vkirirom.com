@@ -50,7 +50,8 @@ $loading-transition-time: 500ms;
 
 // grid https://vuetifyjs.com/en/customization/breakpoints
 $grid-breakpoints: (
-  xs: 0,
+  xxs: 0,
+  xs: 376px,
   sm: 600px,
   md: 960px,
   lg: 1264px,
