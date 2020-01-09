@@ -31,42 +31,42 @@ import { getPassiveEventConfig } from '@/helpers'
 
 const images = {
   image1: {
-    xxs: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578391904/Home%20Page/1_Mobile_nic1jq.png',
+    xxs: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578537679/Home%20Page/1_-_376_Crop_f3kohe.png',
     xs: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578453084/Home%20Page/1_-_600_Crop_exoo15.png',
     sm: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578452929/Home%20Page/1_-_960_Crop_oa7sit.png',
     md: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578452735/Home%20Page/1_-_1264_Crop_etah3p.png',
     lg: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578391761/Home%20Page/1_xblbcz.png'
   },
   image2: {
-    xxs: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578391905/Home%20Page/2_Mobile_fbnhkc.png',
+    xxs: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578537679/Home%20Page/2_-_376_Crop_jurubz.png',
     xs: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578453086/Home%20Page/2_-_600_Crop_ljuk1q.png',
     sm: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578452931/Home%20Page/2_-_960_Crop_nmuzwk.png',
     md: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578452735/Home%20Page/2_-_1264_Crop_oemckj.png',
     lg: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578304830/Home%20Page/2_sswfon.png'
   },
   image3: {
-    xxs: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578391906/Home%20Page/3_Mobile_e9mhyt.png',
+    xxs: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578537679/Home%20Page/3_-_376_Crop_hzx8pn.png',
     xs: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578453084/Home%20Page/3_-_600_Crop_oi117l.png',
     sm: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578452928/Home%20Page/3_-_960_Crop_u8unwb.png',
     md: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578452735/Home%20Page/3_-_1264_Crop_rzmbf7.png',
     lg: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578391697/Home%20Page/3_s78ihj.png'
   },
   image4: {
-    xxs: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578391906/Home%20Page/4_Mobile_ftjfdh.png',
+    xxs: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578537679/Home%20Page/4_-_376_Crop_ojxrls.png',
     xs: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578453084/Home%20Page/4_-_600_Crop_lzo0qm.png',
     sm: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578452928/Home%20Page/4_-_960_Crop_yjllbe.png',
     md: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578452734/Home%20Page/4_-_1264_Crop_b2si7p.png',
     lg: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578304829/Home%20Page/4_y2kccp.png'
   },
   image5: {
-    xxs: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578391906/Home%20Page/5_Mobile_ozxcqz.png',
+    xxs: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578537679/Home%20Page/5_-_376_Crop_kwd38n.png',
     xs: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578453084/Home%20Page/5_-_600_Crop_hv4pgh.png',
     sm: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578452928/Home%20Page/5_-_960_Crop_kxqi9o.png',
     md: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578452735/Home%20Page/5_-_1264_Crop_j243x6.png',
     lg: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578304830/Home%20Page/5_hqueja.png'
   },
   image6: {
-    xxs: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578391906/Home%20Page/6_Mobile_nogvnf.png',
+    xxs: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578537678/Home%20Page/6_-_376_Crop_idycl2.png',
     xs: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578453084/Home%20Page/6_-_600_Crop_dld0qh.png',
     sm: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578452928/Home%20Page/6_-_960_Crop_yweblf.png',
     md: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578452734/Home%20Page/6_-_1264_Crop_axf4bc.png',
@@ -119,7 +119,7 @@ export default Vue.extend({
       const image = images['image' + number]
       console.log('breakpointName', breakpointName)
 
-      return image[this.overridedBreakpoint || breakpointName] || image['xl']
+      return image[this.overridedBreakpoint || breakpointName] || image['lg']
     }
   },
   computed: {
@@ -157,11 +157,9 @@ export default Vue.extend({
 $component-height: 1600px;
 $header-height: 56px;
 .parallax-hero {
-  margin-top: rem($header-height);
-
-  --component-height-ratio: 2.65;
+  --component-height-ratio: 1.7;
   @include media-breakpoint-up(xs) {
-    --component-height-ratio: 1.6;
+    --component-height-ratio: 1.55;
   }
   @include media-breakpoint-up(sm) {
     --component-height-ratio: 1.33;
@@ -222,7 +220,8 @@ $header-height: 56px;
   height: rem(582px);
   height: calc(#{rem(582px)} / var(--component-height-ratio));
   background-position-y: bottom;
-  bottom: 0;
+  // -1 to fix subpixel
+  bottom: -1px;
   right: 0;
   left: 0;
 }
