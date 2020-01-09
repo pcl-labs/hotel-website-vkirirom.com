@@ -25,7 +25,7 @@
         </div>
       </div>
 
-      <v-card tile :elevation="0" color="dark" class="px-4 pt-6 pb-9 flex-grow-1 d-flex">
+      <v-card tile :elevation="0" color="dark" class="px-4 pt-6 flex-grow-1 d-flex">
         <v-form class="d-flex flex-column flex-grow-1" v-model="isFormValid" @submit.prevent="">
           <v-card
             color="dark"
@@ -137,15 +137,15 @@
               </v-list>
 
               <v-expand-transition>
-                <p v-if="selectedRoomType.capacity" class="transition-fast-in-fast-out light--text body-2 mt-6 mb-0">
+                <p v-if="selectedRoomType.capacity" class="transition-fast-in-fast-out light--text body-2 my-6">
                   {{ selectedRoomType.capacity }} guests maximum.
                 </p>
               </v-expand-transition>
-
-              <v-divider class="light-border my-6"></v-divider>
             </div>
 
-            <div>
+            <!-- non-sticky bar -->
+            <div class="section-2 submit-bar--non-sticky pb-9">
+              <v-divider class="light-border mb-6"></v-divider>
               <!-- total -->
               <v-row no-gutters class="mb-6">
                 <v-col xs6>
@@ -175,6 +175,38 @@
           </v-card>
         </v-form>
       </v-card>
+    </div>
+
+    <!-- sticky bar -->
+    <div class="submit-bar--sticky d-none">
+      <div class="px-4">
+        <v-divider class="light-border mb-6"></v-divider>
+        <!-- total -->
+        <v-row no-gutters class="mb-6">
+          <v-col xs6>
+            <h3 class="title mb-0">Total</h3>
+          </v-col>
+          <v-col xs6 class="text-right">
+            <h3 class="title mb-0">{{ guestsTotal }} Guests</h3>
+          </v-col>
+        </v-row>
+      </div>
+
+      <v-btn
+        @click="submit"
+        x-large
+        block
+        color="primary"
+        dark
+        class="text-transform-none font-weight-bold dark--text"
+        :disabled="!isFormValid"
+        type="submit"
+      >
+        <v-spacer></v-spacer>
+        <span>Confirm Guests</span>
+        <v-spacer></v-spacer>
+        <v-icon>keyboard_arrow_right</v-icon>
+      </v-btn>
     </div>
   </v-card>
 </template>
@@ -297,6 +329,7 @@ export default Vue.extend({
 <style lang="scss" scoped>
 @import '@/styles/utility.scss';
 @import '@/styles/dialog-with-hero.scss';
+@import '@/styles/sticky-submit-bar.scss';
 
 .v-list.theme--dark {
   background: $dark;

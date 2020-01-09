@@ -9,14 +9,13 @@
   }
   .asd__month {
     width: 33.3334% !important;
-    padding: rem(8px 0);
-    // fix moving between months different height
-    min-height: rem(338px);
+    padding: 0;
+    // fix moving between months by different heights
+    // min-height: rem(338px);
   }
   .asd__month-name {
-    margin-bottom: rem(40px);
+    margin-bottom: rem(48px);
     display: inline-flex;
-    background-color: none;
     color: $white;
     padding: rem(6px 8px);
     border-radius: rem(4px);
@@ -28,7 +27,7 @@
   }
   .asd__change-month-button {
     background: none;
-    top: rem(10px);
+    top: rem(4px);
     > button {
       border: 1px solid $light;
       background: $dark;
