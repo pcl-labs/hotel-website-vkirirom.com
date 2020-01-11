@@ -1,6 +1,6 @@
 <template>
 <!-- TODO: move to views/ -->
-  <div>
+  <div class="page-search">
     <v-container class="is-limited" grid-list-md style="min-height:100vh;">
       <v-flex xs12 class="headerText">
         <h1>Results for {{id}}</h1>
@@ -37,17 +37,17 @@
         </v-col>
       </v-row>
     </v-container>
-    <Footer></Footer>
+    <page-footer></page-footer>
   </div>
 </template>
 
 <script>
 import { PageService } from "@/connection/resources.js"
-const Footer = () => import ('@/components/Footer.vue')
+const PageFooter = () => import ('@/components/PageFooter.vue')
 
 export default {
   components: {
-    Footer
+    PageFooter
   },
   data(){
     return{

@@ -1,149 +1,212 @@
 <template>
-  <v-card tile :elevation="0" class="dark px-4 pt-6 pb-9">
-    <div class="d-flex mb-2 align-center mb-8 mx-auto">
-      <v-btn class="ma-0" small icon dark depressed @click="$emit('booking-cancel')">
-        <v-icon color="gray-82">close</v-icon>
-      </v-btn>
-      <v-spacer></v-spacer>
-      <div class="light--text pl-0 ml-sm-n4 ml-md-0 text-center display-1">Guests</div>
-      <v-spacer></v-spacer>
-    </div>
-
-    <div class="d-flex flex-column">
-      <v-card color="dark pb-4 light--text" tile :ripple="false" :elevation="0">
-        <v-form v-model="isFormValid" @submit.prevent="">
-          <v-text-field class="d-none" :value="selectedRoomType" type="text" readonly :rules="rules.bedType" />
-          <v-text-field class="d-none" :value="computedTotal" type="text" readonly :rules="rules.computedTotal" />
-          <v-text-field
-            ref="capacityValidator"
-            class="d-none"
-            :value="selectedRoomType.capacity - computedTotal"
-            type="text"
-            readonly
-            :rules="rules.remainedCapacity"
-          />
-
-          <v-row class="py-0 mx-0" no-gutters="">
-            <v-col cols="12" class="pa-0 mb-6">
-              <h3 class="body-1 mb-0 font-weight-bold">Bed Type</h3>
-            </v-col>
-          </v-row>
-          <v-row no-gutters="" class="mb-8">
-            <v-col
-              v-for="(roomType, index) in roomTypes"
-              :key="roomType.id"
-              :cols="12 / roomTypes.length"
-              :class="{
-                'pr-4': roomTypes.length > 1 && index === 0,
-                'pl-4': roomTypes.length > 1 && index === 1
-              }"
-            >
-              <v-btn
-                x-large
-                @click="selectedRoomType = roomType"
-                :class="{
-                  'is-selected': selectedRoomType.id === roomType.id
-                }"
-                class="confirm-guests--bed-type text-transform-none"
-                block
-                outlined
-                icon
-                tile
-              >
-                <div class="d-flex flex-column">
-                  <v-icon class="mb-1">hotel</v-icon>
-                  <div>{{ roomType.beds[0].count }} {{ roomType.beds[0].type }}</div>
-                </div>
-              </v-btn>
-            </v-col>
-          </v-row>
-
-          <v-divider class="light-border my-4"></v-divider>
-
-          <v-list dark class="py-0">
-            <v-list-item class="px-0">
-              <v-list-item-content class="light--text">
-                <v-list-item-title class="font-weight-bold body-1 light--text">Adult</v-list-item-title>
-              </v-list-item-content>
-
-              <v-list-item-icon class="user-select-none">
-                <div class="d-flex light--text align-center">
-                  <v-btn :disabled="guestsAdults <= 1" @click="guestsAdults--" color="light" x-small fab icon
-                    ><v-icon>remove_circle_outline</v-icon></v-btn
-                  >
-                  <span class="mx-4 text--light guests-count user-select-none text-center">{{ guestsAdults }}</span>
-                  <v-btn
-                    :disabled="!selectedRoomType.id || computedTotal >= selectedRoomType.capacity"
-                    @click="guestsAdults++"
-                    color="light"
-                    x-small
-                    fab
-                    icon
-                    ><v-icon>add_circle_outline</v-icon></v-btn
-                  >
-                </div>
-              </v-list-item-icon>
-            </v-list-item>
-
-            <v-list-item class="px-0 mb-4">
-              <v-list-item-content class="light--text">
-                <v-list-item-title class="font-weight-bold body-1">Children</v-list-item-title>
-                <v-list-item-subtitle class="light--text">Under 5</v-list-item-subtitle>
-              </v-list-item-content>
-
-              <v-list-item-icon class="user-select-none">
-                <div class="d-flex light--text align-center">
-                  <v-btn :disabled="guestsChildren <= 0" @click="guestsChildren--" color="light" x-small fab icon
-                    ><v-icon>remove_circle_outline</v-icon></v-btn
-                  >
-                  <span class="mx-4 text--light guests-count user-select-none text-center">{{ guestsChildren }}</span>
-                  <v-btn
-                    :disabled="!selectedRoomType.id || computedTotal >= selectedRoomType.capacity"
-                    @click="guestsChildren++"
-                    color="light"
-                    x-small
-                    fab
-                    icon
-                    ><v-icon>add_circle_outline</v-icon></v-btn
-                  >
-                </div>
-              </v-list-item-icon>
-            </v-list-item>
-          </v-list>
-
-          <p v-if="selectedRoomType.capacity" class="light--text body-2 mb-4">
-            {{ selectedRoomType.capacity }} guests maximum.
-          </p>
-
-          <v-divider class="light-border mt-4 mb-8"></v-divider>
-
-          <!-- total -->
-          <v-row no-gutters class="mb-4">
-            <v-col xs6>
-              <h3 class="title">Total</h3>
-            </v-col>
-            <v-col xs6 class="text-right">
-              <h3 class="title">{{ guestsTotal }} Guests</h3>
-            </v-col>
-          </v-row>
-
-          <v-btn
-            @click="submit"
-            x-large
-            block
-            color="primary"
-            dark
-            class="text-transform-none font-weight-bold dark--text"
-            :disabled="!isFormValid"
-            type="submit"
-          >
-            <v-spacer></v-spacer>
-            <span>Confirm Guests</span>
-            <v-spacer></v-spacer>
-            <v-icon>keyboard_arrow_right</v-icon>
+  <v-card class="d-flex flex-column dark" tile :elevation="0">
+    <div class="d-flex flex-column flex-grow-1">
+      <div class="position-relative hero-dialog--hero">
+        <v-img
+          :aspect-ratio="376 / 192"
+          :max-height="192"
+          :max-width="'100%'"
+          :src="
+            transformCloudinaryUrl(
+              'https://res.cloudinary.com/die9ji2vn/image/upload/v1577609316/Booking%20Flow/ChooseGuest_c9pgd1.png',
+              'f_auto'
+            )
+          "
+        ></v-img>
+        <div class="position-absolute mx-4 mt-4 hero-dialog--toolbar">
+          <v-btn class="ma-0" x-small fab color="rgba(0,0,0,0.4)" depressed @click="$emit('booking-cancel')">
+            <v-icon color="white">close</v-icon>
           </v-btn>
+        </div>
+        <div class="position-absolute hero-dialog--title text-center brand-2--text w-100">
+          <h2 class="display-1 mb-0 font-weight-bold">
+            Guests
+          </h2>
+        </div>
+      </div>
+
+      <v-card tile :elevation="0" color="dark" class="px-4 pt-6 flex-grow-1 d-flex">
+        <v-form class="d-flex flex-column flex-grow-1" v-model="isFormValid" @submit.prevent="">
+          <v-card
+            color="dark"
+            class="light--text d-flex flex-column flex-grow-1 justify-space-between"
+            tile
+            :ripple="false"
+            :elevation="0"
+          >
+            <div>
+              <v-text-field class="d-none" :value="selectedRoomType" type="text" readonly :rules="rules.bedType" />
+              <v-text-field class="d-none" :value="computedTotal" type="text" readonly :rules="rules.computedTotal" />
+              <v-text-field
+                ref="capacityValidator"
+                class="d-none"
+                :value="selectedRoomType.capacity - computedTotal"
+                type="text"
+                readonly
+                :rules="rules.remainedCapacity"
+              />
+
+              <v-row class="py-0 mx-0" no-gutters="">
+                <v-col cols="12" class="pa-0 mb-6">
+                  <h3 class="body-1 mb-0 font-weight-bold">Bed Type</h3>
+                </v-col>
+              </v-row>
+              <v-row no-gutters="" class="mb-8">
+                <v-col
+                  v-for="(roomType, index) in roomTypes"
+                  :key="roomType.id"
+                  :cols="12 / roomTypes.length"
+                  :class="{
+                    'pr-3': roomTypes.length > 1 && index === 0,
+                    'pl-3': roomTypes.length > 1 && index === 1
+                  }"
+                >
+                  <v-btn
+                    x-large
+                    @click="selectedRoomType = roomType"
+                    :class="{
+                      'is-selected': selectedRoomType.id === roomType.id
+                    }"
+                    class="confirm-guests--bed-type text-transform-none"
+                    block
+                    outlined
+                    icon
+                    tile
+                  >
+                    <div class="d-flex flex-column">
+                      <v-icon class="mb-1">hotel</v-icon>
+                      <div>{{ roomType.beds[0].count }} {{ roomType.beds[0].type }}</div>
+                    </div>
+                  </v-btn>
+                </v-col>
+              </v-row>
+
+              <v-divider class="light-border mt-2 mb-4"></v-divider>
+
+              <v-list dark class="py-0">
+                <v-list-item class="px-0">
+                  <v-list-item-content class="light--text py-0">
+                    <v-list-item-title class="font-weight-bold body-1 light--text">Adult</v-list-item-title>
+                  </v-list-item-content>
+
+                  <v-list-item-icon class="user-select-none my-3">
+                    <div class="d-flex light--text align-center">
+                      <v-btn :disabled="guestsAdults <= 1" @click="guestsAdults--" color="light" x-small fab icon
+                        ><v-icon>remove_circle_outline</v-icon></v-btn
+                      >
+                      <span class="mx-4 text--light guests-count user-select-none text-center">{{ guestsAdults }}</span>
+                      <v-btn
+                        :disabled="!selectedRoomType.id || computedTotal >= selectedRoomType.capacity"
+                        @click="guestsAdults++"
+                        color="light"
+                        x-small
+                        fab
+                        icon
+                        ><v-icon>add_circle_outline</v-icon></v-btn
+                      >
+                    </div>
+                  </v-list-item-icon>
+                </v-list-item>
+
+                <v-list-item class="px-0">
+                  <v-list-item-content class="light--text py-0">
+                    <v-list-item-title class="font-weight-bold body-1 mb-0">Children</v-list-item-title>
+                    <v-list-item-subtitle class="light--text">Under 5</v-list-item-subtitle>
+                  </v-list-item-content>
+
+                  <v-list-item-icon class="user-select-none my-3">
+                    <div class="d-flex light--text align-center">
+                      <v-btn :disabled="guestsChildren <= 0" @click="guestsChildren--" color="light" x-small fab icon
+                        ><v-icon>remove_circle_outline</v-icon></v-btn
+                      >
+                      <span class="mx-4 text--light guests-count user-select-none text-center">{{
+                        guestsChildren
+                      }}</span>
+                      <v-btn
+                        :disabled="!selectedRoomType.id || computedTotal >= selectedRoomType.capacity"
+                        @click="guestsChildren++"
+                        color="light"
+                        x-small
+                        fab
+                        icon
+                        ><v-icon>add_circle_outline</v-icon></v-btn
+                      >
+                    </div>
+                  </v-list-item-icon>
+                </v-list-item>
+              </v-list>
+
+              <v-expand-transition>
+                <p v-if="selectedRoomType.capacity" class="transition-fast-in-fast-out light--text body-2 my-6">
+                  {{ selectedRoomType.capacity }} guests maximum.
+                </p>
+              </v-expand-transition>
+            </div>
+
+            <!-- non-sticky bar -->
+            <div class="section-2 submit-bar--non-sticky pb-9">
+              <v-divider class="light-border mb-6"></v-divider>
+              <!-- total -->
+              <v-row no-gutters class="mb-6">
+                <v-col xs6>
+                  <h3 class="title mb-0">Total</h3>
+                </v-col>
+                <v-col xs6 class="text-right">
+                  <h3 class="title mb-0">{{ guestsTotal }} Guests</h3>
+                </v-col>
+              </v-row>
+
+              <v-btn
+                @click="submit"
+                x-large
+                block
+                color="primary"
+                dark
+                class="text-transform-none font-weight-bold dark--text"
+                :disabled="!isFormValid"
+                type="submit"
+              >
+                <v-spacer></v-spacer>
+                <span>Confirm Guests</span>
+                <v-spacer></v-spacer>
+                <v-icon>keyboard_arrow_right</v-icon>
+              </v-btn>
+            </div>
+          </v-card>
         </v-form>
       </v-card>
+    </div>
+
+    <!-- sticky bar -->
+    <div class="submit-bar--sticky d-none">
+      <div class="px-4">
+        <v-divider class="light-border mb-6"></v-divider>
+        <!-- total -->
+        <v-row no-gutters class="mb-6">
+          <v-col xs6>
+            <h3 class="title mb-0">Total</h3>
+          </v-col>
+          <v-col xs6 class="text-right">
+            <h3 class="title mb-0">{{ guestsTotal }} Guests</h3>
+          </v-col>
+        </v-row>
+      </div>
+
+      <v-btn
+        @click="submit"
+        x-large
+        block
+        color="primary"
+        dark
+        class="text-transform-none font-weight-bold dark--text"
+        :disabled="!isFormValid"
+        type="submit"
+      >
+        <v-spacer></v-spacer>
+        <span>Confirm Guests</span>
+        <v-spacer></v-spacer>
+        <v-icon>keyboard_arrow_right</v-icon>
+      </v-btn>
     </div>
   </v-card>
 </template>
@@ -265,6 +328,8 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 @import '@/styles/utility.scss';
+@import '@/styles/dialog-with-hero.scss';
+@import '@/styles/sticky-submit-bar.scss';
 
 .v-list.theme--dark {
   background: $dark;

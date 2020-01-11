@@ -1,36 +1,46 @@
 <template>
   <!-- v-if="hotel.id" -->
-  <div class="resort-rules light--text">
-    <!-- <div v-if="resortHotel.location">
-      <h3 class="mb-2 title font-weight-bold">
+  <div class="resort-rules light--text markdown-content">
+    <!-- shuttle -->
+    <!-- <div >
+      <h2>Shuttle Bus</h2>
+      <p class="mb-2">
+        Shuttle bus available from PP office 15USD/pax from fixed location (extra charge 3USD/pax from other place)
+      </p>
+    </div> -->
+    <!-- location -->
+    <div v-if="!hideLocation && resortHotel.location">
+      <h2>
         Location
-      </h3>
+      </h2>
       <p>
         <a :href="resortHotel.location">Get Directions</a>
       </p>
-    </div> -->
+    </div>
+    <!-- spaces -->
     <div v-if="get(resortHotel, 'spaces', []).length > 0">
-      <h3 class="mb-2 title font-weight-bold">
+      <h2>
         Spaces
-      </h3>
-      <p v-for="(space, index) in resortHotel.spaces" :key="index">{{ space }}</p>
+      </h2>
+      <div v-for="(space, index) in resortHotel.spaces" :key="index" v-html="markdown(space)"></div>
     </div>
-
+    <!-- amenities -->
     <div v-if="get(resortHotel, 'amenities', []).length > 0">
-      <h3 class="mb-2 title font-weight-bold">
+      <h2>
         Amenities
-      </h3>
-      <p v-for="(amenity, index) in resortHotel.amenities" :key="index">{{ amenity }}</p>
+      </h2>
+      <div v-for="(amenity, index) in resortHotel.amenities" :key="index" v-html="markdown(amenity)"></div>
     </div>
-
+    <!-- rules -->
     <div v-if="get(resortHotel, 'rules', []).length > 0">
-      <h3 class="mb-2 title font-weight-bold">
+      <h2>
         Rules
-      </h3>
-      <p v-for="(rule, index) in resortHotel.rules" :key="index">{{ rule }}</p>
+      </h2>
+      <div v-for="(rule, index) in resortHotel.rules" :key="index" v-html="markdown(rule)"></div>
     </div>
+    <!-- getting around -->
     <div v-if="get(resortHotel, 'gettingAround', '')">
-      <div v-html="marked(resortHotel.gettingAround)"></div>
+      <div v-html="markdown(resortHotel.gettingAround)"></div>
     </div>
   </div>
 </template>
@@ -39,20 +49,8 @@
 import Vue from 'vue'
 import store from '@/store'
 import { Resort } from '@/types'
-import marked from 'marked'
+import { markdown } from '@/helpers'
 import { get } from 'lodash-es'
-
-// https://marked.js.org/
-marked.setOptions({
-  renderer: new marked.Renderer(),
-  pedantic: false,
-  gfm: true,
-  breaks: false,
-  sanitize: false,
-  smartLists: true,
-  smartypants: false,
-  xhtml: false
-})
 
 export default Vue.extend({
   name: 'resort-rules',
@@ -60,6 +58,10 @@ export default Vue.extend({
     resort: {
       type: Object as () => Resort,
       required: true
+    },
+    hideLocation: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -69,12 +71,12 @@ export default Vue.extend({
   },
   methods: {
     get,
-    marked(content) {
-      if (!content) {
-        return ''
-      }
-      return marked(content)
-    }
+    markdown
   }
 })
 </script>
+
+<style lang="scss" scoped>
+@import '@/styles/utility.scss';
+@import '@/styles/markdown-content.scss';
+</style>

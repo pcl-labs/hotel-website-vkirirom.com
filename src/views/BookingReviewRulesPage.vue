@@ -1,5 +1,5 @@
 <template>
-  <fragment>
+  <div class="page">
     <v-container class="is-limited light--text px-2 px-md-0 py-8">
       <v-row no-gutters>
         <v-col class="px-md-3 order-2 order-md-1" cols="12" md="8">
@@ -13,20 +13,20 @@
       </v-row>
     </v-container>
 
-    <Footer></Footer>
-  </fragment>
+    <page-footer></page-footer>
+  </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import BookingReviewRules from '@/components/BookingReviewRules.vue'
 import BookingConfirmBooking from '@/components/BookingConfirmBooking.vue'
-import Footer from '@/components/Footer.vue'
+import PageFooter from '@/components/PageFooter.vue'
 import store from '@/store'
 
 export default Vue.extend({
   name: 'booking-review-rules-page',
-  components: { BookingReviewRules, BookingConfirmBooking, Footer },
+  components: { BookingReviewRules, BookingConfirmBooking, PageFooter },
   computed: {
     bookingResort() {
       return store.getters['booking/bookingInfo'].resort

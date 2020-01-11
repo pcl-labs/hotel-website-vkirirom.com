@@ -1,5 +1,5 @@
 <template>
-  <fragment>
+  <div class="page">
     <v-container class="is-limited light--text px-2 px-md-0 py-8">
       <v-row no-gutters>
         <v-col class="px-md-3 order-2 order-md-1" cols="12" md="8">
@@ -8,13 +8,13 @@
           </div>
         </v-col>
         <v-col class="pb-0 order-1 order-md-2" cols="12" md="4">
-          <booking-confirm-booking :has-transportation="true" :has-cancel-button="false"></booking-confirm-booking>
+          <booking-confirm-booking :has-cancel-button="false"></booking-confirm-booking>
         </v-col>
       </v-row>
     </v-container>
 
     <resort-description-dialog ref="resortDescriptionRef" slug="Shuttle-Bus"></resort-description-dialog>
-  </fragment>
+  </div>
 </template>
 
 <script lang="ts">

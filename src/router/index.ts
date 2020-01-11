@@ -1,11 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-const Home = () => import('../components/Home.vue')
+const HomePage = () => import('@/views/HomePage.vue')
 const searchpage = () => import('../components/searchpage.vue')
-const Listing = () => import('../components/Listing.vue')
-const thankYou = () => import('../components/thankYou.vue')
 const Contact = () => import('../components/Contact.vue')
+const ListingPage = () => import('@/views/ListingPage.vue')
 const BookingReviewRulesPage = () => import('@/views/BookingReviewRulesPage.vue')
 const BookingCustomerInfoPage = () => import('@/views/BookingCustomerInfoPage.vue')
 const BookingPaymentPage = () => import('@/views/BookingPaymentPage.vue')
@@ -17,7 +16,7 @@ import store from '@/store'
 const routes = [
   {
     path: '/',
-    component: Home
+    component: HomePage
   },
   {
     path: '/search/:id',
@@ -30,12 +29,7 @@ const routes = [
   {
     name: 'listing',
     path: '/listing/:id',
-    component: Listing
-  },
-  // TODO: remove
-  {
-    path: '/thanks',
-    component: thankYou
+    component: ListingPage
   },
   {
     path: '/contact',
@@ -44,22 +38,37 @@ const routes = [
   {
     name: 'booking-review-rules',
     path: '/booking/review-rules',
-    component: BookingReviewRulesPage
+    component: BookingReviewRulesPage,
+    meta: {
+      requiresAuth: true,
+      hasBookingNavigation: true
+    }
   },
   {
     name: 'booking-customer-info',
     path: '/booking/customer-info',
-    component: BookingCustomerInfoPage
+    component: BookingCustomerInfoPage,
+    meta: {
+      requiresAuth: true,
+      hasBookingNavigation: true
+    }
   },
   {
     name: 'booking-payment',
     path: '/booking/payment',
-    component: BookingPaymentPage
+    component: BookingPaymentPage,
+    meta: {
+      requiresAuth: true,
+      hasBookingNavigation: true
+    }
   },
   {
     name: 'booking-thanks',
     path: '/booking/thanks',
-    component: BookingThanksPage
+    component: BookingThanksPage,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/nature-city-investment-cambodia-property',
@@ -102,6 +111,22 @@ const router = new VueRouter({
   }
 })
 
+// Auth guard
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    const isAuthenticated = store.getters['auth/isAuthenticated']
+    if (isAuthenticated) {
+      next()
+    } else {
+      // if we have /login later, route to login page
+      next('/')
+    }
+  } else {
+    next()
+  }
+})
+
+// set/unset loading
 router.beforeResolve((to, from, next) => {
   store.commit('loading/loading', true)
   next()

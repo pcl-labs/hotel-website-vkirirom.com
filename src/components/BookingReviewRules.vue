@@ -32,7 +32,7 @@
 
     <v-row no-gutters>
       <v-col cols="12">
-        <resort-rules :resort="resort"></resort-rules>
+        <resort-rules :resort="resort" :hide-location="true"></resort-rules>
       </v-col>
     </v-row>
     <v-row no-gutters>
@@ -73,7 +73,7 @@ export default Vue.extend({
       return store.getters['booking/bookingInfo'].checkOut
     },
     prices() {
-      return store.getters['booking/bookingInfo'].prices
+      return this.$store.getters['booking/prices']({ rounded: false })
     },
     steps() {
       return store.getters['booking/steps']

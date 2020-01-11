@@ -81,9 +81,7 @@ export default {
       return state.forgotPasswordError
     },
     oauth(state) {
-      return APIPath(
-        `/api/v0/authentication/provider/login?provider=${state.provider}&returnUrl=${state.currentURL}`
-      )
+      return APIPath(`/api/v0/authentication/provider/login?provider=${state.provider}&returnUrl=${state.currentURL}`)
     }
   },
   mutations: {
@@ -132,6 +130,9 @@ export default {
     }
   },
   actions: {
+    updateLoginError(context, payload) {
+      context.commit('updateLoginError', payload)
+    },
     updateDialog(context, payload) {
       const dialog = {
         ...context.state.dialog,
@@ -159,52 +160,77 @@ export default {
       })
     },
     login(context) {
+      context.commit('updateLoginError', '')
       context.commit('updateLoading', true)
-      AuthenticationService.login({
-        model: {
-          email: context.state.email,
-          password: context.state.password
-        }
-      })
-        .then(token => {
-          // TODO: update token by commit
-          context.state.token = token
-          store.dispatch('auth/updateSnackbar', {
-            isOpen: true,
-            type: 'success',
-            timeout: 5000,
-            message: 'Welcome!'
-          })
-          store.dispatch('auth/ping')
-        })
-        .catch(error => {
-          const response = error.response && error.response.data
-          context.commit('updateLoading', false)
-          if (response) {
-            context.state.loginError =
-              'Username or password is incorrect, please try again.'
+      return new Promise((resolve, reject) => {
+        AuthenticationService.login({
+          model: {
+            email: context.state.email,
+            password: context.state.password
           }
         })
+          .then(token => {
+            context.state.token = token
+            console.log('pinging...')
+
+            store
+              .dispatch('auth/ping')
+              .then(resolve)
+              .catch(error => {
+                console.log('Could not get user data after successful login')
+                reject(error)
+              })
+              .finally(() => {
+                context.commit('updateLoading', false)
+              })
+          })
+          .catch(error => {
+            reject(error)
+            const message =
+              (error.response && error.response.data) || 'Username or password is incorrect, please try again.'
+            context.commit('updateLoginError', message)
+            context.commit('updateLoading', false)
+          })
+      })
     },
     register(context) {
       context.commit('updateLoading', true)
-      AuthenticationService.register({
-        model: {
-          email: context.state.email,
-          password: context.state.password
-        }
-      })
-        .then(token => {
-          context.state.token = token
-          store.dispatch('auth/ping')
-        })
-        .catch(error => {
-          const response = error.response && error.response.data
-          context.commit('updateLoading', false)
-          if (response) {
-            context.state.registerError = response[0].description
+      context.commit('updateRegisterError', '')
+      return new Promise((resolve, reject) => {
+        AuthenticationService.register({
+          model: {
+            email: context.state.email,
+            password: context.state.password
           }
         })
+          .then(token => {
+            context.state.token = token
+
+            store
+              .dispatch('auth/ping')
+              .then(resolve)
+              .catch(error => {
+                console.log('Could not get user data after successful login')
+                reject(error)
+              })
+              .finally(() => {
+                context.commit('updateLoading', false)
+              })
+          })
+          .catch(error => {
+            reject(error)
+            context.commit('updateLoading', false)
+
+            const response = error.response && error.response.data
+            if (response) {
+              context.commit('updateRegisterError', response[0].description)
+            } else {
+              context.commit('updateRegisterError', 'Registration failed')
+            }
+            reject(error)
+            context.commit('updateLoading', false)
+          })
+      })
     },
     sendResetPasswordLink(context) {
       // context.commit('updateLoading', true)
@@ -219,20 +245,20 @@ export default {
       })
     },
     ping(context) {
-      AuthenticationService.ping({
-        headers: {
-          Authorization: `Bearer ${context.state.token}`
-        }
+      return new Promise((resolve, reject) => {
+        AuthenticationService.ping({
+          headers: {
+            Authorization: `Bearer ${context.state.token}`
+          }
+        })
+          .then(user => {
+            context.commit('updateUser', user)
+            resolve(user)
+          })
+          .catch(error => {
+            reject(error)
+          })
       })
-        .then(user => {
-          context.commit('updateUser', user)
-        })
-        .catch(() => {
-          console.log("Can't authenticate")
-        })
-        .finally(() => {
-          context.commit('updateLoading', false)
-        })
     }
   }
 }
