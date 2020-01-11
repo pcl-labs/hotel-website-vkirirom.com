@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <!-- <page-home-parrallax-hero></page-home-parrallax-hero> -->
+    <page-home-parrallax-hero></page-home-parrallax-hero>
 
     <div class="page-home--content">
       <v-container class="is-limited">
@@ -404,7 +404,7 @@ const PageHomeParrallaxHero = () => import('@/components/PageHomeParrallaxHero.v
 export default {
   name: 'home-page',
   components: {
-    // PageHomeParrallaxHero,
+    PageHomeParrallaxHero,
     PageFooter
   },
   data() {

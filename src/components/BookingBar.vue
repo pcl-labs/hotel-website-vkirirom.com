@@ -169,17 +169,18 @@ $bar-height-sm: rem(80px);
 
 .wrapper {
   background-color: $dark;
-  box-shadow: $box-shadow-sm;
+  // FIXME: define
+  // box-shadow: $box-shadow-sm;
 }
 .booking-bar,
 .wrapper-2 {
   height: $bar-height-xs;
-  @include media-breakpoint-up(sm) {
+  @include media-breakpoint-up(sm, $my-breakpoints) {
     height: $bar-height-sm;
   }
 }
 .xs-no-limit {
-  @include media-breakpoint-down(xs) {
+  @include media-breakpoint-down(xs, $my-breakpoints) {
     max-width: none;
   }
 }

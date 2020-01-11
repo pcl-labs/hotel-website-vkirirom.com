@@ -9,21 +9,10 @@ $font-path: '~@/assets/font';
 // colors FIXME: don't use these colors, use vuetify variables
 $white:  #FFFFFF;
 $black:  #000000;
-// // $blue:    #007bff;
-// // $indigo:  #6610f2;
-// // $purple:  #6f42c1;
-// $pink:    #E5B5CE;
-// $red:     #EB5757;
-// // $orange:  #fd7e14;
-// $yellow:  #F7B947;
-// $green:   #4B7F52;
-// // $teal:    #20c997;
-// // $cyan:    #17a2b8;
 
 $primary: #E5B5CE;
 $secondary: #4B7F52;
 
-// $bright: #fff;
 $light: #B9BCC1;
 $dark: #191C21;
 $gray-4f: #4f4f4f; // TODO: Calendar Date Disabled
@@ -35,17 +24,13 @@ $brand-3: #B9BCC1;
 $brand-4: #77C381;
 
 // z-index
-// $header-zindex: 5;
-// $loading-zindex: 4;
-// $footer-zindex: 3;
 $booking-bar-zindex: 2;
-// $page-content-zindex: 1;
-
-$header-height: 56px;
 
 // loading
 $loading-transition-time: 500ms;
 
+// spacing
+$header-height: 56px;
 // grid https://vuetifyjs.com/en/customization/breakpoints
 $my-breakpoints: (
   xxs: 0,

@@ -1,4 +1,5 @@
-.datepicker--dark.datepicker--dark {
+::v-deep {
+  .datepicker--dark.datepicker--dark {
   border: none;
   background: $dark;
   color: $light;
@@ -113,4 +114,5 @@
   .asd__action-buttons {
     display: none;
   }
+}
 }
