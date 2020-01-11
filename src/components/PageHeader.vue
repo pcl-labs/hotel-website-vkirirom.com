@@ -23,7 +23,7 @@
         color="light"
       ></v-app-bar-nav-icon>
       <!-- desktop menu -->
-      <v-toolbar-items v-if="!shouldShowBookingNavigation" class="d-none d-md-flex">
+      <v-toolbar-items v-if="!shouldShowBookingNavigation" class="hidden-sm-and-down d-md-flex">
         <v-btn text class="button text-transform-none" to="/search/accommodations"
           ><h3 class="mb-0">Accommodation</h3></v-btn
         >

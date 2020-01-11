@@ -96,7 +96,7 @@ export default Vue.extend({
   border-radius: 4px;
   width: rem(64px);
   height: rem(64px);
-  @include media-breakpoint-up(md) {
+  @include media-breakpoint-up(md, $my-breakpoints) {
     width: rem(72px);
     height: rem(72px);
   }

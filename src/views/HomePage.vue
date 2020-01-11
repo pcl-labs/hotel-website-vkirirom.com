@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <page-home-parrallax-hero></page-home-parrallax-hero>
+    <!-- <page-home-parrallax-hero></page-home-parrallax-hero> -->
 
     <div class="page-home--content">
       <v-container class="is-limited">
@@ -41,7 +41,7 @@
               <v-img
                 :src="accommodation.featuredImage"
                 height="150px"
-                class="d-none d-md-block"
+                class="hidden-sm-and-down d-md-block"
                 style="border-top-left-radius: 10px; border-top-right-radius: 10px;"
               ></v-img>
               <v-row no-gutters align-start>
@@ -137,7 +137,7 @@
               <v-img
                 :src="experience.featuredImage"
                 height="150px"
-                class="d-none d-md-block"
+                class="hidden-sm-and-down d-md-block"
                 style="border-top-left-radius: 10px; border-top-right-radius: 10px;"
               ></v-img>
               <v-row no-gutters align-start>
@@ -230,7 +230,7 @@
               <v-img
                 :src="event.featuredImage"
                 height="150px"
-                class="d-none d-md-block"
+                class="hidden-sm-and-down d-md-block"
                 style="border-top-left-radius: 10px; border-top-right-radius: 10px;"
               ></v-img>
               <v-row no-gutters align-start>
@@ -306,7 +306,7 @@
               <v-img
                 :src="lease.featuredImage"
                 height="150px"
-                class="d-none d-md-block"
+                class="hidden-sm-and-down d-md-block"
                 style="border-top-left-radius: 10px; border-top-right-radius: 10px;"
               ></v-img>
               <v-row no-gutters align-start>
@@ -367,7 +367,7 @@
               <v-img
                 :src="ecotourism.featuredImage"
                 height="150px"
-                class="d-none d-md-block"
+                class="hidden-sm-and-down d-md-block"
                 style="border-top-left-radius: 10px; border-top-right-radius: 10px;"
               ></v-img>
               <v-row no-gutters align-start>
@@ -404,7 +404,7 @@ const PageHomeParrallaxHero = () => import('@/components/PageHomeParrallaxHero.v
 export default {
   name: 'home-page',
   components: {
-    PageHomeParrallaxHero,
+    // PageHomeParrallaxHero,
     PageFooter
   },
   data() {
