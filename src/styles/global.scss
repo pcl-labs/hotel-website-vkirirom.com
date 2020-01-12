@@ -107,12 +107,12 @@ input:-webkit-autofill {
 
 // fix vuetify labels when browser autofills data
 .dark .v-label--active.theme--dark {
-  background-color: $dark;
+  background-color: map-get($grey, 'darken-4');
 }
 
 // vuetify card dark
 .theme--dark.v-card.v-card {
-  color: $light;
+  color: map-get($grey, 'lighten-1');
 }
 
 // vuetify buttons

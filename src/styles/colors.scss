@@ -1,9 +1,9 @@
-@import 'vuetify/src/styles/tools/_functions.sass';
+@import '~vuetify/src/styles/tools/_functions.sass';
 
 $red: () !default;
 $red: map-deep-merge(
   (
-    'base': #F44336,
+    'base': #EB5757,
     'lighten-5': #FFEBEE,
     'lighten-4': #FFCDD2,
     'lighten-3': #EF9A9A,
@@ -24,7 +24,7 @@ $red: map-deep-merge(
 $pink: () !default;
 $pink: map-deep-merge(
   (
-    'base': #e91e63,
+    'base': #E5B5CE,
     'lighten-5': #fce4ec,
     'lighten-4': #f8bbd0,
     'lighten-3': #f48fb1,
@@ -192,7 +192,7 @@ $teal: map-deep-merge(
 $green: () !default;
 $green: map-deep-merge(
   (
-    'base': #4CAF50,
+    'base': #4B7F52,
     'lighten-5': #E8F5E9,
     'lighten-4': #C8E6C9,
     'lighten-3': #A5D6A7,
@@ -255,7 +255,7 @@ $lime: map-deep-merge(
 $yellow: () !default;
 $yellow: map-deep-merge(
   (
-    'base': #ffeb3b,
+    'base': #F7B947,
     'lighten-5': #fffde7,
     'lighten-4': #fff9c4,
     'lighten-3': #fff59d,
@@ -375,11 +375,11 @@ $grey: map-deep-merge(
     'lighten-4': #f5f5f5,
     'lighten-3': #eeeeee,
     'lighten-2': #e0e0e0,
-    'lighten-1': #bdbdbd,
-    'darken-1': #757575,
+    'lighten-1': #B9BCC1,
+    'darken-1': #828282,
     'darken-2': #616161,
-    'darken-3': #424242,
-    'darken-4': #212121
+    'darken-3': #4f4f4f,
+    'darken-4': #191C21
   ),
   $grey
 );

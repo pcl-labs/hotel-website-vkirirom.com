@@ -1,7 +1,7 @@
 <template>
   <div class="page-header" v-show="shouldShowPageHeader">
     <auth-dialog ref="authDialogRef"></auth-dialog>
-    <v-app-bar app dark color="dark" height="56">
+    <v-app-bar app color="dark" height="56">
       <!-- logo -->
       <router-link exact class="page-header--logo" to="/">
         <img
@@ -205,7 +205,7 @@ export default {
   height: rem(44px) !important;
 }
 .button {
-  color: $light;
+  color: map-get($grey, 'lighten-1');
   text-transform: capitalize;
 }
 .page-header--logo {
@@ -224,6 +224,6 @@ export default {
   transform: rotate(90deg);
 }
 .page-header--drawer {
-  box-shadow: 0px 1px 0px $dark;
+  box-shadow: 0px 1px 0px map-get($grey, 'darken-4');
 }
 </style>

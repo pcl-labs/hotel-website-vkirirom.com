@@ -332,7 +332,7 @@ export default Vue.extend({
 @import '@/styles/sticky-submit-bar.scss';
 
 .v-list.theme--dark {
-  background: $dark;
+  background: map-get($grey, 'darken-4');
 }
 .guests-count {
   min-width: rem(24px);

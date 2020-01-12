@@ -1,8 +1,8 @@
 ::v-deep {
   .datepicker--dark.datepicker--dark {
   border: none;
-  background: $dark;
-  color: $light;
+  background: map-get($grey, 'darken-4');
+  color: map-get($grey, 'lighten-1');
   margin-left: auto;
   margin-right: auto;
   .asd__inner-wrapper {
@@ -30,8 +30,8 @@
     background: none;
     top: rem(4px);
     > button {
-      border: 1px solid $light;
-      background: $dark;
+      border: 1px solid map-get($grey, 'lighten-1');
+      background: map-get($grey, 'darken-4');
       width: rem(32px);
       height: rem(32px);
       display: block;
@@ -44,7 +44,7 @@
     padding-left: 0;
     button {
       background: url(https://res.cloudinary.com/die9ji2vn/image/upload/v1575367644/website-static/icon/arrow-left_jkne8n.svg)
-        no-repeat center $dark;
+        no-repeat center map-get($grey, 'darken-4');
       background-size: rem(16px);
     }
   }
@@ -52,7 +52,7 @@
     padding-right: 0;
     button {
       background: url(https://res.cloudinary.com/die9ji2vn/image/upload/v1575367644/website-static/icon/arrow-right_lr2qqp.svg)
-        no-repeat center $dark;
+        no-repeat center map-get($grey, 'darken-4');
       background-size: rem(16px);
     }
   }
@@ -65,13 +65,13 @@
   }
   // cells
   .asd__month-table {
-    background: $dark;
+    background: map-get($grey, 'darken-4');
   }
   .asd__day-button:hover {
-    background: rgba($light, 0.2);
+    background: rgba(map-get($grey, 'lighten-1'), 0.2);
   }
   .asd__day--enabled {
-    background: $dark;
+    background: map-get($grey, 'darken-4');
     border-color: $gray-4f;
     &:hover {
       color: $brand-4 !important;
@@ -85,7 +85,7 @@
     }
   }
   .asd__day--hovered:not(.asd__day--disabled) {
-    background: $dark !important;
+    background: map-get($grey, 'darken-4') !important;
     border-color: $gray-4f !important;
     color: $brand-4 !important;
   }

@@ -92,7 +92,7 @@ export default Vue.extend({
 <style lang="scss" scoped>
 @import '@/styles/utility.scss';
 .box-bordered {
-  border: 1px solid $light;
+  border: 1px solid map-get($grey, 'lighten-1');
   border-radius: 4px;
   width: rem(64px);
   height: rem(64px);

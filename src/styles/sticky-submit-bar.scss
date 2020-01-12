@@ -9,7 +9,7 @@
   }
   .submit-bar--sticky {
     display: block !important;
-    background-color: $dark;
+    background-color: map-get($grey, 'darken-4');
     // background-color: $gray-4f;
     .v-btn {
       border-radius: 0;

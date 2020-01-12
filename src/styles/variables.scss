@@ -6,22 +6,21 @@ $body-font-family: Montserrat, sans-serif;
 // paths
 $font-path: '~@/assets/font';
 
-// colors FIXME: don't use these colors, use vuetify variables
-$white:  #FFFFFF;
-$black:  #000000;
+$white: #ffffff;
+$black: #000000;
 
-$primary: #E5B5CE;
-$secondary: #4B7F52;
+$primary: #e5b5ce;
+// $secondary: #4b7f52;
 
-$light: #B9BCC1;
-$dark: #191C21;
+// $light: #b9bcc1;
+// $dark: #191c21;
 $gray-4f: #4f4f4f; // TODO: Calendar Date Disabled
 $gray-82: #828282; // TODO: Inactive Text Gray (in input)
 
-$brand-1: #191C21;
-$brand-2: #E1E7ED;
-$brand-3: #B9BCC1;
-$brand-4: #77C381;
+$brand-1: #191c21;
+$brand-2: #e1e7ed;
+$brand-3: #b9bcc1;
+$brand-4: #77c381;
 
 // z-index
 $booking-bar-zindex: 2;
@@ -40,8 +39,6 @@ $my-breakpoints: (
   lg: 1264px,
   xl: 1904px
 );
-
-
 
 // --------------------------------------------------------
 // Vuetify 2.2.3 variables

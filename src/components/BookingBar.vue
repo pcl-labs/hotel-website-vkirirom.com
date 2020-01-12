@@ -168,9 +168,7 @@ $bar-height-sm: rem(80px);
 }
 
 .wrapper {
-  background-color: $dark;
-  // FIXME: define
-  // box-shadow: $box-shadow-sm;
+  background-color: map-get($grey, 'darken-4');
 }
 .booking-bar,
 .wrapper-2 {
