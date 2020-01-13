@@ -85,6 +85,6 @@ export default {
   color: #d8dade;
 }
 .page-footer {
-  background-color: $dark !important;
+  background-color: map-get($grey, 'darken-4') !important;
 }
 </style>

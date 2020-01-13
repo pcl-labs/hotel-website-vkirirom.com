@@ -1,3 +1,4 @@
+/* eslint-disable */
 export default [
   { id: 1, flag: 'https://restcountries.eu/data/afg.svg', name: 'Afghanistan', callingCodes: ['93'] },
   { id: 2, flag: 'https://restcountries.eu/data/ala.svg', name: 'Åland Islands', callingCodes: ['358'] },
@@ -25,14 +26,34 @@ export default [
   { id: 24, flag: 'https://restcountries.eu/data/ben.svg', name: 'Benin', callingCodes: ['229'] },
   { id: 25, flag: 'https://restcountries.eu/data/bmu.svg', name: 'Bermuda', callingCodes: ['1441'] },
   { id: 26, flag: 'https://restcountries.eu/data/btn.svg', name: 'Bhutan', callingCodes: ['975'] },
-  { id: 27, flag: 'https://restcountries.eu/data/bol.svg', name: 'Bolivia (Plurinational State of)', callingCodes: ['591'] },
-  { id: 28, flag: 'https://restcountries.eu/data/bes.svg', name: 'Bonaire, Sint Eustatius and Saba', callingCodes: ['5997'] },
+  {
+    id: 27,
+    flag: 'https://restcountries.eu/data/bol.svg',
+    name: 'Bolivia (Plurinational State of)',
+    callingCodes: ['591']
+  },
+  {
+    id: 28,
+    flag: 'https://restcountries.eu/data/bes.svg',
+    name: 'Bonaire, Sint Eustatius and Saba',
+    callingCodes: ['5997']
+  },
   { id: 29, flag: 'https://restcountries.eu/data/bih.svg', name: 'Bosnia and Herzegovina', callingCodes: ['387'] },
   { id: 30, flag: 'https://restcountries.eu/data/bwa.svg', name: 'Botswana', callingCodes: ['267'] },
   { id: 31, flag: 'https://restcountries.eu/data/bvt.svg', name: 'Bouvet Island', callingCodes: [''] },
   { id: 32, flag: 'https://restcountries.eu/data/bra.svg', name: 'Brazil', callingCodes: ['55'] },
-  { id: 33, flag: 'https://restcountries.eu/data/iot.svg', name: 'British Indian Ocean Territory', callingCodes: ['246'] },
-  { id: 34, flag: 'https://restcountries.eu/data/umi.svg', name: 'United States Minor Outlying Islands', callingCodes: [''] },
+  {
+    id: 33,
+    flag: 'https://restcountries.eu/data/iot.svg',
+    name: 'British Indian Ocean Territory',
+    callingCodes: ['246']
+  },
+  {
+    id: 34,
+    flag: 'https://restcountries.eu/data/umi.svg',
+    name: 'United States Minor Outlying Islands',
+    callingCodes: ['']
+  },
   { id: 35, flag: 'https://restcountries.eu/data/vgb.svg', name: 'Virgin Islands (British)', callingCodes: ['1284'] },
   { id: 36, flag: 'https://restcountries.eu/data/vir.svg', name: 'Virgin Islands (U.S.)', callingCodes: ['1 340'] },
   { id: 37, flag: 'https://restcountries.eu/data/brn.svg', name: 'Brunei Darussalam', callingCodes: ['673'] },
@@ -53,7 +74,12 @@ export default [
   { id: 52, flag: 'https://restcountries.eu/data/col.svg', name: 'Colombia', callingCodes: ['57'] },
   { id: 53, flag: 'https://restcountries.eu/data/com.svg', name: 'Comoros', callingCodes: ['269'] },
   { id: 54, flag: 'https://restcountries.eu/data/cog.svg', name: 'Congo', callingCodes: ['242'] },
-  { id: 55, flag: 'https://restcountries.eu/data/cod.svg', name: 'Congo (Democratic Republic of the)', callingCodes: ['243'] },
+  {
+    id: 55,
+    flag: 'https://restcountries.eu/data/cod.svg',
+    name: 'Congo (Democratic Republic of the)',
+    callingCodes: ['243']
+  },
   { id: 56, flag: 'https://restcountries.eu/data/cok.svg', name: 'Cook Islands', callingCodes: ['682'] },
   { id: 57, flag: 'https://restcountries.eu/data/cri.svg', name: 'Costa Rica', callingCodes: ['506'] },
   { id: 58, flag: 'https://restcountries.eu/data/hrv.svg', name: 'Croatia', callingCodes: ['385'] },
@@ -64,7 +90,12 @@ export default [
   { id: 63, flag: 'https://restcountries.eu/data/dnk.svg', name: 'Denmark', callingCodes: ['45'] },
   { id: 64, flag: 'https://restcountries.eu/data/dji.svg', name: 'Djibouti', callingCodes: ['253'] },
   { id: 65, flag: 'https://restcountries.eu/data/dma.svg', name: 'Dominica', callingCodes: ['1767'] },
-  { id: 66, flag: 'https://restcountries.eu/data/dom.svg', name: 'Dominican Republic', callingCodes: ['1809', '1829', '1849'] },
+  {
+    id: 66,
+    flag: 'https://restcountries.eu/data/dom.svg',
+    name: 'Dominican Republic',
+    callingCodes: ['1809', '1829', '1849']
+  },
   { id: 67, flag: 'https://restcountries.eu/data/ecu.svg', name: 'Ecuador', callingCodes: ['593'] },
   { id: 68, flag: 'https://restcountries.eu/data/egy.svg', name: 'Egypt', callingCodes: ['20'] },
   { id: 69, flag: 'https://restcountries.eu/data/slv.svg', name: 'El Salvador', callingCodes: ['503'] },
@@ -97,7 +128,12 @@ export default [
   { id: 96, flag: 'https://restcountries.eu/data/gnb.svg', name: 'Guinea-Bissau', callingCodes: ['245'] },
   { id: 97, flag: 'https://restcountries.eu/data/guy.svg', name: 'Guyana', callingCodes: ['592'] },
   { id: 98, flag: 'https://restcountries.eu/data/hti.svg', name: 'Haiti', callingCodes: ['509'] },
-  { id: 99, flag: 'https://restcountries.eu/data/hmd.svg', name: 'Heard Island and McDonald Islands', callingCodes: [''] },
+  {
+    id: 99,
+    flag: 'https://restcountries.eu/data/hmd.svg',
+    name: 'Heard Island and McDonald Islands',
+    callingCodes: ['']
+  },
   { id: 100, flag: 'https://restcountries.eu/data/vat.svg', name: 'Holy See', callingCodes: ['379'] },
   { id: 101, flag: 'https://restcountries.eu/data/hnd.svg', name: 'Honduras', callingCodes: ['504'] },
   { id: 102, flag: 'https://restcountries.eu/data/hkg.svg', name: 'Hong Kong', callingCodes: ['852'] },
@@ -121,7 +157,12 @@ export default [
   { id: 120, flag: 'https://restcountries.eu/data/kir.svg', name: 'Kiribati', callingCodes: ['686'] },
   { id: 121, flag: 'https://restcountries.eu/data/kwt.svg', name: 'Kuwait', callingCodes: ['965'] },
   { id: 122, flag: 'https://restcountries.eu/data/kgz.svg', name: 'Kyrgyzstan', callingCodes: ['996'] },
-  { id: 123, flag: 'https://restcountries.eu/data/lao.svg', name: "Lao People's Democratic Republic", callingCodes: ['856'] },
+  {
+    id: 123,
+    flag: 'https://restcountries.eu/data/lao.svg',
+    name: "Lao People's Democratic Republic",
+    callingCodes: ['856']
+  },
   { id: 124, flag: 'https://restcountries.eu/data/lva.svg', name: 'Latvia', callingCodes: ['371'] },
   { id: 125, flag: 'https://restcountries.eu/data/lbn.svg', name: 'Lebanon', callingCodes: ['961'] },
   { id: 126, flag: 'https://restcountries.eu/data/lso.svg', name: 'Lesotho', callingCodes: ['266'] },
@@ -132,7 +173,8 @@ export default [
   { id: 131, flag: 'https://restcountries.eu/data/lux.svg', name: 'Luxembourg', callingCodes: ['352'] },
   { id: 132, flag: 'https://restcountries.eu/data/mac.svg', name: 'Macao', callingCodes: ['853'] },
   {
-    id: 133, flag: 'https://restcountries.eu/data/mkd.svg',
+    id: 133,
+    flag: 'https://restcountries.eu/data/mkd.svg',
     name: 'Macedonia (the former Yugoslav Republic of)',
     callingCodes: ['389']
   },
@@ -148,7 +190,12 @@ export default [
   { id: 143, flag: 'https://restcountries.eu/data/mus.svg', name: 'Mauritius', callingCodes: ['230'] },
   { id: 144, flag: 'https://restcountries.eu/data/myt.svg', name: 'Mayotte', callingCodes: ['262'] },
   { id: 145, flag: 'https://restcountries.eu/data/mex.svg', name: 'Mexico', callingCodes: ['52'] },
-  { id: 146, flag: 'https://restcountries.eu/data/fsm.svg', name: 'Micronesia (Federated States of)', callingCodes: ['691'] },
+  {
+    id: 146,
+    flag: 'https://restcountries.eu/data/fsm.svg',
+    name: 'Micronesia (Federated States of)',
+    callingCodes: ['691']
+  },
   { id: 147, flag: 'https://restcountries.eu/data/mda.svg', name: 'Moldova (Republic of)', callingCodes: ['373'] },
   { id: 148, flag: 'https://restcountries.eu/data/mco.svg', name: 'Monaco', callingCodes: ['377'] },
   { id: 149, flag: 'https://restcountries.eu/data/mng.svg', name: 'Mongolia', callingCodes: ['976'] },
@@ -169,7 +216,8 @@ export default [
   { id: 164, flag: 'https://restcountries.eu/data/niu.svg', name: 'Niue', callingCodes: ['683'] },
   { id: 165, flag: 'https://restcountries.eu/data/nfk.svg', name: 'Norfolk Island', callingCodes: ['672'] },
   {
-    id: 166, flag: 'https://restcountries.eu/data/prk.svg',
+    id: 166,
+    flag: 'https://restcountries.eu/data/prk.svg',
     name: "Korea (Democratic People's Republic of)",
     callingCodes: ['850']
   },
@@ -196,7 +244,8 @@ export default [
   { id: 187, flag: 'https://restcountries.eu/data/rwa.svg', name: 'Rwanda', callingCodes: ['250'] },
   { id: 188, flag: 'https://restcountries.eu/data/blm.svg', name: 'Saint Barthélemy', callingCodes: ['590'] },
   {
-    id: 189, flag: 'https://restcountries.eu/data/shn.svg',
+    id: 189,
+    flag: 'https://restcountries.eu/data/shn.svg',
     name: 'Saint Helena, Ascension and Tristan da Cunha',
     callingCodes: ['290']
   },
@@ -204,7 +253,12 @@ export default [
   { id: 191, flag: 'https://restcountries.eu/data/lca.svg', name: 'Saint Lucia', callingCodes: ['1758'] },
   { id: 192, flag: 'https://restcountries.eu/data/maf.svg', name: 'Saint Martin (French part)', callingCodes: ['590'] },
   { id: 193, flag: 'https://restcountries.eu/data/spm.svg', name: 'Saint Pierre and Miquelon', callingCodes: ['508'] },
-  { id: 194, flag: 'https://restcountries.eu/data/vct.svg', name: 'Saint Vincent and the Grenadines', callingCodes: ['1784'] },
+  {
+    id: 194,
+    flag: 'https://restcountries.eu/data/vct.svg',
+    name: 'Saint Vincent and the Grenadines',
+    callingCodes: ['1784']
+  },
   { id: 195, flag: 'https://restcountries.eu/data/wsm.svg', name: 'Samoa', callingCodes: ['685'] },
   { id: 196, flag: 'https://restcountries.eu/data/smr.svg', name: 'San Marino', callingCodes: ['378'] },
   { id: 197, flag: 'https://restcountries.eu/data/stp.svg', name: 'Sao Tome and Principe', callingCodes: ['239'] },
@@ -221,7 +275,8 @@ export default [
   { id: 208, flag: 'https://restcountries.eu/data/som.svg', name: 'Somalia', callingCodes: ['252'] },
   { id: 209, flag: 'https://restcountries.eu/data/zaf.svg', name: 'South Africa', callingCodes: ['27'] },
   {
-    id: 210, flag: 'https://restcountries.eu/data/sgs.svg',
+    id: 210,
+    flag: 'https://restcountries.eu/data/sgs.svg',
     name: 'South Georgia and the South Sandwich Islands',
     callingCodes: ['500']
   },
@@ -238,7 +293,12 @@ export default [
   { id: 221, flag: 'https://restcountries.eu/data/syr.svg', name: 'Syrian Arab Republic', callingCodes: ['963'] },
   { id: 222, flag: 'https://restcountries.eu/data/twn.svg', name: 'Taiwan', callingCodes: ['886'] },
   { id: 223, flag: 'https://restcountries.eu/data/tjk.svg', name: 'Tajikistan', callingCodes: ['992'] },
-  { id: 224, flag: 'https://restcountries.eu/data/tza.svg', name: 'Tanzania, United Republic of', callingCodes: ['255'] },
+  {
+    id: 224,
+    flag: 'https://restcountries.eu/data/tza.svg',
+    name: 'Tanzania, United Republic of',
+    callingCodes: ['255']
+  },
   { id: 225, flag: 'https://restcountries.eu/data/tha.svg', name: 'Thailand', callingCodes: ['66'] },
   { id: 226, flag: 'https://restcountries.eu/data/tls.svg', name: 'Timor-Leste', callingCodes: ['670'] },
   { id: 227, flag: 'https://restcountries.eu/data/tgo.svg', name: 'Togo', callingCodes: ['228'] },
@@ -254,7 +314,8 @@ export default [
   { id: 237, flag: 'https://restcountries.eu/data/ukr.svg', name: 'Ukraine', callingCodes: ['380'] },
   { id: 238, flag: 'https://restcountries.eu/data/are.svg', name: 'United Arab Emirates', callingCodes: ['971'] },
   {
-    id: 239, flag: 'https://restcountries.eu/data/gbr.svg',
+    id: 239,
+    flag: 'https://restcountries.eu/data/gbr.svg',
     name: 'United Kingdom of Great Britain and Northern Ireland',
     callingCodes: ['44']
   },
@@ -262,7 +323,12 @@ export default [
   { id: 241, flag: 'https://restcountries.eu/data/ury.svg', name: 'Uruguay', callingCodes: ['598'] },
   { id: 242, flag: 'https://restcountries.eu/data/uzb.svg', name: 'Uzbekistan', callingCodes: ['998'] },
   { id: 243, flag: 'https://restcountries.eu/data/vut.svg', name: 'Vanuatu', callingCodes: ['678'] },
-  { id: 244, flag: 'https://restcountries.eu/data/ven.svg', name: 'Venezuela (Bolivarian Republic of)', callingCodes: ['58'] },
+  {
+    id: 244,
+    flag: 'https://restcountries.eu/data/ven.svg',
+    name: 'Venezuela (Bolivarian Republic of)',
+    callingCodes: ['58']
+  },
   { id: 245, flag: 'https://restcountries.eu/data/vnm.svg', name: 'Viet Nam', callingCodes: ['84'] },
   { id: 246, flag: 'https://restcountries.eu/data/wlf.svg', name: 'Wallis and Futuna', callingCodes: ['681'] },
   { id: 247, flag: 'https://restcountries.eu/data/esh.svg', name: 'Western Sahara', callingCodes: ['212'] },
@@ -270,3 +336,4 @@ export default [
   { id: 249, flag: 'https://restcountries.eu/data/zmb.svg', name: 'Zambia', callingCodes: ['260'] },
   { id: 250, flag: 'https://restcountries.eu/data/zwe.svg', name: 'Zimbabwe', callingCodes: ['263'] }
 ]
+/* eslint-enable */

@@ -146,7 +146,7 @@ export default Vue.extend({
 <style lang="scss" scoped>
 @import '@/styles/utility.scss';
 .theme--dark.v-card.v-card--outlined {
-  border-color: $light !important;
+  border-color: map-get($grey, 'lighten-1') !important;
 }
 ::v-deep {
   .phone-input--code {
@@ -177,7 +177,7 @@ export default Vue.extend({
     }
   }
   .theme--dark.v-icon {
-    color: $light;
+    color: map-get($grey, 'lighten-1');
   }
 }
 </style>

@@ -1,9 +1,7 @@
-@import './bootstrap.scss';
-@import './datepicker-dark-theme.scss';
 @import './global-typography.scss';
 
+
 #app {
-  font-family: $font-family-sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   // TODO: refactor!
@@ -71,12 +69,12 @@ input:-webkit-autofill {
   &.container {
     max-width: 316px;
   }
-  @include media-breakpoint-up(sm) {
+  @include media-breakpoint-up(sm, $my-breakpoints) {
     &.container {
       max-width: 540px;
     }
   }
-  @include media-breakpoint-up(md) {
+  @include media-breakpoint-up(md, $my-breakpoints) {
     &.container {
       max-width: 924px;
     }
@@ -109,12 +107,12 @@ input:-webkit-autofill {
 
 // fix vuetify labels when browser autofills data
 .dark .v-label--active.theme--dark {
-  background-color: $dark;
+  background-color: map-get($grey, 'darken-4');
 }
 
 // vuetify card dark
 .theme--dark.v-card.v-card {
-  color: $light;
+  color: map-get($grey, 'lighten-1');
 }
 
 // vuetify buttons

@@ -15,7 +15,6 @@
           ></v-img>
         </div>
       </div>
-      <div class="d-none" :style="`background-image: url(http://placehold.it/500x500);`"></div>
       <div class="layer layer-2 layer--parallax" :style="`background-image: url(${image2});`"></div>
       <div class="layer layer-3 layer--parallax" :style="`background-image: url(${image3});`"></div>
       <div class="layer layer-4 layer--parallax" :style="`background-image: url(${image4});`"></div>
@@ -117,7 +116,6 @@ export default Vue.extend({
     },
     getImage(number, breakpointName) {
       const image = images['image' + number]
-      console.log('breakpointName', breakpointName)
 
       return image[this.overridedBreakpoint || breakpointName] || image['lg']
     }
@@ -158,16 +156,16 @@ $component-height: 1600px;
 $header-height: 56px;
 .parallax-hero {
   --component-height-ratio: 1.7;
-  @include media-breakpoint-up(xs) {
+  @include media-breakpoint-up(xs, $my-breakpoints) {
     --component-height-ratio: 1.55;
   }
-  @include media-breakpoint-up(sm) {
+  @include media-breakpoint-up(sm, $my-breakpoints) {
     --component-height-ratio: 1.33;
   }
-  @include media-breakpoint-up(md) {
+  @include media-breakpoint-up(md, $my-breakpoints) {
     --component-height-ratio: 1.2;
   }
-  @include media-breakpoint-up(lg) {
+  @include media-breakpoint-up(lg, $my-breakpoints) {
     --component-height-ratio: 1;
   }
 }

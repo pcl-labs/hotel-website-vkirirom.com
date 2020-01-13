@@ -332,7 +332,7 @@ export default Vue.extend({
 @import '@/styles/sticky-submit-bar.scss';
 
 .v-list.theme--dark {
-  background: $dark;
+  background: map-get($grey, 'darken-4');
 }
 .guests-count {
   min-width: rem(24px);
@@ -349,11 +349,11 @@ export default Vue.extend({
   height: rem(96px);
   &.v-btn.v-btn {
     border-width: rem(2px);
-    border-color: $gray-82;
-    color: $gray-82;
+    border-color: map-get($grey, 'darken-1');
+    color: map-get($grey, 'darken-1');
     &.is-selected {
-      border-color: $white;
-      color: $white;
+      border-color: map-get($shades, 'white');
+      color: map-get($shades, 'white');
     }
   }
 }

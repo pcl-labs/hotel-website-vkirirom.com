@@ -107,7 +107,7 @@ export default Vue.extend({
     },
     // NOTE: can be used outside of component by ref
     openDialog() {
-      store.dispatch('booking/startBooking', {resort: this.resort, returnUrl: `/listing/${this.$route.params.id}`})
+      store.dispatch('booking/startBooking', { resort: this.resort, returnUrl: `/listing/${this.$route.params.id}` })
       store.dispatch('booking/updateDialog', {
         isOpen: true
       })

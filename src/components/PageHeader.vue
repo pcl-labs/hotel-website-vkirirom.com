@@ -1,7 +1,7 @@
 <template>
   <div class="page-header" v-show="shouldShowPageHeader">
     <auth-dialog ref="authDialogRef"></auth-dialog>
-    <v-app-bar app dark color="dark" height="56">
+    <v-app-bar dark app height="56">
       <!-- logo -->
       <router-link exact class="page-header--logo" to="/">
         <img
@@ -23,7 +23,7 @@
         color="light"
       ></v-app-bar-nav-icon>
       <!-- desktop menu -->
-      <v-toolbar-items v-if="!shouldShowBookingNavigation" class="d-none d-md-flex">
+      <v-toolbar-items v-if="!shouldShowBookingNavigation" class="hidden-sm-and-down d-md-flex">
         <v-btn text class="button text-transform-none" to="/search/accommodations"
           ><h3 class="mb-0">Accommodation</h3></v-btn
         >
@@ -205,7 +205,7 @@ export default {
   height: rem(44px) !important;
 }
 .button {
-  color: $light;
+  color: map-get($grey, 'lighten-1');
   text-transform: capitalize;
 }
 .page-header--logo {
@@ -224,6 +224,6 @@ export default {
   transform: rotate(90deg);
 }
 .page-header--drawer {
-  box-shadow: 0px 1px 0px $dark;
+  box-shadow: 0px 1px 0px map-get($grey, 'darken-4');
 }
 </style>

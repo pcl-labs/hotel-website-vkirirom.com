@@ -122,9 +122,9 @@ export default Vue.extend({
   padding-right: 10px;
   max-width: 589px;
   width: 100%;
-  border: 2px solid $light;
+  border: 2px solid map-get($grey, 'lighten-1');
   border-radius: 3px;
   background-color: transparent;
-  color: $light;
+  color: map-get($grey, 'lighten-1');
 }
 </style>

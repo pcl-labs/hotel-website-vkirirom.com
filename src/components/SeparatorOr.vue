@@ -23,6 +23,6 @@ export default Vue.extend({
 <style lang="scss" scoped>
 @import '@/styles/utility.scss';
 .light-border {
-  border-color: $light;
+  border-color: map-get($grey, 'lighten-1');
 }
 </style>
