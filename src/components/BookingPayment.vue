@@ -23,6 +23,42 @@
             dark
           >
           </v-text-field>
+          <v-text-field
+            v-model="addressLine"
+            outlined
+            label="Address"
+            name="address"
+            color="light"
+            type="text"
+            required
+            :rules="rules.addressLine"
+            dark
+          >
+          </v-text-field>
+          <v-text-field
+            v-model="addressCity"
+            outlined
+            label="City"
+            name="city"
+            color="light"
+            type="text"
+            required
+            :rules="rules.addressCity"
+            dark
+          >
+          </v-text-field>
+          <v-text-field
+            v-model="addressState"
+            outlined
+            label="State"
+            name="state"
+            color="light"
+            type="text"
+            required
+            :rules="rules.addressState"
+            dark
+          >
+          </v-text-field>
 
           <h4 class="mb-2 title font-weight-bold">Pay with</h4>
 
@@ -105,13 +141,9 @@ export default Vue.extend({
       errorMessage: '',
       rules: {
         fullName: [v => !!v || 'Full name is required'],
-        // validatin of credit card https://www.creditcardrush.com/credit-card-validator/
-        cardNumber: [v => !!v || 'Card number is required', v => isCreditCard(v) || 'Card number should be valid'],
-        expiration: [
-          v => !!v || 'Expiration date is required',
-          v => /^\d{4} \/ \d{1,2}$/.test(v) || 'Date should be like 2020 / 12'
-        ],
-        CVV: [v => !!v || 'CVV is required', v => /^[0-9]{3,4}$/.test(v) || 'CVV should be valid']
+        addressLine: [v => !!v || 'Full name is required'],
+        addressCity: [v => !!v || 'Full name is required'],
+        addressState: [v => !!v || 'Full name is required']
       }
     }
   },
@@ -130,6 +162,30 @@ export default Vue.extend({
       },
       set(value: string) {
         store.dispatch('booking/updateFullName', value)
+      }
+    },
+    addressCity: {
+      get() {
+        return store.getters['booking/bookingInfo'].addressCity
+      },
+      set(value: string) {
+        store.dispatch('booking/updateAddressCity', value)
+      }
+    },
+    addressState: {
+      get() {
+        return store.getters['booking/bookingInfo'].addressState
+      },
+      set(value: string) {
+        store.dispatch('booking/updateAddressState', value)
+      }
+    },
+    addressLine: {
+      get() {
+        return store.getters['booking/bookingInfo'].addressLine
+      },
+      set(value: string) {
+        store.dispatch('booking/updateAddressLine', value)
       }
     },
     paymentError() {

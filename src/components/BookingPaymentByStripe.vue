@@ -1,5 +1,10 @@
 <template>
-  <div ref="card"></div>
+  <div>
+    <div class="card-number" ref="cardNumber"></div>
+    <div class="cvv-number" ref="cvvNumber"></div>
+    <div class="zip-number" ref="zipNumber"></div>
+    <div class="expire-number" ref="expireNumber"></div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -57,11 +62,15 @@ export default Vue.extend({
       // @ts-ignore
       const themes = this.$vuetify.theme.themes
 
-      var style = {
+      var elementStyles = {
         base: {
           color: themes.light.light,
           fontSmoothing: 'antialiased',
           fontSize: '16px',
+          fontFamily: 'Montserrat, Segoe UI, sans-serif',
+          ':focus': {
+            color: themes.light.light
+          },
           '::placeholder': {
             color: themes.light.light
           }
@@ -71,9 +80,40 @@ export default Vue.extend({
           iconColor: themes.light.error
         }
       }
-      const elements = this.stripe.elements()
-      this.card = elements.create('card', { style })
-      this.card.mount(this.$refs.card)
+      const elements = this.stripe.elements({
+        fonts: [
+          {
+            cssSrc: 'https://fonts.googleapis.com/css?family=Montserrat'
+          }
+        ],
+        locale: 'auto'
+      })
+      // this.card = elements.create('card', { style: elementStyles })
+      // this.card.mount(this.$refs.card)
+
+      const elementClasses = {
+        focus: 'focus',
+        empty: 'empty',
+        invalid: 'invalid'
+      }
+
+      var cardNumber = elements.create('cardNumber', {
+        style: elementStyles,
+        classes: elementClasses
+      })
+      cardNumber.mount(this.$refs.cardNumber)
+
+      var cardExpiry = elements.create('cardExpiry', {
+        style: elementStyles,
+        classes: elementClasses
+      })
+      cardExpiry.mount(this.$refs.expireNumber)
+
+      var cardCvc = elements.create('cardCvc', {
+        style: elementStyles,
+        classes: elementClasses
+      })
+      cardCvc.mount(this.$refs.cvvNumber)
     },
     purchase() {
       const that = this

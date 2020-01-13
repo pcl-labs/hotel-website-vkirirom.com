@@ -63,13 +63,15 @@ const defaultState = {
     dateTwo: '',
     checkOut: '',
     prices: [],
-    fullName: ''
+    fullName: '',
+    addressCity: '',
+    addressState: '',
+    addressLine: ''
   },
   vat: 0,
   finalPrice: 0,
   stripeKey: '',
   reservationId: 0,
-  clientSecret: '',
   reservationDetails: {},
   isPaymentLoading: false,
   paymentError: ''
@@ -118,6 +120,15 @@ export default {
     },
     updateFullName(state, payload) {
       state.bookingInfo.fullName = payload
+    },
+    updateAddressLine(state, payload) {
+      state.bookingInfo.addressLine = payload
+    },
+    updateAddressCity(state, payload) {
+      state.bookingInfo.addressCity = payload
+    },
+    updateAddressState(state, payload) {
+      state.bookingInfo.addressState = payload
     },
     updateRoomType(state, payload) {
       state.bookingInfo.roomType = payload
@@ -204,6 +215,15 @@ export default {
     },
     updateFullName(context, payload) {
       context.commit('updateFullName', payload)
+    },
+    updateAddressLine(context, payload) {
+      context.commit('updateAddressLine', payload)
+    },
+    updateAddressCity(context, payload) {
+      context.commit('updateAddressCity', payload)
+    },
+    updateAddressState(context, payload) {
+      context.commit('updateAddressState', payload)
     },
     updateRoomType(context, payload) {
       context.commit('updateRoomType', payload)
