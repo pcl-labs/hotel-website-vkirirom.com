@@ -1,7 +1,7 @@
 <template>
   <div class="page-header" v-show="shouldShowPageHeader">
     <auth-dialog ref="authDialogRef"></auth-dialog>
-    <v-app-bar app color="dark" height="56">
+    <v-app-bar dark app height="56">
       <!-- logo -->
       <router-link exact class="page-header--logo" to="/">
         <img

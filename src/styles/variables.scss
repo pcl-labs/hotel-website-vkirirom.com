@@ -1,21 +1,21 @@
 @import '~sass-rem';
 @import './colors';
 
+$material-light: () !default;
+$material-dark: () !default;
+
+@import './material-light';
+@import './material-dark';
+
 $body-font-family: Montserrat, sans-serif;
 
 // paths
 $font-path: '~@/assets/font';
 
-$white: #ffffff;
-$black: #000000;
-
 $primary: #e5b5ce;
 // $secondary: #4b7f52;
 
-// $light: #b9bcc1;
-// $dark: #191c21;
-$gray-4f: #4f4f4f; // TODO: Calendar Date Disabled
-$gray-82: #828282; // TODO: Inactive Text Gray (in input)
+// $gray-82: #828282; // TODO: Inactive Text Gray (in input)
 
 $brand-1: #191c21;
 $brand-2: #e1e7ed;

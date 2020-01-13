@@ -17,7 +17,7 @@
   .asd__month-name {
     margin-bottom: rem(48px);
     display: inline-flex;
-    color: $white;
+    color: map-get($shades, 'white');
     padding: rem(6px 8px);
     border-radius: rem(4px);
     font-size: rem(20px);
@@ -60,7 +60,7 @@
     margin-top: rem(8px);
     padding: 0;
     .asd__day-title {
-      color: $gray-82;
+      color: map-get($grey, 'darken-1');
     }
   }
   // cells
@@ -72,13 +72,13 @@
   }
   .asd__day--enabled {
     background: map-get($grey, 'darken-4');
-    border-color: $gray-4f;
+    border-color: map-get($grey, 'darken-3');
     &:hover {
       color: $brand-4 !important;
     }
   }
   .asd__day--disabled {
-    background: $gray-4f !important;
+    background: map-get($grey, 'darken-3') !important;
     color: $brand-3 !important;
     &:hover {
       color: $brand-3 !important;
@@ -86,17 +86,17 @@
   }
   .asd__day--hovered:not(.asd__day--disabled) {
     background: map-get($grey, 'darken-4') !important;
-    border-color: $gray-4f !important;
+    border-color: map-get($grey, 'darken-3') !important;
     color: $brand-4 !important;
   }
   .asd__day--in-range {
     &:hover {
-      color: $white !important;
+      color: map-get($shades, 'white') !important;
     }
   }
   .asd__day--selected {
     &:hover {
-      color: $white !important;
+      color: map-get($shades, 'white') !important;
     }
   }
   // .asd__selected-date-one {
