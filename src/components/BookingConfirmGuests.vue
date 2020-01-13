@@ -83,7 +83,7 @@
 
               <v-divider class="light-border mt-2 mb-4"></v-divider>
 
-              <v-list dark class="py-0">
+              <v-list dark class="py-0 mb-6">
                 <v-list-item class="px-0">
                   <v-list-item-content class="light--text py-0">
                     <v-list-item-title class="font-weight-bold body-1 light--text">Adult</v-list-item-title>
@@ -137,7 +137,7 @@
               </v-list>
 
               <v-expand-transition>
-                <p v-if="selectedRoomType.capacity" class="transition-fast-in-fast-out light--text body-2 my-6">
+                <p v-if="selectedRoomType.capacity" class="transition-fast-in-fast-out light--text body-2 mb-6">
                   {{ selectedRoomType.capacity }} guests maximum.
                 </p>
               </v-expand-transition>
