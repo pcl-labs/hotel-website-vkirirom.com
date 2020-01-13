@@ -1,11 +1,11 @@
 @import '~sass-rem';
-@import './colors';
+@import './vuetify-colors';
 
 $material-light: () !default;
 $material-dark: () !default;
 
-@import './material-light';
-@import './material-dark';
+@import './vuetify-material-light';
+@import './vuetify-material-dark';
 
 $body-font-family: Montserrat, sans-serif;
 
