@@ -247,7 +247,7 @@ export default Vue.extend({
       return this.isPricesReady
     },
     shouldShowLoading(): boolean {
-      return !this.shouldShowTotal && (this.isFormValid && this.isLoading)
+      return !this.shouldShowTotal && this.isFormValid && this.isLoading
     },
     shouldShowError(): boolean {
       return !(this.shouldShowTotal || this.shouldShowLoading) && this.isFormValid
@@ -307,4 +307,5 @@ export default Vue.extend({
 @import '@/styles/utility.scss';
 @import '@/styles/dialog-with-hero.scss';
 @import '@/styles/sticky-submit-bar.scss';
+@import '@/styles/datepicker-dark-theme.scss';
 </style>

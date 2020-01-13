@@ -159,11 +159,11 @@ export default Vue.extend({
 <style lang="scss" scoped>
 @import '@/styles/utility.scss';
 .theme--dark.v-card.v-card--outlined {
-  border-color: $light !important;
+  border-color: map-get($grey, 'lighten-1') !important;
 }
 ::v-deep {
   .theme--dark.v-icon {
-    color: $light;
+    color: map-get($grey, 'lighten-1');
   }
   .confirm-payment--card-number {
     &:not(.error--text) {

@@ -1,38 +1,38 @@
 // general
 // --------------------------------------------
 .text-transform-none {
-  text-transform: none;
+  text-transform: none !important;
 }
 .user-select-none {
-  user-select: none;
+  user-select: none !important;
 }
 
 .position-relative {
-  position: relative;
+  position: relative !important;
 }
 .position-absolute {
-  position: absolute;
+  position: absolute !important;
 }
 .position-fixed {
-  position: fixed;
+  position: fixed !important;
 }
 .text-underline {
-  text-decoration: underline;
+  text-decoration: underline !important;
 }
 .font-weight-normal {
-  font-weight: normal;
+  font-weight: normal !important;
 }
 .font-weight-semibold {
-  font-weight: 600;
+  font-weight: 600 !important;
 }
 
 // vkirirom specific
 // --------------------------------------------
 .light-border {
-  border-color: $light;
+  border-color: map-get($grey, 'lighten-1') !important;
 }
 .v-divider {
   &.is-small {
-    width: rem(64px);
+    width: rem(64px) !important;
   }
 }

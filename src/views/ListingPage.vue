@@ -3,11 +3,11 @@
     <div class="pa-0 ma-0">
       <!-- featured images -->
       <v-row no-gutters class="pa-0 mx-0 my-0">
-        <v-col class="pa-0 overflow-hidden d-none d-md-block">
+        <v-col class="pa-0 overflow-hidden hidden-sm-and-down d-md-block">
           <v-img class="image ma-0 pa-0" :src="resort.featuredImage" style="height:470px;"></v-img>
         </v-col>
         <v-col
-          class="pa-0 ma-0 overflow-hidden d-none d-md-block"
+          class="pa-0 ma-0 overflow-hidden hidden-sm-and-down d-md-block"
           v-if="resort.images && resort.images.length > 0"
           style="height:470px;"
         >

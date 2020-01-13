@@ -1,9 +1,7 @@
 <template>
   <fragment>
     <auth-login v-if="activeState === 'auth-login'"></auth-login>
-    <auth-login-existing-account
-      v-if="activeState === 'auth-login-existing-account'"
-    ></auth-login-existing-account>
+    <auth-login-existing-account v-if="activeState === 'auth-login-existing-account'"></auth-login-existing-account>
     <auth-signup v-if="activeState === 'auth-signup'"></auth-signup>
     <auth-forgot-password v-if="activeState === 'auth-forgot-password'"></auth-forgot-password>
   </fragment>

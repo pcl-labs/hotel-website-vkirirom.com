@@ -109,7 +109,7 @@ export default Vue.extend({
 <style lang="scss" scoped>
 @import '@/styles/utility.scss';
 .v-application .theme--light.v-icon {
-  color: $light;
+  color: map-get($grey, 'lighten-1');
 }
 .booking-thanks::v-deep h3 {
   margin-bottom: rem(16px);
