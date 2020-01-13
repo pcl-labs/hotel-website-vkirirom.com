@@ -1,12 +1,11 @@
 <template>
-  <!-- TODO: move to views/ -->
-  <div>
-    <v-content>
-      <v-container>
+  <div class="page">
+    <v-content class="py-0">
+      <v-container class="is-limited light--text px-2 px-md-0 py-8">
         <v-row no-gutters style="min-height: 100vh;">
           <v-flex xs12 md6>
             <v-flex xs12>
-              <h1 style="font-size: 36px; color: #FFFFFF; margin-bottom:43px; margin-top:50px;">
+              <h1 style="font-size: 36px; color: #FFFFFF; margin-bottom:43px;">
                 Contact
               </h1>
             </v-flex>
@@ -97,12 +96,7 @@
           <!-- Don't change the card text's margins, it'll mess everything up. I know it looks weird on localhost, but it aligns properly on deployment. -->
 
           <v-flex xs12 md6>
-            <v-card
-              width="330px"
-              dark
-              class="hidden-sm-and-down d-md-block card"
-              style="margin-left:110px; margin-top:50px;"
-            >
+            <v-card width="330px" dark class="hidden-sm-and-down d-md-block card" style="margin-left:110px;">
               <v-card-text style="padding:30px;">
                 <v-flex xs12>
                   <h2>
@@ -232,44 +226,6 @@ export default {
   }
   a {
     color: #b9bcc1;
-  }
-}
-input:focus,
-textarea:focus {
-  border-color: 1px solid #3d424e !important;
-}
-input:focus,
-textarea:focus {
-  outline-offset: 0px !important;
-  outline: none !important;
-}
-@-webkit-keyframes autofill {
-  to {
-    color: #b9bcc1;
-    background: transparent;
-  }
-}
-
-input:-webkit-autofill {
-  -webkit-animation-name: autofill;
-  -webkit-animation-fill-mode: both;
-}
-.container {
-  padding: 0;
-}
-@media only screen and (max-width: 600px) {
-  .container {
-    max-width: 292px;
-  }
-}
-@media only screen and (min-width: 768px) {
-  .container {
-    max-width: 600px;
-  }
-}
-@media only screen and (min-width: 1024px) {
-  .container {
-    max-width: 900px;
   }
 }
 </style>
