@@ -1,20 +1,13 @@
 <template>
-  <v-container
-    fluid
-    class="booking-bar pa-0"
-    :class="{ 'is-fixed': shouldStick }"
-  >
+  <v-container fluid class="booking-bar pa-0" :class="{ 'is-fixed': shouldStick }">
     <div class="booking-bar--sticker w-100">
       <section class="wrapper">
-        <v-container class="xs-no-limit is-limited py-0 px-3 px-sm-2">
+        <v-container class="xs-no-limit is-limited py-0 px-4 px-sm-2">
           <div class="d-flex wrapper-2">
             <!-- mobile content -->
-            <div class="d-sm-none flex-grow-1">
-              <h2
-                class="booking-bar--title subtitle-1 light--text mb-0"
-                v-text="title"
-              ></h2>
-              <div class="pricing light--text subtitle-2 mr-5">
+            <div class="booking-bar--content is-mobile d-sm-none flex-grow-1 my-2">
+              <h2 class="booking-bar--title subtitle-1 light--text mb-0" v-text="title"></h2>
+              <div class="booking-bar--pricing light--text subtitle-2 mr-5">
                 <span class="currency">$</span>
                 <span class="price" v-text="price"></span>
                 <span class="postfix">/night</span>
@@ -22,12 +15,9 @@
             </div>
             <!-- tablet content -->
             <div class="d-none d-sm-flex d-md-none flex-grow-1 align-center">
-              <h2
-                class="d-none d-sm-block booking-bar--title headline light--text mb-0"
-                v-text="title"
-              ></h2>
+              <h2 class="d-none d-sm-block booking-bar--title headline light--text mb-0" v-text="title"></h2>
               <v-spacer></v-spacer>
-              <div class="pricing light--text subtitle-1 mr-5">
+              <div class="booking-bar--pricing light--text subtitle-1 mr-5">
                 <span class="currency">$</span>
                 <span class="price" v-text="price"></span>
                 <span class="postfix">/night</span>
@@ -35,12 +25,9 @@
             </div>
             <!-- desktop content -->
             <div class="d-none d-md-flex flex-grow-1 align-center">
-              <h2
-                class="d-none d-md-block booking-bar--title display-2 light--text mb-0"
-                v-text="title"
-              ></h2>
+              <h2 class="d-none d-md-block booking-bar--title display-2 light--text mb-0" v-text="title"></h2>
               <v-spacer></v-spacer>
-              <div class="pricing light--text title mr-5 font-weight-semibold">
+              <div class="booking-bar--pricing light--text title mr-5 font-weight-semibold">
                 <span class="currency">$</span>
                 <span class="price" v-text="price"></span>
                 <span class="postfix">/night</span>
@@ -51,6 +38,7 @@
                 <booking-dialog ref="bookingDialog"></booking-dialog>
                 <!-- mobile -->
                 <v-btn
+                  height="40"
                   @click="startBooking()"
                   block
                   medium
@@ -59,9 +47,7 @@
                   class="d-sm-none text-capitalize dark--text"
                 >
                   Book Now
-                  <v-icon class="d-none d-sm-inline"
-                    >keyboard_arrow_right</v-icon
-                  >
+                  <v-icon class="d-none d-sm-inline">keyboard_arrow_right</v-icon>
                 </v-btn>
                 <!-- desktop -->
                 <v-btn
@@ -73,9 +59,7 @@
                   class="hidden-xs-only text-capitalize dark--text title"
                 >
                   Book Now
-                  <v-icon class="d-none d-sm-inline"
-                    >keyboard_arrow_right</v-icon
-                  >
+                  <v-icon class="d-none d-sm-inline">keyboard_arrow_right</v-icon>
                 </v-btn>
               </v-container>
             </div>
@@ -122,21 +106,14 @@ export default {
       this.onScrollPage(null)
     },
     positionListener() {
-      document.addEventListener(
-        'scroll',
-        event => this.onScrollPage(event),
-        getPassiveEventConfig()
-      )
+      document.addEventListener('scroll', event => this.onScrollPage(event), getPassiveEventConfig())
     },
     onScrollPage(event) {
       var scrollPosition = window.pageYOffset
       var windowSize = window.innerHeight
       var bodyHeight = document.body.offsetHeight
 
-      this.bottomDistance = Math.max(
-        bodyHeight - (scrollPosition + windowSize),
-        0
-      )
+      this.bottomDistance = Math.max(bodyHeight - (scrollPosition + windowSize), 0)
     },
     startBooking() {
       this.$refs.bookingDialog.openDialog()
@@ -146,7 +123,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$bar-height-xs: rem(50px);
+$bar-height-xs: rem(56px);
 $bar-height-sm: rem(80px);
 .booking-bar {
   z-index: $booking-bar-zindex;
@@ -180,6 +157,12 @@ $bar-height-sm: rem(80px);
 .xs-no-limit {
   @include media-breakpoint-down(xs, $my-breakpoints) {
     max-width: none;
+  }
+}
+.is-mobile {
+  .booking-bar--title,
+  .booking-bar--pricing {
+    line-height: rem(20px);
   }
 }
 </style>
