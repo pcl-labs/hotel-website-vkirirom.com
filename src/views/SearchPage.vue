@@ -1,7 +1,6 @@
 <template>
-  <!-- TODO: move to views/ -->
-  <div class="page-search">
-    <v-container class="is-limited" grid-list-md style="min-height:100vh;">
+  <div class="page page-search">
+    <v-container class="is-limited light--text px-2 px-md-0 py-8" grid-list-md style="min-height:100vh;">
       <v-flex xs12 class="headerText">
         <h1>Results for {{ id }}</h1>
         <v-flex xs12 v-if="id == 'food'">
