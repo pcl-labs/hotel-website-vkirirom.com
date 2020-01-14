@@ -118,3 +118,19 @@ export function markdown(content) {
   }
   return marked(content)
 }
+export function markdownInside(content) {
+  const level1 = markdown(content)
+  const needsCommonMark = /^</.test(level1)
+  if (needsCommonMark) {
+    const virtualElement = document.createElement('div')
+    virtualElement.innerHTML = level1
+    const childs = Array.from(virtualElement.children)
+    return childs.map(child => ({
+      // @ts-ignore
+      text: child.innerText,
+      className: Array.from(child.classList)
+    }))
+  } else {
+    return level1
+  }
+}

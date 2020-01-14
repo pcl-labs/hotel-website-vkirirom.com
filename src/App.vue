@@ -1,5 +1,5 @@
 <template>
-  <v-app style="background: linear-gradient(115.51deg, #00243E 0%, #003E3A 100%);" id="app">
+  <v-app class="wrapper" :class="hiddenLanguagesClasses" id="app">
     <page-header></page-header>
     <!-- TODO: remove :key similar to https://github.com/whynotearth/shinta-mani-wild/pull/298 -->
     <router-view :key="$route.name + ($route.params.id || '')" />
@@ -24,10 +24,25 @@ export default {
         console.log('User is not authenticated')
       })
     }
+  },
+  computed: {
+    hiddenLanguagesClasses() {
+      const languageCodes = ['en', 'kh']
+      const selectedLanguageCode = store.getters['language/config'].selectedLanguageCode
+      return languageCodes.filter(code => code !== selectedLanguageCode).map(code => `hide-lang-${code}`)
+    }
   }
 }
 </script>
 
 <style lang="scss">
+// global style
 @import '@/styles/global-main.scss';
+</style>
+
+<style lang="scss" scoped>
+.wrapper.wrapper {
+  background: map-get($grey, 'darken-4');
+  background: linear-gradient(115.51deg, #00243e 0%, #003e3a 100%);
+}
 </style>
