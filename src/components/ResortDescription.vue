@@ -33,6 +33,7 @@ export default Vue.extend({
   },
   components: { ResortRules },
   methods: {
+    // TODO: use plugins/marked.ts
     marked(content) {
       if (!content) {
         return ''

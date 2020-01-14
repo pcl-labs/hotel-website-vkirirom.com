@@ -40,6 +40,20 @@ $my-breakpoints: (
   xl: 1904px
 );
 
+$font-weights: () !default;
+$font-weights: map-deep-merge(
+  (
+    'thin': 100,
+    'light': 300,
+    'regular': 400,
+    'medium': 500,
+    'semibold': 600,
+    'bold': 700,
+    'black': 900
+  ),
+  $font-weights
+);
+
 // --------------------------------------------------------
 // Vuetify 2.2.3 variables
 // --------------------------------------------------------

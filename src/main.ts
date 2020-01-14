@@ -14,6 +14,7 @@ import vuetify from './plugins/vuetify'
 
 Vue.use(Fragment.Plugin)
 Vue.use(VueHead)
+// TODO: remove VueMarkdown
 Vue.use(VueMarkdown)
 
 Vue.config.productionTip = false

@@ -4,6 +4,7 @@ import auth from './modules/auth'
 import booking from './modules/booking'
 import payment from './modules/payment'
 import layout from './modules/layout'
+import language from './modules/language'
 import resort from './modules/resort'
 import loading from './modules/loading'
 import VuexPersistence from 'vuex-persist'
@@ -24,6 +25,7 @@ export default new Vuex.Store({
     resort,
     booking,
     payment,
-    layout
+    layout,
+    language
   }
 })
