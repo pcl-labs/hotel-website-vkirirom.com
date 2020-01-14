@@ -66,7 +66,8 @@ const defaultState = {
     fullName: '',
     addressCity: '',
     addressState: '',
-    addressLine: ''
+    addressLine: '',
+    addressZip: ''
   },
   vat: 0,
   finalPrice: 0,
@@ -123,6 +124,9 @@ export default {
     },
     updateAddressLine(state, payload) {
       state.bookingInfo.addressLine = payload
+    },
+    updateAddressZip(state, payload) {
+      state.bookingInfo.addressZip = payload
     },
     updateAddressCity(state, payload) {
       state.bookingInfo.addressCity = payload
@@ -218,6 +222,9 @@ export default {
     },
     updateAddressLine(context, payload) {
       context.commit('updateAddressLine', payload)
+    },
+    updateAddressZip(context, payload) {
+      context.commit('updateAddressZip', payload)
     },
     updateAddressCity(context, payload) {
       context.commit('updateAddressCity', payload)
