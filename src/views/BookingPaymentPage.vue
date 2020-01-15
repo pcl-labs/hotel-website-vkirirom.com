@@ -34,7 +34,13 @@ import store from '@/store'
 export default Vue.extend({
   name: 'booking-payment-page',
   components: { BookingPayment, BookingConfirmBooking },
+  mounted() {
+    store.dispatch('booking/updateCurrentStep', this.steps.paymentInfo)
+  },
   computed: {
+    steps() {
+      return store.getters['booking/steps']
+    },
     returnUrl() {
       return store.getters['booking/bookingInfo'].returnUrl
     }

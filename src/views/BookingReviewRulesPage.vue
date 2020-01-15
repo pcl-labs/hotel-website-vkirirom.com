@@ -34,7 +34,13 @@ import store from '@/store'
 export default Vue.extend({
   name: 'booking-review-rules-page',
   components: { BookingReviewRules, BookingConfirmBooking },
+  mounted() {
+    store.dispatch('booking/updateCurrentStep', this.steps.reviewPolicies)
+  },
   computed: {
+    steps() {
+      return store.getters['booking/steps']
+    },
     bookingResort() {
       return store.getters['booking/bookingInfo'].resort
     },
