@@ -4,13 +4,14 @@ import auth from './modules/auth'
 import booking from './modules/booking'
 import payment from './modules/payment'
 import layout from './modules/layout'
+import language from './modules/language'
 import resort from './modules/resort'
 import loading from './modules/loading'
 import VuexPersistence from 'vuex-persist'
 
 const vuexLocal = new VuexPersistence({
   storage: window.localStorage,
-  modules: ['auth', 'booking', 'resort'],
+  modules: ['auth', 'booking', 'resort', 'language'],
   key: 'store'
 })
 
@@ -24,6 +25,7 @@ export default new Vuex.Store({
     resort,
     booking,
     payment,
-    layout
+    layout,
+    language
   }
 })
