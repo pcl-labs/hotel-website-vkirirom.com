@@ -4,10 +4,16 @@
       <v-container class="pa-0" v-if="$vuetify.breakpoint.smAndDown">
         <booking-confirm-booking :has-cancel-button="false"></booking-confirm-booking>
         <v-container class="brand-gradient py-8 px-4">
+          <h1 class="mb-4 font-weight-bold display-1">{{ steps.customerInfo.title }}</h1>
           <booking-customer-info></booking-customer-info>
         </v-container>
       </v-container>
       <v-container v-else class="is-limited light--text px-0 py-8">
+        <v-row no-gutters>
+          <v-col cols="12">
+            <h1 class="mb-4 font-weight-bold display-2">{{ steps.customerInfo.title }}</h1>
+          </v-col>
+        </v-row>
         <v-row no-gutters>
           <v-col cols="12" md="7">
             <div class="pr-7">
@@ -15,9 +21,7 @@
             </div>
           </v-col>
           <v-col cols="12" md="5">
-            <div class="px-1">
-              <booking-confirm-booking :has-cancel-button="false"></booking-confirm-booking>
-            </div>
+            <booking-confirm-booking :has-cancel-button="false"></booking-confirm-booking>
           </v-col>
         </v-row>
       </v-container>

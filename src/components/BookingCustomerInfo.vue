@@ -3,12 +3,6 @@
     <v-row no-gutters>
       <v-col>
         <v-form v-model="isFormValid" @submit.prevent>
-          <h1
-            class="mb-4 font-weight-bold"
-            :class="{ 'display-1': $vuetify.breakpoint.smAndDown, 'display-2': $vuetify.breakpoint.mdAndUp }"
-          >
-            Contact Info
-          </h1>
           <h4 class="mb-2 title font-weight-bold">Guest Info</h4>
           <v-row no-gutters class="phone-input align-center">
             <v-col cols="5">

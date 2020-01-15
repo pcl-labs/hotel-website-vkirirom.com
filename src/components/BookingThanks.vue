@@ -2,12 +2,6 @@
   <div class="booking-thanks">
     <v-row no-gutters>
       <v-col>
-        <h1
-          class="mb-4 font-weight-bold"
-          :class="{ 'display-1': $vuetify.breakpoint.smAndDown, 'display-2': $vuetify.breakpoint.mdAndUp }"
-        >
-          Thank You!
-        </h1>
         <p>
           Thank you for selecting vKirirom Resort as your preferred resort. Your payment has been processed
           successfully.

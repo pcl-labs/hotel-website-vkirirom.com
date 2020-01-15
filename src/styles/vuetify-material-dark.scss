@@ -8,7 +8,7 @@ $material-dark: (
   'app-bar': map-get($grey, 'darken-4'),
   'background': map-get($grey, 'darken-4'),
   'calendar': (
-    'background-color': map-get($grey, 'lighten-4'),
+    'background-color': map-get($grey, 'lighten-1'),
     'outside-background-color': #202020,
     'line-color': map-get($grey, 'base'),
     'interval-color': map-get($grey, 'lighten-3'),
@@ -20,10 +20,10 @@ $material-dark: (
   'chips': #555,
   'dividers': rgba(map-get($shades, 'white'), 0.12),
   'text': (
-    'theme': map-get($shades, 'white'),
-    'primary': map-get($shades, 'white'),
-    'secondary': rgba(map-get($shades, 'white'), 0.7),
-    'disabled': rgba(map-get($shades, 'white'), 0.5),
+    'theme': map-get($grey, 'lighten-1'),
+    'primary': map-get($grey, 'lighten-1'),
+    'secondary': rgba(map-get($grey, 'lighten-1'), 1),
+    'disabled': rgba(map-get($grey, 'lighten-1'), 0.5),
     'link': map-get($blue, 'accent-1'),
     'link-hover': map-get($grey, 'lighten-3')
   ),

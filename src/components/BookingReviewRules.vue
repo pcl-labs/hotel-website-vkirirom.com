@@ -2,12 +2,6 @@
   <fragment>
     <v-row no-gutters class="mb-8">
       <v-col>
-        <h1
-          class="mb-4 font-weight-bold"
-          :class="{ 'display-1': $vuetify.breakpoint.smAndDown, 'display-2': $vuetify.breakpoint.mdAndUp }"
-        >
-          Review Rules
-        </h1>
         <h3 class="mb-0 title font-weight-bold">{{ prices.length }} night(s) in a {{ resort.title }}</h3>
       </v-col>
     </v-row>
