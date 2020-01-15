@@ -25,6 +25,20 @@
 .font-weight-semibold {
   font-weight: 600 !important;
 }
+.radius-right-0 {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.radius-left-0 {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.ml-n05 {
+  margin-left: -1px;
+}
+.mt-n05 {
+  margin-top: -1px;
+}
 
 // vkirirom specific
 // --------------------------------------------

@@ -43,12 +43,78 @@
 
           <v-expand-transition>
             <div class="transition-fast-in-fast-out mb-6" v-show="payWith === 'card'">
+              <h4 class="mb-2 title font-weight-bold">Billing Info</h4>
+
+              <v-text-field
+                v-model="addressLine"
+                outlined
+                label="Address"
+                name="address"
+                color="light"
+                type="text"
+                required
+                :rules="rules.addressLine"
+                dark
+              >
+              </v-text-field>
+              <v-text-field
+                v-model="addressCity"
+                outlined
+                label="City"
+                name="city"
+                color="light"
+                type="text"
+                required
+                :rules="rules.addressCity"
+                dark
+              >
+              </v-text-field>
+
+              <v-row no-gutters="">
+                <v-col cols="6">
+                  <v-text-field
+                    class="radius-right-0"
+                    v-model="addressState"
+                    outlined
+                    label="State"
+                    name="state"
+                    color="light"
+                    type="text"
+                    required
+                    :rules="rules.addressState"
+                    dark
+                  >
+                  </v-text-field>
+                </v-col>
+                <v-col cols="6">
+                  <v-text-field
+                    class="radius-left-0 ml-n05"
+                    v-model="addressZip"
+                    outlined
+                    label="Zip"
+                    name="zip"
+                    color="light"
+                    type="text"
+                    required
+                    :rules="rules.addressZip"
+                    dark
+                  >
+                  </v-text-field>
+                </v-col>
+              </v-row>
+
+              <h4 class="mb-2 title font-weight-bold">Card Info</h4>
+
               <booking-payment-by-stripe
                 @success="onPaymentSuccess"
                 @error="onPaymentError"
                 ref="paymentByStripe"
                 :billingDetails="{
-                  name: fullName
+                  name: fullName,
+                  address_line1: addressLine,
+                  address_city: addressCity,
+                  address_state: addressState,
+                  address_zip: addressZip
                 }"
               ></booking-payment-by-stripe>
             </div>
@@ -91,7 +157,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { isNumber } from 'lodash-es'
+import { isNumeric } from 'validator'
 import store from '../store'
 import { isCreditCard } from 'validator'
 import BookingPaymentByStripe from '@/components/BookingPaymentByStripe.vue'
@@ -105,13 +171,10 @@ export default Vue.extend({
       errorMessage: '',
       rules: {
         fullName: [v => !!v || 'Full name is required'],
-        // validatin of credit card https://www.creditcardrush.com/credit-card-validator/
-        cardNumber: [v => !!v || 'Card number is required', v => isCreditCard(v) || 'Card number should be valid'],
-        expiration: [
-          v => !!v || 'Expiration date is required',
-          v => /^\d{4} \/ \d{1,2}$/.test(v) || 'Date should be like 2020 / 12'
-        ],
-        CVV: [v => !!v || 'CVV is required', v => /^[0-9]{3,4}$/.test(v) || 'CVV should be valid']
+        addressLine: [v => !!v || 'Address is required'],
+        addressCity: [v => !!v || 'City is required'],
+        addressState: [v => !!v || 'State is required'],
+        addressZip: [v => !!v || 'Zip number is required', v => isNumeric(v) || 'Zip code is not valid']
       }
     }
   },
@@ -130,6 +193,38 @@ export default Vue.extend({
       },
       set(value: string) {
         store.dispatch('booking/updateFullName', value)
+      }
+    },
+    addressCity: {
+      get() {
+        return store.getters['booking/bookingInfo'].addressCity
+      },
+      set(value: string) {
+        store.dispatch('booking/updateAddressCity', value)
+      }
+    },
+    addressState: {
+      get() {
+        return store.getters['booking/bookingInfo'].addressState
+      },
+      set(value: string) {
+        store.dispatch('booking/updateAddressState', value)
+      }
+    },
+    addressLine: {
+      get() {
+        return store.getters['booking/bookingInfo'].addressLine
+      },
+      set(value: string) {
+        store.dispatch('booking/updateAddressLine', value)
+      }
+    },
+    addressZip: {
+      get() {
+        return store.getters['booking/bookingInfo'].addressZip
+      },
+      set(value: string) {
+        store.dispatch('booking/updateAddressZip', value)
       }
     },
     paymentError() {
