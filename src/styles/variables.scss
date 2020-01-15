@@ -22,6 +22,9 @@ $brand-2: #e1e7ed;
 $brand-3: #b9bcc1;
 $brand-4: #77c381;
 
+$brand-gradient: linear-gradient(180deg, #010101 0%, rgba(20, 21, 39, 0) 100%),
+  linear-gradient(166deg, #141527 9%, #3a3b5e 95%);
+
 // z-index
 $booking-bar-zindex: 2;
 

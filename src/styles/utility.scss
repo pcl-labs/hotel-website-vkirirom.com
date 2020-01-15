@@ -50,3 +50,7 @@
     width: rem(64px) !important;
   }
 }
+.brand-gradient {
+  background-color: map-get($grey, 'darken-4');
+  background: $brand-gradient;
+}
