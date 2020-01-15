@@ -1,9 +1,9 @@
 <template>
   <div class="booking-thanks">
-    <v-row no-gutters class="mb-8">
+    <v-row no-gutters>
       <v-col>
         <h1
-          class="my-6 font-weight-bold"
+          class="mb-4 font-weight-bold"
           :class="{ 'display-1': $vuetify.breakpoint.smAndDown, 'display-2': $vuetify.breakpoint.mdAndUp }"
         >
           Thank You!

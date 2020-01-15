@@ -1,10 +1,10 @@
 <template>
   <div>
-    <v-row no-gutters class="mb-8">
+    <v-row no-gutters>
       <v-col>
         <v-form v-model="isFormValid" @submit.prevent>
           <h1
-            class="my-6 font-weight-bold"
+            class="mb-4 font-weight-bold"
             :class="{ 'display-1': $vuetify.breakpoint.smAndDown, 'display-2': $vuetify.breakpoint.mdAndUp }"
           >
             Payment
