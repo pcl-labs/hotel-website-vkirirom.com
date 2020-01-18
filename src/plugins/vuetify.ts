@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { light } from '@/constants/themes'
+import { dark } from '@/constants/themes'
 import IconFacebook from '@/components/IconFacebook.vue'
 import IconGoogle from '@/components/IconGoogle.vue'
 import IconMessage from '@/components/IconMessage.vue'
@@ -41,9 +41,9 @@ export default new Vuetify({
     }
   },
   theme: {
-    dark: false,
+    dark: true,
     themes: {
-      light
+      dark
     }
   }
 })

@@ -74,20 +74,20 @@ export default Vue.extend({
 
       var elementStyles = {
         base: {
-          color: themes.light.light,
+          color: themes.dark.light,
           fontSmoothing: 'antialiased',
           fontSize: '16px',
           fontFamily: 'Montserrat, Segoe UI, sans-serif',
           ':focus': {
-            color: themes.light.light
+            color: themes.dark.light
           },
           '::placeholder': {
-            color: themes.light.light
+            color: themes.dark.light
           }
         },
         invalid: {
-          color: themes.light.error,
-          iconColor: themes.light.error
+          color: themes.dark.error,
+          iconColor: themes.dark.error
         }
       }
       const elements = this.stripe.elements({
@@ -169,8 +169,11 @@ export default Vue.extend({
 })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '@/styles/utility.scss';
+</style>
+
+<style lang="scss" scoped>
 .StripeElement {
   height: rem(56px);
   padding-top: rem(18px);

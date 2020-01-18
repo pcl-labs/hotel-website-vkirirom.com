@@ -1,9 +1,9 @@
 <template>
   <div class="booking-thanks">
-    <v-row no-gutters class="mb-8">
+    <v-row no-gutters>
       <v-col>
         <h1
-          class="my-6 font-weight-bold"
+          class="mb-4 font-weight-bold"
           :class="{ 'display-1': $vuetify.breakpoint.smAndDown, 'display-2': $vuetify.breakpoint.mdAndUp }"
         >
           Thank You!
@@ -60,7 +60,7 @@
         <h3 class="mb-4 title font-weight-bold">Room Description</h3>
         <resort-description :resort="resort"></resort-description>
 
-        <v-btn class="mt-6" outlined="" dark large to="/"
+        <v-btn class="mt-6 text-transform-none" outlined="" dark large to="/"
           ><span class="mx-4">Return to Home</span><v-spacer></v-spacer><v-icon>keyboard_arrow_right</v-icon></v-btn
         >
       </v-col>
@@ -106,8 +106,11 @@ export default Vue.extend({
 })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '@/styles/utility.scss';
+</style>
+
+<style lang="scss" scoped>
 .v-application .theme--light.v-icon {
   color: map-get($grey, 'lighten-1');
 }

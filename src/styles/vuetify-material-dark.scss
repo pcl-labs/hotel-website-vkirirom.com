@@ -6,7 +6,7 @@ $material-dark: (
     'lights-out': rgba(map-get($shades, 'black'), 0.2)
   ),
   'app-bar': map-get($grey, 'darken-4'),
-  'background': map-get($grey, 'lighten-4'),
+  'background': map-get($grey, 'darken-4'),
   'calendar': (
     'background-color': map-get($grey, 'lighten-4'),
     'outside-background-color': #202020,

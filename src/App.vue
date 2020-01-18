@@ -39,10 +39,3 @@ export default {
 // global style
 @import '@/styles/global-main.scss';
 </style>
-
-<style lang="scss" scoped>
-.wrapper.wrapper {
-  background: map-get($grey, 'darken-4');
-  background: linear-gradient(115.51deg, #00243e 0%, #003e3a 100%);
-}
-</style>

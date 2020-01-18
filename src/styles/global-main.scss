@@ -1,7 +1,6 @@
 @import './global-typography.scss';
 @import './global-language.scss';
 
-
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -16,13 +15,22 @@ html {
   scroll-behavior: smooth;
 }
 .w-100 {
+  // TODO: move to utility.scss
   width: 100%;
 }
 .overflow-y-hidden {
+  // TODO: move to utility.scss
   overflow-y: hidden;
 }
 .page {
-  margin-top: rem($header-height);
+  min-height: calc(100vh - #{rem($header-height)});
+  min-height: calc(100 * var(--vh) - #{rem($header-height)});
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .page-content {
+    flex-grow: 1;
+  }
 }
 .v-carousel__controls {
   background: linear-gradient(0deg, #191c21 0%, rgba(25, 28, 33, 0) 50%);
@@ -77,7 +85,7 @@ input:-webkit-autofill {
   }
   @include media-breakpoint-up(md, $my-breakpoints) {
     &.container {
-      max-width: 924px;
+      max-width: 912px;
     }
   }
 }

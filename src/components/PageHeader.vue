@@ -1,5 +1,5 @@
 <template>
-  <div class="page-header" v-show="shouldShowPageHeader">
+  <div class="page-header">
     <auth-dialog ref="authDialogRef"></auth-dialog>
     <v-app-bar dark app height="56">
       <!-- logo -->
@@ -179,14 +179,8 @@ export default {
     }
   },
   computed: {
-    shouldShowPageHeader() {
-      if (this.shouldShowBookingNavigation) {
-        return this.$vuetify.breakpoint.mdAndUp
-      }
-      return true
-    },
     shouldShowBookingNavigation() {
-      return this.$route.meta.hasBookingNavigation
+      return this.$route.meta.hasBookingNavigation && this.$vuetify.breakpoint.mdAndUp
     },
     isAuthenticated() {
       return store.getters['auth/isAuthenticated']
@@ -201,6 +195,9 @@ export default {
 <style lang="scss" scoped>
 @import '@/styles/utility.scss';
 
+.page-header {
+  min-height: $header-height;
+}
 .v-list-item .v-btn {
   height: rem(44px) !important;
 }
