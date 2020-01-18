@@ -23,16 +23,20 @@ const steps: { [name: string]: bookingStep } = {
     id: 4
   },
   reviewPolicies: {
-    id: 5
+    id: 5,
+    title: 'Review Rules'
   },
   customerInfo: {
-    id: 6
+    id: 6,
+    title: 'Contact Info'
   },
   paymentInfo: {
-    id: 7
+    id: 7,
+    title: 'Payment'
   },
   thankYou: {
-    id: 8
+    id: 8,
+    title: 'Thank You!'
   }
 }
 

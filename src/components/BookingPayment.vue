@@ -3,13 +3,6 @@
     <v-row no-gutters>
       <v-col>
         <v-form v-model="isFormValid" @submit.prevent>
-          <h1
-            class="mb-4 font-weight-bold"
-            :class="{ 'display-1': $vuetify.breakpoint.smAndDown, 'display-2': $vuetify.breakpoint.mdAndUp }"
-          >
-            Payment
-          </h1>
-
           <h4 class="mb-2 title font-weight-bold">Full name</h4>
           <v-text-field
             v-model="fullName"

@@ -80,6 +80,7 @@ export interface Category {
 export interface bookingStep {
   id: number
   width?: number
+  title?: string
 }
 
 export interface RoomType {

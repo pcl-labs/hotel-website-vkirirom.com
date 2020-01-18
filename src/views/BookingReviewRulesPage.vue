@@ -1,13 +1,21 @@
 <template>
   <div class="page">
     <div class="page-content brand-gradient">
+      <!-- mobile -->
       <v-container class="pa-0" v-if="$vuetify.breakpoint.smAndDown">
         <booking-confirm-booking :has-cancel-button="false"></booking-confirm-booking>
         <v-container class="brand-gradient py-8 px-4">
+          <h1 class="mb-4 font-weight-bold display-1">{{ steps.reviewPolicies.title }}</h1>
           <booking-review-rules></booking-review-rules>
         </v-container>
       </v-container>
+      <!-- desktop -->
       <v-container v-else class="is-limited light--text px-md-0 py-8">
+        <v-row no-gutters>
+          <v-col cols="12">
+            <h1 class="mb-4 font-weight-bold display-2">{{ steps.reviewPolicies.title }}</h1>
+          </v-col>
+        </v-row>
         <v-row no-gutters>
           <v-col cols="12" md="7">
             <div class="pr-7">
@@ -15,9 +23,7 @@
             </div>
           </v-col>
           <v-col cols="12" md="5">
-            <div class="px-1">
-              <booking-confirm-booking :has-cancel-button="false"></booking-confirm-booking>
-            </div>
+            <booking-confirm-booking :has-cancel-button="false"></booking-confirm-booking>
           </v-col>
         </v-row>
       </v-container>

@@ -108,12 +108,15 @@
         <v-btn v-else text class="button text-transform-none" @click="openLogin()"><h3 class="mb-0">Log In</h3></v-btn>
       </v-toolbar-items>
 
-      <v-container class="is-limited pa-0" v-if="shouldShowBookingNavigation">
-        <v-row no-gutters>
+      <!-- booking navigation -->
+      <v-container class="page-header--booking-navigation is-limited pa-0" v-if="shouldShowBookingNavigation">
+        <v-row no-gutters v-if="$vuetify.breakpoint.mdAndUp">
           <v-col cols="12">
             <booking-navigation></booking-navigation>
           </v-col>
         </v-row>
+
+        <booking-navigation v-else></booking-navigation>
       </v-container>
     </v-app-bar>
     <!-- mobile menu -->
@@ -180,7 +183,7 @@ export default {
   },
   computed: {
     shouldShowBookingNavigation() {
-      return this.$route.meta.hasBookingNavigation && this.$vuetify.breakpoint.mdAndUp
+      return this.$route.meta.hasBookingNavigation
     },
     isAuthenticated() {
       return store.getters['auth/isAuthenticated']
@@ -198,6 +201,11 @@ export default {
 .page-header {
   min-height: $header-height;
 }
+
+.v-toolbar {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2), 0px 4px 5px rgba(0, 0, 0, 0.12), 0px 1px 10px rgba(0, 0, 0, 0.2);
+}
+
 .v-list-item .v-btn {
   height: rem(44px) !important;
 }
@@ -205,9 +213,13 @@ export default {
   color: map-get($grey, 'lighten-1');
   text-transform: capitalize;
 }
-.page-header--logo {
-  @media (min-width: map-get($map: $grid-breakpoints, $key: md) + 120px) {
+@media (min-width: map-get($map: $grid-breakpoints, $key: md) + 120px) {
+  .page-header--logo {
     position: absolute;
+  }
+  .page-header--booking-navigation {
+    position: relative;
+    left: rem(-16px);
   }
 }
 .page-header--logo-image {
