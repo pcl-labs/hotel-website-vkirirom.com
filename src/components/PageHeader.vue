@@ -201,6 +201,11 @@ export default {
 .page-header {
   min-height: $header-height;
 }
+
+.v-toolbar {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2), 0px 4px 5px rgba(0, 0, 0, 0.12), 0px 1px 10px rgba(0, 0, 0, 0.2);
+}
+
 .v-list-item .v-btn {
   height: rem(44px) !important;
 }
