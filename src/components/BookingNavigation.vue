@@ -1,6 +1,6 @@
 <template>
   <!-- booking toolbar -->
-  <v-toolbar-items v-if="this.$vuetify.breakpoint.mdAndUp" class="toolbar--booking-nav">
+  <v-toolbar-items v-if="desktopMode" class="toolbar--booking-nav">
     <v-btn
       :disabled="shouldBeDisabled(steps.reviewPolicies)"
       active-class="is-active"
@@ -52,6 +52,12 @@ import Vue from 'vue'
 import store from '../store'
 export default Vue.extend({
   name: 'booking-navigation',
+  props: {
+    desktopMode: {
+      type: Boolean,
+      default: true
+    }
+  },
   methods: {
     shouldBeDisabled(step) {
       return step.id > this.currentStep.id

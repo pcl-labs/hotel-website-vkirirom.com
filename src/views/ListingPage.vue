@@ -95,6 +95,7 @@ import Vue from 'vue'
 import ResortDescription from '@/components/ResortDescription.vue'
 import BookingBar from '@/components/BookingBar.vue'
 import PageFooter from '@/components/PageFooter.vue'
+import PageHeader from '@/components/PageHeader.vue'
 import store from '@/store'
 import { Resort } from '@/types'
 
