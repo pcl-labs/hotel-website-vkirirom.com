@@ -10,7 +10,7 @@
         <div class="expire-number" ref="expireNumber"></div>
       </v-col>
       <v-col cols="6">
-        <div class="cvv-number ml-n05" ref="cvvNumber"></div>
+        <div class="cvv-number" ref="cvvNumber" style="border-left: none"></div>
       </v-col>
     </v-row>
   </div>
