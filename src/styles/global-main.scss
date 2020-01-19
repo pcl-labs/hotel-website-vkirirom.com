@@ -1,5 +1,6 @@
 @import './global-typography.scss';
 @import './global-language.scss';
+@import './global-animations.scss';
 
 #app {
   -webkit-font-smoothing: antialiased;
@@ -32,6 +33,7 @@ html {
     flex-grow: 1;
   }
 }
+// TODO: move to global-override-vuetify.scss
 .v-carousel__controls {
   background: linear-gradient(0deg, #191c21 0%, rgba(25, 28, 33, 0) 50%);
   .v-icon {
@@ -39,7 +41,7 @@ html {
     padding: 0px;
   }
 }
-// deprecated
+// deprecated TODO: remove
 .header {
   background-position: bottom;
   background-size: cover;
@@ -47,12 +49,12 @@ html {
   height: 464px;
   object-fit: cover;
 }
-// deprecated
+// deprecated TODO: remove
 .gradient {
   background-image: linear-gradient(0deg, #191c21 0%, rgba(25, 28, 33, 0) 50%);
   box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
-// deprecated
+// deprecated TODO: remove
 .image {
   transition: 0.8s ease;
   -webkit-transition: 0.8s ease;
@@ -90,6 +92,7 @@ input:-webkit-autofill {
   }
 }
 
+// TODO: move to global-override-vuetify.scss
 .v-carousel__controls {
   background: transparent !important;
   .v-btn__content {
@@ -101,29 +104,14 @@ input:-webkit-autofill {
     color: white !important;
   }
 }
-
-// animations
-.fade-enter-active,
-.fade-leave-active {
-  transition-duration: 0.3s;
-  transition-property: opacity;
-  transition-timing-function: ease;
-}
-.fade-enter,
-.fade-leave-active {
-  opacity: 0;
-}
-
 // fix vuetify labels when browser autofills data
 .dark .v-label--active.theme--dark {
   background-color: map-get($grey, 'darken-4');
 }
-
 // vuetify card dark
 .theme--dark.v-card.v-card {
   color: map-get($grey, 'lighten-1');
 }
-
 // vuetify buttons
 .v-application .v-btn.v-btn {
   font-weight: 600;

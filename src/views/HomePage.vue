@@ -1,6 +1,6 @@
 <template>
   <fragment>
-    <transition name="fade" mode="out-in">
+    <transition name="pageheaderfade" mode="out-in">
       <div v-show="shouldShowHeader" class="page-header--wrapper position-fixed w-100">
         <page-header></page-header>
       </div>
@@ -541,5 +541,18 @@ export default {
 .listTitle {
   color: #d8dade;
   font-size: 28px;
+}
+
+// page-header-fade
+.pageheaderfade-enter-active,
+.pageheaderfade-leave-active {
+  transition-duration: 700ms;
+  transition-property: opacity, transform;
+  transition-timing-function: ease;
+}
+.pageheaderfade-enter,
+.pageheaderfade-leave-active {
+  opacity: 0;
+  transform: translateY(rem(-$header-height))
 }
 </style>
