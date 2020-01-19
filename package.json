@@ -19,6 +19,7 @@
     "jquery": "3.4.1",
     "lodash-es": "4.17.15",
     "marked": "0.8.0",
+    "portal-vue": "2.1.7",
     "register-service-worker": "1.6.2",
     "sass-rem": "2.0.1",
     "validator": "12.1.0",
