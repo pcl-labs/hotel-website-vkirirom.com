@@ -7,7 +7,6 @@
 
 <script>
 import store from '@/store'
-const PageHeader = () => import('@/components/PageHeader.vue')
 
 export default {
   name: 'app',
