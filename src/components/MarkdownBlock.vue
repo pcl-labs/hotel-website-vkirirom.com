@@ -1,12 +1,12 @@
 <template>
-  <fragment>
+  <div class="markdown-content">
     <div
       v-for="(paragraph, index) in markdownInside(content)"
       :key="index"
       :class="paragraph.className"
       v-html="markdown(paragraph.text)"
     ></div>
-  </fragment>
+  </div>
 </template>
 
 <script lang="ts">

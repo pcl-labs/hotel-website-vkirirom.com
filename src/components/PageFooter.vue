@@ -122,6 +122,7 @@ export default {
 }
 .page-footer {
   background-color: map-get($grey, 'darken-4') !important;
+  z-index: $zindex-page-footer;
 }
 .page-footer--flag {
   border-radius: $border-radius-root;

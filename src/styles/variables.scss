@@ -26,7 +26,18 @@ $brand-gradient: linear-gradient(180deg, #010101 0%, rgba(20, 21, 39, 0) 100%),
   linear-gradient(166deg, #141527 9%, #3a3b5e 95%);
 
 // z-index
-$booking-bar-zindex: 2;
+/*
+page-header
+page
+  page-content
+  booking-bar
+  page-footer
+*/
+$zindex-page-header: 7;
+$zindex-page: 1;
+$zindex-page-content: 2;
+$booking-bar-zindex: 3;
+$zindex-page-footer: 1;
 
 // loading
 $loading-transition-time: 500ms;

@@ -201,6 +201,7 @@ export default {
 <style lang="scss" scoped>
 .page-header {
   min-height: $header-height;
+  z-index: $zindex-page-header;
 }
 
 .v-toolbar {
