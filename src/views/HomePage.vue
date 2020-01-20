@@ -71,7 +71,7 @@
                 </v-btn>
               </v-col>
             </v-row>
-            <v-divider class="d-md-none mt-4" style="background-color:#3D424E;"></v-divider>
+            <v-divider light class="d-md-none mt-4"></v-divider>
             <v-card
               :ripple="false"
               hover
@@ -105,7 +105,7 @@
                 </v-row>
               </v-img>
             </v-card>
-            <v-divider class="d-md-none mt-4" style="background-color:#3D424E;"></v-divider>
+            <v-divider light class="d-md-none mt-4"></v-divider>
             <h2 class="mt-2 mb-6 listTitle">Experience</h2>
             <v-row class="cardRow" dense>
               <v-col cols="12" sm="6" md="4" v-for="experience in experiences.slice(0, 4)" v-bind:key="experience.id">
@@ -488,7 +488,7 @@ export default {
 .page-header--wrapper {
   height: $header-height;
   top: 0;
-  z-index: 3;
+  z-index: $zindex-page-header;
 }
 
 .page-home--content {
