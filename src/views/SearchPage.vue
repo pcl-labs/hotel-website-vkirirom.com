@@ -1,7 +1,7 @@
 <template>
   <fragment>
     <page-header></page-header>
-    <div class="page page-search">
+    <div class="page page-search light--text">
       <div class="page-content brand-gradient">
         <div class="position-relative hero">
           <v-overlay :absolute="true" :value="true" :opacity="0">
@@ -9,7 +9,7 @@
               :class="$vuetify.breakpoint.mdAndUp ? 'display-1' : 'title'"
               class="primary--text font-weight-bold text-capitalize"
             >
-              {{ pageInfo.name }}
+              {{ resort.name }}
             </h1>
           </v-overlay>
           <v-img
@@ -19,12 +19,13 @@
           </v-img>
         </div>
         <v-container class="is-limited light--text px-2 px-md-0 py-8" grid-list-md>
-          <div class="mb-8 mt-md-10 mb-md-6 pt-md-2 pb-md-10 title font-weight-normal">
-            <markdown-block :content="pageInfo.description"></markdown-block>
+          <div class="mb-8 mt-md-10 mb-md-6 pt-md-2 pb-md-10 title font-weight-normal text-center">
+            <markdown-block :content="resort.description"></markdown-block>
           </div>
-          <v-flex xs12 class="headerText">
-            <h1>Results for {{ id }}</h1>
-            <v-flex xs12 v-if="id == 'food'">
+
+          <!-- TODO: get data from database? -->
+          <v-row class="page-description--food" v-if="slug == 'food'">
+            <v-col cols="12">
               <p>
                 “Best lunch spot in Kirirom” (Lonely Planet Guidebook).
                 <br />vKirirom’s iconic open-air restaurant serves an array of international dishes to complement its
@@ -33,59 +34,17 @@
               </p>
 
               <p>Book your stay at vKirirom today and enjoy our array of international food!</p>
-            </v-flex>
-          </v-flex>
+            </v-col>
+          </v-row>
+
           <v-row dense>
-            <v-col cols="12" sm="6" md="4" v-for="resort in resorts" v-bind:key="resort.id">
-              <v-card
-                :ripple="false"
-                color="#191C21"
-                class="mb-6 card"
-                width="100%"
-                dark
-                :to="'/listing/' + resort.slug"
-                flat
-              >
-                <router-link :to="'/listing/' + resort.slug">
-                  <v-carousel
-                    height="150px"
-                    :cycle="false"
-                    :show-arrows="false"
-                    dark
-                    width="100%"
-                    class="d-md-none"
-                    style="border-top-left-radius: 10px; border-top-right-radius: 10px;"
-                  >
-                    <v-carousel-item :src="resort.featuredImage"> </v-carousel-item>
-                    <v-carousel-item
-                      v-for="image in resort.images.slice(0, 4)"
-                      v-bind:key="image.url"
-                      :src="image.url"
-                      style="background-size:contain;"
-                    >
-                    </v-carousel-item>
-                  </v-carousel>
-                </router-link>
-                <v-img
-                  class="hidden-sm-and-down d-md-block"
-                  :src="resort.featuredImage"
-                  height="150px"
-                  style="border-top-left-radius: 10px; border-top-right-radius: 10px;"
-                ></v-img>
-                <v-row no-gutters align-start>
-                  <v-card-text style="margin:10px; padding: 0;">
-                    <p>
-                      <!-- <span style="font-size: 12px; line-height: 16px; letter-spacing: 0.05em; text-transform: uppercase; color: #B9BCC1;">Entire {{resort.title}}</span> -->
-                      <span style="color: #FFFFFF; font-size: 17px; line-height: 27px;"
-                        ><h3>{{ resort.title }}</h3></span
-                      >
-                      <span style="font-size: 16px; line-height: 22px; color: #B9BCC1;" v-if="resort.ctaText > 0"
-                        >Starting from {{ resort.ctaText }}$ per night</span
-                      >
-                    </p>
-                  </v-card-text>
-                </v-row>
-              </v-card>
+            <v-col cols="12" sm="6" md="4" v-for="resort in categories" :key="resort.id">
+              <card-product
+                :title="resort.title"
+                :description="resort.ctaText ? `Starting from ${resort.ctaText}$ per night` : ''"
+                :image="resort.featuredImage"
+                :link="'/listing/' + resort.slug"
+              ></card-product>
             </v-col>
           </v-row>
         </v-container>
@@ -98,37 +57,31 @@
 <script>
 import { PageService } from '@/connection/resources.js'
 const PageFooter = () => import('@/components/PageFooter.vue')
+const CardProduct = () => import('@/components/CardProduct.vue')
 import PageHeader from '@/components/PageHeader.vue'
 import MarkdownBlock from '@/components/MarkdownBlock.vue'
 import { get } from 'lodash-es'
+import store from '@/store'
 
 export default {
+  name: 'search-page',
   components: {
     PageFooter,
     PageHeader,
-    MarkdownBlock
+    MarkdownBlock,
+    CardProduct
   },
-  data() {
-    return {
-      resorts: [],
-      id: this.$route.params.id
-    }
-  },
+  props: ['slug'],
   created() {
-    PageService.byCompanyByCategoryName({
-      companySlug: 'vkirirom',
-      categoryName: this.id
-    }).then(data => {
-      this.resorts = data
-    })
+    store.dispatch('resort/getBySlug', this.slug)
+    store.dispatch('category/getItemsByName', this.slug)
   },
   computed: {
-    pageInfo() {
-      const resort = this.resorts[0]
-      return {
-        ...get(resort, 'categories[0]', {}),
-        description: get(resort, 'description', '')
-      }
+    resort() {
+      return store.getters['resort/itemBySlug'](this.slug)
+    },
+    categories() {
+      return store.getters['category/getItemsByName'](this.slug)
     }
   }
 }
@@ -142,15 +95,8 @@ export default {
 .hero ::v-deep .v-overlay__content {
   top: -5vw;
 }
-.card {
-  box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
-  height: 270px;
-}
-.v-card--link:before {
-  border-radius: inherit;
-}
-.headerText {
+
+.page-description--food {
   margin-bottom: rem(32px);
   p {
     font-size: 16px;
