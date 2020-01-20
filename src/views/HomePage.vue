@@ -553,6 +553,6 @@ export default {
 .pageheaderfade-enter,
 .pageheaderfade-leave-active {
   opacity: 0;
-  transform: translateY(rem(-$header-height))
+  transform: translateY(rem(-$header-height));
 }
 </style>
