@@ -51,6 +51,9 @@
 .light-border {
   border-color: map-get($grey, 'lighten-1') !important;
 }
+.dark-border {
+  border-color: map-get($grey, 'darken-3') !important;
+}
 .v-divider {
   &.is-small {
     width: rem(64px) !important;

@@ -18,7 +18,7 @@ $material-light: (
   ),
   'cards': map-get($shades, 'white'),
   'chips': #e0e0e0,
-  'dividers': rgba(map-get($shades, 'black'), 0.12),
+  'dividers': map-get($grey, 'darken-3'),
   'text': (
     'theme': map-get($shades, 'white'),
     'primary': rgba(map-get($shades, 'black'), 0.87),

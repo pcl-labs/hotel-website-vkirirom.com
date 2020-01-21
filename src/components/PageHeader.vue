@@ -121,36 +121,74 @@
     </v-app-bar>
 
     <!-- mobile drawer -->
-    <v-navigation-drawer color="dark" fixed class="d-md-none page-header--drawer" temporary v-model="drawer">
-      <v-row no-gutters text-left column class="mt-12">
-        <v-flex xs12>
-          <v-btn text block to="/search/accommodations" class="my-2"><h3 class="mb-0">Accommodation</h3></v-btn>
-        </v-flex>
-        <v-flex xs12>
-          <v-btn text block to="/search/events" class="my-2"><h3 class="mb-0">Events</h3></v-btn>
-        </v-flex>
-        <v-flex xs12>
-          <v-btn text block to="/search/experiences" class="my-2"><h3 class="mb-0">Experience</h3></v-btn>
-        </v-flex>
-        <v-flex xs12>
-          <v-btn text block to="/search/food" class="my-2"><h3 class="mb-0">Food</h3></v-btn>
-        </v-flex>
-        <v-flex xs12>
-          <v-btn text block to="/search/blog" class="my-2"><h3 class="mb-0">Blog</h3></v-btn>
-        </v-flex>
-        <v-flex xs12>
-          <v-btn text block to="/listing/Pine-View-Kitchen-PVK" class="my-2"><h3 class="mb-0">Restaurant</h3></v-btn>
-        </v-flex>
-        <v-flex xs12>
-          <v-btn text block class="my-2" @click="openLogin()" v-if="!isAuthenticated"
-            ><h3 class="mb-0">Log in</h3></v-btn
+    <v-navigation-drawer dark="" fixed class="d-md-none page-header--drawer" temporary v-model="drawer">
+      <v-row no-gutters class="mb-8">
+        <v-col cols="12">
+          <div class="px-4 py-3">
+            <portal-target slim name="page-header-logo"></portal-target>
+          </div>
+        </v-col>
+      </v-row>
+      <v-row no-gutters>
+        <v-col cols="12">
+          <v-btn text block to="/search/accommodations" class="my-2 text-left"
+            ><h3 class="mb-0 w-100 text-transform-none">Accommodation</h3></v-btn
           >
-        </v-flex>
-        <v-flex xs12>
-          <v-btn text block class="my-2" @click="logout()" v-if="isAuthenticated" :loading="loading"
-            ><h3 class="mb-0">Log out</h3></v-btn
+        </v-col>
+        <v-col cols="12">
+          <v-btn text block to="/search/experiences" class="my-2 text-left"
+            ><h3 class="mb-0 w-100 text-transform-none">Experience</h3></v-btn
           >
-        </v-flex>
+        </v-col>
+        <v-col cols="12">
+          <v-btn text block to="/search/food" class="my-2 text-left"
+            ><h3 class="mb-0 w-100 text-transform-none">Menu</h3></v-btn
+          >
+        </v-col>
+        <v-col cols="12">
+          <v-btn text block to="/search/blog" class="my-2 text-left"
+            ><h3 class="mb-0 w-100 text-transform-none">Blog</h3></v-btn
+          >
+        </v-col>
+        <v-col cols="12">
+          <div class="mx-4">
+            <v-divider class="my-3 dark-border"></v-divider>
+          </div>
+        </v-col>
+        <v-col cols="12" v-if="!isAuthenticated">
+          <v-btn text block class="my-2 text-left" @click="openLogin()"
+            ><h3 class="mb-0 w-100 text-transform-none">Log in</h3></v-btn
+          >
+        </v-col>
+        <v-col cols="12" v-else>
+          <v-btn text block class="my-2 text-left"
+            ><h3 class="mb-0 w-100 text-transform-none" @click="isProfileExpanded = !isProfileExpanded">
+              Profile<v-icon size="32" class="ml-2 down-icon" :class="{ 'is-expanded': isProfileExpanded }"
+                >chevron_right</v-icon
+              >
+            </h3>
+          </v-btn>
+
+          <v-slide-y-transition>
+            <v-col cols="12" v-if="isProfileExpanded" no-gutters class="transition-fast-in-fast-out pa-0">
+              <v-row no-gutters>
+                <v-col cols="12">
+                  <v-btn text block class="my-2 text-left"><h3 class="mb-0 w-100 text-transform-none">Trips</h3></v-btn>
+                </v-col>
+                <v-col cols="12">
+                  <v-btn text block class="my-2 text-left"
+                    ><h3 class="mb-0 w-100 text-transform-none">My Account</h3></v-btn
+                  >
+                </v-col>
+                <v-col cols="12">
+                  <v-btn text block class="my-2 text-left" @click="logout()" :loading="loading"
+                    ><h3 class="mb-0 w-100 text-transform-none">Log out</h3></v-btn
+                  >
+                </v-col>
+              </v-row>
+            </v-col>
+          </v-slide-y-transition>
+        </v-col>
       </v-row>
     </v-navigation-drawer>
   </div>
@@ -166,6 +204,7 @@ export default {
   components: { AuthDialog, BookingNavigation },
   data() {
     return {
+      isProfileExpanded: false,
       drawer: false
     }
   },
@@ -236,8 +275,14 @@ export default {
 }
 .down-icon {
   transform: rotate(90deg);
+  &.is-expanded {
+    transform: rotate(-90deg);
+  }
 }
 .page-header--drawer {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2), 0px 4px 5px rgba(0, 0, 0, 0.12), 0px 1px 10px rgba(0, 0, 0, 0.2);
+}
+::v-deep .v-navigation-drawer__border {
+  display: none;
 }
 </style>
