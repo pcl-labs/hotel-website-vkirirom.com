@@ -486,7 +486,10 @@ export default {
 @import '@/styles/utility.scss';
 
 .page-header--wrapper {
-  height: $header-height;
+  height: $header-height-xs;
+  @include media-breakpoint-up(sm) {
+    height: $header-height-sm;
+  }
   top: 0;
   z-index: $zindex-page-header;
 }
@@ -553,6 +556,9 @@ export default {
 .pageheaderfade-enter,
 .pageheaderfade-leave-active {
   opacity: 0;
-  transform: translateY(rem(-$header-height));
+  transform: translateY(rem(-$header-height-xs));
+  @include media-breakpoint-up(sm) {
+    transform: translateY(rem(-$header-height-sm));
+  }
 }
 </style>

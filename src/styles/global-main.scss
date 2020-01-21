@@ -24,8 +24,12 @@ html {
   overflow-y: hidden;
 }
 .page {
-  min-height: calc(100vh - #{rem($header-height)});
-  min-height: calc(100 * var(--vh) - #{rem($header-height)});
+  min-height: calc(100vh - #{rem($header-height-xs)});
+  min-height: calc(100 * var(--vh) - #{rem($header-height-xs)});
+  @include media-breakpoint-up(sm) {
+    min-height: calc(100vh - #{rem($header-height-sm)});
+    min-height: calc(100 * var(--vh) - #{rem($header-height-sm)});
+  }
   display: flex;
   flex-direction: column;
   justify-content: space-between;

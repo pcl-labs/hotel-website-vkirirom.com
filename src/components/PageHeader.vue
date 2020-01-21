@@ -24,7 +24,7 @@
 
     <auth-dialog ref="authDialogRef"></auth-dialog>
 
-    <v-app-bar dark app height="56">
+    <v-app-bar dark app :height="$vuetify.breakpoint.smAndUp ? 80 : 56">
       <!-- ------ booking navigation ------ -->
       <div v-if="shouldShowBookingNavigation" class="d-flex justify-space-between align-center w-100">
         <portal-target slim name="page-header-logo"></portal-target>
@@ -239,7 +239,10 @@ export default {
 
 <style lang="scss" scoped>
 .page-header {
-  min-height: $header-height;
+  height: rem($header-height-xs);
+  @include media-breakpoint-up(sm) {
+    height: rem($header-height-sm);
+  }
 }
 
 .v-toolbar {
@@ -252,7 +255,7 @@ export default {
 .page-header--nav-desktop ::v-deep {
   .v-btn__content {
     position: relative;
-    top: rem(8px);
+    top: rem(12px);
   }
   .v-btn::before {
     background: none;
@@ -264,6 +267,10 @@ export default {
 
 .page-header--logo-image {
   height: rem(32px);
+  @include media-breakpoint-up(sm) {
+    height: rem(40px);
+  }
+
   vertical-align: middle;
 }
 .logo-mirror-ghost {

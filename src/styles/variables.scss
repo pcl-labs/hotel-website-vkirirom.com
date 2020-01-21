@@ -43,7 +43,8 @@ $zindex-page-footer: 1;
 $loading-transition-time: 500ms;
 
 // spacing
-$header-height: 56px;
+$header-height-xs: 56px;
+$header-height-sm: 80px;
 // grid https://vuetifyjs.com/en/customization/breakpoints
 $my-breakpoints: (
   xxs: 0,
