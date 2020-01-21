@@ -4,6 +4,7 @@ import auth from './modules/auth'
 import booking from './modules/booking'
 import payment from './modules/payment'
 import layout from './modules/layout'
+import email from './modules/email'
 import language from './modules/language'
 import resort from './modules/resort'
 import loading from './modules/loading'
@@ -26,6 +27,7 @@ export default new Vuex.Store({
     booking,
     payment,
     layout,
+    email,
     language
   }
 })

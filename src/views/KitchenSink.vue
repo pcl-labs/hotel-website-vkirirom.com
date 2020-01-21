@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <page-home-parrallax-hero></page-home-parrallax-hero>
+    <v-btn light @click="sendEmail()">send</v-btn>
   </div>
 </template>
 
@@ -10,13 +10,18 @@ import store from '@/store'
 import PageHomeParrallaxHero from '@/components/PageHomeParrallaxHero.vue'
 
 export default Vue.extend({
-  name: 'booking-dialog',
-  components: { PageHomeParrallaxHero },
+  name: 'kitchen-sink',
+  components: {},
   data() {
     return {}
   },
   computed: {},
-  methods: {}
+  methods: {
+    sendEmail() {
+      console.log('send email...')
+      store.dispatch('email/send')
+    }
+  }
 })
 </script>
 
