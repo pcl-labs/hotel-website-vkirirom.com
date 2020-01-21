@@ -64,8 +64,8 @@
             <v-btn text class="text-transform-none" to="/search/accommodations"
               ><span class="mb-0 h3 font-weight-semiblack">Accommodation</span></v-btn
             >
-            <v-btn text class="text-transform-none" to="/search/experiences"
-              ><span class="mb-0 h3 font-weight-semiblack">Experiences</span></v-btn
+            <v-btn text class="text-transform-none" to="/search/food"
+              ><span class="mb-0 h3 font-weight-semiblack">Menu</span></v-btn
             >
           </v-toolbar-items>
         </div>
@@ -77,8 +77,8 @@
 
         <div class="h-100 flex-grow-1 flex-basis-0">
           <v-toolbar-items class="page-header--nav-desktop mr-auto hidden-sm-and-down d-md-flex">
-            <v-btn text class="text-transform-none" to="/search/food"
-              ><span class="mb-0 h3 font-weight-semiblack">Menu</span></v-btn
+            <v-btn text class="text-transform-none" to="/search/experiences"
+              ><span class="mb-0 h3 font-weight-semiblack">Experiences</span></v-btn
             >
 
             <v-menu
