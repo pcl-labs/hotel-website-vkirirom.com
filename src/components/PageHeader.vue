@@ -62,10 +62,10 @@
         <div class="h-100 flex-grow-1 flex-basis-0 d-flex">
           <v-toolbar-items class="page-header--nav-desktop ml-auto hidden-sm-and-down d-md-flex">
             <v-btn text class="text-transform-none" to="/search/accommodations"
-              ><span class="mb-0 h3">Accommodation</span></v-btn
+              ><span class="mb-0 h3 font-weight-semiblack">Accommodation</span></v-btn
             >
             <v-btn text class="text-transform-none" to="/search/experiences"
-              ><span class="mb-0 h3">Experiences</span></v-btn
+              ><span class="mb-0 h3 font-weight-semiblack">Experiences</span></v-btn
             >
           </v-toolbar-items>
         </div>
@@ -77,7 +77,9 @@
 
         <div class="h-100 flex-grow-1 flex-basis-0">
           <v-toolbar-items class="page-header--nav-desktop mr-auto hidden-sm-and-down d-md-flex">
-            <v-btn text class="text-transform-none" to="/search/food"><span class="mb-0 h3">Menu</span></v-btn>
+            <v-btn text class="text-transform-none" to="/search/food"
+              ><span class="mb-0 h3 font-weight-semiblack">Menu</span></v-btn
+            >
 
             <v-menu
               eager
@@ -89,7 +91,9 @@
             >
               <template v-slot:activator="{ on }">
                 <v-btn v-on="on" text class="text-transform-none"
-                  ><span class="mb-0 h3">Profile<v-icon class="down-icon">chevron_right</v-icon></span>
+                  ><span class="mb-0 h3 font-weight-semiblack"
+                    >Profile<v-icon class="down-icon">chevron_right</v-icon></span
+                  >
                 </v-btn>
               </template>
               <v-list tile dense color="dark" class="dropdown-list">
