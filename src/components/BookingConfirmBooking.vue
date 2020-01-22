@@ -111,7 +111,7 @@
     <!-- sticky bar -->
     <div class="submit-bar--sticky d-none" :class="{ 'pb-9': !hasConfirmButton }">
       <div class="px-4">
-        <v-divider class="light-border mb-6"></v-divider>
+        <v-divider class="light-border mb-6 mt-1"></v-divider>
         <!-- total -->
         <v-row no-gutters>
           <v-col xs6>

@@ -3,6 +3,7 @@ const webpack = require('webpack')
 module.exports = {
   transpileDependencies: ['vuex-persist', 'vuetify'],
   css: {
+    sourceMap: true,
     loaderOptions: {
       scss: {
         prependData: '@import "src/styles/global-ghost.scss";'

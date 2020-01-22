@@ -141,7 +141,7 @@
     <!-- sticky bar -->
     <div class="submit-bar--sticky d-none">
       <div class="px-4">
-        <v-divider v-if="shouldShowTotal" class="light-border mb-6"></v-divider>
+        <v-divider v-if="shouldShowTotal" class="light-border mb-6 mt-1"></v-divider>
         <div class="confirm-dates--results-row my-6">
           <!-- total -->
           <v-expand-transition>
