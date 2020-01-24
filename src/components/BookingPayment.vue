@@ -127,13 +127,13 @@
             </v-col>
           </v-row>
 
+          <!-- FIXME: handle disabled correctly -->
           <v-btn
             @click="submit"
             x-large
             color="primary"
             dark
             class="text-transform-none font-weight-bold dark--text"
-            :disabled="!isFormValid"
             :loading="isPaymentLoading"
             type="submit"
           >
