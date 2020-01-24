@@ -82,12 +82,17 @@
               </v-col>
             </v-row>
 
-            <resort-description :resort="resort"></resort-description>
+            <resort-description ref="roomDescriptionWrapperRef" :resort="resort"></resort-description>
           </v-container>
         </div>
       </div>
 
-      <booking-bar v-if="shouldShowBookingBar" :title="resort.h2" :price="Number(resort.ctaText)"></booking-bar>
+      <booking-bar
+        @on-start-booking="onStartBooking"
+        v-if="shouldShowBookingBar"
+        :title="resort.h2"
+        :price="Number(resort.ctaText)"
+      ></booking-bar>
 
       <page-footer></page-footer>
     </div>
@@ -134,6 +139,15 @@ export default Vue.extend({
     }
   },
   methods: {
+    onStartBooking() {
+      // @ts-ignore
+      this.updateRoomDescriptionHTML()
+    },
+    updateRoomDescriptionHTML() {
+      // @ts-ignore
+      const resortRulesText = this.$refs.roomDescriptionWrapperRef.$el.innerHTML
+      store.dispatch('booking/updateRoomDescriptionHTML', resortRulesText)
+    },
     init() {
       store.dispatch('resort/getItemBySlug', this.$route.params.id).then(() => {
         this.$emit('updateHead')

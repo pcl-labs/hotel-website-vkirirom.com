@@ -1,7 +1,7 @@
 import { addDays } from 'date-fns'
 import { RoomTypeService, ReservationService } from '@/connection/resources.js'
 import { bookingStep } from '@/types'
-import { setDocumentClassesOnToggleDialog, formatDate } from '@/helpers'
+import { setDocumentClassesOnToggleDialog, formatDate, removeOtherLanguagesExcept } from '@/helpers'
 import { cloneDeep } from 'lodash-es'
 import countriesList from '@/constants/countries-list'
 import store from '@/store'
@@ -53,6 +53,7 @@ const defaultState = {
   bookingInfo: {
     returnUrl: '/',
     resort: {},
+    roomDescriptionHTML: '',
     guests: {
       adults: 1,
       children: 0,
@@ -154,6 +155,10 @@ export default {
     },
     updateReservationDetails(state, payload) {
       state.reservationDetails = payload
+    },
+    updateRoomDescriptionHTML(state, payload) {
+      const englishDescription = removeOtherLanguagesExcept('en', payload)
+      state.bookingInfo.roomDescriptionHTML = englishDescription
     },
     resetState(state) {
       for (const key in defaultState) {
@@ -270,6 +275,9 @@ export default {
         context.commit('updateReservationDetails', res)
       })
     },
+    updateRoomDescriptionHTML(context, payload) {
+      context.commit('updateRoomDescriptionHTML', payload)
+    },
     sendEmailNotification(context) {
       const bookingInfo = context.getters.bookingInfoForEmail
       return ajax({
@@ -277,8 +285,9 @@ export default {
         url: `${emailNotificationBase}/mail/send`,
         data: {
           email_to: store.getters['auth/user'].userName,
-          email_subject: 'Thank you',
-          template_id: 'd-9a3ef6bc785244159ea9ab2f8bf2c8a6',
+          email_subject: 'Thank You!',
+          // 6fcd1e4a16504ba4a888e85184574101 is on mort3za's account
+          template_id: 'd-6fcd1e4a16504ba4a888e85184574101',
           dynamic_template_data: bookingInfo
         },
         withCredentials: false,
@@ -317,26 +326,25 @@ export default {
     },
     bookingInfoForEmail(state, getters) {
       const bookingInfo = state.bookingInfo
-      const amount = getters.computedTotalPrice({ all: true })
 
       return {
         name: bookingInfo.fullName,
         message: bookingInfo.message,
         numberOfGuests: bookingInfo.guests.total,
-        checkIn: bookingInfo.dateOne,
-        checkOut: bookingInfo.checkOut,
-        amount,
+        checkIn: formatDate(bookingInfo.dateOne, 'ddd, D MMM'),
+        checkOut: formatDate(bookingInfo.checkOut, 'ddd, D MMM'),
         email: store.getters['auth/user'].userName,
-        phoneCountry: bookingInfo.phoneCountry,
-        phone: bookingInfo.phoneNumber,
+        phoneCountry: bookingInfo.phoneCountry.name,
+        phone: `+(${bookingInfo.phoneCountry.callingCodes[0]})` + bookingInfo.phoneNumber,
         guests: bookingInfo.guests,
         resort: bookingInfo.resort,
-        vat: getters.computedVAT().toFixed(0),
-        totalPrice: getters.computedTotalPrice({ all: true }).toFixed(0),
-        prices: getters.prices({ rounded: true })
+        roomDescriptionHTML: bookingInfo.roomDescriptionHTML,
+        prices: getters.prices({ rounded: true, formattedDate: true }),
+        vat: getters.computedVAT().toFixed(2),
+        amount: getters.computedTotalPrice({ all: true }).toFixed(2)
       }
     },
-    prices: state => ({ rounded = false }) => {
+    prices: state => ({ rounded = false, formattedDate = false }) => {
       let prices = state.bookingInfo.prices
       if (rounded) {
         prices = prices.map(price => {
@@ -344,6 +352,15 @@ export default {
           return {
             ...price,
             amount
+          }
+        })
+      }
+      if (formattedDate) {
+        prices = prices.map(price => {
+          const date = formatDate(price.date, 'ddd, D MMM')
+          return {
+            ...price,
+            date
           }
         })
       }
