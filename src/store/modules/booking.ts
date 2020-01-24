@@ -5,6 +5,8 @@ import { setDocumentClassesOnToggleDialog, formatDate } from '@/helpers'
 import { cloneDeep } from 'lodash-es'
 import countriesList from '@/constants/countries-list'
 import store from '@/store'
+import { emailNotificationBase } from '@/constants/app'
+import { ajax } from '@/connection/ajax'
 
 const steps: { [name: string]: bookingStep } = {
   notStarted: {
@@ -267,6 +269,23 @@ export default {
       }).then(res => {
         context.commit('updateReservationDetails', res)
       })
+    },
+    sendEmailNotification(context) {
+      const bookingInfo = context.getters.bookingInfoForEmail
+      return ajax({
+        method: 'post',
+        url: `${emailNotificationBase}/mail/send`,
+        data: {
+          email_to: store.getters['auth/user'].userName,
+          email_subject: 'Thank you',
+          template_id: 'd-9a3ef6bc785244159ea9ab2f8bf2c8a6',
+          dynamic_template_data: bookingInfo
+        },
+        withCredentials: false,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
     }
   },
   getters: {
@@ -294,6 +313,27 @@ export default {
           email: store.getters['auth/user'].userName,
           phone: `+${bookingInfo.phoneCountry.callingCodes[0]}` + bookingInfo.phoneNumber
         }
+      }
+    },
+    bookingInfoForEmail(state, getters) {
+      const bookingInfo = state.bookingInfo
+      const amount = getters.computedTotalPrice({ all: true })
+
+      return {
+        name: bookingInfo.fullName,
+        message: bookingInfo.message,
+        numberOfGuests: bookingInfo.guests.total,
+        checkIn: bookingInfo.dateOne,
+        checkOut: bookingInfo.checkOut,
+        amount,
+        email: store.getters['auth/user'].userName,
+        phoneCountry: bookingInfo.phoneCountry,
+        phone: bookingInfo.phoneNumber,
+        guests: bookingInfo.guests,
+        resort: bookingInfo.resort,
+        vat: getters.computedVAT().toFixed(0),
+        totalPrice: getters.computedTotalPrice({ all: true }).toFixed(0),
+        prices: getters.prices({ rounded: true })
       }
     },
     prices: state => ({ rounded = false }) => {
