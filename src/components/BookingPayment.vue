@@ -26,9 +26,9 @@
                 <v-icon class="position-absolute payment--icon">$vuetify.icons.cash</v-icon>
               </v-card-title>
             </v-card>
-            <v-card outlined color="transparent" class="mb-2" @click="payWith = 'card'">
+            <v-card disabled outlined color="transparent" class="mb-2" @click="payWith = 'card'">
               <v-card-title>
-                <v-radio color="green" label="Pay with card" :value="'card'" class="ma-0"></v-radio>
+                <v-radio disabled color="green" label="Pay with card" :value="'card'" class="ma-0"></v-radio>
                 <v-icon class="position-absolute payment--icon">$vuetify.icons.creditCard</v-icon>
               </v-card-title>
             </v-card>
@@ -162,7 +162,15 @@ export default Vue.extend({
       isFormValid: false,
       errorMessage: '',
       rules: {
-        fullName: [v => !!v || 'Full name is required', v => isAlpha(v) || 'Should contain only English letters (a-z)'],
+        fullName: [
+          v => !!v || 'Full name is required',
+          v =>
+            isAlpha(
+              String(v)
+                .split(' ')
+                .join('')
+            ) || 'Should contain only English letters (a-z)'
+        ],
         addressLine: [v => !!v || 'Address is required'],
         addressCity: [v => !!v || 'City is required'],
         addressState: [v => !!v || 'State is required'],

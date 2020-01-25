@@ -64,7 +64,7 @@ const defaultState = {
     email: '',
     phoneNumber: '',
     phoneCountry: countriesList.find(item => item.name === 'Cambodia'),
-    payWith: 'card',
+    payWith: 'cash',
     roomType: {},
     dateOne: '',
     dateTwo: '',
