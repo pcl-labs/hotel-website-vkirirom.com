@@ -5,7 +5,7 @@ import { setDocumentClassesOnToggleDialog, formatDate, removeOtherLanguagesExcep
 import { cloneDeep } from 'lodash-es'
 import countriesList from '@/constants/countries-list'
 import store from '@/store'
-import { emailNotificationBase, reservationEmailBcc } from '@/constants/app'
+import { emailNotificationBase, reservationEmailsBcc } from '@/constants/app'
 import { ajax } from '@/connection/ajax'
 
 const steps: { [name: string]: bookingStep } = {
@@ -285,8 +285,13 @@ export default {
         method: 'post',
         url: `${emailNotificationBase}/mail/send`,
         data: {
-          email_bcc: reservationEmailBcc,
-          email_to: store.getters['auth/user'].userName,
+          email_bcc: reservationEmailsBcc,
+          email_to: [
+            {
+              email: store.getters['auth/user'].userName,
+              name: bookingInfo.fullName
+            }
+          ],
           email_subject,
           // 6fcd1e4a16504ba4a888e85184574101 is on mort3za's account
           template_id: 'd-6fcd1e4a16504ba4a888e85184574101',

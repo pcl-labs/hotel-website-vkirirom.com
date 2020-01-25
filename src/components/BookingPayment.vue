@@ -150,7 +150,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { isNumeric } from 'validator'
+import { isNumeric, isAlpha } from 'validator'
 import store from '../store'
 import BookingPaymentByStripe from '@/components/BookingPaymentByStripe.vue'
 
@@ -162,7 +162,7 @@ export default Vue.extend({
       isFormValid: false,
       errorMessage: '',
       rules: {
-        fullName: [v => !!v || 'Full name is required'],
+        fullName: [v => !!v || 'Full name is required', v => isAlpha(v) || 'Should contain only English letters (a-z)'],
         addressLine: [v => !!v || 'Address is required'],
         addressCity: [v => !!v || 'City is required'],
         addressState: [v => !!v || 'State is required'],
