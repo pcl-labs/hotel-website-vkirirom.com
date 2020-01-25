@@ -51,14 +51,13 @@ export default Vue.extend({
       await this.createStripeComponent(this.stripeKey)
     },
     async submit() {
-      store.dispatch('payment/updatePaymentError', '')
-      store.dispatch('payment/updateIsPaymentLoading', true)
       try {
         await this.reserveRoom()
         await this.getClientSecret()
         await this.getReservationDetails()
         await this.purchase()
       } catch (error) {
+        // TODO: move to higher level component
         store.dispatch('payment/updatePaymentError', error.message)
         store.dispatch('payment/updateIsPaymentLoading', false)
       }

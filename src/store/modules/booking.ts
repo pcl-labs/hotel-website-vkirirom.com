@@ -280,21 +280,38 @@ export default {
     },
     sendEmailNotification(context) {
       const bookingInfo = context.getters.bookingInfoForEmail
+      const email_subject = 'Thank You!'
       return ajax({
         method: 'post',
         url: `${emailNotificationBase}/mail/send`,
         data: {
           email_to: store.getters['auth/user'].userName,
-          email_subject: 'Thank You!',
+          email_subject,
           // 6fcd1e4a16504ba4a888e85184574101 is on mort3za's account
           template_id: 'd-6fcd1e4a16504ba4a888e85184574101',
-          dynamic_template_data: bookingInfo
+          dynamic_template_data: {
+            ...bookingInfo,
+            subject: email_subject
+          }
         },
         withCredentials: false,
         headers: {
           'Content-Type': 'application/json'
         }
       })
+    },
+    evaluateValidation(context) {
+      const bookingInfo = context.getters.bookingInfo
+      const computedTotalPrice = context.getters.computedTotalPrice({ all: true })
+      const now = new Date()
+      const { dateOne, dateTwo } = bookingInfo
+      if (!(new Date(dateOne) > now && new Date(dateTwo) > now)) {
+        throw new Error('Check in and check out dates are not valid.')
+      }
+      if (!(computedTotalPrice >= 0)) {
+        throw new Error('Total price is not valid.')
+      }
+      return true
     }
   },
   getters: {

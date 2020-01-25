@@ -35,7 +35,7 @@
           </v-radio-group>
 
           <v-expand-transition>
-            <div class="transition-fast-in-fast-out mb-6" v-show="payWith === 'card'">
+            <div class="transition-fast-in-fast-out mb-6" v-if="payWith === 'card'">
               <h4 class="mb-2 title font-weight-bold">Billing Info</h4>
 
               <v-text-field
@@ -127,13 +127,13 @@
             </v-col>
           </v-row>
 
-          <!-- FIXME: handle disabled correctly -->
           <v-btn
             @click="submit"
             x-large
             color="primary"
             dark
             class="text-transform-none font-weight-bold dark--text"
+            :disabled="!isFormValid"
             :loading="isPaymentLoading"
             type="submit"
           >
@@ -169,6 +169,9 @@ export default Vue.extend({
         addressZip: [v => !!v || 'Zip number is required', v => isNumeric(v) || 'Zip code is not valid']
       }
     }
+  },
+  mounted() {
+    this.resetComponentState()
   },
   computed: {
     payWith: {
@@ -227,11 +230,18 @@ export default Vue.extend({
     }
   },
   methods: {
+    resetComponentState() {
+      store.dispatch('payment/updatePaymentError', '')
+      store.dispatch('payment/updateIsPaymentLoading', false)
+    },
     focusPhone() {
       // @ts-ignore
       this.$refs.phoneNumber.focus()
     },
-    submit() {
+    async submit() {
+      if ((await this.evaluateValidation()) === false) {
+        return
+      }
       if (this.payWith === 'cash') {
         this.payWithCash()
       } else if (this.payWithCard) {
@@ -239,19 +249,51 @@ export default Vue.extend({
       }
     },
     payWithCash() {
+      store.dispatch('payment/updatePaymentError', '')
       store.dispatch('payment/updateIsPaymentLoading', true)
-      store.dispatch('booking/sendEmailNotification').finally(() => {
-        store.dispatch('payment/updateIsPaymentLoading', false)
-      })
+      // TODO: refactor error handling
+      store
+        .dispatch('booking/sendEmailNotification')
+        .then(this.onSendEmailNotification)
+        .then(this.goNextStep)
+        .catch(error => {
+          store.dispatch('payment/updatePaymentError', error.response.message || 'Unknown error, please try again')
+        })
     },
     payWithCard() {
+      // TODO: use store instead
       // @ts-ignore
       this.$refs.paymentByStripe.submit()
     },
-    onPaymentSuccess(result) {
-      this.$router.push({ name: 'booking-thanks' })
+    onSendEmailNotification(res) {
+      if (!res) {
+        store.dispatch('payment/updatePaymentError', 'Unknown error, please try again')
+      }
+      if (!res.error) {
+        store.dispatch('payment/updateIsPaymentLoading', false)
+      } else {
+        try {
+          store.dispatch('payment/updatePaymentError', res.data.errors[0].message)
+        } catch (error) {
+          store.dispatch('payment/updatePaymentError', 'Unknown error, please try again')
+        }
+      }
     },
-    onPaymentError(result) {}
+    async evaluateValidation() {
+      try {
+        return await store.dispatch('booking/evaluateValidation')
+      } catch (error) {
+        store.dispatch('payment/updatePaymentError', error.message)
+        return false
+      }
+    },
+    onPaymentSuccess(result) {
+      this.goNextStep()
+    },
+    onPaymentError(result) {},
+    goNextStep() {
+      this.$router.push({ name: 'booking-thanks' })
+    }
   }
 })
 </script>
