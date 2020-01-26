@@ -117,7 +117,7 @@
               </v-list>
             </v-menu>
             <v-btn v-else text class="text-transform-none" @click="openLogin()"
-              ><span class="mb-0 h3">Log In</span></v-btn
+              ><span class="mb-0 h3 font-weight-semiblack">Log In</span></v-btn
             >
           </v-toolbar-items>
         </div>
