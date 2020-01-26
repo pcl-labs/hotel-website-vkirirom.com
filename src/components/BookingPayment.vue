@@ -235,6 +235,9 @@ export default Vue.extend({
     },
     isPaymentLoading() {
       return store.getters['payment/isPaymentLoading']
+    },
+    customBookingInfo() {
+      return store.getters['booking/customBookingInfo']
     }
   },
   methods: {
@@ -256,17 +259,28 @@ export default Vue.extend({
         this.payWithCard()
       }
     },
-    payWithCash() {
+    async payWithCash() {
       store.dispatch('payment/updatePaymentError', '')
       store.dispatch('payment/updateIsPaymentLoading', true)
-      // TODO: refactor error handling
-      store
-        .dispatch('booking/sendEmailNotification')
-        .then(this.onSendEmailNotification)
-        .then(this.goNextStep)
-        .catch(error => {
-          store.dispatch('payment/updatePaymentError', error.response.message || 'Unknown error, please try again')
-        })
+
+      try {
+        await this.reserveRoom()
+        // TODO: refactor error handling
+        store
+          .dispatch('booking/sendEmailNotification')
+          .then(this.onSendEmailNotification)
+          .then(this.goNextStep)
+          .catch(error => {
+            store.dispatch('payment/updatePaymentError', error.response.message || 'Unknown error, please try again')
+          })
+      } catch (error) {
+        // TODO: move to higher level component
+        store.dispatch('payment/updatePaymentError', error.message)
+        store.dispatch('payment/updateIsPaymentLoading', false)
+      }
+    },
+    reserveRoom() {
+      return store.dispatch('booking/reserveRoom', this.customBookingInfo)
     },
     payWithCard() {
       // TODO: use store instead

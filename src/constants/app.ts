@@ -10,6 +10,7 @@ export const reservationEmailsBcc = [
     name: 'vKirirom'
   },
   {
-    email: 'hicki.okamoto@kit.edu.kh'
+    email: 'hicki.okamoto@kit.edu.kh',
+    name: 'Mr. Hicki'
   }
 ]

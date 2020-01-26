@@ -186,6 +186,9 @@ export default {
       context.commit('updateReturnUrl', returnUrl)
       context.commit('updateCurrentStep', context.state.steps.confirmDates)
     },
+    endBooking(context) {
+      context.commit('resetState')
+    },
     updateCurrentStep(context, payload) {
       context.commit('updateCurrentStep', payload)
     },
@@ -312,10 +315,10 @@ export default {
       const now = new Date()
       const { dateOne, dateTwo } = bookingInfo
       if (!(new Date(dateOne) > now && new Date(dateTwo) > now)) {
-        throw new Error('Check in and check out dates are not valid.')
+        throw new Error('Check in and check out dates are not valid. Please starting your booking again.')
       }
       if (!(computedTotalPrice >= 0)) {
-        throw new Error('Total price is not valid.')
+        throw new Error('Total price is not valid. Please starting your booking again.')
       }
       return true
     }
@@ -363,8 +366,8 @@ export default {
         resort: bookingInfo.resort,
         roomDescriptionHTML: bookingInfo.roomDescriptionHTML,
         prices: getters.prices({ rounded: true, formattedDate: true }),
-        vat: getters.computedVAT().toFixed(2),
-        amount: getters.computedTotalPrice({ all: true }).toFixed(2)
+        vat: Number(getters.computedVAT().toFixed(2)),
+        amount: Number(getters.computedTotalPrice({ all: true }).toFixed(2))
       }
     },
     prices: state => ({ rounded = false, formattedDate = false }) => {
