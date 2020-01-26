@@ -9,14 +9,10 @@
               :class="$vuetify.breakpoint.mdAndUp ? 'display-1' : 'title'"
               class="primary--text font-weight-bold text-capitalize"
             >
-              {{ resort.name }}
+              {{ resort.title }}
             </h1>
           </v-overlay>
-          <v-img
-            :aspect-ratio="2880 / 1008"
-            src="https://res.cloudinary.com/die9ji2vn/image/upload/v1578657961/Home%20Page/Full_n5ibke.png"
-          >
-          </v-img>
+          <v-img :aspect-ratio="2880 / 1008" :src="resort.backgroundImage"> </v-img>
         </div>
         <v-container class="is-limited light--text px-2 px-md-0 py-8" grid-list-md>
           <div class="mb-8 mt-md-10 mb-md-6 pt-md-2 pb-md-10 title font-weight-normal text-center">
