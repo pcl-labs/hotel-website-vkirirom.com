@@ -20,22 +20,22 @@
           <h4 class="mb-2 title font-weight-bold">Pay with</h4>
 
           <v-radio-group dark v-model="payWith" class="ma-0 d-block">
-            <v-card disabled outlined color="transparent" class="mb-2" @click="payWith = 'cash'">
+            <v-card outlined color="transparent" class="mb-2" @click="payWith = 'cash'">
               <v-card-title>
-                <v-radio disabled color="green" label="Pay with cash" :value="'cash'" class="ma-0"></v-radio>
+                <v-radio color="green" label="Pay with cash" :value="'cash'" class="ma-0"></v-radio>
                 <v-icon class="position-absolute payment--icon">$vuetify.icons.cash</v-icon>
               </v-card-title>
             </v-card>
-            <v-card outlined color="transparent" class="mb-2" @click="payWith = 'card'">
+            <v-card disabled outlined color="transparent" class="mb-2" @click="payWith = 'card'">
               <v-card-title>
-                <v-radio color="green" label="Pay with card" :value="'card'" class="ma-0"></v-radio>
+                <v-radio disabled color="green" label="Pay with card" :value="'card'" class="ma-0"></v-radio>
                 <v-icon class="position-absolute payment--icon">$vuetify.icons.creditCard</v-icon>
               </v-card-title>
             </v-card>
           </v-radio-group>
 
           <v-expand-transition>
-            <div class="transition-fast-in-fast-out mb-6" v-show="payWith === 'card'">
+            <div class="transition-fast-in-fast-out mb-6" v-if="payWith === 'card'">
               <h4 class="mb-2 title font-weight-bold">Billing Info</h4>
 
               <v-text-field
@@ -150,9 +150,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { isNumeric } from 'validator'
+import { isNumeric, isAlpha } from 'validator'
 import store from '../store'
-import { isCreditCard } from 'validator'
 import BookingPaymentByStripe from '@/components/BookingPaymentByStripe.vue'
 
 export default Vue.extend({
@@ -163,13 +162,24 @@ export default Vue.extend({
       isFormValid: false,
       errorMessage: '',
       rules: {
-        fullName: [v => !!v || 'Full name is required'],
+        fullName: [
+          v => !!v || 'Full name is required',
+          v =>
+            isAlpha(
+              String(v)
+                .split(' ')
+                .join('')
+            ) || 'Should contain only English letters (a-z)'
+        ],
         addressLine: [v => !!v || 'Address is required'],
         addressCity: [v => !!v || 'City is required'],
         addressState: [v => !!v || 'State is required'],
         addressZip: [v => !!v || 'Zip number is required', v => isNumeric(v) || 'Zip code is not valid']
       }
     }
+  },
+  mounted() {
+    this.resetComponentState()
   },
   computed: {
     payWith: {
@@ -225,21 +235,87 @@ export default Vue.extend({
     },
     isPaymentLoading() {
       return store.getters['payment/isPaymentLoading']
+    },
+    customBookingInfo() {
+      return store.getters['booking/customBookingInfo']
     }
   },
   methods: {
+    resetComponentState() {
+      store.dispatch('payment/updatePaymentError', '')
+      store.dispatch('payment/updateIsPaymentLoading', false)
+    },
     focusPhone() {
       // @ts-ignore
       this.$refs.phoneNumber.focus()
     },
-    submit() {
+    async submit() {
+      if ((await this.evaluateValidation()) === false) {
+        return
+      }
+      if (this.payWith === 'cash') {
+        this.payWithCash()
+      } else if (this.payWithCard) {
+        this.payWithCard()
+      }
+    },
+    async payWithCash() {
+      store.dispatch('payment/updatePaymentError', '')
+      store.dispatch('payment/updateIsPaymentLoading', true)
+
+      try {
+        await this.reserveRoom()
+        // TODO: refactor error handling
+        store
+          .dispatch('booking/sendEmailNotification')
+          .then(this.onSendEmailNotification)
+          .then(this.goNextStep)
+          .catch(error => {
+            store.dispatch('payment/updatePaymentError', error.response.message || 'Unknown error, please try again')
+          })
+      } catch (error) {
+        // TODO: move to higher level component
+        store.dispatch('payment/updatePaymentError', error.message)
+        store.dispatch('payment/updateIsPaymentLoading', false)
+      }
+    },
+    reserveRoom() {
+      return store.dispatch('booking/reserveRoom', this.customBookingInfo)
+    },
+    payWithCard() {
+      // TODO: use store instead
       // @ts-ignore
       this.$refs.paymentByStripe.submit()
     },
-    onPaymentSuccess(result) {
-      this.$router.push({ name: 'booking-thanks' })
+    onSendEmailNotification(res) {
+      if (!res) {
+        store.dispatch('payment/updatePaymentError', 'Unknown error, please try again')
+      }
+      if (!res.error) {
+        store.dispatch('payment/updateIsPaymentLoading', false)
+      } else {
+        try {
+          store.dispatch('payment/updatePaymentError', res.data.errors[0].message)
+        } catch (error) {
+          store.dispatch('payment/updatePaymentError', 'Unknown error, please try again')
+        }
+      }
     },
-    onPaymentError(result) {}
+    async evaluateValidation() {
+      try {
+        return await store.dispatch('booking/evaluateValidation')
+      } catch (error) {
+        store.dispatch('payment/updatePaymentError', error.message)
+        return false
+      }
+    },
+    onPaymentSuccess(result) {
+      this.goNextStep()
+    },
+    onPaymentError(result) {},
+    goNextStep() {
+      this.$router.push({ name: 'booking-thanks' })
+    }
   }
 })
 </script>

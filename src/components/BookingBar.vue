@@ -123,6 +123,7 @@ export default {
     },
     startBooking() {
       this.$refs.bookingDialog.openDialog()
+      this.$emit('on-start-booking')
     }
   }
 }
