@@ -243,6 +243,7 @@ export default {
 
 <style lang="scss" scoped>
 .page-header {
+  z-index: $zindex-page-header;
   height: rem($header-height-xs);
   @include media-breakpoint-up(sm) {
     height: rem($header-height-sm);

@@ -2,8 +2,7 @@
 // TODO: remove deprecateds
 import { PageService } from '@/connection/resources.js'
 import Vue from 'vue'
-
-const companySlug = 'vkirirom'
+import { companySlug } from '@/constants/app'
 
 export default {
   namespaced: true,

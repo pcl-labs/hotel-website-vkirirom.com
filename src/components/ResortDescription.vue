@@ -1,5 +1,5 @@
 <template>
-  <div v-if="resort" class="resort-description light--text markdown-content">
+  <div v-if="resort" class="resort-description light--text">
     <div class="mb-12">
       <markdown-block :content="resort.description"></markdown-block>
     </div>

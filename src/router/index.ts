@@ -20,7 +20,8 @@ const routes = [
   },
   {
     path: '/search/:id',
-    component: SearchPage
+    component: SearchPage,
+    props: route => ({ slug: route.params.id })
   },
   {
     path: '/testing',

@@ -1,6 +1,6 @@
 <template>
   <!-- v-if="hotel.id" -->
-  <div class="resort-rules light--text markdown-content">
+  <div class="resort-rules light--text">
     <!-- shuttle -->
     <!-- <div >
       <h2>Shuttle Bus</h2>

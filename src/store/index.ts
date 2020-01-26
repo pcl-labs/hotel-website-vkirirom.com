@@ -6,6 +6,7 @@ import payment from './modules/payment'
 import layout from './modules/layout'
 import language from './modules/language'
 import resort from './modules/resort'
+import category from './modules/category'
 import loading from './modules/loading'
 import VuexPersistence from 'vuex-persist'
 
@@ -23,6 +24,7 @@ export default new Vuex.Store({
     loading,
     auth,
     resort,
+    category,
     booking,
     payment,
     layout,
