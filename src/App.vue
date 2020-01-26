@@ -7,6 +7,7 @@
 
 <script>
 import store from '@/store'
+import { languageCodes } from '@/constants/app'
 
 export default {
   name: 'app',
@@ -22,7 +23,6 @@ export default {
   },
   computed: {
     hiddenLanguagesClasses() {
-      const languageCodes = ['en', 'kh']
       const selectedLanguageCode = store.getters['language/config'].selectedLanguageCode
       return languageCodes.filter(code => code !== selectedLanguageCode).map(code => `hide-lang-${code}`)
     }

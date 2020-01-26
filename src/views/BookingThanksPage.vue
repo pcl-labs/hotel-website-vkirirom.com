@@ -53,6 +53,9 @@ export default Vue.extend({
     returnUrl() {
       return store.getters['booking/bookingInfo'].returnUrl
     }
+  },
+  destroyed() {
+    store.dispatch('booking/endBooking')
   }
 })
 </script>
