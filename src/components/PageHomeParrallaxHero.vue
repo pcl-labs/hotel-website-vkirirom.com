@@ -26,7 +26,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { getPassiveEventConfig } from '@/helpers'
+import { getPassiveEventConfig, transformCloudinaryUrl } from '@/helpers'
 
 const images = {
   image1: {
@@ -117,7 +117,7 @@ export default Vue.extend({
     getImage(number, breakpointName) {
       const image = images['image' + number]
 
-      return image[this.overridedBreakpoint || breakpointName] || image['lg']
+      return transformCloudinaryUrl(image[this.overridedBreakpoint || breakpointName] || image['lg'], 'f_auto')
     }
   },
   computed: {

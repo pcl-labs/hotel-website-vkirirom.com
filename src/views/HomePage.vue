@@ -5,7 +5,7 @@
         <page-header></page-header>
       </div>
     </transition>
-    <div class="page" v-scroll="onScrollPage">
+    <div class="page" v-scroll="debouncedOnScrollPage">
       <div class="page-content">
         <page-home-parrallax-hero ref="homeHero"></page-home-parrallax-hero>
 
@@ -84,7 +84,7 @@
                 height="300px"
                 position="center"
                 class="mt-6 pa-1 mb-6"
-                src="https://res.cloudinary.com/die9ji2vn/image/upload/dpr_auto/w_auto/q_auto:low/f_auto/v1562223032/group/group-retreat_s3ksth.jpg"
+                src="https://res.cloudinary.com/die9ji2vn/image/upload/dpr_auto/w_auto/q_auto:best,w_888,f_auto/v1562223032/group/group-retreat_s3ksth.jpg"
               >
                 <v-row no-gutters class="align-md-center fill-height">
                   <v-flex xs12 class="ma-auto">
@@ -170,7 +170,7 @@
             </v-row>
             <v-card
               :ripple="false"
-              to="/search/food"
+              to="/search/menu"
               xs12
               color="#191C21"
               width="100%"
@@ -193,7 +193,7 @@
                 </v-row>
                 <v-row class="flex-column">
                   <v-col cols="12" sm="4">
-                    <v-btn dark large to="/search/food" depressed class="menubtn ml-6 dark--text" color="primary">
+                    <v-btn dark large to="/search/menu" depressed class="menubtn ml-6 dark--text" color="primary">
                       Menu <v-icon>keyboard_arrow_right</v-icon>
                     </v-btn>
                   </v-col>
@@ -416,6 +416,7 @@
 
 <script>
 import { PageService } from '@/connection/resources.js'
+import { debounce } from 'lodash-es'
 const PageHeader = () => import('@/components/PageHeader.vue')
 const PageFooter = () => import('@/components/PageFooter.vue')
 const PageHomeParrallaxHero = () => import('@/components/PageHomeParrallaxHero.vue')
@@ -434,8 +435,7 @@ export default {
       events: [],
       ecotourisms: [],
       leases: [],
-      shouldShowHeader: false,
-      heroHeight: window.innerHeight * 1.5
+      shouldShowHeader: false
     }
   },
   created() {
@@ -471,12 +471,19 @@ export default {
     })
   },
   methods: {
-    onScrollPage(event) {
-      if (!this.shouldShowHeader && window.pageYOffset > this.heroHeight) {
+    debounce,
+    debouncedOnScrollPage: debounce(function() {
+      this.onScrollPage()
+    }, 50),
+    onScrollPage() {
+      if (!this.shouldShowHeader && this.isHeaderInVisibleRange()) {
         this.shouldShowHeader = true
-      } else if (this.shouldShowHeader && window.pageYOffset <= this.heroHeight) {
+      } else if (this.shouldShowHeader && !this.isHeaderInVisibleRange()) {
         this.shouldShowHeader = false
       }
+    },
+    isHeaderInVisibleRange() {
+      return window.pageYOffset > Math.min(600, Math.max(window.innerWidth / 3.2, window.innerHeight / 2))
     }
   }
 }
