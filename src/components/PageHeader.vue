@@ -64,7 +64,7 @@
             <v-btn text class="text-transform-none" to="/search/accommodations"
               ><span class="mb-0 h3 font-weight-semiblack">Accommodation</span></v-btn
             >
-            <v-btn text class="text-transform-none" to="/search/food"
+            <v-btn text class="text-transform-none" to="/search/menu"
               ><span class="mb-0 h3 font-weight-semiblack">Menu</span></v-btn
             >
           </v-toolbar-items>
@@ -145,7 +145,7 @@
           >
         </v-col>
         <v-col cols="12">
-          <v-btn text block to="/search/food" class="my-2 text-left"
+          <v-btn text block to="/search/menu" class="my-2 text-left"
             ><h3 class="mb-0 w-100 text-transform-none">Menu</h3></v-btn
           >
         </v-col>

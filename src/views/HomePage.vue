@@ -170,7 +170,7 @@
             </v-row>
             <v-card
               :ripple="false"
-              to="/search/food"
+              to="/search/menu"
               xs12
               color="#191C21"
               width="100%"
@@ -193,7 +193,7 @@
                 </v-row>
                 <v-row class="flex-column">
                   <v-col cols="12" sm="4">
-                    <v-btn dark large to="/search/food" depressed class="menubtn ml-6 dark--text" color="primary">
+                    <v-btn dark large to="/search/menu" depressed class="menubtn ml-6 dark--text" color="primary">
                       Menu <v-icon>keyboard_arrow_right</v-icon>
                     </v-btn>
                   </v-col>

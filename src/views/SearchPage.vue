@@ -19,20 +19,6 @@
             <markdown-block :content="resort.description"></markdown-block>
           </div>
 
-          <!-- TODO: get data from database? -->
-          <v-row class="page-description--food" v-if="slug == 'food'">
-            <v-col cols="12">
-              <p>
-                “Best lunch spot in Kirirom” (Lonely Planet Guidebook).
-                <br />vKirirom’s iconic open-air restaurant serves an array of international dishes to complement its
-                core traditional Khmer food. The restaurant strives to create wonderful healthy food that is locally
-                sourced from local farmers or grown in vKirirom’s own organic garden.
-              </p>
-
-              <p>Book your stay at vKirirom today and enjoy our array of international food!</p>
-            </v-col>
-          </v-row>
-
           <v-row dense>
             <v-col cols="12" sm="6" md="4" v-for="resort in categories" :key="resort.id">
               <card-product
@@ -90,19 +76,5 @@ export default {
 <style lang="scss" scoped>
 .hero ::v-deep .v-overlay__content {
   top: -5vw;
-}
-
-.page-description--food {
-  margin-bottom: rem(32px);
-  p {
-    font-size: 16px;
-    line-height: 22px;
-    color: #b9bcc1;
-  }
-  h1 {
-    color: #d7d9dd;
-    font-size: 28px;
-    margin-bottom: 20px;
-  }
 }
 </style>
