@@ -5,7 +5,7 @@
         <page-header></page-header>
       </div>
     </transition>
-    <div class="page" v-scroll="onScrollPage">
+    <div class="page" v-scroll="debouncedOnScrollPage">
       <div class="page-content">
         <page-home-parrallax-hero ref="homeHero"></page-home-parrallax-hero>
 
@@ -416,6 +416,7 @@
 
 <script>
 import { PageService } from '@/connection/resources.js'
+import { debounce } from 'lodash-es'
 const PageHeader = () => import('@/components/PageHeader.vue')
 const PageFooter = () => import('@/components/PageFooter.vue')
 const PageHomeParrallaxHero = () => import('@/components/PageHomeParrallaxHero.vue')
@@ -434,8 +435,7 @@ export default {
       events: [],
       ecotourisms: [],
       leases: [],
-      shouldShowHeader: false,
-      heroHeight: window.innerHeight * 1.5
+      shouldShowHeader: false
     }
   },
   created() {
@@ -471,12 +471,19 @@ export default {
     })
   },
   methods: {
-    onScrollPage(event) {
-      if (!this.shouldShowHeader && window.pageYOffset > this.heroHeight) {
+    debounce,
+    debouncedOnScrollPage: debounce(function() {
+      this.onScrollPage()
+    }, 50),
+    onScrollPage() {
+      if (!this.shouldShowHeader && this.isHeaderInVisibleRange()) {
         this.shouldShowHeader = true
-      } else if (this.shouldShowHeader && window.pageYOffset <= this.heroHeight) {
+      } else if (this.shouldShowHeader && !this.isHeaderInVisibleRange()) {
         this.shouldShowHeader = false
       }
+    },
+    isHeaderInVisibleRange() {
+      return window.pageYOffset > Math.min(600, Math.max(window.innerWidth / 3.2, window.innerHeight / 2))
     }
   }
 }
