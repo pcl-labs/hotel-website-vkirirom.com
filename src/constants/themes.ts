@@ -1,6 +1,6 @@
 // import colors from 'vuetify/lib/util/colors'
 
-export const light = {
+export const dark = {
   primary: '#E5B5CE',
   secondary: '#4B7F52',
   success: '#4B7F52',

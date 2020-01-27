@@ -1,6 +1,8 @@
 <template>
-  <div v-if="resort" class="resort-description light--text markdown-content">
-    <div class="mb-12" v-html="marked(resort.description)"></div>
+  <div v-if="resort" class="resort-description light--text">
+    <div class="mb-12">
+      <markdown-block :content="resort.description"></markdown-block>
+    </div>
     <resort-rules :resort="resort"></resort-rules>
   </div>
 </template>
@@ -8,20 +10,8 @@
 <script lang="ts">
 import Vue from 'vue'
 import ResortRules from '@/components/ResortRules.vue'
+import MarkdownBlock from '@/components/MarkdownBlock.vue'
 import { Resort } from '../types'
-import marked from 'marked'
-
-// https://marked.js.org/
-marked.setOptions({
-  renderer: new marked.Renderer(),
-  pedantic: false,
-  gfm: true,
-  breaks: false,
-  sanitize: false,
-  smartLists: true,
-  smartypants: false,
-  xhtml: false
-})
 
 export default Vue.extend({
   name: 'resort-description',
@@ -31,18 +21,6 @@ export default Vue.extend({
       required: true
     }
   },
-  components: { ResortRules },
-  methods: {
-    marked(content) {
-      if (!content) {
-        return ''
-      }
-      return marked(content)
-    }
-  }
+  components: { ResortRules, MarkdownBlock }
 })
 </script>
-
-<style lang="scss" scoped>
-@import '@/styles/markdown-content.scss';
-</style>

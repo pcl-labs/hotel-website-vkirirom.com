@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { light } from '@/constants/themes'
+import { dark } from '@/constants/themes'
 import IconFacebook from '@/components/IconFacebook.vue'
 import IconGoogle from '@/components/IconGoogle.vue'
 import IconMessage from '@/components/IconMessage.vue'
@@ -7,6 +7,7 @@ import IconMessageDark from '@/components/IconMessageDark.vue'
 import IconLock from '@/components/IconLock.vue'
 import IconCash from '@/components/IconCash.vue'
 import IconCreditCard from '@/components/IconCreditCard.vue'
+// @ts-ignore
 import Vuetify from 'vuetify/lib'
 
 Vue.use(Vuetify)
@@ -36,13 +37,13 @@ export default new Vuetify({
       },
       cash: {
         component: IconCash
-      },
+      }
     }
   },
   theme: {
-    dark: false,
+    dark: true,
     themes: {
-      light
+      dark
     }
   }
 })

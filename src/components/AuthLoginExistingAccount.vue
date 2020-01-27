@@ -55,7 +55,7 @@
         <v-flex xs12 class="my-3">
           <v-divider class="light-border"></v-divider>
         </v-flex>
-        
+
         <v-flex xs12 sm6 md12 class="text-center text-sm-left text-md-center light--text body-2">
           <p class="my-3 my-sm-0 my-md-3">
             <a @click="updateActiveState('auth-login')">Login with a different account</a>
@@ -73,12 +73,14 @@
 </template>
 
 <script lang="ts">
-import SeparatorOr from '@/components/SeparatorOr.vue'
+// import SeparatorOr from '@/components/SeparatorOr.vue'
 import store from '@/store'
 
 export default {
   name: 'auth-login',
-  components: { SeparatorOr },
+  components: {
+    // SeparatorOr
+  },
   data() {
     return {
       valid: false,

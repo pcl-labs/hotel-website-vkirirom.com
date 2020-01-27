@@ -2,12 +2,6 @@
   <fragment>
     <v-row no-gutters class="mb-8">
       <v-col>
-        <h1
-          class="my-6 font-weight-bold"
-          :class="{ 'display-1': $vuetify.breakpoint.smAndDown, 'display-2': $vuetify.breakpoint.mdAndUp }"
-        >
-          Review Rules
-        </h1>
         <h3 class="mb-0 title font-weight-bold">{{ prices.length }} night(s) in a {{ resort.title }}</h3>
       </v-col>
     </v-row>
@@ -92,11 +86,11 @@ export default Vue.extend({
 <style lang="scss" scoped>
 @import '@/styles/utility.scss';
 .box-bordered {
-  border: 1px solid $light;
+  border: 1px solid map-get($grey, 'lighten-1');
   border-radius: 4px;
   width: rem(64px);
   height: rem(64px);
-  @include media-breakpoint-up(md) {
+  @include media-breakpoint-up(md, $my-breakpoints) {
     width: rem(72px);
     height: rem(72px);
   }

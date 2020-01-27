@@ -1,14 +1,8 @@
 <template>
   <div>
-    <v-row no-gutters class="mb-8">
+    <v-row no-gutters>
       <v-col>
         <v-form v-model="isFormValid" @submit.prevent>
-          <h1
-            class="my-6 font-weight-bold"
-            :class="{ 'display-1': $vuetify.breakpoint.smAndDown, 'display-2': $vuetify.breakpoint.mdAndUp }"
-          >
-            Contact Info
-          </h1>
           <h4 class="mb-2 title font-weight-bold">Guest Info</h4>
           <v-row no-gutters class="phone-input align-center">
             <v-col cols="5">
@@ -146,7 +140,7 @@ export default Vue.extend({
 <style lang="scss" scoped>
 @import '@/styles/utility.scss';
 .theme--dark.v-card.v-card--outlined {
-  border-color: $light !important;
+  border-color: map-get($grey, 'lighten-1') !important;
 }
 ::v-deep {
   .phone-input--code {
@@ -177,7 +171,7 @@ export default Vue.extend({
     }
   }
   .theme--dark.v-icon {
-    color: $light;
+    color: map-get($grey, 'lighten-1');
   }
 }
 </style>

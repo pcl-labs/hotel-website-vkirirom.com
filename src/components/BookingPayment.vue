@@ -1,15 +1,8 @@
 <template>
   <div>
-    <v-row no-gutters class="mb-8">
+    <v-row no-gutters>
       <v-col>
         <v-form v-model="isFormValid" @submit.prevent>
-          <h1
-            class="my-6 font-weight-bold"
-            :class="{ 'display-1': $vuetify.breakpoint.smAndDown, 'display-2': $vuetify.breakpoint.mdAndUp }"
-          >
-            Payment
-          </h1>
-
           <h4 class="mb-2 title font-weight-bold">Full name</h4>
           <v-text-field
             v-model="fullName"
@@ -27,28 +20,94 @@
           <h4 class="mb-2 title font-weight-bold">Pay with</h4>
 
           <v-radio-group dark v-model="payWith" class="ma-0 d-block">
-            <v-card disabled outlined color="transparent" class="mb-2" @click="payWith = 'cash'">
+            <v-card outlined color="transparent" class="mb-2" @click="payWith = 'cash'">
               <v-card-title>
-                <v-radio disabled color="green" label="Pay with cash" :value="'cash'" class="ma-0"></v-radio>
+                <v-radio color="green" label="Pay with cash" :value="'cash'" class="ma-0"></v-radio>
                 <v-icon class="position-absolute payment--icon">$vuetify.icons.cash</v-icon>
               </v-card-title>
             </v-card>
-            <v-card outlined color="transparent" class="mb-2" @click="payWith = 'card'">
+            <v-card disabled outlined color="transparent" class="mb-2" @click="payWith = 'card'">
               <v-card-title>
-                <v-radio color="green" label="Pay with card" :value="'card'" class="ma-0"></v-radio>
+                <v-radio disabled color="green" label="Pay with card" :value="'card'" class="ma-0"></v-radio>
                 <v-icon class="position-absolute payment--icon">$vuetify.icons.creditCard</v-icon>
               </v-card-title>
             </v-card>
           </v-radio-group>
 
           <v-expand-transition>
-            <div class="transition-fast-in-fast-out mb-6" v-show="payWith === 'card'">
+            <div class="transition-fast-in-fast-out mb-6" v-if="payWith === 'card'">
+              <h4 class="mb-2 title font-weight-bold">Billing Info</h4>
+
+              <v-text-field
+                v-model="addressLine"
+                outlined
+                label="Address"
+                name="address"
+                color="light"
+                type="text"
+                required
+                :rules="rules.addressLine"
+                dark
+              >
+              </v-text-field>
+              <v-text-field
+                v-model="addressCity"
+                outlined
+                label="City"
+                name="city"
+                color="light"
+                type="text"
+                required
+                :rules="rules.addressCity"
+                dark
+              >
+              </v-text-field>
+
+              <v-row no-gutters="">
+                <v-col cols="6">
+                  <v-text-field
+                    class="radius-right-0"
+                    v-model="addressState"
+                    outlined
+                    label="State"
+                    name="state"
+                    color="light"
+                    type="text"
+                    required
+                    :rules="rules.addressState"
+                    dark
+                  >
+                  </v-text-field>
+                </v-col>
+                <v-col cols="6">
+                  <v-text-field
+                    class="radius-left-0 ml-n05"
+                    v-model="addressZip"
+                    outlined
+                    label="Zip"
+                    name="zip"
+                    color="light"
+                    type="text"
+                    required
+                    :rules="rules.addressZip"
+                    dark
+                  >
+                  </v-text-field>
+                </v-col>
+              </v-row>
+
+              <h4 class="mb-2 title font-weight-bold">Card Info</h4>
+
               <booking-payment-by-stripe
                 @success="onPaymentSuccess"
                 @error="onPaymentError"
                 ref="paymentByStripe"
                 :billingDetails="{
-                  name: fullName
+                  name: fullName,
+                  address_line1: addressLine,
+                  address_city: addressCity,
+                  address_state: addressState,
+                  address_zip: addressZip
                 }"
               ></booking-payment-by-stripe>
             </div>
@@ -91,9 +150,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { isNumber } from 'lodash-es'
+import { isNumeric, isAlpha } from 'validator'
 import store from '../store'
-import { isCreditCard } from 'validator'
 import BookingPaymentByStripe from '@/components/BookingPaymentByStripe.vue'
 
 export default Vue.extend({
@@ -104,16 +162,24 @@ export default Vue.extend({
       isFormValid: false,
       errorMessage: '',
       rules: {
-        fullName: [v => !!v || 'Full name is required'],
-        // validatin of credit card https://www.creditcardrush.com/credit-card-validator/
-        cardNumber: [v => !!v || 'Card number is required', v => isCreditCard(v) || 'Card number should be valid'],
-        expiration: [
-          v => !!v || 'Expiration date is required',
-          v => /^\d{4} \/ \d{1,2}$/.test(v) || 'Date should be like 2020 / 12'
+        fullName: [
+          v => !!v || 'Full name is required',
+          v =>
+            isAlpha(
+              String(v)
+                .split(' ')
+                .join('')
+            ) || 'Should contain only English letters (a-z)'
         ],
-        CVV: [v => !!v || 'CVV is required', v => /^[0-9]{3,4}$/.test(v) || 'CVV should be valid']
+        addressLine: [v => !!v || 'Address is required'],
+        addressCity: [v => !!v || 'City is required'],
+        addressState: [v => !!v || 'State is required'],
+        addressZip: [v => !!v || 'Zip number is required', v => isNumeric(v) || 'Zip code is not valid']
       }
     }
+  },
+  mounted() {
+    this.resetComponentState()
   },
   computed: {
     payWith: {
@@ -132,26 +198,124 @@ export default Vue.extend({
         store.dispatch('booking/updateFullName', value)
       }
     },
+    addressCity: {
+      get() {
+        return store.getters['booking/bookingInfo'].addressCity
+      },
+      set(value: string) {
+        store.dispatch('booking/updateAddressCity', value)
+      }
+    },
+    addressState: {
+      get() {
+        return store.getters['booking/bookingInfo'].addressState
+      },
+      set(value: string) {
+        store.dispatch('booking/updateAddressState', value)
+      }
+    },
+    addressLine: {
+      get() {
+        return store.getters['booking/bookingInfo'].addressLine
+      },
+      set(value: string) {
+        store.dispatch('booking/updateAddressLine', value)
+      }
+    },
+    addressZip: {
+      get() {
+        return store.getters['booking/bookingInfo'].addressZip
+      },
+      set(value: string) {
+        store.dispatch('booking/updateAddressZip', value)
+      }
+    },
     paymentError() {
       return store.getters['payment/paymentError']
     },
     isPaymentLoading() {
       return store.getters['payment/isPaymentLoading']
+    },
+    customBookingInfo() {
+      return store.getters['booking/customBookingInfo']
     }
   },
   methods: {
+    resetComponentState() {
+      store.dispatch('payment/updatePaymentError', '')
+      store.dispatch('payment/updateIsPaymentLoading', false)
+    },
     focusPhone() {
       // @ts-ignore
       this.$refs.phoneNumber.focus()
     },
-    submit() {
+    async submit() {
+      if ((await this.evaluateValidation()) === false) {
+        return
+      }
+      if (this.payWith === 'cash') {
+        this.payWithCash()
+      } else if (this.payWithCard) {
+        this.payWithCard()
+      }
+    },
+    async payWithCash() {
+      store.dispatch('payment/updatePaymentError', '')
+      store.dispatch('payment/updateIsPaymentLoading', true)
+
+      try {
+        await this.reserveRoom()
+        // TODO: refactor error handling
+        store
+          .dispatch('booking/sendEmailNotification')
+          .then(this.onSendEmailNotification)
+          .then(this.goNextStep)
+          .catch(error => {
+            store.dispatch('payment/updatePaymentError', error.response.message || 'Unknown error, please try again')
+          })
+      } catch (error) {
+        // TODO: move to higher level component
+        store.dispatch('payment/updatePaymentError', error.message)
+        store.dispatch('payment/updateIsPaymentLoading', false)
+      }
+    },
+    reserveRoom() {
+      return store.dispatch('booking/reserveRoom', this.customBookingInfo)
+    },
+    payWithCard() {
+      // TODO: use store instead
       // @ts-ignore
       this.$refs.paymentByStripe.submit()
     },
-    onPaymentSuccess(result) {
-      this.$router.push({ name: 'booking-thanks' })
+    onSendEmailNotification(res) {
+      if (!res) {
+        store.dispatch('payment/updatePaymentError', 'Unknown error, please try again')
+      }
+      if (!res.error) {
+        store.dispatch('payment/updateIsPaymentLoading', false)
+      } else {
+        try {
+          store.dispatch('payment/updatePaymentError', res.data.errors[0].message)
+        } catch (error) {
+          store.dispatch('payment/updatePaymentError', 'Unknown error, please try again')
+        }
+      }
     },
-    onPaymentError(result) {}
+    async evaluateValidation() {
+      try {
+        return await store.dispatch('booking/evaluateValidation')
+      } catch (error) {
+        store.dispatch('payment/updatePaymentError', error.message)
+        return false
+      }
+    },
+    onPaymentSuccess(result) {
+      this.goNextStep()
+    },
+    onPaymentError(result) {},
+    goNextStep() {
+      this.$router.push({ name: 'booking-thanks' })
+    }
   }
 })
 </script>
@@ -159,11 +323,11 @@ export default Vue.extend({
 <style lang="scss" scoped>
 @import '@/styles/utility.scss';
 .theme--dark.v-card.v-card--outlined {
-  border-color: $light !important;
+  border-color: map-get($grey, 'lighten-1') !important;
 }
 ::v-deep {
   .theme--dark.v-icon {
-    color: $light;
+    color: map-get($grey, 'lighten-1');
   }
   .confirm-payment--card-number {
     &:not(.error--text) {

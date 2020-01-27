@@ -2,8 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 const HomePage = () => import('@/views/HomePage.vue')
-const searchpage = () => import('../components/searchpage.vue')
-const Contact = () => import('../components/Contact.vue')
+const SearchPage = () => import('@/views/SearchPage.vue')
+const ContactPage = () => import('@/views/ContactPage.vue')
 const ListingPage = () => import('@/views/ListingPage.vue')
 const BookingReviewRulesPage = () => import('@/views/BookingReviewRulesPage.vue')
 const BookingCustomerInfoPage = () => import('@/views/BookingCustomerInfoPage.vue')
@@ -20,7 +20,8 @@ const routes = [
   },
   {
     path: '/search/:id',
-    component: searchpage
+    component: SearchPage,
+    props: route => ({ slug: route.params.id })
   },
   {
     path: '/testing',
@@ -33,7 +34,7 @@ const routes = [
   },
   {
     path: '/contact',
-    component: Contact
+    component: ContactPage
   },
   {
     name: 'booking-review-rules',

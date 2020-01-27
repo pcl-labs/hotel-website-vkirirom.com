@@ -11,9 +11,12 @@ import store from './store'
 import Fragment from 'vue-fragment'
 import './plugins/datepicker'
 import vuetify from './plugins/vuetify'
+import PortalVue from 'portal-vue'
 
+Vue.use(PortalVue)
 Vue.use(Fragment.Plugin)
 Vue.use(VueHead)
+// TODO: remove VueMarkdown
 Vue.use(VueMarkdown)
 
 Vue.config.productionTip = false

@@ -83,7 +83,7 @@
 
               <v-divider class="light-border mt-2 mb-4"></v-divider>
 
-              <v-list dark class="py-0">
+              <v-list dark class="py-0 mb-6">
                 <v-list-item class="px-0">
                   <v-list-item-content class="light--text py-0">
                     <v-list-item-title class="font-weight-bold body-1 light--text">Adult</v-list-item-title>
@@ -137,7 +137,7 @@
               </v-list>
 
               <v-expand-transition>
-                <p v-if="selectedRoomType.capacity" class="transition-fast-in-fast-out light--text body-2 my-6">
+                <p v-if="selectedRoomType.capacity" class="transition-fast-in-fast-out light--text body-2 mb-6">
                   {{ selectedRoomType.capacity }} guests maximum.
                 </p>
               </v-expand-transition>
@@ -180,7 +180,7 @@
     <!-- sticky bar -->
     <div class="submit-bar--sticky d-none">
       <div class="px-4">
-        <v-divider class="light-border mb-6"></v-divider>
+        <v-divider class="light-border mb-6 mt-1"></v-divider>
         <!-- total -->
         <v-row no-gutters class="mb-6">
           <v-col xs6>
@@ -332,7 +332,7 @@ export default Vue.extend({
 @import '@/styles/sticky-submit-bar.scss';
 
 .v-list.theme--dark {
-  background: $dark;
+  background: map-get($grey, 'darken-4');
 }
 .guests-count {
   min-width: rem(24px);
@@ -349,11 +349,11 @@ export default Vue.extend({
   height: rem(96px);
   &.v-btn.v-btn {
     border-width: rem(2px);
-    border-color: $gray-82;
-    color: $gray-82;
+    border-color: map-get($grey, 'darken-1');
+    color: map-get($grey, 'darken-1');
     &.is-selected {
-      border-color: $white;
-      color: $white;
+      border-color: map-get($shades, 'white');
+      color: map-get($shades, 'white');
     }
   }
 }

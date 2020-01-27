@@ -1,38 +1,65 @@
 // general
 // --------------------------------------------
 .text-transform-none {
-  text-transform: none;
+  text-transform: none !important;
 }
 .user-select-none {
-  user-select: none;
+  user-select: none !important;
 }
 
 .position-relative {
-  position: relative;
+  position: relative !important;
 }
 .position-absolute {
-  position: absolute;
+  position: absolute !important;
 }
 .position-fixed {
-  position: fixed;
+  position: fixed !important;
 }
 .text-underline {
-  text-decoration: underline;
+  text-decoration: underline !important;
 }
 .font-weight-normal {
-  font-weight: normal;
+  font-weight: normal !important;
 }
 .font-weight-semibold {
-  font-weight: 600;
+  font-weight: 600 !important;
+}
+.radius-right-0 {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.radius-left-0 {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.ml-n05 {
+  margin-left: -1px;
+}
+.mt-n05 {
+  margin-top: -1px;
+}
+.h-100 {
+  height: 100%;
+}
+.flex-basis-0 {
+  flex-basis: 0;
 }
 
 // vkirirom specific
 // --------------------------------------------
 .light-border {
-  border-color: $light;
+  border-color: map-get($grey, 'lighten-1') !important;
+}
+.dark-border {
+  border-color: map-get($grey, 'darken-3') !important;
 }
 .v-divider {
   &.is-small {
-    width: rem(64px);
+    width: rem(64px) !important;
   }
+}
+.brand-gradient {
+  background-color: map-get($grey, 'darken-4');
+  background: $brand-gradient;
 }

@@ -23,18 +23,20 @@
       <v-card dark color="dark" tile :elevation="0" class="px-4 pt-6 flex-grow-1 d-flex">
         <div class="d-flex flex-column flex-grow-1 justify-space-between body-2 font-weight-light">
           <div>
+            <!-- # guests -->
             <v-row no-gutters class="mb-6">
               <v-col cols="12">
-                <div class="d-flex align-center">
+                <h3 class="d-flex align-center title font-weight-medium mb-0 booking-confirm--h3-title">
                   <v-icon color="light" class="icon mr-4">person</v-icon>
                   <span class="mr-2">{{ guests }}</span
                   ><span>Guests</span>
-                </div>
+                </h3>
               </v-col>
             </v-row>
+            <!-- from date => to date -->
             <v-row no-gutters class="mb-8">
               <v-col>
-                <div class="d-flex">
+                <div class="d-flex title font-weight-medium booking-confirm--h3-title">
                   <v-icon color="light" class="icon mr-4">event</v-icon>
                   <div class="d-flex align-center flex-grow-1">
                     <div class="confirm-booking--date">{{ formatDate(dateOne, 'ddd, D MMM') }}</div>
@@ -47,9 +49,12 @@
 
             <v-divider class="light-border mb-6"></v-divider>
 
+            <!-- # nights total -->
             <v-row no-gutters class="mb-4">
               <v-col
-                ><p class="mb-0">{{ prices.length }} nights total</p></v-col
+                ><p class="mb-0 title font-weight-medium booking-confirm--h3-title">
+                  {{ prices.length }} nights total
+                </p></v-col
               >
             </v-row>
 
@@ -63,7 +68,7 @@
               </div>
               <!-- VAT -->
               <v-row class="confirm-dates--price-row" no-gutters>
-                <v-col xs6>VAT (10%)</v-col>
+                <v-col xs6 class="title font-weight-medium booking-confirm--h3-title">VAT (10%)</v-col>
                 <v-col xs6 class="text-right ">${{ computedVAT }}</v-col>
               </v-row>
             </div>
@@ -75,7 +80,7 @@
             <!-- total -->
             <v-row no-gutters class="mt-6">
               <v-col xs6>
-                <h3 class="title mb-0">Total</h3>
+                <h3 class="title font-weight-semiblack brand-2--text mb-0">Total</h3>
               </v-col>
               <v-col xs6 class="text-right">
                 <h3 class="title mb-0">
@@ -106,7 +111,7 @@
     <!-- sticky bar -->
     <div class="submit-bar--sticky d-none" :class="{ 'pb-9': !hasConfirmButton }">
       <div class="px-4">
-        <v-divider class="light-border mb-6"></v-divider>
+        <v-divider class="light-border mb-6 mt-1"></v-divider>
         <!-- total -->
         <v-row no-gutters>
           <v-col xs6>
@@ -198,4 +203,7 @@ export default Vue.extend({
 @import '@/styles/utility.scss';
 @import '@/styles/dialog-with-hero.scss';
 @import '@/styles/sticky-submit-bar.scss';
+.booking-confirm--h3-title {
+  line-height: 1.25;
+}
 </style>

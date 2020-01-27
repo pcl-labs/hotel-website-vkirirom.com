@@ -1,6 +1,6 @@
 <template>
   <!-- v-if="hotel.id" -->
-  <div class="resort-rules light--text markdown-content">
+  <div class="resort-rules light--text">
     <!-- shuttle -->
     <!-- <div >
       <h2>Shuttle Bus</h2>
@@ -22,25 +22,30 @@
       <h2>
         Spaces
       </h2>
-      <div v-for="(space, index) in resortHotel.spaces" :key="index" v-html="markdown(space)"></div>
+      <markdown-block v-for="(space, index) in resortHotel.spaces" :key="index" :content="space"></markdown-block>
     </div>
     <!-- amenities -->
     <div v-if="get(resortHotel, 'amenities', []).length > 0">
       <h2>
         Amenities
       </h2>
-      <div v-for="(amenity, index) in resortHotel.amenities" :key="index" v-html="markdown(amenity)"></div>
+      <markdown-block
+        v-for="(amenity, index) in resortHotel.amenities"
+        :key="index"
+        :content="amenity"
+      ></markdown-block>
     </div>
     <!-- rules -->
     <div v-if="get(resortHotel, 'rules', []).length > 0">
       <h2>
         Rules
       </h2>
-      <div v-for="(rule, index) in resortHotel.rules" :key="index" v-html="markdown(rule)"></div>
+      <markdown-block v-for="(rule, index) in resortHotel.rules" :key="index" :content="rule"></markdown-block>
     </div>
+
     <!-- getting around -->
     <div v-if="get(resortHotel, 'gettingAround', '')">
-      <div v-html="markdown(resortHotel.gettingAround)"></div>
+      <markdown-block :content="resortHotel.gettingAround"></markdown-block>
     </div>
   </div>
 </template>
@@ -49,11 +54,12 @@
 import Vue from 'vue'
 import store from '@/store'
 import { Resort } from '@/types'
-import { markdown } from '@/helpers'
 import { get } from 'lodash-es'
+import MarkdownBlock from '@/components/MarkdownBlock.vue'
 
 export default Vue.extend({
   name: 'resort-rules',
+  components: { MarkdownBlock },
   props: {
     resort: {
       type: Object as () => Resort,
@@ -70,13 +76,11 @@ export default Vue.extend({
     }
   },
   methods: {
-    get,
-    markdown
+    get
   }
 })
 </script>
 
 <style lang="scss" scoped>
 @import '@/styles/utility.scss';
-@import '@/styles/markdown-content.scss';
 </style>

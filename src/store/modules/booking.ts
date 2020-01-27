@@ -1,10 +1,12 @@
 import { addDays } from 'date-fns'
 import { RoomTypeService, ReservationService } from '@/connection/resources.js'
 import { bookingStep } from '@/types'
-import { setDocumentClassesOnToggleDialog, formatDate } from '@/helpers'
+import { setDocumentClassesOnToggleDialog, formatDate, removeOtherLanguagesExcept } from '@/helpers'
 import { cloneDeep } from 'lodash-es'
 import countriesList from '@/constants/countries-list'
 import store from '@/store'
+import { emailNotificationBase, reservationEmailsBcc } from '@/constants/app'
+import { ajax } from '@/connection/ajax'
 
 const steps: { [name: string]: bookingStep } = {
   notStarted: {
@@ -23,16 +25,20 @@ const steps: { [name: string]: bookingStep } = {
     id: 4
   },
   reviewPolicies: {
-    id: 5
+    id: 5,
+    title: 'Review Rules'
   },
   customerInfo: {
-    id: 6
+    id: 6,
+    title: 'Contact Info'
   },
   paymentInfo: {
-    id: 7
+    id: 7,
+    title: 'Payment'
   },
   thankYou: {
-    id: 8
+    id: 8,
+    title: 'Thank You!'
   }
 }
 
@@ -47,6 +53,7 @@ const defaultState = {
   bookingInfo: {
     returnUrl: '/',
     resort: {},
+    roomDescriptionHTML: '',
     guests: {
       adults: 1,
       children: 0,
@@ -57,19 +64,22 @@ const defaultState = {
     email: '',
     phoneNumber: '',
     phoneCountry: countriesList.find(item => item.name === 'Cambodia'),
-    payWith: 'card',
+    payWith: 'cash',
     roomType: {},
     dateOne: '',
     dateTwo: '',
     checkOut: '',
     prices: [],
-    fullName: ''
+    fullName: '',
+    addressCity: '',
+    addressState: '',
+    addressLine: '',
+    addressZip: ''
   },
   vat: 0,
   finalPrice: 0,
   stripeKey: '',
   reservationId: 0,
-  clientSecret: '',
   reservationDetails: {},
   isPaymentLoading: false,
   paymentError: ''
@@ -119,6 +129,18 @@ export default {
     updateFullName(state, payload) {
       state.bookingInfo.fullName = payload
     },
+    updateAddressLine(state, payload) {
+      state.bookingInfo.addressLine = payload
+    },
+    updateAddressZip(state, payload) {
+      state.bookingInfo.addressZip = payload
+    },
+    updateAddressCity(state, payload) {
+      state.bookingInfo.addressCity = payload
+    },
+    updateAddressState(state, payload) {
+      state.bookingInfo.addressState = payload
+    },
     updateRoomType(state, payload) {
       state.bookingInfo.roomType = payload
     },
@@ -133,6 +155,10 @@ export default {
     },
     updateReservationDetails(state, payload) {
       state.reservationDetails = payload
+    },
+    updateRoomDescriptionHTML(state, payload) {
+      const englishDescription = removeOtherLanguagesExcept('en', payload)
+      state.bookingInfo.roomDescriptionHTML = englishDescription
     },
     resetState(state) {
       for (const key in defaultState) {
@@ -159,6 +185,9 @@ export default {
       context.commit('updateResort', resort)
       context.commit('updateReturnUrl', returnUrl)
       context.commit('updateCurrentStep', context.state.steps.confirmDates)
+    },
+    endBooking(context) {
+      context.commit('resetState')
     },
     updateCurrentStep(context, payload) {
       context.commit('updateCurrentStep', payload)
@@ -205,6 +234,18 @@ export default {
     updateFullName(context, payload) {
       context.commit('updateFullName', payload)
     },
+    updateAddressLine(context, payload) {
+      context.commit('updateAddressLine', payload)
+    },
+    updateAddressZip(context, payload) {
+      context.commit('updateAddressZip', payload)
+    },
+    updateAddressCity(context, payload) {
+      context.commit('updateAddressCity', payload)
+    },
+    updateAddressState(context, payload) {
+      context.commit('updateAddressState', payload)
+    },
     updateRoomType(context, payload) {
       context.commit('updateRoomType', payload)
     },
@@ -236,6 +277,50 @@ export default {
       }).then(res => {
         context.commit('updateReservationDetails', res)
       })
+    },
+    updateRoomDescriptionHTML(context, payload) {
+      context.commit('updateRoomDescriptionHTML', payload)
+    },
+    sendEmailNotification(context) {
+      const bookingInfo = context.getters.bookingInfoForEmail
+      const email_subject = 'Thank You!'
+      return ajax({
+        method: 'post',
+        url: `${emailNotificationBase}/mail/send`,
+        data: {
+          email_bcc: reservationEmailsBcc,
+          email_to: [
+            {
+              email: store.getters['auth/user'].userName,
+              name: bookingInfo.fullName
+            }
+          ],
+          email_subject,
+          // 6fcd1e4a16504ba4a888e85184574101 is on mort3za's account
+          template_id: 'd-6fcd1e4a16504ba4a888e85184574101',
+          dynamic_template_data: {
+            ...bookingInfo,
+            subject: email_subject
+          }
+        },
+        withCredentials: false,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+    },
+    evaluateValidation(context) {
+      const bookingInfo = context.getters.bookingInfo
+      const computedTotalPrice = context.getters.computedTotalPrice({ all: true })
+      const now = new Date()
+      const { dateOne, dateTwo } = bookingInfo
+      if (!(new Date(dateOne) > now && new Date(dateTwo) > now)) {
+        throw new Error('Check in and check out dates are not valid. Please starting your booking again.')
+      }
+      if (!(computedTotalPrice >= 0)) {
+        throw new Error('Total price is not valid. Please starting your booking again.')
+      }
+      return true
     }
   },
   getters: {
@@ -265,7 +350,27 @@ export default {
         }
       }
     },
-    prices: state => ({ rounded = false }) => {
+    bookingInfoForEmail(state, getters) {
+      const bookingInfo = state.bookingInfo
+
+      return {
+        name: bookingInfo.fullName,
+        message: bookingInfo.message,
+        numberOfGuests: bookingInfo.guests.total,
+        checkIn: formatDate(bookingInfo.dateOne, 'ddd, D MMM'),
+        checkOut: formatDate(bookingInfo.checkOut, 'ddd, D MMM'),
+        email: store.getters['auth/user'].userName,
+        phoneCountry: bookingInfo.phoneCountry.name,
+        phone: `+(${bookingInfo.phoneCountry.callingCodes[0]})` + bookingInfo.phoneNumber,
+        guests: bookingInfo.guests,
+        resort: bookingInfo.resort,
+        roomDescriptionHTML: bookingInfo.roomDescriptionHTML,
+        prices: getters.prices({ rounded: true, formattedDate: true }),
+        vat: Number(getters.computedVAT().toFixed(2)),
+        amount: Number(getters.computedTotalPrice({ all: true }).toFixed(2))
+      }
+    },
+    prices: state => ({ rounded = false, formattedDate = false }) => {
       let prices = state.bookingInfo.prices
       if (rounded) {
         prices = prices.map(price => {
@@ -273,6 +378,15 @@ export default {
           return {
             ...price,
             amount
+          }
+        })
+      }
+      if (formattedDate) {
+        prices = prices.map(price => {
+          const date = formatDate(price.date, 'ddd, D MMM')
+          return {
+            ...price,
+            date
           }
         })
       }

@@ -15,7 +15,6 @@
           ></v-img>
         </div>
       </div>
-      <div class="d-none" :style="`background-image: url(http://placehold.it/500x500);`"></div>
       <div class="layer layer-2 layer--parallax" :style="`background-image: url(${image2});`"></div>
       <div class="layer layer-3 layer--parallax" :style="`background-image: url(${image3});`"></div>
       <div class="layer layer-4 layer--parallax" :style="`background-image: url(${image4});`"></div>
@@ -27,7 +26,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { getPassiveEventConfig } from '@/helpers'
+import { getPassiveEventConfig, transformCloudinaryUrl } from '@/helpers'
 
 const images = {
   image1: {
@@ -117,9 +116,8 @@ export default Vue.extend({
     },
     getImage(number, breakpointName) {
       const image = images['image' + number]
-      console.log('breakpointName', breakpointName)
 
-      return image[this.overridedBreakpoint || breakpointName] || image['lg']
+      return transformCloudinaryUrl(image[this.overridedBreakpoint || breakpointName] || image['lg'], 'f_auto')
     }
   },
   computed: {
@@ -155,19 +153,19 @@ export default Vue.extend({
 @import '@/styles/utility.scss';
 
 $component-height: 1600px;
-$header-height: 56px;
+$top-distance: 0;
 .parallax-hero {
   --component-height-ratio: 1.7;
-  @include media-breakpoint-up(xs) {
+  @include media-breakpoint-up(xs, $my-breakpoints) {
     --component-height-ratio: 1.55;
   }
-  @include media-breakpoint-up(sm) {
+  @include media-breakpoint-up(sm, $my-breakpoints) {
     --component-height-ratio: 1.33;
   }
-  @include media-breakpoint-up(md) {
+  @include media-breakpoint-up(md, $my-breakpoints) {
     --component-height-ratio: 1.2;
   }
-  @include media-breakpoint-up(lg) {
+  @include media-breakpoint-up(lg, $my-breakpoints) {
     --component-height-ratio: 1;
   }
 }
@@ -194,26 +192,26 @@ $header-height: 56px;
 }
 // sky
 .layer-1 {
-  top: rem($header-height);
+  top: rem($top-distance);
 }
 // clouds
 .layer-2 {
-  top: rem($header-height);
+  top: rem($top-distance);
 }
 // mountains
 .layer-3 {
-  top: rem($header-height + 120px);
-  top: calc(#{rem($header-height + 120px)} / var(--component-height-ratio));
+  top: rem($top-distance + 120px);
+  top: calc(#{rem($top-distance + 120px)} / var(--component-height-ratio));
 }
 // far trees
 .layer-4 {
-  top: rem($header-height + 440px);
-  top: calc(#{rem($header-height + 440px)} / var(--component-height-ratio));
+  top: rem($top-distance + 440px);
+  top: calc(#{rem($top-distance + 440px)} / var(--component-height-ratio));
 }
 // building + dark trees
 .layer-5 {
-  top: rem($header-height + 580px);
-  top: calc(#{rem($header-height + 580px)} / var(--component-height-ratio));
+  top: rem($top-distance + 580px);
+  top: calc(#{rem($top-distance + 580px)} / var(--component-height-ratio));
 }
 // near trees
 .layer-6 {
