@@ -70,7 +70,8 @@ export default {
   methods: {
     getResponsiveHeroImage(url) {
       const breakpoint = this.$vuetify.breakpoint
-      return transformCloudinaryUrl(url, `f_auto,w_${breakpoint.thresholds[breakpoint.name]},c_scale`)
+      const breakpointWidth = breakpoint.thresholds[breakpoint.name]
+      return transformCloudinaryUrl(url, `f_auto${breakpointWidth ? `,w_${breakpointWidth}` : ''},c_scale`)
     }
   }
 }
