@@ -7,12 +7,12 @@
           <v-overlay :absolute="true" :value="true" :opacity="0">
             <h1
               :class="$vuetify.breakpoint.mdAndUp ? 'display-1' : 'title'"
-              class="primary--text font-weight-bold text-capitalize"
+              class="primary--text font-weight-bold text-capitalize mb-0"
             >
               {{ resort.title }}
             </h1>
           </v-overlay>
-          <v-img :aspect-ratio="2880 / 1008" :src="resort.backgroundImage"> </v-img>
+          <v-img :aspect-ratio="2880 / 1008" :src="getResponsiveHeroImage(resort.backgroundImage)"> </v-img>
         </div>
         <v-container class="is-limited light--text px-2 px-md-0 py-8" grid-list-md>
           <div class="mb-8 mt-md-10 mb-md-6 pt-md-2 pb-md-10 title font-weight-normal text-center">
@@ -44,6 +44,7 @@ import PageHeader from '@/components/PageHeader.vue'
 import MarkdownBlock from '@/components/MarkdownBlock.vue'
 import { get } from 'lodash-es'
 import store from '@/store'
+import { transformCloudinaryUrl } from '@/helpers'
 
 export default {
   name: 'search-page',
@@ -65,6 +66,12 @@ export default {
     categories() {
       return store.getters['category/getItemsByName'](this.slug)
     }
+  },
+  methods: {
+    getResponsiveHeroImage(url) {
+      const breakpoint = this.$vuetify.breakpoint
+      return transformCloudinaryUrl(url, `f_auto,w_${breakpoint.thresholds[breakpoint.name]},c_scale`)
+    }
   }
 }
 </script>
@@ -75,6 +82,6 @@ export default {
 
 <style lang="scss" scoped>
 .hero ::v-deep .v-overlay__content {
-  top: -5vw;
+  top: -8vw;
 }
 </style>

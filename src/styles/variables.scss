@@ -45,6 +45,8 @@ $loading-transition-time: 500ms;
 // spacing
 $header-height-xs: 56px;
 $header-height-sm: 80px;
+
+// TODO: remove usage of bootstrap breakpoints. These breakpoints are different than $vuetify.breakpoint.thresholds
 // grid https://vuetifyjs.com/en/customization/breakpoints
 $my-breakpoints: (
   xxs: 0,
