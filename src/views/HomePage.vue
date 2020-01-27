@@ -84,7 +84,7 @@
                 height="300px"
                 position="center"
                 class="mt-6 pa-1 mb-6"
-                src="https://res.cloudinary.com/die9ji2vn/image/upload/dpr_auto/w_auto/q_auto:low/f_auto/v1562223032/group/group-retreat_s3ksth.jpg"
+                src="https://res.cloudinary.com/die9ji2vn/image/upload/dpr_auto/w_auto/q_auto:best,w_888,f_auto/v1562223032/group/group-retreat_s3ksth.jpg"
               >
                 <v-row no-gutters class="align-md-center fill-height">
                   <v-flex xs12 class="ma-auto">
