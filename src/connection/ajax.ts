@@ -5,7 +5,10 @@ import store from '@/store'
 const ajax = axios.create({
   baseURL: BASE_API,
   timeout: 20000,
-  withCredentials: true
+  withCredentials: true,
+  headers: {
+    'Content-Type': 'application/json'
+  }
 })
 
 ajax.interceptors.request.use(

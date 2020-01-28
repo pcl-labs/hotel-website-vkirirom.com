@@ -13,12 +13,16 @@ export default {
   name: 'app',
   created() {
     this.getUser()
+    this.clearTemporaryStates()
   },
   methods: {
     getUser() {
       store.dispatch('auth/ping').catch(error => {
         console.log('User is not authenticated')
       })
+    },
+    clearTemporaryStates() {
+      store.commit('auth/updateLoading', false)
     }
   },
   computed: {
