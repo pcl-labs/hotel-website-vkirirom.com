@@ -123,7 +123,7 @@
 
           <v-row no-gutters="">
             <v-col>
-              <p v-if="paymentError" class="error--text">{{ paymentError }}</p>
+              <p v-if="paymentError" class="error--text" v-html="paymentError"></p>
             </v-col>
           </v-row>
 
@@ -169,7 +169,8 @@ export default Vue.extend({
               String(v)
                 .split(' ')
                 .join('')
-            ) || 'Should contain only English letters (a-z)'
+            ) || 'Should contain only English letters (a-z)',
+          v => v.length > 50 && 'Should be less than 50 characters'
         ],
         addressLine: [v => !!v || 'Address is required'],
         addressCity: [v => !!v || 'City is required'],
@@ -179,7 +180,7 @@ export default Vue.extend({
     }
   },
   mounted() {
-    this.resetComponentState()
+    this.resetLoadingAndError()
   },
   computed: {
     payWith: {
@@ -235,13 +236,10 @@ export default Vue.extend({
     },
     isPaymentLoading() {
       return store.getters['payment/isPaymentLoading']
-    },
-    customBookingInfo() {
-      return store.getters['booking/customBookingInfo']
     }
   },
   methods: {
-    resetComponentState() {
+    resetLoadingAndError() {
       store.dispatch('payment/updatePaymentError', '')
       store.dispatch('payment/updateIsPaymentLoading', false)
     },
@@ -250,56 +248,32 @@ export default Vue.extend({
       this.$refs.phoneNumber.focus()
     },
     async submit() {
+      this.resetLoadingAndError()
+
       if ((await this.evaluateValidation()) === false) {
         return
       }
+
+      store.dispatch('payment/updateIsPaymentLoading', true)
       if (this.payWith === 'cash') {
-        this.payWithCash()
-      } else if (this.payWithCard) {
-        this.payWithCard()
+        await this.payWithCash()
+      } else if (this.payWith === 'card') {
+        // await this.payWithCard()
       }
+      store.dispatch('payment/updateIsPaymentLoading', false)
     },
     async payWithCash() {
-      store.dispatch('payment/updatePaymentError', '')
-      store.dispatch('payment/updateIsPaymentLoading', true)
-
-      try {
-        await this.reserveRoom()
-        // TODO: refactor error handling
-        store
-          .dispatch('booking/sendEmailNotification')
-          .then(this.onSendEmailNotification)
-          .then(this.goNextStep)
-          .catch(error => {
-            store.dispatch('payment/updatePaymentError', error.response.message || 'Unknown error, please try again')
-          })
-      } catch (error) {
-        // TODO: move to higher level component
-        store.dispatch('payment/updatePaymentError', error.message)
-        store.dispatch('payment/updateIsPaymentLoading', false)
-      }
+      const result = await store.dispatch('booking/reserveRoom')
+      this.onCashPaymentResult(result)
     },
-    reserveRoom() {
-      return store.dispatch('booking/reserveRoom', this.customBookingInfo)
+    onCashPaymentResult({ email, reserve }) {
+      if (reserve) {
+        this.goNextStep()
+      }
     },
     payWithCard() {
       // TODO: use store instead
-      // @ts-ignore
-      this.$refs.paymentByStripe.submit()
-    },
-    onSendEmailNotification(res) {
-      if (!res) {
-        store.dispatch('payment/updatePaymentError', 'Unknown error, please try again')
-      }
-      if (!res.error) {
-        store.dispatch('payment/updateIsPaymentLoading', false)
-      } else {
-        try {
-          store.dispatch('payment/updatePaymentError', res.data.errors[0].message)
-        } catch (error) {
-          store.dispatch('payment/updatePaymentError', 'Unknown error, please try again')
-        }
-      }
+      // this.$refs.paymentByStripe.submit()
     },
     async evaluateValidation() {
       try {
