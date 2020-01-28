@@ -97,11 +97,16 @@
                 </v-btn>
               </template>
               <v-list tile dense color="dark" class="dropdown-list">
-                <v-list-item class="pa-0">
+                <!-- <v-list-item class="pa-0">
+                  <v-btn text tile block class="text-transform-none"
+                    ><span class="mb-0 title text-left w-100">Trips</span></v-btn
+                  >
+                </v-list-item> -->
+                <!-- <v-list-item class="pa-0">
                   <v-btn text tile block class="text-transform-none"
                     ><span class="mb-0 title text-left w-100">My Account</span></v-btn
                   >
-                </v-list-item>
+                </v-list-item> -->
                 <v-list-item class="pa-0">
                   <v-btn
                     text
@@ -176,14 +181,14 @@
           <v-slide-y-transition>
             <v-col cols="12" v-if="isProfileExpanded" no-gutters class="transition-fast-in-fast-out pa-0">
               <v-row no-gutters>
-                <v-col cols="12">
+                <!-- <v-col cols="12">
                   <v-btn text block class="my-2 text-left"><h3 class="mb-0 w-100 text-transform-none">Trips</h3></v-btn>
-                </v-col>
-                <v-col cols="12">
+                </v-col> -->
+                <!-- <v-col cols="12">
                   <v-btn text block class="my-2 text-left"
                     ><h3 class="mb-0 w-100 text-transform-none">My Account</h3></v-btn
                   >
-                </v-col>
+                </v-col> -->
                 <v-col cols="12">
                   <v-btn text block class="my-2 text-left" @click="logout()" :loading="loading"
                     ><h3 class="mb-0 w-100 text-transform-none">Log out</h3></v-btn
