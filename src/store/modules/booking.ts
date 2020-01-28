@@ -331,7 +331,11 @@ export default {
       return ajax({
         method: 'post',
         url: `${emailAPIBase}/mail/send`,
-        data: reservationSuccessEmailData
+        data: reservationSuccessEmailData,
+        withCredentials: false,
+        headers: {
+          'Content-Type': 'application/json'
+        }
       })
     },
     sendReservationFailEmail(context) {
@@ -339,7 +343,11 @@ export default {
       return ajax({
         method: 'post',
         url: `${emailAPIBase}/mail/send`,
-        data: reservationFailEmailData
+        data: reservationFailEmailData,
+        withCredentials: false,
+        headers: {
+          'Content-Type': 'application/json'
+        }
       })
     },
     evaluateValidation(context) {
