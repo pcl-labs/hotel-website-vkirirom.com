@@ -15,7 +15,7 @@ export class AuthenticationService {
       const configs = Object.assign(Object.assign({}, options), { method: 'post' })
       configs.headers = Object.assign(Object.assign({}, options.headers), { 'Content-Type': 'application/json' })
       let url = '/api/v0/authentication/login'
-      configs.url = url
+      configs.url = temporaryUrlFix(url)
       let data = Object.assign({}, params['model'])
       configs.data = data
       axios(configs)
@@ -35,7 +35,7 @@ export class AuthenticationService {
       const configs = Object.assign(Object.assign({}, options), { method: 'post' })
       configs.headers = Object.assign(Object.assign({}, options.headers), { 'Content-Type': 'application/json' })
       let url = '/api/v0/authentication/logout'
-      configs.url = url
+      configs.url = temporaryUrlFix(url)
       let data = null
       configs.data = data
       axios(configs)
@@ -55,7 +55,7 @@ export class AuthenticationService {
       const configs = Object.assign(Object.assign({}, options), { method: 'get' })
       configs.headers = Object.assign(Object.assign({}, options.headers), { 'Content-Type': 'application/json' })
       let url = '/api/v0/authentication/provider/login'
-      configs.url = url
+      configs.url = temporaryUrlFix(url)
       configs.params = params
       let data = null
       configs.data = data
@@ -76,7 +76,7 @@ export class AuthenticationService {
       const configs = Object.assign(Object.assign({}, options), { method: 'post' })
       configs.headers = Object.assign(Object.assign({}, options.headers), { 'Content-Type': 'application/json' })
       let url = '/api/v0/authentication/register'
-      configs.url = url
+      configs.url = temporaryUrlFix(url)
       let data = Object.assign({}, params['model'])
       configs.data = data
       axios(configs)
@@ -96,7 +96,7 @@ export class AuthenticationService {
       const configs = Object.assign(Object.assign({}, options), { method: 'get' })
       configs.headers = Object.assign(Object.assign({}, options.headers), { 'Content-Type': 'application/json' })
       let url = '/api/v0/authentication/ping'
-      configs.url = url
+      configs.url = temporaryUrlFix(url)
       let data = null
       configs.data = data
       axios(configs)
@@ -119,7 +119,7 @@ export class CardService {
       configs.headers = Object.assign(Object.assign({}, options.headers), { 'Content-Type': 'application/json' })
       let url = '/api/v0/cards/{id}/related'
       url = url.replace('{id}', params['id'] + '')
-      configs.url = url
+      configs.url = temporaryUrlFix(url)
       ;['id'].forEach(key => {
         params[key] = null
       })
@@ -144,7 +144,7 @@ export class CategoryService {
       const configs = Object.assign(Object.assign({}, options), { method: 'get' })
       configs.headers = Object.assign(Object.assign({}, options.headers), { 'Content-Type': 'application/json' })
       let url = '/api/v0/categories'
-      configs.url = url
+      configs.url = temporaryUrlFix(url)
       let data = null
       configs.data = data
       axios(configs)
@@ -166,7 +166,7 @@ export class CompanyService {
       const configs = Object.assign(Object.assign({}, options), { method: 'post' })
       configs.headers = Object.assign(Object.assign({}, options.headers), { 'Content-Type': 'application/json' })
       let url = '/api/v0/companies'
-      configs.url = url
+      configs.url = temporaryUrlFix(url)
       configs.params = params
       let data = null
       configs.data = data
@@ -188,7 +188,7 @@ export class CompanyService {
       configs.headers = Object.assign(Object.assign({}, options.headers), { 'Content-Type': 'application/json' })
       let url = '/api/v0/companies/{companyId}/stripe/keys/publishable'
       url = url.replace('{companyId}', params['companyId'] + '')
-      configs.url = url
+      configs.url = temporaryUrlFix(url)
       ;['companyId'].forEach(key => {
         params[key] = null
       })
@@ -215,7 +215,7 @@ export class PageService {
       let url = '/api/v0/pages/slug/{companySlug}/{pageSlug}'
       url = url.replace('{companySlug}', params['companySlug'] + '')
       url = url.replace('{pageSlug}', params['pageSlug'] + '')
-      configs.url = url
+      configs.url = temporaryUrlFix(url)
       ;['companySlug', 'pageSlug'].forEach(key => {
         params[key] = null
       })
@@ -239,7 +239,7 @@ export class PageService {
       configs.headers = Object.assign(Object.assign({}, options.headers), { 'Content-Type': 'application/json' })
       let url = '/api/v0/pages/slug/{companySlug}'
       url = url.replace('{companySlug}', params['companySlug'] + '')
-      configs.url = url
+      configs.url = temporaryUrlFix(url)
       ;['companySlug'].forEach(key => {
         params[key] = null
       })
@@ -264,7 +264,7 @@ export class PageService {
       let url = '/api/v0/pages/slug/{companySlug}/categories/by-name/{categoryName}'
       url = url.replace('{companySlug}', params['companySlug'] + '')
       url = url.replace('{categoryName}', params['categoryName'] + '')
-      configs.url = url
+      configs.url = temporaryUrlFix(url)
       ;['companySlug', 'categoryName'].forEach(key => {
         params[key] = null
       })
@@ -290,7 +290,7 @@ export class PlanetCollageService {
       configs.headers = Object.assign(Object.assign({}, options.headers), { 'Content-Type': 'application/json' })
       let url = '/api/v0/planetcollage/by-tag/{tag}'
       url = url.replace('{tag}', params['tag'] + '')
-      configs.url = url
+      configs.url = temporaryUrlFix(url)
       ;['tag'].forEach(key => {
         params[key] = null
       })
@@ -313,7 +313,7 @@ export class PlanetCollageService {
       const configs = Object.assign(Object.assign({}, options), { method: 'post' })
       configs.headers = Object.assign(Object.assign({}, options.headers), { 'Content-Type': 'application/json' })
       let url = '/api/v0/planetcollage/full'
-      configs.url = url
+      configs.url = temporaryUrlFix(url)
       let data = Object.assign({}, params['model'])
       configs.data = data
       axios(configs)
@@ -335,7 +335,7 @@ export class PriceService {
       const configs = Object.assign(Object.assign({}, options), { method: 'post' })
       configs.headers = Object.assign(Object.assign({}, options.headers), { 'Content-Type': 'application/json' })
       let url = '/api/v0/prices'
-      configs.url = url
+      configs.url = temporaryUrlFix(url)
       configs.params = params
       let data = null
       configs.data = data
@@ -359,7 +359,7 @@ export class ReservationService {
       configs.headers = Object.assign(Object.assign({}, options.headers), { 'Content-Type': 'application/json' })
       let url = '/api/v0/reservations/{reservationId}'
       url = url.replace('{reservationId}', params['reservationId'] + '')
-      configs.url = url
+      configs.url = temporaryUrlFix(url)
       ;['reservationId'].forEach(key => {
         params[key] = null
       })
@@ -383,7 +383,7 @@ export class ReservationService {
       configs.headers = Object.assign(Object.assign({}, options.headers), { 'Content-Type': 'application/json' })
       let url = '/api/v0/reservations/{reservationId}/pay'
       url = url.replace('{reservationId}', params['reservationId'] + '')
-      configs.url = url
+      configs.url = temporaryUrlFix(url)
       ;['reservationId'].forEach(key => {
         params[key] = null
       })
@@ -407,7 +407,7 @@ export class ReservationService {
       configs.headers = Object.assign(Object.assign({}, options.headers), { 'Content-Type': 'application/json' })
       let url = '/api/v0/reservations/roomtype/{roomTypeId}/reserve'
       url = url.replace('{roomTypeId}', params['roomTypeId'] + '')
-      configs.url = url
+      configs.url = temporaryUrlFix(url)
       ;['roomTypeId'].forEach(key => {
         params[key] = null
       })
@@ -433,7 +433,7 @@ export class RoomTypeService {
       configs.headers = Object.assign(Object.assign({}, options.headers), { 'Content-Type': 'application/json' })
       let url = '/api/v0/roomtypes/{roomTypeId}/prices'
       url = url.replace('{roomTypeId}', params['roomTypeId'] + '')
-      configs.url = url
+      configs.url = temporaryUrlFix(url)
       ;['roomTypeId'].forEach(key => {
         params[key] = null
       })
@@ -459,7 +459,7 @@ export class StripeService {
       const configs = Object.assign(Object.assign({}, options), { method: 'post' })
       configs.headers = Object.assign(Object.assign({}, options.headers), { 'Content-Type': 'application/json' })
       let url = '/api/v0/stripe/charge/create'
-      configs.url = url
+      configs.url = temporaryUrlFix(url)
       let data = Object.assign({}, params['model'])
       configs.data = data
       axios(configs)
@@ -526,4 +526,11 @@ export class CreateModel {
       this['token'] = data['token']
     }
   }
+}
+
+function temporaryUrlFix(url) {
+  const url2 = new URL(`${'http://example.com'}${url}`)
+  url2.searchParams.set('culture', 'en-US')
+  const url3 = url2.toString().replace('http://example.com', '')
+  return url3
 }
