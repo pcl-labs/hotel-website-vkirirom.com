@@ -1,0 +1,10 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.vkirirom.app",
+    "sha256_cert_fingerprints": [
+      "C8:0B:B7:63:DA:74:CB:FF:BD:84:0F:54:BD:1B:87:4C:97:CD:4E:61:05:DA:BE:17:88:76:9F:CA:22:A3:E4:E1"
+    ]
+  }
+}]
