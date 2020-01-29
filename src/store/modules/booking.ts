@@ -162,7 +162,7 @@ export default {
       state.reservationDetails = payload
     },
     updateRoomDescriptionHTML(state, payload) {
-      const englishDescription = removeOtherLanguagesExcept('en', payload)
+      const englishDescription = removeOtherLanguagesExcept('en', payload).outerHTML
       state.bookingInfo.roomDescriptionHTML = englishDescription
     },
     resetState(state) {
