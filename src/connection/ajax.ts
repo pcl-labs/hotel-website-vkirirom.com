@@ -6,6 +6,11 @@ const ajax = axios.create({
   baseURL: BASE_API,
   timeout: 20000,
   withCredentials: true
+  // FIXME: not working
+  // headers: {
+  //   'Accept-Language': 'en-US,en;q=0.5',
+  //   'Content-Type': 'application/json'
+  // }
 })
 
 ajax.interceptors.request.use(
