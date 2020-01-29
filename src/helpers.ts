@@ -151,5 +151,5 @@ export function removeOtherLanguagesExcept(langCode, innherHTML) {
       }
     }
   })
-  return virtualElement.outerHTML
+  return virtualElement
 }
