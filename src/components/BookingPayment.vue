@@ -26,15 +26,15 @@
                 <v-icon class="position-absolute payment--icon">$vuetify.icons.cash</v-icon>
               </v-card-title>
             </v-card>
-            <v-card disabled outlined color="transparent" class="mb-2" @click="payWith = 'card'">
+            <!-- <v-card disabled outlined color="transparent" class="mb-2" @click="payWith = 'card'">
               <v-card-title>
                 <v-radio disabled color="green" label="Pay with card" :value="'card'" class="ma-0"></v-radio>
                 <v-icon class="position-absolute payment--icon">$vuetify.icons.creditCard</v-icon>
               </v-card-title>
-            </v-card>
+            </v-card> -->
           </v-radio-group>
 
-          <v-expand-transition>
+          <!-- <v-expand-transition>
             <div class="transition-fast-in-fast-out mb-6" v-if="payWith === 'card'">
               <h4 class="mb-2 title font-weight-bold">Billing Info</h4>
 
@@ -111,7 +111,7 @@
                 }"
               ></booking-payment-by-stripe>
             </div>
-          </v-expand-transition>
+          </v-expand-transition> -->
 
           <h4 class="mb-2 title font-weight-bold">Cancelation Policy</h4>
           <v-row no-gutters class="mb-6">
@@ -152,11 +152,11 @@
 import Vue from 'vue'
 import { isNumeric, isAlpha } from 'validator'
 import store from '../store'
-import BookingPaymentByStripe from '@/components/BookingPaymentByStripe.vue'
+// import BookingPaymentByStripe from '@/components/BookingPaymentByStripe.vue'
 
 export default Vue.extend({
   name: 'booking-payment',
-  components: { BookingPaymentByStripe },
+  // components: { BookingPaymentByStripe },
   data() {
     return {
       isFormValid: false,
