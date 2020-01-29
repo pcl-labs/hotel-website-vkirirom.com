@@ -33,6 +33,7 @@ const routes = [
     component: ListingPage
   },
   {
+    name: 'contact',
     path: '/contact',
     component: ContactPage
   },

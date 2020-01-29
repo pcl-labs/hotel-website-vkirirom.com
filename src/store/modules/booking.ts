@@ -5,7 +5,12 @@ import { setDocumentClassesOnToggleDialog, formatDate, removeOtherLanguagesExcep
 import { cloneDeep } from 'lodash-es'
 import countriesList from '@/constants/countries-list'
 import store from '@/store'
-import { emailNotificationBase, reservationEmailsBcc } from '@/constants/app'
+import {
+  emailAPIBase,
+  reservationEmailsBcc,
+  reservationSuccessEmailTemplateId,
+  reservationFailEmailTemplateId
+} from '@/constants/app'
 import { ajax } from '@/connection/ajax'
 
 const steps: { [name: string]: bookingStep } = {
@@ -157,7 +162,7 @@ export default {
       state.reservationDetails = payload
     },
     updateRoomDescriptionHTML(state, payload) {
-      const englishDescription = removeOtherLanguagesExcept('en', payload)
+      const englishDescription = removeOtherLanguagesExcept('en', payload).outerHTML
       state.bookingInfo.roomDescriptionHTML = englishDescription
     },
     resetState(state) {
@@ -261,15 +266,55 @@ export default {
         context.commit('updatePrices', prices)
       })
     },
-    reserveRoom(context, payload) {
-      const customBookingInfo = cloneDeep(payload)
-      return ReservationService.reserveByRoomType(customBookingInfo)
-        .then(reserveByRoomType => {
-          return context.commit('updateReservationId', reserveByRoomType.reservationId)
-        })
-        .catch(error => {
-          throw new Error('Error in reserve room.')
-        })
+    /*
+    reserve-room:
+      success:
+        send-email-success:
+          success:
+            go next step
+          fail:
+            go to next step (maybe using retry-axios for email)
+      fail:
+        send-email-fail:
+          success:
+            show error (we got your booking data, will call you)
+          fail:
+            show error (please contact us)
+    */
+    async reserveRoom(context) {
+      const customBookingInfo = cloneDeep(context.getters['customBookingInfo'])
+      try {
+        const { reservationId } = await ReservationService.reserveByRoomType(customBookingInfo)
+        context.commit('updateReservationId', reservationId)
+        try {
+          await context.dispatch('sendReservationSuccessEmail')
+          return { reserve: true, email: true }
+        } catch (error) {
+          console.log('Sending reservation email failed')
+          return { reserve: true, email: false }
+        }
+      } catch (error) {
+        try {
+          await context.dispatch('sendReservationFailEmail')
+          store.dispatch(
+            'payment/updatePaymentError',
+            'There was an error with your booking, we will be in contact via email soon to complete your booking.'
+          )
+          return {
+            reserve: false,
+            email: true
+          }
+        } catch (error) {
+          store.dispatch(
+            'payment/updatePaymentError',
+            'There was an error with your booking, please <a href="/contact">contact us</a>'
+          )
+          return {
+            reserve: false,
+            email: false
+          }
+        }
+      }
     },
     getReservationDetails(context, reservationId) {
       return ReservationService.get({
@@ -281,28 +326,24 @@ export default {
     updateRoomDescriptionHTML(context, payload) {
       context.commit('updateRoomDescriptionHTML', payload)
     },
-    sendEmailNotification(context) {
-      const bookingInfo = context.getters.bookingInfoForEmail
-      const email_subject = 'Thank You!'
+    sendReservationSuccessEmail(context) {
+      const reservationSuccessEmailData = context.getters.reservationSuccessEmailData
       return ajax({
         method: 'post',
-        url: `${emailNotificationBase}/mail/send`,
-        data: {
-          email_bcc: reservationEmailsBcc,
-          email_to: [
-            {
-              email: store.getters['auth/user'].userName,
-              name: bookingInfo.fullName
-            }
-          ],
-          email_subject,
-          // 6fcd1e4a16504ba4a888e85184574101 is on mort3za's account
-          template_id: 'd-6fcd1e4a16504ba4a888e85184574101',
-          dynamic_template_data: {
-            ...bookingInfo,
-            subject: email_subject
-          }
-        },
+        url: `${emailAPIBase}/mail/send`,
+        data: reservationSuccessEmailData,
+        withCredentials: false,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+    },
+    sendReservationFailEmail(context) {
+      const reservationFailEmailData = context.getters.reservationFailEmailData
+      return ajax({
+        method: 'post',
+        url: `${emailAPIBase}/mail/send`,
+        data: reservationFailEmailData,
         withCredentials: false,
         headers: {
           'Content-Type': 'application/json'
@@ -350,24 +391,59 @@ export default {
         }
       }
     },
-    bookingInfoForEmail(state, getters) {
+    reservationSuccessEmailData(state, getters) {
       const bookingInfo = state.bookingInfo
-
+      const email_subject = 'Thank You!'
       return {
-        name: bookingInfo.fullName,
-        message: bookingInfo.message,
-        numberOfGuests: bookingInfo.guests.total,
-        checkIn: formatDate(bookingInfo.dateOne, 'ddd, D MMM'),
-        checkOut: formatDate(bookingInfo.checkOut, 'ddd, D MMM'),
-        email: store.getters['auth/user'].userName,
-        phoneCountry: bookingInfo.phoneCountry.name,
-        phone: `+(${bookingInfo.phoneCountry.callingCodes[0]})` + bookingInfo.phoneNumber,
-        guests: bookingInfo.guests,
-        resort: bookingInfo.resort,
-        roomDescriptionHTML: bookingInfo.roomDescriptionHTML,
-        prices: getters.prices({ rounded: true, formattedDate: true }),
-        vat: Number(getters.computedVAT().toFixed(2)),
-        amount: Number(getters.computedTotalPrice({ all: true }).toFixed(2))
+        email_bcc: reservationEmailsBcc,
+        email_to: [
+          {
+            email: store.getters['auth/user'].userName,
+            name: bookingInfo.fullName
+          }
+        ],
+        template_id: reservationSuccessEmailTemplateId,
+        dynamic_template_data: {
+          name: bookingInfo.fullName,
+          message: bookingInfo.message,
+          numberOfGuests: bookingInfo.guests.total,
+          checkIn: formatDate(bookingInfo.dateOne, 'ddd, D MMM'),
+          checkOut: formatDate(bookingInfo.checkOut, 'ddd, D MMM'),
+          email: store.getters['auth/user'].userName,
+          phoneCountry: bookingInfo.phoneCountry.name,
+          phone: `+(${bookingInfo.phoneCountry.callingCodes[0]})` + bookingInfo.phoneNumber,
+          guests: bookingInfo.guests,
+          resort: bookingInfo.resort,
+          roomDescriptionHTML: bookingInfo.roomDescriptionHTML,
+          prices: getters.prices({ rounded: true, formattedDate: true }),
+          vat: Number(getters.computedVAT().toFixed(2)),
+          amount: Number(getters.computedTotalPrice({ all: true }).toFixed(2)),
+          subject: email_subject
+        }
+      }
+    },
+    reservationFailEmailData(state, getters) {
+      const bookingInfo = state.bookingInfo
+      const email_subject = `Reservation failed for ${bookingInfo.fullName}`
+      return {
+        email_to: reservationEmailsBcc,
+        template_id: reservationFailEmailTemplateId,
+        dynamic_template_data: {
+          name: bookingInfo.fullName,
+          message: bookingInfo.message,
+          numberOfGuests: bookingInfo.guests.total,
+          checkIn: formatDate(bookingInfo.dateOne, 'ddd, D MMM'),
+          checkOut: formatDate(bookingInfo.checkOut, 'ddd, D MMM'),
+          email: store.getters['auth/user'].userName,
+          phoneCountry: bookingInfo.phoneCountry.name,
+          phone: `+(${bookingInfo.phoneCountry.callingCodes[0]})` + bookingInfo.phoneNumber,
+          guests: bookingInfo.guests,
+          resort: bookingInfo.resort,
+          prices: getters.prices({ rounded: true, formattedDate: true }),
+          vat: Number(getters.computedVAT().toFixed(2)),
+          amount: Number(getters.computedTotalPrice({ all: true }).toFixed(2)),
+          subject: email_subject
+        }
       }
     },
     prices: state => ({ rounded = false, formattedDate = false }) => {

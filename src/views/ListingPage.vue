@@ -107,6 +107,7 @@ import PageFooter from '@/components/PageFooter.vue'
 import PageHeader from '@/components/PageHeader.vue'
 import store from '@/store'
 import { Resort } from '@/types'
+import { removeOtherLanguagesExcept } from '../helpers'
 
 const defaultResort = {
   title: '...',
@@ -132,7 +133,7 @@ export default Vue.extend({
         {
           name: 'description',
           // @ts-ignore
-          content: (this.resort || defaultResort).description,
+          content: removeOtherLanguagesExcept('en', (this.resort || defaultResort).description).innerText,
           id: 'desc'
         }
       ]
