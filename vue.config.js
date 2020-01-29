@@ -1,4 +1,5 @@
 const webpack = require('webpack')
+const PreloadWebpackPlugin = require('@vue/preload-webpack-plugin');
 
 module.exports = {
   transpileDependencies: ['vuex-persist', 'vuetify'],
@@ -12,6 +13,7 @@ module.exports = {
   },
   configureWebpack: {
     plugins: [
+      new PreloadWebpackPlugin(),
       new webpack.DefinePlugin({
         'process.env': {
           APP_VERSION: '"' + escape(JSON.stringify(require('./package.json').version)) + '"',

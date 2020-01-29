@@ -34,6 +34,7 @@
     "vuex-persist": "2.2.0"
   },
   "devDependencies": {
+    "@vue/preload-webpack-plugin": "^1.1.1",
     "@types/jest": "24.0.25",
     "@types/lodash-es": "4.17.3",
     "@vue/cli-plugin-babel": "4.1.2",
