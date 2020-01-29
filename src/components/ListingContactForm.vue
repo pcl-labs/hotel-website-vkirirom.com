@@ -9,6 +9,8 @@
     data-netlify="true"
   >
     <input type="hidden" name="form-name" :value="resort.name" />
+    <input :value="resort.slug" hidden name="Property" readonly />
+
     <v-row no-gutters>
       <v-col cols="12" class="">
         <!-- Full Name -->
@@ -17,7 +19,7 @@
           v-model="name"
           outlined
           label="E.g. Bill Shan"
-          name="name"
+          name="Name"
           color="light"
           type="text"
           required
@@ -30,46 +32,16 @@
       <v-col cols="12" class="">
         <!-- Phone -->
         <h4 class="mb-2 body-2 font-weight-medium">Phone</h4>
-        <v-row no-gutters class="phone-input align-center">
-          <v-col cols="5">
-            <v-combobox
-              class="phone-input--code"
-              dark
-              color="light"
-              outlined
-              label="Country"
-              v-model="phoneCountry"
-              item-color="dark"
-              :items="CountriesList"
-              item-text="name"
-              :suffix="(phoneCountry && `+${phoneCountry.callingCodes[0]}`) || ''"
-              auto-select-first
-              :rules="rules.phoneCountry"
-              @change="focusPhone"
-            >
-              <template v-if="phoneCountry" slot="prepend-inner"
-                ><span class="d-flex"
-                  ><img
-                    class="phone-input--flag"
-                    v-if="phoneCountry && phoneCountry.flag"
-                    :src="phoneCountry.flag"
-                    alt=""/></span
-              ></template>
-            </v-combobox>
-          </v-col>
-          <v-col cols="7">
-            <v-text-field
-              ref="phoneNumber"
-              class="phone-input--number"
-              type="text"
-              dark
-              outlined
-              label="Phone Number"
-              v-model="phoneNumber"
-              :rules="rules.phoneNumber"
-            ></v-text-field>
-          </v-col>
-        </v-row>
+        <v-text-field
+          class="phone-input--number"
+          type="text"
+          dark
+          outlined
+          label="Phone Number"
+          name="Phone"
+          v-model="phoneNumber"
+          :rules="rules.phoneNumber"
+        ></v-text-field>
       </v-col>
 
       <v-col cols="12" class="">
@@ -98,7 +70,7 @@
           v-model="message"
           dark
           outlined
-          name="message"
+          name="Message"
           :rows="3"
           auto-grow
         ></v-textarea>
@@ -127,7 +99,6 @@
 <script lang="ts">
 import Vue from 'vue'
 import { isNumeric, isAlpha } from 'validator'
-import CountriesList from '@/constants/countries-list'
 
 export default Vue.extend({
   name: 'listing-contact-form',
@@ -135,12 +106,10 @@ export default Vue.extend({
   data() {
     return {
       isFormValid: false,
-      CountriesList,
       name: '',
       email: '',
       message: '',
       phoneNumber: '',
-      phoneCountry: '',
       // TODO: move validations to a helper file
       rules: {
         name: [
@@ -158,7 +127,6 @@ export default Vue.extend({
           v => /.+@.+/.test(v) || 'E-mail must be valid',
           v => (v || '').indexOf(' ') < 0 || 'No spaces are allowed'
         ],
-        phoneCountry: [v => !!v || 'This field is required'],
         phoneNumber: [
           v => !!v || 'This field is required',
           v => String(v).length <= 16 || 'Phone should be valid',
@@ -166,45 +134,12 @@ export default Vue.extend({
         ]
       }
     }
-  },
-  methods: {
-    focusPhone() {
-      // @ts-ignore
-      this.$refs.phoneNumber.focus()
-    }
   }
 })
 </script>
 
 <style lang="scss" scoped>
 ::v-deep {
-  .phone-input--code {
-    .v-label--active + input[type='text'] {
-      margin-left: rem(24px);
-    }
-    .v-input__slot {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-    }
-  }
-  .phone-input--number .v-input__slot {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    margin-left: -1px;
-  }
-  .phone-input--flag {
-    width: rem(16px);
-    height: rem(16px);
-  }
-  .phone-input {
-    .v-input__prepend-inner {
-      align-self: center;
-      // margin: 0 8px 0 0;
-      margin: 0;
-      padding: 0;
-      width: 0;
-    }
-  }
   .theme--dark.v-icon {
     color: map-get($grey, 'lighten-1');
   }

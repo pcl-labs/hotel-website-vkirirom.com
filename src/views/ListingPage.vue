@@ -91,8 +91,8 @@
 
               <v-col cols="12" md="5">
                 <div class="contact-form-wrapper pl-md-8">
-                  <h4 class="mb-2 display-1 font-weight-medium text-center">Contact Us</h4>
-                  <v-divider light class="my-6"></v-divider>
+                  <h4 class="mb-2 body-1 font-weight-medium">Contact Us</h4>
+                  <v-divider light class="mb-6"></v-divider>
                   <listing-contact-form :resort="resort" />
                 </div>
               </v-col>
