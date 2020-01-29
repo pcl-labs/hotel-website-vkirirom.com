@@ -146,8 +146,10 @@ export function removeOtherLanguagesExcept(langCode, innherHTML) {
 
     if (otherLanguageElementsArray.length > 0) {
       for (let i = 0; i < otherLanguageElementsArray.length; i++) {
-        // @ts-ignore
-        otherLanguageElements[i].parentNode.removeChild(otherLanguageElements[i])
+        try {
+          // @ts-ignore
+          otherLanguageElements[i].parentNode.removeChild(otherLanguageElements[i])
+        } catch (error) {}
       }
     }
   })
