@@ -5,7 +5,7 @@
     <div class="page" v-if="resort && resort.id">
       <div class="page-content">
         <div class="pa-0 ma-0">
-          <!-- featured images -->
+          <!-- featured images, TODO: move to separate component -->
           <v-row no-gutters class="pa-0 mx-0 my-0">
             <v-col class="pa-0 overflow-hidden hidden-sm-and-down d-md-block">
               <v-img class="image ma-0 pa-0" :src="resort.featuredImage" style="height:470px;"></v-img>
@@ -60,29 +60,43 @@
                 <h1 class="mb-0 font-weight-bold light--text">{{ resort.title }}</h1>
               </v-col>
             </v-row>
-            <v-row
-              no-gutters
-              class="flex-column light--text mb-4"
-              v-if="resort && resort.modules && resort.modules.hotel && resort.modules.hotel.roomTypes.length > 0"
-            >
-              <v-col cols="12">
-                <div class="d-flex align-center">
-                  <v-icon size="30" color="light" class="mr-2">hotel</v-icon>
-                  <span class="mr-1" v-for="(roomType, index) in resort.modules.hotel.roomTypes" v-bind:key="index">
-                    <span class="mr-1">
-                      {{ roomType.beds[0].count }}
-                      {{ roomType.beds[0].type }}
-                    </span>
-                    <span class="mr-1" v-if="index != resort.modules.hotel.roomTypes.length - 1">
-                      /
-                    </span>
-                  </span>
-                  <span>bed(s)</span>
+
+            <v-row>
+              <v-col cols="12" md="7">
+                <!-- x double / x twin beds -->
+                <v-row
+                  no-gutters
+                  class="flex-column light--text mb-4"
+                  v-if="resort && resort.modules && resort.modules.hotel && resort.modules.hotel.roomTypes.length > 0"
+                >
+                  <v-col cols="12">
+                    <div class="d-flex align-center">
+                      <v-icon size="30" color="light" class="mr-2">hotel</v-icon>
+                      <span class="mr-1" v-for="(roomType, index) in resort.modules.hotel.roomTypes" v-bind:key="index">
+                        <span class="mr-1">
+                          {{ roomType.beds[0].count }}
+                          {{ roomType.beds[0].type }}
+                        </span>
+                        <span class="mr-1" v-if="index != resort.modules.hotel.roomTypes.length - 1">
+                          /
+                        </span>
+                      </span>
+                      <span>bed(s)</span>
+                    </div>
+                  </v-col>
+                </v-row>
+
+                <resort-description ref="roomDescriptionWrapperRef" :resort="resort"></resort-description>
+              </v-col>
+
+              <v-col cols="12" md="5">
+                <div class="contact-form-wrapper pl-md-8">
+                  <h4 class="mb-2 display-1 font-weight-medium text-center">Contact Us</h4>
+                  <v-divider light class="my-6"></v-divider>
+                  <listing-contact-form :resort="resort" />
                 </div>
               </v-col>
             </v-row>
-
-            <resort-description ref="roomDescriptionWrapperRef" :resort="resort"></resort-description>
           </v-container>
         </div>
       </div>
@@ -105,6 +119,7 @@ import ResortDescription from '@/components/ResortDescription.vue'
 import BookingBar from '@/components/BookingBar.vue'
 import PageFooter from '@/components/PageFooter.vue'
 import PageHeader from '@/components/PageHeader.vue'
+import ListingContactForm from '@/components/ListingContactForm.vue'
 import store from '@/store'
 import { Resort } from '@/types'
 import { removeOtherLanguagesExcept } from '../helpers'
@@ -119,7 +134,8 @@ export default Vue.extend({
     ResortDescription,
     BookingBar,
     PageFooter,
-    PageHeader
+    PageHeader,
+    ListingContactForm
   },
   head: {
     title: function() {
