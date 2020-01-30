@@ -94,8 +94,16 @@ export default {
     updateActiveState(value) {
       store.dispatch('auth/updateActiveState', value)
     },
-    login() {
-      store.dispatch('auth/login')
+    async login() {
+      try {
+        await store.dispatch('auth/loginStandard')
+        store.dispatch('snackbar/show', {
+          color: 'success',
+          text: 'Logging in was successful'
+        })
+      } catch (error) {
+        console.log('wrong credentials')
+      }
     }
   },
   computed: {
