@@ -1,13 +1,5 @@
 <template>
-  <v-form
-    :name="formName"
-    method="post"
-    netlify
-    ref="form"
-    action="/thanks"
-    v-model="isFormValid"
-    data-netlify="true"
-  >
+  <v-form :name="formName" method="post" netlify ref="form" action="/thanks" v-model="isFormValid" data-netlify="true">
     <input type="hidden" name="form-name" :value="formName" />
     <input :value="resort.slug" hidden name="Property" readonly />
 
