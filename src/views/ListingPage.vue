@@ -62,7 +62,7 @@
             </v-row>
 
             <v-row>
-              <v-col cols="12" md="7">
+              <v-col cols="12" :md="shouldShowContactForm ? 7 : 12">
                 <!-- x double / x twin beds -->
                 <v-row
                   no-gutters
@@ -89,7 +89,7 @@
                 <resort-description ref="roomDescriptionWrapperRef" :resort="resort"></resort-description>
               </v-col>
 
-              <v-col cols="12" md="5">
+              <v-col cols="12" md="5" v-if="shouldShowContactForm">
                 <div class="contact-form-wrapper pl-md-8">
                   <h4 class="mb-2 body-1 font-weight-medium">Contact Us</h4>
                   <v-divider light class="mb-6"></v-divider>
@@ -123,6 +123,7 @@ import ListingContactForm from '@/components/ListingContactForm.vue'
 import store from '@/store'
 import { Resort } from '@/types'
 import { removeOtherLanguagesExcept } from '../helpers'
+import { get } from 'lodash-es'
 
 const defaultResort = {
   title: '...',
@@ -179,10 +180,15 @@ export default Vue.extend({
     resort(): Resort {
       return store.getters['resort/getResort']
     },
+    shouldShowContactForm(): boolean {
+      const resort = store.getters['resort/getResort']
+      const categories = get(resort, 'categories', [])
+      return !categories.map(item => item.name).includes('accommodations')
+    },
     shouldShowBookingBar(): boolean {
-      const listingType = store.getters['resort/getResort'].categories[0].name
-      // 'accommodations', 'events', 'experiences'
-      return ['accommodations'].includes(listingType)
+      const resort = store.getters['resort/getResort']
+      const categories = get(resort, 'categories', [])
+      return categories.map(item => item.name).includes('accommodations')
     }
   }
 })
