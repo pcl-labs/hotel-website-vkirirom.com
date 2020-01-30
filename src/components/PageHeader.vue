@@ -218,8 +218,19 @@ export default {
     }
   },
   methods: {
-    logout() {
-      store.dispatch('auth/logout')
+    async logout() {
+      try {
+        await store.dispatch('auth/logout')
+        store.dispatch('snackbar/show', {
+          color: 'success',
+          text: 'Logging out was successful'
+        })
+      } catch (error) {
+        store.dispatch('snackbar/show', {
+          color: 'error',
+          text: 'Logging out was unsuccessful'
+        })
+      }
     },
     openLogin() {
       this.drawer = false
