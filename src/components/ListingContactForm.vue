@@ -1,6 +1,6 @@
 <template>
   <v-form
-    :name="resort.name"
+    :name="formName"
     method="post"
     netlify
     ref="form"
@@ -8,7 +8,7 @@
     v-model="isFormValid"
     data-netlify="true"
   >
-    <input type="hidden" name="form-name" :value="resort.name" />
+    <input type="hidden" name="form-name" :value="formName" />
     <input :value="resort.slug" hidden name="Property" readonly />
 
     <v-row no-gutters>
@@ -99,10 +99,16 @@
 <script lang="ts">
 import Vue from 'vue'
 import { isNumeric, isAlpha } from 'validator'
+import { get } from 'lodash-es'
 
 export default Vue.extend({
   name: 'listing-contact-form',
   props: ['resort'],
+  computed: {
+    formName() {
+      return get(this.resort, 'categories[0].name', 'uncategoriesed')
+    }
+  },
   data() {
     return {
       isFormValid: false,
