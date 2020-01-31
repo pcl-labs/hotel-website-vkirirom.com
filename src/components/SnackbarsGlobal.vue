@@ -1,6 +1,7 @@
 <template>
   <v-snackbar
     :color="model.color"
+    :class="model.class"
     :timeout="model.timeout"
     :bottom="model.bottom"
     :left="model.left"
@@ -8,6 +9,14 @@
     v-model="isVisible"
   >
     {{ model.text }}
+
+    <v-btn
+      v-if="model.button.text"
+      :class="model.button.class"
+      :color="model.button.color"
+      @click="model.button.action()"
+      >{{ model.button.text }}</v-btn
+    >
   </v-snackbar>
 </template>
 

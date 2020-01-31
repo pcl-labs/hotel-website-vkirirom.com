@@ -1,11 +1,18 @@
 const defaultSettings = {
   text: '',
   visible: false,
-  color: 'success',
   timeout: 3000,
   bottom: true,
   left: false,
-  right: false
+  right: false,
+  color: 'success',
+  class: '',
+  button: {
+    text: '',
+    action: () => {},
+    color: 'primary',
+    class: 'dark--text'
+  }
 }
 
 export default {
