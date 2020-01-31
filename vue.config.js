@@ -5,7 +5,7 @@ module.exports = {
   pwa: {
     name: require('./package.json').name,
     workboxOptions: {
-      skipWaiting: true
+      // skipWaiting: true
       // clientsClaim: true
     }
   },
