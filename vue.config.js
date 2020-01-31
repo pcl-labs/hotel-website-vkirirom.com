@@ -2,6 +2,12 @@ const webpack = require('webpack')
 
 module.exports = {
   transpileDependencies: ['vuex-persist', 'vuetify'],
+  pwa: {
+    workboxOptions: {
+      skipWaiting: true,
+      clientsClaim: true
+    }
+  },
   css: {
     sourceMap: true,
     loaderOptions: {
