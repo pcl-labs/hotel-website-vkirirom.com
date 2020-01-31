@@ -23,7 +23,7 @@
             <v-col cols="12" sm="6" md="4" v-for="resort in categories" :key="resort.id">
               <card-product
                 :title="resort.title"
-                :description="resort.ctaText ? `${resort.ctaText}$` : ''"
+                :description="resort.ctaText ? `${resort.ctaText}` : ''"
                 :image="resort.featuredImage"
                 :link="'/listing/' + resort.slug"
               ></card-product>
