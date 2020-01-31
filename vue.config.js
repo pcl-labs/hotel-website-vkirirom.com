@@ -4,8 +4,8 @@ module.exports = {
   transpileDependencies: ['vuex-persist', 'vuetify'],
   pwa: {
     workboxOptions: {
-      skipWaiting: true,
-      clientsClaim: true
+      // skipWaiting: true,
+      // clientsClaim: true
     }
   },
   css: {
