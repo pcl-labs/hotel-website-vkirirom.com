@@ -1,6 +1,6 @@
 {
-  "name": "vkirirom.com_v2",
-  "version": "2.1.0",
+  "name": "vkirirom.com",
+  "version": "2.1.7",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",

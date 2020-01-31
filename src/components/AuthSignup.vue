@@ -77,6 +77,7 @@ export default {
       store.dispatch('auth/updateActiveState', value)
     },
     oauth(provider) {
+      // TODO: move to store
       store.commit('auth/updateProvider', provider)
       window.location.assign(store.getters['auth/oauth'])
       store.dispatch('auth/ping')

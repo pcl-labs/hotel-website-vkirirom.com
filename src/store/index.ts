@@ -8,6 +8,7 @@ import language from './modules/language'
 import resort from './modules/resort'
 import category from './modules/category'
 import loading from './modules/loading'
+import snackbar from './modules/snackbar'
 import VuexPersistence from 'vuex-persist'
 
 const vuexLocal = new VuexPersistence({
@@ -21,6 +22,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   plugins: [vuexLocal.plugin],
   modules: {
+    snackbar,
     loading,
     auth,
     resort,

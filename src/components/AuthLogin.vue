@@ -128,12 +128,19 @@ export default {
     updateActiveState(value) {
       store.dispatch('auth/updateActiveState', value)
     },
-    login() {
-      store.dispatch('auth/login').catch(error => {
+    async login() {
+      try {
+        await store.dispatch('auth/loginStandard')
+        store.dispatch('snackbar/show', {
+          color: 'success',
+          text: 'Logging in was successful'
+        })
+      } catch (error) {
         console.log('wrong credentials')
-      })
+      }
     },
     oauth(provider) {
+      // TODO: move to store
       store.commit('auth/updateProvider', provider)
       window.location.assign(store.getters['auth/oauth'])
       store.dispatch('auth/ping')
