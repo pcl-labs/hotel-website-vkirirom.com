@@ -12,7 +12,7 @@ const notifyUserAboutUpdate = (worker: any) => {
     button: {
       text: 'Refresh',
       action: () => {
-        worker.postMessage({ action: 'skipWaiting' })
+        worker.postMessage({ type: 'SKIP_WAITING' })
       },
       color: 'white',
       class: 'dark--text text-transform-none'
@@ -48,7 +48,7 @@ if (process.env.NODE_ENV === 'production') {
     }
   })
 
-  let refreshing = false
+  let refreshing
   navigator.serviceWorker.addEventListener('controllerchange', () => {
     console.log('controllerchange...')
     if (refreshing) {
