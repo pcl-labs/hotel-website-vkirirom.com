@@ -1,5 +1,5 @@
 <template>
-  <v-footer v-resize="storeFooterHeight" padless class="page-footer light--text" ref="pageFooter">
+  <v-footer v-resize="storeFooterHeight" padless class="page-footer light--text position-relative" ref="pageFooter">
     <v-container fluid class="page-footer--container-1 px-0 py-8">
       <v-container class="is-limited align-start pt-0 pb-4">
         <v-row no-gutters justify-space-between>
@@ -88,6 +88,7 @@
         </v-row>
       </v-container>
     </v-container>
+    <small class="footer--version position-absolute">v{{ appVersion }}</small>
   </v-footer>
 </template>
 
@@ -95,6 +96,11 @@
 import store from '@/store'
 export default {
   name: 'page-footer',
+  data() {
+    return {
+      appVersion: JSON.parse(unescape(process.env.APP_VERSION || 0))
+    }
+  },
   mounted() {
     this.storeFooterHeight()
   },
@@ -115,6 +121,10 @@ export default {
 }
 </script>
 
+<style lang="scss">
+@import '@/styles/utility.scss';
+</style>
+
 <style lang="scss" scoped>
 .link {
   text-decoration: none;
@@ -133,5 +143,11 @@ export default {
     border: 1px solid;
     border-radius: $border-radius-root;
   }
+}
+.footer--version {
+  bottom: rem(8px);
+  right: rem(8px);
+  color: map-get($grey, 'darken-3');
+  line-height: 1;
 }
 </style>
