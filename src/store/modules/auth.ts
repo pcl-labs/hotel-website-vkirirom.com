@@ -34,12 +34,6 @@ const defaultState = {
   dialog: {
     title: 'Log In',
     isOpen: false
-  },
-  snackbar: {
-    timeout: 3000,
-    type: 'success',
-    isOpen: false,
-    message: ''
   }
 }
 
@@ -49,9 +43,6 @@ export default {
   getters: {
     dialog: state => {
       return state.dialog
-    },
-    snackbar: state => {
-      return state.snackbar
     },
     activeState: state => {
       return state.activeState
@@ -118,9 +109,6 @@ export default {
     updateActiveState(state, payload) {
       state.activeState = payload
     },
-    updateSnackbar(state, payload) {
-      state.snackbar = payload
-    },
     resetState(state) {
       for (const key in defaultState) {
         if (defaultState.hasOwnProperty(key)) {
@@ -142,13 +130,6 @@ export default {
       setDocumentClassesOnToggleDialog(dialog.isOpen)
       context.commit('updateDialog', dialog)
     },
-    updateSnackbar(context, payload) {
-      const snackbar = {
-        ...context.state.snackbar,
-        ...payload
-      }
-      context.commit('updateSnackbar', snackbar)
-    },
     updateActiveState(context, payload) {
       context.commit('updateActiveState', payload)
       context.commit('updateLoginError', '')
@@ -159,7 +140,7 @@ export default {
         title: authStates[payload].title
       })
     },
-    login(context) {
+    loginStandard(context) {
       context.commit('updateLoginError', '')
       context.commit('updateLoading', true)
       return new Promise((resolve, reject) => {
