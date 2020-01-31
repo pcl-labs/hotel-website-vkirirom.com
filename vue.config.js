@@ -3,6 +3,7 @@ const webpack = require('webpack')
 module.exports = {
   transpileDependencies: ['vuex-persist', 'vuetify'],
   pwa: {
+    name: require('./package.json').name,
     workboxOptions: {
       // skipWaiting: true,
       // clientsClaim: true
