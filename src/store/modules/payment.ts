@@ -4,7 +4,7 @@ import store from '@/store'
 
 const defaultState = {
   stripeKey: '',
-  reservationId: 0,
+  accountId: '',
   clientSecret: '',
   reservationDetails: {},
   isPaymentLoading: false,
@@ -17,6 +17,9 @@ export default {
   mutations: {
     updateStripeKey(state, payload) {
       state.stripeKey = payload
+    },
+    updateStripeAccountId(state, payload) {
+      state.accountId = payload
     },
     updateClientSecret(state, payload) {
       state.clientSecret = payload
@@ -39,26 +42,27 @@ export default {
       return CompanyService.stripePublishableKey({
         companyId: 1
       }).then(res => {
-        return context.commit('updateStripeKey', res.key)
+        context.commit('updateStripeKey', res.key)
+        context.commit('updateStripeAccountId', res.accountId)
       })
     },
-    getClientSecret(context, { totalPrice }) {
-      const reservationId = context.getters.reservationId
+    getClientSecret(context, { amount, reservationId, metadata = {} }) {
       return ReservationService.payReservation({
         reservationId,
         model: {
-          amount: totalPrice
+          amount,
+          metadata
         }
-      }).then(payReservation => {
-        return context.commit('updateClientSecret', payReservation.clientSecret)
+      }).then(res => {
+        context.commit('updateClientSecret', res.clientSecret)
       })
     },
-    purchase(context, { stripe, clientSecret, billingDetails, card }) {
+    payByStripe(context, { stripe, clientSecret, card }) {
+      // FIXME: replace clientSecret
       stripe
-        .confirmCardPayment(clientSecret, {
+        .confirmCardPayment('pi_1G8AJPIO2q4tQQl6PMLh54wA_secret_H2Gw9xL4VFXGvOjf5vL9tB3AL', {
           payment_method: {
-            card: card,
-            billing_details: billingDetails
+            card
           }
         })
         .then(function(result) {
@@ -85,6 +89,9 @@ export default {
   getters: {
     stripeKey(state) {
       return state.stripeKey
+    },
+    accountId(state) {
+      return state.accountId
     },
     clientSecret(state) {
       return state.clientSecret

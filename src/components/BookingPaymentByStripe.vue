@@ -32,7 +32,7 @@ export default Vue.extend({
     }
   },
   props: {
-    billingDetails: {
+    metadata: {
       type: Object,
       default: () => {}
     }
@@ -48,14 +48,15 @@ export default Vue.extend({
     },
     async init() {
       await this.getStripeKey()
-      await this.createStripeComponent(this.stripeKey)
+      await this.createStripeComponent(this.stripeKey, this.accountId)
     },
     async submit() {
       try {
-        await this.reserveRoom()
-        await this.getClientSecret()
-        await this.getReservationDetails()
-        await this.purchase()
+        // await this.reserveRoom()
+        // await this.getClientSecret({ amount: this.computedTotalPrice, metadata: this.metadata })
+        // ------- probably pay by stripe here..., then:
+        // await this.getReservationDetails()
+        await this.payByStripe()
       } catch (error) {
         // TODO: move to higher level component
         store.dispatch('payment/updatePaymentError', error.message)
@@ -65,9 +66,11 @@ export default Vue.extend({
     reserveRoom() {
       return store.dispatch('booking/reserveRoom', this.customBookingInfo)
     },
-    async createStripeComponent(stripeKey) {
+    async createStripeComponent(stripeKey, accountId) {
       // @ts-ignore
-      this.stripe = window.Stripe(await stripeKey)
+      this.stripe = window.Stripe(await stripeKey, {
+        stripeAccount: accountId
+      })
       // @ts-ignore
       const themes = this.$vuetify.theme.themes
 
@@ -126,23 +129,27 @@ export default Vue.extend({
         placeholder: 'CVV'
       })
       cardCvc.mount(this.$refs.cvvNumber)
-    },
-    purchase() {
-      const that = this
-      console.log('billingDetails', this.billingDetails)
 
-      store.dispatch('payment/purchase', {
+      // sending only one input to confirmCardPayment() is enough
+      this.card = cardNumber
+    },
+    payByStripe() {
+      const that = this
+      store.dispatch('payment/payByStripe', {
         stripe: this.stripe,
         clientSecret: this.clientSecret,
-        card: this.card,
-        billingDetails: this.billingDetails
+        card: this.card
       })
     },
     getStripeKey() {
       return store.dispatch('payment/getStripeKey')
     },
-    getClientSecret() {
-      return store.dispatch('payment/getClientSecret', { totalPrice: this.computedTotalPrice })
+    getClientSecret({ amount, metadata }) {
+      return store.dispatch('payment/getClientSecret', {
+        reservationId: this.reservationId,
+        amount,
+        metadata
+      })
     },
     getReservationDetails() {
       return store.dispatch('booking/getReservationDetails', this.reservationId)
@@ -151,6 +158,9 @@ export default Vue.extend({
   computed: {
     stripeKey() {
       return store.getters['payment/stripeKey']
+    },
+    accountId() {
+      return store.getters['payment/accountId']
     },
     customBookingInfo() {
       return store.getters['booking/customBookingInfo']

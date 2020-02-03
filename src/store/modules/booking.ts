@@ -83,7 +83,6 @@ const defaultState = {
   },
   vat: 0,
   finalPrice: 0,
-  stripeKey: '',
   reservationId: 0,
   reservationDetails: {},
   isPaymentLoading: false,
@@ -287,7 +286,8 @@ export default {
         const { reservationId } = await ReservationService.reserveByRoomType(customBookingInfo)
         context.commit('updateReservationId', reservationId)
         try {
-          await context.dispatch('sendReservationSuccessEmail')
+          // FIXME: enable
+          // await context.dispatch('sendReservationSuccessEmail')
           return { reserve: true, email: true }
         } catch (error) {
           console.log('Sending reservation email failed')
@@ -295,7 +295,8 @@ export default {
         }
       } catch (error) {
         try {
-          await context.dispatch('sendReservationFailEmail')
+          // FIXME: enable
+          // await context.dispatch('sendReservationFailEmail')
           store.dispatch(
             'payment/updatePaymentError',
             'There was an error with your booking, we will be in contact via email soon to complete your booking.'
