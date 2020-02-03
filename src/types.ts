@@ -93,3 +93,7 @@ export interface RoomType {
   id: number
   name: string
 }
+
+export interface EmailAddress {
+  email: string
+}
