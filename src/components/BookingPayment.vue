@@ -243,10 +243,6 @@ export default Vue.extend({
       store.dispatch('payment/updatePaymentError', '')
       store.dispatch('payment/updateIsPaymentLoading', false)
     },
-    focusPhone() {
-      // @ts-ignore
-      this.$refs.phoneNumber.focus()
-    },
     async submit() {
       this.resetLoadingAndError()
 

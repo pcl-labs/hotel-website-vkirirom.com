@@ -58,9 +58,8 @@ export default {
       })
     },
     payByStripe(context, { stripe, clientSecret, card }) {
-      // FIXME: replace clientSecret
-      stripe
-        .confirmCardPayment('pi_1G8AJPIO2q4tQQl6PMLh54wA_secret_H2Gw9xL4VFXGvOjf5vL9tB3AL', {
+      return stripe
+        .confirmCardPayment(clientSecret, {
           payment_method: {
             card
           }

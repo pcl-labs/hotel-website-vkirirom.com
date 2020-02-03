@@ -10,7 +10,7 @@
         <div class="expire-number" ref="expireNumber"></div>
       </v-col>
       <v-col cols="6">
-        <div class="cvv-number" ref="cvvNumber" style="border-left: none"></div>
+        <div class="cvv-number" ref="cvvNumber"></div>
       </v-col>
     </v-row>
   </div>
@@ -52,11 +52,10 @@ export default Vue.extend({
     },
     async submit() {
       try {
-        // await this.reserveRoom()
-        // await this.getClientSecret({ amount: this.computedTotalPrice, metadata: this.metadata })
-        // ------- probably pay by stripe here..., then:
-        // await this.getReservationDetails()
+        await this.reserveRoom()
+        await this.getClientSecret({ amount: this.computedTotalPrice, metadata: this.metadata })
         await this.payByStripe()
+        await this.getReservationDetails()
       } catch (error) {
         // TODO: move to higher level component
         store.dispatch('payment/updatePaymentError', error.message)
@@ -100,8 +99,6 @@ export default Vue.extend({
         ],
         locale: 'auto'
       })
-      // this.card = elements.create('card', { style: elementStyles })
-      // this.card.mount(this.$refs.card)
 
       const elementClasses = {
         focus: 'focus',
@@ -116,6 +113,9 @@ export default Vue.extend({
       })
       cardNumber.mount(this.$refs.cardNumber)
 
+      // sending only one input to confirmCardPayment() is enough
+      this.card = cardNumber
+
       var cardExpiry = elements.create('cardExpiry', {
         style: elementStyles,
         classes: elementClasses,
@@ -129,13 +129,10 @@ export default Vue.extend({
         placeholder: 'CVV'
       })
       cardCvc.mount(this.$refs.cvvNumber)
-
-      // sending only one input to confirmCardPayment() is enough
-      this.card = cardNumber
     },
     payByStripe() {
       const that = this
-      store.dispatch('payment/payByStripe', {
+      return store.dispatch('payment/payByStripe', {
         stripe: this.stripe,
         clientSecret: this.clientSecret,
         card: this.card
@@ -192,14 +189,29 @@ export default Vue.extend({
   border: 1px solid map-get($grey, 'lighten-1');
   background-color: transparent;
   color: map-get($grey, 'lighten-1');
+  &.invalid {
+    border-color: map-get($red, 'base');
+    border-width: rem(2px);
+  }
   &.card-number {
     border-radius: $border-radius-root $border-radius-root 0 0;
+    &.invalid {
+      border-bottom-width: rem(1px);
+    }
   }
   &.expire-number {
     border-radius: 0 0 0 $border-radius-root;
+    border-right-width: rem(1px);
+    &.invalid {
+      border-right-width: rem(1px);
+    }
   }
   &.cvv-number {
     border-radius: 0 0 $border-radius-root 0;
+    border-left-width: 0;
+    &.invalid {
+      border-left-width: rem(1px);
+    }
   }
 }
 </style>
