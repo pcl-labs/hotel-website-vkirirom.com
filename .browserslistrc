@@ -3,7 +3,8 @@ last 4 iOS major versions
 last 4 Safari major versions
 last 40 Chrome versions
 last 40 Firefox versions
-last 10 Opera versions
+last 5 Opera versions
 ie 11
 not safari 5.1
 not ie_mob >= 1
+not op_mini all
