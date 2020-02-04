@@ -1,10 +1,10 @@
 <template>
   <fragment>
-    <transition name="pageheaderfade" mode="out-in">
+   <!-- <transition name="pageheaderfade" mode="out-in">
       <div v-show="shouldShowHeader" class="page-header--wrapper position-fixed w-100">
         <page-header></page-header>
       </div>
-    </transition>
+    </transition> -->
     <div class="page" v-scroll="debouncedOnScrollPage">
       <div class="page-content">
         <page-home-parrallax-hero ref="homeHero"></page-home-parrallax-hero>
