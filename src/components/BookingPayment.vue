@@ -102,13 +102,6 @@
                 @success="onPaymentSuccess"
                 @error="onPaymentError"
                 ref="paymentByStripe"
-                :metadata="{
-                  name: fullName,
-                  address_line1: addressLine,
-                  address_city: addressCity,
-                  address_state: addressState,
-                  address_zip: addressZip
-                }"
               ></booking-payment-by-stripe>
             </div>
           </v-expand-transition>
@@ -236,6 +229,12 @@ export default Vue.extend({
     },
     isPaymentLoading() {
       return store.getters['payment/isPaymentLoading']
+    },
+    reservationId() {
+      return store.getters['booking/reservationId']
+    },
+    computedTotalPrice() {
+      return store.getters['booking/computedTotalPrice']({ all: true })
     }
   },
   methods: {
@@ -267,10 +266,47 @@ export default Vue.extend({
         this.goNextStep()
       }
     },
-    payWithCard() {
-      // TODO: use store instead
+    async payWithCard() {
       // @ts-ignore
-      this.$refs.paymentByStripe.submit()
+      const { reserve } = await store.dispatch('booking/reserveRoom')
+      if (reserve) {
+        const metadata = this.getPaymentMetadata()
+        await this.getClientSecret({ amount: this.computedTotalPrice, metadata })
+        // @ts-ignore
+        const result = await this.$refs.paymentByStripe.submit()
+        this.onCardPaymentResult(result)
+        await this.getReservationDetails()
+      }
+    },
+    onCardPaymentResult({ error, message }) {
+      if (!error) {
+        store.dispatch('snackbar/show', {
+          text: message,
+          color: 'success'
+        })
+        this.goNextStep()
+      } else {
+        store.dispatch('payment/updatePaymentError', message)
+      }
+    },
+    getReservationDetails() {
+      return store.dispatch('booking/getReservationDetails', this.reservationId)
+    },
+    getClientSecret({ amount, metadata }) {
+      return store.dispatch('payment/getClientSecret', {
+        reservationId: this.reservationId,
+        amount,
+        metadata
+      })
+    },
+    getPaymentMetadata() {
+      return {
+        name: this.fullName,
+        address_line1: this.addressLine,
+        address_city: this.addressCity,
+        address_state: this.addressState,
+        address_zip: this.addressZip
+      }
     },
     async evaluateValidation() {
       try {

@@ -1,7 +1,7 @@
 import { addDays } from 'date-fns'
 import { RoomTypeService, ReservationService } from '@/connection/resources.js'
 import { bookingStep } from '@/types'
-import { setDocumentClassesOnToggleDialog, formatDate, removeOtherLanguagesExcept } from '@/helpers'
+import { setDocumentClassesOnToggleDialog, formatDate, removeOtherLanguagesExcept, toFixedNumber } from '@/helpers'
 import { cloneDeep } from 'lodash-es'
 import countriesList from '@/constants/countries-list'
 import store from '@/store'
@@ -394,7 +394,7 @@ export default {
     },
     reservationSuccessEmailData(state, getters) {
       const bookingInfo = state.bookingInfo
-      const prices = getters.prices({ rounded: true, formattedDate: true })
+      const prices = getters.prices({ decimalDigits: 0, formattedDate: true })
       const email_to = [
         {
           email: store.getters['auth/user'].userName,
@@ -420,14 +420,14 @@ export default {
           roomDescriptionHTML: bookingInfo.roomDescriptionHTML,
           nightsCount: prices.length,
           prices,
-          vat: Number(getters.computedVAT().toFixed(2)),
-          amount: Number(getters.computedTotalPrice({ all: true }).toFixed(2))
+          vat: getters.computedVAT(),
+          amount: getters.computedTotalPrice({ all: true })
         }
       }
     },
     reservationFailEmailData(state, getters) {
       const bookingInfo = state.bookingInfo
-      const prices = getters.prices({ rounded: true, formattedDate: true })
+      const prices = getters.prices({ decimalDigits: 0, formattedDate: true })
       return {
         email_to: reservationEmailsBcc,
         template_id: reservationFailEmailTemplateId,
@@ -444,22 +444,20 @@ export default {
           resort: bookingInfo.resort,
           nightsCount: prices.length,
           prices,
-          vat: Number(getters.computedVAT().toFixed(2)),
-          amount: Number(getters.computedTotalPrice({ all: true }).toFixed(2))
+          vat: getters.computedVAT(),
+          amount: getters.computedTotalPrice({ all: true })
         }
       }
     },
-    prices: state => ({ rounded = false, formattedDate = false } = {}) => {
+    prices: state => ({ decimalDigits = 0, formattedDate = false } = {}) => {
       let prices = state.bookingInfo.prices
-      if (rounded) {
-        prices = prices.map(price => {
-          const amount = price.amount.toFixed(0)
-          return {
-            ...price,
-            amount
-          }
-        })
-      }
+      prices = prices.map(price => {
+        const amount = toFixedNumber(price.amount, decimalDigits)
+        return {
+          ...price,
+          amount
+        }
+      })
       if (formattedDate) {
         prices = prices.map(price => {
           const date = formatDate(price.date, 'ddd, D MMM')
@@ -479,17 +477,17 @@ export default {
       }
       return roomPrice
     },
-    computedVAT: (state, getters) => () => {
+    computedVAT: (state, getters) => ({ decimalDigits = 2 } = {}) => {
       let prices = getters.computedRoomPrice
       const VAT_RATE = 0.1
-      return prices * VAT_RATE
+      return toFixedNumber(prices * VAT_RATE, decimalDigits)
     },
-    computedTotalPrice: (state, getters) => ({ all = false, hasVAT = false } = {}) => {
+    computedTotalPrice: (state, getters) => ({ all = false, hasVAT = false, decimalDigits = 2 } = {}) => {
       let totalPrice = getters.computedRoomPrice
       if (all || hasVAT) {
         totalPrice += getters.computedVAT()
       }
-      return totalPrice
+      return toFixedNumber(totalPrice, decimalDigits)
     },
     currentStep(state) {
       return state.currentStep

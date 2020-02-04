@@ -155,3 +155,7 @@ export function removeOtherLanguagesExcept(langCode, innherHTML) {
   })
   return virtualElement
 }
+
+export function toFixedNumber(number, decimals) {
+  return Number(number.toFixed(decimals))
+}

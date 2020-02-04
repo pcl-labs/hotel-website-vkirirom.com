@@ -1,6 +1,7 @@
 import { CompanyService, ReservationService } from '@/connection/resources.js'
 import { cloneDeep } from 'lodash-es'
 import store from '@/store'
+import { InternalMessagePassing } from '@/types'
 
 const defaultState = {
   stripeKey: '',
@@ -47,6 +48,8 @@ export default {
       })
     },
     getClientSecret(context, { amount, reservationId, metadata = {} }) {
+      console.log('amount in getClientSecret()', amount)
+
       return ReservationService.payReservation({
         reservationId,
         model: {
@@ -66,11 +69,11 @@ export default {
         })
         .then(function(result) {
           if (result.error) {
-            console.log(result.error.message)
-            store.dispatch('payment/updatePaymentError', result.error.message)
+            throw new Error(result.error.message)
           } else {
             if (result.paymentIntent.status === 'succeeded') {
-              console.log('succeeded')
+              const result: InternalMessagePassing = { error: false, message: 'Payment was successful' }
+              return result
               // Show a success message to your customer
               // There's a risk of the customer closing the window before callback
               // execution. Set up a webhook or plugin to listen for the
@@ -80,7 +83,6 @@ export default {
           }
         })
         .finally(res => {
-          console.log('finally')
           store.dispatch('payment/updateIsPaymentLoading', false)
         })
     }

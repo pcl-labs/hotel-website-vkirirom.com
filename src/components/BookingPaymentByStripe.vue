@@ -31,12 +31,6 @@ export default Vue.extend({
       card: {} as any
     }
   },
-  props: {
-    metadata: {
-      type: Object,
-      default: () => {}
-    }
-  },
   mounted() {
     this.cleanup()
     this.init()
@@ -51,19 +45,13 @@ export default Vue.extend({
       await this.createStripeComponent(this.stripeKey, this.accountId)
     },
     async submit() {
+      let result
       try {
-        await this.reserveRoom()
-        await this.getClientSecret({ amount: this.computedTotalPrice, metadata: this.metadata })
-        await this.payByStripe()
-        await this.getReservationDetails()
+        result = await this.payByStripe()
       } catch (error) {
-        // TODO: move to higher level component
-        store.dispatch('payment/updatePaymentError', error.message)
-        store.dispatch('payment/updateIsPaymentLoading', false)
+        result = { error: true, message: error.message }
       }
-    },
-    reserveRoom() {
-      return store.dispatch('booking/reserveRoom', this.customBookingInfo)
+      return result
     },
     async createStripeComponent(stripeKey, accountId) {
       // @ts-ignore
@@ -140,16 +128,6 @@ export default Vue.extend({
     },
     getStripeKey() {
       return store.dispatch('payment/getStripeKey')
-    },
-    getClientSecret({ amount, metadata }) {
-      return store.dispatch('payment/getClientSecret', {
-        reservationId: this.reservationId,
-        amount,
-        metadata
-      })
-    },
-    getReservationDetails() {
-      return store.dispatch('booking/getReservationDetails', this.reservationId)
     }
   },
   computed: {
@@ -167,9 +145,6 @@ export default Vue.extend({
     },
     reservationId() {
       return store.getters['booking/reservationId']
-    },
-    computedTotalPrice() {
-      return store.getters['booking/computedTotalPrice']({ all: true })
     }
   }
 })

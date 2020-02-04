@@ -222,7 +222,7 @@ export default Vue.extend({
       return store.getters['booking/bookingInfo'].dateTwo
     },
     prices() {
-      return this.$store.getters['booking/prices']({ rounded: true })
+      return this.$store.getters['booking/prices']({ decimalDigits: 0 })
     },
     computedTotalPrice() {
       const options = {
