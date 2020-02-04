@@ -1,2 +1,8 @@
-> 1%
-last 2 versions
+defaults
+last 4 iOS major versions
+last 40 Chrome versions
+last 40 Firefox versions
+last 10 Opera versions
+not dead
+ie 11
+not ie_mob >= 1
