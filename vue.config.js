@@ -1,7 +1,7 @@
 const webpack = require('webpack')
 
 module.exports = {
-  transpileDependencies: ['vuex-persist', 'vuetify'],
+  transpileDependencies: ['vuex-persist', 'vuetify', 'marked', 'vue-airbnb-style-datepicker', 'vue-head', 'portal-vue'],
   pwa: {
     name: require('./package.json').name,
     workboxOptions: {

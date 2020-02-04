@@ -393,15 +393,17 @@ export default {
     },
     reservationSuccessEmailData(state, getters) {
       const bookingInfo = state.bookingInfo
-      const email_subject = 'Thank You!'
+      const prices = getters.prices({ rounded: true, formattedDate: true })
+      const email_to = [
+        {
+          email: store.getters['auth/user'].userName,
+          name: bookingInfo.fullName
+        }
+      ]
       return {
+        email_subject: 'automated',
         email_bcc: reservationEmailsBcc,
-        email_to: [
-          {
-            email: store.getters['auth/user'].userName,
-            name: bookingInfo.fullName
-          }
-        ],
+        email_to,
         template_id: reservationSuccessEmailTemplateId,
         dynamic_template_data: {
           name: bookingInfo.fullName,
@@ -415,16 +417,16 @@ export default {
           guests: bookingInfo.guests,
           resort: bookingInfo.resort,
           roomDescriptionHTML: bookingInfo.roomDescriptionHTML,
-          prices: getters.prices({ rounded: true, formattedDate: true }),
+          nightsCount: prices.length,
+          prices,
           vat: Number(getters.computedVAT().toFixed(2)),
-          amount: Number(getters.computedTotalPrice({ all: true }).toFixed(2)),
-          subject: email_subject
+          amount: Number(getters.computedTotalPrice({ all: true }).toFixed(2))
         }
       }
     },
     reservationFailEmailData(state, getters) {
       const bookingInfo = state.bookingInfo
-      const email_subject = `Reservation failed for ${bookingInfo.fullName}`
+      const prices = getters.prices({ rounded: true, formattedDate: true })
       return {
         email_to: reservationEmailsBcc,
         template_id: reservationFailEmailTemplateId,
@@ -439,14 +441,14 @@ export default {
           phone: `+(${bookingInfo.phoneCountry.callingCodes[0]})` + bookingInfo.phoneNumber,
           guests: bookingInfo.guests,
           resort: bookingInfo.resort,
-          prices: getters.prices({ rounded: true, formattedDate: true }),
+          nightsCount: prices.length,
+          prices,
           vat: Number(getters.computedVAT().toFixed(2)),
-          amount: Number(getters.computedTotalPrice({ all: true }).toFixed(2)),
-          subject: email_subject
+          amount: Number(getters.computedTotalPrice({ all: true }).toFixed(2))
         }
       }
     },
-    prices: state => ({ rounded = false, formattedDate = false }) => {
+    prices: state => ({ rounded = false, formattedDate = false } = {}) => {
       let prices = state.bookingInfo.prices
       if (rounded) {
         prices = prices.map(price => {
