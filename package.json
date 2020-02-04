@@ -1,10 +1,11 @@
 {
   "name": "vkirirom.com",
-  "version": "2.1.7",
+  "version": "2.1.8",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build-modern": "vue-cli-service build --modern",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "fix-code": "prettier-eslint --write 'src/**/*.{js,jsx,vue,json}' ",
