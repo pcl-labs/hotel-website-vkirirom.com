@@ -17,8 +17,8 @@
               </li>
               <!-- <li class="mb-2">Book Now</li> -->
               <li class="mb-2">
-                <router-link to="/listing/in-the-press" class="link">
-                  In the press
+                <router-link to="/search/accommodations" class="link">
+                  Book Now
                 </router-link>
               </li>
               <li class="mt-3">
@@ -81,6 +81,11 @@
               <li class="mb-2">
                 <router-link to="/listing/Proudly-Powered-by-KIT-Students" class="link">
                   Proudly Powered by KIT
+                </router-link>
+              </li>
+              <li class="mb-2">
+                <router-link to="/search/blog" class="link">
+                  Blog
                 </router-link>
               </li>
             </ul>
