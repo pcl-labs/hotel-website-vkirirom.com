@@ -48,8 +48,6 @@ export default {
       })
     },
     getClientSecret(context, { amount, reservationId, metadata = {} }) {
-      console.log('amount in getClientSecret()', amount)
-
       return ReservationService.payReservation({
         reservationId,
         model: {
@@ -60,31 +58,32 @@ export default {
         context.commit('updateClientSecret', res.clientSecret)
       })
     },
-    payByStripe(context, { stripe, clientSecret, card }) {
-      return stripe
-        .confirmCardPayment(clientSecret, {
+    async payByStripe(context, { stripe, clientSecret, card }) {
+      let result
+      try {
+        result = await stripe.confirmCardPayment(clientSecret, {
           payment_method: {
             card
           }
         })
-        .then(function(result) {
-          if (result.error) {
-            throw new Error(result.error.message)
+        if (result.error) {
+          throw new Error(result.error.message)
+        } else {
+          if (result.paymentIntent.status === 'succeeded') {
+            const result: InternalMessagePassing = { error: false, message: 'Payment was successful' }
+            return result
+            // Show a success message to your customer
+            // There's a risk of the customer closing the window before callback
+            // execution. Set up a webhook or plugin to listen for the
+            // payment_intent.succeeded event that handles any business critical
+            // post-payment actions.
           } else {
-            if (result.paymentIntent.status === 'succeeded') {
-              const result: InternalMessagePassing = { error: false, message: 'Payment was successful' }
-              return result
-              // Show a success message to your customer
-              // There's a risk of the customer closing the window before callback
-              // execution. Set up a webhook or plugin to listen for the
-              // payment_intent.succeeded event that handles any business critical
-              // post-payment actions.
-            }
+            throw new Error('Unknown error in Stripe payment response')
           }
-        })
-        .finally(res => {
-          store.dispatch('payment/updateIsPaymentLoading', false)
-        })
+        }
+      } catch (error) {
+        throw new Error(error.message || 'Error on connecting to Stripe payment')
+      }
     }
   },
   getters: {

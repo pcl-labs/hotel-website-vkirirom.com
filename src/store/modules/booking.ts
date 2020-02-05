@@ -265,6 +265,29 @@ export default {
         context.commit('updatePrices', prices)
       })
     },
+    async reserveRoom(context) {
+      const customBookingInfo = cloneDeep(context.getters['customBookingInfo'])
+      try {
+        const { reservationId } = await ReservationService.reserveByRoomType(customBookingInfo)
+        context.commit('updateReservationId', reservationId)
+        return { reserve: true }
+      } catch (error) {
+        try {
+          await context.dispatch('sendReservationFailEmail')
+          store.dispatch(
+            'payment/updatePaymentError',
+            'There was an error with your booking, we will be in contact via email soon to complete your booking.'
+          )
+          return { reserve: false, email: true }
+        } catch (error) {
+          store.dispatch(
+            'payment/updatePaymentError',
+            'There was an error with your booking, please <a href="/contact">contact us</a>'
+          )
+          return { reserve: false, email: false }
+        }
+      }
+    },
     /*
     reserve-room:
       success:
@@ -280,7 +303,8 @@ export default {
           fail:
             show error (please contact us)
     */
-    async reserveRoom(context) {
+    // TODO: Separate logic of email and reservation
+    async reserveRoomAndNotify(context) {
       const customBookingInfo = cloneDeep(context.getters['customBookingInfo'])
       try {
         const { reservationId } = await ReservationService.reserveByRoomType(customBookingInfo)
@@ -314,13 +338,6 @@ export default {
           }
         }
       }
-    },
-    getReservationDetails(context, reservationId) {
-      return ReservationService.get({
-        reservationId
-      }).then(res => {
-        context.commit('updateReservationDetails', res)
-      })
     },
     updateRoomDescriptionHTML(context, payload) {
       context.commit('updateRoomDescriptionHTML', payload)
@@ -392,7 +409,7 @@ export default {
     },
     reservationSuccessEmailData(state, getters) {
       const bookingInfo = state.bookingInfo
-      const prices = getters.prices({ decimalDigits: 0, formattedDate: true })
+      const prices = getters.prices({ decimalDigits: 2, formattedDate: true })
       const email_to = [
         {
           email: store.getters['auth/user'].userName,
@@ -425,7 +442,7 @@ export default {
     },
     reservationFailEmailData(state, getters) {
       const bookingInfo = state.bookingInfo
-      const prices = getters.prices({ decimalDigits: 0, formattedDate: true })
+      const prices = getters.prices({ decimalDigits: 2, formattedDate: true })
       return {
         email_to: reservationEmailsBcc,
         template_id: reservationFailEmailTemplateId,

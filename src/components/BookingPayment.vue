@@ -146,6 +146,7 @@ import Vue from 'vue'
 import { isNumeric, isAlpha } from 'validator'
 import store from '../store'
 import BookingPaymentByStripe from '@/components/BookingPaymentByStripe.vue'
+import { InternalMessagePassing } from '../types'
 
 export default Vue.extend({
   name: 'booking-payment',
@@ -169,7 +170,8 @@ export default Vue.extend({
         addressCity: [v => !!v || 'City is required'],
         addressState: [v => !!v || 'State is required'],
         addressZip: [v => !!v || 'Zip number is required', v => isNumeric(v) || 'Zip code is not valid']
-      }
+      },
+      isFailEmailSent: false
     }
   },
   mounted() {
@@ -258,39 +260,42 @@ export default Vue.extend({
       store.dispatch('payment/updateIsPaymentLoading', false)
     },
     async payWithCash() {
-      const result = await store.dispatch('booking/reserveRoom')
-      this.onCashPaymentResult(result)
+      const result = await store.dispatch('booking/reserveRoomAndNotify')
+      this.onCashPayment(result)
     },
-    onCashPaymentResult({ email, reserve }) {
+    onCashPayment({ email, reserve }) {
       if (reserve) {
         this.goNextStep()
       }
     },
     async payWithCard() {
-      // @ts-ignore
+      // NOTE: this reservation should be temporary in backend
       const { reserve } = await store.dispatch('booking/reserveRoom')
       if (reserve) {
         const metadata = this.getPaymentMetadata()
         await this.getClientSecret({ amount: this.computedTotalPrice, metadata })
         // @ts-ignore
         const result = await this.$refs.paymentByStripe.submit()
-        this.onCardPaymentResult(result)
-        await this.getReservationDetails()
+        this.onCardPayment(result)
       }
     },
-    onCardPaymentResult({ error, message }) {
-      if (!error) {
+    async onCardPayment(result: InternalMessagePassing) {
+      if (!result.error) {
         store.dispatch('snackbar/show', {
-          text: message,
+          text: result.message,
           color: 'success'
         })
+        store.dispatch('booking/sendReservationSuccessEmail')
         this.goNextStep()
       } else {
-        store.dispatch('payment/updatePaymentError', message)
+        store.dispatch('payment/updatePaymentError', result.message)
+        if (!this.isFailEmailSent) {
+          try {
+            await store.dispatch('booking/sendReservationFailEmail')
+            this.isFailEmailSent = true
+          } catch (error) {}
+        }
       }
-    },
-    getReservationDetails() {
-      return store.dispatch('booking/getReservationDetails', this.reservationId)
     },
     getClientSecret({ amount, metadata }) {
       return store.dispatch('payment/getClientSecret', {

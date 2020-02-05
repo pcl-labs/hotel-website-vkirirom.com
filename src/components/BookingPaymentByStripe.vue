@@ -20,6 +20,7 @@
 import Vue from 'vue'
 import store from '../store'
 import { formatDate } from '../helpers'
+import { InternalMessagePassing } from '../types'
 // stripe setup example: https://github.com/stripe-samples/accept-a-card-payment/blob/master/without-webhooks/client/web/script.js
 // theme examples https://stripe.dev/elements-examples/
 
@@ -44,7 +45,7 @@ export default Vue.extend({
       await this.getStripeKey()
       await this.createStripeComponent(this.stripeKey, this.accountId)
     },
-    async submit() {
+    async submit(): Promise<InternalMessagePassing> {
       let result
       try {
         result = await this.payByStripe()
