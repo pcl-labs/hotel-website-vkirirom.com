@@ -159,3 +159,8 @@ export function removeOtherLanguagesExcept(langCode, innherHTML) {
 export function toFixedNumber(number, decimals) {
   return Number(number.toFixed(decimals))
 }
+
+export function getFormattedMetaDescription(text) {
+  const indexOfCR = text.substring(0, 300).indexOf('\n')
+  return text.substring(0, indexOfCR || 300).trim()
+}

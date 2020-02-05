@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import '@/connection/init'
-import VueHead from 'vue-head'
+import VueMeta from 'vue-meta'
 import './registerServiceWorker'
 import '@/mixins.global'
 import router from './router'
@@ -13,7 +13,7 @@ import PortalVue from 'portal-vue'
 
 Vue.use(PortalVue)
 Vue.use(Fragment.Plugin)
-Vue.use(VueHead)
+Vue.use(VueMeta)
 
 Vue.config.productionTip = false
 

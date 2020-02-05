@@ -8,11 +8,15 @@
 
 <script>
 import store from '@/store'
-import { languageCodes } from '@/constants/app'
+import { languageCodes, appTitle } from '@/constants/app'
 import SnackbarsGlobal from '@/components/SnackbarsGlobal.vue'
 
 export default {
   name: 'app',
+  metaInfo: {
+    title: appTitle,
+    titleTemplate: `%s | ${appTitle}`
+  },
   components: { SnackbarsGlobal },
   created() {
     this.getUser()
