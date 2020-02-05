@@ -179,13 +179,20 @@
 <script>
 const PageFooter = () => import('@/components/PageFooter.vue')
 import PageHeader from '@/components/PageHeader.vue'
+import { getFormattedMetaTitle } from '../helpers'
+import { appTitleTemplate } from '@/constants/app'
 
 export default {
   components: {
     PageFooter,
     PageHeader
   },
-
+  metaInfo() {
+    return {
+      title: getFormattedMetaTitle('Contact'),
+      titleTemplate: appTitleTemplate
+    }
+  },
   data() {
     return {
       valid: false,
