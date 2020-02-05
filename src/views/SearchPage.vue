@@ -36,7 +36,8 @@
   </fragment>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue'
 import { PageService } from '@/connection/resources.js'
 const PageFooter = () => import('@/components/PageFooter.vue')
 const CardProduct = () => import('@/components/CardProduct.vue')
@@ -44,9 +45,15 @@ import PageHeader from '@/components/PageHeader.vue'
 import MarkdownBlock from '@/components/MarkdownBlock.vue'
 import { get } from 'lodash-es'
 import store from '@/store'
-import { transformCloudinaryUrl } from '@/helpers'
+import {
+  transformCloudinaryUrl,
+  getFormattedMetaDescription,
+  getFormattedMetaTitle,
+  removeOtherLanguagesExcept
+} from '@/helpers'
+import { appTitleTemplate } from '@/constants/app'
 
-export default {
+export default Vue.extend({
   name: 'search-page',
   components: {
     PageFooter,
@@ -55,9 +62,28 @@ export default {
     CardProduct
   },
   props: ['slug'],
+  async beforeRouteEnter(to, from, next) {
+    const slug = to.params.id
+    await store.dispatch('resort/getBySlug', slug)
+    next()
+  },
   created() {
-    store.dispatch('resort/getBySlug', this.slug)
     store.dispatch('category/getItemsByName', this.slug)
+  },
+  metaInfo() {
+    return {
+      title: getFormattedMetaTitle((this as any).resort.title),
+      titleTemplate: appTitleTemplate,
+      meta: [
+        {
+          vmid: 'description',
+          name: 'description',
+          content: getFormattedMetaDescription(
+            removeOtherLanguagesExcept('en', (this as any).resort.description).innerText
+          )
+        }
+      ]
+    }
   },
   computed: {
     resort() {
@@ -69,12 +95,13 @@ export default {
   },
   methods: {
     getResponsiveHeroImage(url) {
+      // @ts-ignore
       const breakpoint = this.$vuetify.breakpoint
       const breakpointWidth = breakpoint.thresholds[breakpoint.name]
       return transformCloudinaryUrl(url, `f_auto${breakpointWidth ? `,w_${breakpointWidth}` : ''},c_scale`)
     }
   }
-}
+})
 </script>
 
 <style lang="scss">

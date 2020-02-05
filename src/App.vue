@@ -14,8 +14,7 @@ import SnackbarsGlobal from '@/components/SnackbarsGlobal.vue'
 export default {
   name: 'app',
   metaInfo: {
-    title: appTitle,
-    titleTemplate: `%s | ${appTitle}`
+    title: appTitle
   },
   components: { SnackbarsGlobal },
   created() {

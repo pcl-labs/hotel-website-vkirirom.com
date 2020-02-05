@@ -1,6 +1,7 @@
 import { EmailAddress } from '@/types'
 
 export const appTitle = 'vKirirom Pine Resort'
+export const appTitleTemplate = `%s | ${appTitle}`
 export const companySlug = 'vkirirom'
 export const emailAPIBase = 'https://express-502501.netlify.com/.netlify/functions/server'
 export const reservationSuccessEmailTemplateId = 'd-32727d7e06ac4e7faa1b0e8fb1b99afa'

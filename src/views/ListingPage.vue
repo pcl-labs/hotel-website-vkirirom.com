@@ -122,13 +122,9 @@ import PageHeader from '@/components/PageHeader.vue'
 import ListingContactForm from '@/components/ListingContactForm.vue'
 import store from '@/store'
 import { Resort } from '@/types'
-import { removeOtherLanguagesExcept, getFormattedMetaDescription } from '../helpers'
+import { removeOtherLanguagesExcept, getFormattedMetaDescription, getFormattedMetaTitle } from '../helpers'
 import { get } from 'lodash-es'
-
-const defaultResort = {
-  title: '...',
-  description: ''
-}
+import { appTitleTemplate } from '@/constants/app'
 
 export default Vue.extend({
   name: 'listing-page',
@@ -146,7 +142,8 @@ export default Vue.extend({
   },
   metaInfo() {
     return {
-      title: (this as any).resort.title,
+      title: getFormattedMetaTitle((this as any).resort.title),
+      titleTemplate: appTitleTemplate,
       meta: [
         {
           vmid: 'description',

@@ -15,6 +15,7 @@ import store from '@/store'
 
 const routes = [
   {
+    name: 'home',
     path: '/',
     component: HomePage
   },
@@ -30,7 +31,8 @@ const routes = [
   {
     name: 'listing',
     path: '/listing/:id',
-    component: ListingPage
+    component: ListingPage,
+    props: route => ({ slug: route.params.id })
   },
   {
     name: 'contact',
