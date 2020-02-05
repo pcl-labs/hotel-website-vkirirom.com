@@ -3,6 +3,7 @@
     <!-- TODO: remove :key similar to https://github.com/whynotearth/shinta-mani-wild/pull/298 -->
     <router-view :key="$route.name + ($route.params.id || '')" />
     <snackbars-global></snackbars-global>
+    <page-progress-bar-global></page-progress-bar-global>
   </v-app>
 </template>
 
@@ -10,13 +11,14 @@
 import store from '@/store'
 import { languageCodes, appTitle } from '@/constants/app'
 import SnackbarsGlobal from '@/components/SnackbarsGlobal.vue'
+import PageProgressBarGlobal from '@/components/PageProgressBarGlobal.vue'
 
 export default {
   name: 'app',
   metaInfo: {
     title: appTitle
   },
-  components: { SnackbarsGlobal },
+  components: { SnackbarsGlobal, PageProgressBarGlobal },
   created() {
     this.getUser()
     this.clearTemporaryStates()
