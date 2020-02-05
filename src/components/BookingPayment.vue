@@ -285,13 +285,13 @@ export default Vue.extend({
           text: result.message,
           color: 'success'
         })
-        store.dispatch('booking/sendReservationSuccessEmail')
+        store.dispatch('booking/sendReservationSuccessEmail', { notificationType: 'CARD PAYMENT' })
         this.goNextStep()
       } else {
         store.dispatch('payment/updatePaymentError', result.message)
         if (!this.isFailEmailSent) {
           try {
-            await store.dispatch('booking/sendReservationFailEmail')
+            await store.dispatch('booking/sendReservationFailEmail', { notificationType: 'CARD PAYMENT' })
             this.isFailEmailSent = true
           } catch (error) {}
         }

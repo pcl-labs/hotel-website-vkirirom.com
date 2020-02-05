@@ -273,7 +273,7 @@ export default {
         return { reserve: true }
       } catch (error) {
         try {
-          await context.dispatch('sendReservationFailEmail')
+          await context.dispatch('sendReservationFailEmail', { notificationType: 'CARD PAYMENT' })
           store.dispatch(
             'payment/updatePaymentError',
             'There was an error with your booking, we will be in contact via email soon to complete your booking.'
@@ -310,7 +310,7 @@ export default {
         const { reservationId } = await ReservationService.reserveByRoomType(customBookingInfo)
         context.commit('updateReservationId', reservationId)
         try {
-          await context.dispatch('sendReservationSuccessEmail')
+          await context.dispatch('sendReservationSuccessEmail', { notificationType: 'CASH PAYMENT' })
           return { reserve: true, email: true }
         } catch (error) {
           console.log('Sending reservation email failed')
@@ -318,7 +318,7 @@ export default {
         }
       } catch (error) {
         try {
-          await context.dispatch('sendReservationFailEmail')
+          await context.dispatch('sendReservationFailEmail', { notificationType: 'CASH PAYMENT' })
           store.dispatch(
             'payment/updatePaymentError',
             'There was an error with your booking, we will be in contact via email soon to complete your booking.'
@@ -342,8 +342,8 @@ export default {
     updateRoomDescriptionHTML(context, payload) {
       context.commit('updateRoomDescriptionHTML', payload)
     },
-    sendReservationSuccessEmail(context) {
-      const reservationSuccessEmailData = context.getters.reservationSuccessEmailData
+    sendReservationSuccessEmail(context, { notificationType }) {
+      const reservationSuccessEmailData = context.getters.reservationSuccessEmailData({ notificationType })
       return ajax({
         method: 'post',
         url: `${emailAPIBase}/mail/send`,
@@ -354,8 +354,8 @@ export default {
         }
       })
     },
-    sendReservationFailEmail(context) {
-      const reservationFailEmailData = context.getters.reservationFailEmailData
+    sendReservationFailEmail(context, { notificationType }) {
+      const reservationFailEmailData = context.getters.reservationFailEmailData({ notificationType })
       return ajax({
         method: 'post',
         url: `${emailAPIBase}/mail/send`,
@@ -407,7 +407,7 @@ export default {
         }
       }
     },
-    reservationSuccessEmailData(state, getters) {
+    reservationSuccessEmailData: (state, getters) => ({ notificationType }) => {
       const bookingInfo = state.bookingInfo
       const prices = getters.prices({ decimalDigits: 2, formattedDate: true })
       const email_to = [
@@ -422,6 +422,7 @@ export default {
         email_to,
         template_id: reservationSuccessEmailTemplateId,
         dynamic_template_data: {
+          notificationType,
           name: bookingInfo.fullName,
           message: bookingInfo.message,
           numberOfGuests: bookingInfo.guests.total,
@@ -429,7 +430,7 @@ export default {
           checkOut: formatDate(bookingInfo.checkOut, 'ddd, D MMM'),
           email: store.getters['auth/user'].userName,
           phoneCountry: bookingInfo.phoneCountry.name,
-          phone: `+(${bookingInfo.phoneCountry.callingCodes[0]})` + bookingInfo.phoneNumber,
+          phone: `+ (${bookingInfo.phoneCountry.callingCodes[0]}) ` + bookingInfo.phoneNumber,
           guests: bookingInfo.guests,
           resort: bookingInfo.resort,
           roomDescriptionHTML: bookingInfo.roomDescriptionHTML,
@@ -440,13 +441,15 @@ export default {
         }
       }
     },
-    reservationFailEmailData(state, getters) {
+    reservationFailEmailData: (state, getters) => ({ notificationType }) => {
+      console.log('notificationType', notificationType)
       const bookingInfo = state.bookingInfo
       const prices = getters.prices({ decimalDigits: 2, formattedDate: true })
       return {
         email_to: reservationEmailsBcc,
         template_id: reservationFailEmailTemplateId,
         dynamic_template_data: {
+          notificationType,
           name: bookingInfo.fullName,
           message: bookingInfo.message,
           numberOfGuests: bookingInfo.guests.total,
@@ -454,7 +457,7 @@ export default {
           checkOut: formatDate(bookingInfo.checkOut, 'ddd, D MMM'),
           email: store.getters['auth/user'].userName,
           phoneCountry: bookingInfo.phoneCountry.name,
-          phone: `+(${bookingInfo.phoneCountry.callingCodes[0]})` + bookingInfo.phoneNumber,
+          phone: `+ (${bookingInfo.phoneCountry.callingCodes[0]}) ` + bookingInfo.phoneNumber,
           guests: bookingInfo.guests,
           resort: bookingInfo.resort,
           nightsCount: prices.length,
