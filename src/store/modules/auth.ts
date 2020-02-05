@@ -152,7 +152,6 @@ export default {
         })
           .then(token => {
             context.state.token = token
-            console.log('pinging...')
 
             store
               .dispatch('auth/ping')
@@ -216,7 +215,7 @@ export default {
     sendResetPasswordLink(context) {
       // context.commit('updateLoading', true)
       // AuthenticationService.sendResetPasswordLink
-      console.log('TODO: send reset password link')
+      // TODO: send reset password link
     },
     logout(context) {
       context.commit('updateLoading', true)
