@@ -1,7 +1,7 @@
 import { addDays } from 'date-fns'
 import { RoomTypeService, ReservationService } from '@/connection/resources.js'
 import { bookingStep } from '@/types'
-import { setDocumentClassesOnToggleDialog, formatDate, removeOtherLanguagesExcept } from '@/helpers'
+import { setDocumentClassesOnToggleDialog, formatDate, removeOtherLanguagesExcept, toFixedNumber } from '@/helpers'
 import { cloneDeep } from 'lodash-es'
 import countriesList from '@/constants/countries-list'
 import store from '@/store'
@@ -83,7 +83,6 @@ const defaultState = {
   },
   vat: 0,
   finalPrice: 0,
-  stripeKey: '',
   reservationId: 0,
   reservationDetails: {},
   isPaymentLoading: false,
@@ -266,6 +265,29 @@ export default {
         context.commit('updatePrices', prices)
       })
     },
+    async reserveRoom(context) {
+      const customBookingInfo = cloneDeep(context.getters['customBookingInfo'])
+      try {
+        const { reservationId } = await ReservationService.reserveByRoomType(customBookingInfo)
+        context.commit('updateReservationId', reservationId)
+        return { reserve: true }
+      } catch (error) {
+        try {
+          await context.dispatch('sendReservationFailEmail', { notificationType: 'CARD PAYMENT' })
+          store.dispatch(
+            'payment/updatePaymentError',
+            'There was an error with your booking, we will be in contact via email soon to complete your booking.'
+          )
+          return { reserve: false, email: true }
+        } catch (error) {
+          store.dispatch(
+            'payment/updatePaymentError',
+            'There was an error with your booking, please <a href="/contact">contact us</a>'
+          )
+          return { reserve: false, email: false }
+        }
+      }
+    },
     /*
     reserve-room:
       success:
@@ -281,13 +303,14 @@ export default {
           fail:
             show error (please contact us)
     */
-    async reserveRoom(context) {
+    // TODO: Separate logic of email and reservation
+    async reserveRoomAndNotify(context) {
       const customBookingInfo = cloneDeep(context.getters['customBookingInfo'])
       try {
         const { reservationId } = await ReservationService.reserveByRoomType(customBookingInfo)
         context.commit('updateReservationId', reservationId)
         try {
-          await context.dispatch('sendReservationSuccessEmail')
+          await context.dispatch('sendReservationSuccessEmail', { notificationType: 'CASH PAYMENT' })
           return { reserve: true, email: true }
         } catch (error) {
           console.log('Sending reservation email failed')
@@ -295,7 +318,7 @@ export default {
         }
       } catch (error) {
         try {
-          await context.dispatch('sendReservationFailEmail')
+          await context.dispatch('sendReservationFailEmail', { notificationType: 'CASH PAYMENT' })
           store.dispatch(
             'payment/updatePaymentError',
             'There was an error with your booking, we will be in contact via email soon to complete your booking.'
@@ -316,18 +339,11 @@ export default {
         }
       }
     },
-    getReservationDetails(context, reservationId) {
-      return ReservationService.get({
-        reservationId
-      }).then(res => {
-        context.commit('updateReservationDetails', res)
-      })
-    },
     updateRoomDescriptionHTML(context, payload) {
       context.commit('updateRoomDescriptionHTML', payload)
     },
-    sendReservationSuccessEmail(context) {
-      const reservationSuccessEmailData = context.getters.reservationSuccessEmailData
+    sendReservationSuccessEmail(context, { notificationType }) {
+      const reservationSuccessEmailData = context.getters.reservationSuccessEmailData({ notificationType })
       return ajax({
         method: 'post',
         url: `${emailAPIBase}/mail/send`,
@@ -338,8 +354,8 @@ export default {
         }
       })
     },
-    sendReservationFailEmail(context) {
-      const reservationFailEmailData = context.getters.reservationFailEmailData
+    sendReservationFailEmail(context, { notificationType }) {
+      const reservationFailEmailData = context.getters.reservationFailEmailData({ notificationType })
       return ajax({
         method: 'post',
         url: `${emailAPIBase}/mail/send`,
@@ -391,9 +407,9 @@ export default {
         }
       }
     },
-    reservationSuccessEmailData(state, getters) {
+    reservationSuccessEmailData: (state, getters) => ({ notificationType }) => {
       const bookingInfo = state.bookingInfo
-      const prices = getters.prices({ rounded: true, formattedDate: true })
+      const prices = getters.prices({ decimalDigits: 2, formattedDate: true })
       const email_to = [
         {
           email: store.getters['auth/user'].userName,
@@ -406,6 +422,7 @@ export default {
         email_to,
         template_id: reservationSuccessEmailTemplateId,
         dynamic_template_data: {
+          notificationType,
           name: bookingInfo.fullName,
           message: bookingInfo.message,
           numberOfGuests: bookingInfo.guests.total,
@@ -413,24 +430,26 @@ export default {
           checkOut: formatDate(bookingInfo.checkOut, 'ddd, D MMM'),
           email: store.getters['auth/user'].userName,
           phoneCountry: bookingInfo.phoneCountry.name,
-          phone: `+(${bookingInfo.phoneCountry.callingCodes[0]})` + bookingInfo.phoneNumber,
+          phone: `+ (${bookingInfo.phoneCountry.callingCodes[0]}) ` + bookingInfo.phoneNumber,
           guests: bookingInfo.guests,
           resort: bookingInfo.resort,
           roomDescriptionHTML: bookingInfo.roomDescriptionHTML,
           nightsCount: prices.length,
           prices,
-          vat: Number(getters.computedVAT().toFixed(2)),
-          amount: Number(getters.computedTotalPrice({ all: true }).toFixed(2))
+          vat: getters.computedVAT(),
+          amount: getters.computedTotalPrice({ all: true })
         }
       }
     },
-    reservationFailEmailData(state, getters) {
+    reservationFailEmailData: (state, getters) => ({ notificationType }) => {
+      console.log('notificationType', notificationType)
       const bookingInfo = state.bookingInfo
-      const prices = getters.prices({ rounded: true, formattedDate: true })
+      const prices = getters.prices({ decimalDigits: 2, formattedDate: true })
       return {
         email_to: reservationEmailsBcc,
         template_id: reservationFailEmailTemplateId,
         dynamic_template_data: {
+          notificationType,
           name: bookingInfo.fullName,
           message: bookingInfo.message,
           numberOfGuests: bookingInfo.guests.total,
@@ -438,27 +457,25 @@ export default {
           checkOut: formatDate(bookingInfo.checkOut, 'ddd, D MMM'),
           email: store.getters['auth/user'].userName,
           phoneCountry: bookingInfo.phoneCountry.name,
-          phone: `+(${bookingInfo.phoneCountry.callingCodes[0]})` + bookingInfo.phoneNumber,
+          phone: `+ (${bookingInfo.phoneCountry.callingCodes[0]}) ` + bookingInfo.phoneNumber,
           guests: bookingInfo.guests,
           resort: bookingInfo.resort,
           nightsCount: prices.length,
           prices,
-          vat: Number(getters.computedVAT().toFixed(2)),
-          amount: Number(getters.computedTotalPrice({ all: true }).toFixed(2))
+          vat: getters.computedVAT(),
+          amount: getters.computedTotalPrice({ all: true })
         }
       }
     },
-    prices: state => ({ rounded = false, formattedDate = false } = {}) => {
+    prices: state => ({ decimalDigits = 0, formattedDate = false } = {}) => {
       let prices = state.bookingInfo.prices
-      if (rounded) {
-        prices = prices.map(price => {
-          const amount = price.amount.toFixed(0)
-          return {
-            ...price,
-            amount
-          }
-        })
-      }
+      prices = prices.map(price => {
+        const amount = toFixedNumber(price.amount, decimalDigits)
+        return {
+          ...price,
+          amount
+        }
+      })
       if (formattedDate) {
         prices = prices.map(price => {
           const date = formatDate(price.date, 'ddd, D MMM')
@@ -478,17 +495,17 @@ export default {
       }
       return roomPrice
     },
-    computedVAT: (state, getters) => () => {
+    computedVAT: (state, getters) => ({ decimalDigits = 2 } = {}) => {
       let prices = getters.computedRoomPrice
       const VAT_RATE = 0.1
-      return prices * VAT_RATE
+      return toFixedNumber(prices * VAT_RATE, decimalDigits)
     },
-    computedTotalPrice: (state, getters) => ({ all = false, hasVAT = false } = {}) => {
+    computedTotalPrice: (state, getters) => ({ all = false, hasVAT = false, decimalDigits = 2 } = {}) => {
       let totalPrice = getters.computedRoomPrice
       if (all || hasVAT) {
         totalPrice += getters.computedVAT()
       }
-      return totalPrice
+      return toFixedNumber(totalPrice, decimalDigits)
     },
     currentStep(state) {
       return state.currentStep

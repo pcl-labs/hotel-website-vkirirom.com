@@ -10,7 +10,7 @@
         <div class="expire-number" ref="expireNumber"></div>
       </v-col>
       <v-col cols="6">
-        <div class="cvv-number" ref="cvvNumber" style="border-left: none"></div>
+        <div class="cvv-number" ref="cvvNumber"></div>
       </v-col>
     </v-row>
   </div>
@@ -20,6 +20,7 @@
 import Vue from 'vue'
 import store from '../store'
 import { formatDate } from '../helpers'
+import { InternalMessagePassing } from '../types'
 // stripe setup example: https://github.com/stripe-samples/accept-a-card-payment/blob/master/without-webhooks/client/web/script.js
 // theme examples https://stripe.dev/elements-examples/
 
@@ -29,12 +30,6 @@ export default Vue.extend({
     return {
       stripe: {} as any,
       card: {} as any
-    }
-  },
-  props: {
-    billingDetails: {
-      type: Object,
-      default: () => {}
     }
   },
   mounted() {
@@ -48,26 +43,22 @@ export default Vue.extend({
     },
     async init() {
       await this.getStripeKey()
-      await this.createStripeComponent(this.stripeKey)
+      await this.createStripeComponent(this.stripeKey, this.accountId)
     },
-    async submit() {
+    async submit(): Promise<InternalMessagePassing> {
+      let result
       try {
-        await this.reserveRoom()
-        await this.getClientSecret()
-        await this.getReservationDetails()
-        await this.purchase()
+        result = await this.payByStripe()
       } catch (error) {
-        // TODO: move to higher level component
-        store.dispatch('payment/updatePaymentError', error.message)
-        store.dispatch('payment/updateIsPaymentLoading', false)
+        result = { error: true, message: error.message }
       }
+      return result
     },
-    reserveRoom() {
-      return store.dispatch('booking/reserveRoom', this.customBookingInfo)
-    },
-    async createStripeComponent(stripeKey) {
+    async createStripeComponent(stripeKey, accountId) {
       // @ts-ignore
-      this.stripe = window.Stripe(await stripeKey)
+      this.stripe = window.Stripe(await stripeKey, {
+        stripeAccount: accountId
+      })
       // @ts-ignore
       const themes = this.$vuetify.theme.themes
 
@@ -97,8 +88,6 @@ export default Vue.extend({
         ],
         locale: 'auto'
       })
-      // this.card = elements.create('card', { style: elementStyles })
-      // this.card.mount(this.$refs.card)
 
       const elementClasses = {
         focus: 'focus',
@@ -112,6 +101,9 @@ export default Vue.extend({
         placeholder: 'Card number'
       })
       cardNumber.mount(this.$refs.cardNumber)
+
+      // sending only one input to confirmCardPayment() is enough
+      this.card = cardNumber
 
       var cardExpiry = elements.create('cardExpiry', {
         style: elementStyles,
@@ -127,30 +119,24 @@ export default Vue.extend({
       })
       cardCvc.mount(this.$refs.cvvNumber)
     },
-    purchase() {
+    payByStripe() {
       const that = this
-      console.log('billingDetails', this.billingDetails)
-
-      store.dispatch('payment/purchase', {
+      return store.dispatch('payment/payByStripe', {
         stripe: this.stripe,
         clientSecret: this.clientSecret,
-        card: this.card,
-        billingDetails: this.billingDetails
+        card: this.card
       })
     },
     getStripeKey() {
       return store.dispatch('payment/getStripeKey')
-    },
-    getClientSecret() {
-      return store.dispatch('payment/getClientSecret', { totalPrice: this.computedTotalPrice })
-    },
-    getReservationDetails() {
-      return store.dispatch('booking/getReservationDetails', this.reservationId)
     }
   },
   computed: {
     stripeKey() {
       return store.getters['payment/stripeKey']
+    },
+    accountId() {
+      return store.getters['payment/accountId']
     },
     customBookingInfo() {
       return store.getters['booking/customBookingInfo']
@@ -160,9 +146,6 @@ export default Vue.extend({
     },
     reservationId() {
       return store.getters['booking/reservationId']
-    },
-    computedTotalPrice() {
-      return store.getters['booking/computedTotalPrice']({ all: true })
     }
   }
 })
@@ -182,14 +165,29 @@ export default Vue.extend({
   border: 1px solid map-get($grey, 'lighten-1');
   background-color: transparent;
   color: map-get($grey, 'lighten-1');
+  &.invalid {
+    border-color: map-get($red, 'base');
+    border-width: rem(2px);
+  }
   &.card-number {
     border-radius: $border-radius-root $border-radius-root 0 0;
+    &.invalid {
+      border-bottom-width: rem(1px);
+    }
   }
   &.expire-number {
     border-radius: 0 0 0 $border-radius-root;
+    border-right-width: rem(1px);
+    &.invalid {
+      border-right-width: rem(1px);
+    }
   }
   &.cvv-number {
     border-radius: 0 0 $border-radius-root 0;
+    border-left-width: 0;
+    &.invalid {
+      border-left-width: rem(1px);
+    }
   }
 }
 </style>

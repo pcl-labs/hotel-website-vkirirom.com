@@ -1,10 +1,11 @@
 import { CompanyService, ReservationService } from '@/connection/resources.js'
 import { cloneDeep } from 'lodash-es'
 import store from '@/store'
+import { InternalMessagePassing } from '@/types'
 
 const defaultState = {
   stripeKey: '',
-  reservationId: 0,
+  accountId: '',
   clientSecret: '',
   reservationDetails: {},
   isPaymentLoading: false,
@@ -17,6 +18,9 @@ export default {
   mutations: {
     updateStripeKey(state, payload) {
       state.stripeKey = payload
+    },
+    updateStripeAccountId(state, payload) {
+      state.accountId = payload
     },
     updateClientSecret(state, payload) {
       state.clientSecret = payload
@@ -39,52 +43,55 @@ export default {
       return CompanyService.stripePublishableKey({
         companyId: 1
       }).then(res => {
-        return context.commit('updateStripeKey', res.key)
+        context.commit('updateStripeKey', res.key)
+        context.commit('updateStripeAccountId', res.accountId)
       })
     },
-    getClientSecret(context, { totalPrice }) {
-      const reservationId = context.getters.reservationId
+    getClientSecret(context, { amount, reservationId, metadata = {} }) {
       return ReservationService.payReservation({
         reservationId,
         model: {
-          amount: totalPrice
+          amount,
+          metadata
         }
-      }).then(payReservation => {
-        return context.commit('updateClientSecret', payReservation.clientSecret)
+      }).then(res => {
+        context.commit('updateClientSecret', res.clientSecret)
       })
     },
-    purchase(context, { stripe, clientSecret, billingDetails, card }) {
-      stripe
-        .confirmCardPayment(clientSecret, {
+    async payByStripe(context, { stripe, clientSecret, card }) {
+      let result
+      try {
+        result = await stripe.confirmCardPayment(clientSecret, {
           payment_method: {
-            card: card,
-            billing_details: billingDetails
+            card
           }
         })
-        .then(function(result) {
-          if (result.error) {
-            console.log(result.error.message)
-            store.dispatch('payment/updatePaymentError', result.error.message)
+        if (result.error) {
+          throw new Error(result.error.message)
+        } else {
+          if (result.paymentIntent.status === 'succeeded') {
+            const result: InternalMessagePassing = { error: false, message: 'Payment was successful' }
+            return result
+            // Show a success message to your customer
+            // There's a risk of the customer closing the window before callback
+            // execution. Set up a webhook or plugin to listen for the
+            // payment_intent.succeeded event that handles any business critical
+            // post-payment actions.
           } else {
-            if (result.paymentIntent.status === 'succeeded') {
-              console.log('succeeded')
-              // Show a success message to your customer
-              // There's a risk of the customer closing the window before callback
-              // execution. Set up a webhook or plugin to listen for the
-              // payment_intent.succeeded event that handles any business critical
-              // post-payment actions.
-            }
+            throw new Error('Unknown error in Stripe payment response')
           }
-        })
-        .finally(res => {
-          console.log('finally')
-          store.dispatch('payment/updateIsPaymentLoading', false)
-        })
+        }
+      } catch (error) {
+        throw new Error(error.message || 'Error on connecting to Stripe payment')
+      }
     }
   },
   getters: {
     stripeKey(state) {
       return state.stripeKey
+    },
+    accountId(state) {
+      return state.accountId
     },
     clientSecret(state) {
       return state.clientSecret
