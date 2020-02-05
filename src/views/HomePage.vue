@@ -1,11 +1,7 @@
 <template>
   <fragment>
-    <transition name="pageheaderfade" mode="out-in">
-      <div v-show="shouldShowHeader" class="page-header--wrapper position-fixed w-100">
-        <page-header></page-header>
-      </div>
-    </transition>
-    <div class="page" v-scroll="debouncedOnScrollPage">
+    <page-header></page-header>
+    <div class="page">
       <div class="page-content">
         <page-home-parrallax-hero ref="homeHero"></page-home-parrallax-hero>
 
@@ -416,7 +412,6 @@
 
 <script>
 import { PageService } from '@/connection/resources.js'
-import { debounce } from 'lodash-es'
 const PageHeader = () => import('@/components/PageHeader.vue')
 const PageFooter = () => import('@/components/PageFooter.vue')
 const PageHomeParrallaxHero = () => import('@/components/PageHomeParrallaxHero.vue')
@@ -434,8 +429,7 @@ export default {
       experiences: [],
       events: [],
       ecotourisms: [],
-      leases: [],
-      shouldShowHeader: false
+      leases: []
     }
   },
   created() {
@@ -469,22 +463,6 @@ export default {
     }).then(data => {
       this.leases = data.slice(0, 3)
     })
-  },
-  methods: {
-    debounce,
-    debouncedOnScrollPage: debounce(function() {
-      this.onScrollPage()
-    }, 50),
-    onScrollPage() {
-      if (!this.shouldShowHeader && this.isHeaderInVisibleRange()) {
-        this.shouldShowHeader = true
-      } else if (this.shouldShowHeader && !this.isHeaderInVisibleRange()) {
-        this.shouldShowHeader = false
-      }
-    },
-    isHeaderInVisibleRange() {
-      return window.pageYOffset > Math.min(600, Math.max(window.innerWidth / 3.2, window.innerHeight / 2))
-    }
   }
 }
 </script>
