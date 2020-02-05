@@ -6,8 +6,8 @@
           <div class="d-flex wrapper-2">
             <!-- mobile content -->
             <div class="booking-bar--content is-mobile d-sm-none flex-grow-1 my-2">
-              <h2 class="booking-bar--title subtitle-1 light--text mb-0 font-weight-medium" v-text="title"></h2>
-              <div class="booking-bar--pricing light--text subtitle-2 mr-5 font-weight-light">
+              <h2 class="booking-bar--title subtitle-1 white--text mb-0 font-weight-medium" v-text="title"></h2>
+              <div class="booking-bar--pricing white--text subtitle-2 mr-5 font-weight-light">
                 <span class="currency">$</span>
                 <span class="price" v-text="price"></span>
                 <span class="postfix">/night</span>
@@ -16,11 +16,11 @@
             <!-- tablet content -->
             <div class="d-none d-sm-flex d-md-none flex-grow-1 align-center">
               <h2
-                class="d-none d-sm-block booking-bar--title headline light--text mb-0 font-weight-bold"
+                class="d-none d-sm-block booking-bar--title headline white--text mb-0 font-weight-bold"
                 v-text="title"
               ></h2>
               <v-spacer></v-spacer>
-              <div class="booking-bar--pricing light--text subtitle-1 mr-5 font-weight-semibold">
+              <div class="booking-bar--pricing white--text subtitle-1 mr-5 font-weight-semibold">
                 <span class="currency">$</span>
                 <span class="price" v-text="price"></span>
                 <span class="postfix">/night</span>
@@ -29,11 +29,11 @@
             <!-- desktop content -->
             <div class="d-none d-md-flex flex-grow-1 align-center">
               <h2
-                class="d-none d-md-block booking-bar--title display-2 light--text mb-0 font-weight-bold"
+                class="d-none d-md-block booking-bar--title display-2 white--text mb-0 font-weight-bold"
                 v-text="title"
               ></h2>
               <v-spacer></v-spacer>
-              <div class="booking-bar--pricing light--text title mr-5 font-weight-semibold">
+              <div class="booking-bar--pricing white--text title mr-5 font-weight-semibold">
                 <span class="currency">$</span>
                 <span class="price" v-text="price"></span>
                 <span class="postfix">/night</span>
@@ -137,7 +137,6 @@ $bar-height-sm: rem(80px);
   position: relative;
   opacity: 1;
   transition: opacity $loading-transition-time ease;
-  box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
   &.is-fixed {
     .booking-bar--sticker {
       position: fixed;
