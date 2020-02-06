@@ -2,6 +2,7 @@ import { BASE_API } from '@/constants/connection'
 import { format } from 'date-fns'
 import marked from '@/plugins/marked'
 import { languageCodes } from '@/constants/app'
+import { capitalize } from 'lodash-es'
 
 // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Safely_detecting_option_support
 export function getPassiveEventConfig() {
@@ -158,4 +159,15 @@ export function removeOtherLanguagesExcept(langCode, innherHTML) {
 
 export function toFixedNumber(number, decimals) {
   return Number(number.toFixed(decimals))
+}
+
+export function getFormattedMetaDescription(text) {
+  const indexOfCR = text.substring(0, 300).indexOf('\n')
+  return text.substring(0, indexOfCR || 300).trim()
+}
+
+export function getFormattedMetaTitle(text) {
+  return capitalize(text)
+    .substring(0, 80)
+    .trim()
 }
