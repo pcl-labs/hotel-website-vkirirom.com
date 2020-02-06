@@ -1,6 +1,5 @@
 import { BASE_API } from '@/constants/connection'
 import { format } from 'date-fns'
-import marked from '@/plugins/marked'
 import { languageCodes } from '@/constants/app'
 import { capitalize } from 'lodash-es'
 
@@ -111,29 +110,6 @@ export function setDocumentClassesOnToggleDialog(isOpen: boolean) {
     document.documentElement.classList.add('overflow-y-hidden', 'dialog--is-open')
   } else {
     document.documentElement.classList.remove('overflow-y-hidden', 'dialog--is-open')
-  }
-}
-
-export function markdown(content) {
-  if (!content) {
-    return ''
-  }
-  return marked(content)
-}
-export function markdownInside(content) {
-  const level1 = markdown(content)
-  const needsCommonMark = /^</.test(level1)
-  if (needsCommonMark) {
-    const virtualElement = document.createElement('div')
-    virtualElement.innerHTML = level1
-    const childs = Array.from(virtualElement.children)
-    return childs.map(child => ({
-      // @ts-ignore
-      text: child.innerText,
-      className: Array.from(child.classList)
-    }))
-  } else {
-    return level1
   }
 }
 
