@@ -23,11 +23,11 @@ Vue.use(AirbnbStyleDatepicker, {
     'December'
   ],
   colors: {
-    selected: '#4B7F52',
+    selected: '#B3859D',
     selectedText: '#fff',
     text: '#828282',
-    inRange: '#77C381',
+    inRange: '#E5B5CE',
     inRangeBorder: '#4f4f4f',
-    keyboardShortcuts: '#4B7F52'
+    keyboardShortcuts: '#B3859D'
   }
 })

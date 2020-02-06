@@ -1,7 +1,7 @@
 import { BASE_API } from '@/constants/connection'
 import { format } from 'date-fns'
-import marked from '@/plugins/marked'
 import { languageCodes } from '@/constants/app'
+import { capitalize } from 'lodash-es'
 
 // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Safely_detecting_option_support
 export function getPassiveEventConfig() {
@@ -113,29 +113,6 @@ export function setDocumentClassesOnToggleDialog(isOpen: boolean) {
   }
 }
 
-export function markdown(content) {
-  if (!content) {
-    return ''
-  }
-  return marked(content)
-}
-export function markdownInside(content) {
-  const level1 = markdown(content)
-  const needsCommonMark = /^</.test(level1)
-  if (needsCommonMark) {
-    const virtualElement = document.createElement('div')
-    virtualElement.innerHTML = level1
-    const childs = Array.from(virtualElement.children)
-    return childs.map(child => ({
-      // @ts-ignore
-      text: child.innerText,
-      className: Array.from(child.classList)
-    }))
-  } else {
-    return level1
-  }
-}
-
 export function removeOtherLanguagesExcept(langCode, innherHTML) {
   const otherLanguageCodes = languageCodes.filter(code => code !== langCode)
   const virtualElement = document.createElement('div')
@@ -154,4 +131,19 @@ export function removeOtherLanguagesExcept(langCode, innherHTML) {
     }
   })
   return virtualElement
+}
+
+export function toFixedNumber(number, decimals) {
+  return Number(number.toFixed(decimals))
+}
+
+export function getFormattedMetaDescription(text) {
+  const indexOfCR = text.substring(0, 300).indexOf('\n')
+  return text.substring(0, indexOfCR || 300).trim()
+}
+
+export function getFormattedMetaTitle(text) {
+  return capitalize(text)
+    .substring(0, 80)
+    .trim()
 }

@@ -18,6 +18,7 @@
               'h_64,f_auto'
             )
           "
+          alt="vKirirom"
         />
       </router-link>
     </portal>

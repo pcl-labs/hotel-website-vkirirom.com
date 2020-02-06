@@ -2,7 +2,7 @@
   <fragment>
     <page-header></page-header>
 
-    <div class="page" v-if="resort && resort.id">
+    <div class="page">
       <div class="page-content">
         <div class="pa-0 ma-0">
           <!-- featured images, TODO: move to separate component -->
@@ -122,15 +122,12 @@ import PageHeader from '@/components/PageHeader.vue'
 import ListingContactForm from '@/components/ListingContactForm.vue'
 import store from '@/store'
 import { Resort } from '@/types'
-import { removeOtherLanguagesExcept } from '../helpers'
+import { removeOtherLanguagesExcept, getFormattedMetaDescription, getFormattedMetaTitle } from '../helpers'
 import { get } from 'lodash-es'
-
-const defaultResort = {
-  title: '...',
-  description: ''
-}
+import { appTitleTemplate } from '@/constants/app'
 
 export default Vue.extend({
+  name: 'listing-page',
   components: {
     ResortDescription,
     BookingBar,
@@ -138,43 +135,36 @@ export default Vue.extend({
     PageHeader,
     ListingContactForm
   },
-  head: {
-    title: function() {
-      return {
-        // @ts-ignore
-        inner: (this.resort || defaultResort).title
-      }
-    },
-    meta: function() {
-      return [
+  async beforeRouteEnter(to, from, next) {
+    const slug = to.params.id
+    await store.dispatch('resort/getItemBySlug', slug)
+    next()
+  },
+  metaInfo() {
+    return {
+      title: getFormattedMetaTitle((this as any).resort.title),
+      titleTemplate: appTitleTemplate,
+      meta: [
         {
+          vmid: 'description',
           name: 'description',
-          // @ts-ignore
-          content: removeOtherLanguagesExcept('en', (this.resort || defaultResort).description).innerText,
-          id: 'desc'
+          content: getFormattedMetaDescription(
+            removeOtherLanguagesExcept('en', (this as any).resort.description).innerText
+          )
         }
       ]
     }
   },
   methods: {
-    onStartBooking() {
+    onStartBooking(): void {
       // @ts-ignore
       this.updateRoomDescriptionHTML()
     },
-    updateRoomDescriptionHTML() {
+    updateRoomDescriptionHTML(): void {
       // @ts-ignore
       const resortRulesText = this.$refs.roomDescriptionWrapperRef.$el.innerHTML
       store.dispatch('booking/updateRoomDescriptionHTML', resortRulesText)
-    },
-    init() {
-      store.dispatch('resort/getItemBySlug', this.$route.params.id).then(() => {
-        this.$emit('updateHead')
-      })
     }
-  },
-  mounted() {
-    // @ts-ignore
-    this.init()
   },
   computed: {
     resort(): Resort {

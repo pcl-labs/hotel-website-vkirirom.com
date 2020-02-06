@@ -26,15 +26,15 @@
                 <v-icon class="position-absolute payment--icon">$vuetify.icons.cash</v-icon>
               </v-card-title>
             </v-card>
-            <!-- <v-card disabled outlined color="transparent" class="mb-2" @click="payWith = 'card'">
+            <!-- <v-card outlined color="transparent" class="mb-2" @click="payWith = 'card'">
               <v-card-title>
-                <v-radio disabled color="green" label="Pay with card" :value="'card'" class="ma-0"></v-radio>
+                <v-radio color="green" label="Pay with card" :value="'card'" class="ma-0"></v-radio>
                 <v-icon class="position-absolute payment--icon">$vuetify.icons.creditCard</v-icon>
               </v-card-title>
             </v-card> -->
           </v-radio-group>
 
-          <!-- <v-expand-transition>
+          <v-expand-transition>
             <div class="transition-fast-in-fast-out mb-6" v-if="payWith === 'card'">
               <h4 class="mb-2 title font-weight-bold">Billing Info</h4>
 
@@ -102,16 +102,9 @@
                 @success="onPaymentSuccess"
                 @error="onPaymentError"
                 ref="paymentByStripe"
-                :billingDetails="{
-                  name: fullName,
-                  address_line1: addressLine,
-                  address_city: addressCity,
-                  address_state: addressState,
-                  address_zip: addressZip
-                }"
               ></booking-payment-by-stripe>
             </div>
-          </v-expand-transition> -->
+          </v-expand-transition>
 
           <h4 class="mb-2 title font-weight-bold">Cancelation Policy</h4>
           <v-row no-gutters class="mb-6">
@@ -152,11 +145,12 @@
 import Vue from 'vue'
 import { isNumeric, isAlpha } from 'validator'
 import store from '../store'
-// import BookingPaymentByStripe from '@/components/BookingPaymentByStripe.vue'
+import BookingPaymentByStripe from '@/components/BookingPaymentByStripe.vue'
+import { InternalMessagePassing } from '../types'
 
 export default Vue.extend({
   name: 'booking-payment',
-  // components: { BookingPaymentByStripe },
+  components: { BookingPaymentByStripe },
   data() {
     return {
       isFormValid: false,
@@ -176,7 +170,8 @@ export default Vue.extend({
         addressCity: [v => !!v || 'City is required'],
         addressState: [v => !!v || 'State is required'],
         addressZip: [v => !!v || 'Zip number is required', v => isNumeric(v) || 'Zip code is not valid']
-      }
+      },
+      isFailEmailSent: false
     }
   },
   mounted() {
@@ -236,16 +231,18 @@ export default Vue.extend({
     },
     isPaymentLoading() {
       return store.getters['payment/isPaymentLoading']
+    },
+    reservationId() {
+      return store.getters['booking/reservationId']
+    },
+    computedTotalPrice() {
+      return store.getters['booking/computedTotalPrice']({ all: true })
     }
   },
   methods: {
     resetLoadingAndError() {
       store.dispatch('payment/updatePaymentError', '')
       store.dispatch('payment/updateIsPaymentLoading', false)
-    },
-    focusPhone() {
-      // @ts-ignore
-      this.$refs.phoneNumber.focus()
     },
     async submit() {
       this.resetLoadingAndError()
@@ -258,22 +255,63 @@ export default Vue.extend({
       if (this.payWith === 'cash') {
         await this.payWithCash()
       } else if (this.payWith === 'card') {
-        // await this.payWithCard()
+        await this.payWithCard()
       }
       store.dispatch('payment/updateIsPaymentLoading', false)
     },
     async payWithCash() {
-      const result = await store.dispatch('booking/reserveRoom')
-      this.onCashPaymentResult(result)
+      const result = await store.dispatch('booking/reserveRoomAndNotify')
+      this.onCashPayment(result)
     },
-    onCashPaymentResult({ email, reserve }) {
+    onCashPayment({ email, reserve }) {
       if (reserve) {
         this.goNextStep()
       }
     },
-    payWithCard() {
-      // TODO: use store instead
-      // this.$refs.paymentByStripe.submit()
+    async payWithCard() {
+      // NOTE: this reservation should be temporary in backend
+      const { reserve } = await store.dispatch('booking/reserveRoom')
+      if (reserve) {
+        const metadata = this.getPaymentMetadata()
+        await this.getClientSecret({ amount: this.computedTotalPrice, metadata })
+        // @ts-ignore
+        const result = await this.$refs.paymentByStripe.submit()
+        this.onCardPayment(result)
+      }
+    },
+    async onCardPayment(result: InternalMessagePassing) {
+      if (!result.error) {
+        store.dispatch('snackbar/show', {
+          text: result.message,
+          color: 'success'
+        })
+        store.dispatch('booking/sendReservationSuccessEmail', { notificationType: 'CARD PAYMENT' })
+        this.goNextStep()
+      } else {
+        store.dispatch('payment/updatePaymentError', result.message)
+        if (!this.isFailEmailSent) {
+          try {
+            await store.dispatch('booking/sendReservationFailEmail', { notificationType: 'CARD PAYMENT' })
+            this.isFailEmailSent = true
+          } catch (error) {}
+        }
+      }
+    },
+    getClientSecret({ amount, metadata }) {
+      return store.dispatch('payment/getClientSecret', {
+        reservationId: this.reservationId,
+        amount,
+        metadata
+      })
+    },
+    getPaymentMetadata() {
+      return {
+        name: this.fullName,
+        address_line1: this.addressLine,
+        address_city: this.addressCity,
+        address_state: this.addressState,
+        address_zip: this.addressZip
+      }
     },
     async evaluateValidation() {
       try {

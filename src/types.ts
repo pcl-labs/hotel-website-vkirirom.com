@@ -97,3 +97,8 @@ export interface RoomType {
 export interface EmailAddress {
   email: string
 }
+
+export interface InternalMessagePassing {
+  error: boolean
+  message: string
+}
