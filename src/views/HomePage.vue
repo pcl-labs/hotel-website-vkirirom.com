@@ -410,8 +410,12 @@
   </fragment>
 </template>
 
-<script>
+<script lang="ts">
 import { PageService } from '@/connection/resources.js'
+import store from '../store'
+import { getFormattedMetaTitle, getFormattedMetaDescription, removeOtherLanguagesExcept } from '../helpers'
+import { appTitleTemplate } from '../constants/app'
+import { Resort } from '../types'
 const PageHeader = () => import('@/components/PageHeader.vue')
 const PageFooter = () => import('@/components/PageFooter.vue')
 const PageHomeParrallaxHero = () => import('@/components/PageHomeParrallaxHero.vue')
@@ -423,6 +427,32 @@ export default {
     PageFooter,
     PageHeader
   },
+  async beforeRouteEnter(to, from, next) {
+    const slug = 'home'
+    await store.dispatch('resort/getItemBySlug', slug)
+    next()
+  },
+  metaInfo() {
+    return {
+      title: getFormattedMetaTitle((this as any).resort.title),
+      meta: [
+        {
+          vmid: 'description',
+          name: 'description',
+          content: getFormattedMetaDescription(
+            removeOtherLanguagesExcept('en', (this as any).resort.description).innerText
+          )
+        }
+      ],
+      script: [
+        {
+          vmid: 'jsonld',
+          type: 'application/ld+json',
+          json: (this as any).resort.custom
+        }
+      ]
+    }
+  },
   data() {
     return {
       accommodations: [],
@@ -432,35 +462,46 @@ export default {
       leases: []
     }
   },
+  computed: {
+    resort(): Resort {
+      return store.getters['resort/getResort']
+    }
+  },
   created() {
+    // TODO: move to store actions
     PageService.byCompanyByCategoryName({
       companySlug: 'vkirirom',
       categoryName: 'accommodations'
     }).then(data => {
+      // @ts-ignore
       this.accommodations = data.slice(0, 3)
     })
     PageService.byCompanyByCategoryName({
       companySlug: 'vkirirom',
       categoryName: 'experiences'
     }).then(data => {
+      // @ts-ignore
       this.experiences = data.slice(0, 3)
     })
     PageService.byCompanyByCategoryName({
       companySlug: 'vkirirom',
       categoryName: 'events'
     }).then(data => {
+      // @ts-ignore
       this.events = data.slice(0, 3)
     })
     PageService.byCompanyByCategoryName({
       companySlug: 'vkirirom',
       categoryName: 'ecotourism'
     }).then(data => {
+      // @ts-ignore
       this.ecotourisms = data.slice(0, 3)
     })
     PageService.byCompanyByCategoryName({
       companySlug: 'vkirirom',
       categoryName: 'lease'
     }).then(data => {
+      // @ts-ignore
       this.leases = data.slice(0, 3)
     })
   }
