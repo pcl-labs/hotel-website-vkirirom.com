@@ -1,7 +1,7 @@
 import { CompanyService, ReservationService } from '@/connection/resources.js'
 import { cloneDeep } from 'lodash-es'
-import store from '@/store'
 import { InternalMessagePassing } from '@/types'
+import { companyId } from '@/constants/app'
 
 const defaultState = {
   stripeKey: '',
@@ -41,7 +41,7 @@ export default {
     },
     getStripeKey(context) {
       return CompanyService.stripePublishableKey({
-        companyId: 1
+        companyId
       }).then(res => {
         context.commit('updateStripeKey', res.key)
         context.commit('updateStripeAccountId', res.accountId)
