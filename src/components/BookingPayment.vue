@@ -26,12 +26,12 @@
                 <v-icon class="position-absolute payment--icon">$vuetify.icons.cash</v-icon>
               </v-card-title>
             </v-card>
-            <v-card outlined color="transparent" class="mb-2" @click="payWith = 'card'">
+            <!-- <v-card outlined color="transparent" class="mb-2" @click="payWith = 'card'">
               <v-card-title>
                 <v-radio color="green" label="Pay with card" :value="'card'" class="ma-0"></v-radio>
                 <v-icon class="position-absolute payment--icon">$vuetify.icons.creditCard</v-icon>
               </v-card-title>
-            </v-card>
+            </v-card> -->
           </v-radio-group>
 
           <v-expand-transition>
