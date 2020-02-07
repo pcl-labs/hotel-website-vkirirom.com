@@ -53,6 +53,9 @@ export default {
     password: state => {
       return state.password
     },
+    token: state => {
+      return state.token
+    },
     user: state => {
       return state.user
     },
@@ -132,6 +135,9 @@ export default {
     updateToken(context, payload) {
       context.commit('updateToken', payload)
     },
+    updateUser(context, payload) {
+      context.commit('updateUser', payload)
+    },
     updateDialog(context, payload) {
       const dialog = {
         ...context.state.dialog,
@@ -151,38 +157,27 @@ export default {
         title: authStates[payload].title
       })
     },
-    loginStandard(context) {
+    async loginStandard(context) {
       context.commit('updateLoginError', '')
       context.commit('updateLoading', true)
-      return new Promise((resolve, reject) => {
-        AuthenticationService.login({
+      try {
+        const token = await AuthenticationService.login({
           model: {
             email: context.state.email,
             password: context.state.password
           }
         })
-          .then(token => {
-            context.dispatch('updateToken', token)
-
-            store
-              .dispatch('auth/ping')
-              .then(resolve)
-              .catch(error => {
-                console.log('Could not get user data after successful login')
-                reject(error)
-              })
-              .finally(() => {
-                context.commit('updateLoading', false)
-              })
-          })
-          .catch(error => {
-            reject(error)
-            const message =
-              (error.response && error.response.data) || 'Username or password is incorrect, please try again.'
-            context.commit('updateLoginError', message)
-            context.commit('updateLoading', false)
-          })
-      })
+        await context.dispatch('updateToken', token)
+        await store.dispatch('auth/ping')
+        context.commit('updateLoading', false)
+      } catch (error) {
+        const message =
+          (error.response && error.response.data) || 'Username or password is incorrect, please try again.'
+        console.log('on catch loginStandard', error, error.response, message)
+        context.commit('updateLoginError', message) // TODO: probably wrong
+        context.commit('updateLoading', false)
+        throw error
+      }
     },
     register(context) {
       context.commit('updateLoading', true)
@@ -235,21 +230,22 @@ export default {
         context.commit('resetState')
       })
     },
-    ping(context) {
-      return new Promise((resolve, reject) => {
-        AuthenticationService.ping({
-          headers: {
-            Authorization: `Bearer ${context.state.token}`
-          }
-        })
-          .then(user => {
-            context.commit('updateUser', user)
-            resolve(user)
-          })
-          .catch(error => {
-            reject(error)
-          })
-      })
+    async ping(context) {
+      const token = context.getters.token
+      if (!token) {
+        console.log('no token available')
+        return false
+      }
+
+      try {
+        const user = await AuthenticationService.ping({ headers: { Authorization: `Bearer ${token}` } })
+        await context.dispatch('updateUser', user)
+      } catch (error) {
+        console.log('wrong token on ping')
+        alert('wrong token')
+        return false
+      }
+      return true
     }
   }
 }
