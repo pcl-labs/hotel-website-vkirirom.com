@@ -242,7 +242,8 @@ export default {
       try {
         const params = {}
         // FIXME: currently this works only by cookie! and has issues with iPhone probably
-        const options = { withCredentials: true, headers: { Authorization: `Bearer ${token}` } }
+        // const options = { withCredentials: true, headers: { Authorization: `Bearer ${token}` } }
+        const options = { withCredentials: true }
         const user = await AuthenticationService.ping(params, options)
         await context.dispatch('updateUser', user)
       } catch (error) {
