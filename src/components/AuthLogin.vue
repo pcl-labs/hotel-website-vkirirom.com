@@ -136,7 +136,10 @@ export default {
           text: 'Logging in was successful'
         })
       } catch (error) {
-        console.log('wrong credentials')
+        store.dispatch('snackbar/show', {
+          color: 'error',
+          text: error.message
+        })
       }
     },
     async oauth(provider) {

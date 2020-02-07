@@ -95,6 +95,7 @@ export class AuthenticationService {
     return new Promise((resolve, reject) => {
       const configs = Object.assign({}, options, { method: 'get' })
       configs.headers = Object.assign({}, options.headers, { 'Content-Type': 'application/json' })
+
       let url = '/api/v0/authentication/ping'
       configs.url = url
       let data = null

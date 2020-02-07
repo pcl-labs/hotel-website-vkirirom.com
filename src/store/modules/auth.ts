@@ -104,14 +104,12 @@ export default {
       state.loading = payload
     },
     updateUser(state, payload) {
-      Vue.set(state, 'user', payload)
+      state.user = payload
     },
     updateToken(state, payload) {
-      Vue.set(state, 'token', payload)
+      state.token = payload
     },
     updateReturnUrl(state, payload) {
-      console.log('payload returnUrl', payload)
-
       state.returnURL = payload
     },
     updateActiveState(state, payload) {
@@ -160,23 +158,27 @@ export default {
     async loginStandard(context) {
       context.commit('updateLoginError', '')
       context.commit('updateLoading', true)
+      let token
       try {
-        const token = await AuthenticationService.login({
+        token = await AuthenticationService.login({
           model: {
             email: context.state.email,
             password: context.state.password
           }
         })
         await context.dispatch('updateToken', token)
-        await store.dispatch('auth/ping')
-        context.commit('updateLoading', false)
       } catch (error) {
-        const message =
-          (error.response && error.response.data) || 'Username or password is incorrect, please try again.'
-        console.log('on catch loginStandard', error, error.response, message)
-        context.commit('updateLoginError', message) // TODO: probably wrong
+        throw new Error(error.message)
+      }
+      let pingResult
+      try {
+        pingResult = await store.dispatch('auth/ping')
+      } catch (error) {
+      } finally {
         context.commit('updateLoading', false)
-        throw error
+      }
+      if (!pingResult) {
+        throw new Error('An error occured during login')
       }
     },
     register(context) {
@@ -233,16 +235,18 @@ export default {
     async ping(context) {
       const token = context.getters.token
       if (!token) {
-        console.log('no token available')
+        console.log('no token available', token)
         return false
       }
 
       try {
-        const user = await AuthenticationService.ping({ headers: { Authorization: `Bearer ${token}` } })
+        const params = {}
+        // FIXME: currently this works only by cookie! and has issues with iPhone probably
+        const options = { withCredentials: true, headers: { Authorization: `Bearer ${token}` } }
+        const user = await AuthenticationService.ping(params, options)
         await context.dispatch('updateUser', user)
       } catch (error) {
-        console.log('wrong token on ping')
-        alert('wrong token')
+        console.log('could not ping!')
         return false
       }
       return true
