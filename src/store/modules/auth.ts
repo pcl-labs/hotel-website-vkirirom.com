@@ -21,7 +21,7 @@ const authStates = {
 const defaultState = {
   email: '',
   password: '',
-  token: '',
+  // token: '',
   status: '',
   user: defaultUser,
   loading: false,
@@ -53,9 +53,9 @@ export default {
     password: state => {
       return state.password
     },
-    token: state => {
-      return state.token
-    },
+    // token: state => {
+    //   return state.token
+    // },
     user: state => {
       return state.user
     },
@@ -106,9 +106,9 @@ export default {
     updateUser(state, payload) {
       state.user = payload
     },
-    updateToken(state, payload) {
-      state.token = payload
-    },
+    // updateToken(state, payload) {
+    //   state.token = payload
+    // },
     updateReturnUrl(state, payload) {
       state.returnURL = payload
     },
@@ -130,9 +130,9 @@ export default {
     updateReturnUrl(context, payload) {
       context.commit('updateReturnUrl', payload)
     },
-    updateToken(context, payload) {
-      context.commit('updateToken', payload)
-    },
+    // updateToken(context, payload) {
+    //   context.commit('updateToken', payload)
+    // },
     updateUser(context, payload) {
       context.commit('updateUser', payload)
     },
@@ -166,7 +166,7 @@ export default {
             password: context.state.password
           }
         })
-        await context.dispatch('updateToken', token)
+        // await context.dispatch('updateToken', token)
       } catch (error) {
         throw new Error(error.message)
       }
@@ -192,7 +192,7 @@ export default {
           }
         })
           .then(token => {
-            context.state.token = token
+            // context.state.token = token
 
             store
               .dispatch('auth/ping')
@@ -233,11 +233,11 @@ export default {
       })
     },
     async ping(context) {
-      const token = context.getters.token
-      if (!token) {
-        console.log('no token available', token)
-        return false
-      }
+      // const token = context.getters.token
+      // if (!token) {
+      //   console.log('no token available', token)
+      //   return false
+      // }
 
       try {
         const params = {}
