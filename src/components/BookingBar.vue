@@ -41,7 +41,7 @@
             </div>
             <div class="d-flex align-center">
               <v-container class="d-flex pa-0">
-                <booking-dialog ref="bookingDialog"></booking-dialog>
+                <booking-dialog :item="item" ref="bookingDialog"></booking-dialog>
                 <!-- mobile -->
                 <v-btn
                   height="40"
@@ -84,11 +84,15 @@ export default {
   name: 'booking-bar',
   props: {
     title: String,
-    price: Number
+    price: Number,
+    item: {
+      required: true
+    }
   },
   components: { BookingDialog },
   data() {
     return {
+      bookingDialogItemSlug: this.$route.params.id,
       bottomDistance: 0
     }
   },

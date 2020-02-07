@@ -63,18 +63,22 @@ export default Vue.extend({
     BookingConfirmGuests,
     BookingConfirmBooking
   },
+  props: {
+    // item is resort
+    item: {
+      required: true
+    }
+  },
   data() {
     return {
       tempFix: false
     }
   },
   mounted() {
+    // @ts-ignore
     this.patchFocusError()
   },
   computed: {
-    resort() {
-      return store.getters['resort/getResort']
-    },
     dialog() {
       return store.getters['booking/dialog']
     },
@@ -102,12 +106,17 @@ export default Vue.extend({
   methods: {
     patchFocusError() {
       this.$nextTick(() => {
+        // @ts-ignore
         this.tempFix = true
       })
     },
     // NOTE: can be used outside of component by ref
     openDialog() {
-      store.dispatch('booking/startBooking', { resort: this.resort, returnUrl: `/listing/${this.$route.params.id}` })
+      console.log('this.item', this.item)
+
+      // TODO: Refactor
+      // @ts-ignore
+      store.dispatch('booking/startBooking', { resort: this.item, returnUrl: `/listing/${this.$route.params.id}` })
       store.dispatch('booking/updateDialog', {
         isOpen: true
       })
