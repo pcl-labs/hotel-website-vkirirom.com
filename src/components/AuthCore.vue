@@ -18,17 +18,9 @@ import AuthForgotPassword from '@/components/AuthForgotPassword.vue'
 export default Vue.extend({
   name: 'auth-core',
   components: { AuthLogin, AuthSignup, AuthLoginExistingAccount, AuthForgotPassword },
-  mounted() {
-    this.setCurrentUrl()
-  },
   computed: {
     activeState() {
       return store.getters['auth/activeState']
-    }
-  },
-  methods: {
-    setCurrentUrl() {
-      this.$store.commit('auth/updateCurrentURL', window.location.href)
     }
   }
 })

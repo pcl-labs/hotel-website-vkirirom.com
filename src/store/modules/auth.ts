@@ -29,7 +29,7 @@ const defaultState = {
   registerError: '',
   forgotPasswordError: '',
   provider: '',
-  currentURL: '',
+  returnURL: '',
   activeState: 'auth-login',
   dialog: {
     title: 'Log In',
@@ -72,7 +72,7 @@ export default {
       return state.forgotPasswordError
     },
     oauth(state) {
-      return APIPath(`/api/v0/authentication/provider/login?provider=${state.provider}&returnUrl=${state.currentURL}`)
+      return APIPath(`/api/v0/authentication/provider/login?provider=${state.provider}&returnUrl=${state.returnURL}`)
     }
   },
   mutations: {
@@ -103,8 +103,13 @@ export default {
     updateUser(state, payload) {
       Vue.set(state, 'user', payload)
     },
-    updateCurrentURL(state, payload) {
-      state.currentURL = payload
+    updateToken(state, payload) {
+      Vue.set(state, 'token', payload)
+    },
+    updateReturnUrl(state, payload) {
+      console.log('payload returnUrl', payload)
+
+      state.returnURL = payload
     },
     updateActiveState(state, payload) {
       state.activeState = payload
@@ -120,6 +125,12 @@ export default {
   actions: {
     updateLoginError(context, payload) {
       context.commit('updateLoginError', payload)
+    },
+    updateReturnUrl(context, payload) {
+      context.commit('updateReturnUrl', payload)
+    },
+    updateToken(context, payload) {
+      context.commit('updateToken', payload)
     },
     updateDialog(context, payload) {
       const dialog = {
@@ -151,7 +162,7 @@ export default {
           }
         })
           .then(token => {
-            context.state.token = token
+            context.dispatch('updateToken', token)
 
             store
               .dispatch('auth/ping')
@@ -219,7 +230,7 @@ export default {
     },
     logout(context) {
       context.commit('updateLoading', true)
-      AuthenticationService.logout().then(() => {
+      return AuthenticationService.logout().then(() => {
         context.commit('updateLoading', false)
         context.commit('resetState')
       })
