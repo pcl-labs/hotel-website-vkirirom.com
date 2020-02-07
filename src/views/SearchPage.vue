@@ -88,6 +88,13 @@ export default Vue.extend({
             removeOtherLanguagesExcept('en', (this as any).resort.description).innerText
           )
         }
+      ],
+      script: [
+        {
+          vmid: 'jsonld',
+          type: 'application/ld+json',
+          json: (this as any).resort.custom
+        }
       ]
     }
   },
