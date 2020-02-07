@@ -8,27 +8,27 @@
           <!-- featured images, TODO: move to separate component -->
           <v-row no-gutters class="pa-0 mx-0 my-0">
             <v-col class="pa-0 overflow-hidden hidden-sm-and-down d-md-block">
-              <v-img class="image ma-0 pa-0" :src="resort.featuredImage" style="height:470px;"></v-img>
+              <v-img class="image ma-0 pa-0" :src="get(resort, 'featuredImage', '')" style="height:470px;"></v-img>
             </v-col>
             <v-col
               class="pa-0 ma-0 overflow-hidden hidden-sm-and-down d-md-block"
-              v-if="resort.images && resort.images.length > 0"
+              v-if="get(resort, 'images', []).length > 0"
               style="height:470px;"
             >
               <v-row no-gutters class="pa-0 ma-0 overflow-hidden">
-                <v-col class="pa-0 overflow-hidden" v-if="resort.images.length > 0">
-                  <v-img class="image ma-0 pa-0" :src="resort.images[0].url" style="height:235px;"></v-img>
+                <v-col class="pa-0 overflow-hidden" v-if="get(resort, 'images', []).length > 0">
+                  <v-img class="image ma-0 pa-0" :src="get(resort, 'images[0].url', '')" style="height:235px;"></v-img>
                 </v-col>
-                <v-col class="pa-0 overflow-hidden" v-if="resort.images.length > 2">
-                  <v-img class="image" :src="resort.images[2].url" style="height:235px;"></v-img>
+                <v-col class="pa-0 overflow-hidden" v-if="get(resort, 'images', []).length > 2">
+                  <v-img class="image" :src="get(resort, 'images[2].url', '')" style="height:235px;"></v-img>
                 </v-col>
               </v-row>
               <v-row no-gutters class="pa-0 ma-0 overflow-hidden">
-                <v-col class="pa-0 overflow-hidden" v-if="resort.images.length > 1">
-                  <v-img class="image" :src="resort.images[1].url" style="height:235px;"></v-img>
+                <v-col class="pa-0 overflow-hidden" v-if="get(resort, 'images', []).length > 1">
+                  <v-img class="image" :src="get(resort, 'images[1].url', '')" style="height:235px;"></v-img>
                 </v-col>
-                <v-col class="pa-0 overflow-hidden" v-if="resort.images.length > 3">
-                  <v-img class="image" :src="resort.images[3].url" style="height:235px;"></v-img>
+                <v-col class="pa-0 overflow-hidden" v-if="get(resort, 'images', []).length > 3">
+                  <v-img class="image" :src="get(resort, 'images[3].url', '')" style="height:235px;"></v-img>
                 </v-col>
               </v-row>
             </v-col>
@@ -42,7 +42,7 @@
             It is needed only when we want to iterate through an array of images, or nested elements.-->
                 <v-carousel-item :src="resort.featuredImage"></v-carousel-item>
                 <v-carousel-item
-                  v-for="image in resort.images.slice(0, 4)"
+                  v-for="image in get(resort, 'images', []).slice(0, 4)"
                   v-bind:key="image.url"
                   :src="image.url"
                 ></v-carousel-item>
@@ -67,17 +67,21 @@
                 <v-row
                   no-gutters
                   class="flex-column light--text mb-4"
-                  v-if="resort && resort.modules && resort.modules.hotel && resort.modules.hotel.roomTypes.length > 0"
+                  v-if="get(resort, 'modules.hotel.roomTypes', []).length > 0"
                 >
                   <v-col cols="12">
                     <div class="d-flex align-center">
                       <v-icon size="30" color="light" class="mr-2">hotel</v-icon>
-                      <span class="mr-1" v-for="(roomType, index) in resort.modules.hotel.roomTypes" v-bind:key="index">
+                      <span
+                        class="mr-1"
+                        v-for="(roomType, index) in get(resort, 'modules.hotel.roomTypes', [])"
+                        v-bind:key="index"
+                      >
                         <span class="mr-1">
                           {{ roomType.beds[0].count }}
                           {{ roomType.beds[0].type }}
                         </span>
-                        <span class="mr-1" v-if="index != resort.modules.hotel.roomTypes.length - 1">
+                        <span class="mr-1" v-if="index != get(resort, 'modules.hotel.roomTypes', []).length - 1">
                           /
                         </span>
                       </span>
@@ -102,6 +106,7 @@
       </div>
 
       <booking-bar
+        :item="resort"
         @on-start-booking="onStartBooking"
         v-if="shouldShowBookingBar"
         :title="resort.h2"
@@ -126,6 +131,12 @@ import { removeOtherLanguagesExcept, getFormattedMetaDescription, getFormattedMe
 import { get } from 'lodash-es'
 import { appTitleTemplate } from '@/constants/app'
 
+async function beforeRouteEnterOrUpdate(to, from, next) {
+  const slug = to.params.id
+  const result = await store.dispatch('resort/getItemBySlug', slug)
+  next()
+}
+
 export default Vue.extend({
   name: 'listing-page',
   components: {
@@ -135,10 +146,12 @@ export default Vue.extend({
     PageHeader,
     ListingContactForm
   },
+  props: ['slug'],
   async beforeRouteEnter(to, from, next) {
-    const slug = to.params.id
-    await store.dispatch('resort/getItemBySlug', slug)
-    next()
+    beforeRouteEnterOrUpdate(to, from, next)
+  },
+  async beforeRouteUpdate(to, from, next) {
+    beforeRouteEnterOrUpdate(to, from, next)
   },
   metaInfo() {
     return {
@@ -156,6 +169,7 @@ export default Vue.extend({
     }
   },
   methods: {
+    get,
     onStartBooking(): void {
       // @ts-ignore
       this.updateRoomDescriptionHTML()
@@ -168,17 +182,22 @@ export default Vue.extend({
   },
   computed: {
     resort(): Resort {
-      return store.getters['resort/getResort']
+      return store.getters['resort/itemBySlug'](this.slug)
+    },
+    categories(): string[] {
+      // @ts-ignore
+      const resort = this.resort
+      const categories = get(resort, 'categories', [])
+      // @ts-ignore
+      return categories.map(item => item.name)
     },
     shouldShowContactForm(): boolean {
-      const resort = store.getters['resort/getResort']
-      const categories = get(resort, 'categories', [])
-      return !categories.map(item => item.name).includes('accommodations')
+      // @ts-ignore
+      return !this.categories.includes('accommodations')
     },
     shouldShowBookingBar(): boolean {
-      const resort = store.getters['resort/getResort']
-      const categories = get(resort, 'categories', [])
-      return categories.map(item => item.name).includes('accommodations')
+      // @ts-ignore
+      return this.categories.includes('accommodations')
     }
   }
 })

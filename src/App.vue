@@ -1,7 +1,6 @@
 <template>
   <v-app class="wrapper" :class="hiddenLanguagesClasses" id="app">
-    <!-- TODO: remove :key similar to https://github.com/whynotearth/shinta-mani-wild/pull/298 -->
-    <router-view :key="$route.name + ($route.params.id || '')" />
+    <router-view />
     <snackbars-global></snackbars-global>
     <page-progress-bar-global></page-progress-bar-global>
   </v-app>

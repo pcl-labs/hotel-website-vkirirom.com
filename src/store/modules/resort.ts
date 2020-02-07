@@ -23,33 +23,18 @@ export default {
     }
   },
   actions: {
-    // deprecated
-    getItemBySlug(context, slug) {
-      context.state.resort = {}
-      return PageService.get({
-        companySlug,
-        pageSlug: slug
-      }).then(res => {
-        context.commit('addItem', res)
-      })
-    },
-
-    getBySlug(context: any, slug: string) {
-      context.state.items[slug] = {}
-      return PageService.get({
-        companySlug,
-        pageSlug: slug
-      }).then((data: any) => {
+    async getItemBySlug(context: any, slug: string) {
+      try {
+        const data = await PageService.get({ companySlug, pageSlug: slug })
         context.commit('update', { data, slug })
-      })
+        return data
+      } catch (error) {
+        console.log('get resort issue')
+        return new Error('get resort issue')
+      }
     }
   },
   getters: {
-    // deprecated
-    getResort(state) {
-      return state.resort
-    },
-
     items(state: any) {
       return state.items
     },
