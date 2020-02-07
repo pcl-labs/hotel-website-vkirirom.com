@@ -273,10 +273,14 @@ export default Vue.extend({
       const { reserve } = await store.dispatch('booking/reserveRoom')
       if (reserve) {
         const metadata = this.getPaymentMetadata()
-        await this.getClientSecret({ amount: this.computedTotalPrice, metadata })
-        // @ts-ignore
-        const result = await this.$refs.paymentByStripe.submit()
-        this.onCardPayment(result)
+        try {
+          await this.getClientSecret({ amount: this.computedTotalPrice, metadata })
+          // @ts-ignore
+          const result = await this.$refs.paymentByStripe.submit()
+          this.onCardPayment(result)
+        } catch (error) {
+          store.dispatch('payment/updatePaymentError', error.message)
+        }
       }
     },
     async onCardPayment(result: InternalMessagePassing) {

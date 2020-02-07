@@ -42,8 +42,12 @@ export default Vue.extend({
       store.dispatch('payment/updatePaymentError', '')
     },
     async init() {
-      await this.getStripeKey()
-      await this.createStripeComponent(this.stripeKey, this.accountId)
+      try {
+        await this.getStripeKey()
+        await this.createStripeComponent(this.stripeKey, this.accountId)
+      } catch (error) {
+        store.dispatch('payment/updatePaymentError', error.message)
+      }
     },
     async submit(): Promise<InternalMessagePassing> {
       let result
