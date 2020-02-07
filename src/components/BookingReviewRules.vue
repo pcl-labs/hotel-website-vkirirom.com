@@ -58,7 +58,7 @@ export default Vue.extend({
   components: { ResortRules },
   computed: {
     resort() {
-      return store.getters['resort/getResort']
+      return store.getters['booking/bookingInfo'].resort
     },
     dateOne() {
       return store.getters['booking/bookingInfo'].dateOne
