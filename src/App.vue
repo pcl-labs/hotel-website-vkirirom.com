@@ -19,14 +19,12 @@ export default {
   },
   components: { SnackbarsGlobal, PageProgressBarGlobal },
   created() {
-    this.getUser()
+    setTimeout(this.getUser, 500)
     this.clearTemporaryStates()
   },
   methods: {
     getUser() {
-      store.dispatch('auth/ping').catch(error => {
-        console.log('User is not authenticated')
-      })
+      store.dispatch('auth/ping')
     },
     clearTemporaryStates() {
       store.commit('auth/updateLoading', false)
