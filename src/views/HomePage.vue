@@ -464,7 +464,7 @@ export default {
   },
   computed: {
     resort(): Resort {
-      return store.getters['resort/getResort']
+      return store.getters['resort/itemBySlug']('home')
     }
   },
   created() {
