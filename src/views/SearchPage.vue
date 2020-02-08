@@ -53,6 +53,14 @@ import {
 } from '@/helpers'
 import { appTitleTemplate } from '@/constants/app'
 
+async function beforeRouteEnterOrUpdate(to, from, next) {
+  const slug = to.params.id
+  const resortPromise = store.dispatch('resort/getItemBySlug', slug)
+  const categoriesPromise = store.dispatch('category/getItemsByName', slug)
+  await Promise.all([resortPromise, categoriesPromise])
+  next()
+}
+
 export default Vue.extend({
   name: 'search-page',
   components: {
@@ -63,12 +71,10 @@ export default Vue.extend({
   },
   props: ['slug'],
   async beforeRouteEnter(to, from, next) {
-    const slug = to.params.id
-    await store.dispatch('resort/getBySlug', slug)
-    next()
+    beforeRouteEnterOrUpdate(to, from, next)
   },
-  created() {
-    store.dispatch('category/getItemsByName', this.slug)
+  async beforeRouteUpdate(to, from, next) {
+    beforeRouteEnterOrUpdate(to, from, next)
   },
   metaInfo() {
     return {
@@ -81,6 +87,13 @@ export default Vue.extend({
           content: getFormattedMetaDescription(
             removeOtherLanguagesExcept('en', (this as any).resort.description).innerText
           )
+        }
+      ],
+      script: [
+        {
+          vmid: 'jsonld',
+          type: 'application/ld+json',
+          json: (this as any).resort.custom
         }
       ]
     }

@@ -1,5 +1,6 @@
 import { EmailAddress } from '@/types'
 
+export const companyId = 1
 export const appTitle = 'vKirirom Pine Resort'
 export const appTitleTemplate = `%s | ${appTitle}`
 export const companySlug = 'vkirirom'

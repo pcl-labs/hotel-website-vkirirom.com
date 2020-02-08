@@ -10,22 +10,22 @@ export default {
     items: {}
   },
   mutations: {
-    update(state: any, payload: any) {
+    update(state, payload) {
       Vue.set(state.items, payload.key, payload.data)
     }
   },
   actions: {
-    getItemsByName(context: any, name: String): Category[] {
-      return PageService.byCompanyByCategoryName({
-        companySlug,
-        categoryName: name
-      }).then((res: any) => {
-        context.commit('update', { key: name, data: res })
-      })
+    async getItemsByName(context, name: String) {
+      try {
+        const data = await PageService.byCompanyByCategoryName({ companySlug, categoryName: name })
+        context.commit('update', { key: name, data })
+      } catch (error) {
+        return new Error('get category issue')
+      }
     }
   },
   getters: {
-    getItemsByName: (state: any) => name => {
+    getItemsByName: state => name => {
       return state.items[name] || []
     }
   }

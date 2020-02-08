@@ -136,13 +136,18 @@ export default {
           text: 'Logging in was successful'
         })
       } catch (error) {
-        console.log('wrong credentials')
+        store.dispatch('snackbar/show', {
+          color: 'error',
+          text: error.message
+        })
       }
     },
-    oauth(provider) {
+    async oauth(provider) {
       // TODO: move to store
-      store.commit('auth/updateProvider', provider)
-      window.location.assign(store.getters['auth/oauth'])
+      await store.commit('auth/updateProvider', provider)
+      await store.dispatch('auth/updateReturnUrl', window.location.href)
+      const redirectUrl = await store.getters['auth/oauth']
+      window.location.assign(redirectUrl)
       store.dispatch('auth/ping')
     }
   },

@@ -1,7 +1,6 @@
 <template>
   <v-app class="wrapper" :class="hiddenLanguagesClasses" id="app">
-    <!-- TODO: remove :key similar to https://github.com/whynotearth/shinta-mani-wild/pull/298 -->
-    <router-view :key="$route.name + ($route.params.id || '')" />
+    <router-view />
     <snackbars-global></snackbars-global>
     <page-progress-bar-global></page-progress-bar-global>
   </v-app>
@@ -20,14 +19,12 @@ export default {
   },
   components: { SnackbarsGlobal, PageProgressBarGlobal },
   created() {
-    this.getUser()
+    setTimeout(this.getUser, 500)
     this.clearTemporaryStates()
   },
   methods: {
     getUser() {
-      store.dispatch('auth/ping').catch(error => {
-        console.log('User is not authenticated')
-      })
+      store.dispatch('auth/ping')
     },
     clearTemporaryStates() {
       store.commit('auth/updateLoading', false)
