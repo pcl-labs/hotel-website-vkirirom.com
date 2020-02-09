@@ -2,8 +2,8 @@
 
 export const dark = {
   primary: '#E5B5CE',
-  secondary: '#4B7F52',
-  success: '#4B7F52',
+  secondary: '#FFE7FF',
+  success: '#E5B5CE',
   green: '#4B7F52',
   anchor: '#E5B5CE',
   error: '#EB5757',

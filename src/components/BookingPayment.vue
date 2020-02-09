@@ -22,13 +22,13 @@
           <v-radio-group dark v-model="payWith" class="ma-0 d-block">
             <v-card outlined color="transparent" class="mb-2" @click="payWith = 'cash'">
               <v-card-title>
-                <v-radio color="green" label="Pay with cash" :value="'cash'" class="ma-0"></v-radio>
+                <v-radio color="primary" label="Pay with cash" :value="'cash'" class="ma-0"></v-radio>
                 <v-icon class="position-absolute payment--icon">$vuetify.icons.cash</v-icon>
               </v-card-title>
             </v-card>
             <v-card outlined color="transparent" class="mb-2" @click="payWith = 'card'">
               <v-card-title>
-                <v-radio color="green" label="Pay with card" :value="'card'" class="ma-0"></v-radio>
+                <v-radio color="primary" label="Pay with card" :value="'card'" class="ma-0"></v-radio>
                 <v-icon class="position-absolute payment--icon">$vuetify.icons.creditCard</v-icon>
               </v-card-title>
             </v-card>
