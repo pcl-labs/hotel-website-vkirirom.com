@@ -8,7 +8,11 @@
           <!-- featured images, TODO: move to separate component -->
           <v-row no-gutters class="pa-0 mx-0 my-0">
             <v-col class="pa-0 overflow-hidden hidden-sm-and-down d-md-block">
-              <v-img class="image ma-0 pa-0" :src="get(resort, 'featuredImage', '')" style="height:470px;"></v-img>
+              <v-img
+                class="image ma-0 pa-0"
+                :src="transformCloudinaryUrl(get(resort, 'featuredImage', ''), 'w_1920,h_470,c_lfill,g_auto')"
+                style="height:470px;"
+              ></v-img>
             </v-col>
             <v-col
               class="pa-0 ma-0 overflow-hidden hidden-sm-and-down d-md-block"
@@ -17,18 +21,34 @@
             >
               <v-row no-gutters class="pa-0 ma-0 overflow-hidden">
                 <v-col class="pa-0 overflow-hidden" v-if="get(resort, 'images', []).length > 0">
-                  <v-img class="image ma-0 pa-0" :src="get(resort, 'images[0].url', '')" style="height:235px;"></v-img>
+                  <v-img
+                    class="image ma-0 pa-0"
+                    :src="transformCloudinaryUrl(get(resort, 'images[0].url', ''), '')"
+                    style="height:235px;"
+                  ></v-img>
                 </v-col>
                 <v-col class="pa-0 overflow-hidden" v-if="get(resort, 'images', []).length > 2">
-                  <v-img class="image" :src="get(resort, 'images[2].url', '')" style="height:235px;"></v-img>
+                  <v-img
+                    class="image"
+                    :src="transformCloudinaryUrl(get(resort, 'images[2].url', ''), '')"
+                    style="height:235px;"
+                  ></v-img>
                 </v-col>
               </v-row>
               <v-row no-gutters class="pa-0 ma-0 overflow-hidden">
                 <v-col class="pa-0 overflow-hidden" v-if="get(resort, 'images', []).length > 1">
-                  <v-img class="image" :src="get(resort, 'images[1].url', '')" style="height:235px;"></v-img>
+                  <v-img
+                    class="image"
+                    :src="transformCloudinaryUrl(get(resort, 'images[1].url', ''), '')"
+                    style="height:235px;"
+                  ></v-img>
                 </v-col>
                 <v-col class="pa-0 overflow-hidden" v-if="get(resort, 'images', []).length > 3">
-                  <v-img class="image" :src="get(resort, 'images[3].url', '')" style="height:235px;"></v-img>
+                  <v-img
+                    class="image"
+                    :src="transformCloudinaryUrl(get(resort, 'images[3].url', ''), '')"
+                    style="height:235px;"
+                  ></v-img>
                 </v-col>
               </v-row>
             </v-col>
@@ -40,11 +60,13 @@
               <v-carousel height="300px" :show-arrows="false" dark :cycle="false">
                 <!-- v-if="belltent.images.length > 0" is required to avoid the error "cannot read property 'url' of undefined.
             It is needed only when we want to iterate through an array of images, or nested elements.-->
-                <v-carousel-item :src="resort.featuredImage"></v-carousel-item>
+                <v-carousel-item
+                  :src="transformCloudinaryUrl(resort.featuredImage, 'w_1920,h_470,c_lfill,g_auto')"
+                ></v-carousel-item>
                 <v-carousel-item
                   v-for="image in get(resort, 'images', []).slice(0, 4)"
                   v-bind:key="image.url"
-                  :src="image.url"
+                  :src="transformCloudinaryUrl(image.url, 'w_1920,h_470,c_lfill,g_auto')"
                 ></v-carousel-item>
               </v-carousel>
             </v-col>
@@ -127,7 +149,12 @@ import PageHeader from '@/components/PageHeader.vue'
 import ListingContactForm from '@/components/ListingContactForm.vue'
 import store from '@/store'
 import { Resort } from '@/types'
-import { removeOtherLanguagesExcept, getFormattedMetaDescription, getFormattedMetaTitle } from '../helpers'
+import {
+  removeOtherLanguagesExcept,
+  getFormattedMetaDescription,
+  getFormattedMetaTitle,
+  transformCloudinaryUrl
+} from '../helpers'
 import { get } from 'lodash-es'
 import { appTitleTemplate } from '@/constants/app'
 
