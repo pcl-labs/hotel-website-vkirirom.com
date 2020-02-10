@@ -163,7 +163,8 @@ export default Vue.extend({
         await store.dispatch('auth/register')
         store.dispatch('snackbar/show', {
           color: 'success',
-          text: 'Signing up was successful'
+          text: 'Signing up was successful',
+          class: 'dark--text'
         })
       } catch (error) {
         console.log('Signup failed')

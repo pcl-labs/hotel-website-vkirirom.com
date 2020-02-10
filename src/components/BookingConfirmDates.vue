@@ -103,7 +103,7 @@
                     <!-- loading -->
                     <v-expand-transition>
                       <div v-if="shouldShowLoading" class="transition-fast-in-fast-out text-center mb-0">
-                        <v-progress-circular :size="24" indeterminate color="green"></v-progress-circular>
+                        <v-progress-circular :size="24" indeterminate color="primary"></v-progress-circular>
                       </div>
                     </v-expand-transition>
 
@@ -158,7 +158,7 @@
           <!-- loading -->
           <v-expand-transition>
             <div v-if="shouldShowLoading" class="transition-fast-in-fast-out text-center mb-0">
-              <v-progress-circular :size="24" indeterminate color="green"></v-progress-circular>
+              <v-progress-circular :size="24" indeterminate color="primary"></v-progress-circular>
             </div>
           </v-expand-transition>
 

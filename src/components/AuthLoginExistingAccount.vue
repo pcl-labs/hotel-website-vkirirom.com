@@ -9,7 +9,7 @@
           <v-divider class="is-small light-border mx-auto"></v-divider>
         </v-flex>
         <div class="d-flex justify-center align-center pa-6 w-100">
-          <v-avatar color="green user-select-none">
+          <v-avatar color="primary user-select-none">
             <span class="white--text headline">BG</span>
           </v-avatar>
         </div>
@@ -99,7 +99,8 @@ export default {
         await store.dispatch('auth/loginStandard')
         store.dispatch('snackbar/show', {
           color: 'success',
-          text: 'Logging in was successful'
+          text: 'Logging in was successful',
+          class: 'dark--text'
         })
       } catch (error) {
         console.log('wrong credentials')

@@ -8,7 +8,7 @@ const notifyUserAboutUpdate = (worker: any) => {
     text: 'New version of site is available!',
     timeout: 120000,
     color: 'success',
-    class: '',
+    class: 'dark--text',
     button: {
       text: 'Refresh',
       action: () => {
