@@ -1,7 +1,7 @@
 import { BASE_API } from '@/constants/connection'
 import { format } from 'date-fns'
 import { languageCodes } from '@/constants/app'
-import { capitalize } from 'lodash-es'
+import { capitalize, startCase, toLower } from 'lodash-es'
 
 // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Safely_detecting_option_support
 export function getPassiveEventConfig() {
@@ -142,8 +142,10 @@ export function getFormattedMetaDescription(text) {
   return text.substring(0, indexOfCR || 300).trim()
 }
 
-export function getFormattedMetaTitle(text) {
-  return capitalize(text)
-    .substring(0, 80)
-    .trim()
+export function getFormattedMetaTitle(text, { titleCase = true, maxLength = 80 } = {}) {
+  let result = text
+  if (titleCase) {
+    result = startCase(toLower(result))
+  }
+  return result.substring(0, maxLength).trim()
 }
