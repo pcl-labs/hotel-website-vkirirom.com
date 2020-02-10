@@ -283,7 +283,8 @@ export default Vue.extend({
       if (!result.error) {
         store.dispatch('snackbar/show', {
           text: result.message,
-          color: 'success'
+          color: 'success',
+          class: 'dark--text'
         })
         store.dispatch('booking/sendReservationSuccessEmail', { notificationType: 'CARD PAYMENT' })
         this.goNextStep()
