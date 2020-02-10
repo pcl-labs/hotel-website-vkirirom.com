@@ -434,7 +434,7 @@ export default {
   },
   metaInfo() {
     return {
-      title: getFormattedMetaTitle((this as any).resort.title),
+      title: getFormattedMetaTitle((this as any).resort.title, { titleCase: false }),
       meta: [
         {
           vmid: 'description',
@@ -464,7 +464,7 @@ export default {
   },
   computed: {
     resort(): Resort {
-      return store.getters['resort/getResort']
+      return store.getters['resort/itemBySlug']('home')
     }
   },
   created() {
