@@ -39,7 +39,6 @@
 ## Preview 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/517904aa-4d58-4733-b22d-8e29166000cb/deploy-status)](https://app.netlify.com/sites/cranky-nightingale-3731fc/deploys)  
 master branch: https://vkirirom.com/  
-staging branch: https://staging.vkirirom.com/  
 develop branch: https://develop.vkirirom.com/  *(Active development branch)*  
 netlify preview: https://cranky-nightingale-3731fc.netlify.com/
 
