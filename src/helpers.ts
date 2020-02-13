@@ -138,8 +138,7 @@ export function toFixedNumber(number, decimals) {
 }
 
 export function getFormattedMetaDescription(text) {
-  const indexOfCR = text.substring(0, 300).indexOf('\n')
-  return text.substring(0, indexOfCR || 300).trim()
+  return text.substring(0, 180).trim()
 }
 
 export function getFormattedMetaTitle(text, { titleCase = true, maxLength = 80 } = {}) {
