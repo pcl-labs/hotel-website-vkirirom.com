@@ -39,24 +39,30 @@ export default {
     updatePaymentError(context, payload) {
       context.commit('updatePaymentError', payload)
     },
-    getStripeKey(context) {
-      return CompanyService.stripePublishableKey({
-        companyId
-      }).then(res => {
-        context.commit('updateStripeKey', res.key)
-        context.commit('updateStripeAccountId', res.accountId)
-      })
+    async getStripeKey(context) {
+      try {
+        const result = await CompanyService.stripePublishableKey({
+          companyId
+        })
+        context.commit('updateStripeKey', result.key)
+        context.commit('updateStripeAccountId', result.accountId)
+      } catch (error) {
+        throw new Error('A problem occured on getting ready for payment, please contact us.')
+      }
     },
-    getClientSecret(context, { amount, reservationId, metadata = {} }) {
-      return ReservationService.payReservation({
-        reservationId,
-        model: {
-          amount,
-          metadata
-        }
-      }).then(res => {
-        context.commit('updateClientSecret', res.clientSecret)
-      })
+    async getClientSecret(context, { amount, reservationId, metadata = {} }) {
+      try {
+        const { clientSecret } = await ReservationService.payReservation({
+          reservationId,
+          model: {
+            amount,
+            metadata
+          }
+        })
+        context.commit('updateClientSecret', clientSecret)
+      } catch (error) {
+        throw new Error('A problem occured on getting ready for payment! please contact us.')
+      }
     },
     async payByStripe(context, { stripe, clientSecret, card }) {
       let result

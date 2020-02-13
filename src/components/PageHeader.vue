@@ -224,12 +224,14 @@ export default {
         await store.dispatch('auth/logout')
         store.dispatch('snackbar/show', {
           color: 'success',
-          text: 'Logging out was successful'
+          text: 'Logging out was successful',
+          class: 'dark--text'
         })
       } catch (error) {
         store.dispatch('snackbar/show', {
           color: 'error',
-          text: 'Logging out was unsuccessful'
+          text: 'Logging out was unsuccessful',
+          class: 'light--text'
         })
       }
     },

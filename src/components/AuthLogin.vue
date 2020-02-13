@@ -133,12 +133,14 @@ export default {
         await store.dispatch('auth/loginStandard')
         store.dispatch('snackbar/show', {
           color: 'success',
-          text: 'Logging in was successful'
+          text: 'Logging in was successful',
+          class: 'dark--text'
         })
       } catch (error) {
         store.dispatch('snackbar/show', {
           color: 'error',
-          text: error.message
+          text: error.message,
+          class: 'light--text'
         })
       }
     },

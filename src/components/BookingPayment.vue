@@ -22,13 +22,13 @@
           <v-radio-group dark v-model="payWith" class="ma-0 d-block">
             <v-card outlined color="transparent" class="mb-2" @click="payWith = 'cash'">
               <v-card-title>
-                <v-radio color="green" label="Pay with cash" :value="'cash'" class="ma-0"></v-radio>
+                <v-radio color="primary" label="Pay with cash" :value="'cash'" class="ma-0"></v-radio>
                 <v-icon class="position-absolute payment--icon">$vuetify.icons.cash</v-icon>
               </v-card-title>
             </v-card>
             <v-card outlined color="transparent" class="mb-2" @click="payWith = 'card'">
               <v-card-title>
-                <v-radio color="green" label="Pay with card" :value="'card'" class="ma-0"></v-radio>
+                <v-radio color="primary" label="Pay with card" :value="'card'" class="ma-0"></v-radio>
                 <v-icon class="position-absolute payment--icon">$vuetify.icons.creditCard</v-icon>
               </v-card-title>
             </v-card>
@@ -273,17 +273,22 @@ export default Vue.extend({
       const { reserve } = await store.dispatch('booking/reserveRoom')
       if (reserve) {
         const metadata = this.getPaymentMetadata()
-        await this.getClientSecret({ amount: this.computedTotalPrice, metadata })
-        // @ts-ignore
-        const result = await this.$refs.paymentByStripe.submit()
-        this.onCardPayment(result)
+        try {
+          await this.getClientSecret({ amount: this.computedTotalPrice, metadata })
+          // @ts-ignore
+          const result = await this.$refs.paymentByStripe.submit()
+          this.onCardPayment(result)
+        } catch (error) {
+          store.dispatch('payment/updatePaymentError', error.message)
+        }
       }
     },
     async onCardPayment(result: InternalMessagePassing) {
       if (!result.error) {
         store.dispatch('snackbar/show', {
           text: result.message,
-          color: 'success'
+          color: 'success',
+          class: 'dark--text'
         })
         store.dispatch('booking/sendReservationSuccessEmail', { notificationType: 'CARD PAYMENT' })
         this.goNextStep()
