@@ -148,3 +148,7 @@ export function getFormattedMetaTitle(text, { titleCase = true, maxLength = 80 }
   }
   return result.substring(0, maxLength).trim()
 }
+
+export function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
