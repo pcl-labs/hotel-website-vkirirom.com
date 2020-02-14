@@ -13,7 +13,7 @@
     "swagger": "ts-node src/connection/swagger-axios.ts && tsc -p ./temp/resources.ts --moduleResolution classic --target es6 --outDir ./src/connection/"
   },
   "dependencies": {
-    "axios": "0.19.1",
+    "axios": "0.19.2",
     "bootstrap": "4.4.1",
     "core-js": "3.6.4",
     "date-fns": "1.30.1",

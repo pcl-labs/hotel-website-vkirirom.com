@@ -1,7 +1,6 @@
 // @ts-ignore
 import { AuthenticationService } from '@/connection/resources.js'
 import { APIPath } from '@/helpers'
-import Vue from 'vue'
 import store from '@/store'
 import { setDocumentClassesOnToggleDialog } from '@/helpers'
 
@@ -166,8 +165,10 @@ export default {
             password: context.state.password
           }
         })
+
         // await context.dispatch('updateToken', token)
       } catch (error) {
+        context.commit('updateLoading', false)
         throw new Error(error.message)
       }
       let pingResult
@@ -241,12 +242,12 @@ export default {
 
       try {
         const params = {}
-        const options = { withCredentials: true }
+        const options = { headers: { withCredentials: true } }
         const user = await AuthenticationService.ping(params, options)
         await context.dispatch('updateUser', user)
       } catch (error) {
         console.log('ping 401')
-        return false
+        throw new Error('Getting user data failed')
       }
       return true
     }
