@@ -2,7 +2,7 @@
 import { AuthenticationService } from '@/connection/resources.js'
 import { APIPath } from '@/helpers'
 import store from '@/store'
-import { setDocumentClassesOnToggleDialog, sleep } from '@/helpers'
+import { setDocumentClassesOnToggleDialog } from '@/helpers'
 
 const defaultUser = {
   id: 0,
@@ -158,7 +158,6 @@ export default {
       context.commit('updateLoginError', '')
       context.commit('updateLoading', true)
       let token
-      console.log('start login')
       try {
         token = await AuthenticationService.login({
           model: {
@@ -166,23 +165,17 @@ export default {
             password: context.state.password
           }
         })
-        console.log('got token')
 
         // await context.dispatch('updateToken', token)
       } catch (error) {
+        context.commit('updateLoading', false)
         throw new Error(error.message)
       }
       let pingResult
       try {
-        console.log('start waiting 500ms')
-        await sleep(500)
-        console.log('start ping')
         pingResult = await store.dispatch('auth/ping')
-        console.log('success ping')
       } catch (error) {
-        console.log('catch ping')
       } finally {
-        console.log('after ping')
         context.commit('updateLoading', false)
       }
       if (!pingResult) {
