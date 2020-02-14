@@ -249,12 +249,12 @@ export default {
 
       try {
         const params = {}
-        const options = { withCredentials: true }
+        const options = { headers: { withCredentials: true } }
         const user = await AuthenticationService.ping(params, options)
         await context.dispatch('updateUser', user)
       } catch (error) {
         console.log('ping 401')
-        return false
+        throw new Error('Getting user data failed')
       }
       return true
     }

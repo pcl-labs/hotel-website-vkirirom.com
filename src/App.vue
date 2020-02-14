@@ -24,7 +24,9 @@ export default {
   },
   methods: {
     getUser() {
-      store.dispatch('auth/ping')
+      try {
+        store.dispatch('auth/ping')
+      } catch (error) {}
     },
     clearTemporaryStates() {
       store.commit('auth/updateLoading', false)
