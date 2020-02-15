@@ -2,6 +2,7 @@ import { BASE_API } from '@/constants/connection'
 import { format } from 'date-fns'
 import { languageCodes } from '@/constants/app'
 import { capitalize, startCase, toLower } from 'lodash-es'
+import store from './store'
 
 // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Safely_detecting_option_support
 export function getPassiveEventConfig() {
@@ -147,4 +148,12 @@ export function getFormattedMetaTitle(text, { titleCase = true, maxLength = 80 }
     result = startCase(toLower(result))
   }
   return result.substring(0, maxLength).trim()
+}
+
+export function getAuthHeaders() {
+  const jwtToken = store.getters['auth/token']
+  if (!jwtToken) {
+    return
+  }
+  return { Authorization: `Bearer ${jwtToken}` }
 }
