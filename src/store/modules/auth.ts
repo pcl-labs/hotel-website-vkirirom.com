@@ -240,11 +240,12 @@ export default {
       try {
         const params = {}
         const options = {
-          headers: { authorization: `Bearer ${token}` }
+          // headers: { Authorization: `Bearer ${token}` }
         }
         const user = await AuthenticationService.ping(params, options)
         await context.dispatch('updateUser', user)
       } catch (error) {
+        console.log('ping 401')
         throw new Error('Getting user data failed')
       }
       return true
