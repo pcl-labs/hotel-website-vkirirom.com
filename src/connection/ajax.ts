@@ -1,21 +1,23 @@
 import { BASE_API } from '@/constants/connection'
 import axios from 'axios'
 import store from '@/store'
+import { getAuthHeaders } from '@/helpers'
 
 const ajax = axios.create({
   baseURL: BASE_API,
-  timeout: 20000,
-  withCredentials: true
-  // FIXME: not working
-  // headers: {
-  //   'Accept-Language': 'en-US,en;q=0.5',
-  //   'Content-Type': 'application/json'
-  // }
+  timeout: 20000
 })
+
+ajax.defaults.headers = {
+  withCredentials: true,
+  'Content-Type': 'application/json'
+  // 'Accept-Language': 'en-US,en;q=0.5'
+}
 
 ajax.interceptors.request.use(
   config => {
     store.commit('loading/loading', true)
+    config = addAuthHeaders(config)
     return config
   },
   error => {
@@ -35,3 +37,11 @@ ajax.interceptors.response.use(
 )
 
 export { ajax }
+
+function addAuthHeaders(config) {
+  const authHeaders = getAuthHeaders()
+  if (authHeaders) {
+    config.headers = { ...config.headers, ...authHeaders }
+  }
+  return config
+}

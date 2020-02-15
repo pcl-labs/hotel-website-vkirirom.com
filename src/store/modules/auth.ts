@@ -1,7 +1,6 @@
 // @ts-ignore
 import { AuthenticationService } from '@/connection/resources.js'
 import { APIPath } from '@/helpers'
-import Vue from 'vue'
 import store from '@/store'
 import { setDocumentClassesOnToggleDialog } from '@/helpers'
 
@@ -21,7 +20,7 @@ const authStates = {
 const defaultState = {
   email: '',
   password: '',
-  // token: '',
+  token: '',
   status: '',
   user: defaultUser,
   loading: false,
@@ -53,9 +52,9 @@ export default {
     password: state => {
       return state.password
     },
-    // token: state => {
-    //   return state.token
-    // },
+    token: state => {
+      return state.token
+    },
     user: state => {
       return state.user
     },
@@ -106,9 +105,9 @@ export default {
     updateUser(state, payload) {
       state.user = payload
     },
-    // updateToken(state, payload) {
-    //   state.token = payload
-    // },
+    updateToken(state, payload) {
+      state.token = payload
+    },
     updateReturnUrl(state, payload) {
       state.returnURL = payload
     },
@@ -130,9 +129,9 @@ export default {
     updateReturnUrl(context, payload) {
       context.commit('updateReturnUrl', payload)
     },
-    // updateToken(context, payload) {
-    //   context.commit('updateToken', payload)
-    // },
+    updateToken(context, payload) {
+      context.commit('updateToken', payload)
+    },
     updateUser(context, payload) {
       context.commit('updateUser', payload)
     },
@@ -166,14 +165,17 @@ export default {
             password: context.state.password
           }
         })
-        // await context.dispatch('updateToken', token)
+
+        await context.dispatch('updateToken', token)
       } catch (error) {
+        context.commit('updateLoading', false)
         throw new Error(error.message)
       }
       let pingResult
       try {
         pingResult = await store.dispatch('auth/ping')
       } catch (error) {
+        throw error
       } finally {
         context.commit('updateLoading', false)
       }
@@ -192,7 +194,7 @@ export default {
           }
         })
           .then(token => {
-            // context.state.token = token
+            context.state.token = token
 
             store
               .dispatch('auth/ping')
@@ -233,20 +235,18 @@ export default {
       })
     },
     async ping(context) {
-      // const token = context.getters.token
-      // if (!token) {
-      //   console.log('no token available', token)
-      //   return false
-      // }
+      const token = context.getters.token
 
       try {
         const params = {}
-        const options = { withCredentials: true }
+        const options = {
+          // headers: { Authorization: `Bearer ${token}` }
+        }
         const user = await AuthenticationService.ping(params, options)
         await context.dispatch('updateUser', user)
       } catch (error) {
         console.log('ping 401')
-        return false
+        throw new Error('Getting user data failed')
       }
       return true
     }

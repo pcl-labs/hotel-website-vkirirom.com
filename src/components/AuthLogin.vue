@@ -137,11 +137,7 @@ export default {
           class: 'dark--text'
         })
       } catch (error) {
-        store.dispatch('snackbar/show', {
-          color: 'error',
-          text: error.message,
-          class: 'light--text'
-        })
+        store.dispatch('auth/updateLoginError', error.message)
       }
     },
     async oauth(provider) {
