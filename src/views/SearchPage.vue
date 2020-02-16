@@ -1,6 +1,5 @@
 <template>
   <fragment>
-    <page-splash-screen></page-splash-screen>
     <page-header></page-header>
     <div class="page page-search light--text">
       <div class="page-content brand-gradient">
@@ -44,7 +43,6 @@ const PageFooter = () => import('@/components/PageFooter.vue')
 const CardProduct = () => import('@/components/CardProduct.vue')
 import PageHeader from '@/components/PageHeader.vue'
 import MarkdownBlock from '@/components/MarkdownBlock.vue'
-import PageSplashScreen from '@/components/PageSplashScreen.vue'
 import { get } from 'lodash-es'
 import store from '@/store'
 import {
@@ -66,7 +64,6 @@ async function beforeRouteEnterOrUpdate(to, from, next) {
 export default Vue.extend({
   name: 'search-page',
   components: {
-    PageSplashScreen,
     PageFooter,
     PageHeader,
     MarkdownBlock,
