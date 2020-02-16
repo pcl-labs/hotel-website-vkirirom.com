@@ -136,17 +136,11 @@ router.beforeResolve((to, from, next) => {
   next()
 })
 
-let firstRouteEntered = false
 router.afterEach((to, from) => {
   const alwaysShowLoadingAtFirst = 700
   setTimeout(() => {
     store.commit('loading/loading', false)
   }, alwaysShowLoadingAtFirst)
-
-  if (!firstRouteEntered) {
-    firstRouteEntered = true
-    store.commit('loading/updateFirstRouteEntered', true)
-  }
 })
 
 export default router

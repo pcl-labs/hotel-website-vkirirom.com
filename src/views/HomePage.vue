@@ -1,10 +1,9 @@
 <template>
   <fragment>
-    <page-splash-screen v-if="shouldShowSplashScreen" :visibility-timeout="6000"></page-splash-screen>
     <page-header></page-header>
     <div class="page">
       <div class="page-content">
-        <page-home-parrallax-hero @loaded="shouldShowSplashScreen = false"></page-home-parrallax-hero>
+        <page-home-parrallax-hero @loaded="onParallaxImagesLoaded"></page-home-parrallax-hero>
 
         <div class="page-home--content brand-gradient">
           <v-container class="is-limited">
@@ -417,7 +416,6 @@ import store from '../store'
 import { getFormattedMetaTitle, getFormattedMetaDescription, removeOtherLanguagesExcept } from '../helpers'
 import { appTitleTemplate } from '../constants/app'
 import { Resort } from '../types'
-import PageSplashScreen from '@/components/PageSplashScreen.vue'
 const PageHeader = () => import('@/components/PageHeader.vue')
 const PageFooter = () => import('@/components/PageFooter.vue')
 const PageHomeParrallaxHero = () => import('@/components/PageHomeParrallaxHero.vue')
@@ -427,14 +425,13 @@ export default {
   components: {
     PageHomeParrallaxHero,
     PageFooter,
-    PageHeader,
-    PageSplashScreen
+    PageHeader
   },
   async beforeRouteEnter(to, from, next) {
+    store.commit('loading/updateIsSplashScreenVisible', true)
+
     const slug = 'home'
     await store.dispatch('resort/getItemBySlug', slug)
-    console.log(performance.now())
-
     next()
   },
   metaInfo() {
@@ -466,6 +463,14 @@ export default {
       ecotourisms: [],
       leases: [],
       shouldShowSplashScreen: true
+    }
+  },
+  methods: {
+    onParallaxImagesLoaded() {
+      this.hideSplashScreen()
+    },
+    hideSplashScreen() {
+      store.commit('loading/updateIsSplashScreenVisible', false)
     }
   },
   computed: {

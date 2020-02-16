@@ -3,7 +3,8 @@ export default {
   state: {
     refCount: 0,
     isLoading: true,
-    firstRouteEntered: false
+    firstRouteEntered: false,
+    isSplashScreenVisible: false
   },
   mutations: {
     loading(state, isLoading: boolean) {
@@ -17,6 +18,9 @@ export default {
     },
     updateFirstRouteEntered(state, payload) {
       state.firstRouteEntered = payload
+    },
+    updateIsSplashScreenVisible(state, payload) {
+      state.isSplashScreenVisible = payload
     }
   },
   getters: {
@@ -25,6 +29,9 @@ export default {
     },
     firstRouteEntered(state): boolean {
       return state.firstRouteEntered
+    },
+    isSplashScreenVisible(state): boolean {
+      return state.isSplashScreenVisible
     }
   }
 }

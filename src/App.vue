@@ -3,7 +3,7 @@
     <router-view />
     <snackbars-global></snackbars-global>
     <page-progress-bar-global v-if="shouldShowProgressBar"></page-progress-bar-global>
-    <page-splash-screen v-if="shouldShowSplashScreen" :visibility-timeout="Infinity"></page-splash-screen>
+    <page-splash-screen v-if="isSplashScreenVisible"></page-splash-screen>
   </v-app>
 </template>
 
@@ -42,13 +42,11 @@ export default Vue.extend({
       const selectedLanguageCode = store.getters['language/config'].selectedLanguageCode
       return languageCodes.filter(code => code !== selectedLanguageCode).map(code => `hide-lang-${code}`)
     },
-    shouldShowSplashScreen(): boolean {
-      const firstRouteEntered = store.getters['loading/firstRouteEntered']
-      return !firstRouteEntered
+    isSplashScreenVisible(): boolean {
+      return store.getters['loading/isSplashScreenVisible']
     },
     shouldShowProgressBar(): boolean {
-      const firstRouteEntered = store.getters['loading/firstRouteEntered']
-      return firstRouteEntered
+      return !this.isSplashScreenVisible
     }
   }
 })

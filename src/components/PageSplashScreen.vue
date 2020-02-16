@@ -22,15 +22,10 @@ import Vue from 'vue'
 // @ts-ignore
 import { zindexSplashScreen } from '@/styles/variables.scss'
 const waitingUntilShowingLoading = 3000
+const visibilityTimeout = 6000
 
 export default Vue.extend({
   name: 'page-splash-screen',
-  props: {
-    visibilityTimeout: {
-      type: Number,
-      default: 3000
-    }
-  },
   data: () => ({
     zindexSplashScreen,
     visibilityTimedOut: false,
@@ -47,7 +42,7 @@ export default Vue.extend({
 
       const visibilityTimer = setTimeout(() => {
         this.visibilityTimedOut = true
-      }, this.visibilityTimeout)
+      }, visibilityTimeout)
 
       this.$once('hook:destroyed', () => {
         clearTimeout(loadingTimer)
