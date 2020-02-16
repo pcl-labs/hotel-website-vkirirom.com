@@ -108,20 +108,20 @@ $indigo: map-deep-merge(
 $blue: () !default;
 $blue: map-deep-merge(
   (
-    'base': #2196F3,
-    'lighten-5': #E3F2FD,
-    'lighten-4': #BBDEFB,
-    'lighten-3': #90CAF9,
-    'lighten-2': #64B5F6,
-    'lighten-1': #42A5F5,
-    'darken-1': #1E88E5,
-    'darken-2': #1976D2,
-    'darken-3': #1565C0,
-    'darken-4': #0D47A1,
-    'accent-1': #82B1FF,
-    'accent-2': #448AFF,
-    'accent-3': #2979FF,
-    'accent-4': #2962FF
+    // 'base': #1b23c4,
+    // 'lighten-5': #E3F2FD,
+    // 'lighten-4': #BBDEFB,
+    // 'lighten-3': #90CAF9,
+    // 'lighten-2': #64B5F6,
+    // 'lighten-1': #42A5F5,
+    // 'darken-1': #1E88E5,
+    // 'darken-2': #1976D2,
+    'darken-3': #3a3b5e,
+    'darken-4': #141527
+    // 'accent-1': #82B1FF,
+    // 'accent-2': #448AFF,
+    // 'accent-3': #2979FF,
+    // 'accent-4': #2962FF
   ),
   $blue
 );
@@ -379,7 +379,9 @@ $grey: map-deep-merge(
     'darken-1': #828282,
     'darken-2': #616161,
     'darken-3': #4f4f4f,
-    'darken-4': #191C21
+    'darken-4': #191C21,
+    'darken-5': #010101,
+    'darken-6': #010000
   ),
   $grey
 );
@@ -402,7 +404,7 @@ $colors: map-deep-merge(
     // 'purple': $purple,
     // 'deep-purple': $deep-purple,
     // 'indigo': $indigo,
-    // 'blue': $blue,
+    'blue': $blue,
     // 'light-blue': $light-blue,
     // 'cyan': $cyan,
     // 'teal': $teal,

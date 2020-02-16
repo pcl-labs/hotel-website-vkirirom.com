@@ -1,7 +1,7 @@
 <template>
   <fragment>
+    <page-splash-screen></page-splash-screen>
     <page-header></page-header>
-
     <div class="page">
       <div class="page-content">
         <div class="pa-0 ma-0">
@@ -147,6 +147,7 @@ import BookingBar from '@/components/BookingBar.vue'
 import PageFooter from '@/components/PageFooter.vue'
 import PageHeader from '@/components/PageHeader.vue'
 import ListingContactForm from '@/components/ListingContactForm.vue'
+import PageSplashScreen from '@/components/PageSplashScreen.vue'
 import store from '@/store'
 import { Resort } from '@/types'
 import {
@@ -167,6 +168,7 @@ async function beforeRouteEnterOrUpdate(to, from, next) {
 export default Vue.extend({
   name: 'listing-page',
   components: {
+    PageSplashScreen,
     ResortDescription,
     BookingBar,
     PageFooter,

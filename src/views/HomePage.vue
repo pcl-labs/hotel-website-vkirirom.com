@@ -1,9 +1,10 @@
 <template>
   <fragment>
+    <page-splash-screen v-if="shouldShowSplashScreen" :visibility-timeout="6000"></page-splash-screen>
     <page-header></page-header>
     <div class="page">
       <div class="page-content">
-        <page-home-parrallax-hero ref="homeHero"></page-home-parrallax-hero>
+        <page-home-parrallax-hero @loaded="shouldShowSplashScreen = false"></page-home-parrallax-hero>
 
         <div class="page-home--content brand-gradient">
           <v-container class="is-limited">
@@ -80,7 +81,7 @@
                 height="300px"
                 position="center"
                 class="mt-6 pa-1 mb-6"
-                src="https://res.cloudinary.com/die9ji2vn/image/upload/dpr_auto/w_auto/q_auto:best,w_888,f_auto/v1562223032/group/group-retreat_s3ksth.jpg"
+                src="https://res.cloudinary.com/die9ji2vn/image/upload/dpr_auto/f_auto/q_auto:best,w_888,f_auto/v1562223032/group/group-retreat_s3ksth.jpg"
               >
                 <v-row no-gutters class="align-md-center fill-height">
                   <v-flex xs12 class="ma-auto">
@@ -416,6 +417,7 @@ import store from '../store'
 import { getFormattedMetaTitle, getFormattedMetaDescription, removeOtherLanguagesExcept } from '../helpers'
 import { appTitleTemplate } from '../constants/app'
 import { Resort } from '../types'
+import PageSplashScreen from '@/components/PageSplashScreen.vue'
 const PageHeader = () => import('@/components/PageHeader.vue')
 const PageFooter = () => import('@/components/PageFooter.vue')
 const PageHomeParrallaxHero = () => import('@/components/PageHomeParrallaxHero.vue')
@@ -425,11 +427,14 @@ export default {
   components: {
     PageHomeParrallaxHero,
     PageFooter,
-    PageHeader
+    PageHeader,
+    PageSplashScreen
   },
   async beforeRouteEnter(to, from, next) {
     const slug = 'home'
     await store.dispatch('resort/getItemBySlug', slug)
+    console.log(performance.now())
+
     next()
   },
   metaInfo() {
@@ -459,7 +464,8 @@ export default {
       experiences: [],
       events: [],
       ecotourisms: [],
-      leases: []
+      leases: [],
+      shouldShowSplashScreen: true
     }
   },
   computed: {
