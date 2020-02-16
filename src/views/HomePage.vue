@@ -7,6 +7,13 @@
 
         <div class="page-home--content brand-gradient">
           <v-container class="is-limited">
+            <div class="resort-description light--text">
+              <div class="mt-10 mb-6 py-10">
+                <h1 class="primary--text text-center mb-8">{{ resort.title }}</h1>
+                <markdown-block class="body-1" :content="resort.description"></markdown-block>
+              </div>
+            </div>
+
             <h2 class="mb-6 mt-6 listTitle">Accommodation</h2>
             <v-row class="cardRow" dense>
               <v-col cols="12" sm="6" md="4" v-bind:key="accommodation.id" v-for="accommodation in accommodations">
@@ -14,7 +21,7 @@
                   :ripple="false"
                   dark
                   height="270px"
-                  color="#191C21"
+                  color="dark"
                   class="mb-6 card"
                   :to="'/listing/' + accommodation.slug"
                   flat
@@ -72,7 +79,7 @@
               :ripple="false"
               hover
               dark
-              color="#191C21"
+              color="dark"
               style="border-radius: 3px;"
               to="/listing/Large-Company-Retreats-in-Nature-and-Team-Building"
             >
@@ -109,7 +116,7 @@
                   :ripple="false"
                   width="100%"
                   height="270px"
-                  color="#191C21"
+                  color="dark"
                   class="mb-6 card"
                   dark
                   :to="'/listing/' + experience.slug"
@@ -168,7 +175,7 @@
               :ripple="false"
               to="/search/menu"
               xs12
-              color="#191C21"
+              color="dark"
               width="100%"
               class="mt-6 mb-6"
               dark
@@ -203,7 +210,7 @@
                   :ripple="false"
                   width="100%"
                   height="270px"
-                  color="#191C21"
+                  color="dark"
                   class="mb-6 card"
                   dark
                   :to="'/listing/' + event.slug"
@@ -279,7 +286,7 @@
                   :ripple="false"
                   width="100%"
                   height="270px"
-                  color="#191C21"
+                  color="dark"
                   class="mb-6 card"
                   dark
                   :to="'/listing/' + lease.slug"
@@ -349,7 +356,7 @@
                   height="270px"
                   class="mb-6 card"
                   dark
-                  color="#191C21"
+                  color="dark"
                   :to="'/listing/' + ecotourism.slug"
                   flat
                   style="box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;"
@@ -419,13 +426,15 @@ import { Resort } from '../types'
 const PageHeader = () => import('@/components/PageHeader.vue')
 const PageFooter = () => import('@/components/PageFooter.vue')
 const PageHomeParrallaxHero = () => import('@/components/PageHomeParrallaxHero.vue')
+import MarkdownBlock from '@/components/MarkdownBlock.vue'
 
 export default {
   name: 'home-page',
   components: {
     PageHomeParrallaxHero,
     PageFooter,
-    PageHeader
+    PageHeader,
+    MarkdownBlock
   },
   async beforeRouteEnter(to, from, next) {
     const slug = 'home'
