@@ -423,9 +423,9 @@ import store from '../store'
 import { getFormattedMetaTitle, getFormattedMetaDescription, removeOtherLanguagesExcept } from '../helpers'
 import { appTitleTemplate } from '../constants/app'
 import { Resort } from '../types'
-const PageHeader = () => import('@/components/PageHeader.vue')
-const PageFooter = () => import('@/components/PageFooter.vue')
-const PageHomeParrallaxHero = () => import('@/components/PageHomeParrallaxHero.vue')
+import PageHeader from '@/components/PageHeader.vue'
+import PageFooter from '@/components/PageFooter.vue'
+import PageHomeParrallaxHero from '@/components/PageHomeParrallaxHero.vue'
 import MarkdownBlock from '@/components/MarkdownBlock.vue'
 
 export default {

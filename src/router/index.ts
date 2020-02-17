@@ -1,15 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-const HomePage = () => import('@/views/HomePage.vue')
-const SearchPage = () => import('@/views/SearchPage.vue')
-const ContactPage = () => import('@/views/ContactPage.vue')
-const ListingPage = () => import('@/views/ListingPage.vue')
-const BookingReviewRulesPage = () => import('@/views/BookingReviewRulesPage.vue')
-const BookingCustomerInfoPage = () => import('@/views/BookingCustomerInfoPage.vue')
-const BookingPaymentPage = () => import('@/views/BookingPaymentPage.vue')
-const BookingThanksPage = () => import('@/views/BookingThanksPage.vue')
-const KitchenSink = () => import('../views/KitchenSink.vue')
+const HomePage = () => import(/* webpackChunkName: "home" */ '@/views/HomePage.vue')
+const SearchPage = () => import(/* webpackChunkName: "search" */ '@/views/SearchPage.vue')
+const ContactPage = () => import(/* webpackChunkName: "contact" */ '@/views/ContactPage.vue')
+const ListingPage = () => import(/* webpackChunkName: "listing" */ '@/views/ListingPage.vue')
+const BookingReviewRulesPage = () => import(/* webpackChunkName: "booking" */ '@/views/BookingReviewRulesPage.vue')
+const BookingCustomerInfoPage = () => import(/* webpackChunkName: "booking" */ '@/views/BookingCustomerInfoPage.vue')
+const BookingPaymentPage = () => import(/* webpackChunkName: "booking" */ '@/views/BookingPaymentPage.vue')
+const BookingThanksPage = () => import(/* webpackChunkName: "booking" */ '@/views/BookingThanksPage.vue')
+const KitchenSink = () => import(/* webpackChunkName: "testing" */ '../views/KitchenSink.vue')
 
 import store from '@/store'
 

@@ -177,7 +177,7 @@
 </template>
 
 <script>
-const PageFooter = () => import('@/components/PageFooter.vue')
+import PageFooter from '@/components/PageFooter.vue'
 import PageHeader from '@/components/PageHeader.vue'
 import { getFormattedMetaTitle } from '../helpers'
 import { appTitleTemplate } from '@/constants/app'

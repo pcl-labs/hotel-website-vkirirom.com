@@ -39,8 +39,8 @@
 <script lang="ts">
 import Vue from 'vue'
 import { PageService } from '@/connection/resources.js'
-const PageFooter = () => import('@/components/PageFooter.vue')
-const CardProduct = () => import('@/components/CardProduct.vue')
+import PageFooter from '@/components/PageFooter.vue'
+import CardProduct from '@/components/CardProduct.vue'
 import PageHeader from '@/components/PageHeader.vue'
 import MarkdownBlock from '@/components/MarkdownBlock.vue'
 import { get } from 'lodash-es'
