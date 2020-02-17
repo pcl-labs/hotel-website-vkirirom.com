@@ -1,1 +1,9 @@
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512"><title>safari-pinned-tab</title><image width="512" height="512" transform="translate(0.15)" xlink:href="C:\Users\Admin\Downloads\logo\LOGO512 - Copy.png"/></svg>
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<rect width="24" height="24" fill="url(#pattern0)"/>
+<defs>
+<pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image0" transform="scale(0.0416667)"/>
+</pattern>
+<image id="image0" width="24" height="24" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAC4jAAAuIwF4pT92AAAAG3RFWHRTb2Z0d2FyZQBDZWxzeXMgU3R1ZGlvIFRvb2zBp+F8AAABv0lEQVRIx7XWS4iOYRTA8d83ExZTRmEWlEsyZCFSNixtLCYbOwuTslFKLoXRuCtFSi4lWZiVrTSlsLVxC6nJLbFQQ0MTJmpem/PV01PffO/3zjdn9Zzzvu/zf855zuWtFUVhJqU2BWAb3uJNkz16MIZ/rQCW4gmG0Y+p3LyCj7hYFjAHD7A5TrUG7xpsvjg8rGE93pcBnMaxRL+OPQ0AZ3E01sPow2QzwBGcS/Q/WIJv2XuL8AILQy+wCY+bAebiA+ZnXg1m7w3iZGa7jZ1lLvk4TiT6OJbje+jdeIoV2Xd9uFcG0BNedGXQU7HehZtxuXX5jNX4XbYOrmaXO4qV+IntuIOO5PlhnG+l0FbhFWYltoOR7514GSksoMvwoxVADc+wLrF9Qi/+4gZ2h/0CDrXaKmAHhpJYF9iPy7iPLZEAvfhaBdCB51ib2CbwOiq3M1rF3irNri79uBVeFFnmjGNDNMXKgNkYiUuUhAquxemL6QBgHy5ltolIgJGq8yCVLnzBvMQ2FOGbbAcAzmAgCdHGmBnaBVgQc6EbD7G10RSrCqgX1IEYp3enO5MbjdJHURe/ZgIgBsxoO/4q2iL/AedNoNHzhHfaAAAAAElFTkSuQmCC"/>
+</defs>
+</svg>
