@@ -31,7 +31,7 @@
                     <img
                       class="d-block page-footer--flag"
                       height="16"
-                      src="https://restcountries.eu/data/usa.svg"
+                      src="https://res.cloudinary.com/die9ji2vn/image/upload/v1581961735/website-static/flags/usa_iv1clb.svg"
                       alt=""
                     />
                   </a>
@@ -43,7 +43,7 @@
                     <img
                       class="d-block page-footer--flag"
                       height="16"
-                      src="https://restcountries.eu/data/khm.svg"
+                      src="https://res.cloudinary.com/die9ji2vn/image/upload/v1581961735/website-static/flags/khm_gdmegl.svg"
                       alt=""
                     />
                   </a>

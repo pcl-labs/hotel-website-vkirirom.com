@@ -20,7 +20,16 @@ module.exports = {
   },
   configureWebpack: {
     plugins: [
-      new PreloadWebpackPlugin(),
+      new PreloadWebpackPlugin([
+        {
+          rel: 'preload',
+          include: ['home-top', 'home']
+        },
+        {
+          rel: 'prefetch',
+          include: ['listing', 'search', 'booking']
+        }
+      ]),
       new webpack.DefinePlugin({
         'process.env': {
           APP_VERSION: '"' + escape(JSON.stringify(require('./package.json').version)) + '"',

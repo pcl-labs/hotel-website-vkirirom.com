@@ -187,9 +187,7 @@ export default Vue.extend({
         {
           vmid: 'description',
           name: 'description',
-          content: getFormattedMetaDescription(
-            removeOtherLanguagesExcept('en', (this as any).resort.description).innerText
-          )
+          content: (this as any).resort.custom.description
         }
       ],
       script: [

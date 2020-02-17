@@ -266,6 +266,7 @@
             </v-row>
             <v-flex xs12>
               <video
+                preload="none"
                 style="object-fit:cover;"
                 onclick="this.controls=true; this.play()"
                 width="100%"
@@ -276,7 +277,6 @@
                   src="https://res.cloudinary.com/die9ji2vn/video/upload/v1560320692/10000000_143443766812356_671027213277999975_n_1_hm0gxb.mp4"
                   type="video/mp4"
                 />
-                Your browser does not support the video tag.
               </video>
             </v-flex>
             <h2 class="mt-2 mb-6 listTitle">Lease</h2>
@@ -423,10 +423,10 @@ import store from '../store'
 import { getFormattedMetaTitle, getFormattedMetaDescription, removeOtherLanguagesExcept } from '../helpers'
 import { appTitleTemplate } from '../constants/app'
 import { Resort } from '../types'
-import PageHeader from '@/components/PageHeader.vue'
 import PageFooter from '@/components/PageFooter.vue'
-import PageHomeParrallaxHero from '@/components/PageHomeParrallaxHero.vue'
 import MarkdownBlock from '@/components/MarkdownBlock.vue'
+const PageHeader = () => import(/* webpackChunkName: "home-top" */ '@/components/PageHeader.vue')
+const PageHomeParrallaxHero = () => import(/* webpackChunkName: "home-top" */ '@/components/PageHomeParrallaxHero.vue')
 
 export default {
   name: 'home-page',
@@ -450,9 +450,7 @@ export default {
         {
           vmid: 'description',
           name: 'description',
-          content: getFormattedMetaDescription(
-            removeOtherLanguagesExcept('en', (this as any).resort.description).innerText
-          )
+          content: (this as any).resort.custom.description
         }
       ],
       script: [
