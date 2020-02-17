@@ -1,5 +1,5 @@
 const webpack = require('webpack')
-const PreloadWebpackPlugin = require('@vue/preload-webpack-plugin');
+const PreloadWebpackPlugin = require('@vue/preload-webpack-plugin')
 
 module.exports = {
   transpileDependencies: ['vuex-persist', 'vuetify', 'marked', 'vue-airbnb-style-datepicker', 'vue-head', 'portal-vue'],

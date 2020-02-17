@@ -13,7 +13,7 @@
                 </router-link>
               </li>
               <li class="mb-2">
-                <a href="http://asiato.asia/" target="_blank" class="link">About</a>
+                <a href="http://asiato.asia/" rel="noopener noreferrer" target="_blank" class="link">About</a>
               </li>
               <!-- <li class="mb-2">Book Now</li> -->
               <li class="mb-2">
