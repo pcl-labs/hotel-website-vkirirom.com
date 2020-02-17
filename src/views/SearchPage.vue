@@ -23,7 +23,7 @@
             <v-col cols="12" sm="6" md="4" v-for="resort in categories" :key="resort.id">
               <card-product
                 :title="resort.title"
-                :description="resort.ctaText ? `Starting from ${resort.ctaText}$ per night` : ''"
+                :description="resort.ctaText > 0 ? `Starting from ${resort.ctaText}$ per night` : resort.ctaText"
                 :image="resort.featuredImage"
                 :link="'/listing/' + resort.slug"
               ></card-product>
@@ -36,7 +36,8 @@
   </fragment>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue'
 import { PageService } from '@/connection/resources.js'
 const PageFooter = () => import('@/components/PageFooter.vue')
 const CardProduct = () => import('@/components/CardProduct.vue')
@@ -44,9 +45,23 @@ import PageHeader from '@/components/PageHeader.vue'
 import MarkdownBlock from '@/components/MarkdownBlock.vue'
 import { get } from 'lodash-es'
 import store from '@/store'
-import { transformCloudinaryUrl } from '@/helpers'
+import {
+  transformCloudinaryUrl,
+  getFormattedMetaDescription,
+  getFormattedMetaTitle,
+  removeOtherLanguagesExcept
+} from '@/helpers'
+import { appTitleTemplate } from '@/constants/app'
 
-export default {
+async function beforeRouteEnterOrUpdate(to, from, next) {
+  const slug = to.params.id
+  const resortPromise = store.dispatch('resort/getItemBySlug', slug)
+  const categoriesPromise = store.dispatch('category/getItemsByName', slug)
+  await Promise.all([resortPromise, categoriesPromise])
+  next()
+}
+
+export default Vue.extend({
   name: 'search-page',
   components: {
     PageFooter,
@@ -55,9 +70,33 @@ export default {
     CardProduct
   },
   props: ['slug'],
-  created() {
-    store.dispatch('resort/getBySlug', this.slug)
-    store.dispatch('category/getItemsByName', this.slug)
+  async beforeRouteEnter(to, from, next) {
+    beforeRouteEnterOrUpdate(to, from, next)
+  },
+  async beforeRouteUpdate(to, from, next) {
+    beforeRouteEnterOrUpdate(to, from, next)
+  },
+  metaInfo() {
+    return {
+      title: getFormattedMetaTitle((this as any).resort.title),
+      titleTemplate: appTitleTemplate,
+      meta: [
+        {
+          vmid: 'description',
+          name: 'description',
+          content: getFormattedMetaDescription(
+            removeOtherLanguagesExcept('en', (this as any).resort.description).innerText
+          )
+        }
+      ],
+      script: [
+        {
+          vmid: 'jsonld',
+          type: 'application/ld+json',
+          json: (this as any).resort.custom
+        }
+      ]
+    }
   },
   computed: {
     resort() {
@@ -69,12 +108,13 @@ export default {
   },
   methods: {
     getResponsiveHeroImage(url) {
+      // @ts-ignore
       const breakpoint = this.$vuetify.breakpoint
       const breakpointWidth = breakpoint.thresholds[breakpoint.name]
       return transformCloudinaryUrl(url, `f_auto${breakpointWidth ? `,w_${breakpointWidth}` : ''},c_scale`)
     }
   }
-}
+})
 </script>
 
 <style lang="scss">

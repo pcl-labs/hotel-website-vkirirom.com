@@ -18,6 +18,7 @@
               'h_64,f_auto'
             )
           "
+          alt="vKirirom"
         />
       </router-link>
     </portal>
@@ -218,8 +219,21 @@ export default {
     }
   },
   methods: {
-    logout() {
-      store.dispatch('auth/logout')
+    async logout() {
+      try {
+        await store.dispatch('auth/logout')
+        store.dispatch('snackbar/show', {
+          color: 'success',
+          text: 'Logging out was successful',
+          class: 'dark--text'
+        })
+      } catch (error) {
+        store.dispatch('snackbar/show', {
+          color: 'error',
+          text: 'Logging out was unsuccessful',
+          class: 'light--text'
+        })
+      }
     },
     openLogin() {
       this.drawer = false

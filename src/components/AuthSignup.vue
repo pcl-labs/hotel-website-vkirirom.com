@@ -76,9 +76,12 @@ export default {
     updateActiveState(value) {
       store.dispatch('auth/updateActiveState', value)
     },
-    oauth(provider) {
-      store.commit('auth/updateProvider', provider)
-      window.location.assign(store.getters['auth/oauth'])
+    async oauth(provider) {
+      // TODO: move to store
+      await store.commit('auth/updateProvider', provider)
+      await store.dispatch('auth/updateReturnUrl', window.location.href)
+      const redirectUrl = await store.getters['auth/oauth']
+      window.location.assign(redirectUrl)
       store.dispatch('auth/ping')
     }
   },

@@ -1,6 +1,6 @@
 <template>
   <!-- v-if="hotel.id" -->
-  <div class="resort-rules light--text">
+  <div class="resort-rules light--text markdown-content">
     <!-- shuttle -->
     <!-- <div >
       <h2>Shuttle Bus</h2>
@@ -81,6 +81,7 @@ export default Vue.extend({
 })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '@/styles/utility.scss';
+@import '@/styles/markdown-content.scss';
 </style>

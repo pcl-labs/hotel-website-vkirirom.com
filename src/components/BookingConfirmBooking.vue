@@ -162,7 +162,7 @@ export default Vue.extend({
   },
   computed: {
     resort() {
-      return store.getters['resort/getResort']
+      return store.getters['booking/bookingInfo'].resort
     },
     dateOne() {
       return store.getters['booking/bookingInfo'].dateOne
@@ -174,16 +174,17 @@ export default Vue.extend({
       return store.getters['booking/bookingInfo'].checkOut
     },
     prices() {
-      return this.$store.getters['booking/prices']({ rounded: true })
+      return this.$store.getters['booking/prices']({ decimalDigits: 0 })
     },
     computedVAT() {
-      return store.getters['booking/computedVAT']().toFixed(0)
+      return store.getters['booking/computedVAT']({ decimalDigits: 0 })
     },
     computedTotalPrice() {
       const options = {
-        hasVAT: true
+        hasVAT: true,
+        decimalDigits: 0
       }
-      return store.getters['booking/computedTotalPrice'](options).toFixed(0)
+      return store.getters['booking/computedTotalPrice'](options)
     },
     guests() {
       return store.getters['booking/bookingInfo'].guests.total

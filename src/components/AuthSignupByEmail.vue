@@ -158,10 +158,17 @@ export default Vue.extend({
     updateActiveState(value) {
       store.dispatch('auth/updateActiveState', value)
     },
-    submit() {
-      store.dispatch('auth/register').catch(error => {
+    async submit() {
+      try {
+        await store.dispatch('auth/register')
+        store.dispatch('snackbar/show', {
+          color: 'success',
+          text: 'Signing up was successful',
+          class: 'dark--text'
+        })
+      } catch (error) {
         console.log('Signup failed')
-      })
+      }
     },
     oauth(provider) {
       store.commit('auth/updateProvider', provider)

@@ -55,6 +55,10 @@ export default Vue.extend({
     }
   },
   destroyed() {
+    if (process.env.VUE_APP_DEV_MODE == 1) {
+      console.log('no clear booking in dev mode')
+      return
+    }
     store.dispatch('booking/endBooking')
   }
 })

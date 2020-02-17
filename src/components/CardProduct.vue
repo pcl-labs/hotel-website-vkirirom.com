@@ -1,6 +1,10 @@
 <template>
   <v-card :ripple="false" color="dark" dark flat class="mb-6 card" :to="link">
-    <v-img class="d-block" :src="image" height="150px"></v-img>
+    <v-img
+      class="d-block"
+      :src="transformCloudinaryUrl(image, 'q_auto:best,h_150,f_auto,c_lfill,g_auto')"
+      height="150px"
+    ></v-img>
     <v-row no-gutters>
       <v-card-text class="pa-3">
         <div>

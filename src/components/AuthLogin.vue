@@ -128,14 +128,24 @@ export default {
     updateActiveState(value) {
       store.dispatch('auth/updateActiveState', value)
     },
-    login() {
-      store.dispatch('auth/login').catch(error => {
-        console.log('wrong credentials')
-      })
+    async login() {
+      try {
+        await store.dispatch('auth/loginStandard')
+        store.dispatch('snackbar/show', {
+          color: 'success',
+          text: 'Logging in was successful',
+          class: 'dark--text'
+        })
+      } catch (error) {
+        store.dispatch('auth/updateLoginError', error.message)
+      }
     },
-    oauth(provider) {
-      store.commit('auth/updateProvider', provider)
-      window.location.assign(store.getters['auth/oauth'])
+    async oauth(provider) {
+      // TODO: move to store
+      await store.commit('auth/updateProvider', provider)
+      await store.dispatch('auth/updateReturnUrl', window.location.href)
+      const redirectUrl = await store.getters['auth/oauth']
+      window.location.assign(redirectUrl)
       store.dispatch('auth/ping')
     }
   },

@@ -1,16 +1,19 @@
 <template>
   <fragment>
-    <transition name="pageheaderfade" mode="out-in">
-      <div v-show="shouldShowHeader" class="page-header--wrapper position-fixed w-100">
-        <page-header></page-header>
-      </div>
-    </transition>
-    <div class="page" v-scroll="debouncedOnScrollPage">
+    <page-header></page-header>
+    <div class="page">
       <div class="page-content">
         <page-home-parrallax-hero ref="homeHero"></page-home-parrallax-hero>
 
         <div class="page-home--content brand-gradient">
           <v-container class="is-limited">
+            <div class="resort-description light--text">
+              <div class="mt-10 mb-6 py-10">
+                <h1 class="primary--text text-center mb-8">{{ resort.title }}</h1>
+                <markdown-block class="body-1" :content="resort.description"></markdown-block>
+              </div>
+            </div>
+
             <h2 class="mb-6 mt-6 listTitle">Accommodation</h2>
             <v-row class="cardRow" dense>
               <v-col cols="12" sm="6" md="4" v-bind:key="accommodation.id" v-for="accommodation in accommodations">
@@ -18,7 +21,7 @@
                   :ripple="false"
                   dark
                   height="270px"
-                  color="#191C21"
+                  color="dark"
                   class="mb-6 card"
                   :to="'/listing/' + accommodation.slug"
                   flat
@@ -76,7 +79,7 @@
               :ripple="false"
               hover
               dark
-              color="#191C21"
+              color="dark"
               style="border-radius: 3px;"
               to="/listing/Large-Company-Retreats-in-Nature-and-Team-Building"
             >
@@ -113,7 +116,7 @@
                   :ripple="false"
                   width="100%"
                   height="270px"
-                  color="#191C21"
+                  color="dark"
                   class="mb-6 card"
                   dark
                   :to="'/listing/' + experience.slug"
@@ -172,7 +175,7 @@
               :ripple="false"
               to="/search/menu"
               xs12
-              color="#191C21"
+              color="dark"
               width="100%"
               class="mt-6 mb-6"
               dark
@@ -207,7 +210,7 @@
                   :ripple="false"
                   width="100%"
                   height="270px"
-                  color="#191C21"
+                  color="dark"
                   class="mb-6 card"
                   dark
                   :to="'/listing/' + event.slug"
@@ -283,7 +286,7 @@
                   :ripple="false"
                   width="100%"
                   height="270px"
-                  color="#191C21"
+                  color="dark"
                   class="mb-6 card"
                   dark
                   :to="'/listing/' + lease.slug"
@@ -353,7 +356,7 @@
                   height="270px"
                   class="mb-6 card"
                   dark
-                  color="#191C21"
+                  color="dark"
                   :to="'/listing/' + ecotourism.slug"
                   flat
                   style="box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;"
@@ -414,19 +417,50 @@
   </fragment>
 </template>
 
-<script>
+<script lang="ts">
 import { PageService } from '@/connection/resources.js'
-import { debounce } from 'lodash-es'
+import store from '../store'
+import { getFormattedMetaTitle, getFormattedMetaDescription, removeOtherLanguagesExcept } from '../helpers'
+import { appTitleTemplate } from '../constants/app'
+import { Resort } from '../types'
 const PageHeader = () => import('@/components/PageHeader.vue')
 const PageFooter = () => import('@/components/PageFooter.vue')
 const PageHomeParrallaxHero = () => import('@/components/PageHomeParrallaxHero.vue')
+import MarkdownBlock from '@/components/MarkdownBlock.vue'
 
 export default {
   name: 'home-page',
   components: {
     PageHomeParrallaxHero,
     PageFooter,
-    PageHeader
+    PageHeader,
+    MarkdownBlock
+  },
+  async beforeRouteEnter(to, from, next) {
+    const slug = 'home'
+    await store.dispatch('resort/getItemBySlug', slug)
+    next()
+  },
+  metaInfo() {
+    return {
+      title: getFormattedMetaTitle((this as any).resort.title, { titleCase: false }),
+      meta: [
+        {
+          vmid: 'description',
+          name: 'description',
+          content: getFormattedMetaDescription(
+            removeOtherLanguagesExcept('en', (this as any).resort.description).innerText
+          )
+        }
+      ],
+      script: [
+        {
+          vmid: 'jsonld',
+          type: 'application/ld+json',
+          json: (this as any).resort.custom
+        }
+      ]
+    }
   },
   data() {
     return {
@@ -434,57 +468,51 @@ export default {
       experiences: [],
       events: [],
       ecotourisms: [],
-      leases: [],
-      shouldShowHeader: false
+      leases: []
+    }
+  },
+  computed: {
+    resort(): Resort {
+      return store.getters['resort/itemBySlug']('home')
     }
   },
   created() {
+    // TODO: move to store actions
     PageService.byCompanyByCategoryName({
       companySlug: 'vkirirom',
       categoryName: 'accommodations'
     }).then(data => {
+      // @ts-ignore
       this.accommodations = data.slice(0, 3)
     })
     PageService.byCompanyByCategoryName({
       companySlug: 'vkirirom',
       categoryName: 'experiences'
     }).then(data => {
+      // @ts-ignore
       this.experiences = data.slice(0, 3)
     })
     PageService.byCompanyByCategoryName({
       companySlug: 'vkirirom',
       categoryName: 'events'
     }).then(data => {
+      // @ts-ignore
       this.events = data.slice(0, 3)
     })
     PageService.byCompanyByCategoryName({
       companySlug: 'vkirirom',
       categoryName: 'ecotourism'
     }).then(data => {
+      // @ts-ignore
       this.ecotourisms = data.slice(0, 3)
     })
     PageService.byCompanyByCategoryName({
       companySlug: 'vkirirom',
       categoryName: 'lease'
     }).then(data => {
+      // @ts-ignore
       this.leases = data.slice(0, 3)
     })
-  },
-  methods: {
-    debounce,
-    debouncedOnScrollPage: debounce(function() {
-      this.onScrollPage()
-    }, 50),
-    onScrollPage() {
-      if (!this.shouldShowHeader && this.isHeaderInVisibleRange()) {
-        this.shouldShowHeader = true
-      } else if (this.shouldShowHeader && !this.isHeaderInVisibleRange()) {
-        this.shouldShowHeader = false
-      }
-    },
-    isHeaderInVisibleRange() {
-      return window.pageYOffset > Math.min(600, Math.max(window.innerWidth / 3.2, window.innerHeight / 2))
-    }
   }
 }
 </script>

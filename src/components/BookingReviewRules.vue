@@ -58,7 +58,7 @@ export default Vue.extend({
   components: { ResortRules },
   computed: {
     resort() {
-      return store.getters['resort/getResort']
+      return store.getters['booking/bookingInfo'].resort
     },
     dateOne() {
       return store.getters['booking/bookingInfo'].dateOne
@@ -67,7 +67,7 @@ export default Vue.extend({
       return store.getters['booking/bookingInfo'].checkOut
     },
     prices() {
-      return this.$store.getters['booking/prices']({ rounded: false })
+      return this.$store.getters['booking/prices']({ decimalDigits: 0 })
     },
     steps() {
       return store.getters['booking/steps']

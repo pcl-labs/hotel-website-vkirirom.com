@@ -153,8 +153,12 @@ export default Vue.extend({
 @import '@/styles/utility.scss';
 
 $component-height: 1600px;
-$top-distance: 0;
+$top-distance: $header-height-xs; // this is fallback only
 .parallax-hero {
+  --component-top-margin: #{$header-height-xs};
+  @include media-breakpoint-up(sm) {
+    --component-top-margin: #{$header-height-sm};
+  }
   --component-height-ratio: 1.7;
   @include media-breakpoint-up(xs, $my-breakpoints) {
     --component-height-ratio: 1.55;
@@ -182,36 +186,40 @@ $top-distance: 0;
   position: fixed;
   transform: translateY(0px);
   height: calc(#{rem($component-height)} / var(--component-height-ratio));
+  top: rem($header-height-xs);
+  top: var(--component-top-margin);
   width: 100%;
 }
 .parallax-hero--logo {
   position: fixed;
-  top: rem(120px);
-  top: calc(#{rem(120px)} / var(--component-height-ratio));
+  top: rem(120px + $header-height-xs);
+  top: calc(var(--component-top-margin) + #{rem(120px)} / var(--component-height-ratio));
   width: 100%;
 }
 // sky
 .layer-1 {
   top: rem($top-distance);
+  top: var(--component-top-margin);
 }
 // clouds
 .layer-2 {
   top: rem($top-distance);
+  top: var(--component-top-margin);
 }
 // mountains
 .layer-3 {
   top: rem($top-distance + 120px);
-  top: calc(#{rem($top-distance + 120px)} / var(--component-height-ratio));
+  top: calc(var(--component-top-margin) + #{rem(120px)} / var(--component-height-ratio));
 }
 // far trees
 .layer-4 {
   top: rem($top-distance + 440px);
-  top: calc(#{rem($top-distance + 440px)} / var(--component-height-ratio));
+  top: calc(var(--component-top-margin) + #{rem(440px)} / var(--component-height-ratio));
 }
 // building + dark trees
 .layer-5 {
   top: rem($top-distance + 580px);
-  top: calc(#{rem($top-distance + 580px)} / var(--component-height-ratio));
+  top: calc(var(--component-top-margin) + #{rem(580px)} / var(--component-height-ratio));
 }
 // near trees
 .layer-6 {

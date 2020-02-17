@@ -1,7 +1,8 @@
 import { BASE_API } from '@/constants/connection'
 import { format } from 'date-fns'
-import marked from '@/plugins/marked'
 import { languageCodes } from '@/constants/app'
+import { capitalize, startCase, toLower } from 'lodash-es'
+import store from './store'
 
 // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Safely_detecting_option_support
 export function getPassiveEventConfig() {
@@ -113,29 +114,6 @@ export function setDocumentClassesOnToggleDialog(isOpen: boolean) {
   }
 }
 
-export function markdown(content) {
-  if (!content) {
-    return ''
-  }
-  return marked(content)
-}
-export function markdownInside(content) {
-  const level1 = markdown(content)
-  const needsCommonMark = /^</.test(level1)
-  if (needsCommonMark) {
-    const virtualElement = document.createElement('div')
-    virtualElement.innerHTML = level1
-    const childs = Array.from(virtualElement.children)
-    return childs.map(child => ({
-      // @ts-ignore
-      text: child.innerText,
-      className: Array.from(child.classList)
-    }))
-  } else {
-    return level1
-  }
-}
-
 export function removeOtherLanguagesExcept(langCode, innherHTML) {
   const otherLanguageCodes = languageCodes.filter(code => code !== langCode)
   const virtualElement = document.createElement('div')
@@ -146,10 +124,36 @@ export function removeOtherLanguagesExcept(langCode, innherHTML) {
 
     if (otherLanguageElementsArray.length > 0) {
       for (let i = 0; i < otherLanguageElementsArray.length; i++) {
-        // @ts-ignore
-        otherLanguageElements[i].parentNode.removeChild(otherLanguageElements[i])
+        try {
+          // @ts-ignore
+          otherLanguageElements[i].parentNode.removeChild(otherLanguageElements[i])
+        } catch (error) {}
       }
     }
   })
-  return virtualElement.outerHTML
+  return virtualElement
+}
+
+export function toFixedNumber(number, decimals) {
+  return Number(number.toFixed(decimals))
+}
+
+export function getFormattedMetaDescription(text) {
+  return text.substring(0, 180).trim()
+}
+
+export function getFormattedMetaTitle(text, { titleCase = true, maxLength = 80 } = {}) {
+  let result = text
+  if (titleCase) {
+    result = startCase(toLower(result))
+  }
+  return result.substring(0, maxLength).trim()
+}
+
+export function getAuthHeaders() {
+  const jwtToken = store.getters['auth/token']
+  if (!jwtToken) {
+    return
+  }
+  return { Authorization: `Bearer ${jwtToken}` }
 }

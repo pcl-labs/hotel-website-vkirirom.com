@@ -1,7 +1,6 @@
 // @ts-ignore
 import { AuthenticationService } from '@/connection/resources.js'
 import { APIPath } from '@/helpers'
-import Vue from 'vue'
 import store from '@/store'
 import { setDocumentClassesOnToggleDialog } from '@/helpers'
 
@@ -29,17 +28,11 @@ const defaultState = {
   registerError: '',
   forgotPasswordError: '',
   provider: '',
-  currentURL: '',
+  returnURL: '',
   activeState: 'auth-login',
   dialog: {
     title: 'Log In',
     isOpen: false
-  },
-  snackbar: {
-    timeout: 3000,
-    type: 'success',
-    isOpen: false,
-    message: ''
   }
 }
 
@@ -50,9 +43,6 @@ export default {
     dialog: state => {
       return state.dialog
     },
-    snackbar: state => {
-      return state.snackbar
-    },
     activeState: state => {
       return state.activeState
     },
@@ -61,6 +51,9 @@ export default {
     },
     password: state => {
       return state.password
+    },
+    token: state => {
+      return state.token
     },
     user: state => {
       return state.user
@@ -81,7 +74,7 @@ export default {
       return state.forgotPasswordError
     },
     oauth(state) {
-      return APIPath(`/api/v0/authentication/provider/login?provider=${state.provider}&returnUrl=${state.currentURL}`)
+      return APIPath(`/api/v0/authentication/provider/login?provider=${state.provider}&returnUrl=${state.returnURL}`)
     }
   },
   mutations: {
@@ -110,16 +103,16 @@ export default {
       state.loading = payload
     },
     updateUser(state, payload) {
-      Vue.set(state, 'user', payload)
+      state.user = payload
     },
-    updateCurrentURL(state, payload) {
-      state.currentURL = payload
+    updateToken(state, payload) {
+      state.token = payload
+    },
+    updateReturnUrl(state, payload) {
+      state.returnURL = payload
     },
     updateActiveState(state, payload) {
       state.activeState = payload
-    },
-    updateSnackbar(state, payload) {
-      state.snackbar = payload
     },
     resetState(state) {
       for (const key in defaultState) {
@@ -133,6 +126,15 @@ export default {
     updateLoginError(context, payload) {
       context.commit('updateLoginError', payload)
     },
+    updateReturnUrl(context, payload) {
+      context.commit('updateReturnUrl', payload)
+    },
+    updateToken(context, payload) {
+      context.commit('updateToken', payload)
+    },
+    updateUser(context, payload) {
+      context.commit('updateUser', payload)
+    },
     updateDialog(context, payload) {
       const dialog = {
         ...context.state.dialog,
@@ -141,13 +143,6 @@ export default {
 
       setDocumentClassesOnToggleDialog(dialog.isOpen)
       context.commit('updateDialog', dialog)
-    },
-    updateSnackbar(context, payload) {
-      const snackbar = {
-        ...context.state.snackbar,
-        ...payload
-      }
-      context.commit('updateSnackbar', snackbar)
     },
     updateActiveState(context, payload) {
       context.commit('updateActiveState', payload)
@@ -159,39 +154,34 @@ export default {
         title: authStates[payload].title
       })
     },
-    login(context) {
+    async loginStandard(context) {
       context.commit('updateLoginError', '')
       context.commit('updateLoading', true)
-      return new Promise((resolve, reject) => {
-        AuthenticationService.login({
+      let token
+      try {
+        token = await AuthenticationService.login({
           model: {
             email: context.state.email,
             password: context.state.password
           }
         })
-          .then(token => {
-            context.state.token = token
-            console.log('pinging...')
 
-            store
-              .dispatch('auth/ping')
-              .then(resolve)
-              .catch(error => {
-                console.log('Could not get user data after successful login')
-                reject(error)
-              })
-              .finally(() => {
-                context.commit('updateLoading', false)
-              })
-          })
-          .catch(error => {
-            reject(error)
-            const message =
-              (error.response && error.response.data) || 'Username or password is incorrect, please try again.'
-            context.commit('updateLoginError', message)
-            context.commit('updateLoading', false)
-          })
-      })
+        await context.dispatch('updateToken', token)
+      } catch (error) {
+        context.commit('updateLoading', false)
+        throw new Error(error.message)
+      }
+      let pingResult
+      try {
+        pingResult = await store.dispatch('auth/ping')
+      } catch (error) {
+        throw error
+      } finally {
+        context.commit('updateLoading', false)
+      }
+      if (!pingResult) {
+        throw new Error('An error occured during login')
+      }
     },
     register(context) {
       context.commit('updateLoading', true)
@@ -235,30 +225,30 @@ export default {
     sendResetPasswordLink(context) {
       // context.commit('updateLoading', true)
       // AuthenticationService.sendResetPasswordLink
-      console.log('TODO: send reset password link')
+      // TODO: send reset password link
     },
     logout(context) {
       context.commit('updateLoading', true)
-      AuthenticationService.logout().then(() => {
+      return AuthenticationService.logout().then(() => {
         context.commit('updateLoading', false)
         context.commit('resetState')
       })
     },
-    ping(context) {
-      return new Promise((resolve, reject) => {
-        AuthenticationService.ping({
-          headers: {
-            Authorization: `Bearer ${context.state.token}`
-          }
-        })
-          .then(user => {
-            context.commit('updateUser', user)
-            resolve(user)
-          })
-          .catch(error => {
-            reject(error)
-          })
-      })
+    async ping(context) {
+      const token = context.getters.token
+
+      try {
+        const params = {}
+        const options = {
+          // headers: { Authorization: `Bearer ${token}` }
+        }
+        const user = await AuthenticationService.ping(params, options)
+        await context.dispatch('updateUser', user)
+      } catch (error) {
+        console.log('ping 401')
+        throw new Error('Getting user data failed')
+      }
+      return true
     }
   }
 }

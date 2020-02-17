@@ -58,7 +58,7 @@
 
                   <v-divider v-if="shouldShowTotal" class="light-border mb-6"></v-divider>
 
-                  <div class="light--text mb-6" v-if="isPricesReady">
+                  <div class="white--text mb-6" v-if="isPricesReady">
                     <!-- nights -->
                     <v-row no-gutters class="mb-2 title">
                       <v-col xs6>{{ prices.length }} nights total</v-col>
@@ -103,7 +103,7 @@
                     <!-- loading -->
                     <v-expand-transition>
                       <div v-if="shouldShowLoading" class="transition-fast-in-fast-out text-center mb-0">
-                        <v-progress-circular :size="24" indeterminate color="green"></v-progress-circular>
+                        <v-progress-circular :size="24" indeterminate color="primary"></v-progress-circular>
                       </div>
                     </v-expand-transition>
 
@@ -158,7 +158,7 @@
           <!-- loading -->
           <v-expand-transition>
             <div v-if="shouldShowLoading" class="transition-fast-in-fast-out text-center mb-0">
-              <v-progress-circular :size="24" indeterminate color="green"></v-progress-circular>
+              <v-progress-circular :size="24" indeterminate color="primary"></v-progress-circular>
             </div>
           </v-expand-transition>
 
@@ -213,7 +213,7 @@ export default Vue.extend({
   },
   computed: {
     resort() {
-      return this.$store.getters['resort/getResort']
+      return store.getters['booking/bookingInfo'].resort
     },
     dateOne() {
       return store.getters['booking/bookingInfo'].dateOne
@@ -222,7 +222,7 @@ export default Vue.extend({
       return store.getters['booking/bookingInfo'].dateTwo
     },
     prices() {
-      return this.$store.getters['booking/prices']({ rounded: true })
+      return this.$store.getters['booking/prices']({ decimalDigits: 0 })
     },
     computedTotalPrice() {
       const options = {
