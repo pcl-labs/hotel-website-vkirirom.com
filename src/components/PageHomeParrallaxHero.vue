@@ -6,12 +6,18 @@
         <div>
           <!-- logo -->
           <v-img
+            @load="onEndLoadingItem"
             width="396"
             height="151"
             max-width="30vw"
             contain
             class="mx-auto"
-            src="https://res.cloudinary.com/die9ji2vn/image/upload/v1578304830/Home%20Page/logo2_qoiy2d.png"
+            :src="
+              transformCloudinaryUrl(
+                'https://res.cloudinary.com/die9ji2vn/image/upload/v1578304830/Home%20Page/logo2_qoiy2d.png',
+                'f_auto'
+              )
+            "
           ></v-img>
         </div>
       </div>
@@ -21,6 +27,12 @@
       <div class="layer layer-5 layer--parallax" :style="`background-image: url(${image5});`"></div>
     </div>
     <div class="layer layer-6 layer--static position-absolute" :style="`background-image: url(${image6});`"></div>
+
+    <img @load="onEndLoadingItem" class="d-none" hidden :src="image2" alt="" />
+    <img @load="onEndLoadingItem" class="d-none" hidden :src="image3" alt="" />
+    <img @load="onEndLoadingItem" class="d-none" hidden :src="image4" alt="" />
+    <img @load="onEndLoadingItem" class="d-none" hidden :src="image5" alt="" />
+    <img @load="onEndLoadingItem" class="d-none" hidden :src="image6" alt="" />
   </div>
 </template>
 
@@ -77,13 +89,28 @@ export default Vue.extend({
   name: 'page-home-parrallax-hero',
   data() {
     return {
-      overridedBreakpoint: ''
+      overridedBreakpoint: '',
+      loadedItems: 0,
+      totalLoadingItems: 6
+    }
+  },
+  watch: {
+    loadedItems(newValue) {
+      if (newValue === this.totalLoadingItems) {
+        this.onEndLoadingAll()
+      }
     }
   },
   mounted() {
     this.addScrollListener()
   },
   methods: {
+    onEndLoadingItem(event) {
+      this.loadedItems++
+    },
+    onEndLoadingAll() {
+      this.$emit('loaded')
+    },
     updateBreakpoint() {
       const xsWidth = 376
       // add xxs breakpoint

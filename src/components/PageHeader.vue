@@ -15,7 +15,7 @@
           :src="
             transformCloudinaryUrl(
               'https://res.cloudinary.com/die9ji2vn/image/upload/v1578304830/Home%20Page/logo2_qoiy2d.png',
-              'h_64,f_auto'
+              'f_auto'
             )
           "
           alt="vKirirom"
@@ -71,9 +71,9 @@
           </v-toolbar-items>
         </div>
 
-        <div>
+        <div class="px-4">
           <!-- logo -->
-          <portal-target slim class="mx-3" name="page-header-logo"></portal-target>
+          <portal-target slim name="page-header-logo"></portal-target>
         </div>
 
         <div class="h-100 flex-grow-1 flex-basis-0">

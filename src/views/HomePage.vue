@@ -3,7 +3,7 @@
     <page-header></page-header>
     <div class="page">
       <div class="page-content">
-        <page-home-parrallax-hero ref="homeHero"></page-home-parrallax-hero>
+        <page-home-parrallax-hero @loaded="onParallaxImagesLoaded"></page-home-parrallax-hero>
 
         <div class="page-home--content brand-gradient">
           <v-container class="is-limited">
@@ -87,7 +87,7 @@
                 height="300px"
                 position="center"
                 class="mt-6 pa-1 mb-6"
-                src="https://res.cloudinary.com/die9ji2vn/image/upload/dpr_auto/w_auto/q_auto:best,w_888,f_auto/v1562223032/group/group-retreat_s3ksth.jpg"
+                src="https://res.cloudinary.com/die9ji2vn/image/upload/dpr_auto/f_auto/q_auto:best,w_888,f_auto/v1562223032/group/group-retreat_s3ksth.jpg"
               >
                 <v-row no-gutters class="align-md-center fill-height">
                   <v-flex xs12 class="ma-auto">
@@ -437,6 +437,8 @@ export default {
     MarkdownBlock
   },
   async beforeRouteEnter(to, from, next) {
+    store.commit('loading/updateIsSplashScreenVisible', true)
+
     const slug = 'home'
     await store.dispatch('resort/getItemBySlug', slug)
     next()
@@ -468,7 +470,16 @@ export default {
       experiences: [],
       events: [],
       ecotourisms: [],
-      leases: []
+      leases: [],
+      shouldShowSplashScreen: true
+    }
+  },
+  methods: {
+    onParallaxImagesLoaded() {
+      this.hideSplashScreen()
+    },
+    hideSplashScreen() {
+      store.commit('loading/updateIsSplashScreenVisible', false)
     }
   },
   computed: {
