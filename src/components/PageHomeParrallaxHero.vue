@@ -49,11 +49,16 @@ const images = {
     lg: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578391761/Home%20Page/1_xblbcz.png'
   },
   image2: {
-    xxs: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578537679/Home%20Page/2_-_376_Crop_jurubz.png',
-    xs: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578453086/Home%20Page/2_-_600_Crop_ljuk1q.png',
-    sm: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578452931/Home%20Page/2_-_960_Crop_nmuzwk.png',
-    md: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578452735/Home%20Page/2_-_1264_Crop_oemckj.png',
-    lg: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578304830/Home%20Page/2_sswfon.png'
+    xxs:
+      'https://res.cloudinary.com/die9ji2vn/image/upload/w_376,c_scale,q_auto:low/v1578537679/Home%20Page/2_-_376_Crop_jurubz.png',
+    xs:
+      'https://res.cloudinary.com/die9ji2vn/image/upload/w_600,c_scale,q_auto:low/v1578453086/Home%20Page/2_-_600_Crop_ljuk1q.png',
+    sm:
+      'https://res.cloudinary.com/die9ji2vn/image/upload/w_960,c_scale,q_auto:low/v1578452931/Home%20Page/2_-_960_Crop_nmuzwk.png',
+    md:
+      'https://res.cloudinary.com/die9ji2vn/image/upload/w_1264,c_scale,q_auto:low/v1578452735/Home%20Page/2_-_1264_Crop_oemckj.png',
+    lg:
+      'https://res.cloudinary.com/die9ji2vn/image/upload/w_1264,c_scale,q_auto:low/v1578304830/Home%20Page/2_sswfon.png'
   },
   image3: {
     xxs: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578537679/Home%20Page/3_-_376_Crop_hzx8pn.png',
@@ -70,11 +75,11 @@ const images = {
     lg: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578304829/Home%20Page/4_y2kccp.png'
   },
   image5: {
-    xxs: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578537679/Home%20Page/5_-_376_Crop_kwd38n.png',
-    xs: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578453084/Home%20Page/5_-_600_Crop_hv4pgh.png',
-    sm: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578452928/Home%20Page/5_-_960_Crop_kxqi9o.png',
-    md: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578452735/Home%20Page/5_-_1264_Crop_j243x6.png',
-    lg: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578304830/Home%20Page/5_hqueja.png'
+    xxs: 'https://res.cloudinary.com/die9ji2vn/image/upload/w_376/v1578537679/Home%20Page/5_-_376_Crop_kwd38n.png',
+    xs: 'https://res.cloudinary.com/die9ji2vn/image/upload/w_600/v1578453084/Home%20Page/5_-_600_Crop_hv4pgh.png',
+    sm: 'https://res.cloudinary.com/die9ji2vn/image/upload/w_960/v1578452928/Home%20Page/5_-_960_Crop_kxqi9o.png',
+    md: 'https://res.cloudinary.com/die9ji2vn/image/upload/w_1264/v1578452735/Home%20Page/5_-_1264_Crop_j243x6.png',
+    lg: 'https://res.cloudinary.com/die9ji2vn/image/upload/w_1920/v1578304830/Home%20Page/5_hqueja.png'
   },
   image6: {
     xxs: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578537678/Home%20Page/6_-_376_Crop_idycl2.png',
@@ -216,6 +221,7 @@ $top-distance: $header-height-xs; // this is fallback only
   top: rem($header-height-xs);
   top: var(--component-top-margin);
   width: 100%;
+  background-size: contain;
 }
 .parallax-hero--logo {
   position: fixed;

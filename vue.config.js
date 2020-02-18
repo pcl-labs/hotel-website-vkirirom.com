@@ -1,5 +1,4 @@
 const webpack = require('webpack')
-const PreloadWebpackPlugin = require('@vue/preload-webpack-plugin')
 
 module.exports = {
   transpileDependencies: ['vuex-persist', 'vuetify', 'marked', 'vue-airbnb-style-datepicker', 'vue-head', 'portal-vue'],
@@ -18,18 +17,11 @@ module.exports = {
       }
     }
   },
+  chainWebpack: config => {
+    config.plugins.delete('prefetch')
+  },
   configureWebpack: {
     plugins: [
-      new PreloadWebpackPlugin([
-        {
-          rel: 'preload',
-          include: ['home-top', 'home']
-        },
-        {
-          rel: 'prefetch',
-          include: ['listing', 'search', 'booking']
-        }
-      ]),
       new webpack.DefinePlugin({
         'process.env': {
           APP_VERSION: '"' + escape(JSON.stringify(require('./package.json').version)) + '"',

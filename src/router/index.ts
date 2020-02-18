@@ -9,7 +9,7 @@ const BookingReviewRulesPage = () => import(/* webpackChunkName: "booking" */ '@
 const BookingCustomerInfoPage = () => import(/* webpackChunkName: "booking" */ '@/views/BookingCustomerInfoPage.vue')
 const BookingPaymentPage = () => import(/* webpackChunkName: "booking" */ '@/views/BookingPaymentPage.vue')
 const BookingThanksPage = () => import(/* webpackChunkName: "booking" */ '@/views/BookingThanksPage.vue')
-const KitchenSink = () => import(/* webpackChunkName: "testing" */ '../views/KitchenSink.vue')
+const KitchenSink = () => import(/* webpackChunkName: "testing" */ '@/views/KitchenSink.vue')
 
 import store from '@/store'
 
