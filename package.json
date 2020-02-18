@@ -6,6 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "build-modern": "vue-cli-service build --modern",
+    "build-report": "vue-cli-service build --report",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "fix-code": "prettier-eslint --write 'src/**/*.{js,jsx,vue,json}' ",

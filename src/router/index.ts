@@ -1,48 +1,37 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
-const HomePage = () => import(/* webpackChunkName: "home" */ '@/views/HomePage.vue')
-const SearchPage = () => import(/* webpackChunkName: "search" */ '@/views/SearchPage.vue')
-const ContactPage = () => import(/* webpackChunkName: "contact" */ '@/views/ContactPage.vue')
-const ListingPage = () => import(/* webpackChunkName: "listing" */ '@/views/ListingPage.vue')
-const BookingReviewRulesPage = () => import(/* webpackChunkName: "booking" */ '@/views/BookingReviewRulesPage.vue')
-const BookingCustomerInfoPage = () => import(/* webpackChunkName: "booking" */ '@/views/BookingCustomerInfoPage.vue')
-const BookingPaymentPage = () => import(/* webpackChunkName: "booking" */ '@/views/BookingPaymentPage.vue')
-const BookingThanksPage = () => import(/* webpackChunkName: "booking" */ '@/views/BookingThanksPage.vue')
-const KitchenSink = () => import(/* webpackChunkName: "testing" */ '@/views/KitchenSink.vue')
-
 import store from '@/store'
 
 const routes = [
   {
     path: '/testing',
-    component: KitchenSink
+    component: loadView('KitchenSink')
   },
   {
     name: 'home',
     path: '/',
-    component: HomePage
+    component: loadView('HomePage')
   },
   {
     path: '/search/:id',
-    component: SearchPage,
+    component: loadView('SearchPage'),
     props: route => ({ slug: route.params.id })
   },
   {
     name: 'listing',
     path: '/listing/:id',
-    component: ListingPage,
+    component: loadView('ListingPage'),
     props: route => ({ slug: route.params.id })
   },
   {
     name: 'contact',
     path: '/contact',
-    component: ContactPage
+    component: loadView('ContactPage')
   },
   {
     name: 'booking-review-rules',
     path: '/booking/review-rules',
-    component: BookingReviewRulesPage,
+    component: loadView('BookingReviewRulesPage'),
     meta: {
       requiresAuth: true,
       hasBookingNavigation: true
@@ -51,7 +40,7 @@ const routes = [
   {
     name: 'booking-customer-info',
     path: '/booking/customer-info',
-    component: BookingCustomerInfoPage,
+    component: loadView('BookingCustomerInfoPage'),
     meta: {
       requiresAuth: true,
       hasBookingNavigation: true
@@ -60,7 +49,7 @@ const routes = [
   {
     name: 'booking-payment',
     path: '/booking/payment',
-    component: BookingPaymentPage,
+    component: loadView('BookingPaymentPage'),
     meta: {
       requiresAuth: true,
       hasBookingNavigation: true
@@ -69,7 +58,7 @@ const routes = [
   {
     name: 'booking-thanks',
     path: '/booking/thanks',
-    component: BookingThanksPage,
+    component: loadView('BookingThanksPage'),
     meta: {
       requiresAuth: true
     }
@@ -144,3 +133,7 @@ router.afterEach((to, from) => {
 })
 
 export default router
+
+function loadView(view) {
+  return () => import(/* webpackChunkName: "view-[request]" */ `@/views/${view}.vue`)
+}

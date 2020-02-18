@@ -425,9 +425,8 @@ import { appTitleTemplate } from '../constants/app'
 import { Resort } from '../types'
 import PageFooter from '@/components/PageFooter.vue'
 import MarkdownBlock from '@/components/MarkdownBlock.vue'
-const PageHeader = () => import(/* webpackChunkName: "home-top" */ '@/components/PageHeader.vue')
-const PageHomeParrallaxHero = () =>
-  import(/* webpackChunkName: "home-top" */ '@/components/PageHomeParrallaxHero.vue')
+const PageHeader = () => import(/* webpackChunkName: "hmt" */ '@/components/PageHeader.vue')
+const PageHomeParrallaxHero = () => import(/* webpackChunkName: "hmt" */ '@/components/PageHomeParrallaxHero.vue')
 
 export default {
   name: 'home-page',
