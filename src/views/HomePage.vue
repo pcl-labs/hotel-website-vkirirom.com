@@ -1,5 +1,5 @@
 <template>
-  <fragment>
+  <div>
     <page-header></page-header>
     <div class="page">
       <div class="page-content">
@@ -201,7 +201,7 @@
       </div>
       <page-footer></page-footer>
     </div>
-  </fragment>
+  </div>
 </template>
 
 <script lang="ts">
@@ -263,7 +263,7 @@ export default {
   },
   methods: {
     mergeImageArray(listOne, listTwo) {
-      const result = [...listOne, ...listTwo].filter(item => item && item.url)
+      const result = listOne.slice(0).concat(listTwo.slice(0))
       return result
     },
     onParallaxImagesLoaded() {
