@@ -40,9 +40,21 @@ const BookingReviewRules = () => import('@/components/BookingReviewRules.vue')
 const BookingConfirmBooking = () => import('@/components/BookingConfirmBooking.vue')
 const PageHeader = () => import('@/components/PageHeader.vue')
 import store from '@/store'
+import { countriesListUrl } from '../constants/app'
 
 export default Vue.extend({
   name: 'booking-review-rules-page',
+  metaInfo() {
+    return {
+      link: [
+        {
+          rel: 'prefetch',
+          as: 'fetch',
+          href: countriesListUrl
+        }
+      ]
+    }
+  },
   components: { PageHeader, BookingReviewRules, BookingConfirmBooking },
   mounted() {
     store.dispatch('booking/updateCurrentStep', this.steps.reviewPolicies)

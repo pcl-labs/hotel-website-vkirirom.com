@@ -210,11 +210,11 @@ import store from '../store'
 import { getFormattedMetaTitle, getFormattedMetaDescription, removeOtherLanguagesExcept } from '../helpers'
 import { appTitleTemplate } from '../constants/app'
 import { Resort, ResortImage } from '../types'
-const PageFooter = () => import('@/components/PageFooter.vue')
-const MarkdownBlock = () => import('@/components/MarkdownBlock.vue')
-const PageHeader = () => import('@/components/PageHeader.vue')
-const PageHomeParrallaxHero = () => import('@/components/PageHomeParrallaxHero.vue')
-const CardProduct = () => import('@/components/CardProduct.vue')
+const PageFooter = () => import(/* webpackChunkName: "footer" */ '@/components/PageFooter.vue')
+const MarkdownBlock = () => import(/* webpackChunkName: "markdown" */ '@/components/MarkdownBlock.vue')
+const PageHeader = () => import(/* webpackChunkName: "header" */ '@/components/PageHeader.vue')
+const PageHomeParrallaxHero = () => import(/* webpackChunkName: "Home" */ '@/components/PageHomeParrallaxHero.vue')
+const CardProduct = () => import(/* webpackChunkName: "card" */ '@/components/CardProduct.vue')
 
 export default {
   name: 'home-page',
