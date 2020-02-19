@@ -17,9 +17,9 @@ module.exports = {
       }
     }
   },
-  chainWebpack: config => {
-    config.plugins.delete('prefetch')
-  },
+  // chainWebpack: config => {
+  //   config.plugins.delete('prefetch')
+  // },
   configureWebpack: {
     plugins: [
       new webpack.DefinePlugin({
