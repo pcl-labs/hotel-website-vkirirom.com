@@ -164,7 +164,7 @@ export default Vue.extend({
                 .split(' ')
                 .join('')
             ) || 'Should contain only English letters (a-z)',
-          v => v.length > 50 && 'Should be less than 50 characters'
+          v => v.length < 50 || 'Should be less than 50 characters'
         ],
         addressLine: [v => !!v || 'Address is required'],
         addressCity: [v => !!v || 'City is required'],
