@@ -17,9 +17,16 @@ module.exports = {
       }
     }
   },
-  // chainWebpack: config => {
-  //   config.plugins.delete('prefetch')
-  // },
+  chainWebpack: config => {
+    // config.plugins.delete('prefetch')
+
+    // Adding a file to preload blacklist
+    config.plugin('preload').tap(options => {
+      // if (!options[0].fileBlacklist) options[0].fileBlacklist = []
+      // options[0].fileBlacklist.push(/myasyncRoute(.)+?\.js$/)
+      return options
+    })
+  },
   configureWebpack: {
     plugins: [
       new webpack.DefinePlugin({
