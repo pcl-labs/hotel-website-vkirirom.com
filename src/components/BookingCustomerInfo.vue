@@ -4,46 +4,51 @@
       <v-col>
         <v-form v-model="isFormValid" @submit.prevent>
           <h4 class="mb-2 title font-weight-bold">Guest Info</h4>
-          <v-row no-gutters class="phone-input align-center">
-            <v-col cols="5">
-              <v-combobox
-                class="phone-input--code"
-                dark
-                color="light"
-                outlined
-                label="Country code"
-                v-model="phoneCountry"
-                item-color="dark"
-                :items="CountriesList"
-                item-text="name"
-                :suffix="(phoneCountry && `+${phoneCountry.callingCodes[0]}`) || ''"
-                auto-select-first
-                :rules="rules.phoneCountry"
-                @change="focusPhone"
-              >
-                <template v-if="phoneCountry" slot="prepend-inner"
-                  ><span class="d-flex"
-                    ><img
-                      class="phone-input--flag"
-                      v-if="phoneCountry && phoneCountry.flag"
-                      :src="phoneCountry.flag"
-                      alt=""/></span
-                ></template>
-              </v-combobox>
-            </v-col>
-            <v-col cols="7">
-              <v-text-field
-                ref="phoneNumber"
-                class="phone-input--number"
-                type="text"
-                dark
-                outlined
-                label="Phone Number"
-                v-model="phoneNumber"
-                :rules="rules.phoneNumber"
-              ></v-text-field>
-            </v-col>
-          </v-row>
+          <div v-if="countriesList.length > 0">
+            <v-row no-gutters class="phone-input align-center">
+              <v-col cols="5">
+                <v-combobox
+                  class="phone-input--code"
+                  dark
+                  color="light"
+                  outlined
+                  label="Country code"
+                  v-model="phoneCountry"
+                  item-color="dark"
+                  :items="countriesList"
+                  item-text="name"
+                  :suffix="(phoneCountry && `+${phoneCountry.callingCodes[0]}`) || ''"
+                  auto-select-first
+                  :rules="rules.phoneCountry"
+                  @change="focusPhone"
+                >
+                  <template v-if="phoneCountry" slot="prepend-inner"
+                    ><span class="d-flex"
+                      ><img
+                        class="phone-input--flag"
+                        v-if="phoneCountry && phoneCountry.flag"
+                        :src="phoneCountry.flag"
+                        alt=""/></span
+                  ></template>
+                </v-combobox>
+              </v-col>
+              <v-col cols="7">
+                <v-text-field
+                  ref="phoneNumber"
+                  class="phone-input--number"
+                  type="text"
+                  dark
+                  outlined
+                  label="Phone Number"
+                  v-model="phoneNumber"
+                  :rules="rules.phoneNumber"
+                ></v-text-field>
+              </v-col>
+            </v-row>
+          </div>
+          <div v-else class="pt-3 mb-10">
+            <v-progress-circular :size="20" :width="2" indeterminate color="light"></v-progress-circular>
+          </div>
 
           <h4 class="mb-2 title font-weight-bold">Special Requests?</h4>
           <v-textarea
@@ -79,16 +84,16 @@
 
 <script lang="ts">
 import Vue from 'vue'
-const CountriesList = () => import('@/constants/countries-list')
 import { isNumber } from 'lodash-es'
 import store from '../store'
+import { ajax } from '@/connection/ajax'
+import { countriesListUrl, countryDefault } from '../constants/app'
 
 export default Vue.extend({
   name: 'booking-customer-info',
   data() {
     return {
       isFormValid: false,
-      CountriesList,
       rules: {
         phoneCountry: [v => !!v || 'This field is required'],
         phoneNumber: [
@@ -99,7 +104,14 @@ export default Vue.extend({
       }
     }
   },
+  async mounted() {
+    await this.getCountriesList()
+    this.phoneCountry = this.countriesList.find(item => item.name === countryDefault)
+  },
   computed: {
+    countriesList() {
+      return store.getters['booking/countriesList']
+    },
     phoneNumber: {
       get() {
         return store.getters['booking/bookingInfo'].phoneNumber
@@ -126,6 +138,15 @@ export default Vue.extend({
     }
   },
   methods: {
+    async getCountriesList() {
+      let countriesList
+      try {
+        countriesList = (await ajax.get(countriesListUrl)).data
+      } catch (error) {
+        console.log('error on get countries list')
+      }
+      return store.dispatch('booking/updateCountriesList', countriesList)
+    },
     focusPhone() {
       // @ts-ignore
       this.$refs.phoneNumber.focus()

@@ -3,7 +3,6 @@ import { RoomTypeService, ReservationService } from '@/connection/resources.js'
 import { bookingStep } from '@/types'
 import { setDocumentClassesOnToggleDialog, formatDate, removeOtherLanguagesExcept, toFixedNumber } from '@/helpers'
 import { cloneDeep } from 'lodash-es'
-import countriesList from '@/constants/countries-list'
 import store from '@/store'
 import {
   emailAPIBase,
@@ -55,6 +54,7 @@ const defaultState = {
   dialog: {
     isOpen: false
   },
+  countriesList: [],
   bookingInfo: {
     returnUrl: '/',
     resort: {},
@@ -68,7 +68,7 @@ const defaultState = {
     name: '',
     email: '',
     phoneNumber: '',
-    phoneCountry: countriesList.find(item => item.name === 'Cambodia'),
+    phoneCountry: {},
     payWith: 'card',
     roomType: {},
     dateOne: '',
@@ -93,6 +93,9 @@ export default {
   namespaced: true,
   state: cloneDeep(defaultState),
   mutations: {
+    updateCountriesList(state, payload) {
+      state.countriesList = payload
+    },
     updateDialog(state, payload) {
       state.dialog = payload
     },
@@ -173,6 +176,9 @@ export default {
     }
   },
   actions: {
+    updateCountriesList(context, payload) {
+      context.commit('updateCountriesList', payload)
+    },
     updateDialog(context, payload) {
       const dialog = {
         ...context.state.dialog,
@@ -383,6 +389,9 @@ export default {
   getters: {
     dialog: state => {
       return state.dialog
+    },
+    countriesList: state => {
+      return state.countriesList
     },
     bookingInfo(state) {
       return state.bookingInfo

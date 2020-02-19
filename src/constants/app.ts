@@ -8,6 +8,9 @@ export const emailAPIBase = 'https://express-502501.netlify.com/.netlify/functio
 export const reservationSuccessEmailTemplateId = 'd-32727d7e06ac4e7faa1b0e8fb1b99afa'
 export const reservationFailEmailTemplateId = 'd-567b15397bed4e75a14987abd125351f'
 export const languageCodes = ['en', 'kh']
+export const countriesListUrl =
+  'https://res.cloudinary.com/die9ji2vn/raw/upload/v1582139305/website-static/API/countries-list.json'
+export const countryDefault = 'Cambodia'
 
 let reservationEmailsBcc: EmailAddress[] = process.env.VUE_APP_EMAIL_BCC_LIST.split(',').map(item => ({
   email: item
