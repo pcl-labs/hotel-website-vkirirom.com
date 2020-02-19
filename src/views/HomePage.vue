@@ -16,55 +16,15 @@
 
             <h2 class="mb-6 mt-6 listTitle">Accommodation</h2>
             <v-row class="cardRow" dense>
-              <v-col cols="12" sm="6" md="4" v-bind:key="accommodation.id" v-for="accommodation in accommodations">
-                <v-card
-                  :ripple="false"
-                  dark
-                  height="270px"
-                  color="dark"
-                  class="mb-6 card"
-                  :to="'/listing/' + accommodation.slug"
-                  flat
-                >
-                  <router-link :to="'/listing/' + accommodation.slug">
-                    <v-carousel
-                      height="150px"
-                      :cycle="false"
-                      :show-arrows="false"
-                      dark
-                      width="100%"
-                      class="d-md-none"
-                      v-if="accommodation.images && accommodation.images.length > 0"
-                      style="border-top-left-radius: 10px; border-top-right-radius: 10px;"
-                    >
-                      <v-carousel-item :src="accommodation.featuredImage" style="background-size:contain;">
-                      </v-carousel-item>
-                      <v-carousel-item
-                        v-for="image in accommodation.images.slice(0, 4)"
-                        v-bind:key="image.url"
-                        :src="image.url"
-                        style="background-size:contain;"
-                      >
-                      </v-carousel-item>
-                    </v-carousel>
-                  </router-link>
-                  <v-img
-                    :src="accommodation.featuredImage"
-                    height="150px"
-                    class="hidden-sm-and-down d-md-block"
-                    style="border-top-left-radius: 10px; border-top-right-radius: 10px;"
-                  ></v-img>
-                  <v-row no-gutters align-start>
-                    <v-card-text style="margin:10px; padding: 0;">
-                      <span class="cardTitle"
-                        ><h3>{{ accommodation.title }}</h3></span
-                      >
-                      <span class="cardSubtitle" v-if="accommodation.ctaText > 0"
-                        >Starting from {{ accommodation.ctaText }}$ per night</span
-                      >
-                    </v-card-text>
-                  </v-row>
-                </v-card>
+              <v-col cols="12" sm="6" md="4" v-for="item in accommodations" :key="item.id">
+                <card-product
+                  :title="item.title"
+                  :description="item.ctaText > 0 ? `Starting from ${item.ctaText}$ per night` : item.ctaText"
+                  :image="item.featuredImage"
+                  :link="'/listing/' + item.slug"
+                  :has-carousel="item.images && item.images.length > 0 && !$vuetify.breakpoint.mdAndUp"
+                  :images="mergeImageArray([{ url: item.featuredImage }], item.images)"
+                ></card-product>
               </v-col>
             </v-row>
             <v-row no-gutters class="justify-center">
@@ -87,7 +47,7 @@
                 height="300px"
                 position="center"
                 class="mt-6 pa-1 mb-6"
-                src="https://res.cloudinary.com/die9ji2vn/image/upload/dpr_auto/f_auto/q_auto:best,w_888,f_auto/v1562223032/group/group-retreat_s3ksth.jpg"
+                src="https://res.cloudinary.com/die9ji2vn/image/upload/w_888,q_85,f_auto,c_lfill,g_auto,h_300/v1562223032/group/group-retreat_s3ksth.jpg"
               >
                 <v-row no-gutters class="align-md-center fill-height">
                   <v-flex xs12 class="ma-auto">
@@ -111,57 +71,15 @@
             <v-divider light class="d-md-none mt-4"></v-divider>
             <h2 class="mt-2 mb-6 listTitle">Experience</h2>
             <v-row class="cardRow" dense>
-              <v-col cols="12" sm="6" md="4" v-for="experience in experiences.slice(0, 4)" v-bind:key="experience.id">
-                <v-card
-                  :ripple="false"
-                  width="100%"
-                  height="270px"
-                  color="dark"
-                  class="mb-6 card"
-                  dark
-                  :to="'/listing/' + experience.slug"
-                  flat
-                  style="box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;"
-                >
-                  <router-link :to="'/listing/' + experience.slug">
-                    <v-carousel
-                      height="150px"
-                      :cycle="false"
-                      :show-arrows="false"
-                      dark
-                      width="100%"
-                      class="d-md-none"
-                      v-if="experience.images && experience.images.length > 0"
-                      style="border-top-left-radius: 10px; border-top-right-radius: 10px;"
-                    >
-                      <v-carousel-item :src="experience.featuredImage" style="background-size:contain;">
-                      </v-carousel-item>
-                      <v-carousel-item
-                        v-for="image in experience.images.slice(0, 4)"
-                        v-bind:key="image.url"
-                        :src="image.url"
-                        style="background-size:contain;"
-                      >
-                      </v-carousel-item>
-                    </v-carousel>
-                  </router-link>
-                  <v-img
-                    :src="experience.featuredImage"
-                    height="150px"
-                    class="hidden-sm-and-down d-md-block"
-                    style="border-top-left-radius: 10px; border-top-right-radius: 10px;"
-                  ></v-img>
-                  <v-row no-gutters align-start>
-                    <v-card-text style="margin:10px; padding: 0;">
-                      <span class="cardTitle"
-                        ><h3>{{ experience.title }}</h3></span
-                      >
-                      <span class="cardSubtitle" v-if="experience.ctaText > 0"
-                        >Starting from {{ experience.ctaText }}$ per night</span
-                      >
-                    </v-card-text>
-                  </v-row>
-                </v-card>
+              <v-col cols="12" sm="6" md="4" v-for="item in experiences.slice(0, 4)" :key="item.id">
+                <card-product
+                  :title="item.title"
+                  :description="item.ctaText > 0 ? `Starting from ${item.ctaText}$ per night` : item.ctaText"
+                  :image="item.featuredImage"
+                  :link="'/listing/' + item.slug"
+                  :has-carousel="item.images && item.images.length > 0 && !$vuetify.breakpoint.mdAndUp"
+                  :images="mergeImageArray([{ url: item.featuredImage }], item.images)"
+                ></card-product>
               </v-col>
             </v-row>
             <v-row no-gutters class="justify-center">
@@ -185,7 +103,7 @@
               <v-img
                 height="300px"
                 class="pt-4 pl-2"
-                src="https://res.cloudinary.com/die9ji2vn/image/upload/dpr_auto/w_auto/q_auto:low/f_auto/v1562224268/food/Indian_bi8dn7-Original_ueby7h.jpg"
+                src="https://res.cloudinary.com/die9ji2vn/image/upload/w_888,q_85,f_auto,c_lfill,g_center,h_300/v1562224268/food/Indian_bi8dn7-Original_ueby7h.jpg"
               >
                 <v-row no-gutters justify-start class="mt-6 mb-2 ml-6">
                   <v-col cols="12" sm="4">
@@ -205,56 +123,15 @@
             </v-card>
             <h2 class="mb-6 listTitle">Events</h2>
             <v-row class="cardRow" dense>
-              <v-col cols="12" sm="6" md="4" v-for="event in events.slice(0, 4)" v-bind:key="event.id">
-                <v-card
-                  :ripple="false"
-                  width="100%"
-                  height="270px"
-                  color="dark"
-                  class="mb-6 card"
-                  dark
-                  :to="'/listing/' + event.slug"
-                  flat
-                  style="box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;"
-                >
-                  <router-link :to="'/listing/' + event.slug">
-                    <v-carousel
-                      height="150px"
-                      :cycle="false"
-                      :show-arrows="false"
-                      dark
-                      width="100%"
-                      class="d-md-none"
-                      v-if="event.images && event.images.length > 0"
-                      style="border-top-left-radius: 10px; border-top-right-radius: 10px;"
-                    >
-                      <v-carousel-item :src="event.featuredImage" style="background-size:contain;"> </v-carousel-item>
-                      <v-carousel-item
-                        v-for="image in event.images.slice(0, 4)"
-                        v-bind:key="image.url"
-                        :src="image.url"
-                        style="background-size:contain;"
-                      >
-                      </v-carousel-item>
-                    </v-carousel>
-                  </router-link>
-                  <v-img
-                    :src="event.featuredImage"
-                    height="150px"
-                    class="hidden-sm-and-down d-md-block"
-                    style="border-top-left-radius: 10px; border-top-right-radius: 10px;"
-                  ></v-img>
-                  <v-row no-gutters align-start>
-                    <v-card-text style="margin:10px; padding: 0;">
-                      <span class="cardTitle"
-                        ><h3>{{ event.title }}</h3></span
-                      >
-                      <span class="cardSubtitle" v-if="event.ctaText > 0"
-                        >Starting from {{ event.ctaText }}$ per night</span
-                      >
-                    </v-card-text>
-                  </v-row>
-                </v-card>
+              <v-col cols="12" sm="6" md="4" v-for="item in events.slice(0, 4)" :key="item.id">
+                <card-product
+                  :title="item.title"
+                  :description="item.ctaText > 0 ? `Starting from ${item.ctaText}$ per night` : item.ctaText"
+                  :image="item.featuredImage"
+                  :link="'/listing/' + item.slug"
+                  :has-carousel="item.images && item.images.length > 0 && !$vuetify.breakpoint.mdAndUp"
+                  :images="mergeImageArray([{ url: item.featuredImage }], item.images)"
+                ></card-product>
               </v-col>
             </v-row>
             <v-row no-gutters class="justify-center">
@@ -271,7 +148,7 @@
                 onclick="this.controls=true; this.play()"
                 width="100%"
                 class="mt-6"
-                poster="https://res.cloudinary.com/die9ji2vn/image/upload/dpr_auto/w_auto/q_auto:low/f_auto/v1561607608/Thumbnail/JPEG/thumbnail_zjzji4.jpg"
+                poster="https://res.cloudinary.com/die9ji2vn/image/upload/w_888,q_85,f_auto,c_lfill,g_auto/v1561607608/Thumbnail/JPEG/thumbnail_zjzji4.jpg"
               >
                 <source
                   src="https://res.cloudinary.com/die9ji2vn/video/upload/v1560320692/10000000_143443766812356_671027213277999975_n_1_hm0gxb.mp4"
@@ -281,56 +158,15 @@
             </v-flex>
             <h2 class="mt-2 mb-6 listTitle">Lease</h2>
             <v-row class="cardRow" dense>
-              <v-col cols="12" sm="6" md="4" v-for="lease in leases.slice(0, 4)" v-bind:key="lease.id">
-                <v-card
-                  :ripple="false"
-                  width="100%"
-                  height="270px"
-                  color="dark"
-                  class="mb-6 card"
-                  dark
-                  :to="'/listing/' + lease.slug"
-                  flat
-                  style="box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;"
-                >
-                  <router-link :to="'/listing/' + lease.slug">
-                    <v-carousel
-                      height="150px"
-                      :cycle="false"
-                      :show-arrows="false"
-                      dark
-                      width="100%"
-                      class="d-md-none"
-                      v-if="lease.images && lease.images.length > 0"
-                      style="border-top-left-radius: 10px; border-top-right-radius: 10px;"
-                    >
-                      <v-carousel-item :src="lease.featuredImage" style="background-size:contain;"> </v-carousel-item>
-                      <v-carousel-item
-                        v-for="image in lease.images.slice(0, 4)"
-                        v-bind:key="image.url"
-                        :src="image.url"
-                        style="background-size:contain;"
-                      >
-                      </v-carousel-item>
-                    </v-carousel>
-                  </router-link>
-                  <v-img
-                    :src="lease.featuredImage"
-                    height="150px"
-                    class="hidden-sm-and-down d-md-block"
-                    style="border-top-left-radius: 10px; border-top-right-radius: 10px;"
-                  ></v-img>
-                  <v-row no-gutters align-start>
-                    <v-card-text style="margin:10px; padding: 0;">
-                      <span class="cardTitle"
-                        ><h3>{{ lease.title }}</h3></span
-                      >
-                      <span class="cardSubtitle" v-if="lease.ctaText > 0"
-                        >Starting from {{ lease.ctaText }}$ per night</span
-                      >
-                    </v-card-text>
-                  </v-row>
-                </v-card>
+              <v-col cols="12" sm="6" md="4" v-for="item in leases.slice(0, 4)" :key="item.id">
+                <card-product
+                  :title="item.title"
+                  :description="item.ctaText > 0 ? `Starting from ${item.ctaText}$ per night` : item.ctaText"
+                  :image="item.featuredImage"
+                  :link="'/listing/' + item.slug"
+                  :has-carousel="item.images && item.images.length > 0 && !$vuetify.breakpoint.mdAndUp"
+                  :images="mergeImageArray([{ url: item.featuredImage }], item.images)"
+                ></card-product>
               </v-col>
             </v-row>
             <v-row no-gutters class="justify-center">
@@ -342,64 +178,15 @@
             </v-row>
             <h2 class="mb-6 mt-4 listTitle">Ecotourism</h2>
             <v-row class="cardRow" dense>
-              <v-col
-                cols="12"
-                sm="6"
-                md="4"
-                lg4
-                v-for="ecotourism in ecotourisms.slice(0, 4)"
-                v-bind:key="ecotourism.id"
-              >
-                <v-card
-                  :ripple="false"
-                  width="100%"
-                  height="270px"
-                  class="mb-6 card"
-                  dark
-                  color="dark"
-                  :to="'/listing/' + ecotourism.slug"
-                  flat
-                  style="box-sizing: border-box; box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;"
-                >
-                  <router-link :to="'/listing/' + ecotourism.slug">
-                    <v-carousel
-                      :show-arrows="false"
-                      :cycle="false"
-                      dark
-                      width="100%"
-                      height="150px"
-                      class="d-md-none"
-                      v-if="ecotourism.images && ecotourism.images.length > 0"
-                      style="border-top-left-radius: 10px; border-top-right-radius: 10px;"
-                    >
-                      <v-carousel-item :src="ecotourism.featuredImage" style="background-size:contain;">
-                      </v-carousel-item>
-                      <v-carousel-item
-                        v-for="image in ecotourism.images.slice(0, 4)"
-                        v-bind:key="image.url"
-                        :src="image.url"
-                        style="background-size:contain;"
-                      >
-                      </v-carousel-item>
-                    </v-carousel>
-                  </router-link>
-                  <v-img
-                    :src="ecotourism.featuredImage"
-                    height="150px"
-                    class="hidden-sm-and-down d-md-block"
-                    style="border-top-left-radius: 10px; border-top-right-radius: 10px;"
-                  ></v-img>
-                  <v-row no-gutters align-start>
-                    <v-card-text style="margin:10px; padding: 0;">
-                      <span class="cardTitle"
-                        ><h3>{{ ecotourism.title }}</h3></span
-                      >
-                      <span class="cardSubtitle" v-if="ecotourism.ctaText > 0"
-                        >Starting from {{ ecotourism.ctaText }}$ per night</span
-                      >
-                    </v-card-text>
-                  </v-row>
-                </v-card>
+              <v-col cols="12" sm="6" md="4" lg4 v-for="item in ecotourisms.slice(0, 4)" :key="item.id">
+                <card-product
+                  :title="item.title"
+                  :description="item.ctaText > 0 ? `Starting from ${item.ctaText}$ per night` : item.ctaText"
+                  :image="item.featuredImage"
+                  :link="'/listing/' + item.slug"
+                  :has-carousel="item.images && item.images.length > 0 && !$vuetify.breakpoint.mdAndUp"
+                  :images="mergeImageArray([{ url: item.featuredImage }], item.images)"
+                ></card-product>
               </v-col>
             </v-row>
             <v-row no-gutters class="justify-center">
@@ -422,11 +209,12 @@ import { PageService } from '@/connection/resources.js'
 import store from '../store'
 import { getFormattedMetaTitle, getFormattedMetaDescription, removeOtherLanguagesExcept } from '../helpers'
 import { appTitleTemplate } from '../constants/app'
-import { Resort } from '../types'
+import { Resort, ResortImage } from '../types'
 const PageFooter = () => import('@/components/PageFooter.vue')
 const MarkdownBlock = () => import('@/components/MarkdownBlock.vue')
-const PageHeader = () => import(/* webpackChunkName: "hmt" */ '@/components/PageHeader.vue')
-const PageHomeParrallaxHero = () => import(/* webpackChunkName: "hmt" */ '@/components/PageHomeParrallaxHero.vue')
+const PageHeader = () => import('@/components/PageHeader.vue')
+const PageHomeParrallaxHero = () => import('@/components/PageHomeParrallaxHero.vue')
+const CardProduct = () => import('@/components/CardProduct.vue')
 
 export default {
   name: 'home-page',
@@ -434,6 +222,7 @@ export default {
     PageHomeParrallaxHero,
     PageFooter,
     PageHeader,
+    CardProduct,
     MarkdownBlock
   },
   async beforeRouteEnter(to, from, next) {
@@ -473,6 +262,10 @@ export default {
     }
   },
   methods: {
+    mergeImageArray(listOne, listTwo) {
+      const result = [...listOne, ...listTwo].filter(item => item && item.url)
+      return result
+    },
     onParallaxImagesLoaded() {
       this.hideSplashScreen()
     },
@@ -543,7 +336,7 @@ export default {
   position: relative;
 }
 .cardRow {
-  height: 300px;
+  // height: 300px;
   overflow: hidden;
 }
 
