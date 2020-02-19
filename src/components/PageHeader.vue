@@ -206,8 +206,8 @@
 
 <script>
 import store from '@/store'
-import AuthDialog from '@/components/AuthDialog.vue'
-import BookingNavigation from '@/components/BookingNavigation.vue'
+const AuthDialog = () => import('@/components/AuthDialog.vue')
+const BookingNavigation = () => import('@/components/BookingNavigation.vue')
 
 export default {
   name: 'page-header',

@@ -36,9 +36,9 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import BookingReviewRules from '@/components/BookingReviewRules.vue'
-import BookingConfirmBooking from '@/components/BookingConfirmBooking.vue'
-import PageHeader from '@/components/PageHeader.vue'
+const BookingReviewRules = () => import('@/components/BookingReviewRules.vue')
+const BookingConfirmBooking = () => import('@/components/BookingConfirmBooking.vue')
+const PageHeader = () => import('@/components/PageHeader.vue')
 import store from '@/store'
 
 export default Vue.extend({

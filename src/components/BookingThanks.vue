@@ -66,7 +66,7 @@
 import Vue from 'vue'
 import store from '../store'
 // import ResortRules from '@/components/ResortRules.vue'
-import ResortDescription from '@/components/ResortDescription.vue'
+const ResortDescription = () => import('@/components/ResortDescription.vue')
 import { Resort } from '../types'
 import marked from 'marked'
 

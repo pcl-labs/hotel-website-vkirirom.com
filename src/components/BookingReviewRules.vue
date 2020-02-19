@@ -50,7 +50,7 @@
 
 <script lang="ts">
 import { formatDate } from '@/helpers'
-import ResortRules from '@/components/ResortRules.vue'
+const ResortRules = () => import('@/components/ResortRules.vue')
 import Vue from 'vue'
 import store from '@/store'
 export default Vue.extend({

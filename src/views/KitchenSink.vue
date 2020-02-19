@@ -7,7 +7,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import store from '@/store'
-import PageHomeParrallaxHero from '@/components/PageHomeParrallaxHero.vue'
+const PageHomeParrallaxHero = () => import('@/components/PageHomeParrallaxHero.vue')
 
 export default Vue.extend({
   name: 'booking-dialog',

@@ -11,9 +11,9 @@
 import Vue from 'vue'
 import store from '@/store'
 import { languageCodes, appTitle } from '@/constants/app'
-import SnackbarsGlobal from '@/components/SnackbarsGlobal.vue'
-import PageProgressBarGlobal from '@/components/PageProgressBarGlobal.vue'
-import PageSplashScreen from '@/components/PageSplashScreen.vue'
+const SnackbarsGlobal = () => import('@/components/SnackbarsGlobal.vue')
+const PageProgressBarGlobal = () => import('@/components/PageProgressBarGlobal.vue')
+const PageSplashScreen = () => import('@/components/PageSplashScreen.vue')
 
 export default Vue.extend({
   name: 'app',

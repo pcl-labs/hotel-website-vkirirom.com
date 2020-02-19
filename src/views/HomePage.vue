@@ -423,8 +423,8 @@ import store from '../store'
 import { getFormattedMetaTitle, getFormattedMetaDescription, removeOtherLanguagesExcept } from '../helpers'
 import { appTitleTemplate } from '../constants/app'
 import { Resort } from '../types'
-import PageFooter from '@/components/PageFooter.vue'
-import MarkdownBlock from '@/components/MarkdownBlock.vue'
+const PageFooter = () => import('@/components/PageFooter.vue')
+const MarkdownBlock = () => import('@/components/MarkdownBlock.vue')
 const PageHeader = () => import(/* webpackChunkName: "hmt" */ '@/components/PageHeader.vue')
 const PageHomeParrallaxHero = () => import(/* webpackChunkName: "hmt" */ '@/components/PageHomeParrallaxHero.vue')
 

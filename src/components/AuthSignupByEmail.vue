@@ -126,7 +126,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import store from '@/store'
-import SeparatorOr from '@/components/SeparatorOr.vue'
+const SeparatorOr = () => import('@/components/SeparatorOr.vue')
 export default Vue.extend({
   components: { SeparatorOr },
   data() {

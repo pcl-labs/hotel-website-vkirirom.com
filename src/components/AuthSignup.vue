@@ -58,8 +58,8 @@
 </template>
 
 <script lang="ts">
-import SeparatorOr from '@/components/SeparatorOr.vue'
-import AuthSignupByEmail from '@/components/AuthSignupByEmail.vue'
+const SeparatorOr = () => import('@/components/SeparatorOr.vue')
+const AuthSignupByEmail = () => import('@/components/AuthSignupByEmail.vue')
 import store from '@/store'
 
 // TODO: if register error happened and account exists, then $emit 'auth-login-existing-account'

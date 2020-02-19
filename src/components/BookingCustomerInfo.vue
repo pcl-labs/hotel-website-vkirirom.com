@@ -79,7 +79,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import CountriesList from '@/constants/countries-list'
+const CountriesList = () => import('@/constants/countries-list')
 import { isNumber } from 'lodash-es'
 import store from '../store'
 

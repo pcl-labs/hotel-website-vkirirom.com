@@ -50,10 +50,10 @@
 <script lang="ts">
 import Vue from 'vue'
 import store from '@/store'
-import BookingConfirmDates from '@/components/BookingConfirmDates.vue'
-import BookingAuth from '@/components/BookingAuth.vue'
-import BookingConfirmGuests from '@/components/BookingConfirmGuests.vue'
-import BookingConfirmBooking from '@/components/BookingConfirmBooking.vue'
+const BookingConfirmDates = () => import('@/components/BookingConfirmDates.vue')
+const BookingAuth = () => import('@/components/BookingAuth.vue')
+const BookingConfirmGuests = () => import('@/components/BookingConfirmGuests.vue')
+const BookingConfirmBooking = () => import('@/components/BookingConfirmBooking.vue')
 
 export default Vue.extend({
   name: 'booking-dialog',

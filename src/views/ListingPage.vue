@@ -141,11 +141,11 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import ResortDescription from '@/components/ResortDescription.vue'
-import BookingBar from '@/components/BookingBar.vue'
-import PageFooter from '@/components/PageFooter.vue'
-import PageHeader from '@/components/PageHeader.vue'
-import ListingContactForm from '@/components/ListingContactForm.vue'
+const ResortDescription = () => import('@/components/ResortDescription.vue')
+const BookingBar = () => import('@/components/BookingBar.vue')
+const PageFooter = () => import('@/components/PageFooter.vue')
+const PageHeader = () => import('@/components/PageHeader.vue')
+const ListingContactForm = () => import('@/components/ListingContactForm.vue')
 import store from '@/store'
 import { Resort } from '@/types'
 import {

@@ -104,7 +104,7 @@
 </template>
 
 <script lang="ts">
-import SeparatorOr from '@/components/SeparatorOr.vue'
+const SeparatorOr = () => import('@/components/SeparatorOr.vue')
 import store from '@/store'
 
 export default {

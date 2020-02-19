@@ -51,7 +51,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import store from '@/store'
-import AuthCore from '@/components/AuthCore.vue'
+const AuthCore = () => import('@/components/AuthCore.vue')
 
 export default Vue.extend({
   name: 'booking-dialog',

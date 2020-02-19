@@ -55,7 +55,7 @@ import Vue from 'vue'
 import store from '@/store'
 import { Resort } from '@/types'
 import { get } from 'lodash-es'
-import MarkdownBlock from '@/components/MarkdownBlock.vue'
+const MarkdownBlock = () => import('@/components/MarkdownBlock.vue')
 
 export default Vue.extend({
   name: 'resort-rules',

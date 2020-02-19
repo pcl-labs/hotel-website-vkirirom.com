@@ -145,8 +145,8 @@
 import Vue from 'vue'
 import { isNumeric, isAlpha } from 'validator'
 import store from '../store'
-import BookingPaymentByStripe from '@/components/BookingPaymentByStripe.vue'
 import { InternalMessagePassing } from '../types'
+const BookingPaymentByStripe = () => import('@/components/BookingPaymentByStripe.vue')
 
 export default Vue.extend({
   name: 'booking-payment',

@@ -77,7 +77,7 @@
 </template>
 
 <script>
-import BookingDialog from '@/components/BookingDialog.vue'
+const BookingDialog = () => import('@/components/BookingDialog.vue')
 import store from '@/store'
 import { getPassiveEventConfig } from '@/helpers'
 export default {

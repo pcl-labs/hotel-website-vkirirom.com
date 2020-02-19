@@ -37,10 +37,10 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import BookingThanks from '@/components/BookingThanks.vue'
-import BookingConfirmBooking from '@/components/BookingConfirmBooking.vue'
-import PageFooter from '@/components/PageFooter.vue'
-import PageHeader from '@/components/PageHeader.vue'
+const BookingThanks = () => import('@/components/BookingThanks.vue')
+const BookingConfirmBooking = () => import('@/components/BookingConfirmBooking.vue')
+const PageFooter = () => import('@/components/PageFooter.vue')
+const PageHeader = () => import('@/components/PageHeader.vue')
 import store from '@/store'
 
 export default Vue.extend({
