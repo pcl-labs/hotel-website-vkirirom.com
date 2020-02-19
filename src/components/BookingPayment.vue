@@ -143,7 +143,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { isNumeric, isAlpha } from 'validator'
+import isNumeric from 'validator/es/lib/isNumeric'
+import isAlpha from 'validator/es/lib/isAlpha'
 import store from '../store'
 import { InternalMessagePassing } from '../types'
 const BookingPaymentByStripe = () => import('@/components/BookingPaymentByStripe.vue')
