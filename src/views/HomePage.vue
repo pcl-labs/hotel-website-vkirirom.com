@@ -211,9 +211,11 @@ import { getFormattedMetaTitle, getFormattedMetaDescription, removeOtherLanguage
 import { appTitleTemplate } from '../constants/app';
 import { Resort, ResortImage } from '../types';
 const PageFooter = () => import(/* webpackChunkName: "Footer" */ '@/components/PageFooter.vue');
-const MarkdownBlock = () => import(/* webpackChunkName: "Critical" */ '@/components/MarkdownBlock.vue');
-const PageHeader = () => import(/* webpackChunkName: "Critical" */ '@/components/PageHeader.vue');
-const PageHomeParrallaxHero = () => import(/* webpackChunkName: "Critical" */ '@/components/PageHomeParrallaxHero.vue');
+const MarkdownBlock = () =>
+  import(/* webpackChunkName: "Critical", webpackMode: "eager" */ '@/components/MarkdownBlock.vue');
+const PageHeader = () => import(/* webpackChunkName: "Critical", webpackMode: "eager" */ '@/components/PageHeader.vue');
+const PageHomeParrallaxHero = () =>
+  import(/* webpackChunkName: "Critical", webpackMode: "eager" */ '@/components/PageHomeParrallaxHero.vue');
 const CardProduct = () => import(/* webpackChunkName: "Card" */ '@/components/CardProduct.vue');
 
 export default {

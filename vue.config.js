@@ -17,27 +17,22 @@ module.exports = {
       }
     }
   },
-  // chainWebpack: config => {
-  //   // config.plugins.delete('prefetch')
+  chainWebpack: config => {
+    const preloadPatterns = [/(app|vendor|Home|Critical|Card|Footer)(.)+?\.(css|js)$/];
+    const blacklistPatterns = [/(Test)(.)+?\.(css|js)$/];
 
-  //   const preloadPatterns = [/Home(.)+?\.css$/, /Critical(.)+?\.css$/, /Card(.)+?\.css$/, /Footer(.)+?\.css$/]
+    config.plugin('preload').tap(options => {
+      options[0].include = 'all';
+      options[0].fileWhitelist = [...preloadPatterns];
+      options[0].fileBlacklist = [...blacklistPatterns];
+      return options;
+    });
 
-  //   // Adding a file to preload blacklist
-  //   config.plugin('preload').tap(options => {
-  //     console.log('=>>>>>>>>>>', options)
-
-  //     options[0].include = preloadPatterns
-  //     console.log('after ===============>', options)
-
-  //     return options
-  //   })
-  //   config.plugin('prefetch').tap(options => {
-  //     // if (!options[0].fileBlacklist) options[0].fileBlacklist = []
-  //     // options[0].fileBlacklist.concat(preloadPatterns)
-  //     options[0].include = []
-  //     return options
-  //   })
-  // },
+    config.plugin('prefetch').tap(options => {
+      options[0].fileBlacklist = [/\.map/, ...preloadPatterns, ...blacklistPatterns];
+      return options;
+    });
+  },
   configureWebpack: {
     plugins: [
       new webpack.DefinePlugin({
