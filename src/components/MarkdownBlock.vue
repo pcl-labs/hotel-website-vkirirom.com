@@ -3,8 +3,8 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import marked from '@/plugins/marked'
+import Vue from 'vue';
+import marked from '@/plugins/marked';
 export default Vue.extend({
   name: 'markdown-block',
   props: {
@@ -15,7 +15,7 @@ export default Vue.extend({
   methods: {
     markdown: marked
   }
-})
+});
 </script>
 
 <style lang="scss">

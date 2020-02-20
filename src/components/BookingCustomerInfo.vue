@@ -83,11 +83,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { isNumber } from 'lodash-es'
-import store from '../store'
-import { ajax } from '@/connection/ajax'
-import { countriesListUrl, countryDefault } from '../constants/app'
+import Vue from 'vue';
+import { isNumber } from 'lodash-es';
+import store from '../store';
+import { ajax } from '@/connection/ajax';
+import { countriesListUrl, countryDefault } from '../constants/app';
 
 export default Vue.extend({
   name: 'booking-customer-info',
@@ -102,60 +102,60 @@ export default Vue.extend({
           v => !/\D/.test(v) || 'Phone should be number'
         ]
       }
-    }
+    };
   },
   async mounted() {
-    await this.getCountriesList()
-    this.phoneCountry = this.countriesList.find(item => item.name === countryDefault)
+    await this.getCountriesList();
+    this.phoneCountry = this.countriesList.find(item => item.name === countryDefault);
   },
   computed: {
     countriesList() {
-      return this.$store.getters['booking/countriesList']
+      return this.$store.getters['booking/countriesList'];
     },
     phoneNumber: {
       get() {
-        return this.$store.getters['booking/bookingInfo'].phoneNumber
+        return this.$store.getters['booking/bookingInfo'].phoneNumber;
       },
       set(value: string) {
-        this.$store.dispatch('booking/updatePhoneNumber', value)
+        this.$store.dispatch('booking/updatePhoneNumber', value);
       }
     },
     phoneCountry: {
       get() {
-        return this.$store.getters['booking/bookingInfo'].phoneCountry
+        return this.$store.getters['booking/bookingInfo'].phoneCountry;
       },
       set(value: string) {
-        this.$store.dispatch('booking/updatePhoneCountry', value)
+        this.$store.dispatch('booking/updatePhoneCountry', value);
       }
     },
     message: {
       get() {
-        return this.$store.getters['booking/bookingInfo'].message
+        return this.$store.getters['booking/bookingInfo'].message;
       },
       set(value: string) {
-        this.$store.dispatch('booking/updateMessage', value)
+        this.$store.dispatch('booking/updateMessage', value);
       }
     }
   },
   methods: {
     async getCountriesList() {
-      let countriesList
+      let countriesList;
       try {
-        countriesList = (await ajax.get(countriesListUrl)).data
+        countriesList = (await ajax.get(countriesListUrl)).data;
       } catch (error) {
-        console.log('error on get countries list')
+        console.log('error on get countries list');
       }
-      return this.$store.dispatch('booking/updateCountriesList', countriesList)
+      return this.$store.dispatch('booking/updateCountriesList', countriesList);
     },
     focusPhone() {
       // @ts-ignore
-      this.$refs.phoneNumber.focus()
+      this.$refs.phoneNumber.focus();
     },
     submit() {
-      this.$router.push({ name: 'booking-payment' })
+      this.$router.push({ name: 'booking-payment' });
     }
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>

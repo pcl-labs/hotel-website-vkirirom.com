@@ -1,6 +1,6 @@
-import Vue from 'vue'
-import { transformCloudinaryUrl, getPosterImage } from '@/helpers'
-import vhFix from '@/mixins/vh-fix'
+import Vue from 'vue';
+import { transformCloudinaryUrl, getPosterImage } from '@/helpers';
+import vhFix from '@/mixins/vh-fix';
 
 Vue.mixin({
   mixins: [vhFix],
@@ -8,10 +8,10 @@ Vue.mixin({
     return {
       pageWidth: document.body.clientWidth,
       devicePixelRatio: window.devicePixelRatio || 1
-    }
+    };
   },
   methods: {
     transformCloudinaryUrl,
     getPosterImage
   }
-})
+});

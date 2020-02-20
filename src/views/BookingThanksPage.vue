@@ -36,32 +36,32 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-const BookingThanks = () => import('@/components/BookingThanks.vue')
-const BookingConfirmBooking = () => import('@/components/BookingConfirmBooking.vue')
-const PageFooter = () => import('@/components/PageFooter.vue')
-const PageHeader = () => import('@/components/PageHeader.vue')
-import store from '@/store'
+import Vue from 'vue';
+const BookingThanks = () => import('@/components/BookingThanks.vue');
+const BookingConfirmBooking = () => import('@/components/BookingConfirmBooking.vue');
+const PageFooter = () => import('@/components/PageFooter.vue');
+const PageHeader = () => import('@/components/PageHeader.vue');
+import store from '@/store';
 
 export default Vue.extend({
   name: 'booking-thanks-page',
   components: { PageHeader, BookingThanks, BookingConfirmBooking, PageFooter },
   computed: {
     steps() {
-      return this.$store.getters['booking/steps']
+      return this.$store.getters['booking/steps'];
     },
     returnUrl() {
-      return this.$store.getters['booking/bookingInfo'].returnUrl
+      return this.$store.getters['booking/bookingInfo'].returnUrl;
     }
   },
   destroyed() {
     if (process.env.VUE_APP_DEV_MODE == 1) {
-      console.log('no clear booking in dev mode')
-      return
+      console.log('no clear booking in dev mode');
+      return;
     }
-    this.$store.dispatch('booking/endBooking')
+    this.$store.dispatch('booking/endBooking');
   }
-})
+});
 </script>
 
 <style lang="scss">

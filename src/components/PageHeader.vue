@@ -205,9 +205,9 @@
 </template>
 
 <script>
-import store from '@/store'
-const AuthDialog = () => import('@/components/AuthDialog.vue')
-const BookingNavigation = () => import('@/components/BookingNavigation.vue')
+import store from '@/store';
+const AuthDialog = () => import('@/components/AuthDialog.vue');
+const BookingNavigation = () => import('@/components/BookingNavigation.vue');
 
 export default {
   name: 'page-header',
@@ -216,44 +216,44 @@ export default {
     return {
       isProfileExpanded: false,
       drawer: false
-    }
+    };
   },
   methods: {
     async logout() {
       try {
-        await this.$store.dispatch('auth/logout')
+        await this.$store.dispatch('auth/logout');
         this.$store.dispatch('snackbar/show', {
           color: 'success',
           text: 'Logging out was successful',
           class: 'dark--text'
-        })
+        });
       } catch (error) {
         this.$store.dispatch('snackbar/show', {
           color: 'error',
           text: 'Logging out was unsuccessful',
           class: 'light--text'
-        })
+        });
       }
     },
     openLogin() {
-      this.drawer = false
+      this.drawer = false;
       this.$nextTick(() => {
-        this.$refs.authDialogRef.openDialog()
-      })
+        this.$refs.authDialogRef.openDialog();
+      });
     }
   },
   computed: {
     shouldShowBookingNavigation() {
-      return this.$route.meta.hasBookingNavigation
+      return this.$route.meta.hasBookingNavigation;
     },
     isAuthenticated() {
-      return this.$store.getters['auth/isAuthenticated']
+      return this.$store.getters['auth/isAuthenticated'];
     },
     loading() {
-      return this.$store.getters['auth/loading']
+      return this.$store.getters['auth/loading'];
     }
   }
-}
+};
 </script>
 
 <style lang="scss">

@@ -49,38 +49,38 @@
 </template>
 
 <script lang="ts">
-import { formatDate } from '@/helpers'
-const ResortRules = () => import('@/components/ResortRules.vue')
-import Vue from 'vue'
-import store from '@/store'
+import { formatDate } from '@/helpers';
+const ResortRules = () => import('@/components/ResortRules.vue');
+import Vue from 'vue';
+import store from '@/store';
 export default Vue.extend({
   name: 'review-policies',
   components: { ResortRules },
   computed: {
     resort() {
-      return this.$store.getters['booking/bookingInfo'].resort
+      return this.$store.getters['booking/bookingInfo'].resort;
     },
     dateOne() {
-      return this.$store.getters['booking/bookingInfo'].dateOne
+      return this.$store.getters['booking/bookingInfo'].dateOne;
     },
     checkOut() {
-      return this.$store.getters['booking/bookingInfo'].checkOut
+      return this.$store.getters['booking/bookingInfo'].checkOut;
     },
     prices() {
-      return this.$store.getters['booking/prices']({ decimalDigits: 0 })
+      return this.$store.getters['booking/prices']({ decimalDigits: 0 });
     },
     steps() {
-      return this.$store.getters['booking/steps']
+      return this.$store.getters['booking/steps'];
     }
   },
   methods: {
     formatDate,
     submit() {
-      this.$router.push({ name: 'booking-customer-info' })
-      this.$store.dispatch('booking/updateCurrentStep', this.steps.customerInfo)
+      this.$router.push({ name: 'booking-customer-info' });
+      this.$store.dispatch('booking/updateCurrentStep', this.steps.customerInfo);
     }
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>

@@ -37,9 +37,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import store from '@/store'
-const AuthCore = () => import('@/components/AuthCore.vue')
+import Vue from 'vue';
+import store from '@/store';
+const AuthCore = () => import('@/components/AuthCore.vue');
 
 export default Vue.extend({
   name: 'booking-auth',
@@ -51,32 +51,32 @@ export default Vue.extend({
     }
   },
   mounted() {
-    this.$store.dispatch('auth/updateActiveState', 'auth-login')
+    this.$store.dispatch('auth/updateActiveState', 'auth-login');
     if (this.isAuthenticated) {
-      this.goNextStep()
+      this.goNextStep();
     }
   },
   computed: {
     dialog() {
-      return this.$store.getters['auth/dialog']
+      return this.$store.getters['auth/dialog'];
     },
     isAuthenticated(): boolean {
-      return this.$store.getters['auth/isAuthenticated']
+      return this.$store.getters['auth/isAuthenticated'];
     }
   },
   watch: {
     isAuthenticated(newVal) {
       if (newVal) {
-        this.goNextStep()
+        this.goNextStep();
       }
     }
   },
   methods: {
     goNextStep() {
-      this.$store.dispatch('booking/updateCurrentStep', this.nextStep)
+      this.$store.dispatch('booking/updateCurrentStep', this.nextStep);
     }
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>

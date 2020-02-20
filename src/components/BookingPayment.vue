@@ -142,12 +142,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import isNumeric from 'validator/es/lib/isNumeric'
-import isAlpha from 'validator/es/lib/isAlpha'
-import store from '../store'
-import { InternalMessagePassing } from '../types'
-const BookingPaymentByStripe = () => import('@/components/BookingPaymentByStripe.vue')
+import Vue from 'vue';
+import isNumeric from 'validator/es/lib/isNumeric';
+import isAlpha from 'validator/es/lib/isAlpha';
+import store from '../store';
+import { InternalMessagePassing } from '../types';
+const BookingPaymentByStripe = () => import('@/components/BookingPaymentByStripe.vue');
 
 export default Vue.extend({
   name: 'booking-payment',
@@ -173,114 +173,114 @@ export default Vue.extend({
         addressZip: [v => !!v || 'Zip number is required', v => isNumeric(v) || 'Zip code is not valid']
       },
       isFailEmailSent: false
-    }
+    };
   },
   mounted() {
-    this.resetLoadingAndError()
+    this.resetLoadingAndError();
   },
   computed: {
     payWith: {
       get() {
-        return this.$store.getters['booking/bookingInfo'].payWith
+        return this.$store.getters['booking/bookingInfo'].payWith;
       },
       set(value: string) {
-        this.$store.dispatch('booking/updatePayWith', value)
+        this.$store.dispatch('booking/updatePayWith', value);
       }
     },
     fullName: {
       get() {
-        return this.$store.getters['booking/bookingInfo'].fullName
+        return this.$store.getters['booking/bookingInfo'].fullName;
       },
       set(value: string) {
-        this.$store.dispatch('booking/updateFullName', value)
+        this.$store.dispatch('booking/updateFullName', value);
       }
     },
     addressCity: {
       get() {
-        return this.$store.getters['booking/bookingInfo'].addressCity
+        return this.$store.getters['booking/bookingInfo'].addressCity;
       },
       set(value: string) {
-        this.$store.dispatch('booking/updateAddressCity', value)
+        this.$store.dispatch('booking/updateAddressCity', value);
       }
     },
     addressState: {
       get() {
-        return this.$store.getters['booking/bookingInfo'].addressState
+        return this.$store.getters['booking/bookingInfo'].addressState;
       },
       set(value: string) {
-        this.$store.dispatch('booking/updateAddressState', value)
+        this.$store.dispatch('booking/updateAddressState', value);
       }
     },
     addressLine: {
       get() {
-        return this.$store.getters['booking/bookingInfo'].addressLine
+        return this.$store.getters['booking/bookingInfo'].addressLine;
       },
       set(value: string) {
-        this.$store.dispatch('booking/updateAddressLine', value)
+        this.$store.dispatch('booking/updateAddressLine', value);
       }
     },
     addressZip: {
       get() {
-        return this.$store.getters['booking/bookingInfo'].addressZip
+        return this.$store.getters['booking/bookingInfo'].addressZip;
       },
       set(value: string) {
-        this.$store.dispatch('booking/updateAddressZip', value)
+        this.$store.dispatch('booking/updateAddressZip', value);
       }
     },
     paymentError() {
-      return this.$store.getters['payment/paymentError']
+      return this.$store.getters['payment/paymentError'];
     },
     isPaymentLoading() {
-      return this.$store.getters['payment/isPaymentLoading']
+      return this.$store.getters['payment/isPaymentLoading'];
     },
     reservationId() {
-      return this.$store.getters['booking/reservationId']
+      return this.$store.getters['booking/reservationId'];
     },
     computedTotalPrice() {
-      return this.$store.getters['booking/computedTotalPrice']({ all: true })
+      return this.$store.getters['booking/computedTotalPrice']({ all: true });
     }
   },
   methods: {
     resetLoadingAndError() {
-      this.$store.dispatch('payment/updatePaymentError', '')
-      this.$store.dispatch('payment/updateIsPaymentLoading', false)
+      this.$store.dispatch('payment/updatePaymentError', '');
+      this.$store.dispatch('payment/updateIsPaymentLoading', false);
     },
     async submit() {
-      this.resetLoadingAndError()
+      this.resetLoadingAndError();
 
       if ((await this.evaluateValidation()) === false) {
-        return
+        return;
       }
 
-      this.$store.dispatch('payment/updateIsPaymentLoading', true)
+      this.$store.dispatch('payment/updateIsPaymentLoading', true);
       if (this.payWith === 'cash') {
-        await this.payWithCash()
+        await this.payWithCash();
       } else if (this.payWith === 'card') {
-        await this.payWithCard()
+        await this.payWithCard();
       }
-      this.$store.dispatch('payment/updateIsPaymentLoading', false)
+      this.$store.dispatch('payment/updateIsPaymentLoading', false);
     },
     async payWithCash() {
-      const result = await this.$store.dispatch('booking/reserveRoomAndNotify')
-      this.onCashPayment(result)
+      const result = await this.$store.dispatch('booking/reserveRoomAndNotify');
+      this.onCashPayment(result);
     },
     onCashPayment({ email, reserve }) {
       if (reserve) {
-        this.goNextStep()
+        this.goNextStep();
       }
     },
     async payWithCard() {
       // NOTE: this reservation should be temporary in backend
-      const { reserve } = await this.$store.dispatch('booking/reserveRoom')
+      const { reserve } = await this.$store.dispatch('booking/reserveRoom');
       if (reserve) {
-        const metadata = this.getPaymentMetadata()
+        const metadata = this.getPaymentMetadata();
         try {
-          await this.getClientSecret({ amount: this.computedTotalPrice, metadata })
+          await this.getClientSecret({ amount: this.computedTotalPrice, metadata });
           // @ts-ignore
-          const result = await this.$refs.paymentByStripe.submit()
-          this.onCardPayment(result)
+          const result = await this.$refs.paymentByStripe.submit();
+          this.onCardPayment(result);
         } catch (error) {
-          this.$store.dispatch('payment/updatePaymentError', error.message)
+          this.$store.dispatch('payment/updatePaymentError', error.message);
         }
       }
     },
@@ -290,15 +290,15 @@ export default Vue.extend({
           text: result.message,
           color: 'success',
           class: 'dark--text'
-        })
-        this.$store.dispatch('booking/sendReservationSuccessEmail', { notificationType: 'CARD PAYMENT' })
-        this.goNextStep()
+        });
+        this.$store.dispatch('booking/sendReservationSuccessEmail', { notificationType: 'CARD PAYMENT' });
+        this.goNextStep();
       } else {
-        this.$store.dispatch('payment/updatePaymentError', result.message)
+        this.$store.dispatch('payment/updatePaymentError', result.message);
         if (!this.isFailEmailSent) {
           try {
-            await this.$store.dispatch('booking/sendReservationFailEmail', { notificationType: 'CARD PAYMENT' })
-            this.isFailEmailSent = true
+            await this.$store.dispatch('booking/sendReservationFailEmail', { notificationType: 'CARD PAYMENT' });
+            this.isFailEmailSent = true;
           } catch (error) {}
         }
       }
@@ -308,7 +308,7 @@ export default Vue.extend({
         reservationId: this.reservationId,
         amount,
         metadata
-      })
+      });
     },
     getPaymentMetadata() {
       return {
@@ -317,25 +317,25 @@ export default Vue.extend({
         address_city: this.addressCity,
         address_state: this.addressState,
         address_zip: this.addressZip
-      }
+      };
     },
     async evaluateValidation() {
       try {
-        return await this.$store.dispatch('booking/evaluateValidation')
+        return await this.$store.dispatch('booking/evaluateValidation');
       } catch (error) {
-        this.$store.dispatch('payment/updatePaymentError', error.message)
-        return false
+        this.$store.dispatch('payment/updatePaymentError', error.message);
+        return false;
       }
     },
     onPaymentSuccess(result) {
-      this.goNextStep()
+      this.goNextStep();
     },
     onPaymentError(result) {},
     goNextStep() {
-      this.$router.push({ name: 'booking-thanks' })
+      this.$router.push({ name: 'booking-thanks' });
     }
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>

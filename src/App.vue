@@ -8,12 +8,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import store from '@/store'
-import { languageCodes, appTitle } from '@/constants/app'
-const SnackbarsGlobal = () => import(/* webpackChunkName: "Critical" */ '@/components/SnackbarsGlobal.vue')
-const PageProgressBarGlobal = () => import(/* webpackChunkName: "Critical" */ '@/components/PageProgressBarGlobal.vue')
-const PageSplashScreen = () => import(/* webpackChunkName: "Critical" */ '@/components/PageSplashScreen.vue')
+import Vue from 'vue';
+import store from '@/store';
+import { languageCodes, appTitle } from '@/constants/app';
+const SnackbarsGlobal = () => import(/* webpackChunkName: "Critical" */ '@/components/SnackbarsGlobal.vue');
+const PageProgressBarGlobal = () => import(/* webpackChunkName: "Critical" */ '@/components/PageProgressBarGlobal.vue');
+const PageSplashScreen = () => import(/* webpackChunkName: "Critical" */ '@/components/PageSplashScreen.vue');
 
 export default Vue.extend({
   name: 'app',
@@ -22,34 +22,34 @@ export default Vue.extend({
   },
   components: { SnackbarsGlobal, PageProgressBarGlobal, PageSplashScreen },
   created() {
-    this.clearTemporaryStates()
-    this.getUser()
+    this.clearTemporaryStates();
+    this.getUser();
   },
   methods: {
     async getUser() {
       try {
-        await this.$store.dispatch('auth/ping')
+        await this.$store.dispatch('auth/ping');
       } catch (error) {
-        console.log(error.message)
+        console.log(error.message);
       }
     },
     clearTemporaryStates() {
-      this.$store.commit('auth/updateLoading', false)
+      this.$store.commit('auth/updateLoading', false);
     }
   },
   computed: {
     hiddenLanguagesClasses() {
-      const selectedLanguageCode = this.$store.getters['language/config'].selectedLanguageCode
-      return languageCodes.filter(code => code !== selectedLanguageCode).map(code => `hide-lang-${code}`)
+      const selectedLanguageCode = this.$store.getters['language/config'].selectedLanguageCode;
+      return languageCodes.filter(code => code !== selectedLanguageCode).map(code => `hide-lang-${code}`);
     },
     isSplashScreenVisible(): boolean {
-      return this.$store.getters['loading/isSplashScreenVisible']
+      return this.$store.getters['loading/isSplashScreenVisible'];
     },
     shouldShowProgressBar(): boolean {
-      return !this.isSplashScreenVisible
+      return !this.isSplashScreenVisible;
     }
   }
-})
+});
 </script>
 
 <style lang="scss">

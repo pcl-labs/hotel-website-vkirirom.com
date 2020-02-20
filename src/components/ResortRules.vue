@@ -44,11 +44,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import store from '@/store'
-import { Resort } from '@/types'
-import { get } from 'lodash-es'
-const MarkdownBlock = () => import('@/components/MarkdownBlock.vue')
+import Vue from 'vue';
+import store from '@/store';
+import { Resort } from '@/types';
+import { get } from 'lodash-es';
+const MarkdownBlock = () => import('@/components/MarkdownBlock.vue');
 
 export default Vue.extend({
   name: 'resort-rules',
@@ -65,13 +65,13 @@ export default Vue.extend({
   },
   computed: {
     resortHotel(): Resort['modules']['hotel'] {
-      return get(this.resort, 'modules.hotel', {})
+      return get(this.resort, 'modules.hotel', {});
     }
   },
   methods: {
     get
   }
-})
+});
 </script>
 
 <style lang="scss">

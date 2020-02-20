@@ -212,10 +212,10 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import store from '@/store'
-import { Resort, RoomType } from '@/types'
-import { isNumber } from 'lodash-es'
+import Vue from 'vue';
+import store from '@/store';
+import { Resort, RoomType } from '@/types';
+import { isNumber } from 'lodash-es';
 
 export default Vue.extend({
   name: 'booking-confirm-guests',
@@ -233,69 +233,69 @@ export default Vue.extend({
         computedTotal: [v => v > 0 || 'Specify the number of guests'],
         bedType: [v => (!!v && isNumber(v.id)) || 'Bed type is required']
       }
-    }
+    };
   },
   computed: {
     selectedRoomType: {
       get() {
-        return this.$store.getters['booking/bookingInfo'].roomType
+        return this.$store.getters['booking/bookingInfo'].roomType;
       },
       set(value: RoomType) {
-        this.$store.dispatch('booking/updateRoomType', value)
+        this.$store.dispatch('booking/updateRoomType', value);
       }
     },
     guests() {
-      return this.$store.getters['booking/bookingInfo'].guests
+      return this.$store.getters['booking/bookingInfo'].guests;
     },
     guestsAdults: {
       get(): number {
-        return this.$store.getters['booking/bookingInfo'].guests.adults
+        return this.$store.getters['booking/bookingInfo'].guests.adults;
       },
       set(value: number) {
         const guests = {
           ...this.guests,
           adults: value
-        }
-        this.$store.dispatch('booking/updateGuests', guests)
+        };
+        this.$store.dispatch('booking/updateGuests', guests);
       }
     },
     guestsChildren: {
       get(): number {
-        return this.$store.getters['booking/bookingInfo'].guests.children
+        return this.$store.getters['booking/bookingInfo'].guests.children;
       },
       set(value: number) {
         const guests = {
           ...this.guests,
           children: value
-        }
-        this.$store.dispatch('booking/updateGuests', guests)
+        };
+        this.$store.dispatch('booking/updateGuests', guests);
       }
     },
     guestsTotal() {
-      return this.$store.getters['booking/bookingInfo'].guests.total
+      return this.$store.getters['booking/bookingInfo'].guests.total;
     },
     computedTotal(): number {
-      return this.guestsAdults + this.guestsChildren
+      return this.guestsAdults + this.guestsChildren;
     },
     resort(): Resort {
-      return this.$store.getters['booking/bookingInfo'].resort
+      return this.$store.getters['booking/bookingInfo'].resort;
     },
     roomTypes(): RoomType[] {
-      const modules = this.$store.getters['booking/bookingInfo'].resort.modules
+      const modules = this.$store.getters['booking/bookingInfo'].resort.modules;
       if (!modules) {
-        return []
+        return [];
       }
-      return modules.hotel.roomTypes
+      return modules.hotel.roomTypes;
     },
     currentStep(): number {
-      return this.$store.getters['booking/currentStep']
+      return this.$store.getters['booking/currentStep'];
     }
   },
   watch: {
     roomTypes: {
       handler(newVal) {
         if (newVal.length === 1) {
-          this.selectedRoomType = newVal[0]
+          this.selectedRoomType = newVal[0];
         }
       },
       immediate: true,
@@ -305,8 +305,8 @@ export default Vue.extend({
       const guests = {
         ...this.guests,
         total: newVal
-      }
-      this.$store.dispatch('booking/updateGuests', guests)
+      };
+      this.$store.dispatch('booking/updateGuests', guests);
     }
   },
   methods: {
@@ -317,13 +317,13 @@ export default Vue.extend({
           children: this.guestsChildren,
           total: this.guestsTotal
         })
-        .then(this.goNextStep)
+        .then(this.goNextStep);
     },
     goNextStep() {
-      this.$store.dispatch('booking/updateCurrentStep', this.nextStep)
+      this.$store.dispatch('booking/updateCurrentStep', this.nextStep);
     }
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>

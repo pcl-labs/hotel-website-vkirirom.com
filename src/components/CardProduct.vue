@@ -38,13 +38,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from 'vue';
 export default Vue.extend({
   name: 'card-product',
   data() {
     return {
       height: 150
-    }
+    };
   },
   props: {
     image: {
@@ -68,7 +68,7 @@ export default Vue.extend({
       type: Boolean
     }
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>

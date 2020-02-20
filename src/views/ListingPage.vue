@@ -140,27 +140,27 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-const ResortDescription = () => import('@/components/ResortDescription.vue')
-const BookingBar = () => import('@/components/BookingBar.vue')
-const PageFooter = () => import('@/components/PageFooter.vue')
-const PageHeader = () => import('@/components/PageHeader.vue')
-const ListingContactForm = () => import('@/components/ListingContactForm.vue')
-import store from '@/store'
-import { Resort } from '@/types'
+import Vue from 'vue';
+const ResortDescription = () => import('@/components/ResortDescription.vue');
+const BookingBar = () => import('@/components/BookingBar.vue');
+const PageFooter = () => import('@/components/PageFooter.vue');
+const PageHeader = () => import('@/components/PageHeader.vue');
+const ListingContactForm = () => import('@/components/ListingContactForm.vue');
+import store from '@/store';
+import { Resort } from '@/types';
 import {
   removeOtherLanguagesExcept,
   getFormattedMetaDescription,
   getFormattedMetaTitle,
   transformCloudinaryUrl
-} from '../helpers'
-import { get } from 'lodash-es'
-import { appTitleTemplate } from '@/constants/app'
+} from '../helpers';
+import { get } from 'lodash-es';
+import { appTitleTemplate } from '@/constants/app';
 
 async function beforeRouteEnterOrUpdate(to, from, next) {
-  const slug = to.params.id
-  const result = await store.dispatch('resort/getItemBySlug', slug)
-  next()
+  const slug = to.params.id;
+  const result = await store.dispatch('resort/getItemBySlug', slug);
+  next();
 }
 
 export default Vue.extend({
@@ -174,10 +174,10 @@ export default Vue.extend({
   },
   props: ['slug'],
   async beforeRouteEnter(to, from, next) {
-    beforeRouteEnterOrUpdate(to, from, next)
+    beforeRouteEnterOrUpdate(to, from, next);
   },
   async beforeRouteUpdate(to, from, next) {
-    beforeRouteEnterOrUpdate(to, from, next)
+    beforeRouteEnterOrUpdate(to, from, next);
   },
   metaInfo() {
     return {
@@ -197,41 +197,41 @@ export default Vue.extend({
           json: (this as any).resort.custom
         }
       ]
-    }
+    };
   },
   methods: {
     get,
     onStartBooking(): void {
       // @ts-ignore
-      this.updateRoomDescriptionHTML()
+      this.updateRoomDescriptionHTML();
     },
     updateRoomDescriptionHTML(): void {
       // @ts-ignore
-      const resortRulesText = this.$refs.roomDescriptionWrapperRef.$el.innerHTML
-      this.$store.dispatch('booking/updateRoomDescriptionHTML', resortRulesText)
+      const resortRulesText = this.$refs.roomDescriptionWrapperRef.$el.innerHTML;
+      this.$store.dispatch('booking/updateRoomDescriptionHTML', resortRulesText);
     }
   },
   computed: {
     resort(): Resort {
-      return this.$store.getters['resort/itemBySlug'](this.slug)
+      return this.$store.getters['resort/itemBySlug'](this.slug);
     },
     categories(): string[] {
       // @ts-ignore
-      const resort = this.resort
-      const categories = get(resort, 'categories', [])
+      const resort = this.resort;
+      const categories = get(resort, 'categories', []);
       // @ts-ignore
-      return categories.map(item => item.name)
+      return categories.map(item => item.name);
     },
     shouldShowContactForm(): boolean {
       // @ts-ignore
-      return !this.categories.includes('accommodations')
+      return !this.categories.includes('accommodations');
     },
     shouldShowBookingBar(): boolean {
       // @ts-ignore
-      return this.categories.includes('accommodations')
+      return this.categories.includes('accommodations');
     }
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>

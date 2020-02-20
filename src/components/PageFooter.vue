@@ -98,32 +98,32 @@
 </template>
 
 <script>
-import store from '@/store'
+import store from '@/store';
 export default {
   name: 'page-footer',
   data() {
     return {
       appVersion: JSON.parse(unescape(process.env.APP_VERSION || 0))
-    }
+    };
   },
   mounted() {
-    this.storeFooterHeight()
+    this.storeFooterHeight();
   },
   methods: {
     updateSelectedLanguageCode(languageCode) {
-      this.$store.dispatch('language/updateSelectedLanguageCode', languageCode)
+      this.$store.dispatch('language/updateSelectedLanguageCode', languageCode);
     },
     storeFooterHeight() {
-      const pageFooter = this.$refs.pageFooter
-      this.$store.dispatch('layout/updateFooterHeight', pageFooter.$el.clientHeight)
+      const pageFooter = this.$refs.pageFooter;
+      this.$store.dispatch('layout/updateFooterHeight', pageFooter.$el.clientHeight);
     }
   },
   computed: {
     selectedLanguageCode() {
-      return this.$store.getters['language/config'].selectedLanguageCode
+      return this.$store.getters['language/config'].selectedLanguageCode;
     }
   }
-}
+};
 </script>
 
 <style lang="scss">

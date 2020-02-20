@@ -8,20 +8,20 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import store from '@/store'
-const AuthLogin = () => import('@/components/AuthLogin.vue')
-const AuthLoginExistingAccount = () => import('@/components/AuthLoginExistingAccount.vue')
-const AuthSignup = () => import('@/components/AuthSignup.vue')
-const AuthForgotPassword = () => import('@/components/AuthForgotPassword.vue')
+import Vue from 'vue';
+import store from '@/store';
+const AuthLogin = () => import('@/components/AuthLogin.vue');
+const AuthLoginExistingAccount = () => import('@/components/AuthLoginExistingAccount.vue');
+const AuthSignup = () => import('@/components/AuthSignup.vue');
+const AuthForgotPassword = () => import('@/components/AuthForgotPassword.vue');
 
 export default Vue.extend({
   name: 'auth-core',
   components: { AuthLogin, AuthSignup, AuthLoginExistingAccount, AuthForgotPassword },
   computed: {
     activeState() {
-      return this.$store.getters['auth/activeState']
+      return this.$store.getters['auth/activeState'];
     }
   }
-})
+});
 </script>

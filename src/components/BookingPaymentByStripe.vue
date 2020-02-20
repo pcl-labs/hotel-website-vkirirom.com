@@ -17,10 +17,10 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import store from '../store'
-import { formatDate } from '../helpers'
-import { InternalMessagePassing } from '../types'
+import Vue from 'vue';
+import store from '../store';
+import { formatDate } from '../helpers';
+import { InternalMessagePassing } from '../types';
 // stripe setup example: https://github.com/stripe-samples/accept-a-card-payment/blob/master/without-webhooks/client/web/script.js
 // theme examples https://stripe.dev/elements-examples/
 
@@ -30,41 +30,41 @@ export default Vue.extend({
     return {
       stripe: {} as any,
       card: {} as any
-    }
+    };
   },
   mounted() {
-    this.cleanup()
-    this.init()
+    this.cleanup();
+    this.init();
   },
   methods: {
     cleanup() {
-      this.$store.dispatch('payment/updateIsPaymentLoading', false)
-      this.$store.dispatch('payment/updatePaymentError', '')
+      this.$store.dispatch('payment/updateIsPaymentLoading', false);
+      this.$store.dispatch('payment/updatePaymentError', '');
     },
     async init() {
       try {
-        await this.getStripeKey()
-        await this.createStripeComponent(this.stripeKey, this.accountId)
+        await this.getStripeKey();
+        await this.createStripeComponent(this.stripeKey, this.accountId);
       } catch (error) {
-        this.$store.dispatch('payment/updatePaymentError', error.message)
+        this.$store.dispatch('payment/updatePaymentError', error.message);
       }
     },
     async submit(): Promise<InternalMessagePassing> {
-      let result
+      let result;
       try {
-        result = await this.payByStripe()
+        result = await this.payByStripe();
       } catch (error) {
-        result = { error: true, message: error.message }
+        result = { error: true, message: error.message };
       }
-      return result
+      return result;
     },
     async createStripeComponent(stripeKey, accountId) {
       // @ts-ignore
       this.stripe = window.Stripe(await stripeKey, {
         stripeAccount: accountId
-      })
+      });
       // @ts-ignore
-      const themes = this.$vuetify.theme.themes
+      const themes = this.$vuetify.theme.themes;
 
       var elementStyles = {
         base: {
@@ -83,7 +83,7 @@ export default Vue.extend({
           color: themes.dark.error,
           iconColor: themes.dark.error
         }
-      }
+      };
       const elements = this.stripe.elements({
         fonts: [
           {
@@ -91,68 +91,68 @@ export default Vue.extend({
           }
         ],
         locale: 'auto'
-      })
+      });
 
       const elementClasses = {
         focus: 'focus',
         empty: 'empty',
         invalid: 'invalid'
-      }
+      };
 
       var cardNumber = elements.create('cardNumber', {
         style: elementStyles,
         classes: elementClasses,
         placeholder: 'Card number'
-      })
-      cardNumber.mount(this.$refs.cardNumber)
+      });
+      cardNumber.mount(this.$refs.cardNumber);
 
       // sending only one input to confirmCardPayment() is enough
-      this.card = cardNumber
+      this.card = cardNumber;
 
       var cardExpiry = elements.create('cardExpiry', {
         style: elementStyles,
         classes: elementClasses,
         placeholder: 'Expiration'
-      })
-      cardExpiry.mount(this.$refs.expireNumber)
+      });
+      cardExpiry.mount(this.$refs.expireNumber);
 
       var cardCvc = elements.create('cardCvc', {
         style: elementStyles,
         classes: elementClasses,
         placeholder: 'CVV'
-      })
-      cardCvc.mount(this.$refs.cvvNumber)
+      });
+      cardCvc.mount(this.$refs.cvvNumber);
     },
     payByStripe() {
-      const that = this
+      const that = this;
       return this.$store.dispatch('payment/payByStripe', {
         stripe: this.stripe,
         clientSecret: this.clientSecret,
         card: this.card
-      })
+      });
     },
     getStripeKey() {
-      return this.$store.dispatch('payment/getStripeKey')
+      return this.$store.dispatch('payment/getStripeKey');
     }
   },
   computed: {
     stripeKey() {
-      return this.$store.getters['payment/stripeKey']
+      return this.$store.getters['payment/stripeKey'];
     },
     accountId() {
-      return this.$store.getters['payment/accountId']
+      return this.$store.getters['payment/accountId'];
     },
     customBookingInfo() {
-      return this.$store.getters['booking/customBookingInfo']
+      return this.$store.getters['booking/customBookingInfo'];
     },
     clientSecret() {
-      return this.$store.getters['payment/clientSecret']
+      return this.$store.getters['payment/clientSecret'];
     },
     reservationId() {
-      return this.$store.getters['booking/reservationId']
+      return this.$store.getters['booking/reservationId'];
     }
   }
-})
+});
 </script>
 
 <style lang="scss">

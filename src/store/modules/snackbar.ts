@@ -13,7 +13,7 @@ const defaultSettings = {
     color: 'primary',
     class: 'dark--text'
   }
-}
+};
 
 export default {
   namespaced: true,
@@ -22,10 +22,10 @@ export default {
   },
   mutations: {
     update(state, payload) {
-      state.item = payload
+      state.item = payload;
     },
     updateVisibility(state, payload) {
-      state.item.visible = payload
+      state.item.visible = payload;
     }
   },
   actions: {
@@ -34,16 +34,16 @@ export default {
         ...defaultSettings,
         ...payload,
         visible: true
-      }
-      context.commit('update', settings)
+      };
+      context.commit('update', settings);
     },
     updateVisibility(context, payload) {
-      context.commit('updateVisibility', payload)
+      context.commit('updateVisibility', payload);
     }
   },
   getters: {
     item(state) {
-      return state.item
+      return state.item;
     }
   }
-}
+};

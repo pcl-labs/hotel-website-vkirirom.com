@@ -35,12 +35,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-const BookingReviewRules = () => import('@/components/BookingReviewRules.vue')
-const BookingConfirmBooking = () => import('@/components/BookingConfirmBooking.vue')
-const PageHeader = () => import('@/components/PageHeader.vue')
-import store from '@/store'
-import { countriesListUrl } from '../constants/app'
+import Vue from 'vue';
+const BookingReviewRules = () => import('@/components/BookingReviewRules.vue');
+const BookingConfirmBooking = () => import('@/components/BookingConfirmBooking.vue');
+const PageHeader = () => import('@/components/PageHeader.vue');
+import store from '@/store';
+import { countriesListUrl } from '../constants/app';
 
 export default Vue.extend({
   name: 'booking-review-rules-page',
@@ -53,24 +53,24 @@ export default Vue.extend({
           href: countriesListUrl
         }
       ]
-    }
+    };
   },
   components: { PageHeader, BookingReviewRules, BookingConfirmBooking },
   mounted() {
-    this.$store.dispatch('booking/updateCurrentStep', this.steps.reviewPolicies)
+    this.$store.dispatch('booking/updateCurrentStep', this.steps.reviewPolicies);
   },
   computed: {
     steps() {
-      return this.$store.getters['booking/steps']
+      return this.$store.getters['booking/steps'];
     },
     bookingResort() {
-      return this.$store.getters['booking/bookingInfo'].resort
+      return this.$store.getters['booking/bookingInfo'].resort;
     },
     returnUrl() {
-      return this.$store.getters['booking/bookingInfo'].returnUrl
+      return this.$store.getters['booking/bookingInfo'].returnUrl;
     }
   }
-})
+});
 </script>
 
 <style lang="scss">

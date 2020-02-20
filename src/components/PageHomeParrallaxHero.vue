@@ -37,8 +37,8 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { getPassiveEventConfig, transformCloudinaryUrl } from '@/helpers'
+import Vue from 'vue';
+import { getPassiveEventConfig, transformCloudinaryUrl } from '@/helpers';
 
 const images = {
   image1: {
@@ -88,7 +88,7 @@ const images = {
     md: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578452734/Home%20Page/6_-_1264_Crop_axf4bc.png',
     lg: 'https://res.cloudinary.com/die9ji2vn/image/upload/v1578304829/Home%20Page/6-_Black_nt3cjt.png'
   }
-}
+};
 
 export default Vue.extend({
   name: 'page-home-parrallax-hero',
@@ -97,88 +97,88 @@ export default Vue.extend({
       overridedBreakpoint: '',
       loadedItems: 0,
       totalLoadingItems: 6
-    }
+    };
   },
   watch: {
     loadedItems(newValue) {
       if (newValue === this.totalLoadingItems) {
-        this.onEndLoadingAll()
+        this.onEndLoadingAll();
       }
     }
   },
   mounted() {
-    this.addScrollListener()
+    this.addScrollListener();
   },
   methods: {
     onEndLoadingItem(event) {
-      this.loadedItems++
+      this.loadedItems++;
     },
     onEndLoadingAll() {
-      this.$emit('loaded')
+      this.$emit('loaded');
     },
     updateBreakpoint() {
-      const xsWidth = 376
+      const xsWidth = 376;
       // add xxs breakpoint
       if (window.innerWidth < xsWidth) {
-        this.overridedBreakpoint = 'xxs'
+        this.overridedBreakpoint = 'xxs';
       } else {
-        this.overridedBreakpoint = ''
+        this.overridedBreakpoint = '';
       }
     },
     addScrollListener() {
       const listener = (event: any) => {
-        this.applyParallaxStyle()
-      }
-      window.addEventListener('scroll', listener, getPassiveEventConfig())
+        this.applyParallaxStyle();
+      };
+      window.addEventListener('scroll', listener, getPassiveEventConfig());
 
       this.$once('hook:destroyed', () => {
-        document.removeEventListener('scroll', listener)
-      })
+        document.removeEventListener('scroll', listener);
+      });
     },
     applyParallaxStyle() {
-      let parent = this.$refs.parallaxContainer as HTMLElement
+      let parent = this.$refs.parallaxContainer as HTMLElement;
       if (!parent) {
-        return
+        return;
       }
-      let children = parent.getElementsByClassName('layer--parallax') as HTMLCollectionOf<HTMLElement>
+      let children = parent.getElementsByClassName('layer--parallax') as HTMLCollectionOf<HTMLElement>;
       for (let i = 0; i < children.length; i++) {
-        const translateAmount = (window.pageYOffset * i) / children.length
-        children[i].style.transform = `translateY(-${translateAmount}px)`
+        const translateAmount = (window.pageYOffset * i) / children.length;
+        children[i].style.transform = `translateY(-${translateAmount}px)`;
       }
     },
     getImage(number, breakpointName) {
-      const image = images['image' + number]
+      const image = images['image' + number];
 
-      return transformCloudinaryUrl(image[this.overridedBreakpoint || breakpointName] || image['lg'], 'f_auto')
+      return transformCloudinaryUrl(image[this.overridedBreakpoint || breakpointName] || image['lg'], 'f_auto');
     }
   },
   computed: {
     image1(): string {
-      const breakpointName = (this as any).$vuetify.breakpoint.name
-      return this.getImage(1, breakpointName)
+      const breakpointName = (this as any).$vuetify.breakpoint.name;
+      return this.getImage(1, breakpointName);
     },
     image2(): string {
-      const breakpointName = (this as any).$vuetify.breakpoint.name
-      return this.getImage(2, breakpointName)
+      const breakpointName = (this as any).$vuetify.breakpoint.name;
+      return this.getImage(2, breakpointName);
     },
     image3(): string {
-      const breakpointName = (this as any).$vuetify.breakpoint.name
-      return this.getImage(3, breakpointName)
+      const breakpointName = (this as any).$vuetify.breakpoint.name;
+      return this.getImage(3, breakpointName);
     },
     image4(): string {
-      const breakpointName = (this as any).$vuetify.breakpoint.name
-      return this.getImage(4, breakpointName)
+      const breakpointName = (this as any).$vuetify.breakpoint.name;
+      return this.getImage(4, breakpointName);
     },
     image5(): string {
-      const breakpointName = (this as any).$vuetify.breakpoint.name
-      return this.getImage(5, breakpointName)
+      const breakpointName = (this as any).$vuetify.breakpoint.name;
+      return this.getImage(5, breakpointName);
     },
     image6(): string {
-      const breakpointName = (this as any).$vuetify.breakpoint.name
-      return this.getImage(6, breakpointName)
+      const breakpointName = (this as any).$vuetify.breakpoint.name;
+      return this.getImage(6, breakpointName);
     }
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>

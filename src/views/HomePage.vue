@@ -205,16 +205,16 @@
 </template>
 
 <script lang="ts">
-import { PageService } from '@/connection/resources.js'
-import store from '../store'
-import { getFormattedMetaTitle, getFormattedMetaDescription, removeOtherLanguagesExcept } from '../helpers'
-import { appTitleTemplate } from '../constants/app'
-import { Resort, ResortImage } from '../types'
-const PageFooter = () => import(/* webpackChunkName: "Footer" */ '@/components/PageFooter.vue')
-const MarkdownBlock = () => import(/* webpackChunkName: "Critical" */ '@/components/MarkdownBlock.vue')
-const PageHeader = () => import(/* webpackChunkName: "Critical" */ '@/components/PageHeader.vue')
-const PageHomeParrallaxHero = () => import(/* webpackChunkName: "Critical" */ '@/components/PageHomeParrallaxHero.vue')
-const CardProduct = () => import(/* webpackChunkName: "Card" */ '@/components/CardProduct.vue')
+import { PageService } from '@/connection/resources.js';
+import store from '../store';
+import { getFormattedMetaTitle, getFormattedMetaDescription, removeOtherLanguagesExcept } from '../helpers';
+import { appTitleTemplate } from '../constants/app';
+import { Resort, ResortImage } from '../types';
+const PageFooter = () => import(/* webpackChunkName: "Footer" */ '@/components/PageFooter.vue');
+const MarkdownBlock = () => import(/* webpackChunkName: "Critical" */ '@/components/MarkdownBlock.vue');
+const PageHeader = () => import(/* webpackChunkName: "Critical" */ '@/components/PageHeader.vue');
+const PageHomeParrallaxHero = () => import(/* webpackChunkName: "Critical" */ '@/components/PageHomeParrallaxHero.vue');
+const CardProduct = () => import(/* webpackChunkName: "Card" */ '@/components/CardProduct.vue');
 
 export default {
   name: 'home-page',
@@ -226,11 +226,11 @@ export default {
     MarkdownBlock
   },
   async beforeRouteEnter(to, from, next) {
-    store.commit('loading/updateIsSplashScreenVisible', true)
+    store.commit('loading/updateIsSplashScreenVisible', true);
 
-    const slug = 'home'
-    await store.dispatch('resort/getItemBySlug', slug)
-    next()
+    const slug = 'home';
+    await store.dispatch('resort/getItemBySlug', slug);
+    next();
   },
   metaInfo() {
     return {
@@ -249,7 +249,7 @@ export default {
           json: (this as any).resort.custom
         }
       ]
-    }
+    };
   },
   data() {
     return {
@@ -259,23 +259,23 @@ export default {
       ecotourisms: [],
       leases: [],
       shouldShowSplashScreen: true
-    }
+    };
   },
   methods: {
     mergeImageArray(listOne, listTwo) {
-      const result = listOne.slice(0).concat(listTwo.slice(0))
-      return result
+      const result = listOne.slice(0).concat(listTwo.slice(0));
+      return result;
     },
     onParallaxImagesLoaded() {
-      this.hideSplashScreen()
+      this.hideSplashScreen();
     },
     hideSplashScreen() {
-      this.$store.commit('loading/updateIsSplashScreenVisible', false)
+      this.$store.commit('loading/updateIsSplashScreenVisible', false);
     }
   },
   computed: {
     resort(): Resort {
-      return this.$store.getters['resort/itemBySlug']('home')
+      return this.$store.getters['resort/itemBySlug']('home');
     }
   },
   created() {
@@ -285,38 +285,38 @@ export default {
       categoryName: 'accommodations'
     }).then(data => {
       // @ts-ignore
-      this.accommodations = data.slice(0, 3)
-    })
+      this.accommodations = data.slice(0, 3);
+    });
     PageService.byCompanyByCategoryName({
       companySlug: 'vkirirom',
       categoryName: 'experiences'
     }).then(data => {
       // @ts-ignore
-      this.experiences = data.slice(0, 3)
-    })
+      this.experiences = data.slice(0, 3);
+    });
     PageService.byCompanyByCategoryName({
       companySlug: 'vkirirom',
       categoryName: 'events'
     }).then(data => {
       // @ts-ignore
-      this.events = data.slice(0, 3)
-    })
+      this.events = data.slice(0, 3);
+    });
     PageService.byCompanyByCategoryName({
       companySlug: 'vkirirom',
       categoryName: 'ecotourism'
     }).then(data => {
       // @ts-ignore
-      this.ecotourisms = data.slice(0, 3)
-    })
+      this.ecotourisms = data.slice(0, 3);
+    });
     PageService.byCompanyByCategoryName({
       companySlug: 'vkirirom',
       categoryName: 'lease'
     }).then(data => {
       // @ts-ignore
-      this.leases = data.slice(0, 3)
-    })
+      this.leases = data.slice(0, 3);
+    });
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

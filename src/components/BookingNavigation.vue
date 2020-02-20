@@ -48,8 +48,8 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import store from '../store'
+import Vue from 'vue';
+import store from '../store';
 export default Vue.extend({
   name: 'booking-navigation',
   props: {
@@ -60,21 +60,21 @@ export default Vue.extend({
   },
   methods: {
     shouldBeDisabled(step) {
-      return step.id > this.currentStep.id
+      return step.id > this.currentStep.id;
     },
     shouldBeActive(step) {
-      return step.id === this.currentStep.id
+      return step.id === this.currentStep.id;
     }
   },
   computed: {
     currentStep() {
-      return this.$store.getters['booking/currentStep']
+      return this.$store.getters['booking/currentStep'];
     },
     steps() {
-      return this.$store.getters['booking/steps']
+      return this.$store.getters['booking/steps'];
     }
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>
