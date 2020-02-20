@@ -5,7 +5,7 @@ import store from '@/store'
 const routes = [
   {
     path: '/testing',
-    component: () => import(/* webpackChunkName: "test" */ '@/views/KitchenSink.vue')
+    component: () => import(/* webpackChunkName: "Test" */ '@/views/KitchenSink.vue')
   },
   {
     name: 'home',
@@ -31,7 +31,7 @@ const routes = [
   {
     name: 'booking-review-rules',
     path: '/booking/review-rules',
-    component: () => import(/* webpackChunkName: "BookingReviewRules" */ '@/views/BookingReviewRulesPage.vue'),
+    component: () => import(/* webpackChunkName: "Booking1" */ '@/views/BookingReviewRulesPage.vue'),
     meta: {
       requiresAuth: true,
       hasBookingNavigation: true
@@ -40,7 +40,7 @@ const routes = [
   {
     name: 'booking-customer-info',
     path: '/booking/customer-info',
-    component: () => import(/* webpackChunkName: "BookingCustomerInfo" */ '@/views/BookingCustomerInfoPage.vue'),
+    component: () => import(/* webpackChunkName: "Booking2" */ '@/views/BookingCustomerInfoPage.vue'),
     meta: {
       requiresAuth: true,
       hasBookingNavigation: true
@@ -49,7 +49,7 @@ const routes = [
   {
     name: 'booking-payment',
     path: '/booking/payment',
-    component: () => import(/* webpackChunkName: "BookingPayment" */ '@/views/BookingPaymentPage.vue'),
+    component: () => import(/* webpackChunkName: "Booking3" */ '@/views/BookingPaymentPage.vue'),
     meta: {
       requiresAuth: true,
       hasBookingNavigation: true
@@ -58,7 +58,7 @@ const routes = [
   {
     name: 'booking-thanks',
     path: '/booking/thanks',
-    component: () => import(/* webpackChunkName: "BookingThanks" */ '@/views/BookingThanksPage.vue'),
+    component: () => import(/* webpackChunkName: "Booking4" */ '@/views/BookingThanksPage.vue'),
     meta: {
       requiresAuth: true
     }

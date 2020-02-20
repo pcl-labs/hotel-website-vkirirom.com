@@ -11,9 +11,9 @@
 import Vue from 'vue'
 import store from '@/store'
 import { languageCodes, appTitle } from '@/constants/app'
-const SnackbarsGlobal = () => import('@/components/SnackbarsGlobal.vue')
-const PageProgressBarGlobal = () => import('@/components/PageProgressBarGlobal.vue')
-const PageSplashScreen = () => import('@/components/PageSplashScreen.vue')
+const SnackbarsGlobal = () => import(/* webpackChunkName: "Critical" */ '@/components/SnackbarsGlobal.vue')
+const PageProgressBarGlobal = () => import(/* webpackChunkName: "Critical" */ '@/components/PageProgressBarGlobal.vue')
+const PageSplashScreen = () => import(/* webpackChunkName: "Critical" */ '@/components/PageSplashScreen.vue')
 
 export default Vue.extend({
   name: 'app',
