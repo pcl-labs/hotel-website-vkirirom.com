@@ -17,31 +17,27 @@ module.exports = {
       }
     }
   },
-  chainWebpack: config => {
+  chainWebpack(config) {
     const preloadPatterns = [/(app|vendor|Home|Critical|Card|Footer)(.)+?\.(css|js)$/];
     const blacklistPatterns = [/(Test)(.)+?\.(css|js)$/];
 
-    config.plugin('preload').tap(options => {
-      if (!options[0]) {
-        console.log('no options[0]! in vue.config.js preload');
+    if (config.plugins.has('preload')) {
+      config.plugin('preload').tap(options => {
+        options[0].include = 'all';
+        options[0].fileWhitelist = [...preloadPatterns];
+        options[0].fileBlacklist = [...blacklistPatterns];
+        console.log('options preload =========================>', options);
         return options;
-      }
-      options[0].include = 'all';
-      options[0].fileWhitelist = [...preloadPatterns];
-      options[0].fileBlacklist = [...blacklistPatterns];
-      console.log('options preload =========================>', options);
-      return options;
-    });
+      });
+    }
 
-    config.plugin('prefetch').tap(options => {
-      if (!options[0]) {
-        console.log('no options[0]! in vue.config.js prefetch');
+    if (config.plugins.has('prefetch')) {
+      config.plugin('prefetch').tap(options => {
+        options[0].fileBlacklist = [/\.map$/, /hot-update\.js$/, ...preloadPatterns, ...blacklistPatterns];
+        console.log('options prefetch ------------------------>', options);
         return options;
-      }
-      options[0].fileBlacklist = [/\.map$/, /hot-update\.js$/, ...preloadPatterns, ...blacklistPatterns];
-      console.log('options prefetch ------------------------>', options);
-      return options;
-    });
+      });
+    }
   },
   configureWebpack: {
     plugins: [
