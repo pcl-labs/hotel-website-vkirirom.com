@@ -48,10 +48,10 @@ export default Vue.extend({
   components: { PageHeader, BookingThanks, BookingConfirmBooking, PageFooter },
   computed: {
     steps() {
-      return this.$store.getters['booking/steps'];
+      return (this as any).$store.getters['booking/steps'];
     },
     returnUrl() {
-      return this.$store.getters['booking/bookingInfo'].returnUrl;
+      return (this as any).$store.getters['booking/bookingInfo'].returnUrl;
     }
   },
   destroyed() {
@@ -59,7 +59,7 @@ export default Vue.extend({
       console.log('no clear booking in dev mode');
       return;
     }
-    this.$store.dispatch('booking/endBooking');
+    (this as any).$store.dispatch('booking/endBooking');
   }
 });
 </script>

@@ -28,22 +28,22 @@ export default Vue.extend({
   methods: {
     async getUser() {
       try {
-        await this.$store.dispatch('auth/ping');
+        await (this as any).$store.dispatch('auth/ping');
       } catch (error) {
         console.log(error.message);
       }
     },
     clearTemporaryStates() {
-      this.$store.commit('auth/updateLoading', false);
+      (this as any).$store.commit('auth/updateLoading', false);
     }
   },
   computed: {
     hiddenLanguagesClasses() {
-      const selectedLanguageCode = this.$store.getters['language/config'].selectedLanguageCode;
+      const selectedLanguageCode = (this as any).$store.getters['language/config'].selectedLanguageCode;
       return languageCodes.filter(code => code !== selectedLanguageCode).map(code => `hide-lang-${code}`);
     },
     isSplashScreenVisible(): boolean {
-      return this.$store.getters['loading/isSplashScreenVisible'];
+      return (this as any).$store.getters['loading/isSplashScreenVisible'];
     },
     shouldShowProgressBar(): boolean {
       return !this.isSplashScreenVisible;

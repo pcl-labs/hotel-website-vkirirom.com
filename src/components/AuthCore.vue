@@ -20,7 +20,7 @@ export default Vue.extend({
   components: { AuthLogin, AuthSignup, AuthLoginExistingAccount, AuthForgotPassword },
   computed: {
     activeState() {
-      return this.$store.getters['auth/activeState'];
+      return (this as any).$store.getters['auth/activeState'];
     }
   }
 });

@@ -57,17 +57,17 @@ export default Vue.extend({
   },
   components: { PageHeader, BookingReviewRules, BookingConfirmBooking },
   mounted() {
-    this.$store.dispatch('booking/updateCurrentStep', this.steps.reviewPolicies);
+    (this as any).$store.dispatch('booking/updateCurrentStep', (this as any).steps.reviewPolicies);
   },
   computed: {
     steps() {
-      return this.$store.getters['booking/steps'];
+      return (this as any).$store.getters['booking/steps'];
     },
     bookingResort() {
-      return this.$store.getters['booking/bookingInfo'].resort;
+      return (this as any).$store.getters['booking/bookingInfo'].resort;
     },
     returnUrl() {
-      return this.$store.getters['booking/bookingInfo'].returnUrl;
+      return (this as any).$store.getters['booking/bookingInfo'].returnUrl;
     }
   }
 });

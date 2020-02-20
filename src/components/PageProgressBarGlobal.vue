@@ -15,7 +15,7 @@ import store from '@/store';
 export default Vue.extend({
   computed: {
     loading() {
-      return this.$store.getters['loading/isLoading'];
+      return (this as any).$store.getters['loading/isLoading'];
     }
   }
 });

@@ -74,20 +74,20 @@ export default {
   },
   methods: {
     updateActiveState(value) {
-      this.$store.dispatch('auth/updateActiveState', value);
+      (this as any).$store.dispatch('auth/updateActiveState', value);
     },
     async oauth(provider) {
       // TODO: move to store
-      await this.$store.commit('auth/updateProvider', provider);
-      await this.$store.dispatch('auth/updateReturnUrl', window.location.href);
-      const redirectUrl = await this.$store.getters['auth/oauth'];
+      await (this as any).$store.commit('auth/updateProvider', provider);
+      await (this as any).$store.dispatch('auth/updateReturnUrl', window.location.href);
+      const redirectUrl = await (this as any).$store.getters['auth/oauth'];
       window.location.assign(redirectUrl);
-      this.$store.dispatch('auth/ping');
+      (this as any).$store.dispatch('auth/ping');
     }
   },
   computed: {
     registerError() {
-      return this.$store.getters['auth/registerError'];
+      return (this as any).$store.getters['auth/registerError'];
     }
   }
 };

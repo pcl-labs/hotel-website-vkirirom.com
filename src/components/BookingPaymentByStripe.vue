@@ -38,15 +38,15 @@ export default Vue.extend({
   },
   methods: {
     cleanup() {
-      this.$store.dispatch('payment/updateIsPaymentLoading', false);
-      this.$store.dispatch('payment/updatePaymentError', '');
+      (this as any).$store.dispatch('payment/updateIsPaymentLoading', false);
+      (this as any).$store.dispatch('payment/updatePaymentError', '');
     },
     async init() {
       try {
         await this.getStripeKey();
         await this.createStripeComponent(this.stripeKey, this.accountId);
       } catch (error) {
-        this.$store.dispatch('payment/updatePaymentError', error.message);
+        (this as any).$store.dispatch('payment/updatePaymentError', error.message);
       }
     },
     async submit(): Promise<InternalMessagePassing> {
@@ -125,31 +125,31 @@ export default Vue.extend({
     },
     payByStripe() {
       const that = this;
-      return this.$store.dispatch('payment/payByStripe', {
+      return (this as any).$store.dispatch('payment/payByStripe', {
         stripe: this.stripe,
         clientSecret: this.clientSecret,
         card: this.card
       });
     },
     getStripeKey() {
-      return this.$store.dispatch('payment/getStripeKey');
+      return (this as any).$store.dispatch('payment/getStripeKey');
     }
   },
   computed: {
     stripeKey() {
-      return this.$store.getters['payment/stripeKey'];
+      return (this as any).$store.getters['payment/stripeKey'];
     },
     accountId() {
-      return this.$store.getters['payment/accountId'];
+      return (this as any).$store.getters['payment/accountId'];
     },
     customBookingInfo() {
-      return this.$store.getters['booking/customBookingInfo'];
+      return (this as any).$store.getters['booking/customBookingInfo'];
     },
     clientSecret() {
-      return this.$store.getters['payment/clientSecret'];
+      return (this as any).$store.getters['payment/clientSecret'];
     },
     reservationId() {
-      return this.$store.getters['booking/reservationId'];
+      return (this as any).$store.getters['booking/reservationId'];
     }
   }
 });

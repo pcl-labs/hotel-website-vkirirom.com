@@ -110,30 +110,30 @@ export default Vue.extend({
   },
   computed: {
     countriesList() {
-      return this.$store.getters['booking/countriesList'];
+      return (this as any).$store.getters['booking/countriesList'];
     },
     phoneNumber: {
       get() {
-        return this.$store.getters['booking/bookingInfo'].phoneNumber;
+        return (this as any).$store.getters['booking/bookingInfo'].phoneNumber;
       },
       set(value: string) {
-        this.$store.dispatch('booking/updatePhoneNumber', value);
+        (this as any).$store.dispatch('booking/updatePhoneNumber', value);
       }
     },
     phoneCountry: {
       get() {
-        return this.$store.getters['booking/bookingInfo'].phoneCountry;
+        return (this as any).$store.getters['booking/bookingInfo'].phoneCountry;
       },
       set(value: string) {
-        this.$store.dispatch('booking/updatePhoneCountry', value);
+        (this as any).$store.dispatch('booking/updatePhoneCountry', value);
       }
     },
     message: {
       get() {
-        return this.$store.getters['booking/bookingInfo'].message;
+        return (this as any).$store.getters['booking/bookingInfo'].message;
       },
       set(value: string) {
-        this.$store.dispatch('booking/updateMessage', value);
+        (this as any).$store.dispatch('booking/updateMessage', value);
       }
     }
   },
@@ -145,7 +145,7 @@ export default Vue.extend({
       } catch (error) {
         console.log('error on get countries list');
       }
-      return this.$store.dispatch('booking/updateCountriesList', countriesList);
+      return (this as any).$store.dispatch('booking/updateCountriesList', countriesList);
     },
     focusPhone() {
       // @ts-ignore

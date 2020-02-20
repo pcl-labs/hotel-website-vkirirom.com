@@ -213,22 +213,22 @@ export default Vue.extend({
   },
   computed: {
     resort() {
-      return this.$store.getters['booking/bookingInfo'].resort;
+      return (this as any).$store.getters['booking/bookingInfo'].resort;
     },
     dateOne() {
-      return this.$store.getters['booking/bookingInfo'].dateOne;
+      return (this as any).$store.getters['booking/bookingInfo'].dateOne;
     },
     dateTwo() {
-      return this.$store.getters['booking/bookingInfo'].dateTwo;
+      return (this as any).$store.getters['booking/bookingInfo'].dateTwo;
     },
     prices() {
-      return this.$store.getters['booking/prices']({ decimalDigits: 0 });
+      return (this as any).$store.getters['booking/prices']({ decimalDigits: 0 });
     },
     computedTotalPrice() {
       const options = {
         hasVAT: false
       };
-      return this.$store.getters['booking/computedTotalPrice'](options).toFixed(0);
+      return (this as any).$store.getters['booking/computedTotalPrice'](options).toFixed(0);
     },
     roomTypeId(): number {
       const firstRoomType = this.resort.modules.hotel.roomTypes[0];
@@ -241,7 +241,7 @@ export default Vue.extend({
       return !this.isLoading && this.isFormValid && this.isPricesReady;
     },
     currentStep(): number {
-      return this.$store.getters['booking/currentStep'];
+      return (this as any).$store.getters['booking/currentStep'];
     },
     shouldShowTotal(): boolean {
       return this.isPricesReady;
@@ -267,13 +267,13 @@ export default Vue.extend({
       }
     },
     updateDateOne(val) {
-      this.$store.dispatch('booking/updateDateOne', val);
+      (this as any).$store.dispatch('booking/updateDateOne', val);
     },
     updateDateTwo(val) {
-      this.$store.dispatch('booking/updateDateTwo', val);
+      (this as any).$store.dispatch('booking/updateDateTwo', val);
     },
     clearDateTwo() {
-      this.$store.dispatch('booking/clearDateTwo');
+      (this as any).$store.dispatch('booking/clearDateTwo');
     },
     getPrices() {
       this.isLoading = true;
@@ -291,13 +291,13 @@ export default Vue.extend({
         });
     },
     clearPrices() {
-      this.$store.dispatch('booking/clearPrices');
+      (this as any).$store.dispatch('booking/clearPrices');
     },
     submit() {
       this.goNextStep();
     },
     goNextStep() {
-      this.$store.dispatch('booking/updateCurrentStep', this.nextStep);
+      (this as any).$store.dispatch('booking/updateCurrentStep', this.nextStep);
     }
   }
 });

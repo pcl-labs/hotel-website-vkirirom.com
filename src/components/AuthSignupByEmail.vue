@@ -156,12 +156,12 @@ export default Vue.extend({
   },
   methods: {
     updateActiveState(value) {
-      this.$store.dispatch('auth/updateActiveState', value);
+      (this as any).$store.dispatch('auth/updateActiveState', value);
     },
     async submit() {
       try {
-        await this.$store.dispatch('auth/register');
-        this.$store.dispatch('snackbar/show', {
+        await (this as any).$store.dispatch('auth/register');
+        (this as any).$store.dispatch('snackbar/show', {
           color: 'success',
           text: 'Signing up was successful',
           class: 'dark--text'
@@ -171,33 +171,33 @@ export default Vue.extend({
       }
     },
     oauth(provider) {
-      this.$store.commit('auth/updateProvider', provider);
-      window.location.assign(this.$store.getters['auth/oauth']);
-      this.$store.dispatch('auth/ping');
+      (this as any).$store.commit('auth/updateProvider', provider);
+      window.location.assign((this as any).$store.getters['auth/oauth']);
+      (this as any).$store.dispatch('auth/ping');
     }
   },
   computed: {
     email: {
       get() {
-        return this.$store.getters['auth/email'];
+        return (this as any).$store.getters['auth/email'];
       },
       set(value) {
-        this.$store.commit('auth/updateEmail', value);
+        (this as any).$store.commit('auth/updateEmail', value);
       }
     },
     password: {
       get() {
-        return this.$store.getters['auth/password'];
+        return (this as any).$store.getters['auth/password'];
       },
       set(value) {
-        this.$store.commit('auth/updatePassword', value);
+        (this as any).$store.commit('auth/updatePassword', value);
       }
     },
     loading() {
-      return this.$store.getters['auth/loading'];
+      return (this as any).$store.getters['auth/loading'];
     },
     registerError() {
-      return this.$store.getters['auth/registerError'];
+      return (this as any).$store.getters['auth/registerError'];
     }
   }
 });

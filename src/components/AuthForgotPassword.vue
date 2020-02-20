@@ -90,26 +90,26 @@ export default {
   },
   methods: {
     updateActiveState(value) {
-      this.$store.dispatch('auth/updateActiveState', value);
+      (this as any).$store.dispatch('auth/updateActiveState', value);
     },
     submit() {
-      this.$store.dispatch('auth/sendResetPasswordLink');
+      (this as any).$store.dispatch('auth/sendResetPasswordLink');
     }
   },
   computed: {
     email: {
       get() {
-        return this.$store.getters['auth/email'];
+        return (this as any).$store.getters['auth/email'];
       },
       set(value) {
-        this.$store.commit('auth/updateEmail', value);
+        (this as any).$store.commit('auth/updateEmail', value);
       }
     },
     loading() {
-      return this.$store.getters['auth/loading'];
+      return (this as any).$store.getters['auth/loading'];
     },
     forgotPasswordError() {
-      return this.$store.getters['auth/forgotPasswordError'];
+      return (this as any).$store.getters['auth/forgotPasswordError'];
     }
   }
 };

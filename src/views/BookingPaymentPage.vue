@@ -43,14 +43,14 @@ export default Vue.extend({
   name: 'booking-payment-page',
   components: { PageHeader, BookingPayment, BookingConfirmBooking },
   mounted() {
-    this.$store.dispatch('booking/updateCurrentStep', this.steps.paymentInfo);
+    (this as any).$store.dispatch('booking/updateCurrentStep', (this as any).steps.paymentInfo);
   },
   computed: {
     steps() {
-      return this.$store.getters['booking/steps'];
+      return (this as any).$store.getters['booking/steps'];
     },
     returnUrl() {
-      return this.$store.getters['booking/bookingInfo'].returnUrl;
+      return (this as any).$store.getters['booking/bookingInfo'].returnUrl;
     }
   }
 });

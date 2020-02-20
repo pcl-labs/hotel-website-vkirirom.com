@@ -80,27 +80,27 @@ export default Vue.extend({
   },
   computed: {
     dialog() {
-      return this.$store.getters['booking/dialog'];
+      return (this as any).$store.getters['booking/dialog'];
     },
     isDialogOpen: {
       get() {
-        const isOpen = this.$store.getters['booking/dialog'].isOpen;
+        const isOpen = (this as any).$store.getters['booking/dialog'].isOpen;
         return isOpen;
       },
       set(value: boolean) {
-        this.$store.dispatch('booking/updateDialog', {
+        (this as any).$store.dispatch('booking/updateDialog', {
           isOpen: value
         });
       }
     },
     currentStep(): number {
-      return this.$store.getters['booking/currentStep'];
+      return (this as any).$store.getters['booking/currentStep'];
     },
     isAuthenticated(): boolean {
-      return this.$store.getters['auth/isAuthenticated'];
+      return (this as any).$store.getters['auth/isAuthenticated'];
     },
     steps() {
-      return this.$store.getters['booking/steps'];
+      return (this as any).$store.getters['booking/steps'];
     }
   },
   methods: {
@@ -112,25 +112,25 @@ export default Vue.extend({
     },
     // NOTE: can be used outside of component by ref
     openDialog() {
-      console.log('this.item', this.item);
+      console.log('this.item', (this as any).item);
 
       // TODO: Refactor
       // @ts-ignore
-      this.$store.dispatch('booking/startBooking', {
-        resort: this.item,
+      (this as any).$store.dispatch('booking/startBooking', {
+        resort: (this as any).item,
         returnUrl: `/listing/${this.$route.params.id}`
       });
-      this.$store.dispatch('booking/updateDialog', {
+      (this as any).$store.dispatch('booking/updateDialog', {
         isOpen: true
       });
     },
     closeDialog() {
-      this.$store.dispatch('booking/updateDialog', {
+      (this as any).$store.dispatch('booking/updateDialog', {
         isOpen: false
       });
     },
     cancelBooking() {
-      this.$store.dispatch('booking/cancelBooking');
+      (this as any).$store.dispatch('booking/cancelBooking');
     }
   }
 });

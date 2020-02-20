@@ -60,18 +60,18 @@ export default Vue.extend({
   },
   methods: {
     shouldBeDisabled(step) {
-      return step.id > this.currentStep.id;
+      return step.id > (this as any).currentStep.id;
     },
     shouldBeActive(step) {
-      return step.id === this.currentStep.id;
+      return step.id === (this as any).currentStep.id;
     }
   },
   computed: {
     currentStep() {
-      return this.$store.getters['booking/currentStep'];
+      return (this as any).$store.getters['booking/currentStep'];
     },
     steps() {
-      return this.$store.getters['booking/steps'];
+      return (this as any).$store.getters['booking/steps'];
     }
   }
 });
