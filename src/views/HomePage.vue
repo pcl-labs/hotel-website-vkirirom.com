@@ -210,13 +210,11 @@ import store from '../store';
 import { getFormattedMetaTitle, getFormattedMetaDescription, removeOtherLanguagesExcept } from '../helpers';
 import { appTitleTemplate } from '../constants/app';
 import { Resort, ResortImage } from '../types';
-const PageFooter = () => import(/* webpackChunkName: "Footer" */ '@/components/PageFooter.vue');
-const MarkdownBlock = () =>
-  import(/* webpackChunkName: "Critical", webpackMode: "eager" */ '@/components/MarkdownBlock.vue');
-const PageHeader = () => import(/* webpackChunkName: "Critical", webpackMode: "eager" */ '@/components/PageHeader.vue');
-const PageHomeParrallaxHero = () =>
-  import(/* webpackChunkName: "Critical", webpackMode: "eager" */ '@/components/PageHomeParrallaxHero.vue');
-const CardProduct = () => import(/* webpackChunkName: "Card" */ '@/components/CardProduct.vue');
+const PageFooter = () => import(/* webpackMode: "eager" */ '@/components/PageFooter.vue');
+const MarkdownBlock = () => import(/* webpackMode: "eager" */ '@/components/MarkdownBlock.vue');
+const PageHeader = () => import(/* webpackMode: "eager" */ '@/components/PageHeader.vue');
+const PageHomeParrallaxHero = () => import(/* webpackMode: "eager" */ '@/components/PageHomeParrallaxHero.vue');
+const CardProduct = () => import(/* webpackMode: "eager" */ '@/components/CardProduct.vue');
 
 export default {
   name: 'home-page',

@@ -22,14 +22,24 @@ module.exports = {
     const blacklistPatterns = [/(Test)(.)+?\.(css|js)$/];
 
     config.plugin('preload').tap(options => {
+      if (!options[0]) {
+        console.log('no options[0]! in vue.config.js preload');
+        return options;
+      }
       options[0].include = 'all';
       options[0].fileWhitelist = [...preloadPatterns];
       options[0].fileBlacklist = [...blacklistPatterns];
+      console.log('options preload =========================>', options);
       return options;
     });
 
     config.plugin('prefetch').tap(options => {
-      options[0].fileBlacklist = [/\.map/, ...preloadPatterns, ...blacklistPatterns];
+      if (!options[0]) {
+        console.log('no options[0]! in vue.config.js prefetch');
+        return options;
+      }
+      options[0].fileBlacklist = [/\.map$/, /hot-update\.js$/, ...preloadPatterns, ...blacklistPatterns];
+      console.log('options prefetch ------------------------>', options);
       return options;
     });
   },
