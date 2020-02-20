@@ -162,32 +162,32 @@ export default Vue.extend({
   },
   computed: {
     resort() {
-      return store.getters['booking/bookingInfo'].resort
+      return this.$store.getters['booking/bookingInfo'].resort
     },
     dateOne() {
-      return store.getters['booking/bookingInfo'].dateOne
+      return this.$store.getters['booking/bookingInfo'].dateOne
     },
     dateTwo() {
-      return store.getters['booking/bookingInfo'].dateTwo
+      return this.$store.getters['booking/bookingInfo'].dateTwo
     },
     checkOut() {
-      return store.getters['booking/bookingInfo'].checkOut
+      return this.$store.getters['booking/bookingInfo'].checkOut
     },
     prices() {
       return this.$store.getters['booking/prices']({ decimalDigits: 0 })
     },
     computedVAT() {
-      return store.getters['booking/computedVAT']({ decimalDigits: 0 })
+      return this.$store.getters['booking/computedVAT']({ decimalDigits: 0 })
     },
     computedTotalPrice() {
       const options = {
         hasVAT: true,
         decimalDigits: 0
       }
-      return store.getters['booking/computedTotalPrice'](options)
+      return this.$store.getters['booking/computedTotalPrice'](options)
     },
     guests() {
-      return store.getters['booking/bookingInfo'].guests.total
+      return this.$store.getters['booking/bookingInfo'].guests.total
     }
   },
   methods: {

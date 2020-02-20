@@ -221,14 +221,14 @@ export default {
   methods: {
     async logout() {
       try {
-        await store.dispatch('auth/logout')
-        store.dispatch('snackbar/show', {
+        await this.$store.dispatch('auth/logout')
+        this.$store.dispatch('snackbar/show', {
           color: 'success',
           text: 'Logging out was successful',
           class: 'dark--text'
         })
       } catch (error) {
-        store.dispatch('snackbar/show', {
+        this.$store.dispatch('snackbar/show', {
           color: 'error',
           text: 'Logging out was unsuccessful',
           class: 'light--text'
@@ -247,10 +247,10 @@ export default {
       return this.$route.meta.hasBookingNavigation
     },
     isAuthenticated() {
-      return store.getters['auth/isAuthenticated']
+      return this.$store.getters['auth/isAuthenticated']
     },
     loading() {
-      return store.getters['auth/loading']
+      return this.$store.getters['auth/loading']
     }
   }
 }

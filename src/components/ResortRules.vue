@@ -1,13 +1,6 @@
 <template>
   <!-- v-if="hotel.id" -->
   <div class="resort-rules light--text markdown-content">
-    <!-- shuttle -->
-    <!-- <div >
-      <h2>Shuttle Bus</h2>
-      <p class="mb-2">
-        Shuttle bus available from PP office 15USD/pax from fixed location (extra charge 3USD/pax from other place)
-      </p>
-    </div> -->
     <!-- location -->
     <div v-if="!hideLocation && resortHotel.location">
       <h2>

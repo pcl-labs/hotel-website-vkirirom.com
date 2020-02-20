@@ -111,16 +111,16 @@ export default {
   },
   methods: {
     updateSelectedLanguageCode(languageCode) {
-      store.dispatch('language/updateSelectedLanguageCode', languageCode)
+      this.$store.dispatch('language/updateSelectedLanguageCode', languageCode)
     },
     storeFooterHeight() {
       const pageFooter = this.$refs.pageFooter
-      store.dispatch('layout/updateFooterHeight', pageFooter.$el.clientHeight)
+      this.$store.dispatch('layout/updateFooterHeight', pageFooter.$el.clientHeight)
     }
   },
   computed: {
     selectedLanguageCode() {
-      return store.getters['language/config'].selectedLanguageCode
+      return this.$store.getters['language/config'].selectedLanguageCode
     }
   }
 }

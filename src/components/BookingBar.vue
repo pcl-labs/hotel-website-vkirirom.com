@@ -105,7 +105,7 @@ export default {
   },
   computed: {
     footerHeight() {
-      return store.getters['layout/getSizing'].footerHeight
+      return this.$store.getters['layout/getSizing'].footerHeight
     },
     shouldStick() {
       return this.bottomDistance > this.footerHeight

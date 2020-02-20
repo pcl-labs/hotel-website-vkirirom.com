@@ -51,17 +51,17 @@ export default Vue.extend({
     }
   },
   mounted() {
-    store.dispatch('auth/updateActiveState', 'auth-login')
+    this.$store.dispatch('auth/updateActiveState', 'auth-login')
     if (this.isAuthenticated) {
       this.goNextStep()
     }
   },
   computed: {
     dialog() {
-      return store.getters['auth/dialog']
+      return this.$store.getters['auth/dialog']
     },
     isAuthenticated(): boolean {
-      return store.getters['auth/isAuthenticated']
+      return this.$store.getters['auth/isAuthenticated']
     }
   },
   watch: {
@@ -73,7 +73,7 @@ export default Vue.extend({
   },
   methods: {
     goNextStep() {
-      store.dispatch('booking/updateCurrentStep', this.nextStep)
+      this.$store.dispatch('booking/updateCurrentStep', this.nextStep)
     }
   }
 })

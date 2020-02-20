@@ -68,10 +68,10 @@ export default Vue.extend({
   },
   computed: {
     currentStep() {
-      return store.getters['booking/currentStep']
+      return this.$store.getters['booking/currentStep']
     },
     steps() {
-      return store.getters['booking/steps']
+      return this.$store.getters['booking/steps']
     }
   }
 })

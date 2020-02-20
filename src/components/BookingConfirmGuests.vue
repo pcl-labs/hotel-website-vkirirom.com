@@ -238,57 +238,57 @@ export default Vue.extend({
   computed: {
     selectedRoomType: {
       get() {
-        return store.getters['booking/bookingInfo'].roomType
+        return this.$store.getters['booking/bookingInfo'].roomType
       },
       set(value: RoomType) {
-        store.dispatch('booking/updateRoomType', value)
+        this.$store.dispatch('booking/updateRoomType', value)
       }
     },
     guests() {
-      return store.getters['booking/bookingInfo'].guests
+      return this.$store.getters['booking/bookingInfo'].guests
     },
     guestsAdults: {
       get(): number {
-        return store.getters['booking/bookingInfo'].guests.adults
+        return this.$store.getters['booking/bookingInfo'].guests.adults
       },
       set(value: number) {
         const guests = {
           ...this.guests,
           adults: value
         }
-        store.dispatch('booking/updateGuests', guests)
+        this.$store.dispatch('booking/updateGuests', guests)
       }
     },
     guestsChildren: {
       get(): number {
-        return store.getters['booking/bookingInfo'].guests.children
+        return this.$store.getters['booking/bookingInfo'].guests.children
       },
       set(value: number) {
         const guests = {
           ...this.guests,
           children: value
         }
-        store.dispatch('booking/updateGuests', guests)
+        this.$store.dispatch('booking/updateGuests', guests)
       }
     },
     guestsTotal() {
-      return store.getters['booking/bookingInfo'].guests.total
+      return this.$store.getters['booking/bookingInfo'].guests.total
     },
     computedTotal(): number {
       return this.guestsAdults + this.guestsChildren
     },
     resort(): Resort {
-      return store.getters['booking/bookingInfo'].resort
+      return this.$store.getters['booking/bookingInfo'].resort
     },
     roomTypes(): RoomType[] {
-      const modules = store.getters['booking/bookingInfo'].resort.modules
+      const modules = this.$store.getters['booking/bookingInfo'].resort.modules
       if (!modules) {
         return []
       }
       return modules.hotel.roomTypes
     },
     currentStep(): number {
-      return store.getters['booking/currentStep']
+      return this.$store.getters['booking/currentStep']
     }
   },
   watch: {
@@ -306,7 +306,7 @@ export default Vue.extend({
         ...this.guests,
         total: newVal
       }
-      store.dispatch('booking/updateGuests', guests)
+      this.$store.dispatch('booking/updateGuests', guests)
     }
   },
   methods: {
@@ -320,7 +320,7 @@ export default Vue.extend({
         .then(this.goNextStep)
     },
     goNextStep() {
-      store.dispatch('booking/updateCurrentStep', this.nextStep)
+      this.$store.dispatch('booking/updateCurrentStep', this.nextStep)
     }
   }
 })

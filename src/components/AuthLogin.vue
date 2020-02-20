@@ -126,51 +126,51 @@ export default {
   },
   methods: {
     updateActiveState(value) {
-      store.dispatch('auth/updateActiveState', value)
+      this.$store.dispatch('auth/updateActiveState', value)
     },
     async login() {
       try {
-        await store.dispatch('auth/loginStandard')
-        store.dispatch('snackbar/show', {
+        await this.$store.dispatch('auth/loginStandard')
+        this.$store.dispatch('snackbar/show', {
           color: 'success',
           text: 'Logging in was successful',
           class: 'dark--text'
         })
       } catch (error) {
-        store.dispatch('auth/updateLoginError', error.message)
+        this.$store.dispatch('auth/updateLoginError', error.message)
       }
     },
     async oauth(provider) {
       // TODO: move to store
-      await store.commit('auth/updateProvider', provider)
-      await store.dispatch('auth/updateReturnUrl', window.location.href)
-      const redirectUrl = await store.getters['auth/oauth']
+      await this.$store.commit('auth/updateProvider', provider)
+      await this.$store.dispatch('auth/updateReturnUrl', window.location.href)
+      const redirectUrl = await this.$store.getters['auth/oauth']
       window.location.assign(redirectUrl)
-      store.dispatch('auth/ping')
+      this.$store.dispatch('auth/ping')
     }
   },
   computed: {
     email: {
       get() {
-        return store.getters['auth/email']
+        return this.$store.getters['auth/email']
       },
       set(value) {
-        store.commit('auth/updateEmail', value)
+        this.$store.commit('auth/updateEmail', value)
       }
     },
     password: {
       get() {
-        return store.getters['auth/password']
+        return this.$store.getters['auth/password']
       },
       set(value) {
-        store.commit('auth/updatePassword', value)
+        this.$store.commit('auth/updatePassword', value)
       }
     },
     loading() {
-      return store.getters['auth/loading']
+      return this.$store.getters['auth/loading']
     },
     loginError() {
-      return store.getters['auth/loginError']
+      return this.$store.getters['auth/loginError']
     }
   }
 }

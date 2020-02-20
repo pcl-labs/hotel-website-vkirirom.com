@@ -74,20 +74,20 @@ export default {
   },
   methods: {
     updateActiveState(value) {
-      store.dispatch('auth/updateActiveState', value)
+      this.$store.dispatch('auth/updateActiveState', value)
     },
     async oauth(provider) {
       // TODO: move to store
-      await store.commit('auth/updateProvider', provider)
-      await store.dispatch('auth/updateReturnUrl', window.location.href)
-      const redirectUrl = await store.getters['auth/oauth']
+      await this.$store.commit('auth/updateProvider', provider)
+      await this.$store.dispatch('auth/updateReturnUrl', window.location.href)
+      const redirectUrl = await this.$store.getters['auth/oauth']
       window.location.assign(redirectUrl)
-      store.dispatch('auth/ping')
+      this.$store.dispatch('auth/ping')
     }
   },
   computed: {
     registerError() {
-      return store.getters['auth/registerError']
+      return this.$store.getters['auth/registerError']
     }
   }
 }

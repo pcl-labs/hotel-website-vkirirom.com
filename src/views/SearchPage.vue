@@ -100,10 +100,10 @@ export default Vue.extend({
   },
   computed: {
     resort() {
-      return store.getters['resort/itemBySlug'](this.slug)
+      return this.$store.getters['resort/itemBySlug'](this.slug)
     },
     categories() {
-      return store.getters['category/getItemsByName'](this.slug)
+      return this.$store.getters['category/getItemsByName'](this.slug)
     }
   },
   methods: {

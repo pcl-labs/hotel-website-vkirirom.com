@@ -181,69 +181,69 @@ export default Vue.extend({
   computed: {
     payWith: {
       get() {
-        return store.getters['booking/bookingInfo'].payWith
+        return this.$store.getters['booking/bookingInfo'].payWith
       },
       set(value: string) {
-        store.dispatch('booking/updatePayWith', value)
+        this.$store.dispatch('booking/updatePayWith', value)
       }
     },
     fullName: {
       get() {
-        return store.getters['booking/bookingInfo'].fullName
+        return this.$store.getters['booking/bookingInfo'].fullName
       },
       set(value: string) {
-        store.dispatch('booking/updateFullName', value)
+        this.$store.dispatch('booking/updateFullName', value)
       }
     },
     addressCity: {
       get() {
-        return store.getters['booking/bookingInfo'].addressCity
+        return this.$store.getters['booking/bookingInfo'].addressCity
       },
       set(value: string) {
-        store.dispatch('booking/updateAddressCity', value)
+        this.$store.dispatch('booking/updateAddressCity', value)
       }
     },
     addressState: {
       get() {
-        return store.getters['booking/bookingInfo'].addressState
+        return this.$store.getters['booking/bookingInfo'].addressState
       },
       set(value: string) {
-        store.dispatch('booking/updateAddressState', value)
+        this.$store.dispatch('booking/updateAddressState', value)
       }
     },
     addressLine: {
       get() {
-        return store.getters['booking/bookingInfo'].addressLine
+        return this.$store.getters['booking/bookingInfo'].addressLine
       },
       set(value: string) {
-        store.dispatch('booking/updateAddressLine', value)
+        this.$store.dispatch('booking/updateAddressLine', value)
       }
     },
     addressZip: {
       get() {
-        return store.getters['booking/bookingInfo'].addressZip
+        return this.$store.getters['booking/bookingInfo'].addressZip
       },
       set(value: string) {
-        store.dispatch('booking/updateAddressZip', value)
+        this.$store.dispatch('booking/updateAddressZip', value)
       }
     },
     paymentError() {
-      return store.getters['payment/paymentError']
+      return this.$store.getters['payment/paymentError']
     },
     isPaymentLoading() {
-      return store.getters['payment/isPaymentLoading']
+      return this.$store.getters['payment/isPaymentLoading']
     },
     reservationId() {
-      return store.getters['booking/reservationId']
+      return this.$store.getters['booking/reservationId']
     },
     computedTotalPrice() {
-      return store.getters['booking/computedTotalPrice']({ all: true })
+      return this.$store.getters['booking/computedTotalPrice']({ all: true })
     }
   },
   methods: {
     resetLoadingAndError() {
-      store.dispatch('payment/updatePaymentError', '')
-      store.dispatch('payment/updateIsPaymentLoading', false)
+      this.$store.dispatch('payment/updatePaymentError', '')
+      this.$store.dispatch('payment/updateIsPaymentLoading', false)
     },
     async submit() {
       this.resetLoadingAndError()
@@ -252,16 +252,16 @@ export default Vue.extend({
         return
       }
 
-      store.dispatch('payment/updateIsPaymentLoading', true)
+      this.$store.dispatch('payment/updateIsPaymentLoading', true)
       if (this.payWith === 'cash') {
         await this.payWithCash()
       } else if (this.payWith === 'card') {
         await this.payWithCard()
       }
-      store.dispatch('payment/updateIsPaymentLoading', false)
+      this.$store.dispatch('payment/updateIsPaymentLoading', false)
     },
     async payWithCash() {
-      const result = await store.dispatch('booking/reserveRoomAndNotify')
+      const result = await this.$store.dispatch('booking/reserveRoomAndNotify')
       this.onCashPayment(result)
     },
     onCashPayment({ email, reserve }) {
@@ -271,7 +271,7 @@ export default Vue.extend({
     },
     async payWithCard() {
       // NOTE: this reservation should be temporary in backend
-      const { reserve } = await store.dispatch('booking/reserveRoom')
+      const { reserve } = await this.$store.dispatch('booking/reserveRoom')
       if (reserve) {
         const metadata = this.getPaymentMetadata()
         try {
@@ -280,31 +280,31 @@ export default Vue.extend({
           const result = await this.$refs.paymentByStripe.submit()
           this.onCardPayment(result)
         } catch (error) {
-          store.dispatch('payment/updatePaymentError', error.message)
+          this.$store.dispatch('payment/updatePaymentError', error.message)
         }
       }
     },
     async onCardPayment(result: InternalMessagePassing) {
       if (!result.error) {
-        store.dispatch('snackbar/show', {
+        this.$store.dispatch('snackbar/show', {
           text: result.message,
           color: 'success',
           class: 'dark--text'
         })
-        store.dispatch('booking/sendReservationSuccessEmail', { notificationType: 'CARD PAYMENT' })
+        this.$store.dispatch('booking/sendReservationSuccessEmail', { notificationType: 'CARD PAYMENT' })
         this.goNextStep()
       } else {
-        store.dispatch('payment/updatePaymentError', result.message)
+        this.$store.dispatch('payment/updatePaymentError', result.message)
         if (!this.isFailEmailSent) {
           try {
-            await store.dispatch('booking/sendReservationFailEmail', { notificationType: 'CARD PAYMENT' })
+            await this.$store.dispatch('booking/sendReservationFailEmail', { notificationType: 'CARD PAYMENT' })
             this.isFailEmailSent = true
           } catch (error) {}
         }
       }
     },
     getClientSecret({ amount, metadata }) {
-      return store.dispatch('payment/getClientSecret', {
+      return this.$store.dispatch('payment/getClientSecret', {
         reservationId: this.reservationId,
         amount,
         metadata
@@ -321,9 +321,9 @@ export default Vue.extend({
     },
     async evaluateValidation() {
       try {
-        return await store.dispatch('booking/evaluateValidation')
+        return await this.$store.dispatch('booking/evaluateValidation')
       } catch (error) {
-        store.dispatch('payment/updatePaymentError', error.message)
+        this.$store.dispatch('payment/updatePaymentError', error.message)
         return false
       }
     },

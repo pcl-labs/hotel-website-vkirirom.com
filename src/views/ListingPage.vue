@@ -208,12 +208,12 @@ export default Vue.extend({
     updateRoomDescriptionHTML(): void {
       // @ts-ignore
       const resortRulesText = this.$refs.roomDescriptionWrapperRef.$el.innerHTML
-      store.dispatch('booking/updateRoomDescriptionHTML', resortRulesText)
+      this.$store.dispatch('booking/updateRoomDescriptionHTML', resortRulesText)
     }
   },
   computed: {
     resort(): Resort {
-      return store.getters['resort/itemBySlug'](this.slug)
+      return this.$store.getters['resort/itemBySlug'](this.slug)
     },
     categories(): string[] {
       // @ts-ignore

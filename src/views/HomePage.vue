@@ -270,12 +270,12 @@ export default {
       this.hideSplashScreen()
     },
     hideSplashScreen() {
-      store.commit('loading/updateIsSplashScreenVisible', false)
+      this.$store.commit('loading/updateIsSplashScreenVisible', false)
     }
   },
   computed: {
     resort(): Resort {
-      return store.getters['resort/itemBySlug']('home')
+      return this.$store.getters['resort/itemBySlug']('home')
     }
   },
   created() {

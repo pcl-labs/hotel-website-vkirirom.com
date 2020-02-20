@@ -43,14 +43,14 @@ export default Vue.extend({
   name: 'booking-customer-info-page',
   components: { PageHeader, BookingCustomerInfo, BookingConfirmBooking },
   mounted() {
-    store.dispatch('booking/updateCurrentStep', this.steps.customerInfo)
+    this.$store.dispatch('booking/updateCurrentStep', this.steps.customerInfo)
   },
   computed: {
     steps() {
-      return store.getters['booking/steps']
+      return this.$store.getters['booking/steps']
     },
     returnUrl() {
-      return store.getters['booking/bookingInfo'].returnUrl
+      return this.$store.getters['booking/bookingInfo'].returnUrl
     }
   }
 })

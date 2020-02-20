@@ -58,26 +58,26 @@ export default Vue.extend({
   components: { ResortRules },
   computed: {
     resort() {
-      return store.getters['booking/bookingInfo'].resort
+      return this.$store.getters['booking/bookingInfo'].resort
     },
     dateOne() {
-      return store.getters['booking/bookingInfo'].dateOne
+      return this.$store.getters['booking/bookingInfo'].dateOne
     },
     checkOut() {
-      return store.getters['booking/bookingInfo'].checkOut
+      return this.$store.getters['booking/bookingInfo'].checkOut
     },
     prices() {
       return this.$store.getters['booking/prices']({ decimalDigits: 0 })
     },
     steps() {
-      return store.getters['booking/steps']
+      return this.$store.getters['booking/steps']
     }
   },
   methods: {
     formatDate,
     submit() {
       this.$router.push({ name: 'booking-customer-info' })
-      store.dispatch('booking/updateCurrentStep', this.steps.customerInfo)
+      this.$store.dispatch('booking/updateCurrentStep', this.steps.customerInfo)
     }
   }
 })

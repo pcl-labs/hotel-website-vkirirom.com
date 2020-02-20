@@ -80,27 +80,27 @@ export default Vue.extend({
   },
   computed: {
     dialog() {
-      return store.getters['booking/dialog']
+      return this.$store.getters['booking/dialog']
     },
     isDialogOpen: {
       get() {
-        const isOpen = store.getters['booking/dialog'].isOpen
+        const isOpen = this.$store.getters['booking/dialog'].isOpen
         return isOpen
       },
       set(value: boolean) {
-        store.dispatch('booking/updateDialog', {
+        this.$store.dispatch('booking/updateDialog', {
           isOpen: value
         })
       }
     },
     currentStep(): number {
-      return store.getters['booking/currentStep']
+      return this.$store.getters['booking/currentStep']
     },
     isAuthenticated(): boolean {
-      return store.getters['auth/isAuthenticated']
+      return this.$store.getters['auth/isAuthenticated']
     },
     steps() {
-      return store.getters['booking/steps']
+      return this.$store.getters['booking/steps']
     }
   },
   methods: {
@@ -116,18 +116,21 @@ export default Vue.extend({
 
       // TODO: Refactor
       // @ts-ignore
-      store.dispatch('booking/startBooking', { resort: this.item, returnUrl: `/listing/${this.$route.params.id}` })
-      store.dispatch('booking/updateDialog', {
+      this.$store.dispatch('booking/startBooking', {
+        resort: this.item,
+        returnUrl: `/listing/${this.$route.params.id}`
+      })
+      this.$store.dispatch('booking/updateDialog', {
         isOpen: true
       })
     },
     closeDialog() {
-      store.dispatch('booking/updateDialog', {
+      this.$store.dispatch('booking/updateDialog', {
         isOpen: false
       })
     },
     cancelBooking() {
-      store.dispatch('booking/cancelBooking')
+      this.$store.dispatch('booking/cancelBooking')
     }
   }
 })

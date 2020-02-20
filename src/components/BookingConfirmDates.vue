@@ -213,13 +213,13 @@ export default Vue.extend({
   },
   computed: {
     resort() {
-      return store.getters['booking/bookingInfo'].resort
+      return this.$store.getters['booking/bookingInfo'].resort
     },
     dateOne() {
-      return store.getters['booking/bookingInfo'].dateOne
+      return this.$store.getters['booking/bookingInfo'].dateOne
     },
     dateTwo() {
-      return store.getters['booking/bookingInfo'].dateTwo
+      return this.$store.getters['booking/bookingInfo'].dateTwo
     },
     prices() {
       return this.$store.getters['booking/prices']({ decimalDigits: 0 })
@@ -241,7 +241,7 @@ export default Vue.extend({
       return !this.isLoading && this.isFormValid && this.isPricesReady
     },
     currentStep(): number {
-      return store.getters['booking/currentStep']
+      return this.$store.getters['booking/currentStep']
     },
     shouldShowTotal(): boolean {
       return this.isPricesReady
@@ -267,13 +267,13 @@ export default Vue.extend({
       }
     },
     updateDateOne(val) {
-      store.dispatch('booking/updateDateOne', val)
+      this.$store.dispatch('booking/updateDateOne', val)
     },
     updateDateTwo(val) {
-      store.dispatch('booking/updateDateTwo', val)
+      this.$store.dispatch('booking/updateDateTwo', val)
     },
     clearDateTwo() {
-      store.dispatch('booking/clearDateTwo')
+      this.$store.dispatch('booking/clearDateTwo')
     },
     getPrices() {
       this.isLoading = true
@@ -297,7 +297,7 @@ export default Vue.extend({
       this.goNextStep()
     },
     goNextStep() {
-      store.dispatch('booking/updateCurrentStep', this.nextStep)
+      this.$store.dispatch('booking/updateCurrentStep', this.nextStep)
     }
   }
 })

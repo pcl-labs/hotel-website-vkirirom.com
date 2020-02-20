@@ -58,20 +58,20 @@ export default Vue.extend({
   components: { AuthCore },
   computed: {
     dialog() {
-      return store.getters['auth/dialog']
+      return this.$store.getters['auth/dialog']
     },
     isDialogOpen: {
       get() {
-        return store.getters['auth/dialog'].isOpen
+        return this.$store.getters['auth/dialog'].isOpen
       },
       set(value: boolean) {
-        store.dispatch('auth/updateDialog', {
+        this.$store.dispatch('auth/updateDialog', {
           isOpen: value
         })
       }
     },
     isAuthenticated(): boolean {
-      return store.getters['auth/isAuthenticated']
+      return this.$store.getters['auth/isAuthenticated']
     }
   },
   watch: {
@@ -87,13 +87,13 @@ export default Vue.extend({
     },
     // NOTE: can be used outside of component by ref
     openDialog() {
-      store.dispatch('auth/updateActiveState', 'auth-login')
-      store.dispatch('auth/updateDialog', {
+      this.$store.dispatch('auth/updateActiveState', 'auth-login')
+      this.$store.dispatch('auth/updateDialog', {
         isOpen: true
       })
     },
     closeDialog() {
-      store.dispatch('auth/updateDialog', {
+      this.$store.dispatch('auth/updateDialog', {
         isOpen: false
       })
     }

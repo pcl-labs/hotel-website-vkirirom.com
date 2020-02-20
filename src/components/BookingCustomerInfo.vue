@@ -110,30 +110,30 @@ export default Vue.extend({
   },
   computed: {
     countriesList() {
-      return store.getters['booking/countriesList']
+      return this.$store.getters['booking/countriesList']
     },
     phoneNumber: {
       get() {
-        return store.getters['booking/bookingInfo'].phoneNumber
+        return this.$store.getters['booking/bookingInfo'].phoneNumber
       },
       set(value: string) {
-        store.dispatch('booking/updatePhoneNumber', value)
+        this.$store.dispatch('booking/updatePhoneNumber', value)
       }
     },
     phoneCountry: {
       get() {
-        return store.getters['booking/bookingInfo'].phoneCountry
+        return this.$store.getters['booking/bookingInfo'].phoneCountry
       },
       set(value: string) {
-        store.dispatch('booking/updatePhoneCountry', value)
+        this.$store.dispatch('booking/updatePhoneCountry', value)
       }
     },
     message: {
       get() {
-        return store.getters['booking/bookingInfo'].message
+        return this.$store.getters['booking/bookingInfo'].message
       },
       set(value: string) {
-        store.dispatch('booking/updateMessage', value)
+        this.$store.dispatch('booking/updateMessage', value)
       }
     }
   },
@@ -145,7 +145,7 @@ export default Vue.extend({
       } catch (error) {
         console.log('error on get countries list')
       }
-      return store.dispatch('booking/updateCountriesList', countriesList)
+      return this.$store.dispatch('booking/updateCountriesList', countriesList)
     },
     focusPhone() {
       // @ts-ignore

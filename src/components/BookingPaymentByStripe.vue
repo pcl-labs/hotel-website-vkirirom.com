@@ -38,15 +38,15 @@ export default Vue.extend({
   },
   methods: {
     cleanup() {
-      store.dispatch('payment/updateIsPaymentLoading', false)
-      store.dispatch('payment/updatePaymentError', '')
+      this.$store.dispatch('payment/updateIsPaymentLoading', false)
+      this.$store.dispatch('payment/updatePaymentError', '')
     },
     async init() {
       try {
         await this.getStripeKey()
         await this.createStripeComponent(this.stripeKey, this.accountId)
       } catch (error) {
-        store.dispatch('payment/updatePaymentError', error.message)
+        this.$store.dispatch('payment/updatePaymentError', error.message)
       }
     },
     async submit(): Promise<InternalMessagePassing> {
@@ -125,31 +125,31 @@ export default Vue.extend({
     },
     payByStripe() {
       const that = this
-      return store.dispatch('payment/payByStripe', {
+      return this.$store.dispatch('payment/payByStripe', {
         stripe: this.stripe,
         clientSecret: this.clientSecret,
         card: this.card
       })
     },
     getStripeKey() {
-      return store.dispatch('payment/getStripeKey')
+      return this.$store.dispatch('payment/getStripeKey')
     }
   },
   computed: {
     stripeKey() {
-      return store.getters['payment/stripeKey']
+      return this.$store.getters['payment/stripeKey']
     },
     accountId() {
-      return store.getters['payment/accountId']
+      return this.$store.getters['payment/accountId']
     },
     customBookingInfo() {
-      return store.getters['booking/customBookingInfo']
+      return this.$store.getters['booking/customBookingInfo']
     },
     clientSecret() {
-      return store.getters['payment/clientSecret']
+      return this.$store.getters['payment/clientSecret']
     },
     reservationId() {
-      return store.getters['booking/reservationId']
+      return this.$store.getters['booking/reservationId']
     }
   }
 })

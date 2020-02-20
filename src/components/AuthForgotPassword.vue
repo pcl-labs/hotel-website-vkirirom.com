@@ -90,26 +90,26 @@ export default {
   },
   methods: {
     updateActiveState(value) {
-      store.dispatch('auth/updateActiveState', value)
+      this.$store.dispatch('auth/updateActiveState', value)
     },
     submit() {
-      store.dispatch('auth/sendResetPasswordLink')
+      this.$store.dispatch('auth/sendResetPasswordLink')
     }
   },
   computed: {
     email: {
       get() {
-        return store.getters['auth/email']
+        return this.$store.getters['auth/email']
       },
       set(value) {
-        store.commit('auth/updateEmail', value)
+        this.$store.commit('auth/updateEmail', value)
       }
     },
     loading() {
-      return store.getters['auth/loading']
+      return this.$store.getters['auth/loading']
     },
     forgotPasswordError() {
-      return store.getters['auth/forgotPasswordError']
+      return this.$store.getters['auth/forgotPasswordError']
     }
   }
 }

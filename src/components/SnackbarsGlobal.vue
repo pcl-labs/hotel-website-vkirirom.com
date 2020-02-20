@@ -27,14 +27,14 @@ export default Vue.extend({
   name: 'snackbars-global',
   computed: {
     model() {
-      return store.getters['snackbar/item']
+      return this.$store.getters['snackbar/item']
     },
     isVisible: {
       get() {
-        return store.getters['snackbar/item'].visible
+        return this.$store.getters['snackbar/item'].visible
       },
       set(value) {
-        store.dispatch('snackbar/updateVisibility', value)
+        this.$store.dispatch('snackbar/updateVisibility', value)
       }
     }
   }
