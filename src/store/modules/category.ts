@@ -1,6 +1,5 @@
 // @ts-ignore
 import { PageService } from '@/connection/resources.js';
-import { Category } from '@/types';
 import Vue from 'vue';
 import { companySlug } from '@/constants/app';
 

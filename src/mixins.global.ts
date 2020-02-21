@@ -6,8 +6,8 @@ Vue.mixin({
   mixins: [vhFix],
   data() {
     return {
-      pageWidth: document.body.clientWidth,
-      devicePixelRatio: window.devicePixelRatio || 1
+      // pageWidth: document.body.clientWidth,
+      // devicePixelRatio: window.devicePixelRatio || 1
     };
   },
   methods: {

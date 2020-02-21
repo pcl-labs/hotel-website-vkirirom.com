@@ -209,7 +209,7 @@ import { PageService } from '@/connection/resources.js';
 import store from '../store';
 import { getFormattedMetaTitle, getFormattedMetaDescription, removeOtherLanguagesExcept } from '../helpers';
 import { appTitleTemplate } from '../constants/app';
-import { Resort, ResortImage } from '../types';
+import { Resort, ResortImage, Category } from '../types';
 const PageFooter = () => import(/* webpackMode: "eager" */ '@/components/PageFooter.vue');
 const MarkdownBlock = () => import(/* webpackMode: "eager" */ '@/components/MarkdownBlock.vue');
 const PageHeader = () => import(/* webpackMode: "eager" */ '@/components/PageHeader.vue');
@@ -230,6 +230,7 @@ export default {
 
     const slug = 'home';
     await store.dispatch('resort/getItemBySlug', slug);
+
     next();
   },
   metaInfo() {
@@ -251,15 +252,12 @@ export default {
       ]
     };
   },
-  data() {
-    return {
-      accommodations: [],
-      experiences: [],
-      events: [],
-      ecotourisms: [],
-      leases: [],
-      shouldShowSplashScreen: true
-    };
+  mounted() {
+    (this as any).$store.dispatch('category/getItemsByName', 'accommodations');
+    (this as any).$store.dispatch('category/getItemsByName', 'experiences');
+    (this as any).$store.dispatch('category/getItemsByName', 'events');
+    (this as any).$store.dispatch('category/getItemsByName', 'ecotourism');
+    (this as any).$store.dispatch('category/getItemsByName', 'lease');
   },
   methods: {
     mergeImageArray(listOne, listTwo) {
@@ -276,45 +274,22 @@ export default {
   computed: {
     resort(): Resort {
       return (this as any).$store.getters['resort/itemBySlug']('home');
+    },
+    accommodations(): Category[] {
+      return (this as any).$store.getters['category/getItemsByName']('accommodations').slice(0, 3);
+    },
+    experiences(): Category[] {
+      return (this as any).$store.getters['category/getItemsByName']('experiences').slice(0, 3);
+    },
+    events(): Category[] {
+      return (this as any).$store.getters['category/getItemsByName']('events').slice(0, 3);
+    },
+    ecotourisms(): Category[] {
+      return (this as any).$store.getters['category/getItemsByName']('ecotourism').slice(0, 3);
+    },
+    leases(): Category[] {
+      return (this as any).$store.getters['category/getItemsByName']('lease').slice(0, 3);
     }
-  },
-  created() {
-    // TODO: move to store actions
-    PageService.byCompanyByCategoryName({
-      companySlug: 'vkirirom',
-      categoryName: 'accommodations'
-    }).then(data => {
-      // @ts-ignore
-      this.accommodations = data.slice(0, 3);
-    });
-    PageService.byCompanyByCategoryName({
-      companySlug: 'vkirirom',
-      categoryName: 'experiences'
-    }).then(data => {
-      // @ts-ignore
-      this.experiences = data.slice(0, 3);
-    });
-    PageService.byCompanyByCategoryName({
-      companySlug: 'vkirirom',
-      categoryName: 'events'
-    }).then(data => {
-      // @ts-ignore
-      this.events = data.slice(0, 3);
-    });
-    PageService.byCompanyByCategoryName({
-      companySlug: 'vkirirom',
-      categoryName: 'ecotourism'
-    }).then(data => {
-      // @ts-ignore
-      this.ecotourisms = data.slice(0, 3);
-    });
-    PageService.byCompanyByCategoryName({
-      companySlug: 'vkirirom',
-      categoryName: 'lease'
-    }).then(data => {
-      // @ts-ignore
-      this.leases = data.slice(0, 3);
-    });
   }
 };
 </script>
