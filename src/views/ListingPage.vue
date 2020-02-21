@@ -1,7 +1,6 @@
 <template>
   <fragment>
     <page-header></page-header>
-
     <div class="page">
       <div class="page-content">
         <div class="pa-0 ma-0">

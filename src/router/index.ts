@@ -15,6 +15,10 @@ import store from '@/store'
 
 const routes = [
   {
+    path: '/testing',
+    component: KitchenSink
+  },
+  {
     name: 'home',
     path: '/',
     component: HomePage
@@ -23,10 +27,6 @@ const routes = [
     path: '/search/:id',
     component: SearchPage,
     props: route => ({ slug: route.params.id })
-  },
-  {
-    path: '/testing',
-    component: KitchenSink
   },
   {
     name: 'listing',
@@ -135,6 +135,7 @@ router.beforeResolve((to, from, next) => {
   store.commit('loading/loading', true)
   next()
 })
+
 router.afterEach((to, from) => {
   const alwaysShowLoadingAtFirst = 700
   setTimeout(() => {

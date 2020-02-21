@@ -11,6 +11,7 @@ export const dark = {
   pink: '#E5B5CE',
   warning: '#F7B947',
   yellow: '#F7B947',
+  darkBlue: '#141527',
 
   bright: '#fff',
   light: '#B9BCC1',
@@ -20,6 +21,5 @@ export const dark = {
 
   'brand-1': '#191C21',
   'brand-2': '#E1E7ED',
-  'brand-3': '#B9BCC1',
-  'brand-4': '#77C381'
+  'brand-3': '#B9BCC1'
 }

@@ -20,10 +20,9 @@ $primary: #e5b5ce;
 $brand-1: #191c21;
 $brand-2: #e1e7ed;
 $brand-3: #b9bcc1;
-$brand-4: #77c381;
 
-$brand-gradient: linear-gradient(180deg, #010101 0%, rgba(20, 21, 39, 0) 100%),
-  linear-gradient(166deg, #141527 9%, #3a3b5e 95%);
+$brand-gradient: linear-gradient(180deg, #{map-get($grey, 'darken-6')} 0%, rgba(20, 21, 39, 0) 100%),
+  linear-gradient(166deg, #{map-get($blue, 'darken-4')} 9%, #{map-get($blue, 'darken-3')} 95%);
 
 // z-index
 /*
@@ -33,6 +32,7 @@ page
   booking-bar
   page-footer
 */
+$zindex-splash-screen: 8;
 $zindex-page-header: 7;
 $zindex-page: 1;
 $zindex-page-content: 2;
@@ -74,6 +74,10 @@ $font-weights: map-deep-merge(
 
 // typography
 $btn-letter-spacing: 0;
+
+:export {
+  zindexSplashScreen: $zindex-splash-screen;
+}
 
 // --------------------------------------------------------
 // Vuetify 2.2.3 variables
