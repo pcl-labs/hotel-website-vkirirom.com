@@ -112,8 +112,6 @@ export default Vue.extend({
     },
     // NOTE: can be used outside of component by ref
     openDialog() {
-      console.log('this.item', (this as any).item);
-
       // TODO: Refactor
       // @ts-ignore
       (this as any).$store.dispatch('booking/startBooking', {

@@ -44,10 +44,38 @@ export default Vue.extend({
     async init() {
       try {
         await this.getStripeKey();
+        await this.waitForStripeScript();
         await this.createStripeComponent(this.stripeKey, this.accountId);
       } catch (error) {
         (this as any).$store.dispatch('payment/updatePaymentError', error.message);
       }
+    },
+    async waitForStripeScript() {
+      return new Promise((resolve, reject) => {
+        const stripeScriptTag = document.getElementById('stripe-script');
+        if (!stripeScriptTag) {
+          reject('Stripe not available');
+          return;
+        }
+
+        // @ts-ignore
+        if (window.GLOBAL_stripeIsLoaded) {
+          resolve();
+          return;
+        }
+        const onload = () => {
+          resolve();
+        };
+        stripeScriptTag.addEventListener('load', onload);
+
+        this.$once('hook:destroyed', () => {
+          stripeScriptTag.removeEventListener('load', onload);
+        });
+
+        setTimeout(() => {
+          reject('Error in loading Stripe');
+        }, 20000);
+      });
     },
     async submit(): Promise<InternalMessagePassing> {
       let result;
