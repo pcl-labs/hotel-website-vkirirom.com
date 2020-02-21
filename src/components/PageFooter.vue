@@ -29,6 +29,7 @@
                     class="page-footer--flag-link pa-1 primary--text mr-3"
                   >
                     <img
+                      loading="lazy"
                       class="d-block page-footer--flag"
                       height="16"
                       src="https://res.cloudinary.com/die9ji2vn/image/upload/v1581961735/website-static/flags/usa_iv1clb.svg"
@@ -41,6 +42,7 @@
                     class="page-footer--flag-link pa-1 primary--text"
                   >
                     <img
+                      loading="lazy"
                       class="d-block page-footer--flag"
                       height="16"
                       src="https://res.cloudinary.com/die9ji2vn/image/upload/v1581961735/website-static/flags/khm_gdmegl.svg"

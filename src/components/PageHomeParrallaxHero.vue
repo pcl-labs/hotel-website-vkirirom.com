@@ -32,7 +32,7 @@
     <img @load="onEndLoadingItem" class="d-none" hidden :src="image3" alt="" />
     <img @load="onEndLoadingItem" class="d-none" hidden :src="image4" alt="" />
     <img @load="onEndLoadingItem" class="d-none" hidden :src="image5" alt="" />
-    <img @load="onEndLoadingItem" class="d-none" hidden :src="image6" alt="" />
+    <!-- <img loading="lazy" class="d-none" hidden :src="image6" alt="" /> -->
   </div>
 </template>
 
@@ -96,7 +96,7 @@ export default Vue.extend({
     return {
       overridedBreakpoint: '',
       loadedItems: 0,
-      totalLoadingItems: 6
+      totalLoadingItems: 5
     };
   },
   watch: {

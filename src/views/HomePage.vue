@@ -262,12 +262,12 @@ export default {
       ]
     };
   },
-  created() {
-    (this as any).$store.dispatch('category/getItemsByName', 'accommodations');
-    (this as any).$store.dispatch('category/getItemsByName', 'experiences');
-    (this as any).$store.dispatch('category/getItemsByName', 'events');
-    (this as any).$store.dispatch('category/getItemsByName', 'ecotourism');
-    (this as any).$store.dispatch('category/getItemsByName', 'lease');
+  beforeCreate() {
+    store.dispatch('category/getItemsByName', 'accommodations');
+    store.dispatch('category/getItemsByName', 'experiences');
+    store.dispatch('category/getItemsByName', 'events');
+    store.dispatch('category/getItemsByName', 'ecotourism');
+    store.dispatch('category/getItemsByName', 'lease');
   },
   methods: {
     mergeImageArray(listOne, listTwo) {
