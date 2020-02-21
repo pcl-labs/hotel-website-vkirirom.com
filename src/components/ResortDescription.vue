@@ -8,10 +8,10 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import ResortRules from '@/components/ResortRules.vue'
-import MarkdownBlock from '@/components/MarkdownBlock.vue'
-import { Resort } from '../types'
+import Vue from 'vue';
+const ResortRules = () => import('@/components/ResortRules.vue');
+const MarkdownBlock = () => import('@/components/MarkdownBlock.vue');
+import { Resort } from '../types';
 
 export default Vue.extend({
   name: 'resort-description',
@@ -22,5 +22,5 @@ export default Vue.extend({
     }
   },
   components: { ResortRules, MarkdownBlock }
-})
+});
 </script>

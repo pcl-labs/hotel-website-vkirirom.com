@@ -177,10 +177,10 @@
 </template>
 
 <script>
-const PageFooter = () => import('@/components/PageFooter.vue')
-import PageHeader from '@/components/PageHeader.vue'
-import { getFormattedMetaTitle } from '../helpers'
-import { appTitleTemplate } from '@/constants/app'
+const PageFooter = () => import('@/components/PageFooter.vue');
+const PageHeader = () => import('@/components/PageHeader.vue');
+import { getFormattedMetaTitle } from '../helpers';
+import { appTitleTemplate } from '@/constants/app';
 
 export default {
   components: {
@@ -191,7 +191,7 @@ export default {
     return {
       title: getFormattedMetaTitle('Contact'),
       titleTemplate: appTitleTemplate
-    }
+    };
   },
   data() {
     return {
@@ -212,9 +212,9 @@ export default {
         v => (v || '').length >= 9 || 'A minimum of 9 characters is needed',
         v => (v || '').indexOf(' ') < 0 || 'No spaces are allowed'
       ]
-    }
+    };
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

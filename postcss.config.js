@@ -3,4 +3,4 @@ module.exports = {
     autoprefixer: {},
     'postcss-easing-gradients': {}
   }
-}
+};

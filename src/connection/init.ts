@@ -1,4 +1,4 @@
-import { ajax } from './ajax'
+import { ajax } from './ajax';
 // @ts-ignore
-import { serviceOptions } from './resources.js'
-serviceOptions.axios = ajax
+import { serviceOptions } from './resources.js';
+serviceOptions.axios = ajax;

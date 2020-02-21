@@ -35,30 +35,42 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import BookingReviewRules from '@/components/BookingReviewRules.vue'
-import BookingConfirmBooking from '@/components/BookingConfirmBooking.vue'
-import PageHeader from '@/components/PageHeader.vue'
-import store from '@/store'
+import Vue from 'vue';
+const BookingReviewRules = () => import('@/components/BookingReviewRules.vue');
+const BookingConfirmBooking = () => import('@/components/BookingConfirmBooking.vue');
+const PageHeader = () => import('@/components/PageHeader.vue');
+import store from '@/store';
+import { countriesListUrl } from '../constants/app';
 
 export default Vue.extend({
   name: 'booking-review-rules-page',
+  metaInfo() {
+    return {
+      link: [
+        {
+          rel: 'prefetch',
+          as: 'fetch',
+          href: countriesListUrl
+        }
+      ]
+    };
+  },
   components: { PageHeader, BookingReviewRules, BookingConfirmBooking },
   mounted() {
-    store.dispatch('booking/updateCurrentStep', this.steps.reviewPolicies)
+    (this as any).$store.dispatch('booking/updateCurrentStep', (this as any).steps.reviewPolicies);
   },
   computed: {
     steps() {
-      return store.getters['booking/steps']
+      return (this as any).$store.getters['booking/steps'];
     },
     bookingResort() {
-      return store.getters['booking/bookingInfo'].resort
+      return (this as any).$store.getters['booking/bookingInfo'].resort;
     },
     returnUrl() {
-      return store.getters['booking/bookingInfo'].returnUrl
+      return (this as any).$store.getters['booking/bookingInfo'].returnUrl;
     }
   }
-})
+});
 </script>
 
 <style lang="scss">

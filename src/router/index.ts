@@ -1,48 +1,37 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-
-const HomePage = () => import('@/views/HomePage.vue')
-const SearchPage = () => import('@/views/SearchPage.vue')
-const ContactPage = () => import('@/views/ContactPage.vue')
-const ListingPage = () => import('@/views/ListingPage.vue')
-const BookingReviewRulesPage = () => import('@/views/BookingReviewRulesPage.vue')
-const BookingCustomerInfoPage = () => import('@/views/BookingCustomerInfoPage.vue')
-const BookingPaymentPage = () => import('@/views/BookingPaymentPage.vue')
-const BookingThanksPage = () => import('@/views/BookingThanksPage.vue')
-const KitchenSink = () => import('../views/KitchenSink.vue')
-
-import store from '@/store'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import store from '@/store';
 
 const routes = [
   {
     path: '/testing',
-    component: KitchenSink
+    component: () => import(/* webpackChunkName: "Test" */ '@/views/KitchenSink.vue')
   },
   {
     name: 'home',
     path: '/',
-    component: HomePage
+    component: () => import(/* webpackChunkName: "Home" */ '@/views/HomePage.vue')
   },
   {
     path: '/search/:id',
-    component: SearchPage,
+    component: () => import(/* webpackChunkName: "Search" */ '@/views/SearchPage.vue'),
     props: route => ({ slug: route.params.id })
   },
   {
     name: 'listing',
     path: '/listing/:id',
-    component: ListingPage,
+    component: () => import(/* webpackChunkName: "Listing" */ '@/views/ListingPage.vue'),
     props: route => ({ slug: route.params.id })
   },
   {
     name: 'contact',
     path: '/contact',
-    component: ContactPage
+    component: () => import(/* webpackChunkName: "Contact" */ '@/views/ContactPage.vue')
   },
   {
     name: 'booking-review-rules',
     path: '/booking/review-rules',
-    component: BookingReviewRulesPage,
+    component: () => import(/* webpackChunkName: "Booking1" */ '@/views/BookingReviewRulesPage.vue'),
     meta: {
       requiresAuth: true,
       hasBookingNavigation: true
@@ -51,7 +40,7 @@ const routes = [
   {
     name: 'booking-customer-info',
     path: '/booking/customer-info',
-    component: BookingCustomerInfoPage,
+    component: () => import(/* webpackChunkName: "Booking2" */ '@/views/BookingCustomerInfoPage.vue'),
     meta: {
       requiresAuth: true,
       hasBookingNavigation: true
@@ -60,7 +49,7 @@ const routes = [
   {
     name: 'booking-payment',
     path: '/booking/payment',
-    component: BookingPaymentPage,
+    component: () => import(/* webpackChunkName: "Booking3" */ '@/views/BookingPaymentPage.vue'),
     meta: {
       requiresAuth: true,
       hasBookingNavigation: true
@@ -69,7 +58,7 @@ const routes = [
   {
     name: 'booking-thanks',
     path: '/booking/thanks',
-    component: BookingThanksPage,
+    component: () => import(/* webpackChunkName: "Booking4" */ '@/views/BookingThanksPage.vue'),
     meta: {
       requiresAuth: true
     }
@@ -81,66 +70,66 @@ const routes = [
   {
     path: '/kh',
     beforeEnter() {
-      window.location.href = 'http://kh.vkirirom.com'
+      window.location.href = 'http://kh.vkirirom.com';
     }
   },
   {
     path: '/*/',
     redirect: '/'
   }
-]
+];
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
-let unsubscribeStore: any = null
+let unsubscribeStore: any = null;
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
   scrollBehavior(to, from, savedPosition) {
     return new Promise(resolve => {
-      const loading = store.getters['loading/isLoading']
+      const loading = store.getters['loading/isLoading'];
       if (loading) {
         unsubscribeStore = store.subscribe((mutation, state) => {
-          const loading = store.getters['loading/isLoading']
+          const loading = store.getters['loading/isLoading'];
           if (mutation.type === 'loading/loading' && loading === false) {
-            resolve(savedPosition || { x: 0, y: 0 })
-            unsubscribeStore()
+            resolve(savedPosition || { x: 0, y: 0 });
+            unsubscribeStore();
           }
-        })
+        });
       } else {
-        resolve(savedPosition || { x: 0, y: 0 })
+        resolve(savedPosition || { x: 0, y: 0 });
       }
-    })
+    });
   }
-})
+});
 
 // Auth guard
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    const isAuthenticated = store.getters['auth/isAuthenticated']
+    const isAuthenticated = store.getters['auth/isAuthenticated'];
     if (isAuthenticated) {
-      next()
+      next();
     } else {
       // if we have /login later, route to login page
-      next('/')
+      next('/');
     }
   } else {
-    next()
+    next();
   }
-})
+});
 
 // set/unset loading
 router.beforeResolve((to, from, next) => {
-  store.commit('loading/loading', true)
-  next()
-})
+  store.commit('loading/loading', true);
+  next();
+});
 
 router.afterEach((to, from) => {
-  const alwaysShowLoadingAtFirst = 700
+  const alwaysShowLoadingAtFirst = 700;
   setTimeout(() => {
-    store.commit('loading/loading', false)
-  }, alwaysShowLoadingAtFirst)
-})
+    store.commit('loading/loading', false);
+  }, alwaysShowLoadingAtFirst);
+});
 
-export default router
+export default router;

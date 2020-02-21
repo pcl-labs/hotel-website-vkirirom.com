@@ -63,12 +63,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import store from '../store'
+import Vue from 'vue';
+import store from '../store';
 // import ResortRules from '@/components/ResortRules.vue'
-import ResortDescription from '@/components/ResortDescription.vue'
-import { Resort } from '../types'
-import marked from 'marked'
+const ResortDescription = () => import('@/components/ResortDescription.vue');
+import { Resort } from '../types';
+import marked from 'marked';
 
 // https://marked.js.org/
 marked.setOptions({
@@ -80,24 +80,24 @@ marked.setOptions({
   smartLists: true,
   smartypants: false,
   xhtml: false
-})
+});
 export default Vue.extend({
   name: 'booking-thanks',
   components: { ResortDescription },
   computed: {
     resort() {
-      return store.getters['booking/bookingInfo'].resort
+      return (this as any).$store.getters['booking/bookingInfo'].resort;
     }
   },
   methods: {
     marked(content) {
       if (!content) {
-        return ''
+        return '';
       }
-      return marked(content)
+      return marked(content);
     }
   }
-})
+});
 </script>
 
 <style lang="scss">

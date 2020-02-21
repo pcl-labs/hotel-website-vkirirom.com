@@ -1,16 +1,16 @@
-import Vue from 'vue'
-import { dark } from '@/constants/themes'
-import IconFacebook from '@/components/IconFacebook.vue'
-import IconGoogle from '@/components/IconGoogle.vue'
-import IconMessage from '@/components/IconMessage.vue'
-import IconMessageDark from '@/components/IconMessageDark.vue'
-import IconLock from '@/components/IconLock.vue'
-import IconCash from '@/components/IconCash.vue'
-import IconCreditCard from '@/components/IconCreditCard.vue'
+import Vue from 'vue';
+import { dark } from '@/constants/themes';
+import IconFacebook from '@/components/IconFacebook.vue';
+import IconGoogle from '@/components/IconGoogle.vue';
+import IconMessage from '@/components/IconMessage.vue';
+import IconMessageDark from '@/components/IconMessageDark.vue';
+import IconLock from '@/components/IconLock.vue';
+import IconCash from '@/components/IconCash.vue';
+import IconCreditCard from '@/components/IconCreditCard.vue';
 // @ts-ignore
-import Vuetify from 'vuetify/lib'
+import Vuetify from 'vuetify/lib';
 
-Vue.use(Vuetify)
+Vue.use(Vuetify);
 
 export default new Vuetify({
   icons: {
@@ -46,4 +46,4 @@ export default new Vuetify({
       dark
     }
   }
-})
+});

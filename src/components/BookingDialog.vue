@@ -48,12 +48,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import store from '@/store'
-import BookingConfirmDates from '@/components/BookingConfirmDates.vue'
-import BookingAuth from '@/components/BookingAuth.vue'
-import BookingConfirmGuests from '@/components/BookingConfirmGuests.vue'
-import BookingConfirmBooking from '@/components/BookingConfirmBooking.vue'
+import Vue from 'vue';
+import store from '@/store';
+const BookingConfirmDates = () => import('@/components/BookingConfirmDates.vue');
+const BookingAuth = () => import('@/components/BookingAuth.vue');
+const BookingConfirmGuests = () => import('@/components/BookingConfirmGuests.vue');
+const BookingConfirmBooking = () => import('@/components/BookingConfirmBooking.vue');
 
 export default Vue.extend({
   name: 'booking-dialog',
@@ -72,65 +72,66 @@ export default Vue.extend({
   data() {
     return {
       tempFix: false
-    }
+    };
   },
   mounted() {
     // @ts-ignore
-    this.patchFocusError()
+    this.patchFocusError();
   },
   computed: {
     dialog() {
-      return store.getters['booking/dialog']
+      return (this as any).$store.getters['booking/dialog'];
     },
     isDialogOpen: {
       get() {
-        const isOpen = store.getters['booking/dialog'].isOpen
-        return isOpen
+        const isOpen = (this as any).$store.getters['booking/dialog'].isOpen;
+        return isOpen;
       },
       set(value: boolean) {
-        store.dispatch('booking/updateDialog', {
+        (this as any).$store.dispatch('booking/updateDialog', {
           isOpen: value
-        })
+        });
       }
     },
     currentStep(): number {
-      return store.getters['booking/currentStep']
+      return (this as any).$store.getters['booking/currentStep'];
     },
     isAuthenticated(): boolean {
-      return store.getters['auth/isAuthenticated']
+      return (this as any).$store.getters['auth/isAuthenticated'];
     },
     steps() {
-      return store.getters['booking/steps']
+      return (this as any).$store.getters['booking/steps'];
     }
   },
   methods: {
     patchFocusError() {
       this.$nextTick(() => {
         // @ts-ignore
-        this.tempFix = true
-      })
+        this.tempFix = true;
+      });
     },
     // NOTE: can be used outside of component by ref
     openDialog() {
-      console.log('this.item', this.item)
-
       // TODO: Refactor
       // @ts-ignore
-      store.dispatch('booking/startBooking', { resort: this.item, returnUrl: `/listing/${this.$route.params.id}` })
-      store.dispatch('booking/updateDialog', {
+      (this as any).$store.dispatch('booking/startBooking', {
+        resort: (this as any).item,
+        returnUrl: `/listing/${this.$route.params.id}`
+      });
+      (this as any).$store.dispatch('booking/updateDialog', {
         isOpen: true
-      })
+      });
     },
     closeDialog() {
-      store.dispatch('booking/updateDialog', {
+      (this as any).$store.dispatch('booking/updateDialog', {
         isOpen: false
-      })
+      });
     },
     cancelBooking() {
-      store.dispatch('booking/cancelBooking')
+      (this as any).$store.dispatch('booking/cancelBooking');
     }
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>

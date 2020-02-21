@@ -21,9 +21,6 @@
     
     <meta name="google-site-verification" content="lQ32e_y6Y6CNCLiACK2ihX2VHFbVQDl0rawQy2DlDAs" />
 
-    <link href='https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800|Material+Icons' rel="stylesheet" type="text/css">
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css"> -->
-
     <!-- Add to home screen for Android and modern mobile browsers -->
     <link rel="manifest" href="<%= BASE_URL %>manifest.json">
     <meta name="theme-color" content="#191C21">
@@ -37,10 +34,11 @@
     <!-- Add to home screen for Windows -->
     <meta name="msapplication-TileImage" content="<%= BASE_URL %>img/icons/msapplication-icon-144x144.png">
     <meta name="msapplication-TileColor" content="#000000">
-    
-    <link rel="preload" as="image" href="https://res.cloudinary.com/die9ji2vn/image/upload/f_auto/v1578304830/Home%20Page/logo2_qoiy2d.png">
 
-    <script src="https://js.stripe.com/v3/"></script>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800|Material+Icons&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800|Material+Icons&display=swap">
+
+    <script async id="stripe-script" onload="GLOBAL_stripeIsLoaded = true" src="https://js.stripe.com/v3/"></script>
 
     <script type="application/ld+json" data-vmid="jsonld">
       {
@@ -109,6 +107,34 @@
     <meta property="twitter:title" content="vKirirom Pine Resort">
     <meta property="twitter:description" content="vKirirom Pine Resort is an all-inclusive, eco-resort that offers all kinds of experiences through a vast variety of leisure and educational activities, unique and private lodging, luscious Khmer and international cuisines and the exquisite views of the divine nature of Kirirom National Park, the biggest pine forest in Cambodia.">
     <meta property="twitter:image" content="https://res.cloudinary.com/die9ji2vn/image/upload/v1581577859/website-static/open-graph-image.jpg">
+    
+    <!-- preconnects -->
+    <link rel="preconnect" crossorigin="use-credentials" href="https://stagingapi.whynot.earth">
+    <!-- <link rel="preconnect" crossorigin href="https://api.whynot.earth"> -->
+    <link rel="preconnect" crossorigin href="https://res.cloudinary.com">
+    <link rel="preconnect" crossorigin href="https://fonts.googleapis.com">
+    <link rel="preconnect" crossorigin href="https://fonts.gstatic.com/">
+    <link rel="preconnect" crossorigin href="https://connect.facebook.net">
+    <link rel='preconnect' crossorigin href='https://www.googletagmanager.com' />
+    <link rel='preconnect' crossorigin href='https://www.google-analytics.com' />
+    <link rel="dns-prefetch" crossorigin href="https://m.stripe.com">
+    <link rel="dns-prefetch" crossorigin href="https://js.stripe.com">
+    <link rel='dns-prefetch' crossorigin href='https://m.stripe.network' />
+    <link rel="dns-prefetch" crossorigin href="https://www.facebook.com">
+    <link rel='dns-prefetch' crossorigin href='https://www.googleadservices.com' />
+    
+    <!-- fonts -->
+    <link rel="preload" as="font" crossorigin href="https://fonts.gstatic.com/s/materialicons/v50/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2">
+    <!-- 300: <link rel="preload" as="font" crossorigin href="https://fonts.gstatic.com/s/montserrat/v14/JTURjIg1_i6t8kCHKm45_cJD3gnD_g.woff2"> -->
+    <link rel="preload" as="font" crossorigin href="https://fonts.gstatic.com/s/montserrat/v14/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2">
+    <link rel="preload" as="font" crossorigin href="https://fonts.gstatic.com/s/montserrat/v14/JTURjIg1_i6t8kCHKm45_ZpC3gnD_g.woff2">
+    <link rel="preload" as="font" crossorigin href="https://fonts.gstatic.com/s/montserrat/v14/JTURjIg1_i6t8kCHKm45_bZF3gnD_g.woff2">
+    <!-- 700: <link rel="preload" as="font" crossorigin href="https://fonts.gstatic.com/s/montserrat/v14/JTURjIg1_i6t8kCHKm45_dJE3gnD_g.woff2"> -->
+    <link rel="preload" as="font" crossorigin href="https://fonts.gstatic.com/s/montserrat/v14/JTURjIg1_i6t8kCHKm45_c5H3gnD_g.woff2">
+    <!-- logo -->
+    <link rel="preload" as="image" href="https://res.cloudinary.com/die9ji2vn/image/upload/f_auto/v1578304830/Home%20Page/logo2_qoiy2d.png">
+    <!-- homepage images -->
+    <link rel="prefetch" href="https://res.cloudinary.com/die9ji2vn/image/upload/w_888,q_85,f_auto,c_lfill,g_auto/v1561607608/Thumbnail/JPEG/thumbnail_zjzji4.jpg">
 
   </head>
   <body>

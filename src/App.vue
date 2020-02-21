@@ -8,12 +8,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import store from '@/store'
-import { languageCodes, appTitle } from '@/constants/app'
-import SnackbarsGlobal from '@/components/SnackbarsGlobal.vue'
-import PageProgressBarGlobal from '@/components/PageProgressBarGlobal.vue'
-import PageSplashScreen from '@/components/PageSplashScreen.vue'
+import Vue from 'vue';
+import store from '@/store';
+import { languageCodes, appTitle } from '@/constants/app';
+const SnackbarsGlobal = () => import(/* webpackMode: "eager" */ '@/components/SnackbarsGlobal.vue');
+const PageProgressBarGlobal = () => import(/* webpackMode: "eager" */ '@/components/PageProgressBarGlobal.vue');
+const PageSplashScreen = () => import(/* webpackMode: "eager" */ '@/components/PageSplashScreen.vue');
 
 export default Vue.extend({
   name: 'app',
@@ -22,34 +22,34 @@ export default Vue.extend({
   },
   components: { SnackbarsGlobal, PageProgressBarGlobal, PageSplashScreen },
   created() {
-    this.clearTemporaryStates()
-    this.getUser()
+    this.clearTemporaryStates();
+    this.getUser();
   },
   methods: {
     async getUser() {
       try {
-        await store.dispatch('auth/ping')
+        await (this as any).$store.dispatch('auth/ping');
       } catch (error) {
-        console.log(error.message)
+        console.log(error.message);
       }
     },
     clearTemporaryStates() {
-      store.commit('auth/updateLoading', false)
+      (this as any).$store.commit('auth/updateLoading', false);
     }
   },
   computed: {
     hiddenLanguagesClasses() {
-      const selectedLanguageCode = store.getters['language/config'].selectedLanguageCode
-      return languageCodes.filter(code => code !== selectedLanguageCode).map(code => `hide-lang-${code}`)
+      const selectedLanguageCode = (this as any).$store.getters['language/config'].selectedLanguageCode;
+      return languageCodes.filter(code => code !== selectedLanguageCode).map(code => `hide-lang-${code}`);
     },
     isSplashScreenVisible(): boolean {
-      return store.getters['loading/isSplashScreenVisible']
+      return (this as any).$store.getters['loading/isSplashScreenVisible'];
     },
     shouldShowProgressBar(): boolean {
-      return !this.isSplashScreenVisible
+      return !this.isSplashScreenVisible;
     }
   }
-})
+});
 </script>
 
 <style lang="scss">

@@ -89,16 +89,16 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { isNumeric, isAlpha } from 'validator'
-import { get } from 'lodash-es'
+import Vue from 'vue';
+import { isNumeric, isAlpha } from 'validator';
+import { get } from 'lodash-es';
 
 export default Vue.extend({
   name: 'listing-contact-form',
   props: ['resort'],
   computed: {
     formName() {
-      return get(this.resort, 'categories[0].name', 'uncategoriesed')
+      return get(this.resort, 'categories[0].name', 'uncategoriesed');
     }
   },
   data() {
@@ -131,9 +131,9 @@ export default Vue.extend({
           v => !/\D/.test(v) || 'Phone should be number'
         ]
       }
-    }
+    };
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>

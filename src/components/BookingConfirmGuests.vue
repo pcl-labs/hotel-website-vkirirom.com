@@ -212,10 +212,10 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import store from '@/store'
-import { Resort, RoomType } from '@/types'
-import { isNumber } from 'lodash-es'
+import Vue from 'vue';
+import store from '@/store';
+import { Resort, RoomType } from '@/types';
+import { isNumber } from 'lodash-es';
 
 export default Vue.extend({
   name: 'booking-confirm-guests',
@@ -233,69 +233,69 @@ export default Vue.extend({
         computedTotal: [v => v > 0 || 'Specify the number of guests'],
         bedType: [v => (!!v && isNumber(v.id)) || 'Bed type is required']
       }
-    }
+    };
   },
   computed: {
     selectedRoomType: {
       get() {
-        return store.getters['booking/bookingInfo'].roomType
+        return (this as any).$store.getters['booking/bookingInfo'].roomType;
       },
       set(value: RoomType) {
-        store.dispatch('booking/updateRoomType', value)
+        (this as any).$store.dispatch('booking/updateRoomType', value);
       }
     },
     guests() {
-      return store.getters['booking/bookingInfo'].guests
+      return (this as any).$store.getters['booking/bookingInfo'].guests;
     },
     guestsAdults: {
       get(): number {
-        return store.getters['booking/bookingInfo'].guests.adults
+        return (this as any).$store.getters['booking/bookingInfo'].guests.adults;
       },
       set(value: number) {
         const guests = {
-          ...this.guests,
+          ...(this as any).guests,
           adults: value
-        }
-        store.dispatch('booking/updateGuests', guests)
+        };
+        (this as any).$store.dispatch('booking/updateGuests', guests);
       }
     },
     guestsChildren: {
       get(): number {
-        return store.getters['booking/bookingInfo'].guests.children
+        return (this as any).$store.getters['booking/bookingInfo'].guests.children;
       },
       set(value: number) {
         const guests = {
-          ...this.guests,
+          ...(this as any).guests,
           children: value
-        }
-        store.dispatch('booking/updateGuests', guests)
+        };
+        (this as any).$store.dispatch('booking/updateGuests', guests);
       }
     },
     guestsTotal() {
-      return store.getters['booking/bookingInfo'].guests.total
+      return (this as any).$store.getters['booking/bookingInfo'].guests.total;
     },
     computedTotal(): number {
-      return this.guestsAdults + this.guestsChildren
+      return (this as any).guestsAdults + (this as any).guestsChildren;
     },
     resort(): Resort {
-      return store.getters['booking/bookingInfo'].resort
+      return (this as any).$store.getters['booking/bookingInfo'].resort;
     },
     roomTypes(): RoomType[] {
-      const modules = store.getters['booking/bookingInfo'].resort.modules
+      const modules = (this as any).$store.getters['booking/bookingInfo'].resort.modules;
       if (!modules) {
-        return []
+        return [];
       }
-      return modules.hotel.roomTypes
+      return modules.hotel.roomTypes;
     },
     currentStep(): number {
-      return store.getters['booking/currentStep']
+      return (this as any).$store.getters['booking/currentStep'];
     }
   },
   watch: {
     roomTypes: {
       handler(newVal) {
         if (newVal.length === 1) {
-          this.selectedRoomType = newVal[0]
+          (this as any).selectedRoomType = newVal[0];
         }
       },
       immediate: true,
@@ -303,31 +303,33 @@ export default Vue.extend({
     },
     computedTotal(newVal) {
       const guests = {
-        ...this.guests,
+        ...(this as any).guests,
         total: newVal
-      }
-      store.dispatch('booking/updateGuests', guests)
+      };
+      (this as any).$store.dispatch('booking/updateGuests', guests);
     }
   },
   methods: {
     submit() {
       store
         .dispatch('booking/updateGuests', {
-          adults: this.guestsAdults,
-          children: this.guestsChildren,
-          total: this.guestsTotal
+          adults: (this as any).guestsAdults,
+          children: (this as any).guestsChildren,
+          total: (this as any).guestsTotal
         })
-        .then(this.goNextStep)
+        .then((this as any).goNextStep);
     },
     goNextStep() {
-      store.dispatch('booking/updateCurrentStep', this.nextStep)
+      (this as any).$store.dispatch('booking/updateCurrentStep', (this as any).nextStep);
     }
   }
-})
+});
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '@/styles/utility.scss';
+</style>
+<style lang="scss" scoped>
 @import '@/styles/dialog-with-hero.scss';
 @import '@/styles/sticky-submit-bar.scss';
 

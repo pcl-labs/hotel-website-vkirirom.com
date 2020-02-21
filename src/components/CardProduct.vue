@@ -1,10 +1,31 @@
 <template>
   <v-card :ripple="false" color="dark" dark flat class="mb-6 card" :to="link">
+    <router-link :to="link" v-if="hasCarousel">
+      <v-carousel
+        :height="height"
+        :cycle="false"
+        :show-arrows="false"
+        dark
+        width="100%"
+        style="border-top-left-radius: 10px; border-top-right-radius: 10px;"
+      >
+        <v-carousel-item
+          v-for="image in images.slice(0, 5)"
+          :key="image.url"
+          :src="transformCloudinaryUrl(image.url, `q_85,h_${height},f_auto,c_lfill,g_auto`)"
+          class="carousel-item"
+        >
+        </v-carousel-item>
+      </v-carousel>
+    </router-link>
+
     <v-img
+      v-else
       class="d-block"
-      :src="transformCloudinaryUrl(image, 'q_auto:best,h_150,f_auto,c_lfill,g_auto')"
-      height="150px"
+      :src="transformCloudinaryUrl(image, `q_85,h_${height},f_auto,c_lfill,g_auto`)"
+      :height="height"
     ></v-img>
+
     <v-row no-gutters>
       <v-card-text class="pa-3">
         <div>
@@ -17,11 +38,37 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from 'vue';
 export default Vue.extend({
   name: 'card-product',
-  props: ['image', 'title', 'description', 'link']
-})
+  data() {
+    return {
+      height: 150
+    };
+  },
+  props: {
+    image: {
+      type: String
+    },
+    images: {
+      type: Array,
+      default: () => []
+    },
+    title: {
+      type: String
+    },
+    description: {
+      type: String
+    },
+    link: {
+      type: String
+    },
+    hasCarousel: {
+      default: false,
+      type: Boolean
+    }
+  }
+});
 </script>
 
 <style lang="scss" scoped>
@@ -32,5 +79,8 @@ export default Vue.extend({
 }
 .v-card--link:before {
   border-radius: inherit;
+}
+.carousel-item {
+  background-size: contain;
 }
 </style>

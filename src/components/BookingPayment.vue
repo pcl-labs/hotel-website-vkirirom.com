@@ -142,11 +142,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { isNumeric, isAlpha } from 'validator'
-import store from '../store'
-import BookingPaymentByStripe from '@/components/BookingPaymentByStripe.vue'
-import { InternalMessagePassing } from '../types'
+import Vue from 'vue';
+import isNumeric from 'validator/es/lib/isNumeric';
+import isAlpha from 'validator/es/lib/isAlpha';
+import store from '../store';
+import { InternalMessagePassing } from '../types';
+const BookingPaymentByStripe = () => import('@/components/BookingPaymentByStripe.vue');
 
 export default Vue.extend({
   name: 'booking-payment',
@@ -172,142 +173,144 @@ export default Vue.extend({
         addressZip: [v => !!v || 'Zip number is required', v => isNumeric(v) || 'Zip code is not valid']
       },
       isFailEmailSent: false
-    }
+    };
   },
   mounted() {
-    this.resetLoadingAndError()
+    this.resetLoadingAndError();
   },
   computed: {
     payWith: {
       get() {
-        return store.getters['booking/bookingInfo'].payWith
+        return (this as any).$store.getters['booking/bookingInfo'].payWith;
       },
       set(value: string) {
-        store.dispatch('booking/updatePayWith', value)
+        (this as any).$store.dispatch('booking/updatePayWith', value);
       }
     },
     fullName: {
       get() {
-        return store.getters['booking/bookingInfo'].fullName
+        return (this as any).$store.getters['booking/bookingInfo'].fullName;
       },
       set(value: string) {
-        store.dispatch('booking/updateFullName', value)
+        (this as any).$store.dispatch('booking/updateFullName', value);
       }
     },
     addressCity: {
       get() {
-        return store.getters['booking/bookingInfo'].addressCity
+        return (this as any).$store.getters['booking/bookingInfo'].addressCity;
       },
       set(value: string) {
-        store.dispatch('booking/updateAddressCity', value)
+        (this as any).$store.dispatch('booking/updateAddressCity', value);
       }
     },
     addressState: {
       get() {
-        return store.getters['booking/bookingInfo'].addressState
+        return (this as any).$store.getters['booking/bookingInfo'].addressState;
       },
       set(value: string) {
-        store.dispatch('booking/updateAddressState', value)
+        (this as any).$store.dispatch('booking/updateAddressState', value);
       }
     },
     addressLine: {
       get() {
-        return store.getters['booking/bookingInfo'].addressLine
+        return (this as any).$store.getters['booking/bookingInfo'].addressLine;
       },
       set(value: string) {
-        store.dispatch('booking/updateAddressLine', value)
+        (this as any).$store.dispatch('booking/updateAddressLine', value);
       }
     },
     addressZip: {
       get() {
-        return store.getters['booking/bookingInfo'].addressZip
+        return (this as any).$store.getters['booking/bookingInfo'].addressZip;
       },
       set(value: string) {
-        store.dispatch('booking/updateAddressZip', value)
+        (this as any).$store.dispatch('booking/updateAddressZip', value);
       }
     },
     paymentError() {
-      return store.getters['payment/paymentError']
+      return (this as any).$store.getters['payment/paymentError'];
     },
     isPaymentLoading() {
-      return store.getters['payment/isPaymentLoading']
+      return (this as any).$store.getters['payment/isPaymentLoading'];
     },
     reservationId() {
-      return store.getters['booking/reservationId']
+      return (this as any).$store.getters['booking/reservationId'];
     },
     computedTotalPrice() {
-      return store.getters['booking/computedTotalPrice']({ all: true })
+      return (this as any).$store.getters['booking/computedTotalPrice']({ all: true });
     }
   },
   methods: {
     resetLoadingAndError() {
-      store.dispatch('payment/updatePaymentError', '')
-      store.dispatch('payment/updateIsPaymentLoading', false)
+      (this as any).$store.dispatch('payment/updatePaymentError', '');
+      (this as any).$store.dispatch('payment/updateIsPaymentLoading', false);
     },
     async submit() {
-      this.resetLoadingAndError()
+      this.resetLoadingAndError();
 
       if ((await this.evaluateValidation()) === false) {
-        return
+        return;
       }
 
-      store.dispatch('payment/updateIsPaymentLoading', true)
+      (this as any).$store.dispatch('payment/updateIsPaymentLoading', true);
       if (this.payWith === 'cash') {
-        await this.payWithCash()
+        await this.payWithCash();
       } else if (this.payWith === 'card') {
-        await this.payWithCard()
+        await this.payWithCard();
       }
-      store.dispatch('payment/updateIsPaymentLoading', false)
+      (this as any).$store.dispatch('payment/updateIsPaymentLoading', false);
     },
     async payWithCash() {
-      const result = await store.dispatch('booking/reserveRoomAndNotify')
-      this.onCashPayment(result)
+      const result = await (this as any).$store.dispatch('booking/reserveRoomAndNotify');
+      this.onCashPayment(result);
     },
     onCashPayment({ email, reserve }) {
       if (reserve) {
-        this.goNextStep()
+        this.goNextStep();
       }
     },
     async payWithCard() {
       // NOTE: this reservation should be temporary in backend
-      const { reserve } = await store.dispatch('booking/reserveRoom')
+      const { reserve } = await (this as any).$store.dispatch('booking/reserveRoom');
       if (reserve) {
-        const metadata = this.getPaymentMetadata()
+        const metadata = this.getPaymentMetadata();
         try {
-          await this.getClientSecret({ amount: this.computedTotalPrice, metadata })
+          await this.getClientSecret({ amount: this.computedTotalPrice, metadata });
           // @ts-ignore
-          const result = await this.$refs.paymentByStripe.submit()
-          this.onCardPayment(result)
+          const result = await this.$refs.paymentByStripe.submit();
+          this.onCardPayment(result);
         } catch (error) {
-          store.dispatch('payment/updatePaymentError', error.message)
+          (this as any).$store.dispatch('payment/updatePaymentError', error.message);
         }
       }
     },
     async onCardPayment(result: InternalMessagePassing) {
       if (!result.error) {
-        store.dispatch('snackbar/show', {
+        (this as any).$store.dispatch('snackbar/show', {
           text: result.message,
           color: 'success',
           class: 'dark--text'
-        })
-        store.dispatch('booking/sendReservationSuccessEmail', { notificationType: 'CARD PAYMENT' })
-        this.goNextStep()
+        });
+        (this as any).$store.dispatch('booking/sendReservationSuccessEmail', { notificationType: 'CARD PAYMENT' });
+        this.goNextStep();
       } else {
-        store.dispatch('payment/updatePaymentError', result.message)
+        (this as any).$store.dispatch('payment/updatePaymentError', result.message);
         if (!this.isFailEmailSent) {
           try {
-            await store.dispatch('booking/sendReservationFailEmail', { notificationType: 'CARD PAYMENT' })
-            this.isFailEmailSent = true
+            await (this as any).$store.dispatch('booking/sendReservationFailEmail', {
+              notificationType: 'CARD PAYMENT'
+            });
+            this.isFailEmailSent = true;
           } catch (error) {}
         }
       }
     },
     getClientSecret({ amount, metadata }) {
-      return store.dispatch('payment/getClientSecret', {
+      return (this as any).$store.dispatch('payment/getClientSecret', {
         reservationId: this.reservationId,
         amount,
         metadata
-      })
+      });
     },
     getPaymentMetadata() {
       return {
@@ -316,29 +319,31 @@ export default Vue.extend({
         address_city: this.addressCity,
         address_state: this.addressState,
         address_zip: this.addressZip
-      }
+      };
     },
     async evaluateValidation() {
       try {
-        return await store.dispatch('booking/evaluateValidation')
+        return await (this as any).$store.dispatch('booking/evaluateValidation');
       } catch (error) {
-        store.dispatch('payment/updatePaymentError', error.message)
-        return false
+        (this as any).$store.dispatch('payment/updatePaymentError', error.message);
+        return false;
       }
     },
     onPaymentSuccess(result) {
-      this.goNextStep()
+      this.goNextStep();
     },
     onPaymentError(result) {},
     goNextStep() {
-      this.$router.push({ name: 'booking-thanks' })
+      this.$router.push({ name: 'booking-thanks' });
     }
   }
-})
+});
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '@/styles/utility.scss';
+</style>
+<style lang="scss" scoped>
 .theme--dark.v-card.v-card--outlined {
   border-color: map-get($grey, 'lighten-1') !important;
 }

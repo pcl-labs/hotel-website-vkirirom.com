@@ -49,42 +49,44 @@
 </template>
 
 <script lang="ts">
-import { formatDate } from '@/helpers'
-import ResortRules from '@/components/ResortRules.vue'
-import Vue from 'vue'
-import store from '@/store'
+import { formatDate } from '@/helpers';
+const ResortRules = () => import('@/components/ResortRules.vue');
+import Vue from 'vue';
+import store from '@/store';
 export default Vue.extend({
   name: 'review-policies',
   components: { ResortRules },
   computed: {
     resort() {
-      return store.getters['booking/bookingInfo'].resort
+      return (this as any).$store.getters['booking/bookingInfo'].resort;
     },
     dateOne() {
-      return store.getters['booking/bookingInfo'].dateOne
+      return (this as any).$store.getters['booking/bookingInfo'].dateOne;
     },
     checkOut() {
-      return store.getters['booking/bookingInfo'].checkOut
+      return (this as any).$store.getters['booking/bookingInfo'].checkOut;
     },
     prices() {
-      return this.$store.getters['booking/prices']({ decimalDigits: 0 })
+      return (this as any).$store.getters['booking/prices']({ decimalDigits: 0 });
     },
     steps() {
-      return store.getters['booking/steps']
+      return (this as any).$store.getters['booking/steps'];
     }
   },
   methods: {
     formatDate,
     submit() {
-      this.$router.push({ name: 'booking-customer-info' })
-      store.dispatch('booking/updateCurrentStep', this.steps.customerInfo)
+      this.$router.push({ name: 'booking-customer-info' });
+      (this as any).$store.dispatch('booking/updateCurrentStep', this.steps.customerInfo);
     }
   }
-})
+});
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '@/styles/utility.scss';
+</style>
+<style lang="scss" scoped>
 .box-bordered {
   border: 1px solid map-get($grey, 'lighten-1');
   border-radius: 4px;

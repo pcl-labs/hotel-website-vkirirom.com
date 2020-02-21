@@ -48,8 +48,8 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import store from '../store'
+import Vue from 'vue';
+import store from '../store';
 export default Vue.extend({
   name: 'booking-navigation',
   props: {
@@ -60,25 +60,27 @@ export default Vue.extend({
   },
   methods: {
     shouldBeDisabled(step) {
-      return step.id > this.currentStep.id
+      return step.id > (this as any).currentStep.id;
     },
     shouldBeActive(step) {
-      return step.id === this.currentStep.id
+      return step.id === (this as any).currentStep.id;
     }
   },
   computed: {
     currentStep() {
-      return store.getters['booking/currentStep']
+      return (this as any).$store.getters['booking/currentStep'];
     },
     steps() {
-      return store.getters['booking/steps']
+      return (this as any).$store.getters['booking/steps'];
     }
   }
-})
+});
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '@/styles/utility.scss';
+</style>
+<style lang="scss" scoped>
 .toolbar--booking-nav {
   .v-btn:before {
     background: none;

@@ -5,19 +5,19 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import store from '@/store'
-import PageHomeParrallaxHero from '@/components/PageHomeParrallaxHero.vue'
+import Vue from 'vue';
+import store from '@/store';
+const PageHomeParrallaxHero = () => import('@/components/PageHomeParrallaxHero.vue');
 
 export default Vue.extend({
   name: 'booking-dialog',
   components: { PageHomeParrallaxHero },
   data() {
-    return {}
+    return {};
   },
   computed: {},
   methods: {}
-})
+});
 </script>
 
 <style lang="scss" scoped>

@@ -49,60 +49,62 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import store from '@/store'
-import AuthCore from '@/components/AuthCore.vue'
+import Vue from 'vue';
+import store from '@/store';
+const AuthCore = () => import('@/components/AuthCore.vue');
 
 export default Vue.extend({
   name: 'booking-dialog',
   components: { AuthCore },
   computed: {
     dialog() {
-      return store.getters['auth/dialog']
+      return (this as any).$store.getters['auth/dialog'];
     },
     isDialogOpen: {
       get() {
-        return store.getters['auth/dialog'].isOpen
+        return (this as any).$store.getters['auth/dialog'].isOpen;
       },
       set(value: boolean) {
-        store.dispatch('auth/updateDialog', {
+        (this as any).$store.dispatch('auth/updateDialog', {
           isOpen: value
-        })
+        });
       }
     },
     isAuthenticated(): boolean {
-      return store.getters['auth/isAuthenticated']
+      return (this as any).$store.getters['auth/isAuthenticated'];
     }
   },
   watch: {
     isAuthenticated(newVal) {
       if (newVal) {
-        this.closeDialog()
+        this.closeDialog();
       }
     }
   },
   methods: {
     onClose() {
-      this.closeDialog()
+      this.closeDialog();
     },
     // NOTE: can be used outside of component by ref
     openDialog() {
-      store.dispatch('auth/updateActiveState', 'auth-login')
-      store.dispatch('auth/updateDialog', {
+      (this as any).$store.dispatch('auth/updateActiveState', 'auth-login');
+      (this as any).$store.dispatch('auth/updateDialog', {
         isOpen: true
-      })
+      });
     },
     closeDialog() {
-      store.dispatch('auth/updateDialog', {
+      (this as any).$store.dispatch('auth/updateDialog', {
         isOpen: false
-      })
+      });
     }
   }
-})
+});
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '@/styles/utility.scss';
+</style>
+<style lang="scss" scoped>
 @import '@/styles/dialog-with-hero.scss';
 
 ::v-deep {
