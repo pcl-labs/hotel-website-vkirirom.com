@@ -26,7 +26,7 @@ module.exports = {
         options[0].include = 'all';
         options[0].fileWhitelist = [...preloadPatterns];
         options[0].fileBlacklist = [...blacklistPatterns];
-        console.log('options preload =========================>', options);
+        // console.log('options preload =========================>', options);
         return options;
       });
     }
@@ -34,7 +34,7 @@ module.exports = {
     if (config.plugins.has('prefetch')) {
       config.plugin('prefetch').tap(options => {
         options[0].fileBlacklist = [/\.map$/, /hot-update\.js$/, ...preloadPatterns, ...blacklistPatterns];
-        console.log('options prefetch ------------------------>', options);
+        // console.log('options prefetch ------------------------>', options);
         return options;
       });
     }

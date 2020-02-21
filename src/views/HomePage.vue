@@ -71,7 +71,7 @@
             <v-divider light class="d-md-none mt-4"></v-divider>
             <h2 class="mt-2 mb-6 listTitle">Experience</h2>
             <v-row class="cardRow" dense>
-              <v-col cols="12" sm="6" md="4" v-for="item in experiences.slice(0, 4)" :key="item.id">
+              <v-col cols="12" sm="6" md="4" v-for="item in experiences" :key="item.id">
                 <card-product
                   :title="item.title"
                   :description="item.ctaText > 0 ? `Starting from ${item.ctaText}$ per night` : item.ctaText"
@@ -123,7 +123,7 @@
             </v-card>
             <h2 class="mb-6 listTitle">Events</h2>
             <v-row class="cardRow" dense>
-              <v-col cols="12" sm="6" md="4" v-for="item in events.slice(0, 4)" :key="item.id">
+              <v-col cols="12" sm="6" md="4" v-for="item in events" :key="item.id">
                 <card-product
                   :title="item.title"
                   :description="item.ctaText > 0 ? `Starting from ${item.ctaText}$ per night` : item.ctaText"
@@ -158,7 +158,7 @@
             </v-flex>
             <h2 class="mt-2 mb-6 listTitle">Lease</h2>
             <v-row class="cardRow" dense>
-              <v-col cols="12" sm="6" md="4" v-for="item in leases.slice(0, 4)" :key="item.id">
+              <v-col cols="12" sm="6" md="4" v-for="item in leases" :key="item.id">
                 <card-product
                   :title="item.title"
                   :description="item.ctaText > 0 ? `Starting from ${item.ctaText}$ per night` : item.ctaText"
@@ -178,7 +178,7 @@
             </v-row>
             <h2 class="mb-6 mt-4 listTitle">Ecotourism</h2>
             <v-row class="cardRow" dense>
-              <v-col cols="12" sm="6" md="4" lg4 v-for="item in ecotourisms.slice(0, 4)" :key="item.id">
+              <v-col cols="12" sm="6" md="4" lg4 v-for="item in ecotourisms" :key="item.id">
                 <card-product
                   :title="item.title"
                   :description="item.ctaText > 0 ? `Starting from ${item.ctaText}$ per night` : item.ctaText"
@@ -252,7 +252,7 @@ export default {
       ]
     };
   },
-  mounted() {
+  created() {
     (this as any).$store.dispatch('category/getItemsByName', 'accommodations');
     (this as any).$store.dispatch('category/getItemsByName', 'experiences');
     (this as any).$store.dispatch('category/getItemsByName', 'events');
