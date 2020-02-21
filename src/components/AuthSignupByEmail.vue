@@ -124,9 +124,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import store from '@/store'
-import SeparatorOr from '@/components/SeparatorOr.vue'
+import Vue from 'vue';
+import store from '@/store';
+const SeparatorOr = () => import('@/components/SeparatorOr.vue');
 export default Vue.extend({
   components: { SeparatorOr },
   data() {
@@ -152,57 +152,57 @@ export default Vue.extend({
           v => /(?=.*[^A-Za-z0-9])/.test(v) || 'Must have special character(s)'
         ]
       }
-    }
+    };
   },
   methods: {
     updateActiveState(value) {
-      store.dispatch('auth/updateActiveState', value)
+      (this as any).$store.dispatch('auth/updateActiveState', value);
     },
     async submit() {
       try {
-        await store.dispatch('auth/register')
-        store.dispatch('snackbar/show', {
+        await (this as any).$store.dispatch('auth/register');
+        (this as any).$store.dispatch('snackbar/show', {
           color: 'success',
           text: 'Signing up was successful',
           class: 'dark--text'
-        })
+        });
       } catch (error) {
-        console.log('Signup failed')
+        console.log('Signup failed');
       }
     },
     oauth(provider) {
-      store.commit('auth/updateProvider', provider)
-      window.location.assign(store.getters['auth/oauth'])
-      store.dispatch('auth/ping')
+      (this as any).$store.commit('auth/updateProvider', provider);
+      window.location.assign((this as any).$store.getters['auth/oauth']);
+      (this as any).$store.dispatch('auth/ping');
     }
   },
   computed: {
     email: {
       get() {
-        return store.getters['auth/email']
+        return (this as any).$store.getters['auth/email'];
       },
       set(value) {
-        store.commit('auth/updateEmail', value)
+        (this as any).$store.commit('auth/updateEmail', value);
       }
     },
     password: {
       get() {
-        return store.getters['auth/password']
+        return (this as any).$store.getters['auth/password'];
       },
       set(value) {
-        store.commit('auth/updatePassword', value)
+        (this as any).$store.commit('auth/updatePassword', value);
       }
     },
     loading() {
-      return store.getters['auth/loading']
+      return (this as any).$store.getters['auth/loading'];
     },
     registerError() {
-      return store.getters['auth/registerError']
+      return (this as any).$store.getters['auth/registerError'];
     }
   }
-})
+});
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 @import '@/styles/utility.scss';
 </style>

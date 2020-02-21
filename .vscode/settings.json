@@ -1,9 +1,8 @@
 {
-  "eslint.autoFixOnSave": false,
   "editor.formatOnSave": false,
   "editor.tabSize": 2,
   "workbench.colorCustomizations": {
-    "titleBar.activeBackground": "#8a0a9b",
+    "titleBar.activeBackground": "#540596",
     "titleBar.activeForeground": "#f3f3f3"
   }
 }

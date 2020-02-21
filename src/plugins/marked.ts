@@ -1,7 +1,7 @@
-import marked from 'marked'
+import marked from 'marked';
 
 // https://marked.js.org/
-const renderer = new marked.Renderer()
+const renderer = new marked.Renderer();
 marked.setOptions({
   headerIds: false,
   renderer,
@@ -12,6 +12,6 @@ marked.setOptions({
   smartLists: true,
   smartypants: false,
   xhtml: false
-})
+});
 
-export default marked
+export default marked;

@@ -144,9 +144,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import store from '@/store'
-import { formatDate } from '@/helpers'
+import Vue from 'vue';
+import store from '@/store';
+import { formatDate } from '@/helpers';
 
 export default Vue.extend({
   name: 'booking-confirm-dates',
@@ -162,46 +162,48 @@ export default Vue.extend({
   },
   computed: {
     resort() {
-      return store.getters['booking/bookingInfo'].resort
+      return (this as any).$store.getters['booking/bookingInfo'].resort;
     },
     dateOne() {
-      return store.getters['booking/bookingInfo'].dateOne
+      return (this as any).$store.getters['booking/bookingInfo'].dateOne;
     },
     dateTwo() {
-      return store.getters['booking/bookingInfo'].dateTwo
+      return (this as any).$store.getters['booking/bookingInfo'].dateTwo;
     },
     checkOut() {
-      return store.getters['booking/bookingInfo'].checkOut
+      return (this as any).$store.getters['booking/bookingInfo'].checkOut;
     },
     prices() {
-      return this.$store.getters['booking/prices']({ decimalDigits: 0 })
+      return (this as any).$store.getters['booking/prices']({ decimalDigits: 0 });
     },
     computedVAT() {
-      return store.getters['booking/computedVAT']({ decimalDigits: 0 })
+      return (this as any).$store.getters['booking/computedVAT']({ decimalDigits: 0 });
     },
     computedTotalPrice() {
       const options = {
         hasVAT: true,
         decimalDigits: 0
-      }
-      return store.getters['booking/computedTotalPrice'](options)
+      };
+      return (this as any).$store.getters['booking/computedTotalPrice'](options);
     },
     guests() {
-      return store.getters['booking/bookingInfo'].guests.total
+      return (this as any).$store.getters['booking/bookingInfo'].guests.total;
     }
   },
   methods: {
     formatDate,
     submit() {
-      this.$emit('booking-close')
-      this.$router.push({ name: 'booking-review-rules' })
+      this.$emit('booking-close');
+      this.$router.push({ name: 'booking-review-rules' });
     }
   }
-})
+});
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '@/styles/utility.scss';
+</style>
+<style lang="scss" scoped>
 @import '@/styles/dialog-with-hero.scss';
 @import '@/styles/sticky-submit-bar.scss';
 .booking-confirm--h3-title {

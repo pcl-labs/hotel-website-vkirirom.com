@@ -10,15 +10,15 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import store from '@/store'
+import Vue from 'vue';
+import store from '@/store';
 export default Vue.extend({
   computed: {
     loading() {
-      return store.getters['loading/isLoading']
+      return (this as any).$store.getters['loading/isLoading'];
     }
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>

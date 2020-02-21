@@ -1,7 +1,7 @@
 // swagger API docs: https://stagingapi.whynot.earth/index.html
-const { codegen } = require('swagger-axios-codegen')
-const { BASE_API } = require('../constants/connection')
-console.log('BASE_API', BASE_API)
+const { codegen } = require('swagger-axios-codegen');
+const { BASE_API } = require('../constants/connection');
+console.log('BASE_API', BASE_API);
 
 codegen({
   methodNameMode: 'operationId',
@@ -9,4 +9,4 @@ codegen({
   useStaticMethod: true,
   outputDir: './temp/',
   fileName: 'resources.ts'
-})
+});

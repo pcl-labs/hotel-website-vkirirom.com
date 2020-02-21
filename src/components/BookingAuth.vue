@@ -37,9 +37,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import store from '@/store'
-import AuthCore from '@/components/AuthCore.vue'
+import Vue from 'vue';
+import store from '@/store';
+const AuthCore = () => import('@/components/AuthCore.vue');
 
 export default Vue.extend({
   name: 'booking-auth',
@@ -51,35 +51,35 @@ export default Vue.extend({
     }
   },
   mounted() {
-    store.dispatch('auth/updateActiveState', 'auth-login')
-    if (this.isAuthenticated) {
-      this.goNextStep()
+    (this as any).$store.dispatch('auth/updateActiveState', 'auth-login');
+    if ((this as any).isAuthenticated) {
+      (this as any).goNextStep();
     }
   },
   computed: {
     dialog() {
-      return store.getters['auth/dialog']
+      return (this as any).$store.getters['auth/dialog'];
     },
     isAuthenticated(): boolean {
-      return store.getters['auth/isAuthenticated']
+      return (this as any).$store.getters['auth/isAuthenticated'];
     }
   },
   watch: {
     isAuthenticated(newVal) {
       if (newVal) {
-        this.goNextStep()
+        (this as any).goNextStep();
       }
     }
   },
   methods: {
     goNextStep() {
-      store.dispatch('booking/updateCurrentStep', this.nextStep)
+      (this as any).$store.dispatch('booking/updateCurrentStep', (this as any).nextStep);
     }
   }
-})
+});
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '@/styles/utility.scss';
 @import '@/styles/dialog-with-hero.scss';
 </style>

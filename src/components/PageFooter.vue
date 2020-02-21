@@ -13,7 +13,7 @@
                 </router-link>
               </li>
               <li class="mb-2">
-                <a href="http://asiato.asia/" target="_blank" class="link">About</a>
+                <a href="http://asiato.asia/" rel="noopener noreferrer" target="_blank" class="link">About</a>
               </li>
               <!-- <li class="mb-2">Book Now</li> -->
               <li class="mb-2">
@@ -29,9 +29,10 @@
                     class="page-footer--flag-link pa-1 primary--text mr-3"
                   >
                     <img
+                      loading="lazy"
                       class="d-block page-footer--flag"
                       height="16"
-                      src="https://restcountries.eu/data/usa.svg"
+                      src="https://res.cloudinary.com/die9ji2vn/image/upload/v1581961735/website-static/flags/usa_iv1clb.svg"
                       alt=""
                     />
                   </a>
@@ -41,9 +42,10 @@
                     class="page-footer--flag-link pa-1 primary--text"
                   >
                     <img
+                      loading="lazy"
                       class="d-block page-footer--flag"
                       height="16"
-                      src="https://restcountries.eu/data/khm.svg"
+                      src="https://res.cloudinary.com/die9ji2vn/image/upload/v1581961735/website-static/flags/khm_gdmegl.svg"
                       alt=""
                     />
                   </a>
@@ -98,32 +100,32 @@
 </template>
 
 <script>
-import store from '@/store'
+import store from '@/store';
 export default {
   name: 'page-footer',
   data() {
     return {
       appVersion: JSON.parse(unescape(process.env.APP_VERSION || 0))
-    }
+    };
   },
   mounted() {
-    this.storeFooterHeight()
+    this.storeFooterHeight();
   },
   methods: {
     updateSelectedLanguageCode(languageCode) {
-      store.dispatch('language/updateSelectedLanguageCode', languageCode)
+      this.$store.dispatch('language/updateSelectedLanguageCode', languageCode);
     },
     storeFooterHeight() {
-      const pageFooter = this.$refs.pageFooter
-      store.dispatch('layout/updateFooterHeight', pageFooter.$el.clientHeight)
+      const pageFooter = this.$refs.pageFooter;
+      this.$store.dispatch('layout/updateFooterHeight', pageFooter.$el.clientHeight);
     }
   },
   computed: {
     selectedLanguageCode() {
-      return store.getters['language/config'].selectedLanguageCode
+      return this.$store.getters['language/config'].selectedLanguageCode;
     }
   }
-}
+};
 </script>
 
 <style lang="scss">

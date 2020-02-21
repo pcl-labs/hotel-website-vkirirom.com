@@ -58,9 +58,9 @@
 </template>
 
 <script lang="ts">
-import SeparatorOr from '@/components/SeparatorOr.vue'
-import AuthSignupByEmail from '@/components/AuthSignupByEmail.vue'
-import store from '@/store'
+const SeparatorOr = () => import('@/components/SeparatorOr.vue');
+const AuthSignupByEmail = () => import('@/components/AuthSignupByEmail.vue');
+import store from '@/store';
 
 // TODO: if register error happened and account exists, then $emit 'auth-login-existing-account'
 
@@ -70,29 +70,29 @@ export default {
   data() {
     return {
       formMode: 'by-oauth'
-    }
+    };
   },
   methods: {
     updateActiveState(value) {
-      store.dispatch('auth/updateActiveState', value)
+      (this as any).$store.dispatch('auth/updateActiveState', value);
     },
     async oauth(provider) {
       // TODO: move to store
-      await store.commit('auth/updateProvider', provider)
-      await store.dispatch('auth/updateReturnUrl', window.location.href)
-      const redirectUrl = await store.getters['auth/oauth']
-      window.location.assign(redirectUrl)
-      store.dispatch('auth/ping')
+      await (this as any).$store.commit('auth/updateProvider', provider);
+      await (this as any).$store.dispatch('auth/updateReturnUrl', window.location.href);
+      const redirectUrl = await (this as any).$store.getters['auth/oauth'];
+      window.location.assign(redirectUrl);
+      (this as any).$store.dispatch('auth/ping');
     }
   },
   computed: {
     registerError() {
-      return store.getters['auth/registerError']
+      return (this as any).$store.getters['auth/registerError'];
     }
   }
-}
+};
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 @import '@/styles/utility.scss';
 </style>

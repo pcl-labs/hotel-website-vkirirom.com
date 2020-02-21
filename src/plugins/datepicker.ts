@@ -1,7 +1,7 @@
-import Vue from 'vue'
+import Vue from 'vue';
 // @ts-ignore
-import AirbnbStyleDatepicker from 'vue-airbnb-style-datepicker'
-import 'vue-airbnb-style-datepicker/dist/vue-airbnb-style-datepicker.min.css'
+import AirbnbStyleDatepicker from 'vue-airbnb-style-datepicker';
+import 'vue-airbnb-style-datepicker/dist/vue-airbnb-style-datepicker.min.css';
 
 Vue.use(AirbnbStyleDatepicker, {
   sundayFirst: true,
@@ -30,4 +30,4 @@ Vue.use(AirbnbStyleDatepicker, {
     inRangeBorder: '#4f4f4f',
     keyboardShortcuts: '#B3859D'
   }
-})
+});

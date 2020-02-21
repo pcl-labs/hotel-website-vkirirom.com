@@ -74,7 +74,7 @@
 
 <script lang="ts">
 // import SeparatorOr from '@/components/SeparatorOr.vue'
-import store from '@/store'
+import store from '@/store';
 
 export default {
   name: 'auth-login',
@@ -88,52 +88,52 @@ export default {
       rules: {
         password: [v => !!v || 'Password is required']
       }
-    }
+    };
   },
   methods: {
     updateActiveState(value) {
-      store.dispatch('auth/updateActiveState', value)
+      (this as any).$store.dispatch('auth/updateActiveState', value);
     },
     async login() {
       try {
-        await store.dispatch('auth/loginStandard')
-        store.dispatch('snackbar/show', {
+        await (this as any).$store.dispatch('auth/loginStandard');
+        (this as any).$store.dispatch('snackbar/show', {
           color: 'success',
           text: 'Logging in was successful',
           class: 'dark--text'
-        })
+        });
       } catch (error) {
-        console.log('wrong credentials')
+        console.log('wrong credentials');
       }
     }
   },
   computed: {
     email: {
       get() {
-        return store.getters['auth/email']
+        return (this as any).$store.getters['auth/email'];
       },
       set(value) {
-        store.commit('auth/updateEmail', value)
+        (this as any).$store.commit('auth/updateEmail', value);
       }
     },
     password: {
       get() {
-        return store.getters['auth/password']
+        return (this as any).$store.getters['auth/password'];
       },
       set(value) {
-        store.commit('auth/updatePassword', value)
+        (this as any).$store.commit('auth/updatePassword', value);
       }
     },
     loading() {
-      return store.getters['auth/loading']
+      return (this as any).$store.getters['auth/loading'];
     },
     loginError() {
-      return store.getters['auth/loginError']
+      return (this as any).$store.getters['auth/loginError'];
     }
   }
-}
+};
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 @import '@/styles/utility.scss';
 </style>
