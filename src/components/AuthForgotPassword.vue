@@ -72,7 +72,7 @@
 </template>
 
 <script lang="ts">
-import store from '@/store'
+import store from '@/store';
 
 export default {
   name: 'auth-signup',
@@ -86,35 +86,35 @@ export default {
           v => (v || '').indexOf(' ') < 0 || 'No spaces are allowed'
         ]
       }
-    }
+    };
   },
   methods: {
     updateActiveState(value) {
-      store.dispatch('auth/updateActiveState', value)
+      (this as any).$store.dispatch('auth/updateActiveState', value);
     },
     submit() {
-      store.dispatch('auth/sendResetPasswordLink')
+      (this as any).$store.dispatch('auth/sendResetPasswordLink');
     }
   },
   computed: {
     email: {
       get() {
-        return store.getters['auth/email']
+        return (this as any).$store.getters['auth/email'];
       },
       set(value) {
-        store.commit('auth/updateEmail', value)
+        (this as any).$store.commit('auth/updateEmail', value);
       }
     },
     loading() {
-      return store.getters['auth/loading']
+      return (this as any).$store.getters['auth/loading'];
     },
     forgotPasswordError() {
-      return store.getters['auth/forgotPasswordError']
+      return (this as any).$store.getters['auth/forgotPasswordError'];
     }
   }
-}
+};
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 @import '@/styles/utility.scss';
 </style>

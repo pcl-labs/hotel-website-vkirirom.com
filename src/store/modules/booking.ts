@@ -1,17 +1,16 @@
-import { addDays } from 'date-fns'
-import { RoomTypeService, ReservationService } from '@/connection/resources.js'
-import { bookingStep } from '@/types'
-import { setDocumentClassesOnToggleDialog, formatDate, removeOtherLanguagesExcept, toFixedNumber } from '@/helpers'
-import { cloneDeep } from 'lodash-es'
-import countriesList from '@/constants/countries-list'
-import store from '@/store'
+import { addDays } from 'date-fns';
+import { RoomTypeService, ReservationService } from '@/connection/resources.js';
+import { bookingStep } from '@/types';
+import { setDocumentClassesOnToggleDialog, formatDate, removeOtherLanguagesExcept, toFixedNumber } from '@/helpers';
+import { cloneDeep } from 'lodash-es';
+import store from '@/store';
 import {
   emailAPIBase,
   reservationEmailsBcc,
   reservationSuccessEmailTemplateId,
   reservationFailEmailTemplateId
-} from '@/constants/app'
-import { ajax } from '@/connection/ajax'
+} from '@/constants/app';
+import { ajax } from '@/connection/ajax';
 
 const steps: { [name: string]: bookingStep } = {
   notStarted: {
@@ -45,7 +44,7 @@ const steps: { [name: string]: bookingStep } = {
     id: 8,
     title: 'Thank You!'
   }
-}
+};
 
 const defaultState = {
   currentStep: {
@@ -55,6 +54,7 @@ const defaultState = {
   dialog: {
     isOpen: false
   },
+  countriesList: [],
   bookingInfo: {
     returnUrl: '/',
     resort: {},
@@ -68,7 +68,7 @@ const defaultState = {
     name: '',
     email: '',
     phoneNumber: '',
-    phoneCountry: countriesList.find(item => item.name === 'Cambodia'),
+    phoneCountry: {},
     payWith: 'card',
     roomType: {},
     dateOne: '',
@@ -87,174 +87,180 @@ const defaultState = {
   reservationDetails: {},
   isPaymentLoading: false,
   paymentError: ''
-}
+};
 
 export default {
   namespaced: true,
   state: cloneDeep(defaultState),
   mutations: {
+    updateCountriesList(state, payload) {
+      state.countriesList = payload;
+    },
     updateDialog(state, payload) {
-      state.dialog = payload
+      state.dialog = payload;
     },
     updateCurrentStep(state, payload) {
-      state.currentStep = payload
+      state.currentStep = payload;
     },
     updateGuests(state, payload) {
-      state.bookingInfo.guests = payload
+      state.bookingInfo.guests = payload;
     },
     updateDateOne(state, payload) {
-      state.bookingInfo.dateOne = payload
+      state.bookingInfo.dateOne = payload;
     },
     updateDateTwo(state, payload) {
-      state.bookingInfo.dateTwo = payload
-      state.bookingInfo.checkOut = formatDate(new Date(addDays(payload, 1)), 'YYYY-MM-DD')
+      state.bookingInfo.dateTwo = payload;
+      state.bookingInfo.checkOut = formatDate(new Date(addDays(payload, 1)), 'YYYY-MM-DD');
     },
     updatePrices(state, payload) {
-      state.bookingInfo.prices = payload
+      state.bookingInfo.prices = payload;
     },
     updateMessage(state, payload) {
-      state.bookingInfo.message = payload
+      state.bookingInfo.message = payload;
     },
     updateName(state, payload) {
-      state.bookingInfo.name = payload
+      state.bookingInfo.name = payload;
     },
     updateEmail(state, payload) {
-      state.bookingInfo.email = payload
+      state.bookingInfo.email = payload;
     },
     updatePhoneNumber(state, payload) {
-      state.bookingInfo.phoneNumber = payload
+      state.bookingInfo.phoneNumber = payload;
     },
     updatePhoneCountry(state, payload) {
-      state.bookingInfo.phoneCountry = payload
+      state.bookingInfo.phoneCountry = payload;
     },
     updatePayWith(state, payload) {
-      state.bookingInfo.payWith = payload
+      state.bookingInfo.payWith = payload;
     },
     updateFullName(state, payload) {
-      state.bookingInfo.fullName = payload
+      state.bookingInfo.fullName = payload;
     },
     updateAddressLine(state, payload) {
-      state.bookingInfo.addressLine = payload
+      state.bookingInfo.addressLine = payload;
     },
     updateAddressZip(state, payload) {
-      state.bookingInfo.addressZip = payload
+      state.bookingInfo.addressZip = payload;
     },
     updateAddressCity(state, payload) {
-      state.bookingInfo.addressCity = payload
+      state.bookingInfo.addressCity = payload;
     },
     updateAddressState(state, payload) {
-      state.bookingInfo.addressState = payload
+      state.bookingInfo.addressState = payload;
     },
     updateRoomType(state, payload) {
-      state.bookingInfo.roomType = payload
+      state.bookingInfo.roomType = payload;
     },
     updateReturnUrl(state, payload) {
-      state.bookingInfo.returnUrl = payload
+      state.bookingInfo.returnUrl = payload;
     },
     updateResort(state, payload) {
-      state.bookingInfo.resort = payload
+      state.bookingInfo.resort = payload;
     },
     updateReservationId(state, payload) {
-      state.reservationId = payload
+      state.reservationId = payload;
     },
     updateReservationDetails(state, payload) {
-      state.reservationDetails = payload
+      state.reservationDetails = payload;
     },
     updateRoomDescriptionHTML(state, payload) {
-      const englishDescription = removeOtherLanguagesExcept('en', payload).outerHTML
-      state.bookingInfo.roomDescriptionHTML = englishDescription
+      const englishDescription = removeOtherLanguagesExcept('en', payload).outerHTML;
+      state.bookingInfo.roomDescriptionHTML = englishDescription;
     },
     resetState(state) {
       for (const key in defaultState) {
         if (defaultState.hasOwnProperty(key)) {
-          state[key] = cloneDeep(defaultState[key])
+          state[key] = cloneDeep(defaultState[key]);
         }
       }
     }
   },
   actions: {
+    updateCountriesList(context, payload) {
+      context.commit('updateCountriesList', payload);
+    },
     updateDialog(context, payload) {
       const dialog = {
         ...context.state.dialog,
         ...payload
-      }
+      };
 
-      setDocumentClassesOnToggleDialog(dialog.isOpen)
-      context.commit('updateDialog', dialog)
+      setDocumentClassesOnToggleDialog(dialog.isOpen);
+      context.commit('updateDialog', dialog);
     },
     cancelBooking(context) {
-      context.commit('resetState')
+      context.commit('resetState');
     },
     startBooking(context, { resort, returnUrl }) {
-      context.commit('updateResort', resort)
-      context.commit('updateReturnUrl', returnUrl)
-      context.commit('updateCurrentStep', context.state.steps.confirmDates)
+      context.commit('updateResort', resort);
+      context.commit('updateReturnUrl', returnUrl);
+      context.commit('updateCurrentStep', context.state.steps.confirmDates);
     },
     endBooking(context) {
-      context.commit('resetState')
+      context.commit('resetState');
     },
     updateCurrentStep(context, payload) {
-      context.commit('updateCurrentStep', payload)
+      context.commit('updateCurrentStep', payload);
     },
     updateGuests(context, payload) {
-      context.commit('updateGuests', payload)
+      context.commit('updateGuests', payload);
     },
     updateDateOne(context, payload) {
-      context.commit('updateDateOne', payload)
+      context.commit('updateDateOne', payload);
     },
     updateDateTwo(context, payload) {
-      context.commit('updateDateTwo', payload)
+      context.commit('updateDateTwo', payload);
     },
     clearDateTwo(context) {
-      context.commit('updateDateTwo', defaultState.bookingInfo.dateTwo)
+      context.commit('updateDateTwo', defaultState.bookingInfo.dateTwo);
     },
     updateVat(context, payload) {
-      context.commit('updateVat', payload)
+      context.commit('updateVat', payload);
     },
     updateFinalPrice(context, payload) {
-      context.commit('updateFinalPrice', payload)
+      context.commit('updateFinalPrice', payload);
     },
     updatePrices(context, payload) {
-      context.commit('updatePrices', payload)
+      context.commit('updatePrices', payload);
     },
     updateMessage(context, payload) {
-      context.commit('updateMessage', payload)
+      context.commit('updateMessage', payload);
     },
     updateName(context, payload) {
-      context.commit('updateName', payload)
+      context.commit('updateName', payload);
     },
     updateEmail(context, payload) {
-      context.commit('updateEmail', payload)
+      context.commit('updateEmail', payload);
     },
     updatePhoneNumber(context, payload) {
-      context.commit('updatePhoneNumber', payload)
+      context.commit('updatePhoneNumber', payload);
     },
     updatePhoneCountry(context, payload) {
-      context.commit('updatePhoneCountry', payload)
+      context.commit('updatePhoneCountry', payload);
     },
     updatePayWith(context, payload) {
-      context.commit('updatePayWith', payload)
+      context.commit('updatePayWith', payload);
     },
     updateFullName(context, payload) {
-      context.commit('updateFullName', payload)
+      context.commit('updateFullName', payload);
     },
     updateAddressLine(context, payload) {
-      context.commit('updateAddressLine', payload)
+      context.commit('updateAddressLine', payload);
     },
     updateAddressZip(context, payload) {
-      context.commit('updateAddressZip', payload)
+      context.commit('updateAddressZip', payload);
     },
     updateAddressCity(context, payload) {
-      context.commit('updateAddressCity', payload)
+      context.commit('updateAddressCity', payload);
     },
     updateAddressState(context, payload) {
-      context.commit('updateAddressState', payload)
+      context.commit('updateAddressState', payload);
     },
     updateRoomType(context, payload) {
-      context.commit('updateRoomType', payload)
+      context.commit('updateRoomType', payload);
     },
     clearPrices(context) {
-      context.commit('updatePrices', defaultState.bookingInfo.prices)
+      context.commit('updatePrices', defaultState.bookingInfo.prices);
     },
     getPrices(context, { roomTypeId, dateOne, dateTwo }) {
       return RoomTypeService.prices({
@@ -262,29 +268,29 @@ export default {
         startDate: dateOne,
         endDate: dateTwo
       }).then(prices => {
-        context.commit('updatePrices', prices)
-      })
+        context.commit('updatePrices', prices);
+      });
     },
     async reserveRoom(context) {
-      const customBookingInfo = cloneDeep(context.getters['customBookingInfo'])
+      const customBookingInfo = cloneDeep(context.getters['customBookingInfo']);
       try {
-        const { reservationId } = await ReservationService.reserveByRoomType(customBookingInfo)
-        context.commit('updateReservationId', reservationId)
-        return { reserve: true }
+        const { reservationId } = await ReservationService.reserveByRoomType(customBookingInfo);
+        context.commit('updateReservationId', reservationId);
+        return { reserve: true };
       } catch (error) {
         try {
-          await context.dispatch('sendReservationFailEmail', { notificationType: 'CARD PAYMENT' })
+          await context.dispatch('sendReservationFailEmail', { notificationType: 'CARD PAYMENT' });
           store.dispatch(
             'payment/updatePaymentError',
             'There was an error with your booking, we will be in contact via email soon to complete your booking.'
-          )
-          return { reserve: false, email: true }
+          );
+          return { reserve: false, email: true };
         } catch (error) {
           store.dispatch(
             'payment/updatePaymentError',
             'There was an error with your booking, please <a href="/contact">contact us</a>'
-          )
-          return { reserve: false, email: false }
+          );
+          return { reserve: false, email: false };
         }
       }
     },
@@ -305,45 +311,45 @@ export default {
     */
     // TODO: Separate logic of email and reservation
     async reserveRoomAndNotify(context) {
-      const customBookingInfo = cloneDeep(context.getters['customBookingInfo'])
+      const customBookingInfo = cloneDeep(context.getters['customBookingInfo']);
       try {
-        const { reservationId } = await ReservationService.reserveByRoomType(customBookingInfo)
-        context.commit('updateReservationId', reservationId)
+        const { reservationId } = await ReservationService.reserveByRoomType(customBookingInfo);
+        context.commit('updateReservationId', reservationId);
         try {
-          await context.dispatch('sendReservationSuccessEmail', { notificationType: 'CASH PAYMENT' })
-          return { reserve: true, email: true }
+          await context.dispatch('sendReservationSuccessEmail', { notificationType: 'CASH PAYMENT' });
+          return { reserve: true, email: true };
         } catch (error) {
-          console.log('Sending reservation email failed')
-          return { reserve: true, email: false }
+          console.log('Sending reservation email failed');
+          return { reserve: true, email: false };
         }
       } catch (error) {
         try {
-          await context.dispatch('sendReservationFailEmail', { notificationType: 'CASH PAYMENT' })
+          await context.dispatch('sendReservationFailEmail', { notificationType: 'CASH PAYMENT' });
           store.dispatch(
             'payment/updatePaymentError',
             'There was an error with your booking, we will be in contact via email soon to complete your booking.'
-          )
+          );
           return {
             reserve: false,
             email: true
-          }
+          };
         } catch (error) {
           store.dispatch(
             'payment/updatePaymentError',
             'There was an error with your booking, please <a href="/contact">contact us</a>'
-          )
+          );
           return {
             reserve: false,
             email: false
-          }
+          };
         }
       }
     },
     updateRoomDescriptionHTML(context, payload) {
-      context.commit('updateRoomDescriptionHTML', payload)
+      context.commit('updateRoomDescriptionHTML', payload);
     },
     sendReservationSuccessEmail(context, { notificationType }) {
-      const reservationSuccessEmailData = context.getters.reservationSuccessEmailData({ notificationType })
+      const reservationSuccessEmailData = context.getters.reservationSuccessEmailData({ notificationType });
       return ajax({
         method: 'post',
         url: `${emailAPIBase}/mail/send`,
@@ -352,10 +358,10 @@ export default {
         headers: {
           'Content-Type': 'application/json'
         }
-      })
+      });
     },
     sendReservationFailEmail(context, { notificationType }) {
-      const reservationFailEmailData = context.getters.reservationFailEmailData({ notificationType })
+      const reservationFailEmailData = context.getters.reservationFailEmailData({ notificationType });
       return ajax({
         method: 'post',
         url: `${emailAPIBase}/mail/send`,
@@ -364,32 +370,35 @@ export default {
         headers: {
           'Content-Type': 'application/json'
         }
-      })
+      });
     },
     evaluateValidation(context) {
-      const bookingInfo = context.getters.bookingInfo
-      const computedTotalPrice = context.getters.computedTotalPrice({ all: true })
-      const now = new Date()
-      const { dateOne, dateTwo } = bookingInfo
+      const bookingInfo = context.getters.bookingInfo;
+      const computedTotalPrice = context.getters.computedTotalPrice({ all: true });
+      const now = new Date();
+      const { dateOne, dateTwo } = bookingInfo;
       if (!(new Date(dateOne) > now && new Date(dateTwo) > now)) {
-        throw new Error('Check in and check out dates are not valid. Please starting your booking again.')
+        throw new Error('Check in and check out dates are not valid. Please starting your booking again.');
       }
       if (!(computedTotalPrice >= 0)) {
-        throw new Error('Total price is not valid. Please starting your booking again.')
+        throw new Error('Total price is not valid. Please starting your booking again.');
       }
-      return true
+      return true;
     }
   },
   getters: {
     dialog: state => {
-      return state.dialog
+      return state.dialog;
+    },
+    countriesList: state => {
+      return state.countriesList;
     },
     bookingInfo(state) {
-      return state.bookingInfo
+      return state.bookingInfo;
     },
     customBookingInfo(state, getters) {
-      const bookingInfo = state.bookingInfo
-      const amount = getters.computedTotalPrice({ all: true })
+      const bookingInfo = state.bookingInfo;
+      const amount = getters.computedTotalPrice({ all: true });
 
       return {
         roomTypeId: bookingInfo.roomType.id,
@@ -405,17 +414,17 @@ export default {
           email: store.getters['auth/user'].userName,
           phone: `+${bookingInfo.phoneCountry.callingCodes[0]}` + bookingInfo.phoneNumber
         }
-      }
+      };
     },
     reservationSuccessEmailData: (state, getters) => ({ notificationType }) => {
-      const bookingInfo = state.bookingInfo
-      const prices = getters.prices({ decimalDigits: 2, formattedDate: true })
+      const bookingInfo = state.bookingInfo;
+      const prices = getters.prices({ decimalDigits: 2, formattedDate: true });
       const email_to = [
         {
           email: store.getters['auth/user'].userName,
           name: bookingInfo.fullName
         }
-      ]
+      ];
       return {
         email_subject: 'automated',
         email_bcc: reservationEmailsBcc,
@@ -439,12 +448,12 @@ export default {
           vat: getters.computedVAT(),
           amount: getters.computedTotalPrice({ all: true })
         }
-      }
+      };
     },
     reservationFailEmailData: (state, getters) => ({ notificationType }) => {
-      console.log('notificationType', notificationType)
-      const bookingInfo = state.bookingInfo
-      const prices = getters.prices({ decimalDigits: 2, formattedDate: true })
+      console.log('notificationType', notificationType);
+      const bookingInfo = state.bookingInfo;
+      const prices = getters.prices({ decimalDigits: 2, formattedDate: true });
       return {
         email_to: reservationEmailsBcc,
         template_id: reservationFailEmailTemplateId,
@@ -465,56 +474,56 @@ export default {
           vat: getters.computedVAT(),
           amount: getters.computedTotalPrice({ all: true })
         }
-      }
+      };
     },
     prices: state => ({ decimalDigits = 0, formattedDate = false } = {}) => {
-      let prices = state.bookingInfo.prices
+      let prices = state.bookingInfo.prices;
       prices = prices.map(price => {
-        const amount = toFixedNumber(price.amount, decimalDigits)
+        const amount = toFixedNumber(price.amount, decimalDigits);
         return {
           ...price,
           amount
-        }
-      })
+        };
+      });
       if (formattedDate) {
         prices = prices.map(price => {
-          const date = formatDate(price.date, 'ddd, D MMM')
+          const date = formatDate(price.date, 'ddd, D MMM');
           return {
             ...price,
             date
-          }
-        })
+          };
+        });
       }
-      return prices
+      return prices;
     },
     computedRoomPrice(state) {
-      const prices = state.bookingInfo.prices
-      let roomPrice = 0
+      const prices = state.bookingInfo.prices;
+      let roomPrice = 0;
       for (let i = 0; i < prices.length; i++) {
-        roomPrice += prices[i].amount
+        roomPrice += prices[i].amount;
       }
-      return roomPrice
+      return roomPrice;
     },
     computedVAT: (state, getters) => ({ decimalDigits = 2 } = {}) => {
-      let prices = getters.computedRoomPrice
-      const VAT_RATE = 0.1
-      return toFixedNumber(prices * VAT_RATE, decimalDigits)
+      let prices = getters.computedRoomPrice;
+      const VAT_RATE = 0.1;
+      return toFixedNumber(prices * VAT_RATE, decimalDigits);
     },
     computedTotalPrice: (state, getters) => ({ all = false, hasVAT = false, decimalDigits = 2 } = {}) => {
-      let totalPrice = getters.computedRoomPrice
+      let totalPrice = getters.computedRoomPrice;
       if (all || hasVAT) {
-        totalPrice += getters.computedVAT()
+        totalPrice += getters.computedVAT();
       }
-      return toFixedNumber(totalPrice, decimalDigits)
+      return toFixedNumber(totalPrice, decimalDigits);
     },
     currentStep(state) {
-      return state.currentStep
+      return state.currentStep;
     },
     steps(state) {
-      return state.steps
+      return state.steps;
     },
     reservationId(state) {
-      return state.reservationId
+      return state.reservationId;
     }
   }
-}
+};

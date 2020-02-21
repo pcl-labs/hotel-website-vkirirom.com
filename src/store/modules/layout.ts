@@ -7,17 +7,17 @@ export default {
   },
   mutations: {
     updateFooterHeight(state, payload) {
-      state.sizing.footerHeight = payload
+      state.sizing.footerHeight = payload;
     }
   },
   actions: {
     updateFooterHeight(context, payload) {
-      context.commit('updateFooterHeight', payload)
+      context.commit('updateFooterHeight', payload);
     }
   },
   getters: {
     getSizing(state) {
-      return state.sizing
+      return state.sizing;
     }
   }
-}
+};

@@ -77,9 +77,9 @@
 </template>
 
 <script>
-import BookingDialog from '@/components/BookingDialog.vue'
-import store from '@/store'
-import { getPassiveEventConfig } from '@/helpers'
+const BookingDialog = () => import('@/components/BookingDialog.vue');
+import store from '@/store';
+import { getPassiveEventConfig } from '@/helpers';
 export default {
   name: 'booking-bar',
   props: {
@@ -94,43 +94,43 @@ export default {
     return {
       bookingDialogItemSlug: this.$route.params.id,
       bottomDistance: 0
-    }
+    };
   },
   mounted() {
-    this.setInitialDistance()
-    this.positionListener()
+    this.setInitialDistance();
+    this.positionListener();
   },
   destroyed() {
-    document.removeEventListener('scroll', event => this.onScrollPage(event))
+    document.removeEventListener('scroll', event => this.onScrollPage(event));
   },
   computed: {
     footerHeight() {
-      return store.getters['layout/getSizing'].footerHeight
+      return this.$store.getters['layout/getSizing'].footerHeight;
     },
     shouldStick() {
-      return this.bottomDistance > this.footerHeight
+      return this.bottomDistance > this.footerHeight;
     }
   },
   methods: {
     setInitialDistance() {
-      this.onScrollPage(null)
+      this.onScrollPage(null);
     },
     positionListener() {
-      document.addEventListener('scroll', event => this.onScrollPage(event), getPassiveEventConfig())
+      document.addEventListener('scroll', event => this.onScrollPage(event), getPassiveEventConfig());
     },
     onScrollPage(event) {
-      var scrollPosition = window.pageYOffset
-      var windowSize = window.innerHeight
-      var bodyHeight = document.body.offsetHeight
+      var scrollPosition = window.pageYOffset;
+      var windowSize = window.innerHeight;
+      var bodyHeight = document.body.offsetHeight;
 
-      this.bottomDistance = Math.max(bodyHeight - (scrollPosition + windowSize), 0)
+      this.bottomDistance = Math.max(bodyHeight - (scrollPosition + windowSize), 0);
     },
     startBooking() {
-      this.$refs.bookingDialog.openDialog()
-      this.$emit('on-start-booking')
+      this.$refs.bookingDialog.openDialog();
+      this.$emit('on-start-booking');
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

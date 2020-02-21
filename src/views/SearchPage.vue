@@ -37,28 +37,28 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { PageService } from '@/connection/resources.js'
-const PageFooter = () => import('@/components/PageFooter.vue')
-const CardProduct = () => import('@/components/CardProduct.vue')
-import PageHeader from '@/components/PageHeader.vue'
-import MarkdownBlock from '@/components/MarkdownBlock.vue'
-import { get } from 'lodash-es'
-import store from '@/store'
+import Vue from 'vue';
+import { PageService } from '@/connection/resources.js';
+const PageFooter = () => import('@/components/PageFooter.vue');
+const CardProduct = () => import('@/components/CardProduct.vue');
+const PageHeader = () => import('@/components/PageHeader.vue');
+const MarkdownBlock = () => import('@/components/MarkdownBlock.vue');
+import { get } from 'lodash-es';
+import store from '@/store';
 import {
   transformCloudinaryUrl,
   getFormattedMetaDescription,
   getFormattedMetaTitle,
   removeOtherLanguagesExcept
-} from '@/helpers'
-import { appTitleTemplate } from '@/constants/app'
+} from '@/helpers';
+import { appTitleTemplate } from '@/constants/app';
 
 async function beforeRouteEnterOrUpdate(to, from, next) {
-  const slug = to.params.id
-  const resortPromise = store.dispatch('resort/getItemBySlug', slug)
-  const categoriesPromise = store.dispatch('category/getItemsByName', slug)
-  await Promise.all([resortPromise, categoriesPromise])
-  next()
+  const slug = to.params.id;
+  const resortPromise = store.dispatch('resort/getItemBySlug', slug);
+  const categoriesPromise = store.dispatch('category/getItemsByName', slug);
+  await Promise.all([resortPromise, categoriesPromise]);
+  next();
 }
 
 export default Vue.extend({
@@ -71,10 +71,10 @@ export default Vue.extend({
   },
   props: ['slug'],
   async beforeRouteEnter(to, from, next) {
-    beforeRouteEnterOrUpdate(to, from, next)
+    beforeRouteEnterOrUpdate(to, from, next);
   },
   async beforeRouteUpdate(to, from, next) {
-    beforeRouteEnterOrUpdate(to, from, next)
+    beforeRouteEnterOrUpdate(to, from, next);
   },
   metaInfo() {
     return {
@@ -96,25 +96,25 @@ export default Vue.extend({
           json: (this as any).resort.custom
         }
       ]
-    }
+    };
   },
   computed: {
     resort() {
-      return store.getters['resort/itemBySlug'](this.slug)
+      return (this as any).$store.getters['resort/itemBySlug'](this.slug);
     },
     categories() {
-      return store.getters['category/getItemsByName'](this.slug)
+      return (this as any).$store.getters['category/getItemsByName'](this.slug);
     }
   },
   methods: {
     getResponsiveHeroImage(url) {
       // @ts-ignore
-      const breakpoint = this.$vuetify.breakpoint
-      const breakpointWidth = breakpoint.thresholds[breakpoint.name]
-      return transformCloudinaryUrl(url, `f_auto${breakpointWidth ? `,w_${breakpointWidth}` : ''},c_scale`)
+      const breakpoint = this.$vuetify.breakpoint;
+      const breakpointWidth = breakpoint.thresholds[breakpoint.name];
+      return transformCloudinaryUrl(url, `f_auto${breakpointWidth ? `,w_${breakpointWidth}` : ''},c_scale`);
     }
   }
-})
+});
 </script>
 
 <style lang="scss">

@@ -33,27 +33,27 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import BookingCustomerInfo from '@/components/BookingCustomerInfo.vue'
-import BookingConfirmBooking from '@/components/BookingConfirmBooking.vue'
-import PageHeader from '@/components/PageHeader.vue'
-import store from '@/store'
+import Vue from 'vue';
+const BookingCustomerInfo = () => import('@/components/BookingCustomerInfo.vue');
+const BookingConfirmBooking = () => import('@/components/BookingConfirmBooking.vue');
+const PageHeader = () => import('@/components/PageHeader.vue');
+import store from '@/store';
 
 export default Vue.extend({
   name: 'booking-customer-info-page',
   components: { PageHeader, BookingCustomerInfo, BookingConfirmBooking },
   mounted() {
-    store.dispatch('booking/updateCurrentStep', this.steps.customerInfo)
+    (this as any).$store.dispatch('booking/updateCurrentStep', (this as any).steps.customerInfo);
   },
   computed: {
     steps() {
-      return store.getters['booking/steps']
+      return (this as any).$store.getters['booking/steps'];
     },
     returnUrl() {
-      return store.getters['booking/bookingInfo'].returnUrl
+      return (this as any).$store.getters['booking/bookingInfo'].returnUrl;
     }
   }
-})
+});
 </script>
 
 <style lang="scss">

@@ -18,11 +18,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from 'vue';
 // @ts-ignore
-import { zindexSplashScreen } from '@/styles/variables.scss'
-const waitingUntilShowingLoading = 3000
-const visibilityTimeout = 6000
+import { zindexSplashScreen } from '@/styles/variables.scss';
+const waitingUntilShowingLoading = 3000;
+const visibilityTimeout = 6000;
 
 export default Vue.extend({
   name: 'page-splash-screen',
@@ -32,33 +32,33 @@ export default Vue.extend({
     shouldShowLoading: false
   }),
   mounted() {
-    this.timers()
+    this.timers();
   },
   methods: {
     timers() {
       const loadingTimer = setTimeout(() => {
-        this.shouldShowLoading = true
-      }, waitingUntilShowingLoading)
+        this.shouldShowLoading = true;
+      }, waitingUntilShowingLoading);
 
       const visibilityTimer = setTimeout(() => {
-        this.visibilityTimedOut = true
-      }, visibilityTimeout)
+        this.visibilityTimedOut = true;
+      }, visibilityTimeout);
 
       this.$once('hook:destroyed', () => {
-        clearTimeout(loadingTimer)
-        clearTimeout(visibilityTimer)
-      })
+        clearTimeout(loadingTimer);
+        clearTimeout(visibilityTimer);
+      });
     }
   },
   computed: {
     overlay(): boolean {
       if (this.visibilityTimedOut) {
-        return false
+        return false;
       }
-      return true
+      return true;
     }
   }
-})
+});
 </script>
 
 <style lang="scss">

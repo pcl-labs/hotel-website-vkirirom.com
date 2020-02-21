@@ -17,10 +17,10 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import store from '../store'
-import { formatDate } from '../helpers'
-import { InternalMessagePassing } from '../types'
+import Vue from 'vue';
+import store from '../store';
+import { formatDate } from '../helpers';
+import { InternalMessagePassing } from '../types';
 // stripe setup example: https://github.com/stripe-samples/accept-a-card-payment/blob/master/without-webhooks/client/web/script.js
 // theme examples https://stripe.dev/elements-examples/
 
@@ -30,41 +30,69 @@ export default Vue.extend({
     return {
       stripe: {} as any,
       card: {} as any
-    }
+    };
   },
   mounted() {
-    this.cleanup()
-    this.init()
+    this.cleanup();
+    this.init();
   },
   methods: {
     cleanup() {
-      store.dispatch('payment/updateIsPaymentLoading', false)
-      store.dispatch('payment/updatePaymentError', '')
+      (this as any).$store.dispatch('payment/updateIsPaymentLoading', false);
+      (this as any).$store.dispatch('payment/updatePaymentError', '');
     },
     async init() {
       try {
-        await this.getStripeKey()
-        await this.createStripeComponent(this.stripeKey, this.accountId)
+        await this.getStripeKey();
+        await this.waitForStripeScript();
+        await this.createStripeComponent(this.stripeKey, this.accountId);
       } catch (error) {
-        store.dispatch('payment/updatePaymentError', error.message)
+        (this as any).$store.dispatch('payment/updatePaymentError', error.message);
       }
     },
+    async waitForStripeScript() {
+      return new Promise((resolve, reject) => {
+        const stripeScriptTag = document.getElementById('stripe-script');
+        if (!stripeScriptTag) {
+          reject('Stripe not available');
+          return;
+        }
+
+        // @ts-ignore
+        if (window.GLOBAL_stripeIsLoaded) {
+          resolve();
+          return;
+        }
+        const onload = () => {
+          resolve();
+        };
+        stripeScriptTag.addEventListener('load', onload);
+
+        this.$once('hook:destroyed', () => {
+          stripeScriptTag.removeEventListener('load', onload);
+        });
+
+        setTimeout(() => {
+          reject('Error in loading Stripe');
+        }, 20000);
+      });
+    },
     async submit(): Promise<InternalMessagePassing> {
-      let result
+      let result;
       try {
-        result = await this.payByStripe()
+        result = await this.payByStripe();
       } catch (error) {
-        result = { error: true, message: error.message }
+        result = { error: true, message: error.message };
       }
-      return result
+      return result;
     },
     async createStripeComponent(stripeKey, accountId) {
       // @ts-ignore
       this.stripe = window.Stripe(await stripeKey, {
         stripeAccount: accountId
-      })
+      });
       // @ts-ignore
-      const themes = this.$vuetify.theme.themes
+      const themes = this.$vuetify.theme.themes;
 
       var elementStyles = {
         base: {
@@ -83,7 +111,7 @@ export default Vue.extend({
           color: themes.dark.error,
           iconColor: themes.dark.error
         }
-      }
+      };
       const elements = this.stripe.elements({
         fonts: [
           {
@@ -91,68 +119,68 @@ export default Vue.extend({
           }
         ],
         locale: 'auto'
-      })
+      });
 
       const elementClasses = {
         focus: 'focus',
         empty: 'empty',
         invalid: 'invalid'
-      }
+      };
 
       var cardNumber = elements.create('cardNumber', {
         style: elementStyles,
         classes: elementClasses,
         placeholder: 'Card number'
-      })
-      cardNumber.mount(this.$refs.cardNumber)
+      });
+      cardNumber.mount(this.$refs.cardNumber);
 
       // sending only one input to confirmCardPayment() is enough
-      this.card = cardNumber
+      this.card = cardNumber;
 
       var cardExpiry = elements.create('cardExpiry', {
         style: elementStyles,
         classes: elementClasses,
         placeholder: 'Expiration'
-      })
-      cardExpiry.mount(this.$refs.expireNumber)
+      });
+      cardExpiry.mount(this.$refs.expireNumber);
 
       var cardCvc = elements.create('cardCvc', {
         style: elementStyles,
         classes: elementClasses,
         placeholder: 'CVV'
-      })
-      cardCvc.mount(this.$refs.cvvNumber)
+      });
+      cardCvc.mount(this.$refs.cvvNumber);
     },
     payByStripe() {
-      const that = this
-      return store.dispatch('payment/payByStripe', {
+      const that = this;
+      return (this as any).$store.dispatch('payment/payByStripe', {
         stripe: this.stripe,
         clientSecret: this.clientSecret,
         card: this.card
-      })
+      });
     },
     getStripeKey() {
-      return store.dispatch('payment/getStripeKey')
+      return (this as any).$store.dispatch('payment/getStripeKey');
     }
   },
   computed: {
     stripeKey() {
-      return store.getters['payment/stripeKey']
+      return (this as any).$store.getters['payment/stripeKey'];
     },
     accountId() {
-      return store.getters['payment/accountId']
+      return (this as any).$store.getters['payment/accountId'];
     },
     customBookingInfo() {
-      return store.getters['booking/customBookingInfo']
+      return (this as any).$store.getters['booking/customBookingInfo'];
     },
     clientSecret() {
-      return store.getters['payment/clientSecret']
+      return (this as any).$store.getters['payment/clientSecret'];
     },
     reservationId() {
-      return store.getters['booking/reservationId']
+      return (this as any).$store.getters['booking/reservationId'];
     }
   }
-})
+});
 </script>
 
 <style lang="scss">

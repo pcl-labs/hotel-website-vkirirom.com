@@ -21,24 +21,24 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import store from '../store'
+import Vue from 'vue';
+import store from '../store';
 export default Vue.extend({
   name: 'snackbars-global',
   computed: {
     model() {
-      return store.getters['snackbar/item']
+      return (this as any).$store.getters['snackbar/item'];
     },
     isVisible: {
       get() {
-        return store.getters['snackbar/item'].visible
+        return (this as any).$store.getters['snackbar/item'].visible;
       },
       set(value) {
-        store.dispatch('snackbar/updateVisibility', value)
+        (this as any).$store.dispatch('snackbar/updateVisibility', value);
       }
     }
   }
-})
+});
 </script>
 
 <style lang="scss" scoped></style>

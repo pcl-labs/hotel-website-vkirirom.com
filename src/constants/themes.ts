@@ -22,4 +22,4 @@ export const dark = {
   'brand-1': '#191C21',
   'brand-2': '#E1E7ED',
   'brand-3': '#B9BCC1'
-}
+};

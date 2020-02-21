@@ -191,9 +191,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import store from '@/store'
-import { formatDate } from '@/helpers'
+import Vue from 'vue';
+import store from '@/store';
+import { formatDate } from '@/helpers';
 
 export default Vue.extend({
   name: 'booking-confirm-dates',
@@ -209,77 +209,77 @@ export default Vue.extend({
       dateTwoRules: [v => !!v || 'Dates are required'],
       isFormValid: false,
       isLoading: false
-    }
+    };
   },
   computed: {
     resort() {
-      return store.getters['booking/bookingInfo'].resort
+      return (this as any).$store.getters['booking/bookingInfo'].resort;
     },
     dateOne() {
-      return store.getters['booking/bookingInfo'].dateOne
+      return (this as any).$store.getters['booking/bookingInfo'].dateOne;
     },
     dateTwo() {
-      return store.getters['booking/bookingInfo'].dateTwo
+      return (this as any).$store.getters['booking/bookingInfo'].dateTwo;
     },
     prices() {
-      return this.$store.getters['booking/prices']({ decimalDigits: 0 })
+      return (this as any).$store.getters['booking/prices']({ decimalDigits: 0 });
     },
     computedTotalPrice() {
       const options = {
         hasVAT: false
-      }
-      return this.$store.getters['booking/computedTotalPrice'](options).toFixed(0)
+      };
+      return (this as any).$store.getters['booking/computedTotalPrice'](options).toFixed(0);
     },
     roomTypeId(): number {
-      const firstRoomType = this.resort.modules.hotel.roomTypes[0]
-      return firstRoomType && firstRoomType.id
+      const firstRoomType = this.resort.modules.hotel.roomTypes[0];
+      return firstRoomType && firstRoomType.id;
     },
     isPricesReady(): boolean {
-      return this.prices.length > 0
+      return this.prices.length > 0;
     },
     isFormReady(): boolean {
-      return !this.isLoading && this.isFormValid && this.isPricesReady
+      return !this.isLoading && this.isFormValid && this.isPricesReady;
     },
     currentStep(): number {
-      return store.getters['booking/currentStep']
+      return (this as any).$store.getters['booking/currentStep'];
     },
     shouldShowTotal(): boolean {
-      return this.isPricesReady
+      return this.isPricesReady;
     },
     shouldShowLoading(): boolean {
-      return !this.shouldShowTotal && this.isFormValid && this.isLoading
+      return !this.shouldShowTotal && this.isFormValid && this.isLoading;
     },
     shouldShowError(): boolean {
-      return !(this.shouldShowTotal || this.shouldShowLoading) && this.isFormValid
+      return !(this.shouldShowTotal || this.shouldShowLoading) && this.isFormValid;
     }
   },
   methods: {
     formatDate,
     onSelectDateOne(val) {
-      this.updateDateOne(val)
-      this.clearDateTwo()
-      this.clearPrices()
+      this.updateDateOne(val);
+      this.clearDateTwo();
+      this.clearPrices();
     },
     onSelectDateTwo(val) {
-      this.updateDateTwo(val)
+      this.updateDateTwo(val);
       if (val) {
-        this.getPrices()
+        this.getPrices();
       }
     },
     updateDateOne(val) {
-      store.dispatch('booking/updateDateOne', val)
+      (this as any).$store.dispatch('booking/updateDateOne', val);
     },
     updateDateTwo(val) {
-      store.dispatch('booking/updateDateTwo', val)
+      (this as any).$store.dispatch('booking/updateDateTwo', val);
     },
     clearDateTwo() {
-      store.dispatch('booking/clearDateTwo')
+      (this as any).$store.dispatch('booking/clearDateTwo');
     },
     getPrices() {
-      this.isLoading = true
-      const dateOne = this.dateOne
-      const dateTwo = this.dateTwo
-      const roomTypeId = this.roomTypeId
+      this.isLoading = true;
+      const dateOne = this.dateOne;
+      const dateTwo = this.dateTwo;
+      const roomTypeId = this.roomTypeId;
       this.$store
         .dispatch('booking/getPrices', {
           roomTypeId,
@@ -287,24 +287,26 @@ export default Vue.extend({
           dateTwo
         })
         .then(() => {
-          this.isLoading = false
-        })
+          this.isLoading = false;
+        });
     },
     clearPrices() {
-      this.$store.dispatch('booking/clearPrices')
+      (this as any).$store.dispatch('booking/clearPrices');
     },
     submit() {
-      this.goNextStep()
+      this.goNextStep();
     },
     goNextStep() {
-      store.dispatch('booking/updateCurrentStep', this.nextStep)
+      (this as any).$store.dispatch('booking/updateCurrentStep', this.nextStep);
     }
   }
-})
+});
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '@/styles/utility.scss';
+</style>
+<style lang="scss" scoped>
 @import '@/styles/dialog-with-hero.scss';
 @import '@/styles/sticky-submit-bar.scss';
 @import '@/styles/datepicker-dark-theme.scss';
