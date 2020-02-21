@@ -32,8 +32,15 @@ module.exports = {
     }
 
     if (config.plugins.has('prefetch')) {
+      const prefetchBlacklist = [/(Contact)(.)+?\.(css|js)$/];
       config.plugin('prefetch').tap(options => {
-        options[0].fileBlacklist = [/\.map$/, /hot-update\.js$/, ...preloadPatterns, ...blacklistPatterns];
+        options[0].fileBlacklist = [
+          /\.map$/,
+          /hot-update\.js$/,
+          ...preloadPatterns,
+          ...blacklistPatterns,
+          ...prefetchBlacklist
+        ];
         // console.log('options prefetch ------------------------>', options);
         return options;
       });

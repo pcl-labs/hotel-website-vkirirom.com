@@ -11,9 +11,9 @@
 import Vue from 'vue';
 import store from '@/store';
 import { languageCodes, appTitle } from '@/constants/app';
-import SnackbarsGlobal from '@/components/SnackbarsGlobal.vue';
-import PageProgressBarGlobal from '@/components/PageProgressBarGlobal.vue';
-import PageSplashScreen from '@/components/PageSplashScreen.vue';
+const SnackbarsGlobal = () => import(/* webpackMode: "eager" */ '@/components/SnackbarsGlobal.vue');
+const PageProgressBarGlobal = () => import(/* webpackMode: "eager" */ '@/components/PageProgressBarGlobal.vue');
+const PageSplashScreen = () => import(/* webpackMode: "eager" */ '@/components/PageSplashScreen.vue');
 
 export default Vue.extend({
   name: 'app',
@@ -55,5 +55,4 @@ export default Vue.extend({
 <style lang="scss">
 // global style
 @import '@/styles/global-main.scss';
-@import '@/styles/utility.scss';
 </style>
