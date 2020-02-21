@@ -181,9 +181,10 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '@/styles/utility.scss';
-
+</style>
+<style lang="scss" scoped>
 $component-height: 1600px;
 $top-distance: $header-height-xs; // this is fallback only
 .parallax-hero {

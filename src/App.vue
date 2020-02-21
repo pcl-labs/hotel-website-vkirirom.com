@@ -55,4 +55,5 @@ export default Vue.extend({
 <style lang="scss">
 // global style
 @import '@/styles/global-main.scss';
+@import '@/styles/utility.scss';
 </style>

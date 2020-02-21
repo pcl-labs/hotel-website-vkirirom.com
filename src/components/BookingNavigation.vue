@@ -77,8 +77,10 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '@/styles/utility.scss';
+</style>
+<style lang="scss" scoped>
 .toolbar--booking-nav {
   .v-btn:before {
     background: none;

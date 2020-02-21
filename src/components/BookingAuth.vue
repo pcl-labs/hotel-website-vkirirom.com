@@ -79,7 +79,7 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '@/styles/utility.scss';
 @import '@/styles/dialog-with-hero.scss';
 </style>

@@ -216,6 +216,16 @@ const PageHeader = () => import(/* webpackMode: "eager" */ '@/components/PageHea
 const PageHomeParrallaxHero = () => import(/* webpackMode: "eager" */ '@/components/PageHomeParrallaxHero.vue');
 const CardProduct = () => import(/* webpackMode: "eager" */ '@/components/CardProduct.vue');
 
+function visibleCount({ xs, sm, md }) {
+  if (xs) {
+    return 1;
+  }
+  if (sm) {
+    return 2;
+  }
+  return 3;
+}
+
 export default {
   name: 'home-page',
   components: {
@@ -261,8 +271,7 @@ export default {
   },
   methods: {
     mergeImageArray(listOne, listTwo) {
-      const result = listOne.slice(0).concat(listTwo.slice(0));
-      return result;
+      return listOne.slice(0).concat(listTwo.slice(0));
     },
     onParallaxImagesLoaded() {
       this.hideSplashScreen();
@@ -276,27 +285,43 @@ export default {
       return (this as any).$store.getters['resort/itemBySlug']('home');
     },
     accommodations(): Category[] {
-      return (this as any).$store.getters['category/getItemsByName']('accommodations').slice(0, 3);
+      return (this as any).$store.getters['category/getItemsByName']('accommodations').slice(
+        0,
+        visibleCount((this as any).$vuetify.breakpoint)
+      );
     },
     experiences(): Category[] {
-      return (this as any).$store.getters['category/getItemsByName']('experiences').slice(0, 3);
+      return (this as any).$store.getters['category/getItemsByName']('experiences').slice(
+        0,
+        visibleCount((this as any).$vuetify.breakpoint)
+      );
     },
     events(): Category[] {
-      return (this as any).$store.getters['category/getItemsByName']('events').slice(0, 3);
+      return (this as any).$store.getters['category/getItemsByName']('events').slice(
+        0,
+        visibleCount((this as any).$vuetify.breakpoint)
+      );
     },
     ecotourisms(): Category[] {
-      return (this as any).$store.getters['category/getItemsByName']('ecotourism').slice(0, 3);
+      return (this as any).$store.getters['category/getItemsByName']('ecotourism').slice(
+        0,
+        visibleCount((this as any).$vuetify.breakpoint)
+      );
     },
     leases(): Category[] {
-      return (this as any).$store.getters['category/getItemsByName']('lease').slice(0, 3);
+      return (this as any).$store.getters['category/getItemsByName']('lease').slice(
+        0,
+        visibleCount((this as any).$vuetify.breakpoint)
+      );
     }
   }
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '@/styles/utility.scss';
-
+</style>
+<style lang="scss" scoped>
 .page-header--wrapper {
   height: $header-height-xs;
   @include media-breakpoint-up(sm) {

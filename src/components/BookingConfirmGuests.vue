@@ -326,8 +326,10 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '@/styles/utility.scss';
+</style>
+<style lang="scss" scoped>
 @import '@/styles/dialog-with-hero.scss';
 @import '@/styles/sticky-submit-bar.scss';
 

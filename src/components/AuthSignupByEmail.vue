@@ -203,6 +203,6 @@ export default Vue.extend({
 });
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 @import '@/styles/utility.scss';
 </style>

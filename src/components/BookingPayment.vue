@@ -340,8 +340,10 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '@/styles/utility.scss';
+</style>
+<style lang="scss" scoped>
 .theme--dark.v-card.v-card--outlined {
   border-color: map-get($grey, 'lighten-1') !important;
 }
