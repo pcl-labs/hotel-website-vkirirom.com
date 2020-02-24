@@ -6,6 +6,7 @@ import IconMessage from '@/components/IconMessage.vue';
 import IconMessageDark from '@/components/IconMessageDark.vue';
 import IconLock from '@/components/IconLock.vue';
 import IconCash from '@/components/IconCash.vue';
+import IconUser from '@/components/IconUser.vue';
 import IconCreditCard from '@/components/IconCreditCard.vue';
 // @ts-ignore
 import Vuetify from 'vuetify/lib';
@@ -37,6 +38,9 @@ export default new Vuetify({
       },
       cash: {
         component: IconCash
+      },
+      user: {
+        component: IconUser
       }
     }
   },
