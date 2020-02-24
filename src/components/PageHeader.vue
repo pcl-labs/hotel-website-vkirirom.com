@@ -26,115 +26,117 @@
     <auth-dialog ref="authDialogRef"></auth-dialog>
 
     <v-app-bar dark app :height="$vuetify.breakpoint.smAndUp ? 80 : 56">
-      <!-- ------ booking navigation ------ -->
-      <div v-if="shouldShowBookingNavigation" class="d-flex justify-space-between align-center w-100">
-        <portal-target slim name="page-header-logo"></portal-target>
-
-        <div>
-          <v-container class="is-limited pa-0">
-            <v-row no-gutters v-if="$vuetify.breakpoint.mdAndUp">
-              <v-col cols="12">
-                <booking-navigation :desktop-mode="true"></booking-navigation>
-              </v-col>
-            </v-row>
-
-            <booking-navigation :desktop-mode="false" v-else></booking-navigation>
-          </v-container>
-        </div>
-
-        <div class="logo-mirror-ghost"></div>
-      </div>
-
-      <!-- ------ mobile navigation ------ -->
-      <div v-else-if="$vuetify.breakpoint.smAndDown" class="d-flex justify-space-between align-center w-100">
-        <portal-target slim name="page-header-logo"></portal-target>
-
-        <!-- hamburger -->
-        <v-app-bar-nav-icon
-          v-if="!shouldShowBookingNavigation"
-          class="d-md-none"
-          @click.stop="drawer = !drawer"
-          color="light"
-        ></v-app-bar-nav-icon>
-      </div>
-
-      <!-- desktop menu -->
-      <div v-else class="d-flex align-center h-100 w-100">
-        <div class="h-100 flex-grow-1 flex-basis-0 d-flex">
-          <v-toolbar-items class="page-header--nav-desktop ml-auto hidden-sm-and-down d-md-flex">
-            <v-btn text class="text-transform-none" to="/search/accommodations"
-              ><span class="mb-0 h3 font-weight-semiblack">Accommodation</span></v-btn
-            >
-            <v-btn text class="text-transform-none" to="/search/menu"
-              ><span class="mb-0 h3 font-weight-semiblack">Menu</span></v-btn
-            >
-          </v-toolbar-items>
-        </div>
-
-        <div class="px-4">
-          <!-- logo -->
+      <nav class="w-100 h-100 d-flex align-center">
+        <!-- ------ booking navigation ------ -->
+        <div v-if="shouldShowBookingNavigation" class="d-flex justify-space-between align-center w-100">
           <portal-target slim name="page-header-logo"></portal-target>
+
+          <div>
+            <v-container class="is-limited pa-0">
+              <v-row no-gutters v-if="$vuetify.breakpoint.mdAndUp">
+                <v-col cols="12">
+                  <booking-navigation :desktop-mode="true"></booking-navigation>
+                </v-col>
+              </v-row>
+
+              <booking-navigation :desktop-mode="false" v-else></booking-navigation>
+            </v-container>
+          </div>
+
+          <div class="logo-mirror-ghost"></div>
         </div>
 
-        <div class="h-100 flex-grow-1 flex-basis-0">
-          <v-toolbar-items class="page-header--nav-desktop mr-auto hidden-sm-and-down d-md-flex">
-            <v-btn text class="text-transform-none" to="/search/experiences"
-              ><span class="mb-0 h3 font-weight-semiblack">Experiences</span></v-btn
-            >
+        <!-- ------ mobile navigation ------ -->
+        <div v-else-if="$vuetify.breakpoint.smAndDown" class="d-flex justify-space-between align-center w-100">
+          <portal-target slim name="page-header-logo"></portal-target>
 
-            <v-menu
-              eager
-              min-width="216"
-              transition="slide-y-transition"
-              offset-y
-              v-if="isAuthenticated"
-              :loading="loading"
-            >
-              <template v-slot:activator="{ on }">
-                <v-btn v-on="on" text class="text-transform-none"
-                  ><span class="mb-0 h3 font-weight-semiblack"
-                    >Profile<v-icon class="down-icon">chevron_right</v-icon></span
-                  >
-                </v-btn>
-              </template>
-              <v-list tile dense color="dark" class="dropdown-list">
-                <!-- <v-list-item class="pa-0">
+          <!-- hamburger -->
+          <v-app-bar-nav-icon
+            v-if="!shouldShowBookingNavigation"
+            class="d-md-none"
+            @click.stop="drawer = !drawer"
+            color="light"
+          ></v-app-bar-nav-icon>
+        </div>
+
+        <!-- desktop menu -->
+        <div v-else class="d-flex align-center h-100 w-100">
+          <div class="h-100 flex-grow-1 flex-basis-0 d-flex">
+            <v-toolbar-items class="page-header--nav-desktop ml-auto hidden-sm-and-down d-md-flex">
+              <v-btn text class="text-transform-none" to="/search/accommodations"
+                ><span class="mb-0 h3 font-weight-semiblack">Accommodation</span></v-btn
+              >
+              <v-btn text class="text-transform-none" to="/search/menu"
+                ><span class="mb-0 h3 font-weight-semiblack">Menu</span></v-btn
+              >
+            </v-toolbar-items>
+          </div>
+
+          <div class="px-4">
+            <!-- logo -->
+            <portal-target slim name="page-header-logo"></portal-target>
+          </div>
+
+          <div class="h-100 flex-grow-1 flex-basis-0">
+            <v-toolbar-items class="page-header--nav-desktop mr-auto hidden-sm-and-down d-md-flex">
+              <v-btn text class="text-transform-none" to="/search/experiences"
+                ><span class="mb-0 h3 font-weight-semiblack">Experiences</span></v-btn
+              >
+
+              <v-menu
+                eager
+                min-width="216"
+                transition="slide-y-transition"
+                offset-y
+                v-if="isAuthenticated"
+                :loading="loading"
+              >
+                <template v-slot:activator="{ on }">
+                  <v-btn v-on="on" text class="text-transform-none"
+                    ><span class="mb-0 h3 font-weight-semiblack"
+                      >Profile<v-icon class="down-icon">chevron_right</v-icon></span
+                    >
+                  </v-btn>
+                </template>
+                <v-list tile dense color="dark" class="dropdown-list">
+                  <!-- <v-list-item class="pa-0">
                   <v-btn text tile block class="text-transform-none"
                     ><span class="mb-0 title text-left w-100">Trips</span></v-btn
                   >
                 </v-list-item> -->
-                <!-- <v-list-item class="pa-0">
+                  <!-- <v-list-item class="pa-0">
                   <v-btn text tile block class="text-transform-none"
                     ><span class="mb-0 title text-left w-100">My Account</span></v-btn
                   >
                 </v-list-item> -->
-                <v-list-item class="pa-0">
-                  <v-btn
-                    text
-                    tile
-                    block
-                    class="text-transform-none"
-                    @click="logout()"
-                    v-if="isAuthenticated"
-                    :loading="loading"
-                    ><span class="mb-0 title text-left w-100">Log Out</span></v-btn
-                  >
-                </v-list-item>
-              </v-list>
-            </v-menu>
-            <v-btn v-else text class="text-transform-none" @click="openLogin()"
-              ><span class="mb-0 h3 font-weight-semiblack">Log In</span></v-btn
-            >
-          </v-toolbar-items>
+                  <v-list-item class="pa-0">
+                    <v-btn
+                      text
+                      tile
+                      block
+                      class="text-transform-none"
+                      @click="logout()"
+                      v-if="isAuthenticated"
+                      :loading="loading"
+                      ><span class="mb-0 title text-left w-100">Log Out</span></v-btn
+                    >
+                  </v-list-item>
+                </v-list>
+              </v-menu>
+              <v-btn v-else text class="text-transform-none" @click="openLogin()"
+                ><span class="mb-0 h3 font-weight-semiblack">Log In</span></v-btn
+              >
+            </v-toolbar-items>
+          </div>
         </div>
-      </div>
+      </nav>
     </v-app-bar>
 
     <!-- mobile drawer -->
     <v-navigation-drawer dark="" fixed class="d-md-none page-header--drawer" temporary v-model="drawer">
       <v-row no-gutters class="mb-8">
         <v-col cols="12">
-          <div class="px-4 py-3">
+          <div class="px-4 py-3 pt-sm-5">
             <portal-target slim name="page-header-logo"></portal-target>
           </div>
         </v-col>

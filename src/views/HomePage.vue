@@ -84,7 +84,7 @@
             </v-row>
             <v-row no-gutters class="justify-center">
               <v-col cols="12" sm="4">
-                <v-btn to="/search/experiences/" block large outlined dark class="showAllbtn">
+                <v-btn to="/search/experiences" block large outlined dark class="showAllbtn">
                   Show all <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
                 </v-btn>
               </v-col>
@@ -171,7 +171,7 @@
             </v-row>
             <v-row no-gutters class="justify-center">
               <v-flex xs12 sm4 md4 lg4>
-                <v-btn to="/search/lease/" block large outlined dark class="showAllbtn">
+                <v-btn to="/search/lease" block large outlined dark class="showAllbtn">
                   Show all <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
                 </v-btn>
               </v-flex>
@@ -191,7 +191,7 @@
             </v-row>
             <v-row no-gutters class="justify-center">
               <v-flex xs12 sm4 md4 lg4>
-                <v-btn to="/search/ecotourism/" block large outlined dark class="showAllbtn mb-6">
+                <v-btn to="/search/ecotourism" block large outlined dark class="showAllbtn mb-6">
                   Learn More <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
                 </v-btn>
               </v-flex>

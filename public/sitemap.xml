@@ -5,15 +5,37 @@
 	xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
 	http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
-  <url><loc>https://cranky-nightingale-3731fc.netlify.com/search/</loc></url>
-  <url><loc>https://cranky-nightingale-3731fc.netlify.com/listing/Bungalow/</loc></url>
-  <url><loc>https://cranky-nightingale-3731fc.netlify.com/listing/Luxury-Tent/</loc></url>
-  <url><loc>https://cranky-nightingale-3731fc.netlify.com/listing/Khmer-Cottage/</loc></url>
-  <url><loc>https://cranky-nightingale-3731fc.netlify.com/listing/Villa-Suite/</loc></url>
-  <url><loc>https://cranky-nightingale-3731fc.netlify.com/listing/Pipe-Room/</loc></url>
-  <url><loc>https://cranky-nightingale-3731fc.netlify.com/listing/Bell-Tent/</loc></url>
-  <url><loc>https://cranky-nightingale-3731fc.netlify.com/listing/Villa-Jasmine/</loc></url>
-  <url><loc>https://cranky-nightingale-3731fc.netlify.com/thanks/</loc></url>
-  <url><loc>https://cranky-nightingale-3731fc.netlify.com/contact/</loc></url>
-  <lastmod>2019-06-24T13:22:14+00:00</lastmod>
+  <url><loc>https://vkirirom.com/search/accommodations</loc></url>
+  <url><loc>https://vkirirom.com/search/experiences</loc></url>
+  <url><loc>https://vkirirom.com/search/menu</loc></url>
+  <url><loc>https://vkirirom.com/search/blog</loc></url>
+  <url><loc>https://vkirirom.com/listing/Bell-Tent</loc></url>
+  <url><loc>https://vkirirom.com/listing/Bungalow</loc></url>
+  <url><loc>https://vkirirom.com/listing/Luxury-Tent</loc></url>
+  <url><loc>https://vkirirom.com/listing/Pipe-Room</loc></url>
+  <url><loc>https://vkirirom.com/listing/Khmer-Cottage</loc></url>
+  <url><loc>https://vkirirom.com/listing/Camping</loc></url>
+  <url><loc>https://vkirirom.com/listing/Villa-Suite</loc></url>
+  <url><loc>https://vkirirom.com/listing/Villa-Jasmine</loc></url>
+
+  <url><loc>https://vkirirom.com/listing/Healthy</loc></url>
+  <url><loc>https://vkirirom.com/listing/Khmer</loc></url>
+  <url><loc>https://vkirirom.com/listing/Western</loc></url>
+  <url><loc>https://vkirirom.com/listing/Chinese-and-Thai</loc></url>
+  <url><loc>https://vkirirom.com/listing/Indian</loc></url>
+  <url><loc>https://vkirirom.com/listing/Japanese</loc></url>
+  <url><loc>https://vkirirom.com/listing/Desserts</loc></url>
+  <url><loc>https://vkirirom.com/listing/Family-Activities</loc></url>
+  <url><loc>https://vkirirom.com/listing/Thrill-Activities</loc></url>
+  <url><loc>https://vkirirom.com/listing/Team-Building-Activities</loc></url>
+  <url><loc>https://vkirirom.com/listing/Nature-Tours-and-Trekking-Activities</loc></url>
+  <url><loc>https://vkirirom.com/listing/Great-Photo-Opportunities</loc></url>
+  <url><loc>https://vkirirom.com/listing/Study-Tours-for-KIT-and-Ecotourism</loc></url>
+  <url><loc>https://vkirirom.com/listing/Large-Company-Retreats-in-Nature-and-Team-Building</loc></url>
+  
+  <url><loc>https://vkirirom.com/listing/nature-city-investment-cambodia-property</loc></url>
+  <url><loc>https://vkirirom.com/listing/partner</loc></url>
+  <url><loc>https://vkirirom.com/listing/our-scholarship-program</loc></url>
+  <url><loc>https://vkirirom.com/listing/Proudly-Powered-by-KIT-Students</loc></url>
+  <url><loc>https://vkirirom.com/Contact</loc></url>
 </urlset>
