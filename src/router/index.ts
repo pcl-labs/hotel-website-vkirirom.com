@@ -91,8 +91,7 @@ const router = new VueRouter({
       const loading = store.getters['loading/isLoading'];
       if (loading) {
         unsubscribeStore = store.subscribe((mutation, state) => {
-          const loading = store.getters['loading/isLoading'];
-          if (mutation.type === 'loading/loading' && loading === false) {
+          if (mutation.type === 'loading/loading' && store.getters['loading/isLoading'] === false) {
             resolve(savedPosition || { x: 0, y: 0 });
             unsubscribeStore();
           }
