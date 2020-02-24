@@ -1,10 +1,16 @@
 .hide-lang-en {
-  .en {
-    display: none;
+  .markdown-content {
+    .en,
+    [lang='en'] {
+      display: none;
+    }
   }
 }
 .hide-lang-kh {
-  .kh {
-    display: none;
+  .markdown-content {
+    .kh,
+    [lang='kh'] {
+      display: none;
+    }
   }
 }
