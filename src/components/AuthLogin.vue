@@ -20,9 +20,11 @@
             </v-col>
             <v-col cols="12">
               <v-btn x-large block outlined dark class="mb-8 text-capitalize light--text py-3" @click="oauth('Google')"
-                ><v-icon class="mr-4">$vuetify.icons.google</v-icon
-                ><span><span class="hidden-xs-only">Continue with </span><span>Google</span></span></v-btn
-              >
+                ><v-spacer></v-spacer><v-icon class="mr-4">$vuetify.icons.google</v-icon
+                ><span><span class="hidden-xs-only">Continue with </span><span>Google</span></span
+                ><v-spacer></v-spacer>
+                <v-icon>keyboard_arrow_right</v-icon>
+              </v-btn>
             </v-col>
           </v-row>
         </v-col>
