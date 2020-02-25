@@ -3,10 +3,10 @@ import VueRouter from 'vue-router';
 import store from '@/store';
 
 const routes = [
-  {
-    path: '/testing',
-    component: () => import(/* webpackChunkName: "Test" */ '@/views/KitchenSink.vue')
-  },
+  // {
+  //   path: '/testing',
+  //   component: () => import(/* webpackChunkName: "Test" */ '@/views/KitchenSink.vue')
+  // },
   {
     name: 'home',
     path: '/',
