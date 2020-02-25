@@ -11,6 +11,10 @@
     <meta name="description" data-vmid="description" content="Corporate retreats in Cambodia with affordable group rates, comfortable glamping lodging and all- inclusive packages in remote Cambodia wilderness.">
     <title>vKirirom Pine Resort</title>
 
+<% if(process.env.VUE_APP_ROBOTS_NO_INDEX == "1") { %>
+    <meta name="robots" content="noindex">
+<% } %>
+
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
