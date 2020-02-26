@@ -188,22 +188,31 @@ export default Vue.extend({
 $component-height: 1600px;
 $top-distance: $header-height-xs; // this is fallback only
 .parallax-hero {
+  background-color: map-get($shades, 'black');
   --component-top-margin: #{$header-height-xs};
   @include media-breakpoint-up(sm) {
     --component-top-margin: #{$header-height-sm};
   }
-  --component-height-ratio: 1.7;
+
+  // parallax total height = 1600 / component-height-ratio
+  --component-height-ratio: 1.8; // 0-375
   @include media-breakpoint-up(xs, $my-breakpoints) {
-    --component-height-ratio: 1.55;
+    --component-height-ratio: 2.3; // 376-599 width
   }
   @include media-breakpoint-up(sm, $my-breakpoints) {
-    --component-height-ratio: 1.33;
+    --component-height-ratio: 2.1; // 600-959
   }
   @include media-breakpoint-up(md, $my-breakpoints) {
-    --component-height-ratio: 1.2;
+    --component-height-ratio: 1.5; // 960-1263
   }
   @include media-breakpoint-up(lg, $my-breakpoints) {
-    --component-height-ratio: 1;
+    --component-height-ratio: 1.5; // 1264-1903
+  }
+  @include media-breakpoint-up(xl, $my-breakpoints) {
+    --component-height-ratio: 1; // 1904-2543
+  }
+  @include media-breakpoint-up(xxl, $my-breakpoints) {
+    --component-height-ratio: 0.7; // 2544-up
   }
 }
 .parallax-hero--container {
@@ -259,7 +268,8 @@ $top-distance: $header-height-xs; // this is fallback only
 .layer-6 {
   height: rem(582px);
   height: calc(#{rem(582px)} / var(--component-height-ratio));
-  background-position-y: bottom;
+  background-position-y: top;
+  background-size: cover;
   // -1 to fix subpixel
   bottom: -1px;
   right: 0;
