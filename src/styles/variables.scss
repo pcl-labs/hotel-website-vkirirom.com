@@ -53,8 +53,9 @@ $my-breakpoints: (
   xs: 376px,
   sm: 600px,
   md: 960px,
-  lg: 1264px,
-  xl: 1904px
+  lg: 1280px - 16px,
+  xl: 1920px - 16px,
+  xxl: 2560px - 16px
 );
 
 $font-weights: () !default;
