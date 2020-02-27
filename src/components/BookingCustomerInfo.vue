@@ -46,8 +46,8 @@
               </v-col>
             </v-row>
           </div>
-          <div v-else class="pt-3 mb-10">
-            <v-progress-circular :size="20" :width="2" indeterminate color="light"></v-progress-circular>
+          <div v-else class="pt-3 mb-10 error--text">
+            A network error occurred, refresh the page please.
           </div>
 
           <h4 class="mb-2 title font-weight-bold">Special Requests?</h4>
@@ -86,8 +86,7 @@
 import Vue from 'vue';
 import { isNumber } from 'lodash-es';
 import store from '../store';
-import { ajax } from '@/connection/ajax';
-import { countriesListUrl, countryDefault } from '../constants/app';
+import { countryDefault } from '../constants/app';
 
 export default Vue.extend({
   name: 'booking-customer-info',
@@ -105,7 +104,6 @@ export default Vue.extend({
     };
   },
   async mounted() {
-    await this.getCountriesList();
     this.phoneCountry = this.countriesList.find(item => item.name === countryDefault);
   },
   computed: {
@@ -138,15 +136,6 @@ export default Vue.extend({
     }
   },
   methods: {
-    async getCountriesList() {
-      let countriesList;
-      try {
-        countriesList = (await ajax.get(countriesListUrl)).data;
-      } catch (error) {
-        console.log('error on get countries list');
-      }
-      return (this as any).$store.dispatch('booking/updateCountriesList', countriesList);
-    },
     focusPhone() {
       // @ts-ignore
       this.$refs.phoneNumber.focus();

@@ -37,11 +37,34 @@ import Vue from 'vue';
 const BookingCustomerInfo = () => import('@/components/BookingCustomerInfo.vue');
 const BookingConfirmBooking = () => import('@/components/BookingConfirmBooking.vue');
 const PageHeader = () => import('@/components/PageHeader.vue');
+import { countriesListUrl } from '../constants/app';
+import { ajax } from '@/connection/ajax';
 import store from '@/store';
+
+async function getCountriesList() {
+  let countriesList;
+  try {
+    countriesList = (
+      await ajax({
+        url: countriesListUrl,
+        method: 'get',
+        withCredentials: false,
+        timeout: Infinity
+      })
+    ).data;
+  } catch (error) {
+    console.log('error on get countries list');
+  }
+  return store.dispatch('booking/updateCountriesList', countriesList);
+}
 
 export default Vue.extend({
   name: 'booking-customer-info-page',
   components: { PageHeader, BookingCustomerInfo, BookingConfirmBooking },
+  async beforeRouteEnter(from, to, next) {
+    await getCountriesList();
+    next();
+  },
   mounted() {
     (this as any).$store.dispatch('booking/updateCurrentStep', (this as any).steps.customerInfo);
   },

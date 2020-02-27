@@ -391,7 +391,7 @@ export default {
       return state.dialog;
     },
     countriesList: state => {
-      return state.countriesList;
+      return state.countriesList || [];
     },
     bookingInfo(state) {
       return state.bookingInfo;
