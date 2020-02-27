@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="https://res.cloudinary.com/die9ji2vn/image/upload/v1560304571/vKirirom_logo_qm390e"><img src="https://res.cloudinary.com/die9ji2vn/image/upload/v1560304571/vKirirom_logo_qm390e.jpg" alt="vkirirom" width="200"></a>
+  <a href="/public/source-logo.png"><img src="/public/source-logo.png" alt="vkirirom" height="200"></a>
   <br>
   vKirirom
   <br>
