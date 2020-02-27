@@ -5,11 +5,12 @@ import { getAuthHeaders } from '@/helpers';
 
 const ajax = axios.create({
   baseURL: BASE_API,
-  timeout: 20000
+  timeout: 20000,
+  // withCredentials should be here and moving it to default headers wont work
+  withCredentials: true
 });
 
 ajax.defaults.headers = {
-  withCredentials: true,
   'Content-Type': 'application/json'
   // 'Accept-Language': 'en-US,en;q=0.5'
 };
