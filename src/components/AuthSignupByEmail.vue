@@ -27,7 +27,7 @@
           :rules="rules.firstName"
           dark
         >
-          <v-icon slot="append" color="light">account</v-icon>
+          <v-icon slot="append">$vuetify.icons.user</v-icon>
         </v-text-field>
       </v-col>
 
@@ -43,7 +43,7 @@
           required
           :rules="rules.lastName"
         >
-          <v-icon slot="append" color="light">user</v-icon>
+          <v-icon slot="append">$vuetify.icons.user</v-icon>
         </v-text-field>
       </v-col>
 

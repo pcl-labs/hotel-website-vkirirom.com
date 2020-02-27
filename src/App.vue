@@ -3,7 +3,9 @@
     <router-view />
     <snackbars-global></snackbars-global>
     <page-progress-bar-global v-if="shouldShowProgressBar"></page-progress-bar-global>
-    <page-splash-screen v-if="isSplashScreenVisible"></page-splash-screen>
+    <transition name="fade">
+      <page-splash-screen v-if="isSplashScreenVisible"></page-splash-screen>
+    </transition>
   </v-app>
 </template>
 

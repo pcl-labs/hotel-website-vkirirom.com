@@ -1,6 +1,12 @@
 [context.master.environment]
   VUE_APP_API_ENDPOINT = "https://api.whynot.earth"
 
+[context.develop.environment]
+  VUE_APP_ROBOTS_NO_INDEX = "1"
+
+[context.staging.environment]
+  VUE_APP_ROBOTS_NO_INDEX = "1"
+
 [[redirects]]
   from = "/.well-known/assetlinks.json"
   to = "/assetlinks.json"

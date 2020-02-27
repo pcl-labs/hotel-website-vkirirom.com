@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 
 module.exports = {
-  transpileDependencies: ['vuex-persist', 'vuetify', 'marked', 'vue-airbnb-style-datepicker', 'vue-head', 'portal-vue'],
+  transpileDependencies: ['vuex-persist', 'vuetify', 'vue-airbnb-style-datepicker'],
   pwa: {
     name: require('./package.json').name,
     workboxOptions: {
@@ -26,28 +26,34 @@ module.exports = {
         options[0].include = 'all';
         options[0].fileWhitelist = [...preloadPatterns];
         options[0].fileBlacklist = [...blacklistPatterns];
-        // console.log('options preload =========================>', options);
         return options;
       });
     }
-
     if (config.plugins.has('prefetch')) {
       const prefetchBlacklist = [/(Contact)(.)+?\.(css|js)$/];
       config.plugin('prefetch').tap(options => {
         options[0].fileBlacklist = [
           /\.map$/,
-          /hot-update\.js$/,
+          /\.hot-update\.js$/,
           ...preloadPatterns,
           ...blacklistPatterns,
           ...prefetchBlacklist
         ];
-        // console.log('options prefetch ------------------------>', options);
         return options;
       });
     }
   },
   configureWebpack: {
+    optimization: {
+      splitChunks: {
+        minSize: 10000,
+        maxSize: 240000
+      }
+    },
     plugins: [
+      new webpack.optimize.LimitChunkCountPlugin({
+        maxChunks: 25
+      }),
       new webpack.DefinePlugin({
         'process.env': {
           APP_VERSION: '"' + escape(JSON.stringify(require('./package.json').version)) + '"',
