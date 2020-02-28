@@ -127,9 +127,10 @@
       </div>
 
       <booking-bar
-        :item="resort"
-        @on-start-booking="onStartBooking"
         v-if="shouldShowBookingBar"
+        @on-start-booking="onStartBooking"
+        :subject-item="resort"
+        :return-url="`/listing/${this.slug}`"
         :title="resort.h2"
         :price="Number(resort.ctaText)"
       ></booking-bar>

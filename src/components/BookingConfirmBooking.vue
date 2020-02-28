@@ -162,7 +162,7 @@ export default Vue.extend({
   },
   computed: {
     resort() {
-      return (this as any).$store.getters['booking/bookingInfo'].resort;
+      return (this as any).$store.getters['booking/bookingInfo'].subjectItem;
     },
     dateOne() {
       return (this as any).$store.getters['booking/bookingInfo'].dateOne;

@@ -194,6 +194,7 @@
 import Vue from 'vue';
 import store from '@/store';
 import { formatDate } from '@/helpers';
+import { get } from 'lodash-es';
 
 export default Vue.extend({
   name: 'booking-confirm-dates',
@@ -212,8 +213,8 @@ export default Vue.extend({
     };
   },
   computed: {
-    resort() {
-      return (this as any).$store.getters['booking/bookingInfo'].resort;
+    subjectItem() {
+      return (this as any).$store.getters['booking/bookingInfo'].subjectItem;
     },
     dateOne() {
       return (this as any).$store.getters['booking/bookingInfo'].dateOne;
@@ -231,8 +232,7 @@ export default Vue.extend({
       return (this as any).$store.getters['booking/computedTotalPrice'](options).toFixed(0);
     },
     roomTypeId(): number {
-      const firstRoomType = this.resort.modules.hotel.roomTypes[0];
-      return firstRoomType && firstRoomType.id;
+      return get(this.subjectItem, 'modules.hotel.roomTypes[0]', 'no-type');
     },
     isPricesReady(): boolean {
       return this.prices.length > 0;

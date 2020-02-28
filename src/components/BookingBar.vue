@@ -41,7 +41,7 @@
             </div>
             <div class="d-flex align-center">
               <v-container class="d-flex pa-0">
-                <booking-dialog :item="item" ref="bookingDialog"></booking-dialog>
+                <booking-dialog ref="bookingDialog"></booking-dialog>
                 <!-- mobile -->
                 <v-btn
                   height="40"
@@ -85,8 +85,13 @@ export default {
   props: {
     title: String,
     price: Number,
-    item: {
-      required: true
+    subjectItem: {
+      required: true,
+      type: Object
+    },
+    returnUrl: {
+      required: true,
+      type: String
     }
   },
   components: { BookingDialog },
@@ -126,7 +131,11 @@ export default {
       this.bottomDistance = Math.max(bodyHeight - (scrollPosition + windowSize), 0);
     },
     startBooking() {
-      this.$refs.bookingDialog.openDialog();
+      this.$store.dispatch('booking/startBooking', {
+        subjectItem: this.item,
+        returnUrl: this.returnUrl
+      });
+      this.$store.dispatch('booking/updateDialog', { isOpen: true });
       this.$emit('on-start-booking');
     }
   }

@@ -62,12 +62,6 @@ export default Vue.extend({
   computed: {
     steps() {
       return (this as any).$store.getters['booking/steps'];
-    },
-    bookingResort() {
-      return (this as any).$store.getters['booking/bookingInfo'].resort;
-    },
-    returnUrl() {
-      return (this as any).$store.getters['booking/bookingInfo'].returnUrl;
     }
   }
 });

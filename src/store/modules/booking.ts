@@ -57,7 +57,7 @@ const defaultState = {
   countriesList: [],
   bookingInfo: {
     returnUrl: '/',
-    resort: {},
+    subjectItem: {},
     roomDescriptionHTML: '',
     guests: {
       adults: 1,
@@ -154,8 +154,8 @@ export default {
     updateReturnUrl(state, payload) {
       state.bookingInfo.returnUrl = payload;
     },
-    updateResort(state, payload) {
-      state.bookingInfo.resort = payload;
+    updateSubjectItem(state, payload) {
+      state.bookingInfo.subjectItem = payload;
     },
     updateReservationId(state, payload) {
       state.reservationId = payload;
@@ -191,8 +191,8 @@ export default {
     cancelBooking(context) {
       context.commit('resetState');
     },
-    startBooking(context, { resort, returnUrl }) {
-      context.commit('updateResort', resort);
+    startBooking(context, { subjectItem, returnUrl }) {
+      context.commit('updateSubjectItem', subjectItem);
       context.commit('updateReturnUrl', returnUrl);
       context.commit('updateCurrentStep', context.state.steps.confirmDates);
     },
@@ -441,7 +441,7 @@ export default {
           phoneCountry: bookingInfo.phoneCountry.name,
           phone: `+ (${bookingInfo.phoneCountry.callingCodes[0]}) ` + bookingInfo.phoneNumber,
           guests: bookingInfo.guests,
-          resort: bookingInfo.resort,
+          resort: bookingInfo.subjectItem,
           roomDescriptionHTML: bookingInfo.roomDescriptionHTML,
           nightsCount: prices.length,
           prices,
@@ -468,7 +468,7 @@ export default {
           phoneCountry: bookingInfo.phoneCountry.name,
           phone: `+ (${bookingInfo.phoneCountry.callingCodes[0]}) ` + bookingInfo.phoneNumber,
           guests: bookingInfo.guests,
-          resort: bookingInfo.resort,
+          resort: bookingInfo.subjectItem,
           nightsCount: prices.length,
           prices,
           vat: getters.computedVAT(),
