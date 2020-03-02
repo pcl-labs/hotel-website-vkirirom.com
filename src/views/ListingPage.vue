@@ -106,7 +106,8 @@
                           /
                         </span>
                       </span>
-                      <span>bed(s)</span>
+                      <span v-if="!isCampingPage">bed(s)</span>
+                      <span v-else>mattress</span>
                     </div>
                   </v-col>
                 </v-row>
@@ -229,6 +230,9 @@ export default Vue.extend({
     shouldShowBookingBar(): boolean {
       // @ts-ignore
       return this.categories.includes('accommodations');
+    },
+    isCampingPage() {
+      return this.slug.toLowerCase().includes('camping');
     }
   }
 });
