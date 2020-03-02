@@ -451,7 +451,6 @@ export default {
       };
     },
     reservationFailEmailData: (state, getters) => ({ notificationType }) => {
-      console.log('notificationType', notificationType);
       const bookingInfo = state.bookingInfo;
       const prices = getters.prices({ decimalDigits: 2, formattedDate: true });
       return {

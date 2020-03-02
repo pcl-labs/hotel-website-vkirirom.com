@@ -60,24 +60,20 @@ export default Vue.extend({
     dialog() {
       return (this as any).$store.getters['auth/dialog'];
     },
-    isDialogOpen: {
-      get() {
-        return (this as any).$store.getters['auth/dialog'].isOpen;
-      },
-      set(value: boolean) {
-        (this as any).$store.dispatch('auth/updateDialog', {
-          isOpen: value
-        });
-      }
+    isDialogOpen() {
+      return (this as any).$store.getters['auth/dialog'].isOpen;
     },
     isAuthenticated(): boolean {
       return (this as any).$store.getters['auth/isAuthenticated'];
     }
   },
   watch: {
-    isAuthenticated(newVal) {
-      if (newVal) {
-        this.closeDialog();
+    isAuthenticated: {
+      immediate: true,
+      handler(newVal) {
+        if (newVal) {
+          this.closeDialog();
+        }
       }
     }
   },
