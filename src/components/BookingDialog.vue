@@ -11,21 +11,18 @@
     >
       <booking-confirm-dates
         v-if="currentStep.id === steps.confirmDates.id"
-        @booking-close="closeDialog"
         @booking-cancel="cancelBooking"
         :next-step="isAuthenticated ? steps.confirmGuests : steps.auth"
       ></booking-confirm-dates>
 
       <booking-auth
         v-if="currentStep.id === steps.auth.id"
-        @booking-close="closeDialog"
         @booking-cancel="cancelBooking"
         :next-step="steps.confirmGuests"
       ></booking-auth>
 
       <booking-confirm-guests
         v-if="currentStep.id === steps.confirmGuests.id"
-        @booking-close="closeDialog"
         @booking-cancel="cancelBooking"
         :next-step="steps.confirmBooking"
       ></booking-confirm-guests>
@@ -82,6 +79,7 @@ export default Vue.extend({
       this.$store.dispatch('booking/updateDialog', { isOpen: false });
     },
     cancelBooking() {
+      this.closeDialog();
       this.$store.dispatch('booking/cancelBooking');
     }
   }
