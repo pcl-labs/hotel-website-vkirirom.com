@@ -101,16 +101,26 @@
                     </v-expand-transition>
 
                     <!-- loading -->
-                    <v-expand-transition>
-                      <div v-if="shouldShowLoading" class="transition-fast-in-fast-out text-center mb-0">
-                        <v-progress-circular :size="24" indeterminate color="primary"></v-progress-circular>
-                      </div>
-                    </v-expand-transition>
+                    <div v-if="shouldShowLoading" class="transition-fast-in-fast-out text-center mb-0">
+                      <v-progress-circular :size="16" :width="2" indeterminate color="primary"></v-progress-circular>
+                    </div>
 
-                    <!-- error -->
-                    <p v-if="shouldShowError" class="transition-fast-in-fast-out error--text body-2 mb-0">
-                      Sorry, selected dates are not available
-                    </p>
+                    <!-- error/hint -->
+                    <div class="transition-fast-in-fast-out body-2">
+                      <p class="mb-0 error--text" v-if="shouldShowError">
+                        Sorry, selected dates are not available
+                      </p>
+                    </div>
+
+                    <!-- calendar hint -->
+                    <div v-if="shouldShowCalendarHint" class="transition-fast-in-fast-out body-2">
+                      <p class="mb-0 light--text" v-if="!(dateOne || dateTwo)">
+                        Select first date
+                      </p>
+                      <p class="mb-0 light--text" v-else-if="!dateTwo">
+                        Select last date
+                      </p>
+                    </div>
                   </div>
 
                   <div class="">
@@ -156,16 +166,24 @@
           </v-expand-transition>
 
           <!-- loading -->
-          <v-expand-transition>
-            <div v-if="shouldShowLoading" class="transition-fast-in-fast-out text-center mb-0">
-              <v-progress-circular :size="24" indeterminate color="primary"></v-progress-circular>
-            </div>
-          </v-expand-transition>
+          <div v-if="shouldShowLoading" class="transition-fast-in-fast-out text-center mb-0">
+            <v-progress-circular :size="16" :width="2" indeterminate color="primary"></v-progress-circular>
+          </div>
 
           <!-- error -->
           <p v-if="shouldShowError" class="transition-fast-in-fast-out error--text body-2 mb-0">
             Sorry, selected dates are not available
           </p>
+
+          <!-- calendar hint -->
+          <div v-if="shouldShowCalendarHint" class="transition-fast-in-fast-out body-2">
+            <p class="mb-0 light--text" v-if="!(dateOne || dateTwo)">
+              Select first date
+            </p>
+            <p class="mb-0 light--text" v-else-if="!dateTwo">
+              Select last date
+            </p>
+          </div>
         </div>
       </div>
 
@@ -251,6 +269,9 @@ export default Vue.extend({
     },
     shouldShowError(): boolean {
       return !(this.shouldShowTotal || this.shouldShowLoading) && this.isFormValid;
+    },
+    shouldShowCalendarHint(): boolean {
+      return !(this.shouldShowTotal || this.shouldShowLoading || this.shouldShowError);
     }
   },
   methods: {
