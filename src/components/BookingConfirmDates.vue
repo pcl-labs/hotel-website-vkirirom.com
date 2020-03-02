@@ -250,7 +250,7 @@ export default Vue.extend({
       return (this as any).$store.getters['booking/computedTotalPrice'](options).toFixed(0);
     },
     roomTypeId(): number {
-      return get(this.subjectItem, 'modules.hotel.roomTypes[0]', 'no-type');
+      return get(this.subjectItem, 'modules.hotel.roomTypes[0].id', 'no-type');
     },
     isPricesReady(): boolean {
       return this.prices.length > 0;

@@ -132,7 +132,7 @@ export default {
     },
     startBooking() {
       this.$store.dispatch('booking/startBooking', {
-        subjectItem: this.item,
+        subjectItem: this.subjectItem,
         returnUrl: this.returnUrl
       });
       this.$store.dispatch('booking/updateDialog', { isOpen: true });
