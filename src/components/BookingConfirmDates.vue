@@ -83,7 +83,7 @@
 
                 <input name="Amount (in $)" hidden :value="computedTotalPrice" type="text" readonly />
 
-                <!-- non-sticky bar -->
+                <!-- non-sticky bar, This section is duplicate for IE11 support -->
                 <div class="section-2 submit-bar--non-sticky pb-9">
                   <v-divider v-if="shouldShowTotal" class="light-border"></v-divider>
 
@@ -151,19 +151,17 @@
     <!-- sticky bar -->
     <div class="submit-bar--sticky d-none">
       <div class="px-4">
-        <v-divider v-if="shouldShowTotal" class="light-border mb-6 mt-1"></v-divider>
+        <v-divider class="light-border mb-6 mt-1"></v-divider>
         <div class="confirm-dates--results-row my-6">
           <!-- total -->
-          <v-expand-transition>
-            <v-row v-if="shouldShowTotal" no-gutters class="transition-fast-in-fast-out">
-              <v-col xs6>
-                <h3 class="title mb-0">Total</h3>
-              </v-col>
-              <v-col xs6 class="text-right">
-                <h3 class="title mb-0">${{ computedTotalPrice }}</h3>
-              </v-col>
-            </v-row>
-          </v-expand-transition>
+          <v-row v-if="shouldShowTotal" no-gutters class="transition-fast-in-fast-out">
+            <v-col xs6>
+              <h3 class="title mb-0">Total</h3>
+            </v-col>
+            <v-col xs6 class="text-right">
+              <h3 class="title mb-0">${{ computedTotalPrice }}</h3>
+            </v-col>
+          </v-row>
 
           <!-- loading -->
           <div v-if="shouldShowLoading" class="transition-fast-in-fast-out text-center mb-0">
