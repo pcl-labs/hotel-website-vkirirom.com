@@ -426,7 +426,7 @@ export default {
           payment: {
             amount
           },
-          email: bookingInfo.email,
+          email: store.getters['auth/user'].userName,
           phone: `+${bookingInfo.phoneCountry.callingCodes[0]}` + bookingInfo.phoneNumber
         }
       };
@@ -436,7 +436,7 @@ export default {
       const prices = getters.prices({ decimalDigits: 2, formattedDate: true });
       const email_to = [
         {
-          email: bookingInfo.email,
+          email: store.getters['auth/user'].userName,
           name: bookingInfo.fullName
         }
       ];
@@ -452,7 +452,7 @@ export default {
           numberOfGuests: bookingInfo.guests.total,
           checkIn: formatDate(bookingInfo.dateOne, 'ddd, D MMM'),
           checkOut: formatDate(bookingInfo.checkOut, 'ddd, D MMM'),
-          email: bookingInfo.email,
+          email: store.getters['auth/user'].userName,
           phoneCountry: bookingInfo.phoneCountry.name,
           phone: `+ (${bookingInfo.phoneCountry.callingCodes[0]}) ` + bookingInfo.phoneNumber,
           guests: bookingInfo.guests,
@@ -479,7 +479,7 @@ export default {
           numberOfGuests: bookingInfo.guests.total,
           checkIn: formatDate(bookingInfo.dateOne, 'ddd, D MMM'),
           checkOut: formatDate(bookingInfo.checkOut, 'ddd, D MMM'),
-          email: bookingInfo.email,
+          email: store.getters['auth/user'].userName,
           phoneCountry: bookingInfo.phoneCountry.name,
           phone: `+ (${bookingInfo.phoneCountry.callingCodes[0]}) ` + bookingInfo.phoneNumber,
           guests: bookingInfo.guests,
