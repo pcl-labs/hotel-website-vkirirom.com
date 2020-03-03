@@ -76,6 +76,8 @@
             auto-grow
           ></v-textarea>
 
+          <p v-if="contactInfoError" class="error--text" v-html="contactInfoError"></p>
+
           <v-btn
             @click="submit"
             x-large
@@ -83,6 +85,7 @@
             dark
             class="text-transform-none font-weight-bold dark--text"
             :disabled="!isFormValid"
+            :loading="isNextStepLoading"
             type="submit"
           >
             <v-spacer></v-spacer>
@@ -98,7 +101,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { isNumber } from 'lodash-es';
+import { isNumber, get } from 'lodash-es';
 import store from '../store';
 import isEmail from 'validator/lib/isEmail';
 import { countryDefault } from '../constants/app';
@@ -124,9 +127,19 @@ export default Vue.extend({
     };
   },
   async mounted() {
+    this.resetLoadingAndError();
     this.phoneCountry = this.countriesList.find(item => item.name === countryDefault);
   },
   computed: {
+    isNextStepLoading() {
+      return (this as any).$store.getters['booking/isNextStepLoading'];
+    },
+    contactInfoError() {
+      return (this as any).$store.getters['booking/contactInfoError'];
+    },
+    isAuthenticated() {
+      return (this as any).$store.getters['auth/isAuthenticated'];
+    },
     countriesList() {
       return (this as any).$store.getters['booking/countriesList'];
     },
@@ -168,8 +181,33 @@ export default Vue.extend({
       // @ts-ignore
       this.$refs.phoneNumber.focus();
     },
-    submit() {
-      this.$router.push({ name: 'booking-payment' });
+    async submit() {
+      this.$store.dispatch('booking/updateIsNextStepLoading', true);
+      this.$store.dispatch('booking/updateContactInfoError', '');
+      try {
+        await this.handleAuthentication();
+        this.$router.push({ name: 'booking-payment' });
+      } catch (error) {}
+      this.$store.dispatch('booking/updateIsNextStepLoading', false);
+    },
+    handleAuthentication() {
+      if (!this.isAuthenticated) {
+        return this.registerAuto();
+      }
+    },
+    async registerAuto() {
+      try {
+        await this.$store.dispatch('auth/registerAuto', { email: this.email });
+        await store.dispatch('auth/ping');
+      } catch (error) {
+        const message = get(error, 'response.data[0].description') || error.message;
+        this.$store.dispatch('booking/updateContactInfoError', message);
+        throw error;
+      }
+    },
+    resetLoadingAndError() {
+      this.$store.dispatch('booking/updateContactInfoError', '');
+      this.$store.dispatch('booking/updateIsNextStepLoading', false);
     }
   }
 });

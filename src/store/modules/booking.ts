@@ -82,8 +82,8 @@ const defaultState = {
   finalPrice: 0,
   reservationId: 0,
   reservationDetails: {},
-  isPaymentLoading: false,
-  paymentError: ''
+  isNextStepLoading: false,
+  contactInfoError: ''
 };
 
 export default {
@@ -92,6 +92,12 @@ export default {
   mutations: {
     updateCountriesList(state, payload) {
       state.countriesList = payload;
+    },
+    updateContactInfoError(state, payload) {
+      state.contactInfoError = payload;
+    },
+    updateIsNextStepLoading(state, payload) {
+      state.isNextStepLoading = payload;
     },
     updateDialog(state, payload) {
       state.dialog = payload;
@@ -173,6 +179,12 @@ export default {
     }
   },
   actions: {
+    updateContactInfoError(context, payload) {
+      context.commit('updateContactInfoError', payload);
+    },
+    updateIsNextStepLoading(context, payload) {
+      context.commit('updateIsNextStepLoading', payload);
+    },
     updateCountriesList(context, payload) {
       context.commit('updateCountriesList', payload);
     },
@@ -389,6 +401,12 @@ export default {
     },
     countriesList: state => {
       return state.countriesList || [];
+    },
+    contactInfoError: state => {
+      return state.contactInfoError;
+    },
+    isNextStepLoading: state => {
+      return state.isNextStepLoading;
     },
     bookingInfo(state) {
       return state.bookingInfo;
