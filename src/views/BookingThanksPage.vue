@@ -2,6 +2,8 @@
   <fragment>
     <page-header></page-header>
 
+    <auth-link-accounts-dialog v-if="shouldShowLinkAccounts"></auth-link-accounts-dialog>
+
     <div class="page">
       <div class="page-content brand-gradient">
         <v-container class="pa-0" v-if="$vuetify.breakpoint.smAndDown">
@@ -41,17 +43,31 @@ const BookingThanks = () => import('@/components/BookingThanks.vue');
 const BookingConfirmBooking = () => import('@/components/BookingConfirmBooking.vue');
 const PageFooter = () => import('@/components/PageFooter.vue');
 const PageHeader = () => import('@/components/PageHeader.vue');
+const AuthLinkAccountsDialog = () => import('@/components/AuthLinkAccountsDialog.vue');
 import store from '@/store';
 
 export default Vue.extend({
   name: 'booking-thanks-page',
-  components: { PageHeader, BookingThanks, BookingConfirmBooking, PageFooter },
+  components: { PageHeader, BookingThanks, BookingConfirmBooking, PageFooter, AuthLinkAccountsDialog },
+  data: () => ({
+    shouldShowLinkAccounts: false
+  }),
   computed: {
     steps() {
       return (this as any).$store.getters['booking/steps'];
     },
     returnUrl() {
       return (this as any).$store.getters['booking/bookingInfo'].returnUrl;
+    }
+  },
+  mounted() {
+    (this as any).showLinkAccounts();
+  },
+  methods: {
+    showLinkAccounts() {
+      setTimeout(() => {
+        (this as any).shouldShowLinkAccounts = true;
+      }, 2000);
     }
   },
   destroyed() {
