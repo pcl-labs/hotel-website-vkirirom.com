@@ -19,29 +19,26 @@ const steps: { [name: string]: bookingStep } = {
   confirmDates: {
     id: 1
   },
-  auth: {
+  confirmGuests: {
     id: 2
   },
-  confirmGuests: {
+  confirmBooking: {
     id: 3
   },
-  confirmBooking: {
-    id: 4
-  },
   reviewPolicies: {
-    id: 5,
+    id: 4,
     title: 'Review Rules'
   },
   customerInfo: {
-    id: 6,
+    id: 5,
     title: 'Contact Info'
   },
   paymentInfo: {
-    id: 7,
+    id: 6,
     title: 'Payment'
   },
   thankYou: {
-    id: 8,
+    id: 7,
     title: 'Thank You!'
   }
 };
@@ -411,7 +408,7 @@ export default {
           payment: {
             amount
           },
-          email: store.getters['auth/user'].userName,
+          email: bookingInfo.email,
           phone: `+${bookingInfo.phoneCountry.callingCodes[0]}` + bookingInfo.phoneNumber
         }
       };
@@ -421,7 +418,7 @@ export default {
       const prices = getters.prices({ decimalDigits: 2, formattedDate: true });
       const email_to = [
         {
-          email: store.getters['auth/user'].userName,
+          email: bookingInfo.email,
           name: bookingInfo.fullName
         }
       ];
@@ -437,7 +434,7 @@ export default {
           numberOfGuests: bookingInfo.guests.total,
           checkIn: formatDate(bookingInfo.dateOne, 'ddd, D MMM'),
           checkOut: formatDate(bookingInfo.checkOut, 'ddd, D MMM'),
-          email: store.getters['auth/user'].userName,
+          email: bookingInfo.email,
           phoneCountry: bookingInfo.phoneCountry.name,
           phone: `+ (${bookingInfo.phoneCountry.callingCodes[0]}) ` + bookingInfo.phoneNumber,
           guests: bookingInfo.guests,
@@ -464,7 +461,7 @@ export default {
           numberOfGuests: bookingInfo.guests.total,
           checkIn: formatDate(bookingInfo.dateOne, 'ddd, D MMM'),
           checkOut: formatDate(bookingInfo.checkOut, 'ddd, D MMM'),
-          email: store.getters['auth/user'].userName,
+          email: bookingInfo.email,
           phoneCountry: bookingInfo.phoneCountry.name,
           phone: `+ (${bookingInfo.phoneCountry.callingCodes[0]}) ` + bookingInfo.phoneNumber,
           guests: bookingInfo.guests,

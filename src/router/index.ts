@@ -33,7 +33,6 @@ const routes = [
     path: '/booking/review-rules',
     component: () => import(/* webpackChunkName: "Booking1" */ '@/views/BookingReviewRulesPage.vue'),
     meta: {
-      requiresAuth: true,
       hasBookingNavigation: true
     }
   },
@@ -42,7 +41,6 @@ const routes = [
     path: '/booking/customer-info',
     component: () => import(/* webpackChunkName: "Booking2" */ '@/views/BookingCustomerInfoPage.vue'),
     meta: {
-      requiresAuth: true,
       hasBookingNavigation: true
     }
   },
@@ -51,7 +49,6 @@ const routes = [
     path: '/booking/payment',
     component: () => import(/* webpackChunkName: "Booking3" */ '@/views/BookingPaymentPage.vue'),
     meta: {
-      requiresAuth: true,
       hasBookingNavigation: true
     }
   },
@@ -60,7 +57,7 @@ const routes = [
     path: '/booking/thanks',
     component: () => import(/* webpackChunkName: "Booking4" */ '@/views/BookingThanksPage.vue'),
     meta: {
-      requiresAuth: true
+      // requiresAuth: true
     }
   },
   {

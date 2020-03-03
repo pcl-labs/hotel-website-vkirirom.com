@@ -50,6 +50,20 @@
             A network error occurred, refresh the page please.
           </div>
 
+          <v-text-field
+            class="mb-1 mt-2"
+            v-model="email"
+            outlined
+            label="E-mail address"
+            name="E-mail"
+            type="email"
+            color="light"
+            dark
+            required
+            :rules="rules.email"
+          >
+          </v-text-field>
+
           <h4 class="mb-2 title font-weight-bold">Special Requests?</h4>
           <v-textarea
             placeholder="Write Here..."
@@ -86,6 +100,7 @@
 import Vue from 'vue';
 import { isNumber } from 'lodash-es';
 import store from '../store';
+import isEmail from 'validator/lib/isEmail';
 import { countryDefault } from '../constants/app';
 
 export default Vue.extend({
@@ -94,6 +109,11 @@ export default Vue.extend({
     return {
       isFormValid: false,
       rules: {
+        email: [
+          v => !!v || 'E-mail is required',
+          v => (v || '').indexOf(' ') < 0 || 'No spaces are allowed',
+          v => isEmail(v) || 'E-mail must be valid'
+        ],
         phoneCountry: [v => !!v || 'This field is required'],
         phoneNumber: [
           v => !!v || 'This field is required',
@@ -116,6 +136,14 @@ export default Vue.extend({
       },
       set(value: string) {
         (this as any).$store.dispatch('booking/updatePhoneNumber', value);
+      }
+    },
+    email: {
+      get() {
+        return (this as any).$store.getters['booking/bookingInfo'].email;
+      },
+      set(value: string) {
+        (this as any).$store.dispatch('booking/updateEmail', value);
       }
     },
     phoneCountry: {
