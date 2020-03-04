@@ -47,9 +47,20 @@
               </v-col>
             </v-row>
           </div>
-          <div v-else class="pt-3 mb-10 error--text">
-            A network error occurred, refresh the page please.
-          </div>
+
+          <v-text-field
+            class="mb-1 mt-2"
+            v-model="email"
+            outlined
+            label="E-mail address"
+            name="E-mail"
+            type="email"
+            color="light"
+            dark
+            required
+            :rules="rules.email"
+          >
+          </v-text-field>
 
           <h4 class="mb-2 title font-weight-bold">Special Requests?</h4>
           <v-textarea
@@ -63,6 +74,8 @@
             auto-grow
           ></v-textarea>
 
+          <p v-if="contactInfoError" class="error--text" v-html="contactInfoError"></p>
+
           <v-btn
             @click="submit"
             x-large
@@ -70,6 +83,7 @@
             dark
             class="text-transform-none font-weight-bold dark--text"
             :disabled="!isFormValid"
+            :loading="isNextStepLoading"
             type="submit"
           >
             <v-spacer></v-spacer>
@@ -85,8 +99,9 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { isNumber } from 'lodash-es';
+import { isNumber, get } from 'lodash-es';
 import store from '../store';
+import isEmail from 'validator/lib/isEmail';
 import { countryDefault } from '../constants/app';
 
 export default Vue.extend({
@@ -101,6 +116,11 @@ export default Vue.extend({
     return {
       isFormValid: false,
       rules: {
+        email: [
+          v => !!v || 'E-mail is required',
+          v => (v || '').indexOf(' ') < 0 || 'No spaces are allowed',
+          v => isEmail(v) || 'E-mail must be valid'
+        ],
         phoneCountry: [v => !!v || 'This field is required'],
         phoneNumber: [
           v => !!v || 'This field is required',
@@ -110,16 +130,41 @@ export default Vue.extend({
       }
     };
   },
-  mounted() {
-    (this as any).setDefaultPhoneCountry();
+  watch: {
+    countriesList: {
+      immediate: true,
+      handler(newVal) {
+        (this as any).setDefaultPhoneCountry();
+      }
+    }
+  },
+  async mounted() {
+    (this as any).resetLoadingAndError();
   },
   computed: {
+    isNextStepLoading() {
+      return (this as any).$store.getters['booking/isNextStepLoading'];
+    },
+    contactInfoError() {
+      return (this as any).$store.getters['booking/contactInfoError'];
+    },
+    isAuthenticated() {
+      return (this as any).$store.getters['auth/isAuthenticated'];
+    },
     phoneNumber: {
       get() {
         return (this as any).$store.getters['booking/bookingInfo'].phoneNumber;
       },
       set(value: string) {
         (this as any).$store.dispatch('booking/updatePhoneNumber', value);
+      }
+    },
+    email: {
+      get() {
+        return (this as any).$store.getters['booking/bookingInfo'].email;
+      },
+      set(value: string) {
+        (this as any).$store.dispatch('booking/updateEmail', value);
       }
     },
     phoneCountry: {
@@ -149,8 +194,33 @@ export default Vue.extend({
       // @ts-ignore
       this.$refs.phoneNumber.focus();
     },
-    submit() {
-      this.$router.push({ name: 'booking-payment' });
+    async submit() {
+      this.$store.dispatch('booking/updateIsNextStepLoading', true);
+      this.$store.dispatch('booking/updateContactInfoError', '');
+      try {
+        await (this as any).handleAuthentication();
+        this.$router.push({ name: 'booking-payment' });
+      } catch (error) {}
+      this.$store.dispatch('booking/updateIsNextStepLoading', false);
+    },
+    handleAuthentication() {
+      if (!(this as any).isAuthenticated) {
+        return this.registerAuto();
+      }
+    },
+    async registerAuto() {
+      try {
+        await this.$store.dispatch('auth/registerAuto', { email: (this as any).email });
+        await store.dispatch('auth/ping');
+      } catch (error) {
+        const message = get(error, 'response.data[0].description') || error.message;
+        this.$store.dispatch('booking/updateContactInfoError', message);
+        throw error;
+      }
+    },
+    resetLoadingAndError() {
+      this.$store.dispatch('booking/updateContactInfoError', '');
+      this.$store.dispatch('booking/updateIsNextStepLoading', false);
     }
   }
 });

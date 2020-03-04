@@ -108,6 +108,7 @@
 <script lang="ts">
 const SeparatorOr = () => import('@/components/SeparatorOr.vue');
 import store from '@/store';
+import isEmail from 'validator/lib/isEmail';
 
 export default {
   name: 'auth-login',
@@ -119,8 +120,8 @@ export default {
       rules: {
         email: [
           v => !!v || 'E-mail is required',
-          v => /.+@.+/.test(v) || 'E-mail must be valid',
-          v => (v || '').indexOf(' ') < 0 || 'No spaces are allowed'
+          v => (v || '').indexOf(' ') < 0 || 'No spaces are allowed',
+          v => isEmail(v) || 'E-mail must be valid'
         ],
         password: [v => !!v || 'Password is required']
       }

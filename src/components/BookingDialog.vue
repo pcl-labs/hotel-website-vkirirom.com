@@ -12,14 +12,8 @@
       <booking-confirm-dates
         v-if="currentStep.id === steps.confirmDates.id"
         @booking-cancel="cancelBooking"
-        :next-step="isAuthenticated ? steps.confirmGuests : steps.auth"
-      ></booking-confirm-dates>
-
-      <booking-auth
-        v-if="currentStep.id === steps.auth.id"
-        @booking-cancel="cancelBooking"
         :next-step="steps.confirmGuests"
-      ></booking-auth>
+      ></booking-confirm-dates>
 
       <booking-confirm-guests
         v-if="currentStep.id === steps.confirmGuests.id"
@@ -48,7 +42,6 @@ import Vue from 'vue';
 import store from '@/store';
 import { bookingStep } from '../types';
 const BookingConfirmDates = () => import('@/components/BookingConfirmDates.vue');
-const BookingAuth = () => import('@/components/BookingAuth.vue');
 const BookingConfirmGuests = () => import('@/components/BookingConfirmGuests.vue');
 const BookingConfirmBooking = () => import('@/components/BookingConfirmBooking.vue');
 
@@ -56,7 +49,6 @@ export default Vue.extend({
   name: 'booking-dialog',
   components: {
     BookingConfirmDates,
-    BookingAuth,
     BookingConfirmGuests,
     BookingConfirmBooking
   },
@@ -67,10 +59,7 @@ export default Vue.extend({
     currentStep(): number {
       return (this as any).$store.getters['booking/currentStep'];
     },
-    isAuthenticated(): boolean {
-      return (this as any).$store.getters['auth/isAuthenticated'];
-    },
-    steps(): { [name: string]: bookingStep } {
+    steps() {
       return (this as any).$store.getters['booking/steps'];
     }
   },

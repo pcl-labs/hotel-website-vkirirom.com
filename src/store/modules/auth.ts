@@ -183,6 +183,19 @@ export default {
         throw new Error('An error occured during login');
       }
     },
+    async registerAuto(context, { email }) {
+      try {
+        const token = await AuthenticationService.register({
+          model: {
+            email: email,
+            password: ''
+          }
+        });
+        context.dispatch('updateToken', token);
+      } catch (error) {
+        throw error;
+      }
+    },
     register(context) {
       context.commit('updateLoading', true);
       context.commit('updateRegisterError', '');

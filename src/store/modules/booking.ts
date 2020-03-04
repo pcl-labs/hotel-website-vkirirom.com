@@ -19,29 +19,26 @@ const steps: { [name: string]: bookingStep } = {
   confirmDates: {
     id: 1
   },
-  auth: {
+  confirmGuests: {
     id: 2
   },
-  confirmGuests: {
+  confirmBooking: {
     id: 3
   },
-  confirmBooking: {
-    id: 4
-  },
   reviewPolicies: {
-    id: 5,
+    id: 4,
     title: 'Review Rules'
   },
   customerInfo: {
-    id: 6,
+    id: 5,
     title: 'Contact Info'
   },
   paymentInfo: {
-    id: 7,
+    id: 6,
     title: 'Payment'
   },
   thankYou: {
-    id: 8,
+    id: 7,
     title: 'Thank You!'
   }
 };
@@ -85,8 +82,8 @@ const defaultState = {
   finalPrice: 0,
   reservationId: 0,
   reservationDetails: {},
-  isPaymentLoading: false,
-  paymentError: ''
+  isNextStepLoading: false,
+  contactInfoError: ''
 };
 
 export default {
@@ -95,6 +92,12 @@ export default {
   mutations: {
     updateCountriesList(state, payload) {
       state.countriesList = payload;
+    },
+    updateContactInfoError(state, payload) {
+      state.contactInfoError = payload;
+    },
+    updateIsNextStepLoading(state, payload) {
+      state.isNextStepLoading = payload;
     },
     updateDialog(state, payload) {
       state.dialog = payload;
@@ -176,6 +179,12 @@ export default {
     }
   },
   actions: {
+    updateContactInfoError(context, payload) {
+      context.commit('updateContactInfoError', payload);
+    },
+    updateIsNextStepLoading(context, payload) {
+      context.commit('updateIsNextStepLoading', payload);
+    },
     updateCountriesList(context, payload) {
       context.commit('updateCountriesList', payload);
     },
@@ -393,6 +402,12 @@ export default {
     countriesList: state => {
       return state.countriesList || [];
     },
+    contactInfoError: state => {
+      return state.contactInfoError;
+    },
+    isNextStepLoading: state => {
+      return state.isNextStepLoading;
+    },
     bookingInfo(state) {
       return state.bookingInfo;
     },
@@ -412,7 +427,7 @@ export default {
             amount
           },
           email: store.getters['auth/user'].userName,
-          phone: `+${bookingInfo.phoneCountry.callingCodes[0]}` + bookingInfo.phoneNumber
+          phone: `+${bookingInfo.phoneCountry && bookingInfo.phoneCountry.callingCodes[0]}` + bookingInfo.phoneNumber
         }
       };
     },

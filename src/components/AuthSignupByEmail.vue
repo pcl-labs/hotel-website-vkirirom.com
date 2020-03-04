@@ -126,7 +126,9 @@
 <script lang="ts">
 import Vue from 'vue';
 import store from '@/store';
+import isEmail from 'validator/lib/isEmail';
 const SeparatorOr = () => import('@/components/SeparatorOr.vue');
+
 export default Vue.extend({
   components: { SeparatorOr },
   data() {
@@ -140,8 +142,8 @@ export default Vue.extend({
         lastName: [v => !!v || 'Last name is required'],
         email: [
           v => !!v || 'E-mail is required',
-          v => /.+@.+/.test(v) || 'E-mail must be valid',
-          v => (v || '').indexOf(' ') < 0 || 'No spaces are allowed'
+          v => (v || '').indexOf(' ') < 0 || 'No spaces are allowed',
+          v => isEmail(v) || 'E-mail must be valid'
         ],
         password: [
           v => !!v || 'Password is required',
