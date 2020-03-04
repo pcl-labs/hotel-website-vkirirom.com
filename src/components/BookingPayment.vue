@@ -131,7 +131,7 @@
             type="submit"
           >
             <v-spacer></v-spacer>
-            <span class="mr-3">Confirm Payment</span>
+            <span class="mr-3 px-8">Pay ${{ computedTotalPrice }}</span>
             <v-spacer></v-spacer>
             <v-icon class="dark--text">keyboard_arrow_right</v-icon>
           </v-btn>
