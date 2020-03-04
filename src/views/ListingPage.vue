@@ -106,7 +106,8 @@
                           /
                         </span>
                       </span>
-                      <span>bed(s)</span>
+                      <span v-if="!isCampingPage">bed(s)</span>
+                      <span v-else>mattress</span>
                     </div>
                   </v-col>
                 </v-row>
@@ -127,9 +128,10 @@
       </div>
 
       <booking-bar
-        :item="resort"
-        @on-start-booking="onStartBooking"
         v-if="shouldShowBookingBar"
+        @on-start-booking="onStartBooking"
+        :subject-item="resort"
+        :return-url="`/listing/${this.slug}`"
         :title="resort.h2"
         :price="Number(resort.ctaText)"
       ></booking-bar>
@@ -229,6 +231,9 @@ export default Vue.extend({
     shouldShowBookingBar(): boolean {
       // @ts-ignore
       return this.categories.includes('accommodations');
+    },
+    isCampingPage() {
+      return this.slug.toLowerCase().includes('camping');
     }
   }
 });

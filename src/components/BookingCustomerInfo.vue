@@ -8,6 +8,7 @@
             <v-row no-gutters class="phone-input align-center">
               <v-col cols="5">
                 <v-combobox
+                  v-if="phoneCountry && phoneCountry.id"
                   class="phone-input--code"
                   dark
                   color="light"
@@ -45,9 +46,6 @@
                 ></v-text-field>
               </v-col>
             </v-row>
-          </div>
-          <div v-else class="pt-3 mb-10 error--text">
-            A network error occurred, refresh the page please.
           </div>
 
           <v-text-field
@@ -108,6 +106,12 @@ import { countryDefault } from '../constants/app';
 
 export default Vue.extend({
   name: 'booking-customer-info',
+  props: {
+    countriesList: {
+      type: Array,
+      required: true
+    }
+  },
   data() {
     return {
       isFormValid: false,
@@ -126,9 +130,16 @@ export default Vue.extend({
       }
     };
   },
+  watch: {
+    countriesList: {
+      immediate: true,
+      handler(newVal) {
+        (this as any).setDefaultPhoneCountry();
+      }
+    }
+  },
   async mounted() {
-    this.resetLoadingAndError();
-    this.phoneCountry = this.countriesList.find(item => item.name === countryDefault);
+    (this as any).resetLoadingAndError();
   },
   computed: {
     isNextStepLoading() {
@@ -139,9 +150,6 @@ export default Vue.extend({
     },
     isAuthenticated() {
       return (this as any).$store.getters['auth/isAuthenticated'];
-    },
-    countriesList() {
-      return (this as any).$store.getters['booking/countriesList'];
     },
     phoneNumber: {
       get() {
@@ -163,7 +171,7 @@ export default Vue.extend({
       get() {
         return (this as any).$store.getters['booking/bookingInfo'].phoneCountry;
       },
-      set(value: string) {
+      set(value) {
         (this as any).$store.dispatch('booking/updatePhoneCountry', value);
       }
     },
@@ -177,6 +185,11 @@ export default Vue.extend({
     }
   },
   methods: {
+    setDefaultPhoneCountry() {
+      if (!((this as any).phoneCountry && (this as any).phoneCountry.id)) {
+        (this as any).phoneCountry = (this as any).countriesList.find(item => item.name === countryDefault);
+      }
+    },
     focusPhone() {
       // @ts-ignore
       this.$refs.phoneNumber.focus();
@@ -185,19 +198,19 @@ export default Vue.extend({
       this.$store.dispatch('booking/updateIsNextStepLoading', true);
       this.$store.dispatch('booking/updateContactInfoError', '');
       try {
-        await this.handleAuthentication();
+        await (this as any).handleAuthentication();
         this.$router.push({ name: 'booking-payment' });
       } catch (error) {}
       this.$store.dispatch('booking/updateIsNextStepLoading', false);
     },
     handleAuthentication() {
-      if (!this.isAuthenticated) {
+      if (!(this as any).isAuthenticated) {
         return this.registerAuto();
       }
     },
     async registerAuto() {
       try {
-        await this.$store.dispatch('auth/registerAuto', { email: this.email });
+        await this.$store.dispatch('auth/registerAuto', { email: (this as any).email });
         await store.dispatch('auth/ping');
       } catch (error) {
         const message = get(error, 'response.data[0].description') || error.message;
