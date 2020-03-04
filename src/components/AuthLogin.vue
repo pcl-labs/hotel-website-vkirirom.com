@@ -1,5 +1,5 @@
 <template>
-  <v-form name="Login" v-model="valid" @submit.prevent="" class="d-flex flex-column flex-grow-1">
+  <v-form ref="form" name="Login" v-model="valid" @submit.prevent="" class="d-flex flex-column flex-grow-1">
     <v-container fluid class="pa-0 d-flex flex-column flex-grow-1 justify-space-between">
       <v-row no-gutters class="flex-grow-0">
         <v-col cols="12" class="mb-2">
@@ -127,7 +127,17 @@ export default {
       }
     };
   },
+  beforeDestroy() {
+    // @ts-ignore
+    this.cleanup();
+  },
   methods: {
+    cleanup() {
+      // @ts-ignore
+      this.password = '';
+      // @ts-ignore
+      this.$refs.form.resetValidation();
+    },
     updateActiveState(value) {
       (this as any).$store.dispatch('auth/updateActiveState', value);
     },
