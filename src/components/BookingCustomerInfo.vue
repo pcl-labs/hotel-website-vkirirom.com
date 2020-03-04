@@ -8,6 +8,7 @@
             <v-row no-gutters class="phone-input align-center">
               <v-col cols="5">
                 <v-combobox
+                  v-if="phoneCountry && phoneCountry.id"
                   class="phone-input--code"
                   dark
                   color="light"
@@ -90,6 +91,12 @@ import { countryDefault } from '../constants/app';
 
 export default Vue.extend({
   name: 'booking-customer-info',
+  props: {
+    countriesList: {
+      type: Array,
+      required: true
+    }
+  },
   data() {
     return {
       isFormValid: false,
@@ -103,13 +110,10 @@ export default Vue.extend({
       }
     };
   },
-  async mounted() {
-    this.phoneCountry = this.countriesList.find(item => item.name === countryDefault);
+  mounted() {
+    (this as any).setDefaultPhoneCountry();
   },
   computed: {
-    countriesList() {
-      return (this as any).$store.getters['booking/countriesList'];
-    },
     phoneNumber: {
       get() {
         return (this as any).$store.getters['booking/bookingInfo'].phoneNumber;
@@ -122,7 +126,7 @@ export default Vue.extend({
       get() {
         return (this as any).$store.getters['booking/bookingInfo'].phoneCountry;
       },
-      set(value: string) {
+      set(value) {
         (this as any).$store.dispatch('booking/updatePhoneCountry', value);
       }
     },
@@ -136,6 +140,11 @@ export default Vue.extend({
     }
   },
   methods: {
+    setDefaultPhoneCountry() {
+      if (!((this as any).phoneCountry && (this as any).phoneCountry.id)) {
+        (this as any).phoneCountry = (this as any).countriesList.find(item => item.name === countryDefault);
+      }
+    },
     focusPhone() {
       // @ts-ignore
       this.$refs.phoneNumber.focus();

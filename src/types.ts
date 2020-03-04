@@ -102,3 +102,10 @@ export interface InternalMessagePassing {
   error: boolean;
   message: string;
 }
+
+export interface Country {
+  id: number;
+  flag: string;
+  name: string;
+  callingCodes: number[];
+}

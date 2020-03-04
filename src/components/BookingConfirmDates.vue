@@ -83,7 +83,7 @@
 
                 <input name="Amount (in $)" hidden :value="computedTotalPrice" type="text" readonly />
 
-                <!-- non-sticky bar -->
+                <!-- non-sticky bar, This section is duplicate for IE11 support -->
                 <div class="section-2 submit-bar--non-sticky pb-9">
                   <v-divider v-if="shouldShowTotal" class="light-border"></v-divider>
 
@@ -101,16 +101,26 @@
                     </v-expand-transition>
 
                     <!-- loading -->
-                    <v-expand-transition>
-                      <div v-if="shouldShowLoading" class="transition-fast-in-fast-out text-center mb-0">
-                        <v-progress-circular :size="24" indeterminate color="primary"></v-progress-circular>
-                      </div>
-                    </v-expand-transition>
+                    <div v-if="shouldShowLoading" class="transition-fast-in-fast-out text-center mb-0">
+                      <v-progress-circular :size="16" :width="2" indeterminate color="primary"></v-progress-circular>
+                    </div>
 
-                    <!-- error -->
-                    <p v-if="shouldShowError" class="transition-fast-in-fast-out error--text body-2 mb-0">
-                      Sorry, selected dates are not available
-                    </p>
+                    <!-- error/hint -->
+                    <div class="transition-fast-in-fast-out body-2">
+                      <p class="mb-0 error--text" v-if="shouldShowError">
+                        Sorry, selected dates are not available
+                      </p>
+                    </div>
+
+                    <!-- calendar hint -->
+                    <div v-if="shouldShowCalendarHint" class="transition-fast-in-fast-out body-2">
+                      <p class="mb-0 light--text" v-if="!(dateOne || dateTwo)">
+                        Select first date
+                      </p>
+                      <p class="mb-0 light--text" v-else-if="!dateTwo">
+                        Select last date
+                      </p>
+                    </div>
                   </div>
 
                   <div class="">
@@ -141,31 +151,37 @@
     <!-- sticky bar -->
     <div class="submit-bar--sticky d-none">
       <div class="px-4">
-        <v-divider v-if="shouldShowTotal" class="light-border mb-6 mt-1"></v-divider>
+        <v-divider class="light-border mb-6 mt-1"></v-divider>
         <div class="confirm-dates--results-row my-6">
           <!-- total -->
-          <v-expand-transition>
-            <v-row v-if="shouldShowTotal" no-gutters class="transition-fast-in-fast-out">
-              <v-col xs6>
-                <h3 class="title mb-0">Total</h3>
-              </v-col>
-              <v-col xs6 class="text-right">
-                <h3 class="title mb-0">${{ computedTotalPrice }}</h3>
-              </v-col>
-            </v-row>
-          </v-expand-transition>
+          <v-row v-if="shouldShowTotal" no-gutters class="transition-fast-in-fast-out">
+            <v-col xs6>
+              <h3 class="title mb-0">Total</h3>
+            </v-col>
+            <v-col xs6 class="text-right">
+              <h3 class="title mb-0">${{ computedTotalPrice }}</h3>
+            </v-col>
+          </v-row>
 
           <!-- loading -->
-          <v-expand-transition>
-            <div v-if="shouldShowLoading" class="transition-fast-in-fast-out text-center mb-0">
-              <v-progress-circular :size="24" indeterminate color="primary"></v-progress-circular>
-            </div>
-          </v-expand-transition>
+          <div v-if="shouldShowLoading" class="transition-fast-in-fast-out text-center mb-0">
+            <v-progress-circular :size="16" :width="2" indeterminate color="primary"></v-progress-circular>
+          </div>
 
           <!-- error -->
           <p v-if="shouldShowError" class="transition-fast-in-fast-out error--text body-2 mb-0">
             Sorry, selected dates are not available
           </p>
+
+          <!-- calendar hint -->
+          <div v-if="shouldShowCalendarHint" class="transition-fast-in-fast-out body-2">
+            <p class="mb-0 light--text" v-if="!(dateOne || dateTwo)">
+              Select first date
+            </p>
+            <p class="mb-0 light--text" v-else-if="!dateTwo">
+              Select last date
+            </p>
+          </div>
         </div>
       </div>
 
@@ -194,6 +210,7 @@
 import Vue from 'vue';
 import store from '@/store';
 import { formatDate } from '@/helpers';
+import { get } from 'lodash-es';
 
 export default Vue.extend({
   name: 'booking-confirm-dates',
@@ -212,8 +229,8 @@ export default Vue.extend({
     };
   },
   computed: {
-    resort() {
-      return (this as any).$store.getters['booking/bookingInfo'].resort;
+    subjectItem() {
+      return (this as any).$store.getters['booking/bookingInfo'].subjectItem;
     },
     dateOne() {
       return (this as any).$store.getters['booking/bookingInfo'].dateOne;
@@ -231,8 +248,7 @@ export default Vue.extend({
       return (this as any).$store.getters['booking/computedTotalPrice'](options).toFixed(0);
     },
     roomTypeId(): number {
-      const firstRoomType = this.resort.modules.hotel.roomTypes[0];
-      return firstRoomType && firstRoomType.id;
+      return get(this.subjectItem, 'modules.hotel.roomTypes[0].id', 'no-type');
     },
     isPricesReady(): boolean {
       return this.prices.length > 0;
@@ -251,6 +267,9 @@ export default Vue.extend({
     },
     shouldShowError(): boolean {
       return !(this.shouldShowTotal || this.shouldShowLoading) && this.isFormValid;
+    },
+    shouldShowCalendarHint(): boolean {
+      return !(this.shouldShowTotal || this.shouldShowLoading || this.shouldShowError);
     }
   },
   methods: {

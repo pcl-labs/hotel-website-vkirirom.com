@@ -215,7 +215,7 @@
 import Vue from 'vue';
 import store from '@/store';
 import { Resort, RoomType } from '@/types';
-import { isNumber } from 'lodash-es';
+import { isNumber, get } from 'lodash-es';
 
 export default Vue.extend({
   name: 'booking-confirm-guests',
@@ -278,14 +278,14 @@ export default Vue.extend({
       return (this as any).guestsAdults + (this as any).guestsChildren;
     },
     resort(): Resort {
-      return (this as any).$store.getters['booking/bookingInfo'].resort;
+      return (this as any).$store.getters['booking/bookingInfo'].subjectItem;
     },
     roomTypes(): RoomType[] {
-      const modules = (this as any).$store.getters['booking/bookingInfo'].resort.modules;
+      const modules = get((this as any).$store.getters['booking/bookingInfo'].subjectItem, 'modules');
       if (!modules) {
         return [];
       }
-      return modules.hotel.roomTypes;
+      return get(modules, 'hotel.roomTypes');
     },
     currentStep(): number {
       return (this as any).$store.getters['booking/currentStep'];

@@ -86,7 +86,7 @@ export default Vue.extend({
   components: { ResortDescription },
   computed: {
     resort() {
-      return (this as any).$store.getters['booking/bookingInfo'].resort;
+      return (this as any).$store.getters['booking/bookingInfo'].subjectItem;
     }
   },
   methods: {

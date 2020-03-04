@@ -3,7 +3,6 @@
     <v-dialog
       dark
       persistent
-      v-if="tempFix"
       v-model="isDialogOpen"
       :width="376"
       :fullscreen="$vuetify.breakpoint.smAndDown"
@@ -12,21 +11,18 @@
     >
       <booking-confirm-dates
         v-if="currentStep.id === steps.confirmDates.id"
-        @booking-close="closeDialog"
         @booking-cancel="cancelBooking"
         :next-step="isAuthenticated ? steps.confirmGuests : steps.auth"
       ></booking-confirm-dates>
 
       <booking-auth
         v-if="currentStep.id === steps.auth.id"
-        @booking-close="closeDialog"
         @booking-cancel="cancelBooking"
         :next-step="steps.confirmGuests"
       ></booking-auth>
 
       <booking-confirm-guests
         v-if="currentStep.id === steps.confirmGuests.id"
-        @booking-close="closeDialog"
         @booking-cancel="cancelBooking"
         :next-step="steps.confirmBooking"
       ></booking-confirm-guests>
@@ -50,6 +46,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import store from '@/store';
+import { bookingStep } from '../types';
 const BookingConfirmDates = () => import('@/components/BookingConfirmDates.vue');
 const BookingAuth = () => import('@/components/BookingAuth.vue');
 const BookingConfirmGuests = () => import('@/components/BookingConfirmGuests.vue');
@@ -63,35 +60,9 @@ export default Vue.extend({
     BookingConfirmGuests,
     BookingConfirmBooking
   },
-  props: {
-    // item is resort
-    item: {
-      required: true
-    }
-  },
-  data() {
-    return {
-      tempFix: false
-    };
-  },
-  mounted() {
-    // @ts-ignore
-    this.patchFocusError();
-  },
   computed: {
-    dialog() {
-      return (this as any).$store.getters['booking/dialog'];
-    },
-    isDialogOpen: {
-      get() {
-        const isOpen = (this as any).$store.getters['booking/dialog'].isOpen;
-        return isOpen;
-      },
-      set(value: boolean) {
-        (this as any).$store.dispatch('booking/updateDialog', {
-          isOpen: value
-        });
-      }
+    isDialogOpen() {
+      return (this as any).$store.getters['booking/dialog'].isOpen;
     },
     currentStep(): number {
       return (this as any).$store.getters['booking/currentStep'];
@@ -99,36 +70,17 @@ export default Vue.extend({
     isAuthenticated(): boolean {
       return (this as any).$store.getters['auth/isAuthenticated'];
     },
-    steps() {
+    steps(): { [name: string]: bookingStep } {
       return (this as any).$store.getters['booking/steps'];
     }
   },
   methods: {
-    patchFocusError() {
-      this.$nextTick(() => {
-        // @ts-ignore
-        this.tempFix = true;
-      });
-    },
-    // NOTE: can be used outside of component by ref
-    openDialog() {
-      // TODO: Refactor
-      // @ts-ignore
-      (this as any).$store.dispatch('booking/startBooking', {
-        resort: (this as any).item,
-        returnUrl: `/listing/${this.$route.params.id}`
-      });
-      (this as any).$store.dispatch('booking/updateDialog', {
-        isOpen: true
-      });
-    },
     closeDialog() {
-      (this as any).$store.dispatch('booking/updateDialog', {
-        isOpen: false
-      });
+      this.$store.dispatch('booking/updateDialog', { isOpen: false });
     },
     cancelBooking() {
-      (this as any).$store.dispatch('booking/cancelBooking');
+      this.closeDialog();
+      this.$store.dispatch('booking/cancelBooking');
     }
   }
 });

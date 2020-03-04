@@ -99,7 +99,7 @@
               class="text-transform-none font-weight-bold dark--text mt-6"
             >
               <v-spacer></v-spacer>
-              <span>Confirm Booking</span>
+              <span>Proceed to Payment</span>
               <v-spacer></v-spacer>
               <v-icon>keyboard_arrow_right</v-icon>
             </v-btn>
@@ -135,7 +135,7 @@
         class="text-transform-none font-weight-bold dark--text mt-6"
       >
         <v-spacer></v-spacer>
-        <span>Confirm Booking</span>
+        <span>Proceed to Payment</span>
         <v-spacer></v-spacer>
         <v-icon>keyboard_arrow_right</v-icon>
       </v-btn>
@@ -162,7 +162,7 @@ export default Vue.extend({
   },
   computed: {
     resort() {
-      return (this as any).$store.getters['booking/bookingInfo'].resort;
+      return (this as any).$store.getters['booking/bookingInfo'].subjectItem;
     },
     dateOne() {
       return (this as any).$store.getters['booking/bookingInfo'].dateOne;

@@ -148,7 +148,6 @@ export default {
       await (this as any).$store.dispatch('auth/updateReturnUrl', window.location.href);
       const redirectUrl = await (this as any).$store.getters['auth/oauth'];
       window.location.assign(redirectUrl);
-      (this as any).$store.dispatch('auth/ping');
     }
   },
   computed: {
