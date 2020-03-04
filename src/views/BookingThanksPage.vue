@@ -2,7 +2,7 @@
   <fragment>
     <page-header></page-header>
 
-    <auth-link-accounts-dialog v-if="shouldShowLinkAccounts"></auth-link-accounts-dialog>
+    <auth-link-accounts-dialog></auth-link-accounts-dialog>
 
     <div class="page">
       <div class="page-content brand-gradient">
@@ -49,25 +49,12 @@ import store from '@/store';
 export default Vue.extend({
   name: 'booking-thanks-page',
   components: { PageHeader, BookingThanks, BookingConfirmBooking, PageFooter, AuthLinkAccountsDialog },
-  data: () => ({
-    shouldShowLinkAccounts: false
-  }),
   computed: {
     steps() {
       return (this as any).$store.getters['booking/steps'];
     },
     returnUrl() {
       return (this as any).$store.getters['booking/bookingInfo'].returnUrl;
-    }
-  },
-  mounted() {
-    (this as any).showLinkAccounts();
-  },
-  methods: {
-    showLinkAccounts() {
-      setTimeout(() => {
-        (this as any).shouldShowLinkAccounts = true;
-      }, 2000);
     }
   },
   destroyed() {

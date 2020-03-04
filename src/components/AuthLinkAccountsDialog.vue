@@ -35,7 +35,7 @@
             </div>
           </div>
 
-          <v-card color="dark pt-6 px-4 pb-9 light--text d-flex flex-column flex-grow-1" tile :ripple="false">
+          <v-card color="dark pt-4 px-4 pb-9 light--text d-flex flex-column flex-grow-1" tile :ripple="false">
             <div class="d-flex flex-column flex-grow-1">
               <div class="light--text mx-auto d-flex flex-column flex-grow-1 w-100">
                 <auth-link-accounts />
