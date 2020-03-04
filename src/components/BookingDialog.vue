@@ -2,7 +2,6 @@
   <fragment>
     <v-dialog
       dark
-      persistent
       v-model="isDialogOpen"
       :width="376"
       :fullscreen="$vuetify.breakpoint.smAndDown"
@@ -24,7 +23,8 @@
       <booking-confirm-booking
         v-if="currentStep.id === steps.confirmBooking.id"
         :has-confirm-button="true"
-        @booking-close="closeDialog"
+        :has-cancel-button="true"
+        @booking-submit="submitBooking"
         @booking-cancel="cancelBooking"
       ></booking-confirm-booking>
     </v-dialog>
@@ -41,6 +41,7 @@
 import Vue from 'vue';
 import store from '@/store';
 import { bookingStep } from '../types';
+import { setOrUpdateUrlHashParameter } from '../helpers';
 const BookingConfirmDates = () => import('@/components/BookingConfirmDates.vue');
 const BookingConfirmGuests = () => import('@/components/BookingConfirmGuests.vue');
 const BookingConfirmBooking = () => import('@/components/BookingConfirmBooking.vue');
@@ -52,9 +53,22 @@ export default Vue.extend({
     BookingConfirmGuests,
     BookingConfirmBooking
   },
+  watch: {
+    currentStep: {
+      handler(step) {
+        setOrUpdateUrlHashParameter('step', step.urlHash);
+        step.id > this.steps.notStarted.id && this.scrollViewToTop();
+      }
+    }
+  },
   computed: {
-    isDialogOpen() {
-      return (this as any).$store.getters['booking/dialog'].isOpen;
+    isDialogOpen: {
+      get() {
+        return (this as any).$store.getters['booking/dialog'].isOpen;
+      },
+      set(isOpen) {
+        this.updateDialog(isOpen);
+      }
     },
     currentStep(): number {
       return (this as any).$store.getters['booking/currentStep'];
@@ -64,12 +78,22 @@ export default Vue.extend({
     }
   },
   methods: {
-    closeDialog() {
-      this.$store.dispatch('booking/updateDialog', { isOpen: false });
+    scrollViewToTop() {
+      this.$nextTick(() => {
+        const dialogElement = document.querySelector('.v-dialog--active') as Element;
+        dialogElement.scrollTo(0, 0);
+      });
+    },
+    submitBooking() {
+      this.updateDialog(false);
+      this.$router.push({ name: 'booking-review-rules' });
     },
     cancelBooking() {
-      this.closeDialog();
+      this.updateDialog(false);
       this.$store.dispatch('booking/cancelBooking');
+    },
+    updateDialog(isOpen) {
+      this.$store.dispatch('booking/updateDialog', { isOpen });
     }
   }
 });

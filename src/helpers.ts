@@ -157,3 +157,13 @@ export function getAuthHeaders() {
   }
   return { Authorization: `Bearer ${jwtToken}` };
 }
+
+export function setOrUpdateUrlHashParameter(key, value) {
+  let theURL = new URL('https://example.com');
+  theURL.search = window.location.hash.substring(1);
+  theURL.searchParams.set(key, value);
+  if (!value) {
+    theURL.searchParams.delete(key);
+  }
+  window.location.hash = theURL.searchParams.toString();
+}

@@ -1,7 +1,13 @@
 import { addDays } from 'date-fns';
 import { RoomTypeService, ReservationService } from '@/connection/resources.js';
 import { bookingStep } from '@/types';
-import { setDocumentClassesOnToggleDialog, formatDate, removeOtherLanguagesExcept, toFixedNumber } from '@/helpers';
+import {
+  setOrUpdateUrlHashParameter,
+  setDocumentClassesOnToggleDialog,
+  formatDate,
+  removeOtherLanguagesExcept,
+  toFixedNumber
+} from '@/helpers';
 import { cloneDeep } from 'lodash-es';
 import store from '@/store';
 import {
@@ -17,13 +23,16 @@ const steps: { [name: string]: bookingStep } = {
     id: 0
   },
   confirmDates: {
-    id: 1
+    id: 1,
+    urlHash: 'confirm-dates'
   },
   confirmGuests: {
-    id: 2
+    id: 2,
+    urlHash: 'confirm-guests'
   },
   confirmBooking: {
-    id: 3
+    id: 3,
+    urlHash: 'confirm-booking'
   },
   reviewPolicies: {
     id: 4,
@@ -170,6 +179,9 @@ export default {
       const englishDescription = removeOtherLanguagesExcept('en', payload).outerHTML;
       state.bookingInfo.roomDescriptionHTML = englishDescription;
     },
+    resetBookingInfo(state) {
+      state.bookingInfo = cloneDeep(defaultState.bookingInfo);
+    },
     resetState(state) {
       for (const key in defaultState) {
         if (defaultState.hasOwnProperty(key)) {
@@ -197,13 +209,17 @@ export default {
       setDocumentClassesOnToggleDialog(dialog.isOpen);
       context.commit('updateDialog', dialog);
     },
-    cancelBooking(context) {
-      context.commit('resetState');
-    },
     startBooking(context, { subjectItem, returnUrl }) {
       context.commit('updateSubjectItem', subjectItem);
       context.commit('updateReturnUrl', returnUrl);
       context.commit('updateCurrentStep', context.state.steps.confirmDates);
+    },
+    cancelBooking(context) {
+      context.commit('resetBookingInfo');
+      const closingAnimationTime = 300;
+      setTimeout(() => {
+        context.dispatch('updateCurrentStep', defaultState.currentStep);
+      }, closingAnimationTime);
     },
     endBooking(context) {
       context.commit('resetState');

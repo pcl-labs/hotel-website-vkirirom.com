@@ -81,6 +81,7 @@ export interface bookingStep {
   id: number;
   width?: number;
   title?: string;
+  urlHash?: string;
 }
 
 export interface RoomType {
