@@ -3,6 +3,7 @@ import { AuthenticationService } from '@/connection/resources.js';
 import { APIPath } from '@/helpers';
 import store from '@/store';
 import { setDocumentClassesOnToggleDialog } from '@/helpers';
+import router from '@/router';
 
 const defaultUser = {
   id: 0,
@@ -114,7 +115,7 @@ export default {
     updateActiveState(state, payload) {
       state.activeState = payload;
     },
-    resetState(state) {
+    logout(state) {
       for (const key in defaultState) {
         if (defaultState.hasOwnProperty(key)) {
           state[key] = defaultState[key];
@@ -229,9 +230,11 @@ export default {
     },
     logout(context) {
       context.commit('updateLoading', true);
+
       return AuthenticationService.logout().then(() => {
         context.commit('updateLoading', false);
-        context.commit('resetState');
+        context.commit('logout');
+        router.push({ name: 'home' });
       });
     },
     async ping(context) {
