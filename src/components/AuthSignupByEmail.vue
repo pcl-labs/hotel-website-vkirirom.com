@@ -1,5 +1,6 @@
 <template>
   <v-form
+    ref="form"
     name="Register"
     v-model="isFormValid"
     @submit.prevent=""
@@ -154,7 +155,15 @@ export default Vue.extend({
       }
     };
   },
+  beforeDestroy() {
+    this.cleanup();
+  },
   methods: {
+    cleanup() {
+      this.password = '';
+      // @ts-ignore
+      this.$refs.form.resetValidation();
+    },
     updateActiveState(value) {
       (this as any).$store.dispatch('auth/updateActiveState', value);
     },
