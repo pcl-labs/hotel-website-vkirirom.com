@@ -41,7 +41,6 @@
 import Vue from 'vue';
 import store from '@/store';
 import { bookingStep } from '../types';
-import { setOrUpdateUrlHashParameter } from '../helpers';
 const BookingConfirmDates = () => import('@/components/BookingConfirmDates.vue');
 const BookingConfirmGuests = () => import('@/components/BookingConfirmGuests.vue');
 const BookingConfirmBooking = () => import('@/components/BookingConfirmBooking.vue');
@@ -56,7 +55,7 @@ export default Vue.extend({
   watch: {
     currentStep: {
       handler(step) {
-        setOrUpdateUrlHashParameter('step', step.urlHash);
+        this.changeRouteStepParam(step);
         step.id > this.steps.notStarted.id && this.scrollViewToTop();
       }
     }
@@ -78,6 +77,13 @@ export default Vue.extend({
     }
   },
   methods: {
+    changeRouteStepParam(step) {
+      const currentRoute = this.$router.currentRoute;
+      this.$router.replace({
+        name: currentRoute.name,
+        params: { ...currentRoute.params, stepSlug: step.stepSlug }
+      });
+    },
     scrollViewToTop() {
       this.$nextTick(() => {
         const dialogElement = document.querySelector('.v-dialog--active') as Element;

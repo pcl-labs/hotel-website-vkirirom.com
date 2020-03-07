@@ -1,13 +1,7 @@
 import { addDays } from 'date-fns';
 import { RoomTypeService, ReservationService } from '@/connection/resources.js';
 import { bookingStep } from '@/types';
-import {
-  setOrUpdateUrlHashParameter,
-  setDocumentClassesOnToggleDialog,
-  formatDate,
-  removeOtherLanguagesExcept,
-  toFixedNumber
-} from '@/helpers';
+import { setDocumentClassesOnToggleDialog, formatDate, removeOtherLanguagesExcept, toFixedNumber } from '@/helpers';
 import { cloneDeep } from 'lodash-es';
 import store from '@/store';
 import {
@@ -24,15 +18,15 @@ const steps: { [name: string]: bookingStep } = {
   },
   confirmDates: {
     id: 1,
-    urlHash: 'confirm-dates'
+    stepSlug: 'confirm-dates'
   },
   confirmGuests: {
     id: 2,
-    urlHash: 'confirm-guests'
+    stepSlug: 'confirm-guests'
   },
   confirmBooking: {
     id: 3,
-    urlHash: 'confirm-booking'
+    stepSlug: 'confirm-booking'
   },
   reviewPolicies: {
     id: 4,
