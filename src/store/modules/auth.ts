@@ -188,8 +188,7 @@ export default {
       try {
         const token = await AuthenticationService.register({
           model: {
-            email: email,
-            password: ''
+            email: email
           }
         });
         context.dispatch('updateToken', token);
