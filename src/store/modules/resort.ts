@@ -25,7 +25,7 @@ export default {
   actions: {
     async getItemBySlug(context: any, slug: string) {
       try {
-        const data = await PageService.get({ companySlug, pageSlug: slug });
+        const data = await PageService.slug({ companySlug, pageSlug: slug });
         context.commit('update', { data, slug });
         return data;
       } catch (error) {

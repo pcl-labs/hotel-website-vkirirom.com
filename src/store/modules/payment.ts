@@ -41,7 +41,7 @@ export default {
     },
     async getStripeKey(context) {
       try {
-        const result = await CompanyService.stripePublishableKey({
+        const result = await CompanyService.publishable({
           companyId
         });
         context.commit('updateStripeKey', result.key);
@@ -52,9 +52,9 @@ export default {
     },
     async getClientSecret(context, { amount, reservationId, metadata = {} }) {
       try {
-        const { clientSecret } = await ReservationService.payReservation({
+        const { clientSecret } = await ReservationService.pay({
           reservationId,
-          model: {
+          body: {
             amount,
             metadata
           }

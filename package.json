@@ -11,7 +11,7 @@
     "lint": "vue-cli-service lint",
     "fix-code": "prettier-eslint --write 'src/**/*.{js,jsx,vue,json}' ",
     "fix-style": "prettier-stylelint --write 'src/**/*.{css,scss}' ",
-    "swagger": "ts-node src/connection/swagger-axios.ts && tsc -p ./temp/resources.ts --moduleResolution classic --target es6 --outDir ./src/connection/"
+    "swagger": "mkdir temp -p && ts-node src/connection/swagger-axios.ts && tsc -p ./temp/resources.ts --moduleResolution classic --target es6 --outDir ./src/connection/"
   },
   "dependencies": {
     "axios": "0.19.2",
@@ -23,6 +23,7 @@
     "material-design-icons-iconfont": "^5.0.1",
     "portal-vue": "2.1.7",
     "register-service-worker": "1.6.2",
+    "swagger-axios-codegen": "^0.9.17",
     "validator": "12.1.0",
     "vue": "2.6.11",
     "vue-airbnb-style-datepicker": "2.7.1",
@@ -56,7 +57,6 @@
     "sass": "1.25.0",
     "sass-loader": "8.0.2",
     "sass-rem": "2.0.1",
-    "swagger-axios-codegen": "git+https://github.com/farakavco/swagger-axios-codegen.git",
     "ts-node": "8.5.4",
     "typescript": "~3.5.3",
     "vue-cli-plugin-vuetify": "2.0.5",
