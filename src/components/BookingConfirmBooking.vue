@@ -193,8 +193,7 @@ export default Vue.extend({
   methods: {
     formatDate,
     submit() {
-      this.$emit('booking-close');
-      this.$router.push({ name: 'booking-review-rules' });
+      this.$emit('booking-submit');
     }
   }
 });

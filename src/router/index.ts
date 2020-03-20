@@ -19,7 +19,7 @@ const routes = [
   },
   {
     name: 'listing',
-    path: '/listing/:id',
+    path: '/listing/:id/:stepSlug?',
     component: () => import(/* webpackChunkName: "Listing" */ '@/views/ListingPage.vue'),
     props: route => ({ slug: route.params.id })
   },

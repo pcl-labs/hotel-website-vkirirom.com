@@ -41,7 +41,7 @@
             </div>
             <div class="d-flex align-center">
               <v-container class="d-flex pa-0">
-                <booking-dialog ref="bookingDialog"></booking-dialog>
+                <booking-dialog></booking-dialog>
                 <!-- mobile -->
                 <v-btn
                   height="40"
