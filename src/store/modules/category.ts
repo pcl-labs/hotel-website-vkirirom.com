@@ -16,7 +16,7 @@ export default {
   actions: {
     async getItemsByName(context, name: String) {
       try {
-        const data = await PageService.byCompanyByCategoryName({ companySlug, categoryName: name });
+        const data = await PageService.byName({ companySlug, categoryName: name });
         context.commit('update', { key: name, data });
       } catch (error) {
         return new Error('get category issue');

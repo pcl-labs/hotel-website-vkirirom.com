@@ -4,7 +4,7 @@ const { BASE_API } = require('../constants/connection');
 console.log('BASE_API', BASE_API);
 
 codegen({
-  methodNameMode: 'operationId',
+  methodNameMode: 'path',
   remoteUrl: `${BASE_API}/swagger/v0/swagger.json`,
   useStaticMethod: true,
   outputDir: './temp/',

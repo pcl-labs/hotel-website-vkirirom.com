@@ -293,7 +293,7 @@ export default {
     async reserveRoom(context) {
       const customBookingInfo = cloneDeep(context.getters['customBookingInfo']);
       try {
-        const { reservationId } = await ReservationService.reserveByRoomType(customBookingInfo);
+        const { reservationId } = await ReservationService.reserve(customBookingInfo);
         context.commit('updateReservationId', reservationId);
         return { reserve: true };
       } catch (error) {
@@ -332,7 +332,7 @@ export default {
     async reserveRoomAndNotify(context) {
       const customBookingInfo = cloneDeep(context.getters['customBookingInfo']);
       try {
-        const { reservationId } = await ReservationService.reserveByRoomType(customBookingInfo);
+        const { reservationId } = await ReservationService.reserve(customBookingInfo);
         context.commit('updateReservationId', reservationId);
         try {
           await context.dispatch('sendReservationSuccessEmail', { notificationType: 'CASH PAYMENT' });
@@ -427,7 +427,7 @@ export default {
 
       return {
         roomTypeId: bookingInfo.roomType.id,
-        model: {
+        body: {
           name: bookingInfo.fullName,
           message: bookingInfo.message,
           numberOfGuests: bookingInfo.guests.total,

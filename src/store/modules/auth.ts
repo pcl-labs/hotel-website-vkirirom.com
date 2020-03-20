@@ -161,7 +161,7 @@ export default {
       let token;
       try {
         token = await AuthenticationService.login({
-          model: {
+          body: {
             email: context.state.email,
             password: context.state.password
           }
@@ -187,7 +187,7 @@ export default {
     async registerAuto(context, { email }) {
       try {
         const token = await AuthenticationService.register({
-          model: {
+          body: {
             email: email
           }
         });
@@ -201,7 +201,7 @@ export default {
       context.commit('updateRegisterError', '');
       return new Promise((resolve, reject) => {
         AuthenticationService.register({
-          model: {
+          body: {
             email: context.state.email,
             password: context.state.password
           }
