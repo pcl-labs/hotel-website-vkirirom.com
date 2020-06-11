@@ -34,6 +34,7 @@
     "vuex-persist": "2.2.0"
   },
   "devDependencies": {
+    "@sass-collective/sass-rem": "^1.4.1",
     "@types/jest": "24.0.25",
     "@types/lodash-es": "4.17.3",
     "@vue/cli-plugin-babel": "4.2.2",
@@ -53,9 +54,8 @@
     "esm": "3.2.25",
     "postcss-easing-gradients": "3.0.1",
     "prettier": "1.19.1",
-    "sass": "1.25.0",
+    "sass": "^1.26.8",
     "sass-loader": "8.0.2",
-    "sass-rem": "2.0.1",
     "swagger-axios-codegen": "git+https://github.com/farakavco/swagger-axios-codegen.git",
     "ts-node": "8.5.4",
     "typescript": "~3.5.3",

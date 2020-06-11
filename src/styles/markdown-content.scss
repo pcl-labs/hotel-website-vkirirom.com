@@ -4,15 +4,15 @@
   }
   h2 {
     font-weight: normal;
-    margin-top: rem(48px);
-    margin-bottom: rem(16px);
+    margin-top: sass-rem(48px);
+    margin-bottom: sass-rem(16px);
   }
   h3 {
     font-weight: normal;
-    margin-top: rem(48px);
-    margin-bottom: rem(16px);
+    margin-top: sass-rem(48px);
+    margin-bottom: sass-rem(16px);
   }
   p {
-    margin-bottom: rem(16px);
+    margin-bottom: sass-rem(16px);
   }
 }

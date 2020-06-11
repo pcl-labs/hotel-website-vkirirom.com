@@ -13,34 +13,34 @@ h6 {
 }
 h1,
 .h1 {
-  font-size: rem(34px);
+  font-size: sass-rem(34px);
   font-weight: normal;
   line-height: 1.22;
   @include media-breakpoint-up(md, $my-breakpoints) {
-    font-size: rem(46px);
+    font-size: sass-rem(46px);
   }
 }
 h2,
 .h2 {
-  font-size: rem(20px);
+  font-size: sass-rem(20px);
   font-weight: normal;
   @include media-breakpoint-up(md, $my-breakpoints) {
-    font-size: rem(34px);
+    font-size: sass-rem(34px);
   }
 }
 h3,
 .h3 {
-  font-size: rem(20px);
+  font-size: sass-rem(20px);
   font-weight: 600;
   @include media-breakpoint-up(md, $my-breakpoints) {
-    font-size: rem(20px);
+    font-size: sass-rem(20px);
   }
 }
 h4,
 .h4 {
-  font-size: rem(20px);
+  font-size: sass-rem(20px);
   font-weight: bold;
   @include media-breakpoint-up(md, $my-breakpoints) {
-    font-size: rem(16px);
+    font-size: sass-rem(16px);
   }
 }

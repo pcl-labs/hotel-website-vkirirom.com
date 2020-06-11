@@ -53,7 +53,7 @@
 }
 .v-divider {
   &.is-small {
-    width: rem(64px) !important;
+    width: sass-rem(64px) !important;
   }
 }
 .brand-gradient {
