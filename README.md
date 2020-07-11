@@ -84,5 +84,5 @@ If you're new to **contributing to the WHY NOT EARTH open source project**, sign
 
 ## License
 
-vkirirom.com_v2 is licensed under the [GNU Affero General Public License v3.0](LICENSE).
+Licensed under the [GNU Affero General Public License v3.0](LICENSE).
 
