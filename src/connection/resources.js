@@ -432,7 +432,7 @@ export class RoomTypeService {
     return new Promise((resolve, reject) => {
       const configs = Object.assign({}, options, { method: 'get' });
       configs.headers = Object.assign({}, options.headers, { 'Content-Type': 'application/json' });
-      let url = '/api/v0/roomtypes/{roomTypeId}/prices';
+      let url = '/api/v0/hotel/roomtypes/{roomTypeId}/prices';
       url = url.replace('{roomTypeId}', params['roomTypeId'] + '');
       configs.url = url;
       ['roomTypeId'].forEach(key => {
