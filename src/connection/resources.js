@@ -335,7 +335,7 @@ export class PriceService {
     return new Promise((resolve, reject) => {
       const configs = Object.assign({}, options, { method: 'post' });
       configs.headers = Object.assign({}, options.headers, { 'Content-Type': 'application/json' });
-      let url = '/api/v0/prices';
+      let url = '/api/v0/hotel/prices';
       configs.url = url;
       configs.params = params;
       let data = null;
