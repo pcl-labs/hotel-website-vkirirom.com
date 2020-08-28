@@ -335,7 +335,7 @@ export class PriceService {
     return new Promise((resolve, reject) => {
       const configs = Object.assign({}, options, { method: 'post' });
       configs.headers = Object.assign({}, options.headers, { 'Content-Type': 'application/json' });
-      let url = '/api/v0/prices';
+      let url = '/api/v0/hotel/prices';
       configs.url = url;
       configs.params = params;
       let data = null;
@@ -358,7 +358,7 @@ export class ReservationService {
     return new Promise((resolve, reject) => {
       const configs = Object.assign({}, options, { method: 'get' });
       configs.headers = Object.assign({}, options.headers, { 'Content-Type': 'application/json' });
-      let url = '/api/v0/reservations/{reservationId}';
+      let url = '/api/v0/hotel/reservations/{reservationId}';
       url = url.replace('{reservationId}', params['reservationId'] + '');
       configs.url = url;
       ['reservationId'].forEach(key => {
@@ -382,7 +382,7 @@ export class ReservationService {
     return new Promise((resolve, reject) => {
       const configs = Object.assign({}, options, { method: 'post' });
       configs.headers = Object.assign({}, options.headers, { 'Content-Type': 'application/json' });
-      let url = '/api/v0/reservations/{reservationId}/pay';
+      let url = '/api/v0/hotel/reservations/{reservationId}/pay';
       url = url.replace('{reservationId}', params['reservationId'] + '');
       configs.url = url;
       ['reservationId'].forEach(key => {
@@ -406,7 +406,7 @@ export class ReservationService {
     return new Promise((resolve, reject) => {
       const configs = Object.assign({}, options, { method: 'post' });
       configs.headers = Object.assign({}, options.headers, { 'Content-Type': 'application/json' });
-      let url = '/api/v0/reservations/roomtype/{roomTypeId}/reserve';
+      let url = '/api/v0/hotel/reservations/roomtype/{roomTypeId}/reserve';
       url = url.replace('{roomTypeId}', params['roomTypeId'] + '');
       configs.url = url;
       ['roomTypeId'].forEach(key => {
