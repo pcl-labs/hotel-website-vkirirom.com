@@ -352,7 +352,7 @@ export default {
       const reservationSuccessEmailData = context.getters.reservationSuccessEmailData({ notificationType });
       return ajax({
         method: 'post',
-        url: `${emailAPIBase}/mail/send`,
+        url: `/.netlify/functions/mail-send`,
         data: reservationSuccessEmailData,
         withCredentials: false,
         headers: {
@@ -364,7 +364,7 @@ export default {
       const reservationFailEmailData = context.getters.reservationFailEmailData({ notificationType });
       return ajax({
         method: 'post',
-        url: `${emailAPIBase}/mail/send`,
+        url: `/.netlify/functions/mail-send`,
         data: reservationFailEmailData,
         withCredentials: false,
         headers: {

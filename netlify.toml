@@ -1,11 +1,16 @@
 [context.master.environment]
   VUE_APP_API_ENDPOINT = "https://api.whynot.earth"
 
+[build]
+  functions="lambda"
+
 [context.develop.environment]
   VUE_APP_ROBOTS_NO_INDEX = "1"
+  VUE_APP_API_ENDPOINT = "https://api.whynot.earth"
 
 [context.staging.environment]
   VUE_APP_ROBOTS_NO_INDEX = "1"
+  VUE_APP_API_ENDPOINT = "https://api.whynot.earth"
 
 [[redirects]]
   from = "/.well-known/assetlinks.json"
