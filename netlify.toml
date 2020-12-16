@@ -1,6 +1,9 @@
 [context.master.environment]
   VUE_APP_API_ENDPOINT = "https://api.whynot.earth"
 
+[build]
+  functions="lambda"
+
 [context.develop.environment]
   VUE_APP_ROBOTS_NO_INDEX = "1"
 
@@ -16,6 +19,3 @@
   from = "/*"
   to = "/"
   status = 200
-  
-[build]
-    functions="lambda"

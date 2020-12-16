@@ -17,6 +17,9 @@
   },
   "dependencies": {
     "axios": "0.19.2",
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.2.2",
     "bootstrap": "4.4.1",
     "core-js": "3.6.4",
     "date-fns": "1.30.1",
