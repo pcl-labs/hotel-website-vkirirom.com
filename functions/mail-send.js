@@ -1,7 +1,7 @@
 const email_from = process.env.EMAIL_FROM;
 const email_from_name = process.env.EMAIL_FROM_NAME;
 const sendGridAPI = process.env.SENDGRID_API_KEY;
-axios = require("axios");
+const axios = require("axios");
 const headers = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
@@ -13,6 +13,7 @@ const headers = {
 
 exports.handler = async function(event, context, callback) {
   var body = JSON.parse(event.body);
+  console.log(body);
   var dynamic_template_data = body.dynamic_template_data
   var template_id = body.template_id
   const data = {
@@ -44,12 +45,19 @@ exports.handler = async function(event, context, callback) {
         authorization: `Bearer ${sendGridAPI}`
       }
     });
-    return { error: false, status: 200, data: {} };
+    return {
+      error: false,
+      statusCode: 200,
+      body: JSON.stringify({ received: true }),
+      data: {}
+    };
   } catch (error) {
+    console.log(`Mail cannot send with ${error}`);
     return {
       error: true,
-      status: error.response.status,
-      data: error.response.data
+      statusCode: error.response.status,
+      data: error.response.data,
+      body: `Mail Error: ${error.message}`,
     };
   }
 }
