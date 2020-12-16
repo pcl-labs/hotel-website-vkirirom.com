@@ -16,3 +16,6 @@
   from = "/*"
   to = "/"
   status = 200
+  
+[build]
+    functions="lambda"
