@@ -22,7 +22,7 @@ const vat = body.payment.amount * .1;
       to: 'chris@whynot.earth,mrjoeelia@gmail.com',
       from: `${email_from_name} <${email_from}>`,
       replyTo: `${email_from_name} <${email_from}>`,
-      bcc: 'chris@whynot.earth,mrjoeelia@gmail.com',
+      bcc: '',
       subject: `Reservation Requested (Cash) - Contact ${body.name} to confirm their arrival on ${body.start}`,
       text: `PREVIEW TEXT HERE`,
       html: `
