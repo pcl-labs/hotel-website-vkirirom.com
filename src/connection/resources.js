@@ -406,7 +406,7 @@ export class ReservationService {
     return new Promise((resolve, reject) => {
       const configs = Object.assign({}, options, { method: 'post' });
       configs.headers = Object.assign({}, options.headers, { 'Content-Type': 'application/json' });
-      let url = 'https://vkirirom.com/.netlify/functions/reserve';
+      configs.url = 'https://vkirirom.com/.netlify/functions/reserve';
       //url = url.replace('{roomTypeId}', params['roomTypeId'] + '');
       // configs.url = url;
       // ['roomTypeId'].forEach(key => {
@@ -416,7 +416,7 @@ export class ReservationService {
       let data = Object.assign({}, params['model']);
       console.log(data)
       configs.data = data;
-      axios(url)
+      axios(configs)
         .then(res => {
           resolve(res.data);
         })
