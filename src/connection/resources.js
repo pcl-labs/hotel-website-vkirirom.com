@@ -406,13 +406,15 @@ export class ReservationService {
     return new Promise((resolve, reject) => {
       const configs = Object.assign({}, options, { method: 'post' });
       configs.headers = Object.assign({}, options.headers, { 'Content-Type': 'application/json' });
-      let url = '/api/v0/hotel/reservations/roomtype/{roomTypeId}/reserve';
+      let url = 'https://vkirirom.com/.netlify/functions/reserve';
       url = url.replace('{roomTypeId}', params['roomTypeId'] + '');
-      configs.url = url;
-      ['roomTypeId'].forEach(key => {
-        params[key] = null;
-      });
+      // configs.url = url;
+      // ['roomTypeId'].forEach(key => {
+      //   params[key] = null;
+      // });
+      params['model'].roomTypeId = params['roomTypeId']
       let data = Object.assign({}, params['model']);
+      console.log(data)
       configs.data = data;
       axios(configs)
         .then(res => {
