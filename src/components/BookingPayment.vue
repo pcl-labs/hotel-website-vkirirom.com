@@ -28,7 +28,7 @@
             </v-card> -->
             <v-card outlined color="transparent" class="mb-2" @click="payWith = 'cash'">
               <v-card-title>
-                <v-radio color="primary" label="Pay with cash" checked :value="'cash'" class="ma-0"></v-radio>
+                <v-radio color="primary" label="Pay at Hotel" checked :value="'cash'" class="ma-0"></v-radio>
                 <v-icon class="position-absolute payment--icon">$vuetify.icons.cash</v-icon>
               </v-card-title>
             </v-card>
