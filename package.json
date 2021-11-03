@@ -27,7 +27,7 @@
     "material-design-icons-iconfont": "^5.0.1",
     "portal-vue": "2.1.7",
     "register-service-worker": "1.6.2",
-    "validator": "12.1.0",
+    "validator": "13.7.0",
     "vue": "2.6.11",
     "vue-airbnb-style-datepicker": "2.7.1",
     "vue-fragment": "1.5.1",
