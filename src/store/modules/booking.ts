@@ -6,7 +6,7 @@ import { cloneDeep } from 'lodash-es';
 import store from '@/store';
 import {
   emailAPIBase,
-  reservationEmailsBcc,
+  // reservationEmailsBcc,
   reservationSuccessEmailTemplateId,
   reservationFailEmailTemplateId
 } from '@/constants/app';
