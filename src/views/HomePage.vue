@@ -14,26 +14,26 @@
               </div>
             </div>
 
-            // <h2 class="mb-6 mt-6 listTitle">Accommodation</h2>
-            // <v-row class="cardRow" dense>
-            //   <v-col cols="12" sm="6" md="4" v-for="item in accommodations" :key="item.id">
-            //     <card-product
-            //       :title="item.title"
-            //       :description="item.ctaText > 0 ? `Starting from ${item.ctaText}$ per night` : item.ctaText"
-            //       :image="item.featuredImage"
-            //       :link="'/listing/' + item.slug"
-            //       :has-carousel="item.images && item.images.length > 0 && !$vuetify.breakpoint.mdAndUp"
-            //       :images="mergeImageArray([{ url: item.featuredImage }], item.images)"
-            //     ></card-product>
-            //   </v-col>
-            // </v-row>
-            // <v-row no-gutters class="justify-center">
-            //   <v-col cols="12" sm="4">
-            //     <v-btn block large outlined dark to="/search/accommodations" class="showAllbtn">
-            //       Show all <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
-            //     </v-btn>
-            //   </v-col>
-            // </v-row>
+            <h2 class="mb-6 mt-6 listTitle">Accommodation</h2>
+            <v-row class="cardRow" dense>
+              <v-col cols="12" sm="6" md="4" v-for="item in accommodations" :key="item.id">
+                <card-product
+                  :title="item.title"
+                  :description="item.ctaText > 0 ? `Starting from ${item.ctaText}$ per night` : item.ctaText"
+                  :image="item.featuredImage"
+                  :link="'/listing/' + item.slug"
+                  :has-carousel="item.images && item.images.length > 0 && !$vuetify.breakpoint.mdAndUp"
+                  :images="mergeImageArray([{ url: item.featuredImage }], item.images)"
+                ></card-product>
+              </v-col>
+            </v-row>
+            <v-row no-gutters class="justify-center">
+              <v-col cols="12" sm="4">
+                <v-btn block large outlined dark to="/search/accommodations" class="showAllbtn">
+                  Show all <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
+                </v-btn>
+              </v-col>
+            </v-row>
             <v-divider light class="d-md-none mt-4"></v-divider>
             <v-card
               :ripple="false"
@@ -68,27 +68,27 @@
                 </v-row>
               </v-img>
             </v-card>
-            // <v-divider light class="d-md-none mt-4"></v-divider>
-            // <h2 class="mt-2 mb-6 listTitle">Experience</h2>
-            // <v-row class="cardRow" dense>
-            //   <v-col cols="12" sm="6" md="4" v-for="item in experiences" :key="item.id">
-            //     <card-product
-            //       :title="item.title"
-            //       :description="item.ctaText > 0 ? `Starting from ${item.ctaText}$ per night` : item.ctaText"
-            //       :image="item.featuredImage"
-            //       :link="'/listing/' + item.slug"
-            //       :has-carousel="item.images && item.images.length > 0 && !$vuetify.breakpoint.mdAndUp"
-            //       :images="mergeImageArray([{ url: item.featuredImage }], item.images)"
-            //     ></card-product>
-            //   </v-col>
-            // </v-row>
-            // <v-row no-gutters class="justify-center">
-            //   <v-col cols="12" sm="4">
-            //     <v-btn to="/search/experiences" block large outlined dark class="showAllbtn">
-            //       Show all <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
-            //     </v-btn>
-            //   </v-col>
-            // </v-row>
+            <v-divider light class="d-md-none mt-4"></v-divider>
+            <h2 class="mt-2 mb-6 listTitle">Experience</h2>
+            <v-row class="cardRow" dense>
+              <v-col cols="12" sm="6" md="4" v-for="item in experiences" :key="item.id">
+                <card-product
+                  :title="item.title"
+                  :description="item.ctaText > 0 ? `Starting from ${item.ctaText}$ per night` : item.ctaText"
+                  :image="item.featuredImage"
+                  :link="'/listing/' + item.slug"
+                  :has-carousel="item.images && item.images.length > 0 && !$vuetify.breakpoint.mdAndUp"
+                  :images="mergeImageArray([{ url: item.featuredImage }], item.images)"
+                ></card-product>
+              </v-col>
+            </v-row>
+            <v-row no-gutters class="justify-center">
+              <v-col cols="12" sm="4">
+                <v-btn to="/search/experiences" block large outlined dark class="showAllbtn">
+                  Show all <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
+                </v-btn>
+              </v-col>
+            </v-row>
             <v-card
               :ripple="false"
               to="/search/menu"
@@ -121,26 +121,26 @@
                 </v-row>
               </v-img>
             </v-card>
-            // <h2 class="mb-6 listTitle">Events</h2>
-            // <v-row class="cardRow" dense>
-            //   <v-col cols="12" sm="6" md="4" v-for="item in events" :key="item.id">
-            //     <card-product
-            //       :title="item.title"
-            //       :description="item.ctaText > 0 ? `Starting from ${item.ctaText}$ per night` : item.ctaText"
-            //       :image="item.featuredImage"
-            //       :link="'/listing/' + item.slug"
-            //       :has-carousel="item.images && item.images.length > 0 && !$vuetify.breakpoint.mdAndUp"
-            //       :images="mergeImageArray([{ url: item.featuredImage }], item.images)"
-            //     ></card-product>
-            //   </v-col>
-            // </v-row>
-            // <v-row no-gutters class="justify-center">
-            //   <v-flex xs12 sm4 md4 lg4>
-            //     <v-btn to="/search/events" block large outlined dark class="showAllbtn">
-            //       Show all <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
-            //     </v-btn>
-            //   </v-flex>
-            // </v-row>
+            <h2 class="mb-6 listTitle">Events</h2>
+            <v-row class="cardRow" dense>
+              <v-col cols="12" sm="6" md="4" v-for="item in events" :key="item.id">
+                <card-product
+                  :title="item.title"
+                  :description="item.ctaText > 0 ? `Starting from ${item.ctaText}$ per night` : item.ctaText"
+                  :image="item.featuredImage"
+                  :link="'/listing/' + item.slug"
+                  :has-carousel="item.images && item.images.length > 0 && !$vuetify.breakpoint.mdAndUp"
+                  :images="mergeImageArray([{ url: item.featuredImage }], item.images)"
+                ></card-product>
+              </v-col>
+            </v-row>
+            <v-row no-gutters class="justify-center">
+              <v-flex xs12 sm4 md4 lg4>
+                <v-btn to="/search/events" block large outlined dark class="showAllbtn">
+                  Show all <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
+                </v-btn>
+              </v-flex>
+            </v-row>
             <v-flex xs12>
               <video
                 preload="none"
@@ -156,46 +156,46 @@
                 />
               </video>
             </v-flex>
-            // <h2 class="mt-2 mb-6 listTitle">Lease</h2>
-            // <v-row class="cardRow" dense>
-            //   <v-col cols="12" sm="6" md="4" v-for="item in leases" :key="item.id">
-            //     <card-product
-            //       :title="item.title"
-            //       :description="item.ctaText > 0 ? `Starting from ${item.ctaText}$ per night` : item.ctaText"
-            //       :image="item.featuredImage"
-            //       :link="'/listing/' + item.slug"
-            //       :has-carousel="item.images && item.images.length > 0 && !$vuetify.breakpoint.mdAndUp"
-            //       :images="mergeImageArray([{ url: item.featuredImage }], item.images)"
-            //     ></card-product>
-            //   </v-col>
-            // </v-row>
-            // <v-row no-gutters class="justify-center">
-            //   <v-flex xs12 sm4 md4 lg4>
-            //     <v-btn to="/search/lease" block large outlined dark class="showAllbtn">
-            //       Show all <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
-            //     </v-btn>
-            //   </v-flex>
-            // </v-row>
-            // <h2 class="mb-6 mt-4 listTitle">Ecotourism</h2>
-            // <v-row class="cardRow" dense>
-            //   <v-col cols="12" sm="6" md="4" lg4 v-for="item in ecotourisms" :key="item.id">
-            //     <card-product
-            //       :title="item.title"
-            //       :description="item.ctaText > 0 ? `Starting from ${item.ctaText}$ per night` : item.ctaText"
-            //       :image="item.featuredImage"
-            //       :link="'/listing/' + item.slug"
-            //       :has-carousel="item.images && item.images.length > 0 && !$vuetify.breakpoint.mdAndUp"
-            //       :images="mergeImageArray([{ url: item.featuredImage }], item.images)"
-            //     ></card-product>
-            //   </v-col>
-            // </v-row>
-            // <v-row no-gutters class="justify-center">
-            //   <v-flex xs12 sm4 md4 lg4>
-            //     <v-btn to="/search/ecotourism" block large outlined dark class="showAllbtn mb-6">
-            //       Learn More <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
-            //     </v-btn>
-            //   </v-flex>
-            // </v-row>
+            <h2 class="mt-2 mb-6 listTitle">Lease</h2>
+            <v-row class="cardRow" dense>
+              <v-col cols="12" sm="6" md="4" v-for="item in leases" :key="item.id">
+                <card-product
+                  :title="item.title"
+                  :description="item.ctaText > 0 ? `Starting from ${item.ctaText}$ per night` : item.ctaText"
+                  :image="item.featuredImage"
+                  :link="'/listing/' + item.slug"
+                  :has-carousel="item.images && item.images.length > 0 && !$vuetify.breakpoint.mdAndUp"
+                  :images="mergeImageArray([{ url: item.featuredImage }], item.images)"
+                ></card-product>
+              </v-col>
+            </v-row>
+            <v-row no-gutters class="justify-center">
+              <v-flex xs12 sm4 md4 lg4>
+                <v-btn to="/search/lease" block large outlined dark class="showAllbtn">
+                  Show all <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
+                </v-btn>
+              </v-flex>
+            </v-row>
+            <h2 class="mb-6 mt-4 listTitle">Ecotourism</h2>
+            <v-row class="cardRow" dense>
+              <v-col cols="12" sm="6" md="4" lg4 v-for="item in ecotourisms" :key="item.id">
+                <card-product
+                  :title="item.title"
+                  :description="item.ctaText > 0 ? `Starting from ${item.ctaText}$ per night` : item.ctaText"
+                  :image="item.featuredImage"
+                  :link="'/listing/' + item.slug"
+                  :has-carousel="item.images && item.images.length > 0 && !$vuetify.breakpoint.mdAndUp"
+                  :images="mergeImageArray([{ url: item.featuredImage }], item.images)"
+                ></card-product>
+              </v-col>
+            </v-row>
+            <v-row no-gutters class="justify-center">
+              <v-flex xs12 sm4 md4 lg4>
+                <v-btn to="/search/ecotourism" block large outlined dark class="showAllbtn mb-6">
+                  Learn More <v-spacer></v-spacer> <v-icon>keyboard_arrow_right</v-icon>
+                </v-btn>
+              </v-flex>
+            </v-row>
           </v-container>
         </div>
       </div>
