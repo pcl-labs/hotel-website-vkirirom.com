@@ -427,7 +427,7 @@ export default {
       ];
       return {
         email_subject: 'automated',
-        email_bcc: reservationEmailsBcc,
+        // email_bcc: reservationEmailsBcc,
         email_to,
         template_id: reservationSuccessEmailTemplateId,
         dynamic_template_data: {
@@ -455,7 +455,7 @@ export default {
       const bookingInfo = state.bookingInfo;
       const prices = getters.prices({ decimalDigits: 2, formattedDate: true });
       return {
-        email_to: reservationEmailsBcc,
+        // email_to: reservationEmailsBcc,
         template_id: reservationFailEmailTemplateId,
         dynamic_template_data: {
           notificationType,
